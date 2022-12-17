@@ -1,72 +1,72 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on 南北南</title>
-    <link>https://www.vxbus.com/categories/</link>
-    <description>Recent content in Categories on 南北南</description>
+    <title>Categories on VxWorks 7</title>
+    <link>https://www.vxworks7.com/categories/</link>
+    <description>Recent content in Categories on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 04 Nov 2022 19:52:03 +0800</lastBuildDate><atom:link href="https://www.vxbus.com/categories/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 04 Nov 2022 19:52:03 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux</title>
-      <link>https://www.vxbus.com/categories/linux/</link>
+      <link>https://www.vxworks7.com/categories/linux/</link>
       <pubDate>Fri, 04 Nov 2022 19:52:03 +0800</pubDate>
       
-      <guid>https://www.vxbus.com/categories/linux/</guid>
+      <guid>https://www.vxworks7.com/categories/linux/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Python</title>
-      <link>https://www.vxbus.com/categories/python/</link>
+      <link>https://www.vxworks7.com/categories/python/</link>
       <pubDate>Sat, 29 Oct 2022 07:53:45 -0400</pubDate>
       
-      <guid>https://www.vxbus.com/categories/python/</guid>
+      <guid>https://www.vxworks7.com/categories/python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>FPGA</title>
-      <link>https://www.vxbus.com/categories/fpga/</link>
+      <link>https://www.vxworks7.com/categories/fpga/</link>
       <pubDate>Sat, 29 Oct 2022 06:53:45 -0400</pubDate>
       
-      <guid>https://www.vxbus.com/categories/fpga/</guid>
+      <guid>https://www.vxworks7.com/categories/fpga/</guid>
       <description></description>
     </item>
     
     <item>
       <title>News</title>
-      <link>https://www.vxbus.com/categories/news/</link>
+      <link>https://www.vxworks7.com/categories/news/</link>
       <pubDate>Thu, 13 Oct 2022 08:53:45 -0400</pubDate>
       
-      <guid>https://www.vxbus.com/categories/news/</guid>
+      <guid>https://www.vxworks7.com/categories/news/</guid>
       <description></description>
     </item>
     
     <item>
       <title>VxWorks</title>
-      <link>https://www.vxbus.com/categories/vxworks/</link>
+      <link>https://www.vxworks7.com/categories/vxworks/</link>
       <pubDate>Fri, 07 Oct 2022 05:35:25 -0400</pubDate>
       
-      <guid>https://www.vxbus.com/categories/vxworks/</guid>
+      <guid>https://www.vxworks7.com/categories/vxworks/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Announce</title>
-      <link>https://www.vxbus.com/categories/announce/</link>
+      <link>https://www.vxworks7.com/categories/announce/</link>
       <pubDate>Mon, 02 May 2022 15:59:41 +0800</pubDate>
       
-      <guid>https://www.vxbus.com/categories/announce/</guid>
+      <guid>https://www.vxworks7.com/categories/announce/</guid>
       <description></description>
     </item>
     
     <item>
       <title>示例</title>
-      <link>https://www.vxbus.com/categories/%E7%A4%BA%E4%BE%8B/</link>
+      <link>https://www.vxworks7.com/categories/%E7%A4%BA%E4%BE%8B/</link>
       <pubDate>Sat, 18 Sep 2021 20:58:13 +0800</pubDate>
       
-      <guid>https://www.vxbus.com/categories/%E7%A4%BA%E4%BE%8B/</guid>
+      <guid>https://www.vxworks7.com/categories/%E7%A4%BA%E4%BE%8B/</guid>
       <description></description>
     </item>
     
