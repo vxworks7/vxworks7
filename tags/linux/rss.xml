@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>linux on 北南南北</title>
-    <link>https://www.kad8.com/tags/linux/</link>
-    <description>Recent content in linux on 北南南北</description>
+    <title>linux on 南北南</title>
+    <link>https://www.vxbus.com/tags/linux/</link>
+    <description>Recent content in linux on 南北南</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 04 Nov 2022 19:52:03 +0800</lastBuildDate><atom:link href="https://www.kad8.com/tags/linux/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 04 Nov 2022 19:52:03 +0800</lastBuildDate><atom:link href="https://www.vxbus.com/tags/linux/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux编程之经典多级时间轮定时器</title>
-      <link>https://www.kad8.com/post/linux/linux-programming-multiple-time-wheel-timer.html</link>
+      <link>https://www.vxbus.com/post/linux/linux-programming-multiple-time-wheel-timer.html</link>
       <pubDate>Fri, 04 Nov 2022 19:52:03 +0800</pubDate>
       
-      <guid>https://www.kad8.com/post/linux/linux-programming-multiple-time-wheel-timer.html</guid>
+      <guid>https://www.vxbus.com/post/linux/linux-programming-multiple-time-wheel-timer.html</guid>
       <description>&lt;p&gt;mmap用于把文件映射到内存空间中，简单说mmap就是把一个文件的内容在内存里面做一个映像。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Linux mmap内存映射详解</title>
-      <link>https://www.kad8.com/post/linux/linux-mmap-explanation.html</link>
+      <link>https://www.vxbus.com/post/linux/linux-mmap-explanation.html</link>
       <pubDate>Fri, 04 Nov 2022 17:52:03 +0800</pubDate>
       
-      <guid>https://www.kad8.com/post/linux/linux-mmap-explanation.html</guid>
+      <guid>https://www.vxbus.com/post/linux/linux-mmap-explanation.html</guid>
       <description>&lt;p&gt;mmap用于把文件映射到内存空间中，简单说mmap就是把一个文件的内容在内存里面做一个映像。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>几道简单的Linux驱动相关面试题</title>
-      <link>https://www.kad8.com/post/linux/linux-device-driver-questions-and-answers.html</link>
+      <link>https://www.vxbus.com/post/linux/linux-device-driver-questions-and-answers.html</link>
       <pubDate>Fri, 04 Nov 2022 11:52:03 +0800</pubDate>
       
-      <guid>https://www.kad8.com/post/linux/linux-device-driver-questions-and-answers.html</guid>
+      <guid>https://www.vxbus.com/post/linux/linux-device-driver-questions-and-answers.html</guid>
       <description>&lt;p&gt;今天给大家分享几道Linux设备驱动相关的面试题，希望能对需要的网友一些帮助！&lt;/p&gt;</description>
     </item>
     

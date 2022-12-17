@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>系统管理 on 北南南北</title>
-    <link>https://www.kad8.com/tags/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/</link>
-    <description>Recent content in 系统管理 on 北南南北</description>
+    <title>系统管理 on 南北南</title>
+    <link>https://www.vxbus.com/tags/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/</link>
+    <description>Recent content in 系统管理 on 南北南</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 15 Oct 2022 21:52:03 +0800</lastBuildDate><atom:link href="https://www.kad8.com/tags/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 Oct 2022 21:52:03 +0800</lastBuildDate><atom:link href="https://www.vxbus.com/tags/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>openssl命令</title>
-      <link>https://www.kad8.com/post/linux/openssl.html</link>
+      <link>https://www.vxbus.com/post/linux/openssl.html</link>
       <pubDate>Sat, 15 Oct 2022 21:52:03 +0800</pubDate>
       
-      <guid>https://www.kad8.com/post/linux/openssl.html</guid>
+      <guid>https://www.vxbus.com/post/linux/openssl.html</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;强大的安全套接字层密码库&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -21,10 +21,10 @@
     
     <item>
       <title>syslog命令</title>
-      <link>https://www.kad8.com/post/linux/syslog.html</link>
+      <link>https://www.vxbus.com/post/linux/syslog.html</link>
       <pubDate>Sat, 15 Oct 2022 20:52:03 +0800</pubDate>
       
-      <guid>https://www.kad8.com/post/linux/syslog.html</guid>
+      <guid>https://www.vxbus.com/post/linux/syslog.html</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;系统默认的日志守护进程&lt;/p&gt;
 &lt;/blockquote&gt;
