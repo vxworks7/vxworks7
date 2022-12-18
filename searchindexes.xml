@@ -1,0 +1,798 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<search>
+  
+  <entry>
+    <title>欢迎加入 VxWorks 俱乐部！</title>
+    <url>/post/welcome-to-vxworks-club/</url>
+    <categories><category>Announce</category>
+    </categories>
+    <tags>
+      <tag>VxWorks</tag>
+      <tag>WindRiver</tag>
+    </tags>
+    <content type="html"><![CDATA[欢迎来到 北南南北 文档站点！ 相关文章来源于 VxWorks 俱乐部  ，也可能发布于 AI 嵌入式开发  ，专注于技术分享和交流。
+免责声明 所有资源均来自网络，版权归原作者，如有侵权，请联系删除！
+欢迎投稿  欢迎广大网友投稿 欢迎加入网友微信群  ]]></content>
+  </entry>
+  
+  <entry>
+    <title>VxWorks实时性能探究</title>
+    <url>/post/vxworks/vxworks-real-time-feature-explore.html</url>
+    <categories><category>VxWorks</category>
+    </categories>
+    <tags>
+      <tag>VxWorks</tag>
+      <tag>实时性</tag>
+    </tags>
+    <content type="html"><![CDATA[ VxWorks操作系统是一款硬实时操作系统，一直听闻其实时性能非常优秀，但是一直没有一个直观地概念。
+ 笔者最近在使用 VxWorks  , 由大名鼎鼎的风河（WindRiver）开发。本篇文章就是将VxWorks操作系统和市面上几种其他实时操作系统的实时性能进行对比。
+前期知识准备 实时性能和响应时间有关，为此，先对计算机操作系统中的时间概念和时间尺度进行一下介绍。
+1 s = 1000 ms = 1000000 us = 1000000000 ns，看不出来1 s时间还是很长的嘛
+  时钟周期：主频为4 GHz的CPU的时钟周期为1/4G = 0.25 ns，时钟周期是计算机中最基本的、最小的[时间单位。在一个时钟周期内，CPU仅完成一个最基本的动作。
+  CPU周期：CPU周期亦称机器周期，一条指令执行过程被划分为若干阶段，每一阶段完成所需时间。完成一个基本操作所需要的时间称为机器周期。通常用内存中读取一个指令字的最短时间来规定CPU周期。
+  指令周期：取出并执行一条指令的时间。想要详细了解可以看这篇文章【浅析】CPU中的指令周期、CPU周期和时钟周期
+  内存时钟周期：相比CPU，一般的DDR内存芯片速率仅为400 MHz，时钟周期达2.5 ns, 再加上总线延时，导致内存访问时间达到几十纳秒。CPU运行速率与内存访问速率比大致为100：1。
+  硬盘读取时间：硬盘的读写速度就更慢了，一般的机械硬盘的完成一次读写所需要的时间，主要取决寻道时间+旋转时间，完成一次读或者写的时间量级大致为ms级别，因此内存访问速率与磁盘存取速度比大致为1000:1。
+  上面是有关硬件方面的时间周期情况，对于操作系统或者应用程序来说，我们一般关注的是算法的时间复杂度和空间复杂度，这是从整理理想的情况来衡量一个算法的优劣。如果想要详细了解每条代码的执行所耗时间，我们需要更深入了解代码是怎么在计算机上执行的。
+C语言代码都是经过预处理、编译，产生汇编代码（汇编代码几乎已经接近机器码了），一句高级语言代码相当于汇编语言的几行甚至几十行。而学过汇编语言的都应该知道，不同的汇编代码指令执行所耗费的时间也是不同的。一般来说,移位,加法,取反这种指令只需要一个时钟周期,而乘法,除法等指令需要几个乃至几十个时钟周期执行。
+实时操作系统（RTOS）的实时性能评价指标 实时操作系统的实时性能评价指标一般有两个：
+ 任务切换时间  当多任务应用程序运行在操作系统上时，它把正在运行的任务的状态保存到任务自己的栈区之中，然后把下一个将要运行的任务的当前状态从该任务的栈区装入CPU的寄存器，并开始这个任务的执行，这个过程就叫做任务切换。
+ 中断响应时间  计算机接收到中断信号到操作系统做出响应，并完成切换转入中断服务程序的时间。
+下图是几种实时操作系统的实时性能对比：
+可以看出不管是任务切换时间还是中断响应，VxWorks都是最好的，当然VxWorks也是最贵的。
+此外我们还可以看出不管是任务切换还是中断响应，时间尺度都是在几个us，根据CPU主频的不同，大概是几千个时钟周期的样子。 下面代码是测试执行100万次简单循环语句所耗费的时间:
+int i = 1000000; int j = 0; while(i){ j += 0; i--; } timer = 2033 us //执行100万次该循环所耗时间，可以将执行每次的时间和任务切换的时间进行对比 ]]></content>
+  </entry>
+  
+  <entry>
+    <title>VxWorks的环形缓冲区设计</title>
+    <url>/post/ring-buffer-design-in-vxworks.html</url>
+    <categories><category>VxWorks</category>
+    </categories>
+    <tags>
+      <tag>VxWorks</tag>
+      <tag>Ring Buffer</tag>
+    </tags>
+    <content type="html"><![CDATA[概述 VxWorks环形缓冲模块主要定义在rngLib.c和rngLib.h中，对于数据结构比较了解的小伙伴应该知道，环形缓冲实际就是一个双向循环队列。
+注意: 关于循环队列，小编之前在《也没想象中那么神秘的数据结构-先来后到的&quot;队列&quot;（循环队列）》一文中有过详细阐述，这里就不在过多的赘述了。
+开发环境：vxWorks6.9.4，workbench3.3.5，开发板：TLZ7x-EasyEVM-A3。 另外，小编所有文章均是自己亲手编写验证，若需要小编的工程代码，访问地址 实时系统vxWorks - 环形缓冲工程文件  获取。
+文件内容如下：
+  obj: 存放目标文件，包含vxWorks镜像，应用程序目标文件。
+  rng_test: vxWorks应用工程。
+  接口 官方接口 官方环形缓冲接口定义主要包含在rngLib.h头文件中。
+环形缓冲接口定义 typedef struct	/* RING - ring buffer */ { size_t pToBuf;	/* 写指针 */ size_t pFromBuf;	/* 读指针 */ size_t bufSize;	/* 数据长度 */ char *buf;	/* 存放数据 */ } RING; /* END_HIDDEN */ typedef RING *RING_ID; 创建/删除环形缓冲 /** * @创建环形缓冲 * @nbytes: 缓冲尺寸 * @成功返回环形缓冲ID，失败返回NULL。 */ extern RING_ID rngCreate (size_t nbytes); /** * @删除环形缓冲 * @ringId: 环形缓冲ID */ extern void rngDelete (RING_ID ringId); 判断缓冲是否空/满 /** * @判断环形缓冲是否为空 * @ringId: 环形缓冲ID * @不为空返回0，否则返回其它。 */ extern BOOL rngIsEmpty (RING_ID ringId); /** * @判断环形缓冲是否为满 * @ringId: 环形缓冲ID * @不为满返回0，否则返回其它。 */ extern BOOL rngIsFull (RING_ID ringId); 读写数据 /** * @从环形缓冲中读取数据 * @ringId: 环形缓冲ID buffer：数据 maxbytes：长度 * @返回实际读取到的数据长度。 */ extern size_t rngBufGet (RING_ID rngId, char *buffer, size_t maxbytes); /** * @写数据到环形缓冲 * @ringId: 环形缓冲ID buffer：数据 nbytes：长度 * @返回实际写入数据长度 */ extern size_t rngBufPut (RING_ID rngId, char *buffer, size_t nbytes); 获取缓冲区剩余空间/已占空间 /** * @获取环形缓冲剩余空间长度 * @ringId: 环形缓冲ID * @返回剩余空间长度。 */ extern size_t rngFreeBytes (RING_ID ringId); /** * @获取环形缓冲已占空间长度 * @ringId: 环形缓冲ID * @返回已占空间长度。 */ extern size_t rngNBytes (RING_ID ringId); 清空缓冲 /** * @清空环形缓冲 * @ringId: 环形缓冲ID */ extern void rngFlush (RING_ID ringId); 环形缓冲对象接口 属性定义 /* 环形缓冲类 */ struct t_rng { u8_t flag; /* 创建标志，=1已创建，=0未创建 */ RING_ID id; /* 环形缓冲 */ struct t_sem msem; /* 环形缓冲互斥信号量 */ }; 保存数据到环形缓冲 /** * @保存数据到环形缓冲 * @p_rng：环形缓冲类 buf: 数据 len：长度 **/ void put_rng(struct t_rng *p_rng, s8_t *buf, s32_t len); 获取环形缓冲数据 /** * @获取环形缓冲数据 * @p_rng：环形缓冲类 buf装载数据, len数据长度 * 成功返回实际数据长度，失败返回ERROR **/ s32_t get_rng(struct t_rng *p_rng, s8_t *buf, s32_t len); 创建环形缓冲 /** * @创建环形缓冲 * @p_rng：环形缓冲类 nbyte申请缓冲大小, name互斥信号名 **/ void create_rng(struct t_rng *p_rng, size_t nbytes, s8_t *name); 示例   示例创建两个任务（生产者/消费者），生产者向缓冲写入数据，消费者从缓冲读取数据，缓冲访问时使用互斥信号量进行互斥。
+  关于信号量和任务部分可参加小编的《实时系统vxWorks - 信号量（重要）》和《实时系统vxWorks - 任务（重要）》文章。
+  包含环形缓冲类rng.c/rng.h和演示程序main.c（已验证通过）。
+  rng.h /** * @Filename : rng.h * @Revision : $Revision: 1.00 $ * @Author : Feng * @Description : 环形缓冲类，在系统自带环形缓冲基础上封装互斥信号量 **/ #ifndef __RNG_CLASS_H__  #define __RNG_CLASS_H__  #include #include  #include #include  #include #include &#34;sem.h&#34; extern struct sem sem; /* 保存系统信号量信息 */ /* 环形缓冲类 */ struct t_rng { u8_t flag; /* 创建标志，=1已创建，=0未创建 */ RING_ID id; /* 环形缓冲 */ struct t_sem msem; /* 环形缓冲互斥信号量 */ }; /** * @保存数据到环形缓冲 * @p_rng：环形缓冲类 buf: 数据 len：长度 **/ void put_rng(struct t_rng *p_rng, s8_t *buf, s32_t len); /** * @获取环形缓冲数据 * @p_rng：环形缓冲类 buf装载数据, len数据长度 * 成功返回实际数据长度，失败返回ERROR **/ s32_t get_rng(struct t_rng *p_rng, s8_t *buf, s32_t len); /** * @创建环形缓冲 * @p_rng：环形缓冲类 nbyte申请缓冲大小, name互斥信号名 **/ void create_rng(struct t_rng *p_rng, size_t nbytes, s8_t *name); #endif rng.c /** * @Filename : rng.c * @Revision : $Revision: 1.00 $ * @Author : Feng * @Description : 环形缓冲类，在系统自带环形缓冲基础上封装互斥信号量 **/ #include &#34;rng.h&#34; /** * @保存数据到环形缓冲 * @p_rng：环形缓冲类 buf: 数据 len：长度 **/ void put_rng(struct t_rng *p_rng, s8_t *buf, s32_t len) { if (p_rng-&gt;flag == 0) return; get_sem(&amp;p_rng-&gt;msem); if (!(rngIsFull(p_rng-&gt;id))) rngBufPut(p_rng-&gt;id, buf, len); lose_sem(&amp;p_rng-&gt;msem); } /** * @获取环形缓冲数据 * buf装载数据, len数据长度 * 成功返回实际数据长度，失败返回ERROR **/ s32_t get_rng(struct t_rng *p_rng, s8_t *buf, s32_t len) { s32_t rLen = ERROR; if (p_rng-&gt;flag == 0) return ERROR; get_sem(&amp;p_rng-&gt;msem); if (!(rngIsEmpty(p_rng-&gt;id))) rLen = rngBufGet(p_rng-&gt;id, buf, len); lose_sem(&amp;p_rng-&gt;msem); return (rLen); } /** * @创建环形缓冲 * nbyte申请缓冲大小, name互斥信号名 **/ void create_rng(struct t_rng *p_rng, size_t nbytes, s8_t *name) { if (p_rng-&gt;flag == 1) return; p_rng-&gt;id = rngCreate(nbytes); p_rng-&gt;msem.sem = NULL; p_rng-&gt;msem.type = SEM_MUTEX; strcpy(p_rng-&gt;msem.name, name); resgister_sem(&amp;sem, &amp;p_rng-&gt;msem); p_rng-&gt;flag = 1; } main.c /** * @Filename : main.c * @Revision : $Revision: 1.00 $ * @Author : Feng * @Description : 环形缓冲类使用示例 **/ #include #include  #include &#34;stdioLib.h&#34;  #include &#34;strLib.h&#34;  #include &#34;task.h&#34; #include &#34;sem.h&#34; #include &#34;rng.h&#34; #include &#34;feng_type.h&#34; #define RNG_SIZE 100 /* 缓冲大小 */ struct sem sem; /* 保存系统信号量信息 */ struct t_task s_task, s_task1; struct t_sem s_sem, s_sem1; struct t_rng rng; /** * @生产者：定时存储数据到环形缓冲 **/ static void _thread(void) { static int cnt = 77; while (1) { get_sem(&amp;s_sem); put_rng(&amp;rng, &amp;cnt, sizeof(int)); printf(&#34;put data : %d...\n&#34;, cnt++); } } /** * @消费者：定时从环形缓冲中取出数据 **/ static void _thread1(void) { int cnt1 = 0; while (1) { get_sem(&amp;s_sem1); if (get_rng(&amp;rng, &amp;cnt1, sizeof(int)) &gt; 0) printf(&#34;get data : %d...\n&#34;, cnt1); } } /** * @创建任务 * @p_task：任务类 name：任务名 thread：函数 **/ void _create_task(struct t_task *p_task, char *name, FUNCPTR thread) { strcpy(p_task-&gt;name, name); p_task-&gt;options = VX_FP_TASK; p_task-&gt;stackSize = 50 * 1024; p_task-&gt;pFunc = thread; p_task-&gt;tid = NULL; p_task-&gt;core = 0; p_task-&gt;priority = 102; create_task(p_task); start_task(p_task); } /** * @创建信号量 * @p_sem：信号量类 name：信号量名 type：类型 **/ void _create_sem(struct t_sem *p_sem, char *name, E_SEM_TYPE type) { strcpy(p_sem-&gt;name, name); p_sem-&gt;period = 100; p_sem-&gt;type = type; p_sem-&gt;sem = SEM_ID_NULL; resgister_sem(&amp;sem, p_sem); } int main(void) { sysClkRateSet(100); /* 时间片设置 */ create_rng(&amp;rng, RNG_SIZE, &#34;my_rng&#34;); _create_sem(&amp;s_sem, &#34;my_sem&#34;, SEM_BIN); _create_sem(&amp;s_sem1, &#34;my_sem1&#34;, SEM_BIN); _create_task(&amp;s_task, &#34;my_task&#34;, (FUNCPTR)_thread); _create_task(&amp;s_task1, &#34;my_task1&#34;, (FUNCPTR)_thread1); while (1) { taskDelay(500); /* 5s */ lose_sem_by_name(&amp;sem, &#34;my_sem&#34;); lose_sem_by_name(&amp;sem, &#34;my_sem1&#34;); } return 0; } 验证 使用环形缓冲之前需要先添加INCLUDE_RNG_BUF组件。
+打开镜像工程，选择kernel Configuration。按住Ctrl+F，输入rng，找到ring buffers，添加组件。
+添加完组件后，编译镜像，将镜像拷贝到目标机加载指定目录。
+创建应用工程rng_test，输入相关测试代码，运行后如下图所示。
+注意：若不知道工程如何创建以及运行，可参见小编文章《实时系统vxWorks - 任务（重要）》和《实时系统vxWorks - 加载应用程序的方法》。
+]]></content>
+  </entry>
+  
+  <entry>
+    <title>Linux编程之经典多级时间轮定时器</title>
+    <url>/post/linux/linux-programming-multiple-time-wheel-timer.html</url>
+    <categories><category>Linux</category>
+    </categories>
+    <tags>
+      <tag>linux</tag>
+      <tag>timer</tag>
+    </tags>
+    <content type="html"><![CDATA[mmap用于把文件映射到内存空间中，简单说mmap就是把一个文件的内容在内存里面做一个映像。
+多级时间轮实现框架 上图是5个时间轮级联的效果图。中间的大轮是工作轮，只有在它上的任务才会被执行；其他轮上的任务时间到后迁移到下一级轮上，他们最终都会迁移到工作轮上而被调度执行。
+多级时间轮的原理也容易理解：就拿时钟做说明，秒针转动一圈分针转动一格；分针转动一圈时针转动一格；同理时间轮也是如此：当低级轮转动一圈时，高一级轮转动一格，同时会将高一级轮上的任务重新分配到低级轮上。从而实现了多级轮级联的效果。
+多级时间轮对象 多级时间轮应该至少包括以下内容：
+ 每一级时间轮对象 轮子上指针的位置 关于轮子上指针的位置有一个比较巧妙的办法：那就是位运算。比如定义一个无符号整型的数：  通过获取当前的系统时间便可以通过位操作转换为时间轮上的时间，通过与实际时间轮上的时间作比较，从而确定时间轮要前进调度的时间，进而操作对应时间轮槽位对应的任务。
+为什么至少需要这两个成员呢？
+ 定义多级时间轮，首先需要明确的便是级联的层数，也就是说需要确定有几个时间轮。 轮子上指针位置，就是当前时间轮运行到的位置，它与真实时间的差便是后续时间轮需要调度执行，它们的差值是时间轮运作起来的驱动力。  多级时间轮对象的定义
+//实现5级时间轮 范围为0~ (2^8 * 2^6 * 2^6 * 2^6 *2^6)=2^32 struct tvec_base { unsigned long current_index; pthread_t thincrejiffies; pthread_t threadID; struct tvec_root tv1; /*第一个轮*/ struct tvec tv2; /*第二个轮*/ struct tvec tv3; /*第三个轮*/ struct tvec tv4; /*第四个轮*/ struct tvec tv5; /*第五个轮*/ }; 时间轮对象 我们知道每一个轮子实际上都是一个哈希表，上面我们只是实例化了五个轮子的对象，但是五个轮子具体包含什么，有几个槽位等等没有明确(即struct tvec和struct tvec_root)。
+#define TVN_BITS 6 #define TVR_BITS 8 #define TVN_SIZE (1&lt;&lt;TVN_BITS) #define TVR_SIZE (1&lt;&lt;TVR_BITS) struct tvec { struct list_head vec[TVN_SIZE];/*64个格子*/ }; struct tvec_root{ struct list_head vec[TVR_SIZE];/*256个格子*/ }; 此外，每一个时间轮都是哈希表，因此它的类型应该至少包含两个指针域来实现双向链表的功能。这里我们为了方便使用通用的struct list_head的双向链表结构。
+定时任务对象 定时器的主要工作是为了在未来的特定时间完成某项任务，而这个任务经常包含以下内容：
+ 任务的处理逻辑(回调函数) 任务的参数 双向链表节点 到时时间  定时任务对象的定义
+typedef void (*timeouthandle)(unsigned long ); struct timer_list{ struct list_head entry; //将时间连接成链表  unsigned long expires; //超时时间  void (*function)(unsigned long); //超时后的处理函数  unsigned long data; //处理函数的参数  struct tvec_base *base; //指向时间轮 }; 在时间轮上的效果图：
+双向链表 在时间轮上我们采用双向链表的数据类型。采用双向链表的除了操作上比单链表复杂，多占一个指针域外没有其他不可接收的问题。而多占一个指针域在今天大内存的时代明显不是什么问题。至于双向链表操作的复杂性，我们可以通过使用通用的struct list结构来解决，因为双向链表有众多的标准操作函数，我们可以通过直接引用list.h头文件来使用他们提供的接口。
+struct list可以说是一个万能的双向链表操作框架，我们只需要在自定义的结构中定义一个struct list对象即可使用它的标准操作接口。同时它还提供了一个类似container_of的接口，在应用层一般叫做list_entry，因此我们可以很方便的通过struct list成员找到自定义的结构体的起始地址。
+关于应用层的log.h, 我将在下面的代码中附上该文件。如果需要内核层的实现，可以直接从linux源码中获取。
+联结方式 多级时间轮效果图：
+多级时间轮C语言实现 双向链表头文件: list.h 提到双向链表，很多的源码工程中都会实现一系列的统一的双向链表操作函数。它们为双向链表封装了统计的接口，使用者只需要在自定义的结构中添加一个struct list_head结构，然后调用它们提供的接口，便可以完成双向链表的所有操作。这些操作一般都在list.h的头文件中实现。Linux源码中也有实现（内核态的实现）。他们实现的方式基本完全一样，只是实现的接口数量和功能上稍有差别。可以说这个list.h文件是学习操作双向链表的不二选择，它几乎实现了所有的操作：增、删、改、查、遍历、替换、清空等等。这里我拼凑了一个源码中的log.h函数，终于凑够了多级时间轮中使用到的接口。
+#if !defined(_BLKID_LIST_H) &amp;&amp; !defined(LIST_HEAD) #define _BLKID_LIST_H #ifdef __cplusplus extern &#34;C&#34; { #endif /* * Simple doubly linked list implementation. * * Some of the internal functions (&#34;__xxx&#34;) are useful when * manipulating whole lists rather than single entries, as * sometimes we already know the next/prev entries and we can * generate better code by using them directly rather than * using the generic single-entry routines. */ struct list_head { struct list_head *next, *prev; }; #define LIST_HEAD_INIT(name) { &amp;(name), &amp;(name) } #define LIST_HEAD(name) \ struct list_head name = LIST_HEAD_INIT(name) #define INIT_LIST_HEAD(ptr) do { \ (ptr)-&gt;next = (ptr); (ptr)-&gt;prev = (ptr); \ } while (0) static inline void __list_add(struct list_head *entry, struct list_head *prev, struct list_head *next) { next-&gt;prev = entry; entry-&gt;next = next; entry-&gt;prev = prev; prev-&gt;next = entry; } /** * Insert a new element after the given list head. The new element does not * need to be initialised as empty list. * The list changes from: * head → some element → ... * to * head → new element → older element → ... * * Example: * struct foo *newfoo = malloc(...); * list_add(&amp;newfoo-&gt;entry, &amp;bar-&gt;list_of_foos); * * @param entry The new element to prepend to the list. * @param head The existing list. */ static inline void list_add(struct list_head *entry, struct list_head *head) { __list_add(entry, head, head-&gt;next); } /** * Append a new element to the end of the list given with this list head. * * The list changes from: * head → some element → ... → lastelement * to * head → some element → ... → lastelement → new element * * Example: * struct foo *newfoo = malloc(...); * list_add_tail(&amp;newfoo-&gt;entry, &amp;bar-&gt;list_of_foos); * * @param entry The new element to prepend to the list. * @param head The existing list. */ static inline void list_add_tail(struct list_head *entry, struct list_head *head) { __list_add(entry, head-&gt;prev, head); } static inline void __list_del(struct list_head *prev, struct list_head *next) { next-&gt;prev = prev; prev-&gt;next = next; } /** * Remove the element from the list it is in. Using this function will reset * the pointers to/from this element so it is removed from the list. It does * NOT free the element itself or manipulate it otherwise. * * Using list_del on a pure list head (like in the example at the top of * this file) will NOT remove the first element from * the list but rather reset the list as empty list. * * Example: * list_del(&amp;foo-&gt;entry); * * @param entry The element to remove. */ static inline void list_del(struct list_head *entry) { __list_del(entry-&gt;prev, entry-&gt;next); } static inline void list_del_init(struct list_head *entry) { __list_del(entry-&gt;prev, entry-&gt;next); INIT_LIST_HEAD(entry); } static inline void list_move_tail(struct list_head *list, struct list_head *head) { __list_del(list-&gt;prev, list-&gt;next); list_add_tail(list, head); } /** * Check if the list is empty. * * Example: * list_empty(&amp;bar-&gt;list_of_foos); * * @return True if the list contains one or more elements or False otherwise. */ static inline int list_empty(struct list_head *head) { return head-&gt;next == head; } /** * list_replace - replace old entry by new one * @old : the element to be replaced * @new : the new element to insert * * If @old was empty, it will be overwritten. */ static inline void list_replace(struct list_head *old, struct list_head *new) { new-&gt;next = old-&gt;next; new-&gt;next-&gt;prev = new; new-&gt;prev = old-&gt;prev; new-&gt;prev-&gt;next = new; } /** * Retrieve the first list entry for the given list pointer. * * Example: * struct foo *first; * first = list_first_entry(&amp;bar-&gt;list_of_foos, struct foo, list_of_foos); * * @param ptr The list head * @param type Data type of the list element to retrieve * @param member Member name of the struct list_head field in the list element. * @return A pointer to the first list element. */ #define list_first_entry(ptr, type, member) \ list_entry((ptr)-&gt;next, type, member) static inline void list_replace_init(struct list_head *old, struct list_head *new) { list_replace(old, new); INIT_LIST_HEAD(old); } /** * list_entry - get the struct for this entry * @ptr: the &amp;struct list_head pointer. * @type: the type of the struct this is embedded in. * @member: the name of the list_struct within the struct. */ #define list_entry(ptr, type, member) \ ((type *)((char *)(ptr)-(unsigned long)(&amp;((type *)0)-&gt;member))) /** * list_for_each - iterate over elements in a list * @pos: the &amp;struct list_head to use as a loop counter. * @head: the head for your list. */ #define list_for_each(pos, head) \ for (pos = (head)-&gt;next; pos != (head); pos = pos-&gt;next) /** * list_for_each_safe - iterate over elements in a list, but don&#39;t dereference * pos after the body is done (in case it is freed) * @pos: the &amp;struct list_head to use as a loop counter. * @pnext: the &amp;struct list_head to use as a pointer to the next item. * @head: the head for your list (not included in iteration). */ #define list_for_each_safe(pos, pnext, head) \ for (pos = (head)-&gt;next, pnext = pos-&gt;next; pos != (head); \ pos = pnext, pnext = pos-&gt;next) #ifdef __cplusplus } #endif #endif /* _BLKID_LIST_H */这里面一般会用到一个重要实现：container_of, 它的原理这里不叙述
+调试信息头文件: log.h 这个头文件实际上不是必须的，我只是用它来添加调试信息(代码中的errlog(), log()都是log.h中的宏函数)。它的效果是给打印的信息加上颜色，效果如下：
+log.h的代码如下：
+#ifndef _LOG_h_ #define _LOG_h_ #include &lt;stdio.h&gt;#define COL(x) &#34;\033[;&#34; #x &#34;m&#34; #define RED COL(31) #define GREEN COL(32) #define YELLOW COL(33) #define BLUE COL(34) #define MAGENTA COL(35) #define CYAN COL(36) #define WHITE COL(0) #define GRAY &#34;\033[0m&#34; #define errlog(fmt, arg...) do{ \ printf(RED&#34;[#ERROR: Toeny Sun:&#34;GRAY YELLOW&#34; %s:%d]:&#34;GRAY WHITE fmt GRAY, __func__, __LINE__, ##arg);\ }while(0) #define log(fmt, arg...) do{ \ printf(WHITE&#34;[#DEBUG: Toeny Sun: &#34;GRAY YELLOW&#34;%s:%d]:&#34;GRAY WHITE fmt GRAY, __func__, __LINE__, ##arg);\ }while(0) #endif 时间轮代码: timewheel.c /* *毫秒定时器 采用多级时间轮方式 借鉴linux内核中的实现 *支持的范围为1 ~ 2^32 毫秒(大约有49天) *若设置的定时器超过最大值 则按最大值设置定时器 **/ #include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;#include &lt;string.h&gt;#include &lt;unistd.h&gt;#include &lt;pthread.h&gt;#include &lt;sys/time.h&gt;#include &#34;list.h&#34;#include &#34;log.h&#34; #define TVN_BITS 6 #define TVR_BITS 8 #define TVN_SIZE (1&lt;&lt;TVN_BITS) #define TVR_SIZE (1&lt;&lt;TVR_BITS)  #define TVN_MASK (TVN_SIZE - 1) #define TVR_MASK (TVR_SIZE - 1)  #define SEC_VALUE 0 #define USEC_VALUE 2000  struct tvec_base; #define INDEX(N) ((ba-&gt;current_index &gt;&gt; (TVR_BITS + (N) * TVN_BITS)) &amp; TVN_MASK)  typedef void (*timeouthandle)(unsigned long ); struct timer_list{ struct list_head entry; //将时间连接成链表  unsigned long expires; //超时时间  void (*function)(unsigned long); //超时后的处理函数  unsigned long data; //处理函数的参数  struct tvec_base *base; //指向时间轮 }; struct tvec { struct list_head vec[TVN_SIZE]; }; struct tvec_root{ struct list_head vec[TVR_SIZE]; }; //实现5级时间轮 范围为0~ (2^8 * 2^6 * 2^6 * 2^6 *2^6)=2^32 struct tvec_base { unsigned long current_index; pthread_t thincrejiffies; pthread_t threadID; struct tvec_root tv1; /*第一个轮*/ struct tvec tv2; /*第二个轮*/ struct tvec tv3; /*第三个轮*/ struct tvec tv4; /*第四个轮*/ struct tvec tv5; /*第五个轮*/ }; static void internal_add_timer(struct tvec_base *base, struct timer_list *timer) { struct list_head *vec; unsigned long expires = timer-&gt;expires; unsigned long idx = expires - base-&gt;current_index; #if 1  if( (signed long)idx &lt; 0 ) /*这里是没有办法区分出是过时还是超长定时的吧?*/ { vec = base-&gt;tv1.vec + (base-&gt;current_index &amp; TVR_MASK);/*放到第一个轮的当前槽*/ } else if ( idx &lt; TVR_SIZE ) /*第一个轮*/ { int i = expires &amp; TVR_MASK; vec = base-&gt;tv1.vec + i; } else if( idx &lt; 1 &lt;&lt; (TVR_BITS + TVN_BITS) )/*第二个轮*/ { int i = (expires &gt;&gt; TVR_BITS) &amp; TVN_MASK; vec = base-&gt;tv2.vec + i; } else if( idx &lt; 1 &lt;&lt; (TVR_BITS + 2 * TVN_BITS) )/*第三个轮*/ { int i = (expires &gt;&gt; (TVR_BITS + TVN_BITS)) &amp; TVN_MASK; vec = base-&gt;tv3.vec + i; } else if( idx &lt; 1 &lt;&lt; (TVR_BITS + 3 * TVN_BITS) )/*第四个轮*/ { int i = (expires &gt;&gt; (TVR_BITS + 2 * TVN_BITS)) &amp; TVN_MASK; vec = base-&gt;tv4.vec + i; } else /*第五个轮*/ { int i; if (idx &gt; 0xffffffffUL) { idx = 0xffffffffUL; expires = idx + base-&gt;current_index; } i = (expires &gt;&gt; (TVR_BITS + 3 * TVN_BITS)) &amp; TVN_MASK; vec = base-&gt;tv5.vec + i; } #else  /*上面可以优化吧*/; #endif  list_add_tail(&amp;timer-&gt;entry, vec); } static inline void detach_timer(struct timer_list *timer) { struct list_head *entry = &amp;timer-&gt;entry; __list_del(entry-&gt;prev, entry-&gt;next); entry-&gt;next = NULL; entry-&gt;prev = NULL; } static int __mod_timer(struct timer_list *timer, unsigned long expires) { if(NULL != timer-&gt;entry.next) detach_timer(timer); internal_add_timer(timer-&gt;base, timer); return 0; } //修改定时器的超时时间外部接口 int mod_timer(void *ptimer, unsigned long expires) { struct timer_list *timer = (struct timer_list *)ptimer; struct tvec_base *base; base = timer-&gt;base; if(NULL == base) return -1; expires = expires + base-&gt;current_index; if(timer-&gt;entry.next != NULL &amp;&amp; timer-&gt;expires == expires) return 0; if( NULL == timer-&gt;function ) { errlog(&#34;timer&#39;s timeout function is null\n&#34;); return -1; } timer-&gt;expires = expires; return __mod_timer(timer,expires); } //添加一个定时器 static void __ti_add_timer(struct timer_list *timer) { if( NULL != timer-&gt;entry.next ) { errlog(&#34;timer is already exist\n&#34;); return; } mod_timer(timer, timer-&gt;expires); } /*添加一个定时器 外部接口 *返回定时器 */ void* ti_add_timer(void *ptimewheel, unsigned long expires,timeouthandle phandle, unsigned long arg) { struct timer_list *ptimer; ptimer = (struct timer_list *)malloc( sizeof(struct timer_list) ); if(NULL == ptimer) return NULL; bzero( ptimer,sizeof(struct timer_list) ); ptimer-&gt;entry.next = NULL; ptimer-&gt;base = (struct tvec_base *)ptimewheel; ptimer-&gt;expires = expires; ptimer-&gt;function = phandle; ptimer-&gt;data = arg; __ti_add_timer(ptimer); return ptimer; } /* *删除一个定时器 外部接口 * * */ void ti_del_timer(void *p) { struct timer_list *ptimer =(struct timer_list*)p; if(NULL == ptimer) return; if(NULL != ptimer-&gt;entry.next) detach_timer(ptimer); free(ptimer); } /*时间轮级联*/ static int cascade(struct tvec_base *base, struct tvec *tv, int index) { struct list_head *pos,*tmp; struct timer_list *timer; struct list_head tv_list; /*将tv[index]槽位上的所有任务转移给tv_list,然后清空tv[index]*/ list_replace_init(tv-&gt;vec + index, &amp;tv_list);/*用tv_list替换tv-&gt;vec + index*/ list_for_each_safe(pos, tmp, &amp;tv_list)/*遍历tv_list双向链表，将任务重新添加到时间轮*/ { timer = list_entry(pos,struct timer_list,entry);/*struct timer_list中成员entry的地址是pos, 获取struct timer_list的首地址*/ internal_add_timer(base, timer); } return index; } static void *deal_function_timeout(void *base) { struct timer_list *timer; int ret; struct timeval tv; struct tvec_base *ba = (struct tvec_base *)base; for(;;) { gettimeofday(&amp;tv, NULL); while( ba-&gt;current_index &lt;= (tv.tv_sec*1000 + tv.tv_usec/1000) )/*单位：ms*/ { struct list_head work_list; int index = ba-&gt;current_index &amp; TVR_MASK;/*获取第一个轮上的指针位置*/ struct list_head *head = &amp;work_list; /*指针指向0槽时，级联轮需要更新任务列表*/ if(!index &amp;&amp; (!cascade(ba, &amp;ba-&gt;tv2, INDEX(0))) &amp;&amp;( !cascade(ba, &amp;ba-&gt;tv3, INDEX(1))) &amp;&amp; (!cascade(ba, &amp;ba-&gt;tv4, INDEX(2))) ) cascade(ba, &amp;ba-&gt;tv5, INDEX(3)); ba-&gt;current_index ++; list_replace_init(ba-&gt;tv1.vec + index, &amp;work_list); while(!list_empty(head)) { void (*fn)(unsigned long); unsigned long data; timer = list_first_entry(head, struct timer_list, entry); fn = timer-&gt;function; data = timer-&gt;data; detach_timer(timer); (*fn)(data); } } } } static void init_tvr_list(struct tvec_root * tvr) { int i; for( i = 0; i&lt;TVR_SIZE; i++ ) INIT_LIST_HEAD(&amp;tvr-&gt;vec[i]); } static void init_tvn_list(struct tvec * tvn) { int i; for( i = 0; i&lt;TVN_SIZE; i++ ) INIT_LIST_HEAD(&amp;tvn-&gt;vec[i]); } //创建时间轮 外部接口 void *ti_timewheel_create(void ) { struct tvec_base *base; int ret = 0; struct timeval tv; base = (struct tvec_base *) malloc( sizeof(struct tvec_base) ); if( NULL==base ) return NULL; bzero( base,sizeof(struct tvec_base) ); init_tvr_list(&amp;base-&gt;tv1); init_tvn_list(&amp;base-&gt;tv2); init_tvn_list(&amp;base-&gt;tv3); init_tvn_list(&amp;base-&gt;tv4); init_tvn_list(&amp;base-&gt;tv5); gettimeofday(&amp;tv, NULL); base-&gt;current_index = tv.tv_sec*1000 + tv.tv_usec/1000;/*当前时间毫秒数*/ if( 0 != pthread_create(&amp;base-&gt;threadID,NULL,deal_function_timeout,base) ) { free(base); return NULL; } return base; } static void ti_release_tvr(struct tvec_root *pvr) { int i; struct list_head *pos,*tmp; struct timer_list *pen; for(i = 0; i &lt; TVR_SIZE; i++) { list_for_each_safe(pos,tmp,&amp;pvr-&gt;vec[i]) { pen = list_entry(pos,struct timer_list, entry); list_del(pos); free(pen); } } } static void ti_release_tvn(struct tvec *pvn) { int i; struct list_head *pos,*tmp; struct timer_list *pen; for(i = 0; i &lt; TVN_SIZE; i++) { list_for_each_safe(pos,tmp,&amp;pvn-&gt;vec[i]) { pen = list_entry(pos,struct timer_list, entry); list_del(pos); free(pen); } } } /* *释放时间轮 外部接口 * */ void ti_timewheel_release(void * pwheel) { struct tvec_base *base = (struct tvec_base *)pwheel; if(NULL == base) return; ti_release_tvr(&amp;base-&gt;tv1); ti_release_tvn(&amp;base-&gt;tv2); ti_release_tvn(&amp;base-&gt;tv3); ti_release_tvn(&amp;base-&gt;tv4); ti_release_tvn(&amp;base-&gt;tv5); free(pwheel); } /************demo****************/ struct request_para{ void *timer; int val; }; void mytimer(unsigned long arg) { struct request_para *para = (struct request_para *)arg; log(&#34;%d\n&#34;,para-&gt;val); mod_timer(para-&gt;timer,3000); //进行再次启动定时器  sleep(10);/*定时器依然被阻塞*/ //定时器资源的释放是在这里完成的  //ti_del_timer(para-&gt;timer); } int main(int argc,char *argv[]) { void *pwheel = NULL; void *timer = NULL; struct request_para *para; para = (struct request_para *)malloc( sizeof(struct request_para) ); if(NULL == para) return 0; bzero(para,sizeof(struct request_para)); //创建一个时间轮  pwheel = ti_timewheel_create(); if(NULL == pwheel) return -1; //添加一个定时器  para-&gt;val = 100; para-&gt;timer = ti_add_timer(pwheel, 3000, &amp;mytimer, (unsigned long)para); while(1) { sleep(2); } //释放时间轮  ti_timewheel_release(pwheel); return 0; } 编译运行 peng@ubuntu:/mnt/hgfs/timer/4. timerwheel/2. 多级时间轮$ ls a.out list.h log.h mutiTimeWheel.c toney@ubantu:/mnt/hgfs/timer录/4. timerwheel/2. 多级时间轮$ gcc mutiTimeWheel.c -lpthread toney@ubantu:/mnt/hgfs/timer/4. timerwheel/2. 多级时间轮$ ./a.out [#DEBUG: Toeny Sun: mytimer:370]:100 [#DEBUG: Toeny Sun: mytimer:370]:100 [#DEBUG: Toeny Sun: mytimer:370]:100 [#DEBUG: Toeny Sun: mytimer:370]:100 [#DEBUG: Toeny Sun: mytimer:370]:100 [#DEBUG: Toeny Sun: mytimer:370]:100 [#DEBUG: Toeny Sun: mytimer:370]:100 [#DEBUG: Toeny Sun: mytimer:370]:100 [#DEBUG: Toeny Sun: mytimer:370]:100 [#DEBUG: Toeny Sun: mytimer:370]:100 [#DEBUG: Toeny Sun: mytimer:370]:100 [#DEBUG: Toeny Sun: mytimer:370]:100 [#DEBUG: Toeny Sun: mytimer:370]:100 [#DEBUG: Toeny Sun: mytimer:370]:100 [#DEBUG: Toeny Sun: mytimer:370]:100 [#DEBUG: Toeny Sun: mytimer:370]:100 [#DEBUG: Toeny Sun: mytimer:370]:100 [#DEBUG: Toeny Sun: mytimer:370]:100 [#DEBUG: Toeny Sun: mytimer:370]:100 [#DEBUG: Toeny Sun: mytimer:370]:100 [#DEBUG: Toeny Sun: mytimer:370]:100 [#DEBUG: Toeny Sun: mytimer:370]:100 [#DEBUG: Toeny Sun: mytimer:370]:100 [#DEBUG: Toeny Sun: mytimer:370]:100 [#DEBUG: Toeny Sun: mytimer:370]:100 [#DEBUG: Toeny Sun: mytimer:370]:100 [#DEBUG: Toeny Sun: mytimer:370]:100 [#DEBUG: Toeny Sun: mytimer:370]:100 从结果可以看出：如果添加的定时任务是比较耗时的操作，那么后续的任务也会被阻塞，可能一直到超时，甚至一直阻塞下去，这个取决于当前任务是否耗时。
+这个理论上是绝不能接受的：一个任务不应该也不能去影响其他的任务吧。但是目前没有对此问题进行改进和完善，以后有机会再继续完善吧。
+]]></content>
+  </entry>
+  
+  <entry>
+    <title>Linux mmap内存映射详解</title>
+    <url>/post/linux/linux-mmap-explanation.html</url>
+    <categories><category>Linux</category>
+    </categories>
+    <tags>
+      <tag>linux</tag>
+      <tag>device driver</tag>
+    </tags>
+    <content type="html"><![CDATA[mmap用于把文件映射到内存空间中，简单说mmap就是把一个文件的内容在内存里面做一个映像。
+mmap基础概念 mmap是一种内存映射的方法，这一功能可以用在文件的处理上，即将一个文件或者其它对象映射到进程的地址空间，实现文件磁盘地址和进程虚拟地址空间中一段虚拟地址的一一对映关系。在编程时可以使某个磁盘文件的内容看起来像是内存中的一个数组。如果文件由记录组成，而这些记录又能够用结构体来描述的话，可以通过访问结构体来更新文件的内容。
+实现这样的映射关系后，进程就可以采用指针的方式读写操作这一段内存，而系统会自动回写到页面到对应的文件磁盘上，即完成了对文件的操作而不必再调用read,write等系统调用函数。内核空间对这段区域的修改也直接反映用户空间，从而可以实现不同进程间的文件共享。如图所示：
+进程的虚拟地址空间，由多个虚拟内存区域构成。虚拟内存区域是进程的虚拟地址空间中的一个同质区间，即具有同样特性的连续地址范围。上图中所示的text数据段（代码段）、初始数据段、BSS数据段、堆、栈和内存映射，都是一个独立的虚拟内存区域。而为内存映射服务的地址空间处在堆栈之间的空余部分。
+内核为系统中的每个进程维护一个单独的任务结构（task_struct）。任务结构中的元素包含或者指向内核运行该进程所需的所有信息(PID、指向用户栈的指针、可执行目标文件的名字、程序计数器等)。Linux内核使用vm_area_struct结构来表示一个独立的虚拟内存区域，由于每个不同质的虚拟内存区域功能和内部机制都不同，因此一个进程使用多个vm_area_struct结构来分别表示不同类型的虚拟内存区域。各个vm_area_struct结构使用链表或者树形结构链接，方便进程快速访问，如下图所示：
+vm_area_struct结构中包含区域起始和终止地址以及其他相关信息，同时也包含一个vm_ops指针，其内部可引出所有针对这个区域可以使用的系统调用函数。这样，进程对某一虚拟内存区域的任何操作需要用要的信息，都可以从vm_area_struct中获得。mmap函数就是要创建一个新的vm_area_struct结构，并将其与文件的物理磁盘地址相连。
+mm_struct：描述了虚拟内存的当前状态。pgd指向一级页表的基址（当内核运行这个进程时， pgd会被存放在CR3控制寄存器，也就是页表基址寄存器中），mmap指向一个vm_area_structs 的链表，其中每个vm_area_structs都描述了当前虚拟地址空间的一个区域。 vm_starts 指向这个区域的起始处。 vm_end 指向这个区域的结束处。 vm_prot 描述这个区域内包含的所有页的读写许可权限。 vm_flags 描述这个区域内的页面是与其他进程共享的，还是这个进程私有的以及一些其他信息。 vm_next 指向链表的下一个区域结构。  mmap内存映射原理 mmap内存映射的实现过程，总的来说可以分为三个阶段：
+(一)启动映射过程，并在虚拟地址空间中为映射创建虚拟映射区域    进程在用户空间调用库函数mmap，原型：void *mmap(void *start, size_t length, int prot, int flags, int fd, off_t offset);
+  在当前进程的虚拟地址空间中，寻找一段空闲的满足要求的连续的虚拟地址。
+  为此虚拟区分配一个vm_area_struct结构，接着对这个结构的各个域进行了初始化。
+  将新建的虚拟区结构（vm_area_struct）插入进程的虚拟地址区域链表或树中。
+  (二)调用内核空间的系统调用函数mmap（不同于用户空间函数），实现文件物理地址和进程虚拟地址的一一映射关系   为映射分配了新的虚拟地址区域后，通过待映射的文件指针，在文件描述符表中找到对应的文件描述符，通过文件描述符，链接到内核“已打开文件集”中该文件的文件结构体（struct file），每个文件结构体维护者和这个已打开文件相关的各项信息。
+  通过该文件的文件结构体，链接到file_operations模块，调用内核函数mmap，其原型为：int mmap(struct file *filp, struct vm_area_struct *vma)，不同于用户空间库函数。
+  内核mmap函数通过虚拟文件系统inode模块定位到文件磁盘物理地址。
+  通过remap_pfn_range函数建立页表，即实现了文件地址和虚拟地址区域的映射关系。此时，这片虚拟地址并没有任何数据关联到主存中。
+  (三)进程发起对这片映射空间的访问，引发缺页异常，实现文件内容到物理内存（主存）的拷贝  注：前两个阶段仅在于创建虚拟区间并完成地址映射，但是并没有将任何文件数据的拷贝至主存。真正的文件读取是当进程发起读写操作时。
+ 进程的读或写操作访问虚拟地址空间这一段映射地址，通过查询页表，发现这一段地址并不在物理页面上。因为目前只建立了地址映射，真正的硬盘数据还没有拷贝到内存中，因此引发缺页异常。
+  缺页异常进行一系列判断，确定无非法操作后，内核发起请求调页过程。
+  调页过程先在交换缓存空间（swap cache）中寻找需要访问的内存页，如果没有则调用nopage函数把所缺的页从磁盘装入到主存中。
+  之后进程即可对这片主存进行读或者写的操作，如果写操作改变了其内容，一定时间后系统会自动回写脏页面到对应磁盘地址，也即完成了写入到文件的过程。
+  注意：修改过的脏页面并不会立即更新回文件中，而是有一段时间的延迟，可以调用msync()来强制同步, 这样所写的内容就能立即保存到文件里了。
+mmap 示例代码 mmap (内存映射)函数的作用是建立一段可以被两个或更多个程序读写的内存。一个程序对它所做出的修改可以被其他程序看见。这要通过使用带有特殊权限集的虚拟内存段来实现。对这类虚拟内存段的读写会使操作系统去读写磁盘文件中与之对应的部分。mmap 函数创建一个指向一段内存区域的指针，该内存区域与可以通过一个打开的文件描述符访问的文件的内容相关联。mmap 函数原型如下：
+#include &lt;sys/mman.h&gt;void *mmap(void *addr, size_t length, int prot, int flags, int fd, off_t offset); 可以通过传递 off 参数来改变共享内存段访问的文件中数据的起始偏移值。打开的文件描述符由 fildes 参数给出。可以访问的数据量(即内存段的长度)由 len 参数设置。
+可以通过 addr 参数来请求使用某个特定的内存地址。如果它的取值是零，结果指针就将自动分配。这是推荐的做法，否则会降低程序的可移植性，因为不同系统上的可用地址范围是不一样的。
+prot 参数用于设置内存段的访问权限。它是下列常数值的按位或的结果：
+PROT_READ 内存段可读。 PROT_WRITE 内存段可写。 PROT_EXEC 内存段可执行。 PROT_NONE 内存段不能被访问。 flags 参数控制程序对该内存段的改变所造成的影响：
+msync 函数的作用是：把在该内存段的某个部分或整段中的修改写回到被映射的文件中(或者从被映射文件里读出)。
+#include &lt;sys/mman.h&gt;int msync(void *addr, size_t len, int flags); 内存段需要修改的部分由作为参数传递过来的起始地址 addr 和长度 len 确定。flags 参数控制着执行修改的具体方式，可以使用的选项如下：
+MS_ASYNC 采用异步写方式 MS_SYNC 采用同步写方式 MS_INVALIDATE 从文件中读回数据 munmap 函数的作用是释放内存段：
+#include &lt;sys/mman.h&gt;int munmap(void *addr, size_t length); 示例代码：
+(1) 定义一个 RECORD 数据结构，然后创建出 NRECORDS 每个记录，每个记录中保存着它们各自的编号。然后把这些记录都追加到文件 records.dat 里去。
+(2) 接着，把第 43 记录中的整数值由 43 修改为 143，并把它写入第 43 条记录中的字符串。
+(3) 把这些记录映射到内存中，然后访问第 43 条记录，把它的整数值修改为 243 (同时更新该记录中的字符串)，使用的还是内存映射的方法。
+可以将上述 (2) (3) 分别编写程序验证结果。
+#include &lt;unistd.h&gt;#include &lt;stdio.h&gt;#include &lt;sys/mman.h&gt;#include &lt;fcntl.h&gt;#include &lt;stdlib.h&gt;typedef struct{ int integer; char string[24]; }RECORD; #define NRECORDS (100) int main() { RECORD record, *mapped; int i, f; FILE *fp; fp = fopen(&#34;records.dat&#34;, &#34;w+&#34;); for( i = 0; i &lt; NRECORDS; i++) { record.integer = i; sprintf(record.string, &#34;[RECORD-%d]&#34;, i); fwrite(&amp;record, sizeof(record), 1, fp); } fclose(fp); fp = fopen(&#34;records.dat&#34;, &#34;r+&#34;); fseek(fp, 43 * sizeof(record), SEEK_SET); fread(&amp;record, sizeof(record), 1, fp); record.integer = 143; sprintf(record.string, &#34;[RECORD-%d]&#34;, record.integer); fseek(fp, 43 * sizeof(record), SEEK_SET); fwrite(&amp;record, sizeof(record), 1, fp); fclose(fp); f = open(&#34;records.dat&#34;, O_RDWR); mapped = (RECORD*)mmap(0, NRECORDS * sizeof(record), PROT_READ | PROT_WRITE, MAP_SHARED, f, 0); printf(&#34;f:[%d]\n&#34;, f); //open是系统调用，返回文件描述符。fopen是库函数，返回指针。 	mapped[43].integer = 243; sprintf(mapped[43].string, &#34;[RECORD-%d]&#34;, mapped[43].integer); msync((void *) mapped, NRECORDS * sizeof(record), MS_ASYNC); munmap((void *)mapped, NRECORDS * sizeof(record)); close(f); return 0;	} mmap 和常规文件操作的区别 使用系统调用，函数的调用过程：
+  进程发起读文件请求。
+  内核通过查找进程文件描述符表，定位到内核已打开文件集上的文件信息，从而找到此文件的inode。
+  inode在address_space上查找要请求的文件页是否已经缓存在页缓存中。如果存在，则直接返回这片文件页的内容。
+  如果不存在，则通过inode定位到文件磁盘地址，将数据从磁盘复制到页缓存。之后再次发起读页面过程，进而将页缓存中的数据发给用户进程。
+  总结来说，常规文件操作为了提高读写效率和保护磁盘，使用了页缓存机制。这样造成读文件时需要先将文件页从磁盘拷贝到页缓存中，由于页缓存处在内核空间，不能被用户进程直接寻址，所以还需要将页缓存中数据页再次拷贝到内存对应的用户空间中。这样，通过了两次数据拷贝过程，才能完成进程对文件内容的获取任务。写操作也是一样，待写入的buffer在内核空间不能直接访问，必须要先拷贝至内核空间对应的主存，再写回磁盘中（延迟写回），也是需要两次数据拷贝。
+而使用mmap操作文件中，创建新的虚拟内存区域和建立文件磁盘地址和虚拟内存区域映射这两步，没有任何文件拷贝操作。而之后访问数据时发现内存中并无数据而发起的缺页异常过程，可以通过已经建立好的映射关系，只使用一次数据拷贝，就从磁盘中将数据传入内存的用户空间中，供进程使用。
+总而言之，常规文件操作需要从磁盘到页缓存再到用户主存的两次数据拷贝。而mmap操控文件，只需要从磁盘到用户主存的一次数据拷贝过程。说白了，mmap的关键点是实现了用户空间和内核空间的数据直接交互而省去了空间不同、数据不通的繁琐过程。因此mmap效率更高。
+由上文讨论可知，mmap优点共有一下几点：
+  对文件的读取操作跨过了页缓存，减少了数据的拷贝次数，用内存读写取代I/O读写，提高了文件读取效率。
+  实现了用户空间和内核空间的高效交互方式。两空间的各自修改操作可以直接反映在映射的区域内，从而被对方空间及时捕捉。
+  提供进程间共享内存及相互通信的方式。不管是父子进程还是无亲缘关系的进程，都可以将自身用户空间映射到同一个文件或匿名映射到同一片区域。从而通过各自对映射区域的改动，达到进程间通信和进程间共享的目的。
+  同时，如果进程A和进程B都映射了区域C，当A第一次读取C时通过缺页从磁盘复制文件页到内存中；但当B再读C的相同页面时，虽然也会产生缺页异常，但是不再需要从磁盘中复制文件过来，而可直接使用已经保存在内存中的文件数据。
+可用于实现高效的大规模数据传输。内存空间不足，是制约大数据操作的一个方面，解决方案往往是借助硬盘空间协助操作，补充内存的不足。但是进一步会造成大量的文件I/O操作，极大影响效率。这个问题可以通过mmap映射很好的解决。换句话说，但凡是需要用磁盘空间代替内存的时候，mmap都可以发挥其功效。  mmap 使用的细节   使用mmap需要注意的一个关键点是，mmap映射区域大小必须是物理页大小(page_size)的整倍数（32位系统中通常是4k字节）。原因是，内存的最小粒度是页，而进程虚拟地址空间和内存的映射也是以页为单位。为了匹配内存的操作，mmap从磁盘到虚拟地址空间的映射也必须是页。
+  内核可以跟踪被内存映射的底层对象（文件）的大小，进程可以合法的访问在当前文件大小以内又在内存映射区以内的那些字节。也就是说，如果文件的大小一直在扩张，只要在映射区域范围内的数据，进程都可以合法得到，这和映射建立时文件的大小无关。
+  映射建立之后，即使文件关闭，映射依然存在。因为映射的是磁盘的地址，不是文件本身，和文件句柄无关。同时可用于进程间通信的有效地址空间不完全受限于被映射文件的大小，因为是按页映射。
+ ]]></content>
+  </entry>
+  
+  <entry>
+    <title>几道简单的Linux驱动相关面试题</title>
+    <url>/post/linux/linux-device-driver-questions-and-answers.html</url>
+    <categories><category>Linux</category>
+    </categories>
+    <tags>
+      <tag>linux</tag>
+      <tag>device driver</tag>
+    </tags>
+    <content type="html"><![CDATA[今天给大家分享几道Linux设备驱动相关的面试题，希望能对需要的网友一些帮助！
+Linux基础 任意3种网络操作的Linux命令,并说明他们的含义 ifconfig 命令 ifconfig 用于查看和配置 Linux 系统的网络接口。 查看所有网络接口及其状态：ifconfig -a 。 使用 up 和 down 命令启动或停止某个接口：ifconfig eth0 up 和 ifconfig eth0 down 。
+iptables 命令 iptables ，是一个配置 Linux 内核防火墙的命令行工具。功能非常强大，对于我们开发来说，主要掌握如何开放端口即可。
+netstat 命令 Linux netstat命令用于显示网络状态。
+利用netstat指令可让你得知整个Linux系统的网络情况。
+ping 命令 Linux ping命令用于检测主机。
+执行ping指令会使用ICMP传输协议，发出要求回应的信息，若远端主机的网络功能没有问题，就会回应该信息，因而得知该主机运作正常。
+telnet 命令 Linux telnet命令用于远端登入。
+执行telnet指令开启终端机阶段作业，并登入远端主机。
+Linux支持的文件类型  普通文件类型 - 目录文件类型 d 块设备文件类型 b 字符设备类型 c 套接字文件类型 s FIFO管道文件类型 p 链接文件类型 l  Linux系统编程 嵌入式操作系统进程间有哪些同步通信服务？ Linux进程间通信方式主要有  信号(signal) 信号量 管道(pipe)、流管道(s_pipe)、有名管道(FIFO)。 消息队列 共享内存 套接字（本地的还有域套接字）  ARM 请问ARM支持哪几种异常类型？ 异常源分类
+要进入异常模式，一定要有异常源，ARM规定有7种异常源：
+   异常源 描述     Reset 上电时执行   Undef 当流水线中的某个非法指令到达执行状态时执行   SWI 当一个软中断指令被执行完的时候执行   Prefetch 当一个指令被从内存中预取时，由于某种原因而失败，如果它能到达执行状态这个异常才会产生   Data 如果一个预取指令试图存取一个非法的内存单元，这时异常产生   IRQ 通常的中断   FIQ 快速中断    请简述什么是中断？中断发生后，CPU做了哪些操作 中断：是指CPU在执行程序的过程中，出现了某些突发事件时CPU必须暂停执行当前的程序，转去处理突发事件，处理完毕后CPU又返回源程序被中断的位置并继续执行。
+中断发生后，ARM核的操作步骤可以总结为4大步3小步。
+4大步3小步  保存执行状态：将CPSR复制到发生的异常模式下SPSR中； 模式切换：   CPSR模式位强制设置为与异常类型相对应的值， 处理器进入到ARM执行模式， 禁止所有IRQ中断，当进入FIQ快速中断模式时禁止FIQ中断；   保存返回地址：将下一条指令的地址（被打断程序）保存在LR(异常模式下LR_excep)中。 跳入异常向量表：强制设置PC的值为相应异常向量地址，跳转到异常处理程序中。  什么是GPIO？ general purpose input/output GPIO是相对于芯片本身而言的，如某个管脚是芯片的GPIO脚，则该脚可作为输入或输出高或低电平使用，当然某个脚具有复用的功能，即可做GPIO也可做其他用途。
+也就是说你可以把这些引脚拿来用作任何一般用途的输入输出，例如用一根引脚连到led的一极来控制它的亮灭，也可以用一根（一些）引脚连到一个传感器上以获得该传感器的状态，这给cpu提供了一个方便的控制周边设备的途经。如果没有足够多的gpio管脚，在控制一些外围设备时就会力有不逮，这时可采取的方案是使用CPLD来帮助管理。
+IIC引脚名称及功能？  SDA 数据线，用于传输数据 SCL 时钟线，用于同步数据  IIC的S、P信号如何发出？ 每次通信都必须由主设备发起，当主设备决定开始通讯时，需要发送开始（S）信号，需要执行以下动作；
+ 空闲时SCL默认是高电平； 将SDA线从高压电平切换到低压电平； 然后将SCL从高电平切换到低电平。 在主设备发送开始条件信号之后，所有从机即使处于睡眠模式也将变为活动状态，并等待接收地址位。 当双方决定结束通讯时，需要发送停止（P）信号，需要执行以下动作； 先将SDA、SCL设置为低电平； 然后将SCL从低电平切换到高电平； 将SDA从低电平切换到高电平。 在停止条件信号之后，I2C总线即处于空闲状态。  SPI引脚名称及功能？ 串行时钟线（SCK）、 主机输入/从机输出数据线MISO、 主机输出/从机输入数据线MOSI 从机选择线SS
+(有的SPI接口芯片带有中断信号线INT或INT、有的SPI接口芯片没有主机输出/从机输入数据线MOSI)
+驱动  查看驱动模块中打印信息应该使用什么命令？如何查看内核中已有的字符设备的信息？如何查看正在使用的有哪些中断号？
+ 查看驱动模块中打印信息的命令： dmesg 查看加载模块信息可以用 lsmod 已经分配的字符设备块设备号信息可以查看下面文件 cat /proc/devices 内核会为每一个驱动模块建立一个文件夹，如下： ls /sys/module/ 显示当前使用的中断号 cat /proc/interrupts  如何手动创建字符设备？并简述主设备号和次设备号的用途。
+ 创建字符设备命令如下:
+mknod chartest c 4 64， mknod : 创建设备节点 chartest ：设备节点名字 c ： 字符设备， 4 ： 主设备号 64： 次设备号 主设备号：主设备号标识设备对应的驱动程序。虽然现代的linux内核允许多个驱动程序共享主设备号，但我们看待的大多数设备仍然按照“一个主设备对应一个驱动程序”的原则组织。
+次设备号：次设备号由内核使用，用于正确确定设备文件所指的设备。依赖于驱动程序的编写方式，我们可以通过次设备号获得一个指向内核设备的直接指针，也可将此设备号当作设备本地数组的索引。
+比如：
+硬件平台可能又4个串口，他们驱动非常类似，区别仅仅是个字对应的SFR基地址不同， 那么我们可以让着几个串口共用同一个串口设备驱动 通过次设备号来区别具体是哪一个串口  内核中使用共享资源时，为了使之满足互斥条件，通常有哪些方法？
+ 原子操作，自旋锁，信号量，互斥锁
+ Linux内核包括那几个子系统？
+ Linux内核主要由进程调度（SCHED）、内存管理（MM）、虚拟文件系统（VFS）、网络接口（NET）和进程间通信（IPC）5个子系统组成
+]]></content>
+  </entry>
+  
+  <entry>
+    <title>10个Python脚本来自动化你的日常任务</title>
+    <url>/post/python/ten-python-script-to-automatically-execute-your-daily-task.html</url>
+    <categories><category>Python</category>
+    </categories>
+    <tags>
+      <tag>python</tag>
+    </tags>
+    <content type="html"><![CDATA[ 在这个自动化时代，我们有很多重复无聊的工作要做。 想想这些你不再需要一次又一次地做的无聊的事情，让它自动化，让你的生活更轻松。 那么在本文中，我将向您介绍 10 个 Python 自动化脚本，以使你的工作更加自动化，生活更加轻松。 因此，没有更多的重复任务将这篇文章放在您的列表中，让我们开始吧。
+ 解析和提取 HTML  此自动化脚本将帮助你从网页 URL 中提取 HTML，然后还为你提供可用于解析 HTML 以获取数据的功能。这个很棒的脚本对于网络爬虫和那些想要解析 HTML 以获取重要数据的人来说是一种很好的享受。
+ # Parse and Extract HTML # pip install gazpacho import gazpacho # Extract HTML from URL url = &#39;https://www.example.com/&#39; html = gazpacho.get(url) print(html) # Extract HTML with Headers headers = {&#39;User-Agent&#39;: &#39;Mozilla/5.0&#39;} html = gazpacho.get(url, headers=headers) print(html) # Parse HTML parse = gazpacho.Soup(html) # Find single tags tag1 = parse.find(&#39;h1&#39;) tag2 = parse.find(&#39;span&#39;) # Find multiple tags tags1 = parse.find_all(&#39;p&#39;) tags2 = parse.find_all(&#39;a&#39;) # Find tags by class tag = parse.find(&#39;.class&#39;) # Find tags by Attribute tag = parse.find(&#34;div&#34;, attrs={&#34;class&#34;: &#34;test&#34;}) # Extract text from tags text = parse.find(&#39;h1&#39;).text text = parse.find_all(&#39;p&#39;)[0].text 二维码扫描仪  拥有大量二维码图像或只想扫描二维码图像，那么此自动化脚本将帮助你。该脚本使用 Qrtools 模块，使你能够以编程方式扫描 QR 图像。
+ # Qrcode Scanner # pip install qrtools from qrtools import Qr def Scan_Qr(qr_img): qr = Qr() qr.decode(qr_img) print(qr.data) return qr.data print(&#34;Your Qr Code is: &#34;, Scan_Qr(&#34;qr.png&#34;)) 截图  现在，你可以使用下面这个很棒的脚本以编程方式截取屏幕截图。使用此脚本，你可以直接截屏或截取特定区域的屏幕截图。
+ # Grab Screenshot # pip install pyautogui # pip install Pillow from pyautogui import screenshot import time from PIL import ImageGrab # Grab Screenshot of Screen def grab_screenshot(): shot = screenshot() shot.save(&#39;my_screenshot.png&#39;) # Grab Screenshot of Specific Area def grab_screenshot_area(): area = (0, 0, 500, 500) shot = ImageGrab.grab(area) shot.save(&#39;my_screenshot_area.png&#39;) # Grab Screenshot with Delay def grab_screenshot_delay(): time.sleep(5) shot = screenshot() shot.save(&#39;my_screenshot_delay.png&#39;) 创建有声读物  厌倦了手动将您的 PDF 书籍转换为有声读物，那么这是你的自动化脚本，它使用 GTTS 模块将你的 PDF 文本转换为音频。
+ # Create Audiobooks # pip install gTTS # pip install PyPDF2 from PyPDF2 import PdfFileReader as reader from gtts import gTTS def create_audio(pdf_file): read_Pdf = reader(open(pdf_file, &#39;rb&#39;)) for page in range(read_Pdf.numPages): text = read_Pdf.getPage(page).extractText() tts = gTTS(text, lang=&#39;en&#39;) tts.save(&#39;page&#39; + str(page) + &#39;.mp3&#39;) create_audio(&#39;book.pdf&#39;) PDF 编辑器  使用以下自动化脚本使用 Python 编辑 PDF 文件。该脚本使用 PyPDF4 模块，它是 PyPDF2 的升级版本，下面我编写了 Parse Text、Remove pages 等常用功能。当你有大量 PDF 文件要编辑或需要以编程方式在 Python 项目中使用脚本时，这是一个方便的脚本。
+ # PDF Editor # pip install PyPDf4 import PyPDF4 # Parse the Text from PDF def parse_text(pdf_file): reader = PyPDF4.PdfFileReader(pdf_file) for page in reader.pages: print(page.extractText()) # Remove Page from PDF def remove_page(pdf_file, page_numbers): filer = PyPDF4.PdfReader(&#39;source.pdf&#39;, &#39;rb&#39;) out = PyPDF4.PdfWriter() for index in page_numbers: page = filer.pages[index] out.add_page(page) with open(&#39;rm.pdf&#39;, &#39;wb&#39;) as f: out.write(f) # Add Blank Page to PDF def add_page(pdf_file, page_number): reader = PyPDF4.PdfFileReader(pdf_file) writer = PyPDF4.PdfWriter() writer.addPage() with open(&#39;add.pdf&#39;, &#39;wb&#39;) as f: writer.write(f) # Rotate Pages def rotate_page(pdf_file): reader = PyPDF4.PdfFileReader(pdf_file) writer = PyPDF4.PdfWriter() for page in reader.pages: page.rotateClockwise(90) writer.addPage(page) with open(&#39;rotate.pdf&#39;, &#39;wb&#39;) as f: writer.write(f) # Merge PDFs def merge_pdfs(pdf_file1, pdf_file2): pdf1 = PyPDF4.PdfFileReader(pdf_file1) pdf2 = PyPDF4.PdfFileReader(pdf_file2) writer = PyPDF4.PdfWriter() for page in pdf1.pages: writer.addPage(page) for page in pdf2.pages: writer.addPage(page) with open(&#39;merge.pdf&#39;, &#39;wb&#39;) as f: writer.write(f) 迷你 Stackoverflow  作为一名程序员，我知道我们每天都需要 StackOverflow，但你不再需要在 Google 上搜索它。现在，在您继续处理项目的同时，在你的 CMD 中获得直接解决方案。通过使用 Howdoi 模块，你可以在命令提示符或终端中获得 StackOverflow 解决方案。你可以在下面找到一些可以尝试的示例。
+ # Automate Stackoverflow # pip install howdoi # Get Answers in CMD #example 1 &gt; howdoi how do i install python3 # example 2 &gt; howdoi selenium Enter keys # example 3 &gt; howdoi how to install modules # example 4 &gt; howdoi Parse html with python # example 5 &gt; howdoi int not iterable error # example 6 &gt; howdoi how to parse pdf with python # example 7 &gt; howdoi Sort list in python # example 8 &gt; howdoi merge two lists in python # example 9 &gt;howdoi get last element in list python # example 10 &gt; howdoi fast way to sort list 自动化手机  此自动化脚本将帮助你使用 Python 中的 Android 调试桥 (ADB) 自动化你的智能手机。下面我将展示如何自动执行常见任务，例如滑动手势、呼叫、发送短信等等。您可以了解有关 ADB 的更多信息，并探索更多令人兴奋的方法来实现手机自动化，让您的生活更轻松。
+ # Automate Mobile Phones # pip install opencv-python import subprocess def main_adb(cm): p = subprocess.Popen(cm.split(&#39; &#39;), stdout=subprocess.PIPE, shell=True) (output, _) = p.communicate() return output.decode(&#39;utf-8&#39;) # Swipe  def swipe(x1, y1, x2, y2, duration): cmd = &#39;adb shell input swipe {}{}{}{}{}&#39;.format(x1, y1, x2, y2, duration) return main_adb(cmd) # Tap or Clicking def tap(x, y): cmd = &#39;adb shell input tap {}{}&#39;.format(x, y) return main_adb(cmd) # Make a Call def make_call(number): cmd = f&#34;adb shell am start -a android.intent.action.CALL -d tel:{number}&#34; return main_adb(cmd) # Send SMS def send_sms(number, message): cmd = &#39;adb shell am start -a android.intent.action.SENDTO -d sms:{}--es sms_body &#34;{}&#34;&#39;.format(number, message) return main_adb(cmd) # Download File From Mobile to PC def download_file(file_name): cmd = &#39;adb pull /sdcard/{}&#39;.format(file_name) return main_adb(cmd) # Take a screenshot def screenshot(): cmd = &#39;adb shell screencap -p&#39; return main_adb(cmd) # Power On and Off def power_off(): cmd = &#39;&#34;adb shell input keyevent 26&#34;&#39; return main_adb(cmd) 监控 CPU/GPU 温度  你可能使用 CPU-Z 或任何规格监控软件来捕获你的 Cpu 和 Gpu 温度，但你也可以通过编程方式进行。好吧，这个脚本使用 Pythonnet 和 OpenhardwareMonitor 来帮助你监控当前的 Cpu 和 Gpu 温度。你可以使用它在达到一定温度时通知自己，也可以在 Python 项目中使用它来简化日常生活。
+ # Get CPU/GPU Temperature # pip install pythonnet import clr clr.AddReference(&#34;OpenHardwareMonitorLib&#34;) from OpenHardwareMonitorLib import * spec = Computer() spec.GPUEnabled = True spec.CPUEnabled = True spec.Open() # Get CPU Temp def Cpu_Temp(): while True: for cpu in range(0, len(spec.Hardware[0].Sensors)): if &#34;/temperature&#34; in str(spec.Hardware[0].Sensors[cpu].Identifier): print(str(spec.Hardware[0].Sensors[cpu].Value)) # Get GPU Temp def Gpu_Temp() while True: for gpu in range(0, len(spec.Hardware[0].Sensors)): if &#34;/temperature&#34; in str(spec.Hardware[0].Sensors[gpu].Identifier): print(str(spec.Hardware[0].Sensors[gpu].Value)) Instagram 上传机器人  Instagram 是一个著名的社交媒体平台，你现在不需要通过智能手机上传照片或视频。你可以使用以下脚本以编程方式执行此操作。
+ # Upload Photos and Video on Insta # pip install instabot from instabot import Bot def Upload_Photo(img): robot = Bot() robot.login(user) robot.upload_photo(img, caption=&#34;Medium Article&#34;) print(&#34;Photo Uploaded&#34;) def Upload_Video(video): robot = Bot() robot.login(user) robot.upload_video(video, caption=&#34;Medium Article&#34;) print(&#34;Video Uploaded&#34;) def Upload_Story(img): robot = Bot() robot.login(user) robot.upload_story(img, caption=&#34;Medium Article&#34;) print(&#34;Story Photos Uploaded&#34;) Upload_Photo(&#34;img.jpg&#34;) Upload_Video(&#34;video.mp4&#34;) 视频水印  使用此自动化脚本为你的视频添加水印，该脚本使用 Moviepy，这是一个方便的视频编辑模块。在下面的脚本中，你可以看到如何添加水印并且可以自由使用它。
+ # Video Watermark with Python # pip install moviepy from moviepy.editor import * clip = VideoFileClip(&#34;myvideo.mp4&#34;, audio=True) width,height = clip.size text = TextClip(&#34;WaterMark&#34;, font=&#39;Arial&#39;, color=&#39;white&#39;, fontsize=28) set_color = text.on_color(size=(clip.w + text.w, text.h-10), color=(0,0,0), pos=(6,&#39;center&#39;), col_opacity=0.6) set_textPos = set_color.set_pos( lambda pos: (max(width/30,int(width-0.5* width* pos)),max(5*height/6,int(100* pos))) ) Output = CompositeVideoClip([clip, set_textPos]) Output.duration = clip.duration Output.write_videofile(&#34;output.mp4&#34;, fps=30, codec=&#39;libx264&#39;) ]]></content>
+  </entry>
+  
+  <entry>
+    <title>FPGA硬核和软核处理器的区别</title>
+    <url>/post/fpga/difference-between-hard-core-processor-and-soft-core-processor-of-fpga.html</url>
+    <categories><category>FPGA</category>
+    </categories>
+    <tags>
+      <tag>CPU</tag>
+      <tag>fpga</tag>
+      <tag>processor</tag>
+      <tag>Altera</tag>
+      <tag>Xilinx</tag>
+    </tags>
+    <content type="html"><![CDATA[ 从架构的角度来说，SOPC和SoC FPGA是统一的，都是由FPGA部分和处理器部分组成。在SoC FPGA 中，嵌入的是纯硬件基础的硬核处理器，简称HPS(Hardware Processor System)，而SOPC技术中，嵌入的是使用FPGA逻辑资源实现的软核处理器，两者指令集不一样，处理器性能也不一样。
+ 软核处理器 SOPC技术，即软核处理器，最早是由Altera公司提出来的，它是基于 FPGA  的SOC片上系统设计技术。是使用FPGA的逻辑和资源搭建的一个软核CPU系统，由于是使用FPGA的通用逻辑搭建的CPU，因此具有一定的灵活性，用户可以根据自己的需求对CPU进行定制裁剪，增加一些专用功能，例如除法或浮点运算单元，用于提升CPU在某些专用运算方面的性能，或者删除一些在系统里面使用不到的功能，以节约逻辑资源。
+另外也可以根据用户的实际需求，为CPU添加各种标准或定制的外设，例如UART，SPI，IIC等标准接口外设，同时，用户也可以自己使用FPGA的逻辑资源，编写各种专用的外设，然后连接到CPU总线上，由CPU进行控制，以实现软硬件的协同工作，在保证系统性能的同时，增加了系统的灵活性。
+而且，如果单个的软核CPU无法满足用户需求，可以添加多个CPU软核，搭建多核系统，通过多核CPU协同工作，让系统拥有更加灵活便捷的控制能力。
+由于是使用FPGA资源实现的，所以具有很大的灵活性，可以实现根据需要实现多种处理器，如8051，RISC-V，Xilinx的 MicroBlaze ，Altera的Nios-II等等。
+硬核处理器 由于软核CPU是使用FPGA的通用逻辑资源搭建的，相较使用经过布局布线优化的硬核处理器来说，软核处理器够运行的最高实时钟主频要低一些，而且也会相应的消耗较多的FPGA逻辑资源以及片上存储器资源，因此SOPC方案仅适用于对于数处理器整体性能要求不高的应用，例如整个系统的初始化配置，人机交互，多个功能模块间的协调控制等功能。
+所以，各大FPGA厂家推出了SoC FPGA技术，是在芯片设计之初，就在内部的硬件电路上添加了硬核处理器，是纯硬件实现的，不会消耗FPGA的逻辑资源，硬核处理器和FPGA逻辑在一定程度上是相互独立的，简单的说，就是SoC FPGA就是把一块ARM处理器和一块FPGA芯片封装成了一个芯片。
+例如比较有名的Xilinx的ZYNQ/PYNQ系列集成ARM Cortex-A9处理器，同时具有ARM软件的可编程性和FPGA 的硬件可编程性，不仅可实现重要分析与硬件加速，同时还在单个器件上高度集成 CPU、DSP、ASSP 以及混合信号功能。
+ZYNQ开发板 Intel的Cyclone V系列，集成双核Cortex-A9，于2013年发布，在单一芯片上集成了双核的ARM Cortex-A9处理器和FPGA逻辑资源的新型SoC芯片，相较于传统的单一ARM处理器或FPGA芯片，它既拥有了ARM处理器灵活高效的数据运算和事务处理能力，同时又集成了FPGA的高速并行处理优势，同时，基于两者独特的片上互联结构，使用时可以将FPGA上的通用逻辑资源经过配置，映射为ARM处理器的一个或多个具有特定功能的外设，通过高达128位宽的AXI高速总线进行通信，完成数据和控制命令的交互。由于片上的ARM处理器是经过布局布线的硬线逻辑，因此其能工作的时钟主频较高，因此单位时间内能够执行的指令也更多。
+区别和联系 从架构的角度来说，SOPC和SoC FPGA是统一的，都是由FPGA部分和处理器部分组成。在SoC FPGA 中，嵌入的是纯硬件基础的硬核处理器，简称HPS(Hardware Processor System)，而SOPC技术中，嵌入的是使用FPGA逻辑资源实现的软核处理器，两者指令集不一样，处理器性能也不一样。
+一般来说，硬核处理器的性能要远远高于软核处理器。另外，硬核处理器除了CPU部分，还集成了各种高性能外设，如MMU、DDR3控制器、Nand FLASH控制器等，可以运行成熟的Linux操作系统和应用程序，提供统一的系统API，降低开发者的软件开发难度。而软核CPU虽然可以通过配置，用逻辑资源来搭建相应的控制器以支持相应功能，但是从性能和开发难度上来说，基于SoC FPGA架构进行设计开发是比较好的选择。
+ZYNQ内部框图 另外，虽然SoC FPGA芯片上既包含了有ARM，又包含了有FPGA，但是两者一定程度上是相互独立的，SoC芯片上的ARM处理器核并非是包含于FPGA逻辑单元内部的，FPGA和ARM（HPS）处理器只是封装到同一个芯片中，JTAG接口、电源引脚和外设的接口引脚都是独立的，因此，如果使用SoC FPGA芯片进行设计，即使不使用到片上的ARM处理器，ARM处理器部分占用的芯片资源也无法释放出来，不能用作通用的FPGA资源。
+而SOPC则是使用FPGA通用逻辑和存储器资源搭建的CPU，当不使用CPU时，CPU部分占用的资源可以被释放，重新用作通用FPGA资源。
+]]></content>
+  </entry>
+  
+  <entry>
+    <title>详解嵌入式LCD的接口类型</title>
+    <url>/post/fpga/embedded-lcd-interface-model.html</url>
+    <categories><category>FPGA</category>
+    </categories>
+    <tags>
+      <tag>LCD</tag>
+      <tag>RGB</tag>
+    </tags>
+    <content type="html"><![CDATA[ 从架构的角度来说，SOPC和SoC FPGA是统一的，都是由FPGA部分和处理器部分组成。在SoC FPGA 中，嵌入的是纯硬件基础的硬核处理器，简称HPS(Hardware Processor System)，而SOPC技术中，嵌入的是使用FPGA逻辑资源实现的软核处理器，两者指令集不一样，处理器性能也不一样。
+ LCD的接口有多种，分类很细。主要看LCD的驱动方式和控制方式，目前手机上的彩色LCD的连接方式一般有这么几种：MCU模式，RGB模式，SPI模式，VSYNC模式，MDDI模式，DSI模式。MCU模式(也写成MPU模式的)。只有TFT模块才有RGB接口。
+但应用比较多的就是MUC模式和RGB模式，区别有以下几点：
+MCU接口: 会解码命令，由timing generator产生时序信号，驱动COM和SEG驱器。
+RGB接口: 在写LCD register setting时，和MCU接口没有区别。区别只在于图像的写入方式。
+用MCU模式时由于数据可以先存到IC内部GRAM后再往屏上写，所以这种模式LCD可以直接接在MEMORY的总线上。
+用RGB模式时就不同了，它没有内部RAM，HSYNC，VSYNC，ENABLE，CS，RESET，RS可以直接接在MEMORY的GPIO口上，用GPIO口来模拟波形.
+MPU接口方式: 显示数据写入DDRAM，常用于静止图片显示。
+RGB接口方式: 显示数据不写入DDRAM，直接写屏，速度快，常用于显示视频或动画用。
+主要的区别是: MCU接口方式: 显示数据写入DDRAM，常用于静止图片显示。 RGB接口方式: 显示数据不写入DDRAM，直接写屏，速度快，常用于显示视频或动画用。
+MCU模式 因为主要针对单片机的领域在使用,因此得名.后在中低端手机大量使用,其主要特点是价格便宜的。MCU-LCD接口的标准术语是Intel提出的8080总线标准，因此在很多文档中用I80 来指MCU-LCD屏。主要又可以分为8080模式和6800模式，这两者之间主要是时序的区别。数据位传输有8位，9位，16位，18位，24位。连线分为：CS/，RS(寄存器选择)，RD/，WR/，再就是数据线了。优点是：控制简单方便，无需时钟和同步信号。缺点是：要耗费GRAM，所以难以做到大屏(3.8以上)。对于MCU接口的LCM，其内部的芯片就叫LCD驱动器。主要功能是对主机发过的数据/命令，进行变换，变成每个象素的RGB数据，使之在屏上显示出来。这个过程不需要点、行、帧时钟。
+MCU接口的LCD的DriverIC都带GRAM，Driver IC作为MCU的一片协处理器，接受MCU发过来的Command/Data，可以相对独立的工作。对于MCU接口的LCM(LCD Module)，其内部的芯片就叫LCD驱动器。主要功能是对主机发过的数据/命令，进行变换，变成每个象素的RGB数据，使之在屏上显示出来。这个过程不需要点、行、帧时钟。
+M6800模式 M6800模式支持可选择的总线宽度8/9/16/18-bit(默认为8位)，其实际设计思想是与I80的思想是一样的，主要区别就是该模式的总线控制读写信号组合在一个引脚上(/WR)，而增加了一个锁存信号(E)数据位传输有8位，9位，16位和18位。
+I8080模式 I80模式连线分为：CS/，RS(寄存器选择)，RD/，WR/，再就是数据线了。优点是：控制简单方便，无需时钟和同步信号。缺点是：要耗费GRAM，所以难以做到大屏(QVGA以上)。
+ MCU接口标准名称是I80，管脚的控制脚有5个： CS 片选信号 RS (置1为写数据,置0为写命令) /WR (为0表示写数据) 数据命令区分信号 /RD (为0表示读数据) RESET 复位LCD( 用固定命令系列 0 1 0来复位)  VSYNC模式 该模式其实就是就是在MCU模式上加了一个VSYNC信号，应用于运动画面更新，这样就与上述两个接口有很大的区别。该模式支持直接进行动画显示的功能，它提供了一个对MCU接口最小的改动，实现动画显示的解决方案。在这种模式下，内部的显示操作与外部VSYNC信号同步。可以实现比内部操作更高的速率的动画显示。但由于其操作方式的不同，该模式对速率有一个限制，那就是对内部SRAM的写速率一定要大于显示读内部SRAM的速率。
+RGB模式 大屏采用较多的模式，数据位传输也有6位，16位和18位，24位之分。连线一般有：VSYNC，HSYNC，DOTCLK，CS，RESET，有的也需要RS，剩下就是数据线。它的优缺点正好和MCU模式相反。
+MCU-LCD屏它与RGB-LCD屏主要区别在于显存的位置。RGB-LCD的显存是由系统内存充当的，因此其大小只受限于系统内存的大小，这样RGB-LCD可以做出较大尺寸，象现在4.3&quot;只能算入门级，而MID中7&quot;,10&quot;的屏都开始大量使用。而MCU-LCD的设计之初只要考虑单片机的内存较小，因此都是把显存内置在LCD模块内部.然后软件通过专门显示命令来更新显存，因此MCU屏往往不能做得很大。同时显示更新速度也比RGB-LCD慢。显示数据传输模式也有差别。RGB屏只需显存组织好数据。启动显示后，LCD-DMA会自动把显存中的数据通过RGB接口送到LCM。而MCU屏则需要发送画点的命令来修改MCU内部的RAM(即不能直接写MCU屏的RAM)。所以RGB显示速度明显比MCU快，而且播放视频方面，MCU-LCD也比较慢。
+对于RGB接口的LCM，主机输出的直接是每个象素的RGB数据，不需要进行变换(GAMMA校正等除外)，对于这种接口，需要在主机部分有个LCD控制器，以产生RGB数据和点、行、帧同步信号。
+彩色TFT液晶屏主要有2种接口：TTL接口(RGB颜色接口)， LVDS接口(将RGB颜色打包成差分信号传输)。TTL接口主要用于12.1寸一下的小尺寸TFT屏，LVDS接口主要用于8寸以上的大尺寸TFT屏。TTL接口线多，传输距离短;LVDS接口传输距离长，线的数量少。大屏采用较多的模式，控制脚是VSYNC，HSYNC，VDEN，VCLK， S3C2440最高支持24个数据脚，数据脚是VD[23-0]。
+CPU或显卡发出的图像数据是TTL信号(0-5V、0-3.3V、0-2.5V、或0-1.8V)，LCD本身接收的也是TTL信号，由于TTL信号在高速率的长距离传输时性能不佳，抗干扰能力比较差，后来又提出了多种传输模式，比如LVDS、TDMS、GVIF、P&amp;D、DVI和DFP等。他们实际上只是将CPU或显卡发出的TTL信号编码成各种信号以传输，在LCD那边将接收到的信号进行解码得到TTL信号。
+但是不管采用何种传输模式，本质的TTL信号是一样的。
+注意: TTL/LVDS分别是两种信号的传输模式，TTL是高电平表示1，低电平表示0的模式，LVDS是正负两个对应波形，用两个波形的差值来表示当前是1还是0
+SPI模式 采用较少，有3线和4线的，连线为CS/，SLK，SDI，SDO四根线，连线少但是软件控制比较复杂。
+MDDI模式(MobileDisplayDigitalInterface) 高通公司于2004年提出的接口MDDI，通过减少连线可提高移动电话的可靠性并降低功耗，这将取代SPI模式而成为移动领域的高速串行接口。 连线主要是host_data,host_strobe,client_data,client_strobe,power,GND几根线。
+DSI模式 该模式串行的双向高速命令传输模式，连线有D0P，D0N，D1P，D1N，CLKP，CLKN。
+]]></content>
+  </entry>
+  
+  <entry>
+    <title>带你走进Linux内核源码中最常见的数据结构之「mutex」</title>
+    <url>/post/linux/linux-kernel-source-code-data-structure-mutex.html</url>
+    <categories><category>Linux</category>
+    </categories>
+    <tags>
+      <tag>kernel</tag>
+      <tag>mutex</tag>
+    </tags>
+    <content type="html"><![CDATA[定义 互斥锁（英语：Mutual exclusion，缩写 Mutex）是一种用于多线程编程中，防止两条线程同时对同一公共资源（比如全域变量）进行读写的机制。
+该目的通过将代码切片成一个一个的**临界区域（critical section）**达成。临界区域指的是一块对公共资源进行存取的代码，并非一种机制或是算法。一个程序、进程、线程可以拥有多个临界区域，但是并不一定会应用互斥锁。
+例如：一段代码（甲）正在分步修改一块数据。这时，另一条线程（乙）由于一些原因被唤醒。如果乙此时去读取甲正在修改的数据，而甲碰巧还没有完成整个修改过程，这个时候这块数据的状态就处在极大的不确定状态中，读取到的数据当然也是有问题的。更严重的情况是乙也往这块地方写数据，这样的一来，后果将变得不可收拾。因此，多个线程间共享的数据必须被保护。达到这个目的的方法，就是确保同一时间只有一个临界区域处于运行状态，而其他的临界区域，无论是读是写，都必须被挂起并且不能获得运行机会。
+互斥锁实现多线程同步的核心思想是：有线程访问进程空间中的公共资源时，该线程执行“加锁”操作（将资源“锁”起来），阻止其它线程访问。访问完成后，该线程负责完成“解锁”操作，将资源让给其它线程。当有多个线程想访问资源时，谁最先完成“加锁”操作，谁就最先访问资源。
+当有多个线程想访问“加锁”状态下的公共资源时，它们只能等待资源“解锁”，所有线程会排成一个等待（阻塞）队列。资源解锁后，操作系统会唤醒等待队列中的所有线程，第一个访问资源的线程会率先将资源“锁”起来，其它线程则继续等待。当有多个线程想访问“加锁”状态下的公共资源时，它们只能等待资源“解锁”，所有线程会排成一个等待（阻塞）队列。资源解锁后，操作系统会唤醒等待队列中的所有线程，第一个访问资源的线程会率先将资源“锁”起来，其它线程则继续等待。
+mutex有什么缺点？ 不同于mutex最初的设计与目的，现在的struct mutex是内核中最大的锁之一，比如在x86-64上，它差不多有32bytes的大小，而struct samaphore是24bytes，rw_semaphore为40bytes，更大的数据结构意味着占用更多的CPU缓存和更多的内存占用。
+什么时候应该使用mutex？ 除非mutex的严格语义要求不合适或者临界区域阻止锁的共享，否则相较于其他锁原语来说更倾向于使用mutex
+mutex与spinlock的区别？ spinlock是让一个尝试获取它的线程在一个循环中等待的锁，线程在等待时会一直查看锁的状态。而mutex是一个可以让多个进程轮流分享相同资源的机制
+spinlock通常短时间持有，mutex可以长时间持有
+spinlock任务在等待锁释放时不可以睡眠，mutex可以
+看到一个非常有意思的解释：
+spinlock就像是坐在车后座的熊孩子，一直问“到了吗？到了吗？到了吗？…”
+mutex就像一个司机返回的信号，说“我们到了！”
+实现 看一下Linux kernel-5.8是如何实现mutex的2 实现
+struct mutex { atomic_long_t owner; spinlock_t wait_lock; #ifdef CONFIG_MUTEX_SPIN_ON_OWNER  struct optimistic_spin_queue osq; /* Spinner MCS lock */ #endif  struct list_head wait_list; #ifdef CONFIG_DEBUG_MUTEXES  void *magic; #endif #ifdef CONFIG_DEBUG_LOCK_ALLOC  struct lockdep_map dep_map; #endif }; 可以看到，mutex使用了原子变量owner来追踪锁的状态，owner实际上是指向当前mutex锁拥有者的struct task_struct *指针，所以当锁没有被持有时，owner为NULL。
+/* * This is the control structure for tasks blocked on mutex, * which resides on the blocked task&#39;s kernel stack: * 表示等待队列wait_list中进程的结构体 */ struct mutex_waiter { struct list_head list; struct task_struct *task; struct ww_acquire_ctx *ww_ctx; #ifdef CONFIG_DEBUG_MUTEXES  void *magic; #endif }; 上锁 当要获取mutex时，通常有三种路径方式
+fastpath: 通过 cmpxchg() 当前任务与所有者来尝试原子性的获取锁。这仅适用于无竞争的情况（cmpxchg() 检查 0UL，因此上面的所有 3 个状态位都必须为 0）。如果锁被争用，它会转到下一个可能的路径。
+midpath: 又名乐观旋转（optimistic spinning）—在锁的持有者正在运行并且没有其他具有更高优先级（need_resched）的任务准备运行时，通过旋转来获取锁。理由是如果锁的所有者正在运行，它很可能很快就会释放锁。mutex spinner使用 MCS 锁排队，因此只有一个spinner可以竞争mutex。
+MCS 锁（由 Mellor-Crummey 和 Scott 提出）是一个简单的自旋锁，具有公平的理想属性，每个 cpu 都试图获取在本地变量上旋转的锁，排队采用的是链表实现的FIFO。它避免了常见的test-and-set自旋锁实现引起的昂贵的cacheline bouncing。类似MCS的锁是专门为睡眠锁的乐观旋转而量身定制的（毕竟如果只是短暂的自旋比休眠效率要高）。自定义 MCS 锁的一个重要特性是它具有额外的属性，即当spinner需要重新调度时，它们能够直接退出 MCS 自旋锁队列。这有助于避免需要重新调度的 MCS spinner持续在mutex持有者上自旋，而仅需直接进入慢速路径获取MCS锁。
+slowpath: 最后的手段，如果仍然无法获得锁，则将任务添加到等待队列并休眠，直到被解锁路径唤醒。在正常情况下它阻塞为 TASK_UNINTERRUPTIBLE。 虽然正式的内核互斥锁是可休眠的锁，但midpath路径 (ii) 使它们更实际地成为混合类型。通过简单地不中断任务并忙于等待几个周期而不是立即休眠，此锁的性能已被视为显着改善了许多工作负载。请注意，此技术也用于 rw 信号量。
+具体代码调用链很长…
+/*不可中断的获取锁*/ void __sched mutex_lock(struct mutex *lock) { might_sleep(); /*fastpath*/ if (!__mutex_trylock_fast(lock)) /*midpath and slowpath*/ __mutex_lock_slowpath(lock); } __mutex_trylock_fast(lock) -&gt; atomic_long_try_cmpxchg_acquire(&amp;lock-&gt;owner, &amp;zero, curr) -&gt; atomic64_try_cmpxchg_acquire(v, (s64 *)old, new); __mutex_lock_slowpath(lock)-&gt;__mutex_lock(lock, TASK_UNINTERRUPTIBLE, 0, NULL, _RET_IP_) -&gt; __mutex_lock_common(lock, state, subclass, nest_lock, ip, NULL, false) /*可中断的获取锁*/ int mutex_lock_interruptible(struct mutex *lock); 尝试上锁 int __sched mutex_trylock(struct mutex *lock) { bool locked; #ifdef CONFIG_DEBUG_MUTEXES  DEBUG_LOCKS_WARN_ON(lock-&gt;magic != lock); #endif  locked = __mutex_trylock(lock); if (locked) mutex_acquire(&amp;lock-&gt;dep_map, 0, 1, _RET_IP_); return locked; } static inline bool __mutex_trylock(struct mutex *lock) { return !__mutex_trylock_or_owner(lock); } 释放锁 void __sched mutex_unlock(struct mutex *lock) { #ifndef CONFIG_DEBUG_LOCK_ALLOC  if (__mutex_unlock_fast(lock)) return; #endif  __mutex_unlock_slowpath(lock, _RET_IP_); } 跟加锁对称，也有fastpath, midpath, slowpath三条路径。 判断锁状态
+bool mutex_is_locked(struct mutex *lock) { return __mutex_owner(lock) != NULL; } 很显而易见，mutex持有者不为NULL即表示锁定状态。
+实际案例 实验：
+#include &lt;pthread.h&gt;#include &lt;stdio.h&gt; #define LOOP 1000000  int cnt = 0; int cs1 = 0, cs2 = 0; void* task(void* args) { while(1) { if(cnt &gt;= LOOP) { break; } cnt++; if((int)args == 1) cs1 ++; else cs2++; } return NULL; } int main() { pthread_t tid1; pthread_t tid2; /* create the thread */ pthread_create(&amp;tid1, NULL, task, (void*)1); pthread_create(&amp;tid2, NULL, task, (void*)2); /* wait for thread to exit */ pthread_join(tid1, NULL); pthread_join(tid2, NULL); printf(&#34;cnt = %d cs1=%d cs2=%d total=%d\n&#34;, cnt,cs1,cs2,cs1+cs2); return 0; } 输出：
+cnt = 1000000 cs1=958560 cs2=1520226 total=2478786 正确结果不应该是1000000吗？为什么会出错呢，我们可以从汇编角度来分析一下。
+$&gt; g++ -E test.c -o test.i $&gt; g++ -S test.i -o test.s $&gt; vim test.s .file &#34;test.c&#34; .globl _cnt .bss .align 4 _cnt: .space 4 .text .globl __Z5task1Pv .def __Z5task1Pv; .scl 2; .type 32; .endef __Z5task1Pv: ... 我们可以看到一个简单的cnt++，对应
+movl _cnt, %eax addl $1, %eax movl %eax, _cnt CPU先将cnt的值读到寄存器eax中，然后将[eax] + 1，最后将eax的值返回到cnt中，这些操作不是**原子性质(atomic)**的，这就导致cnt被多个线程操作时，+1过程会被打断。
+加入mutex保护临界资源
+#include &lt;pthread.h&gt;#include &lt;stdio.h&gt; #define LOOP 1000000  pthread_mutex_t mutex; int cnt = 0; int cs1 = 0, cs2 = 0; void* task(void* args) { while(1) { pthread_mutex_lock(&amp;mutex); if(cnt &gt;= LOOP) { pthread_mutex_unlock(&amp;mutex); break; } cnt++; pthread_mutex_unlock(&amp;mutex); if((int)args == 1) cs1 ++; else cs2++; } return NULL; } int main() { pthread_mutex_init(&amp;mutex , NULL); pthread_t tid1; pthread_t tid2; /* create the thread */ pthread_create(&amp;tid1, NULL, task, (void*)1); pthread_create(&amp;tid2, NULL, task, (void*)2); /* wait for thread to exit */ pthread_join(tid1, NULL); pthread_join(tid2, NULL); printf(&#34;cnt = %d cs1=%d cs2=%d total=%d\n&#34;, cnt,cs1,cs2,cs1+cs2); return 0; } 输出：
+cnt = 1000000 cs1=517007 cs2=482993 total=1000000 ]]></content>
+  </entry>
+  
+  <entry>
+    <title>openssl命令</title>
+    <url>/post/linux/openssl.html</url>
+    <categories><category>Linux</category>
+    </categories>
+    <tags>
+      <tag>openssl</tag>
+      <tag>系统管理</tag>
+      <tag>系统安全</tag>
+    </tags>
+    <content type="html"><![CDATA[ 强大的安全套接字层密码库
+ OpenSSL是一个强大的安全套接字层密码库，囊括主要的密码算法、常用的密钥和证书封装管理功能及SSL协议，并提供丰富的应用程序供测试或其它目的使用。在OpenSSL被曝出现严重安全漏洞后，发现多数通过SSL协议加密的网站使用名为OpenSSL的开源软件包。由于这是互联网应用最广泛的安全传输方法，被网银、在线支付、电商网站、门户网站、电子邮件等重要网站广泛使用，所以该漏洞影响范围广大。
+OpenSSL有两种运行模式：交互模式和批处理模式。
+直接输入openssl回车进入交互模式，输入带命令选项的openssl进入批处理模式。
+OpenSSL整个软件包大概可以分成三个主要的功能部分：密码算法库、SSL协议库以及应用程序。OpenSSL的目录结构自然也是围绕这三个功能部分进行规划的。 对称加密算法 OpenSSL一共提供了8种对称加密算法，其中7种是分组加密算法，仅有的一种流加密算法是RC4。这7种分组加密算法分别是AES、DES、Blowfish、CAST、IDEA、RC2、RC5，都支持电子密码本模式（ECB）、加密分组链接模式（CBC）、加密反馈模式（CFB）和输出反馈模式（OFB）四种常用的分组密码加密模式。其中，AES使用的加密反馈模式（CFB）和输出反馈模式（OFB）分组长度是128位，其它算法使用的则是64位。事实上，DES算法里面不仅仅是常用的DES算法，还支持三个密钥和两个密钥3DES算法。 非对称加密算法 OpenSSL一共实现了4种非对称加密算法，包括DH算法、RSA算法、DSA算法和椭圆曲线算法（EC）。DH算法一般用户密钥交换。RSA算法既可以用于密钥交换，也可以用于数字签名，当然，如果你能够忍受其缓慢的速度，那么也可以用于数据加密。DSA算法则一般只用于数字签名。 信息摘要算法 OpenSSL实现了5种信息摘要算法，分别是MD2、MD5、MDC2、SHA（SHA1）和RIPEMD。SHA算法事实上包括了SHA和SHA1两种信息摘要算法，此外，OpenSSL还实现了DSS标准中规定的两种信息摘要算法DSS和DSS1。 密钥和证书管理 密钥和证书管理是PKI的一个重要组成部分，OpenSSL为之提供了丰富的功能，支持多种标准。 首先，OpenSSL实现了ASN.1的证书和密钥相关标准，提供了对证书、公钥、私钥、证书请求以及CRL等数据对象的DER、PEM和BASE64的编解码功能。OpenSSL提供了产生各种公开密钥对和对称密钥的方法、函数和应用程序，同时提供了对公钥和私钥的DER编解码功能。并实现了私钥的PKCS#12和PKCS#8的编解码功能。OpenSSL在标准中提供了对私钥的加密保护功能，使得密钥可以安全地进行存储和分发。 在此基础上，OpenSSL实现了对证书的X.509标准编解码、PKCS#12格式的编解码以及PKCS#7的编解码功能。并提供了一种文本数据库，支持证书的管理功能，包括证书密钥产生、请求产生、证书签发、吊销和验证等功能。 事实上，OpenSSL提供的CA应用程序就是一个小型的证书管理中心（CA），实现了证书签发的整个流程和证书管理的大部分机制。
+实例 1、消息摘要算法应用例子 用SHA1算法计算文件file.txt的哈西值，输出到stdout：
+# openssl dgst -sha1 file.txt 用SHA1算法计算文件file.txt的哈西值，输出到文件digest.txt：
+# openssl sha1 -out digest.txt file.txt 用DSS1(SHA1)算法为文件file.txt签名，输出到文件dsasign.bin。签名的private key必须为DSA算法产生的，保存在文件dsakey.pem中。
+# openssl dgst -dss1 -sign dsakey.pem -out dsasign.bin file.txt 用dss1算法验证file.txt的数字签名dsasign.bin，验证的private key为DSA算法产生的文件dsakey.pem。
+# openssl dgst -dss1 -prverify dsakey.pem -signature dsasign.bin file.txt 用sha1算法为文件file.txt签名,输出到文件rsasign.bin，签名的private key为RSA算法产生的文件rsaprivate.pem。
+# openssl sha1 -sign rsaprivate.pem -out rsasign.bin file.txt # 用sha1算法验证file.txt的数字签名rsasign.bin，验证的public key为RSA算法生成的rsapublic.pem。 # openssl sha1 -verify rsapublic.pem -signature rsasign.bin file.txt 2、对称加密应用例子 对称加密应用例子，用DES3算法的CBC模式加密文件plaintext.doc，加密结果输出到文件ciphertext.bin。
+# openssl enc -des3 -salt -in plaintext.doc -out ciphertext.bin 用DES3算法的OFB模式解密文件ciphertext.bin，提供的口令为trousers，输出到文件plaintext.doc。注意：因为模式不同，该命令不能对以上的文件进行解密。
+# openssl enc -des-ede3-ofb -d -in ciphertext.bin -out plaintext.doc -pass pass:trousers 用Blowfish的CFB模式加密plaintext.doc，口令从环境变量PASSWORD中取，输出到文件ciphertext.bin。
+# openssl bf-cfb -salt -in plaintext.doc -out ciphertext.bin -pass env:PASSWORD 给文件ciphertext.bin用base64编码，输出到文件base64.txt。
+# openssl base64 -in ciphertext.bin -out base64.txt 用RC5算法的CBC模式加密文件plaintext.doc，输出到文件ciphertext.bin，salt、key和初始化向量(iv)在命令行指定。
+# openssl rc5 -in plaintext.doc -out ciphertext.bin -S C62CB1D49F158ADC -iv E9EDACA1BD7090C6 -K 89D4B1678D604FAA3DBFFD030A314B29 3、Diffie-Hellman应用例子 使用生成因子2和随机的1024-bit的素数产生D0ffie-Hellman参数，输出保存到文件dhparam.pem
+# openssl dhparam -out dhparam.pem -2 1024 从dhparam.pem中读取Diffie-Hell参数，以C代码的形式，输出到stdout。
+# openssl dhparam -in dhparam.pem -noout -C 4、DSA应用例子应用例子 生成1024位DSA参数集，并输出到文件dsaparam.pem。
+# openssl dsaparam -out dsaparam.pem 1024 使用参数文件dsaparam.pem生成DSA私钥匙，采用3DES加密后输出到文件dsaprivatekey.pem
+# openssl gendsa -out dsaprivatekey.pem -des3 dsaparam.pem 使用私钥匙dsaprivatekey.pem生成公钥匙，输出到dsapublickey.pem
+# openssl dsa -in dsaprivatekey.pem -pubout -out dsapublickey.pem 从dsaprivatekey.pem中读取私钥匙，解密并输入新口令进行加密，然后写回文件dsaprivatekey.pem
+# openssl dsa -in dsaprivatekey.pem -out dsaprivatekey.pem -des3 -passin 5、RSA应用例子 产生1024位RSA私匙，用3DES加密它，口令为trousers，输出到文件rsaprivatekey.pem
+# openssl genrsa -out rsaprivatekey.pem -passout pass:trousers -des3 1024 从文件rsaprivatekey.pem读取私匙，用口令trousers解密，生成的公钥匙输出到文件rsapublickey.pem
+# openssl rsa -in rsaprivatekey.pem -passin pass:trousers -pubout -out rsapubckey.pem 用公钥匙rsapublickey.pem加密文件plain.txt，输出到文件cipher.txt
+# openssl rsautl -encrypt -pubin -inkey rsapublickey.pem -in plain.txt -out cipher.txt 使用私钥匙rsaprivatekey.pem解密密文cipher.txt，输出到文件plain.txt
+# openssl rsautl -decrypt -inkey rsaprivatekey.pem -in cipher.txt -out plain.txt 用私钥匙rsaprivatekey.pem给文件plain.txt签名，输出到文件signature.bin
+# openssl rsautl -sign -inkey rsaprivatekey.pem -in plain.txt -out signature.bin 用公钥匙rsapublickey.pem验证签名signature.bin，输出到文件plain.txt
+# openssl rsautl -verify -pubin -inkey rsapublickey.pem -in signature.bin -out plain 从X.509证书文件cert.pem中获取公钥匙，用3DES加密mail.txt，输出到文件mail.enc
+# openssl smime -encrypt -in mail.txt -des3 -out mail.enc cert.pem 从X.509证书文件cert.pem中获取接收人的公钥匙，用私钥匙key.pem解密S/MIME消息mail.enc，结果输出到文件mail.txt
+# openssl smime -decrypt -in mail.enc -recip cert.pem -inkey key.pem -out mail.txt cert.pem为X.509证书文件，用私匙key,pem为mail.txt签名，证书被包含在S/MIME消息中，输出到文件mail.sgn
+# openssl smime -sign -in mail.txt -signer cert.pem -inkey key.pem -out mail.sgn 验证S/MIME消息mail.sgn，输出到文件mail.txt，签名者的证书应该作为S/MIME消息的一部分包含在mail.sgn中
+# openssl smime -verify -in mail.sgn -out mail.txt ]]></content>
+  </entry>
+  
+  <entry>
+    <title>syslog命令</title>
+    <url>/post/linux/syslog.html</url>
+    <categories><category>Linux</category>
+    </categories>
+    <tags>
+      <tag>syslog</tag>
+      <tag>系统管理</tag>
+      <tag>系统安全</tag>
+    </tags>
+    <content type="html"><![CDATA[ 系统默认的日志守护进程
+ syslog是Linux系统默认的日志守护进程。
+概述 默认的syslog配置文件是/etc/syslog.conf文件。程序，守护进程和内核提供了访问系统的日志信息。因此，任何希望生成日志信息的程序都可以向 syslog 接口呼叫生成该信息。
+几乎所有的网络设备都可以通过syslog协议，将日志信息以用户数据报协议(UDP)方式传送到远端服务器，远端接收日志服务器必须通过syslogd监听UDP 端口514，并根据 syslog.conf配置文件中的配置处理本机，接收访问系统的日志信息，把指定的事件写入特定文件中，供后台数据库管理和响应之用。意味着可以让任何事件都登录到一台或多台服务器上，以备后台数据库用off-line(离线) 方法分析远端设备的事件。
+通常，syslog 接受来自系统的各种功能的信息，每个信息都包括重要级。/etc/syslog.conf 文件通知 syslogd 如何根据设备和信息重要级别来报告信息。
+使用方法 在/var/log中创建并写入日志信息是由syslog协议处理的，是由守护进程sylogd负责执行。每个标准的进程都可以用syslog记录日志。可以使用logger命令通过syslogd记录日志。
+要向syslog文件/var/log/messages中记录日志信息：
+logger this is a test log line 输出： tail -n 1 messages Jan 5 10:07:03 localhost root: this is a test log line 如果要记录特定的标记（tag）可以使用：
+logger -t TAG this is a test log line 输出： tail -n 1 messages Jan 5 10:37:14 localhost TAG: this is a test log line ]]></content>
+  </entry>
+  
+  <entry>
+    <title>如何在Ubuntu Linux下将mp4转成mp3</title>
+    <url>/post/linux/how-to-convert-mp4-to-mp3-in-ubuntu-linux.html</url>
+    <categories><category>Linux</category>
+    </categories>
+    <tags>
+      <tag>ubuntu</tag>
+      <tag>ffmpeg</tag>
+      <tag>mp4</tag>
+      <tag>mp3</tag>
+    </tags>
+    <content type="html"><![CDATA[ FFmpeg是一款开源软件，用于生成处理多媒体数据的各类库和程序。FFmpeg可以转码、处理视频和图片（调整视频、图片大小，去噪等）、打包、传输及播放视频。
+ 本文描述了如何在Ubuntu Linux系统下，通过ffmpeg将mp4文件转成mp3文件。
+为什么要将mp4转成mp3 因为这样可以节省空间，一些基本的设备是不支持mp4扩展名的文件，在这个例子里，我们将使用ffmpeg将mp4文件转成mp3文件。
+FFmpeg是一个完整的跨平台的解决方案，用来录制，转化以及分流音视频，它包括业界领先的音视频编码库 labavcodec 。
+在ubuntu上安装ffmpeg sudo apt-get install ffmpeg libavcodec-extra-53 将mp4转成mp3 基本的命令
+ffmpeg -i filename.mp4 filename.mp3 可以用命令`man ffmpeg&rsquo;来查看更多选项
+ffmpeg -i filename.mp4 -b:a 192K -vn filename.mp3 一个流的说明符可以匹配一些流，这些选项会适用于所有的流，比如，在-b:a 128k选项中的流说明符可以匹配所有的音频流。
+通过脚本 下面这个脚本会将Music目录下的带有.mp4扩展名的文件转成.mp3扩展名的文件。
+#!/bin/bash MP4FILE=$(ls ~/Music/ |grep .mp4) for filename in $MP4FILE do name=`echo &#34;$filename&#34; | sed -e &#34;s/.mp4$//g&#34;` ffmpeg -i ~/Music/$filename -b:a 192K -vn ~/Music/$name.mp3 done ]]></content>
+  </entry>
+  
+  <entry>
+    <title>风河携手TCS建构5G/Open RAN分布式移动网络基础设施生态系统</title>
+    <url>/post/news/windriver-and-TCS-build-5G-Open-Ran-ecos.html</url>
+    <categories><category>News</category>
+    </categories>
+    <tags>
+      <tag>WindRiver</tag>
+      <tag>vRan</tag>
+      <tag>TCS</tag>
+      <tag>5G</tag>
+    </tags>
+    <content type="html"><![CDATA[ 全球领先的关键任务智能系统软件提供商风河公司®宣布，正在与塔塔咨询服务公司（TCS）合作，在Wind River Studio上托管vRAN解决方案。这项战略合作将创建一个全栈移动基础设施解决方案，在4G-5G vRAN下一代网络中开展TCS部署和工程服务，并以Studio作为云平台。
+ TCS网络解决方案与服务副总裁Vimal Kumar表示：“我们很高兴与风河合作，帮助我们的客户借助5G技术改善他们的业务。我们的Cognitive Network Operations平台运行在Wind River Studio之上，由此帮助电信网络运营商运用AI和ML技术来监测网络健康状况，预测可能发生的故障，提供以客户为中心的网络体验，并确保卓越的服务质量。”
+风河公司首席产品官Avijit Sinha表示：“运营商正在致力于创造数字化、云原生的未来，他们正在寻求灵活、经济的解决方案，以便降低部署复杂度并进行持续性维护。风河公司提供了成熟的生产就绪产品，与领先运营商实现了实用化部署，其基础正是经过广泛验证的Wind River Studio技术。”
+风河公司印度销售主管Rajeev Rawal表示：“与TCS携手，提供敏捷、安全、可靠和超低延迟解决方案，以支持新的应用场景，让云计算、边缘计算和智能化技术承担起更加重要的任务。”
+作为5G市场的领导者，风河在世界首次成功5G数据会话和商业vRAN/O-RAN项目中发挥了关键作用，其中包括世界上最大的Open RAN网络。
+Wind River Studio提供了一个完全基于云原生、Kubernetes和容器的体系结构，可用于大规模分布式边缘网络的开发、部署、运营和服务。这套平台为地理分布的管理解决方案提供了基础，能够为数千个节点提供单一窗口（SPoG）、零接触的自动化管理，从而简化Day 1和Day 2运营，而且与节点的物理位置无关。Studio解决了部署和管理物理地理分散云原生vRAN基础设施的复杂挑战，在vRAN部署中提供了传统的RAN性能。
+ 塔塔咨询服务 (TCS）简介
+ 塔塔咨询服务公司是一家IT服务、咨询和业务解决方案提供商，50多年来一直与许多全球最大企业合作，帮助他们实现转型。TCS提供以咨询为主导、以认知为动力的综合性商业、技术和工程服务以及解决方案。所有这些都通过独特的Location Independent Agile™ 模式来提供，被作为卓越软件开发的基准指标。
+作为印度最大的跨国商业集团塔塔集团的一部分，TCS在55个国家拥有超过606,000名训练有素的咨询师。在截至2022年3月31日的财年中，TCS创造了257亿美元的合并营收，并在印度的BSE和NSE上市。
+]]></content>
+  </entry>
+  
+  <entry>
+    <title>VxWorks 6.8下基于QT的串口编程</title>
+    <url>/post/vxworks/vxworks-6.8-qt-uart-programming.html</url>
+    <categories><category>VxWorks</category>
+    </categories>
+    <tags>
+      <tag>VxWorks</tag>
+      <tag>VxWorks 6.8</tag>
+      <tag>UART</tag>
+      <tag>QT</tag>
+      <tag>串口</tag>
+      <tag>编程</tag>
+    </tags>
+    <content type="html"><![CDATA[文章简要记录了VxWorks 6.8下基于Qt实现的串口编程。
+相关的VxWorks 和 串口，请参阅 VxWorks下的串口测试程序设计和源码  。
+VxWorks简介 VxWorks 操作系统是美国WindRiver公司于1983年设计开发的一种嵌入式实时操作系统（RTOS），是嵌入式开发环境的关键组成部分。良好的持续发展能力、高性能的内核以及友好的用户开发环境，在嵌入式实时操作系统领域占据一席之地。它以其良好的可靠性和卓越的实时性被广泛地应用在通信、军事、航空、航天等高精尖技术及实时性要求极高的领域中，如卫星通讯、军事演习、弹道制导、飞机导航等。在美国的 F-16、FA-18战斗机、B-2 隐形轰炸机和爱国者导弹上，甚至连1997年4月在火星表面登陆的火星探测器、2008年5月登陆的凤凰号，和2012年8月登陆的好奇号也都使用到了VxWorks。
+串口简介 串行接口(Serial Interface) 简称串口，也称串行通信接口或串行通讯接口（通常指COM接口），是采用串行通信方式的扩展接口，指数据一位一位地顺序传送。
+串行接口的特点是通信线路简单，只要一对传输线就可以实现双向通信（可以直接利用电话线作为传输线），从而大大降低了成本，特别适用于远距离通信，但传送速度较慢。常见的有一般计算机应用的RS-232（使用 25 针或 9 针连接器）和工业计算机应用的半双工RS-485与全双工RS-422。
+我这里使用了232和422传输方式，在我本人理解这两种方式根据需求硬件已经做好的传输方式（也可以在BIOS设置），我们知道是什么传输方式，做到心中有数和如何搭建测试环境，今天在这里教大家个简单的232-9针连接器的接线方式，一般没接触过的拿过来一脸懵逼，好家伙9跟针都不知道是干嘛的，那么我告诉你如果是 232-9针，什么也别管直接找到第2针和第3针用杜邦线回连，这时你就具备环境自己检测板卡串口模块是否好用，如果测试程序一定记得把第5跟针要连接上，否则会出现数据不精准的情况（文章底部有贴图）。
+在软件层面上只需要关注数据位、停止位、奇偶效验、读取方式和效率即可；
+232串口接线说明 RS232串口接线方法：直连和交叉接法
+一般情况下，设备和电脑的连接通讯，需用到RS232串口线直连线；而设备和设备的连接通讯，就会用到RS232串口线的交叉线。用户在选择的时候，应根据两个设备之间连接的实际情况，选择不同接法的RS232串口线。
+代码实例 VxWorks串口所需要包含的头文件 #include &#34;vxWorks.h&#34;#include &#34;stdIo.h&#34;#include &#34;ioLib.h&#34;#include &#34;sysLib.h&#34;#include &#34;string.h&#34;#include &#34;taskLib.h&#34;VxWorks串口配置函数 ioctl(m_SeriPort,SIO_HW_OPTS_SET, CLOCAL | CS8 | PARODD | PARENB);	//8位数据位|1位停止位|偶效验 ioctl(m_SeriPort,FIOBAUDRATE,9600);	//波特率9600 ioctl(m_SeriPort,FIOSETOPTIONS,OPT_RAW);	//设置串口raw模式 ioctl(m_SeriPort,FIOFLUSH,0);	//清空输入输出的缓冲区 open函数 #define SERI_NAME &#34;/tyCo/0&#34; int m_SeriPort = open(SERI_NAME ,O_RDWR,0); int m_SeriPort = open(SERI_NAME ,O_WRONLY,0); write函数 char* sendData; int writeCom = write(m_SeriPort, sendData,strlen(sendData)); read函数 char data; int readCom = read(m_SeriPort,&amp;data,1); Seri_Demo_Qt_Vx #ifndef THREAD_H #define THREAD_H #include &lt;QThread&gt;#include &lt;QDebug&gt;#include &#34;vxWorks.h&#34;#include &#34;stdIo.h&#34;#include &#34;ioLib.h&#34;#include &#34;sysLib.h&#34;#include &#34;string.h&#34;#include &#34;taskLib.h&#34;class Thread : public QThread { Q_OBJECT public: explicit Thread(QObject *parent = 0); ~Thread(); void run(); //重写run函数 public: bool openSeri(QString comPort,int baudRate); //打开串口  void closeSeri(); //关闭串口  void writeSeri(char* sendData); //发送数据  void setFlag(bool flag = true); //线程数据标志位 signals: void RecvData(char data); private: bool seriStop; //读取数据标志位 true读取数据 false退出循环  int m_SeriPort; //串口文件描述符  QString m_SeriName; //串口名  int m_baud; //波特率 }; #endif //THREAD_H #include &#34;thread.h&#34; Thread::Thread(QObject *parent) : QThread(parent) { } Thread::~Thread() { } void Thread::run() { sysClkRateSet(1000); char rData; while(1) { int readCom = read(m_SeriPort,&amp;rData,1); if(readCom &gt; 0) { printf(&#34;%c\n&#34;,rData); emit RecvData(rData); if(seriStop == false) { qDebug()&lt;&lt; &#34;isStop == false break&#34;; break; } } else { taskDelay(10); } } } bool Thread::openSeri(QString comPort, int baudRate) { this-&gt;m_SeriName = comPort; this-&gt;m_baud = baudRate; qDebug()&lt;&lt; &#34;Thread::openSeri&#34; &lt;&lt; comPort.toUtf8().data() &lt;&lt; baudRate; m_SeriPort = open(comPort.toUtf8().data(),O_RDWR,0); if(m_SeriPort == ERROR) { qDebug()&lt;&lt; &#34;open :&#34; &lt;&lt; comPort.toUtf8().data() &lt;&lt; &#34; = &#34; &lt;&lt;m_SeriPort &lt;&lt; &#34;failed !&#34;; return false; } ioctl(m_SeriPort,SIO_HW_OPTS_SET, CLOCAL | CS8 | PARODD | PARENB); ioctl(m_SeriPort,FIOBAUDRATE,baudRate); ioctl(m_SeriPort,FIOSETOPTIONS,OPT_RAW); ioctl(m_SeriPort,FIOFLUSH,0); qDebug()&lt;&lt; &#34;open :&#34; &lt;&lt; comPort.toUtf8().data() &lt;&lt; &#34; = &#34; &lt;&lt; m_SeriPort &lt;&lt; &#34;succeeded !&#34;; return true; } void Thread::closeSeri() { if(seriStop == false) { qDebug()&lt;&lt; &#34;Thread::closeSeri&#34;; close(m_SeriPort); } } void Thread::writeSeri(char* sendData) { if(m_SeriPort == ERROR) { openSeri(m_SeriName,m_baud); } int writeCom = write(m_SeriPort, sendData,strlen(sendData)); qDebug()&lt;&lt; sendData &lt;&lt; writeCom; } void Thread::setFlag(bool flag) { this-&gt;seriStop = flag; qDebug()&lt;&lt; &#34;Thread::setFlag&#34; &lt;&lt; flag; } TestSeri_Demo_Qt_Vx_Demo #ifndef SERI_H #define SERI_H  #include &lt;QObject&gt;#include &lt;QDebug&gt;#include &#34;thread.h&#34; class Seri : public QObject { Q_OBJECT public: explicit Seri(QObject *parent = 0); ~Seri(); public: /*	open_Seri	打开串口 * comName	串口名 * comBaud	串口波特率 *	return 成功 true 失败 false */ bool open_Seri(QString comName,int comBaud); /* write_Seri	发送数据 * comData	发送数据内容 */ void write_Seri(QByteArray comData); /*	* close_Seri	关闭串口 */ void close_Seri(); signals: send_Seri(char data); private: Thread* m_pThread; }; #endif // SERI_H #include &#34;Seri.h&#34; Seri::Seri(QObject *parent) : QObject(parent) { m_pThread = new Thread; } Seri::~Seri() { if(m_pThread){ delete m_pThread; m_pThread=NULL; } } bool Seri::open_Seri(QString comName,int comBaud) { if(m_pThread-&gt;openSeri(comName,comBaud))//如果打开成功 	{ m_pThread-&gt;setFlag(true); m_pThread-&gt;start(); } return false; } void Seri::write_Seri(QByteArray comData) { m_pThread-&gt;writeSeri(comData.data()); } void Seri::close_Seri() { if(m_pThread-&gt;isRunning())//如果线程还在运行 --&gt; 退出循环接收数据 --&gt; 关闭串口 --&gt; 退出线程 --&gt; 回收线程 	{ m_pThread-&gt;setFlag(false); m_pThread-&gt;closeSeri(); m_pThread-&gt;quit(); m_pThread-&gt;wait(); } } 程序代码说明：  thread类为配置串口类 seri类为外部使用类 接收到的数据是利用信号槽为接口把数据传输出去 ]]></content>
+  </entry>
+  
+  <entry>
+    <title>VxWorks 7的启动顺序</title>
+    <url>/post/vxworks-7-boot-sequence.html</url>
+    <categories><category>VxWorks</category>
+    </categories>
+    <tags>
+      <tag>VxWorks 7</tag>
+      <tag>Boot</tag>
+    </tags>
+    <content type="html"><![CDATA[之前遍历过使用WorkBench的VIP编译的VxWorks6.9镜像文件VxWorks，今天以32位SMP模式下的Intel处理器为例，看看VxWorks 7的VxWorks执行顺序。通过对比可以看到，VxWorks 6.9和VxWorks 7的执行顺序基本一致
+ sysInit() - $(BSP)/sysALib.s，这是VxWorks的启动地址，也就是说sysInit()就存放在RAM_LOW_ADRS，它的主要工作：关中断、设置usrInit()的栈、调用usrInit() usrInit() - $(Prj)/prjConfig.c，这是VxWorks的第一条C指令，主要负责pre-kernel的初始化，因此它的内部会调用大量的初始化函数 sysStart() - os\core\kernel\configlette\usrStartup.c，清除BSS、设置中断向量表基址 cacheLibInit() - os\core\kernel\src\aim\cacheLib.c初始化指令Cache和数据Cache usrFdtInit() - os\firmware\fdt\cfg\usrFdt.c,初始化FDT库 usrBoardLibInit() - os\utils\boardlib\cfg\usrBoardLibInit.c,初始化板级子系统， sysHwInit() - os\psl\intel\itl_x86_common\cfg\usrItlCommon.c，初始化系统硬件 usrAimCpuInit() - os\core\kernel\configlette\usrAimCpu.c,初始化主CPU，其实啥也没干 excShowInit() - os\arch\ia\kernel\src\cpu\excArchShow.c,映射exception的几个show函数 excVecInit() - os\arch\ia\kernel\src\cpu\excArchLib.c,初始化exception向量 vxCpuLibInit() - os\core\kernel\src\multicore\vxCpuLib.c,初始化CPU标识函数，例如vxCpuIdGet() usrCacheEnable() - os\core\kernel\configlette\usrCache.c，使能Cache objOwnershipInit() - os\core\kernel\src\wind\obj\objOwnerLib.c,设置object ownership的几个函数 objLibInit() - os\core\kernel\src\wind\obj\objLib.c，初始化对象管理库 vxMemProbeInit() - os\core\kernel\src\services\vxMemProbeLib.c,添加vxMemProbe()的异常处理 classListLibInit() - os\core\kernel\src\wind\obj\classListLib.c，初始化Class的列表库 semLibInit() - os\core\kernel\src\wind\semLib.c，初始化信号量机制 condVarLibInit() - os\core\kernel\src\wind\condVarLib.c,初始化condition variables库 classLibInit() - os\core\kernel\src\wind\obj\classLib.c，初始化Class库 kernelBaseInit() - os\core\kernel\src\services\kernelBaseLib.c，初始化内核使用的对象 taskCreateHookInit() - os\core\kernel\src\wind\taskCreateHookLib.c,初始化task hook机制 sysDebugModeInit() - os\core\kernel\src\edr\sysDbgLib.c,设置debug mode的flag usrKernelInit() - os\core\kernel\configlette\usrKernel.c，配置内核使用的数据结构，包括初始化ISR对象、初始化内核的Task库、配置调度策略、初始化Tick队列、初始化中断级deferred work队列、记录系统内存池尺寸、调用kernelInit()初始化内核 kernelInit() - os\core\kernel\src\wind\kernelLib.c，初始化并启动内核，包括设置中断栈尺寸、设置内存池位置、初始化中断lock-out等级、关闭时间片轮转策略、将系统Tick清零、初始化中断栈、初始化并启动系统的第一个任务tRootTask usrRoot() - $(Prj)/prjConfig.c，这就是系统第一个任务的入口地址，主要负责post-kernel的初始化，逐步加载系统服务，它内部同样由大量初始化函数组成 usrKernelCoreInit() - 初始化内核的一些机制，包括Event、信号量的open机制、condition variables的open机制、消息队列及其open机制、看门狗、任务的open机制等 poolLibInit() - os\core\kernel\src\mm\poolLib.c,初始化Memory Pool库 memInit() - os\core\kernel\src\mm\memLib.c，初始化系统内存分区 memPartLibInit() - os\core\kernel\src\mm\memPartLib.c，初始化系统内存分区的class Id kProxHeapInit() - 创建kernel proximity heap，这个heap可以用于存储downloaded kernel models、 ISR handlers等，以及kernel common heap创建之前的内存分配 pgPoolLibInit() - os\core\kernel\src\mm\pgPoolLib.c,初始化page pool库 usrMmuInit() - os\core\kernel\configlette\usrMmuInit.c，初始化MMU pmapInit() - 提供物理地址映射机制 kCommonHeapInit() - os\core\kernel\src\mm\kCommonHeapLib.c,创建kernel Common Heap usrKernelCreateInit() - $(Prj)/prjConfig.c，初始化内核对象的creation机制，例如任务、消息队列、看门狗 usrDebugAgentBannerInit() - os\debug_analysis\rttools\agent\src\osconfig\vxworks\cfg\usrDebugAgent.c,注册debug agent banner usrShellBannerInit() - 注册shell banner intVecTableWriteProtect() - os\arch\ia\kernel\src\cpu\x86\intArchLib.c, 写保护exception向量表 cacheDma32PartInit() - os\core\kernel\src\services\cacheDma32Lib.c,初始化DMA buffers分区 miiBusLibInit() - os\net\end\drv\src\mii\vxbMiiLib.c,初始化mii总线库 vxbParamLibInit() - os\drv\vxbus\core\src\util\vxbParamLib.c,初始化driver parameter机制 usrIaPciUtilsInit() - os\psl\intel\itl_x86_common\cfg\usrIaPciUtils.c, Intel PCI机制的早期初始化 sysHwInit1() - os\psl\intel\itl_x86_common\cfg\usrItlCommon.c,额外的系统初始化，例如初始化PIC、IPI向量等 boardInit() - os\utils\boardlib\src\boardLib.c,板级初始化 sysHwInit2() - os\psl\intel\itl_x86_common\cfg\usrItlCommon.c, usrTextProtect() - os\core\kernel\configlette\usrTextProtect.c, 写保护文本段 excOsmInit() - os\arch\ia\kernel\src\cpu\x86\sysOsmLib.c, Handler for exception stack overflow usrKernelIntStkProtect() - os\core\kernel\configlette\usrKernelStack.c,中断栈保护 taskStackGuardPageEnable() - os\core\kernel\src\mm\taskMemLib.c,任务栈保护 usrNetApplUtilInit() - os\core\kernel\configlette\usrNetApplUtil.c,初始化Networks的application/stack logging机制 envLibInit() - os\core\kernel\src\services\envLib.c,初始化环境变量机制 edrStubInit() - os\core\kernel\configlette\edrStub.c,在ED&amp;R中记录boot类型 usrSysctlInit() - os\core\kernel\configlette\usrSysctl.c,提供SYSCTL机制 kernelIdleTaskActivate() - os\core\kernel\src\wind\kernelLib.c,激活idle任务 randomInit() - $(Prj)/prjConfig.c, 随机数生成器 usrIosCoreInit () - $(Prj)/prjConfig.c，初始化IO系统 usrNetworkInit0() - $(Prj)/prjConfig.c，初始化网络子系统 usrHwSysctlInit() - os\core\kernel\configlette\usrHwSysctl.c,初始化硬件的sysctl vxbDmaLibInit() - os\drv\vxbus\subsystem\src\dma\vxbDmaLib.c,初始化DMA库 vxbIsrHandlerInit() - os\drv\vxbus\subsystem\src\int\vxbIsrHandler.c,初始化VxBus ISR handler vxbIntLibInit() - os\drv\vxbus\subsystem\src\int\vxbIntLib.c,初始化vxbIntLib库 vxDyncIntLibInit() - os\drv\vxbus\subsystem\src\int\vxbDyncIntLib.c,初始化MSI支持库 vxIpiLibInit() - os\drv\vxbus\subsystem\src\int\vxIpiLib.c, 初始化IPI vxbLibInit() - os\drv\vxbus\core\src\vxbLib.c, 初始化VxBus子系统 intStartupUnlock() - os\arch\ia\kernel\src\cpu\x86\intArchLib.c, 打开中断 sysIntEnableFlagSet() - os\drv\vxbus\subsystem\src\int\vxbIntLib.c, 标记中断已使能 usrSerialInit() - os\core\kernel\configlette\usrSerial.c, 设置标准输入、输出设备 usrClkInit() - $(Prj)/prjConfig.c, 初始化时钟、Aux、Timestamp cpcInit() - os\core\kernel\src\multicore\cpcLib.c, 使能IPI vxdbgCpuLibInit() - os\debug_analysis\debug\vxdbg\src\vxdbgCpuLib.c, 初始化debug IPI库 miiBusMonitorTaskInit() - os\net\end\drv\src\mii\vxbMiiLib.c, 启动MII总线监测任务 kbdDelayStart() - os\psl\intel\itl_x86_common\src\vxbI8042Kbd.c, 启动Intel 8042 Keyboard pgMgrBaseLibInit() - os\core\kernel\src\mm\pgMgrBaseLib.c, 初始化Basic Page Manager库 pgMgrLibInit() - os\core\kernel\src\mm\pgMgrLib.c, 初始化Page Manager库 usrRtpInit() - $(Prj)/prjConfig.c, 初始化RTP机制 mmanLibInit() - os\core\kernel\src\posix\mm\mmanLib.c, 初始化POSIX内存管理机制 usrKernelExtraInit() - $(Prj)/prjConfig.c，初始化内核其它机制，例如Signal、POSIX Clock等 usrPcConsoleInit() - os\arch\ia\kernel\configlette\usrPcConsole.c, 初始化PC console usrIosExtraInit() - $(Prj)/prjConfig.c，初始化IO系统其它机制，例如任务级job机制、message logging库、管道驱动、标准IO库、设备管理、文件系统相关机制、pty(pseudo-terminal)驱动、Boot Line解析等 usrHostnameSetup() - os\core\kernel\configlette\usrHostnameSetup.c, 给Target分配名字TARGET_HOSTNAME_DEFAULT sockLibInit() - os\service\socket\src\sockLib.c, 初始化Socket API selTaskDeleteHookAdd() - os\core\io\src\ios\selectLib.c, 完成select机制的初始化 cpuPwrMgrEnable() - os\drv\vxbus\core\src\util\cpuPwrLightLib.c, 使能CPU电源管理 cplusCtorsLink() - os\lang_lib\libcplus\cplus_kernel\src\rts\cplusXtors.c, 加载静态对象的构造函数 usrScInit() - $(Prj)/prjConfig.c，初始化系统调用机制 usrKernelIntStkProtectNonCore0() - os\core\kernel\configlette\usrKernelStack.c, 保护非引导核的中断栈 usrSmpInit() - os\core\kernel\configlette\usrSmp.c, 使能SMP usrBanner() - os\core\kernel\configlette\usrBanner.c, 打印Shell的Banner usrNetworkInit() - $(Prj)/prjConfig.c，完成网络系统初始化 usrToolsInit() - $(Prj)/prjConfig.c，软件开发工具，例如spy()、timex()、target loader、符号表、debug库、kernel shell等 usrMmuOptimize() - os\core\kernel\configlette\usrMmuOptimize.c, 优化MMU的page sizing usrAppInit() - $(Prj)/usrAppInit.c，VxWorks系统启动过程中调用的最后一个函数，因此一般把应用程序的入口放在这里 ]]></content>
+  </entry>
+  
+  <entry>
+    <title>VxWorks操作系统下的串口读写程序</title>
+    <url>/post/vxworks/vxworks-uart-read-write-programming.html</url>
+    <categories><category>VxWorks</category>
+    </categories>
+    <tags>
+      <tag>VxWorks</tag>
+      <tag>UART</tag>
+      <tag>串口</tag>
+      <tag>编程</tag>
+    </tags>
+    <content type="html"><![CDATA[关于传统的串口编程，在各大操作系统下的流程基本是一致的，只是针对不同的操作系统，函数接口可能有所差异而已，下面讲述VxWorks操作系统下对于串口读写的编程步骤和代码
+相关的VxWorks 和 串口，请参阅 VxWorks下的串口测试程序设计和源码  。
+串口配置过程 打开串口 fd = open(&#34;/tyCo/0&#34;, O_RDWR, 0);  &ldquo;/tyCo/0&rdquo;: 串口1的设备名 O_RDWR: 按照读写方式打开串口  设置串口raw模式，清空输入输出的缓冲区 在VxWorks中配置串口可以直接通过ioctl的控制命令来实现
+ioctl(fd,FIOSETOPTIONS,OPT_RAW); ioctl(fd,FIOFLUSH,0); ioctl(int fd,int function,int arg); function的参数如下：
+   参数 说明     FIOBAUDRATE 设置波特率，arg为一整数，表示要设定的波特率   FIOGETOPTIONS 取得设备控制字，arg表示读出的内容存放的位置   FIOSETOPTIONS 设置设备控制字，arg表示要设置的选项   FIOGETNAME 取得文件描述符对应的文件名，arg存放文件名的缓冲区   FIOREAD 取得输入缓冲区内未读取的字符数，arg用于接收结果的整型指针   FIOWRITE 取得输出缓冲区内的字符个数，arg用于接收结果的整型指针   FIOFLUSH 清空输入输出缓冲区的字符   FIOCANCEL 取消读和写    设置波特率，数据位，停止位，校验方式 在 VxWorks 中设置串口也是用 &lsquo;ioctl&rsquo; 系统调用加控制命令实现，其控制命令为&rsquo;SIO_HW_OPTS_SET'，第三个参数跟配置参数，如：数据位为8，停止位为1，无奇偶校验位，无流控可以这样配置
+ioctl(fd,SIO_HW_OPTS_SET,CS8|PARENB|CLOCAL|CREAD); 具体各项参数意义如下：
+   参数 说明     CLOCAL 忽略modem控制信号   CREAD 启动接收器   CSIZE 指定数据位：CS5~CS8   HUPCL 最后关闭时挂断modem连接   STOP8 被设置时指定2位停止位，否则默认为1位停止位   PARENB 被设置时启用奇偶校验，否则默认为无奇偶校验   PARODD 被设置时启用奇校验，否则默认为偶校验(PARENB设置时才有效)    串口读写操作 在VxWorks系统中串口的读写操作非常简单，直接使用系统调用函数 read() 和 write() 就能实现串口的读写操作。
+int read(int fd, char *buffer, size_t maxbytes) 参数说明：
+ fd: 用open函数打开串口设备返回的文件描述符 buffer: 读取的内容将要存放的地址，为指针变量 maxbytes: 读取的最大字节数  int write(int fd, char *buffer, size_t nbytes) 参数说明：
+ fd: 用open函数打开串口设备返回的文件描述符 buffer: 将要写的内容的地址，为指针变量，通常为字符串首地址 nbytes: 将要写入的字节数，通常为要写入的字符串的长度  实例代码 VxWorks系统下串口读写的实例代码，仅供参考。
+#include &#34;vxWorks.h&#34;#include &#34;stdio.h&#34;#include &#34;ioLib.h&#34;#include &#34;taskLib.h&#34;#include &#34;sioLib.h&#34;#include &#34;sdLib.h&#34;#include &#34;semLib.h&#34;#include &#34;msgQLib.h&#34; char wbuf[] = &#34;hello&#34;; #define DEV_NAME &#34;/tyCo/2&#34; #define MAX_BUF_SIZE 20 #define SD_COMMDATA_NAME &#34;share_data&#34; #define SD_COMMDATA_MUTEX &#34;share_sem&#34; #define SHARE_DATA_LENGTH 20  typedef struct unix_clock_struct { UINT32 sec; /* ms */ UINT32 msec; /* s */ UINT8 quality; /* 时标质量 */ } UNIX_CLOCK_STRUCT; char *comdata; int set_serial(int fd); SEM_ID mutexComdata; void taskUart(void); int main(void) { int ret; int sdCommId; char r_buff[MAX_BUF_SIZE]; mutexComdata = semOpen(SD_COMMDATA_MUTEX, SEM_TYPE_MUTEX, SEM_FULL, SEM_Q_PRIORITY | SEM_DELETE_SAFE | \ SEM_INVERSION_SAFE, OM_CREATE | OM_DELETE_ON_LAST_CLOSE, NULL); if(mutexComdata == NULL) { /*致命错误，无法创建互斥锁*/ printf(&#34;ERROR TO OPEN SD_COMMDATA_MUTEX\n&#34;); taskExit(0); } /* 申请公共数据共享内存 */ sdCommId = sdOpen(SD_COMMDATA_NAME, SD_LINGER, OM_CREATE, SHARE_DATA_LENGTH, 0, SD_ATTR_RW|SD_CACHE_OFF, &amp;comdata); if(sdCommId == NULL) { /*致命错误，无法分配公共数据内存，报错退出*/ printf(&#34;ERROR TO OPEN SD_COMMDATA\n&#34;); taskExit(0); } if((ret = taskSpawn(&#34;taskUart&#34;,90,0x100, 20000, (FUNCPTR)taskUart,\ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)) &lt; 0) { printf(&#34;taskSpawn failed:ret = %s\n&#34;); } return 0; } void taskUart(void) { int ret; int fd = -1; UNIX_CLOCK_STRUCT w_buff; if((fd = open(DEV_NAME, O_RDWR,0)) &lt; 0) { printf(&#34;open %s failed.\n&#34;,DEV_NAME); } /*配置串口参数*/ if((ret = set_serial(fd)) &lt; 0) { printf(&#34;ret = %d\nset_serial failed.\n&#34;); } while(1) { semRTake(mutexComdata,WAIT_FOREVER); #if 0/*清空输入输出缓冲*/ if((ret = ioctl(fd, FIOFLUSH, 0))&lt;0) { printf(&#34; ret = %d\nset FIOFLUSH failed.\n&#34;,ret); } memset(r_buff,0,sizeof(r_buff)); /*读取串口中的值*/ if((ret = read(fd,r_buff,sizeof(r_buff)))&lt;0) { printf(&#34;ret = %d:read %s failed.\n&#34;,ret,DEV_NAME); } else printf(&#34;Received:%s\n&#34;,r_buff); #endif  #if 1  /*清空输入输出缓冲*/ if((ret = ioctl(fd, FIOFLUSH, 0))&lt;0) { printf(&#34; ret = %d\nset FIOFLUSH failed.\n&#34;,ret); } if(NULL == bzero(&amp;w_buff,sizeof(w_buff))) { printf(&#34;memset failed.\n&#34;); } if(NULL == memcpy(&amp;w_buff,comdata,sizeof(w_buff))) { printf(&#34;memset failed.\n&#34;); } if(&amp;w_buff != NULL) { /*往串口中写值*/ if((ret = write(fd, &amp;w_buff.sec, sizeof(ret)))&lt;0) // if((ret = write(fd, wbuf, sizeof(wbuf)))&lt;0)  { printf(&#34;ret = %d:write %s failed.\n&#34;,ret,DEV_NAME); } else { printf(&#34;write success:%d\n&#34;,w_buff.sec); } } semGive(mutexComdata); #endif  taskDelay(sysClkRateGet()*2); } } int set_serial(int fd) { int error = -1; int ok = 0; int ret; if(fd&lt;0) { printf(&#34;error:fd is %d\n&#34;,fd); } /*设定波特率为9600*/ if((ret = ioctl(fd, FIOBAUDRATE, 9600))&lt;0) { printf(&#34;ret = %d\nset baudrate failed\n&#34;,ret); return error; } /*设定：数据位为8，无奇偶校验，1位停止位*/ /*CLOCAL:忽略modem控制信号 * CREAD：启动接收器 * CS8:设定数据位为8*/ if((ret = ioctl(fd, SIO_HW_OPTS_SET,CREAD|CS8 |CLOCAL))&lt;0) { printf(&#34;ret = %d\nset SIO_HW_OPTS_SET failed.\n&#34;); return error; } return ok; } ]]></content>
+  </entry>
+  
+  <entry>
+    <title>针对VxWorks的QT 5.15.10发布了</title>
+    <url>/post/vxworks/qt-5-15-10-for-vxworks-released.html</url>
+    <categories><category>VxWorks</category>
+    </categories>
+    <tags>
+      <tag>VxWorks</tag>
+      <tag>QT</tag>
+      <tag>图像</tag>
+    </tags>
+    <content type="html"><![CDATA[Qt是一个多平台的C++图形用户界面应用程序框架。它提供给应用程序开发者建立艺术级的图形用户界面所需的所用功能。Qt是完全面向对象的编程，所以具有易扩展和组件编程的优势。
+相关的VxWorks 和 QT的文章，请参阅 VxWorks 6.8操作系统下QT的安装设置和运行方法  。
+我们非常激动地发布了支持VxWorks的QT 5.15.10 支持VxWorks的Qt 5.15.10长期支持的商业发行是基于我们最新的QT 5.15.10(LTS)之上的源代码发布。这个发行从早期的QT 5的版本官方升级了针对VxWorks的QT支持，这是对诸如航空和国防以及医疗等行业的市场需求的积极回应。它提供了QT版本的升级同时也提供了VxWorks系统具体的问题解决，还有别的一些改进。
+这次发行支持基于iMX6硬件的Ubuntu主机，我们也同时在准备基于x68和基于Windows主机的支持。此次的发行包开放给拥有QT账户的客户，也同时通过git仓库的形式开放给具有商业许可证的客户，请和我们联系以获取更多细节。
+从这儿开始 这儿有关于安装和配置的独立的文章，要获取更多关于QT和支持VxWorks的QT的详细信息，请查看这儿关于QT 5.15的在线文档。
+   https://doc.qt.io/qt-5/vxworks.html  
+   https://doc.qt.io/qt-5/index.html  
+   https://wiki.qt.io/Getting_Commercial_Qt_Sources  
+ ]]></content>
+  </entry>
+  
+  <entry>
+    <title>北南南北</title>
+    <url>/about.html</url>
+    <categories>
+    </categories>
+    <tags>
+    </tags>
+    <content type="html"><![CDATA[北南南北 是众多使用 VxWorks 嵌入式实时操作系统的网友分享经验的平台，为的就是让 VxWorks 的学习和应用变得相对开放一些，在此也欢迎你的加入！
+我们的愿景 技术创新是技术持续发展的生命力，紧跟技术的发展趋势，研究最新的技术，保持对新技术的热情和好奇心，让技术为生产和生活服务。
+使用反馈  加入 VxWorks Club   或 Google AI TPU     欢迎你的加入
+ ]]></content>
+  </entry>
+  
+  <entry>
+    <title>风河公司的资本交易历史</title>
+    <url>/post/vxworks/windriver-capital-transaction.html</url>
+    <categories><category>VxWorks</category>
+    </categories>
+    <tags>
+      <tag>WindRiver</tag>
+    </tags>
+    <content type="html"><![CDATA[日前，安波福宣布同意以43亿美元现金从私募股权公司TPG Capital收购风河公司（ Wind River  ），以帮助其在多个行业的关键软件领域建立独特地位，继续其智能转型，向边缘支持、软件定义的未来迈进。
+该交易预计将于2022年年中完成，在被收购之后，风河将隶属于安波福主动安全与用户体验事业部，继续在公司总裁兼首席执行官Kevin Dallas的领导下作为独立业务单位运营。
+实时操作系统 作为实时操作系统领域，全球最优秀的选手，它值得我们所有的溢美之词，无论怎么夸它，都不过分。
+VxWorks是风河公司推出的实时多任务操作系统（RTOS）。过去40年间，风河和VxWorks在嵌入式OS领域一直处于领先地位，在航空航天、通信、工业控制等行业有着广泛的应用，在业内被称为嵌入式OS的常青树。
+风河公司目前有2个嵌入式OS平台：Linux和VxWorks。
+VxWorks是由支持多核、32/64位嵌入式处理器、内存包含和内存管理的VxWorks 6.x和VxWorks5.x，Workbench开发工具（包括多种C/C++编译器和调试器），连接组件（USB、IPv4/v6、多种文件系统等），先进的网络协议和图像多媒体等模块组成。除了通用平台外，VxWorks还包括支持工业、网络、医疗和消费电子等的特定平台产品。
+老当益壮 风河成立于1981年，2021年收入大约4亿美元，毛利率超过80%。
+1987年风河基于VRTX推出VxWorks，1993年IPO上市，1995年VxWorks在NASA Clementine月球探测器上，被发射入太空。
+1997年NASA火星探险者号飞船的实时操作系统，登陆火星。
+风河是全球第一大嵌入式RTOS厂家，也是全球第一大嵌入式Linux厂家，硬实时操作系统长达30年的霸主，市场占有率超30%。
+它的主要收入来自4个领域：
+ 宇航与国防 工业与医疗 电信 汽车  宇航与国防所占比例最高，接近50%，各种飞船或者说航天飞行器基本都是风河VxWorks的市场，SpaceX也是它的忠实用户，中国神舟系列的SpaceOS也有借鉴VxWorks653。
+除了航天飞行器，AH-64阿帕奇武装直升机、F-16V（全球空军主力机型）、F-18大黄蜂，B-2战略轰炸机，X-47A，波音787都是VxWorks。
+美国的F-22猛禽、F-35、B-52轰炸机、B-1B轰炸机、C-17运输机和F-16改进型，以及欧洲的A-400M运输机，X-47B无人机，还有民航空客的A380，爱国者防空导弹，都是Vxworks的忠实用户。
+把竞争对手买下来，然后干掉！
+1999年风河收购一个主要竞争对手，pSOS的发明者，一家集成系统公司。从那以后风河公司不再支持pSOS产品线，并推荐现存的pSOS客户转向VxWorks。
+2004年针对网络和通信市场，推出便携的Linux平台，正式进军嵌入式Linux市场。
+VxWorks通过了汽车领域最高的ASIL-D级认证，以及远超汽车标准的DO-178C A级认证，它也通过了，已经准备好了对汽车行业进行降维打击。  卖来卖去 2009年英特尔以8.84亿美元收购风河；
+2018年4月英特尔出售风河给投资公司TPG。
+英特尔刚刚收购4年不到，就卖给了TPG，英特尔也是颇具渣男属性了。
+不过，风河公司貌似还不是最后一个被卖来卖去的此类企业，另外一个汽车级嵌入式系统的大牛供应商，Green Hills也在被卖的路上了，我们接下来的文章会保持对它的追踪，及时报道相关信息。
+戳穿实时操作系统 在日常的HIL测试工作中，几乎没有哪个测试任务是因为“实时仿真机的实时性不够高”而导致出问题。
+HIL工作最容易出问题的地方，往往是功能定义不明确、工具链不完整、协同自动化测试做不起来、线束掉链子以及项目上各种瞎搞等等。
+换句话说，在汽车HIL测试领域，哪怕是最low逼的实时操作系统，也足够了，人家Vector公司用wince做实时机，照样玩得飞起，不耽误事。
+HIL实时机诞生的历史环境，已经不复存在了，当年的PC机真是太鸡肋了。
+而且，在近些年大火的自动驾驶测试领域，我见过太多实时性差得一批的测试系统，响应滞后得跟PID调节似的，却闭口不谈实时性问题，忽忽悠悠就验收通过了……
+资本市场 通过这些收购案例，我们也能看到资本唯利是图的本性，什么来钱快干什么，脑子一热就买了，兴奋劲儿过了之后又卖了，不符合自己的产品路线，也照样卖掉。
+]]></content>
+  </entry>
+  
+  <entry>
+    <title>Mermaid支持流程图</title>
+    <url>/post/mermaid-charts.html</url>
+    <categories><category>示例</category>
+    </categories>
+    <tags>
+      <tag>流程图</tag>
+      <tag>时序图</tag>
+    </tags>
+    <content type="html"><![CDATA[本主题已支持 Mermaid 实现以纯文本的方式绘制流程图、序列图、甘特图、状态图、关系图行等等，随着 Mermaid 也在逐步发展，后续还会有各种各样的图被引入进来，更多的类型及使用方式可关注其官方网站： https://mermaid-js.github.io/  。
+使用说明  通过 hugo new 命令创建一篇新的文章 在文章头部配置 mermaid: true 使用短代码书写各种类型的图，自带2个参数： align（对齐） 和 bc（背景色），可参考如下使用示例   流程图 {{&lt; mermaid align=&#34;left&#34; &gt;}} graph TD; A--&gt;B; A--&gt;C; B--&gt;D; C--&gt;D; {{&lt; /mermaid &gt;}} graph TD; A--B; A--C; B--D; C--D;  时序图 {{&lt; mermaid bc=&#34;#eee&#34; &gt;}} sequenceDiagram participant Alice participant Bob Alice-&gt;&gt;John: Hello John, how are you? loop Healthcheck John-&gt;&gt;John: Fight against hypochondria end Note right of John: Rational thoughts &lt;br/&gt;prevail! John--&gt;&gt;Alice: Great! John-&gt;&gt;Bob: How about you? Bob--&gt;&gt;John: Jolly good! {{&lt; /mermaid &gt;}} sequenceDiagram participant Alice participant Bob Alice-John: Hello John, how are you? loop Healthcheck John-John: Fight against hypochondria end Note right of John: Rational thoughts prevail! John--Alice: Great! John-Bob: How about you? Bob--John: Jolly good!  类图 {{&lt; mermaid &gt;}} classDiagram Class01 &lt;|-- AveryLongClass : Cool Class03 *-- Class04 Class05 o-- Class06 Class07 .. Class08 Class09 --&gt; C2 : Where am i? Class09 --* C3 Class09 --|&gt; Class07 Class07 : equals() Class07 : Object[] elementData Class01 : size() Class01 : int chimp Class01 : int gorilla Class08 &lt;--&gt; C2: Cool label {{&lt; /mermaid &gt;}} classDiagram Class01 C2 : Where am i? Class09 --* C3 Class09 --| Class07 Class07 : equals() Class07 : Object[] elementData Class01 : size() Class01 : int chimp Class01 : int gorilla Class08  C2: Cool label  甘特图 {{&lt; mermaid &gt;}} gantt dateFormat YYYY-MM-DD title Adding GANTT diagram to mermaid excludes weekdays 2014-01-10 section A section Completed task :done, des1, 2014-01-06,2014-01-08 Active task :active, des2, 2014-01-09, 3d Future task : des3, after des2, 5d Future task2 : des4, after des3, 5d {{&lt; /mermaid &gt;}} gantt dateFormat YYYY-MM-DD title Adding GANTT diagram to mermaid excludes weekdays 2014-01-10 section A section Completed task :done, des1, 2014-01-06,2014-01-08 Active task :active, des2, 2014-01-09, 3d Future task : des3, after des2, 5d Future task2 : des4, after des3, 5d  实体关系图 {{&lt; mermaid &gt;}} erDiagram CUSTOMER ||--o{ ORDER : places ORDER ||--|{ LINE-ITEM : contains CUSTOMER }|..|{ DELIVERY-ADDRESS : uses {{&lt; /mermaid &gt;}} erDiagram CUSTOMER ||--o{ ORDER : places ORDER ||--|{ LINE-ITEM : contains CUSTOMER }|..|{ DELIVERY-ADDRESS : uses  用户旅程 {{&lt; mermaid &gt;}} journey title My working day section Go to work Make tea: 5: Me Go upstairs: 3: Me Do work: 1: Me, Cat section Go home Go downstairs: 5: Me Sit down: 5: Me {{&lt; /mermaid &gt;}} journey title My working day section Go to work Make tea: 5: Me Go upstairs: 3: Me Do work: 1: Me, Cat section Go home Go downstairs: 5: Me Sit down: 5: Me ]]></content>
+  </entry>
+  
+  <entry>
+    <title>数学公式渲染</title>
+    <url>/post/math-formula.html</url>
+    <categories><category>示例</category>
+    </categories>
+    <tags>
+      <tag>数学公式</tag>
+      <tag>mathjax</tag>
+      <tag>katex</tag>
+    </tags>
+    <content type="html"><![CDATA[本主题支持 mathjax 和 katex 两种不的方案支持数学公式的渲染，可根据自已的需求进行选择。
+接下的示例中，将使用 MathJax   方案来展示渲染效果。
+ 使用 hugo new 命令创建一篇新的文章 可以全局启用数据公式渲染，请在项目配置参数 math: katex 或 math: mathjax 或是将该参数配置到需要显示数学公式的页面头部（减少不必要的加载消耗）   注意： 使用 支持的TeX功能  的联机参考资料。
+例子 重复的分数 $$ \frac{1}{\Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{\frac25 \pi}} \equiv 1+\frac{e^{-2\pi}} {1+\frac{e^{-4\pi}} {1+\frac{e^{-6\pi}} {1+\frac{e^{-8\pi}} {1+\cdots} } } } $$
+总和记号 $$ \left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right) $$
+几何级数之和 我把接下来的两个例子分成了几行，这样它在手机上表现得更好。这就是为什么它们包含 \displaystyle。
+$$ \displaystyle\sum_{i=1}^{k+1}i $$
+$$ \displaystyle= \left(\sum_{i=1}^{k}i\right) +(k+1) $$
+$$ \displaystyle= \frac{k(k+1)}{2}+k+1 $$
+$$ \displaystyle= \frac{k(k+1)+2(k+1)}{2} $$
+$$ \displaystyle= \frac{(k+1)(k+2)}{2} $$
+$$ \displaystyle= \frac{(k+1)((k+1)+1)}{2} $$
+乘记号 $$ \displaystyle 1 + \frac{q^2}{(1-q)}+\frac{q^6}{(1-q)(1-q^2)}+\cdots = \displaystyle \prod_{j=0}^{\infty}\frac{1}{(1-q^{5j+2})(1-q^{5j+3})}, \displaystyle\text{ for }\lvert q\rvert &lt; 1. $$
+随文数式 这是一些线性数学: $$ k_{n+1} = n^2 + k_n^2 - k_{n-1} $$ ， 然后是更多的文本。
+希腊字母 $$ \Gamma\ \Delta\ \Theta\ \Lambda\ \Xi\ \Pi\ \Sigma\ \Upsilon\ \Phi\ \Psi\ \Omega \alpha\ \beta\ \gamma\ \delta\ \epsilon\ \zeta\ \eta\ \theta\ \iota\ \kappa\ \lambda\ \mu\ \nu\ \xi \ \omicron\ \pi\ \rho\ \sigma\ \tau\ \upsilon\ \phi\ \chi\ \psi\ \omega\ \varepsilon\ \vartheta\ \varpi\ \varrho\ \varsigma\ \varphi $$
+箭头 $$ \gets\ \to\ \leftarrow\ \rightarrow\ \uparrow\ \Uparrow\ \downarrow\ \Downarrow\ \updownarrow\ \Updownarrow $$
+$$ \Leftarrow\ \Rightarrow\ \leftrightarrow\ \Leftrightarrow\ \mapsto\ \hookleftarrow \leftharpoonup\ \leftharpoondown\ \rightleftharpoons\ \longleftarrow\ \Longleftarrow\ \longrightarrow $$
+$$ \Longrightarrow\ \longleftrightarrow\ \Longleftrightarrow\ \longmapsto\ \hookrightarrow\ \rightharpoonup $$
+$$ \rightharpoondown\ \leadsto\ \nearrow\ \searrow\ \swarrow\ \nwarrow $$
+符号 $$ \surd\ \barwedge\ \veebar\ \odot\ \oplus\ \otimes\ \oslash\ \circledcirc\ \boxdot\ \bigtriangleup $$
+$$ \bigtriangledown\ \dagger\ \diamond\ \star\ \triangleleft\ \triangleright\ \angle\ \infty\ \prime\ \triangle $$
+微积分学 $$ \int u \frac{dv}{dx},dx=uv-\int \frac{du}{dx}v,dx $$
+$$ f(x) = \int_{-\infty}^\infty \hat f(\xi),e^{2 \pi i \xi x} $$
+$$ \oint \vec{F} \cdot d\vec{s}=0 $$
+洛伦茨方程 $$ \begin{aligned} \dot{x} &amp; = \sigma(y-x) \\ \dot{y} &amp; = \rho x - y - xz \\ \dot{z} &amp; = -\beta z + xy \end{aligned} $$
+交叉乘积 这在KaTeX中是可行的，但在这种环境中馏分的分离不是很好。
+$$ \mathbf{V}_1 \times \mathbf{V}_2 = \begin{vmatrix} \mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} \\ \frac{\partial X}{\partial u} &amp; \frac{\partial Y}{\partial u} &amp; 0 \\ \frac{\partial X}{\partial v} &amp; \frac{\partial Y}{\partial v} &amp; 0 \end{vmatrix} $$
+这里有一个解决方案:使用“mfrac”类(在MathJax情况下没有区别)的额外类使分数更小:
+$$ \mathbf{V}_1 \times \mathbf{V}_2 = \begin{vmatrix} \mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} \\ \frac{\partial X}{\partial u} &amp; \frac{\partial Y}{\partial u} &amp; 0 \\ \frac{\partial X}{\partial v} &amp; \frac{\partial Y}{\partial v} &amp; 0 \end{vmatrix} $$
+强调 $$ \hat{x}\ \vec{x}\ \ddot{x} $$
+有弹性的括号 $$ \left(\frac{x^2}{y^3}\right) $$
+评估范围 $$ \left.\frac{x^3}{3}\right|_0^1 $$
+诊断标准 $$ f(n) = \begin{cases} \frac{n}{2}, &amp; \text{if } n\text{ is even} \\ 3n+1, &amp; \text{if } n\text{ is odd} \end{cases} $$
+麦克斯韦方程组 $$ \begin{aligned} \nabla \times \vec{\mathbf{B}} -, \frac1c, \frac{\partial\vec{\mathbf{E}}}{\partial t} &amp; = \frac{4\pi}{c}\vec{\mathbf{j}} \\ \nabla \cdot \vec{\mathbf{E}} &amp; = 4 \pi \rho \\ \nabla \times \vec{\mathbf{E}}, +, \frac1c, \frac{\partial\vec{\mathbf{B}}}{\partial t} &amp; = \vec{\mathbf{0}} \\ \nabla \cdot \vec{\mathbf{B}} &amp; = 0 \end{aligned} $$
+统计学 固定词组：
+$$ \frac{n!}{k!(n-k)!} = {^n}C_k {n \choose k} $$
+分数在分数 $$ \frac{\frac{1}{x}+\frac{1}{y}}{y-z} $$
+ｎ次方根 $$ \sqrt[n]{1+x+x^2+x^3+\ldots} $$
+矩阵 $$ \begin{pmatrix} a_{11} &amp; a_{12} &amp; a_{13}\\ a_{21} &amp; a_{22} &amp; a_{23}\\ a_{31} &amp; a_{32} &amp; a_{33} \end{pmatrix} \begin{bmatrix} 0 &amp; \cdots &amp; 0 \\ \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; \cdots &amp; 0 \end{bmatrix} $$
+标点符号 $$ f(x) = \sqrt{1+x} \quad (x \ge -1) f(x) \sim x^2 \quad (x\to\infty) $$
+现在用标点符号:
+$$ f(x) = \sqrt{1+x}, \quad x \ge -1 f(x) \sim x^2, \quad x\to\infty $$
+]]></content>
+  </entry>
+  
+  <entry>
+    <title>支持用户自定义设计</title>
+    <url>/post/custom-files.html</url>
+    <categories><category>示例</category>
+    </categories>
+    <tags>
+      <tag>自定义</tag>
+      <tag>个性化</tag>
+      <tag>布局</tag>
+    </tags>
+    <content type="html"><![CDATA[对于熟悉前端开发的用户来说，可以通过自定义文件配置，实现对站点的样式和布局进行个性化的调整。其中布局方面主要是支持左侧边栏的站点概览部分，以及站点底部2个位置，但样式的重置可以是整个站点的任意位置。
+打开配置参数 首先要明确在配置文件的 params 区域中有配置如下参数：
+customFilePath: sidebar: custom_sidebar.html footer: custom_footer.html style: /css/custom_style.css 注意： sidebar 和 footer 的文件命名不可以与它们的参数名称相同，不然会影响系统默认的布局设计，切记！！！ 😄  然后在站点的根目录下创建 layouts/partials 2个目录，用于存放自定布局设计文件，另外在站点根目录下创建 statics/css 2个目录，用于存放自定义 CSS 样式文件。一切就绪后，就可以参考如下的步骤，完成自己的设计想法。
+侧边栏设计 在前面创建 partials 目录中新一个后缀名为 html 的文件，可以在里面书写你所想表达的设计或内容，比如引入一些第三方组件内容。示例如下：
+&lt;div class=&#34;mydefined animated&#34; itemprop=&#34;custom&#34;&gt; &lt;span&gt;支持自定义CSS和Sidebar布局啦💄💄💄&lt;/span&gt; &lt;/div&gt; 再把该文件的路径配置到相应的参数中，效果请查看左侧边栏底部的效果。
+底部设计 在前面创建 partials 目录中新一个后缀名为 html 的文件，可以在里面书写你所想表达的设计或内容，比如引入一些第三方组件内容。示例如下：
+&lt;div class=&#34;custom-footer&#34;&gt; Website source code &lt;a href=&#34;https://github.com/hugo-next/hugo-theme-next/tree/develop/exampleSite/layouts/partials/custom-footer.html&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt; &lt;/div&gt; 再把该文件的路径配置到相应的参数中，效果请查看站点底部的效果。
+自定义样式 在前面创建 css 目录中新一个后缀名为 css 的文件，然后可以在里面把站点的样式进行重定义，或是增加一些自己定义的样式设计，在写文章时进行引用，示例如下：
+.custom-head5 { font-size: 1.2em; color: #ed6c24; font-weight: bold; } 再把该文件的路径配置到相应的参数中，效果参考如下：
+我是自定义的标题样式效果!!!
+]]></content>
+  </entry>
+  
+  <entry>
+    <title>自定义短语示例</title>
+    <url>/post/shortcodes.html</url>
+    <categories><category>示例</category>
+    </categories>
+    <tags>
+      <tag>短代码</tag>
+      <tag>语法</tag>
+    </tags>
+    <content type="html"><![CDATA[虽然 Markdown 语法已经非常丰富能够满足我们写文章的绝大部分需求，但是为更好的对文章内容进行更友好的排版，为引设计一套自定义的短语，便于在使用时能够快速引用。
+块引用 在引用一些经典名言名句时，可以采用此短语，语法参考如下：
+{{&lt; quote &gt;}} ### block quote 写下你想表达的话语！ {{&lt; /quote &gt;}} 实际效果：
+希望是无所谓有，无所谓无的，这正如地上的路。
+其实地上本没有路，走的人多了，也便成了路。
+鲁迅
+ 信息块 支持 default，info，success，warning，danger 等五种不同效果的展示，语法参考如下：
+{{&lt; note [class] [no-icon] &gt;}} 书写表达的信息 支持 Markdown 语法 {{&lt; /note &gt;}} 实际效果：
+Default Header without icon Welcome to Hugo NexT!  Default Header Welcome to Hugo NexT!  Info Header Welcome to Hugo NexT!  Success Header Welcome to Hugo NexT!  Warning Header Welcome to Hugo NexT!  Danger Header Welcome to Hugo NexT! ]]></content>
+  </entry>
+  
+  <entry>
+    <title>文章目录导航</title>
+    <url>/post/table-of-content.html</url>
+    <categories><category>示例</category>
+    </categories>
+    <tags>
+      <tag>目录</tag>
+      <tag>导航</tag>
+      <tag>博客</tag>
+    </tags>
+    <content type="html"><![CDATA[巴顿将军说过：“衡量一个人是否成功，不是看他站到顶峰，而是从顶峰跌落之后的反弹力”，褚时健的人生便是如此，中年发家致富，名利双收，之后又跌落到谷底，等到74岁再创业，10年后带着褚橙归来，东山再起收获亿万财富，他的发展轨迹就是反弹的过程。
+早年的故事 起始 2014年的春天，在云南省华宁县和宜良县的交界处，一座名叫矣则的小山村里，一处已经有上百年历史的古旧四合院宅子被拆掉。村委会正带领村民们进行“美丽乡村”的建设，一年以后，旧有村居将再也看不到，代之而起的是钢筋混凝土的新式民居。就像10年、20年前中国大小城市的改造一样，这个群山围绕的小村子也开始陷入“工地模式”。
+童年浪花 在江河边长大的孩子几乎都有一个当仁不让的特长：善水。褚时健也不例外，他不仅从小就在南盘江和花鱼塘里扑腾出了上佳的游泳技术，五六岁已经可以一个猛子扎出老远，而且从七八岁就可以在南盘江和河滩上的鱼塘里捉鱼了。
+少年故事 褚时健在乡村自由自在生活的十多年，其实正是中国社会风雨飘摇的十多年。特别是1937年卢沟桥事变后，日本人发动全面侵华战争，短短两三年间，中国的大部分国土相继沦陷
+激情的青春十年 当上了游击队员 1948年夏天，褚时健回乡，在禄丰车站小学做了一名老师，同时也和褚时仁、褚时杰一起继续保持与共产党组织的联系，做一些传递情报的工作
+战火纷飞 因为战斗力相较悬殊，所以游击队只能是靠打一枪换一个地方的办法，专找敌人薄弱的地方攻击，但更多时候，都是在防御和转移阵地。
+迎来解放 1949年12月，国民党云南省主席卢汉在昆明宣布起义，云南正式拉开解放的序幕。1950年2月20日，陈赓、宋任穷、周保中率解放军第二野战军第四兵团进入昆明，24日，陈赓宣布云南全境解放。
+生活的断层 跌入生活底层 “反右”运动中被打倒的人在“右派”身份确定后，只有一条路可走：下放到农场。农场名副其实，就是干农活儿的地方，必须过和农民一样的生活。
+尾声 岁月像一条河 2015年，是褚时健和马静芬结婚60周年，被称为“钻石婚”的纪念年份。这简直是一份人生的奖赏,在中国离婚率愈益升高的当下，60年的婚姻，几乎就像一个前世之梦。一个甲子的相伴相随，褚时健和马静芬共同经历了国家和个人的各种风浪，共同面对过生死。他们两人已经不仅是夫妻，更是一对战友。尽管马静芬偶尔会对褚时健年轻时候的粗心抱怨上两句，但说到最后，她会说一句：“没有我就没有他，没有他也就没有我。”
+作者致谢 这本书从2014年初夏开始采访，到今天完稿，历时18个月。封面上“作者”只能是我一个人的名字，但也只有我自己知道，这本书，包含了太多人的心力和体力。我当然首先要致谢王石先生，没有他就没有这本书。我自己细想下来，没有王石先生一直的鞭策和鼓励，也没有我写作工作的今天。从2006年我开始从事专业写作工作以来，他给我创造了很多写作的机会，并且不吝自己诸多人生和学习的体会和感悟，一一传递予我。知遇之恩，感谢非常。
+最后，我当然要把最大的感谢致予褚时健先生。不仅是因为他慷慨、坦率面对我的各种提问，更重要的是，在倾听他的故事的过程里，他繁盛的人生经历，他的强大生命力，他对生活、对事业的一片赤子之心，也丰富了我对自己人生的思考。
+]]></content>
+  </entry>
+  
+  <entry>
+    <title>Hugo 内置的 Chroma 语法高亮</title>
+    <url>/post/syntax-highlighting.html</url>
+    <categories><category>示例</category>
+    </categories>
+    <tags>
+      <tag>语法</tag>
+      <tag>高亮</tag>
+      <tag>Chroma</tag>
+    </tags>
+    <content type="html"><![CDATA[Hugo 通过 Chroma 提供非常快速的语法高亮显示，现 Hugo 中使用 Chroma 作为代码块高亮支持，它内置在 Go 语言当中，速度是真的非常、非常快，而且最为重要的是它也兼容之前我们使用的 Pygments 方式。
+以下通过 Hugo 内置短代码 highlight 和 Markdown 代码块方式分别验证不同语言的代码块渲染效果并能正确高亮显示，有关优化语法突出显示的更多信息，请参阅 Hugo 文档  。
+编程语言 GO 199 200 201 202 203 204 205 206 207 208  func GetTitleFunc(style string) func(s string) string { switch strings.ToLower(style) { case &#34;go&#34;: return strings.Title case &#34;chicago&#34;: return transform.NewTitleConverter(transform.ChicagoStyle) default: return transform.NewTitleConverter(transform.APStyle)  } }   Java import javax.swing.JFrame; //Importing class JFrame import javax.swing.JLabel; //Importing class JLabel public class HelloWorld { public static void main(String[] args) { JFrame frame = new JFrame(); //Creating frame  frame.setTitle(&#34;Hi!&#34;); //Setting title frame  frame.add(new JLabel(&#34;Hello, world!&#34;));//Adding text to frame  frame.pack(); //Setting size to smallest  frame.setLocationRelativeTo(null); //Centering frame  frame.setVisible(true); //Showing frame  } } Python print &#34;Hello, world!&#34; Git 对比 *** /path/to/original &#39;&#39;timestamp&#39;&#39; --- /path/to/new &#39;&#39;timestamp&#39;&#39; *************** *** 1 **** ! This is a line. --- 1 --- ! This is a replacement line. It is important to spell -removed line +new line *** /path/to/original &#39;&#39;timestamp&#39;&#39; --- /path/to/new &#39;&#39;timestamp&#39;&#39; *************** *** 1 **** ! This is a line. --- 1 --- ! This is a replacement line. It is important to spell -removed line +new line 文件 Make 文件 CC=gcc CFLAGS=-I. hellomake: hellomake.o hellofunc.o $(CC) -o hellomake hellomake.o hellofunc.o -I. Markdown 文档 **bold** *italics* [link](www.example.com) 数据内容 JSON 数据 {&#34;employees&#34;:[ {&#34;firstName&#34;:&#34;John&#34;, &#34;lastName&#34;:&#34;Doe&#34;}, ]} XML 内容 &lt;employees&gt; &lt;employee&gt; &lt;firstName&gt;John&lt;/firstName&gt; &lt;lastName&gt;Doe&lt;/lastName&gt; &lt;/employee&gt; &lt;/employees&gt; SQL 查询 SELECT column_name,column_name FROM Table WHERE column_name = &#34;condition&#34; 除以上列举的代码高亮显示外，还支持诸如：C 语言、C++、HTML、CSS、Shell脚本等各主流的代码语言高亮显示，可自行测试效果。
+]]></content>
+  </entry>
+  
+  <entry>
+    <title>支持 Emoji 表情</title>
+    <url>/post/emoji-support.html</url>
+    <categories><category>示例</category>
+    </categories>
+    <tags>
+      <tag>表情</tag>
+      <tag>emoji</tag>
+    </tags>
+    <content type="html"><![CDATA[Emoji 可以通过多种方式在 Hugo 项目中启用。
+ emojify   方法可以直接在模板中调用, 或者使用 行内 Shortcodes  .
+要全局使用 emoji, 需要在你的 网站配置  中设置 enableEmoji 为 true， 然后你就可以直接在文章中输入 emoji 的代码。
+它们以冒号开头和结尾，并且包含 emoji 的 代码：
+去露营啦! {:}tent: 很快就回来. 真开心! {:}joy: 呈现的输出效果如下:
+去露营啦! ⛺ 很快就回来。
+真开心! 😂
+以下符号清单是 emoji 代码的非常有用的参考。
+表情与情感 笑脸表情    图标 代码 图标 代码     😀 grinning 😃 smiley   😄 smile 😁 grin   😆 laughing satisfied 😅 sweat_smile   🤣 rofl 😂 joy   🙂 slightly_smiling_face 🙃 upside_down_face   😉 wink 😊 blush   😇 innocent      爱意表情    图标 代码 图标 代码     😍 heart_eyes 😘 kissing_heart   😗 kissing ☺️ relaxed   😚 kissing_closed_eyes 😙 kissing_smiling_eyes    吐舌头表情    图标 代码 图标 代码     😋 yum 😛 stuck_out_tongue   😜 stuck_out_tongue_winking_eye 😝 stuck_out_tongue_closed_eyes   🤑 money_mouth_face      国家和地区旗帜    图标 代码 图标 代码     🇦🇩 andorra 🇦🇪 united_arab_emirates   🇦🇫 afghanistan 🇦🇬 antigua_barbuda   🇦🇮 anguilla 🇦🇱 albania   🇦🇲 armenia 🇦🇴 angola   🇦🇶 antarctica 🇦🇷 argentina   🇦🇸 american_samoa 🇦🇹 austria   🇦🇺 australia 🇦🇼 aruba   🇦🇽 aland_islands 🇦🇿 azerbaijan   🇧🇦 bosnia_herzegovina 🇧🇧 barbados   🇧🇩 bangladesh 🇧🇪 belgium   🇧🇫 burkina_faso 🇧🇬 bulgaria   🇧🇭 bahrain 🇧🇮 burundi   🇧🇯 benin 🇧🇱 st_barthelemy   🇧🇲 bermuda 🇧🇳 brunei   🇧🇴 bolivia 🇧🇶 caribbean_netherlands   🇧🇷 brazil 🇧🇸 bahamas   🇧🇹 bhutan 🇧🇼 botswana   🇧🇾 belarus 🇧🇿 belize   🇨🇦 canada 🇨🇨 cocos_islands   🇨🇩 congo_kinshasa 🇨🇫 central_african_republic   🇨🇬 congo_brazzaville 🇨🇭 switzerland   🇨🇮 cote_divoire 🇨🇰 cook_islands   🇨🇱 chile 🇨🇲 cameroon   🇨🇳 cn 🇨🇴 colombia   🇨🇷 costa_rica 🇨🇺 cuba   🇨🇻 cape_verde 🇨🇼 curacao   🇨🇽 christmas_island 🇨🇾 cyprus   🇨🇿 czech_republic 🇩🇪 de   🇩🇯 djibouti 🇩🇰 denmark   🇩🇲 dominica 🇩🇴 dominican_republic   🇩🇿 algeria 🇪🇨 ecuador   🇪🇪 estonia 🇪🇬 egypt   🇪🇭 western_sahara 🇪🇷 eritrea   🇪🇸 es 🇪🇹 ethiopia   🇪🇺 eu european_union 🇫🇮 finland   🇫🇯 fiji 🇫🇰 falkland_islands   🇫🇲 micronesia 🇫🇴 faroe_islands   🇫🇷 fr 🇬🇦 gabon   🇬🇧 gb uk 🇬🇩 grenada   🇬🇪 georgia 🇬🇫 french_guiana   🇬🇬 guernsey 🇬🇭 ghana   🇬🇮 gibraltar 🇬🇱 greenland   🇬🇲 gambia 🇬🇳 guinea   🇬🇵 guadeloupe 🇬🇶 equatorial_guinea   🇬🇷 greece 🇬🇸 south_georgia_south_sandwich_islands   🇬🇹 guatemala 🇬🇺 guam   🇬🇼 guinea_bissau 🇬🇾 guyana   🇭🇰 hong_kong 🇭🇳 honduras   🇭🇷 croatia 🇭🇹 haiti   🇭🇺 hungary 🇮🇨 canary_islands   🇮🇩 indonesia 🇮🇪 ireland   🇮🇱 israel 🇮🇲 isle_of_man   🇮🇳 india 🇮🇴 british_indian_ocean_territory   🇮🇶 iraq 🇮🇷 iran   🇮🇸 iceland 🇮🇹 it   🇯🇪 jersey 🇯🇲 jamaica   🇯🇴 jordan 🇯🇵 jp   🇰🇪 kenya 🇰🇬 kyrgyzstan   🇰🇭 cambodia 🇰🇮 kiribati   🇰🇲 comoros 🇰🇳 st_kitts_nevis   🇰🇵 north_korea 🇰🇷 kr   🇰🇼 kuwait 🇰🇾 cayman_islands   🇰🇿 kazakhstan 🇱🇦 laos   🇱🇧 lebanon 🇱🇨 st_lucia   🇱🇮 liechtenstein 🇱🇰 sri_lanka   🇱🇷 liberia 🇱🇸 lesotho   🇱🇹 lithuania 🇱🇺 luxembourg   🇱🇻 latvia 🇱🇾 libya   🇲🇦 morocco 🇲🇨 monaco   🇲🇩 moldova 🇲🇪 montenegro   🇲🇬 madagascar 🇲🇭 marshall_islands   🇲🇰 macedonia 🇲🇱 mali   🇲🇲 myanmar 🇲🇳 mongolia   🇲🇴 macau 🇲🇵 northern_mariana_islands   🇲🇶 martinique 🇲🇷 mauritania   🇲🇸 montserrat 🇲🇹 malta   🇲🇺 mauritius 🇲🇻 maldives   🇲🇼 malawi 🇲🇽 mexico   🇲🇾 malaysia 🇲🇿 mozambique   🇳🇦 namibia 🇳🇨 new_caledonia   🇳🇪 niger 🇳🇫 norfolk_island   🇳🇬 nigeria 🇳🇮 nicaragua   🇳🇱 netherlands 🇳🇴 norway   🇳🇵 nepal 🇳🇷 nauru   🇳🇺 niue 🇳🇿 new_zealand   🇴🇲 oman 🇵🇦 panama   🇵🇪 peru 🇵🇫 french_polynesia   🇵🇬 papua_new_guinea 🇵🇭 philippines   🇵🇰 pakistan 🇵🇱 poland   🇵🇲 st_pierre_miquelon 🇵🇳 pitcairn_islands   🇵🇷 puerto_rico 🇵🇸 palestinian_territories   🇵🇹 portugal 🇵🇼 palau   🇵🇾 paraguay 🇶🇦 qatar   🇷🇪 reunion 🇷🇴 romania   🇷🇸 serbia 🇷🇺 ru   🇷🇼 rwanda 🇸🇦 saudi_arabia   🇸🇧 solomon_islands 🇸🇨 seychelles   🇸🇩 sudan 🇸🇪 sweden   🇸🇬 singapore 🇸🇭 st_helena   🇸🇮 slovenia 🇸🇰 slovakia   🇸🇱 sierra_leone 🇸🇲 san_marino   🇸🇳 senegal 🇸🇴 somalia   🇸🇷 suriname 🇸🇸 south_sudan   🇸🇹 sao_tome_principe 🇸🇻 el_salvador   🇸🇽 sint_maarten 🇸🇾 syria   🇸🇿 swaziland 🇹🇨 turks_caicos_islands   🇹🇩 chad 🇹🇫 french_southern_territories   🇹🇬 togo 🇹🇭 thailand   🇹🇯 tajikistan 🇹🇰 tokelau   🇹🇱 timor_leste 🇹🇲 turkmenistan   🇹🇳 tunisia 🇹🇴 tonga   🇹🇷 tr 🇹🇹 trinidad_tobago   🇹🇻 tuvalu 🇹🇼 taiwan   🇹🇿 tanzania 🇺🇦 ukraine   🇺🇬 uganda 🇺🇸 us   🇺🇾 uruguay 🇺🇿 uzbekistan   🇻🇦 vatican_city 🇻🇨 st_vincent_grenadines   🇻🇪 venezuela 🇻🇬 british_virgin_islands   🇻🇮 us_virgin_islands 🇻🇳 vietnam   🇻🇺 vanuatu 🇼🇫 wallis_futuna   🇼🇸 samoa 🇽🇰 kosovo   🇾🇪 yemen 🇾🇹 mayotte   🇿🇦 south_africa 🇿🇲 zambia   🇿🇼 zimbabwe     ]]></content>
+  </entry>
+  
+  <entry>
+    <title>Markdown 语法支持</title>
+    <url>/post/markdown-syntax.html</url>
+    <categories><category>示例</category>
+    </categories>
+    <tags>
+      <tag>Markdown</tag>
+      <tag>语法</tag>
+    </tags>
+    <content type="html"><![CDATA[仅以此篇文章来测试下在 NexT 主题中在通过 Hugo 引擎来建站时，是否支持 Markdown 文件内容中所写的各种语法，并展示下实际的效果。
+标题样式 让我们从所有可能的标题开始，在 HTML 中 &lt;h1&gt;-&lt;h6&gt;元素分别表示六个不同级别的标题样式，其中 &lt;h1&gt; 为最大标题，&lt;h6&gt;为最小标题，效果如下：
+标题 1 标题 2 标题 3 标题 4 标题 5 标题 6 段落格式 根据 W3C  定义的 HTML5 规范  ，HTML 文档由元素和文本组成。每个元素的组成都由一个 开始标记  表示，例如： &lt;body&gt; ，和 结束标记  表示，例如： &lt;/body&gt; 。（某些开始标记和结束标记在某些情况下可以省略，并由其他标记暗示。） 元素可以具有属性，这些属性控制元素的工作方式。例如：超链接是使用 a 元素及其 href 属性形成的。
+Markdown 语法 ![图像说明](图像地址) HTML IMG 标签 &lt;img src=&#34;图像地址&#34; width=&#34;宽度&#34; height=&#34;高度&#34; /&gt; SVG 格式 &lt;svg&gt;xxxxxx&lt;/svg&gt; 
+列表类型 有序列表  第一个元素 第二个元素 第三个元素  无序列表  列表元素 另一个元素 和其它元素  嵌套列表 借助 HTML 的 ul 元素来实现。
+ 第一项 第二项  第二项第一个子项目 第二项第二个子项目  第二项第二分项第一分项 第二项第二分项第二分项 第二项第二分项第三分项   第二项第三个子项目  第二项第三分项第一分项 第二项第三分项第二分项 第二项第三分项第三分项    第三项  自定义列表 通过 HTML 的 dl 元素还支持自定义列表（表格列表）。
+ Hugo 目录结构 assets config.toml content data theme static Hugo 模板 基础模板 列表模板 单页模板  块引用 blockquote 元素表示从另一个源引用的内容，可以选择引用必须在 footer 或 cite 元素中，也可以选择使用注释和缩写等行内更改。
+ 引用文本 这一行也是同样的引用 同样你也在 blockquote 中使用 Markdown 语法书写
+ 带有引文的 Blockquote 元素效果。
+ 我的目标不是赚大钱,是为了制造好的电脑。当我意识到我可以永远当工程师时，我才创办了这家公司。
+— 史蒂夫·沃兹尼亚克  根据 Mozilla 的网站记录，Firefox 1.0 于 2004 年发布，并取得了巨大成功。
+表格 表格并不算是 Markdown 的核心要素，但 Hugo 同样支持它。
+   ID 创建者 模型 年份     1 Honda Accord 2009   2 Toyota Camry 2012   3 Hyundai Elantra 2010    可以使用 : （英文格式冒号）来对表格内容进行对齐。
+   表格 可以是 很酷     左对齐 居中 右对齐   左对齐 居中 右对齐   左对齐 居中 右对齐    同样也可以在表格中使用 Markdown 语法。
+   表格 中 使用 Markdown 语法     斜体 粗体 中划线 代码块    Code &lt;!DOCTYPE html&gt; &lt;html lang=&#34;en&#34;&gt; &lt;head&gt; &lt;meta charset=&#34;UTF-8&#34;&gt; &lt;title&gt;Example HTML5 Document&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;p&gt;Test&lt;/p&gt; &lt;/body&gt; &lt;/html&gt; &lt;!DOCTYPE html&gt; &lt;html lang=&#34;en&#34;&gt; &lt;head&gt; &lt;meta charset=&#34;UTF-8&#34;&gt; &lt;title&gt;Example HTML5 Document&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;p&gt;Test&lt;/p&gt; &lt;/body&gt; &lt;/html&gt; 其它元素： abbr、sub、sup、kbd等等 GIF 是位图图像格式。
+H2O
+C6H12O6
+Xn + Yn = Zn
+按X获胜。或按CTRL+ALT+F显示 FPS 计数器。
+比特作为信息论中的信息单位，也被称为 shannon ，以信息论领域的创始人 Claude shannon 的名字命名。
+参考：
+ 来自 Mainroad 主题的 Basic Elements   内容 ]]></content>
+  </entry>
+  
+  <entry>
+    <title>友情链接</title>
+    <url>/flinks.html</url>
+    <categories>
+    </categories>
+    <tags>
+    </tags>
+    <content type="html"><![CDATA[如想交换本站友情链接，请在评论区留下你的站点信息，格式参考如下：
+- name: VxWorks俱乐部 desc: VxWorks实时操作系统 avatar: https://www.vxworks.net/images/vxworks-club-logo.png link: https://www.vxworks.net ]]></content>
+  </entry>
+  
+</search>
