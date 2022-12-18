@@ -23,8 +23,7 @@
       <pubDate>Sat, 17 Dec 2022 22:47:20 -0500</pubDate>
       
       <guid>https://www.vxworks7.com/post/bsp/ring-buffer-design-in-vxworks.html</guid>
-      <description>&lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
-&lt;p&gt;VxWorks环形缓冲模块主要定义在rngLib.c和rngLib.h中，对于数据结构比较了解的小伙伴应该知道，环形缓冲实际就是一个双向循环队列。&lt;/p&gt;</description>
+      <description>&lt;p&gt;VxWorks环形缓冲模块主要定义在rngLib.c和rngLib.h中，对于数据结构比较了解的小伙伴应该知道，环形缓冲实际就是一个双向循环队列。&lt;/p&gt;</description>
     </item>
     
     <item>
