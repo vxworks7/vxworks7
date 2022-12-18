@@ -47,7 +47,7 @@ int i = 1000000; int j = 0; while(i){ j += 0; i--; } timer = 2033 us //执行100
   <entry>
     <title>VxWorks内核解读-1</title>
     <url>/post/bsp/vxworks-wind-kernel-analysis-1.html</url>
-    <categories><category>bsp</category>
+    <categories><category>BSP</category>
     </categories>
     <tags>
       <tag>VxWorks</tag>
@@ -96,7 +96,7 @@ Wind内核的特性 VxWorks的Wind内核自然具有1.2节所描述的所有RTOS
   <entry>
     <title>VxWorks的环形缓冲区设计</title>
     <url>/post/bsp/ring-buffer-design-in-vxworks.html</url>
-    <categories><category>VxWorks</category>
+    <categories><category>BSP</category>
     </categories>
     <tags>
       <tag>VxWorks</tag>
@@ -123,7 +123,7 @@ Wind内核的特性 VxWorks的Wind内核自然具有1.2节所描述的所有RTOS
   <entry>
     <title>VxWorks 7的启动顺序</title>
     <url>/post/bsp/vxworks-7-boot-sequence.html</url>
-    <categories><category>bsp</category>
+    <categories><category>BSP</category>
     </categories>
     <tags>
       <tag>VxWorks 7</tag>
