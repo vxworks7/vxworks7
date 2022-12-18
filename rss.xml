@@ -6,7 +6,7 @@
     <description>Recent content on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 17 Dec 2022 22:47:20 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 18 Dec 2022 08:23:25 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>欢迎加入 VxWorks 俱乐部！</title>
       <link>https://www.vxworks7.com/post/welcome-to-vxworks-club/</link>
@@ -35,13 +35,32 @@
     </item>
     
     <item>
+      <title>VxWorks内核解读-1</title>
+      <link>https://www.vxworks7.com/post/bsp/vxworks-wind-kernel-analysis-1.html</link>
+      <pubDate>Sun, 18 Dec 2022 08:23:25 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/bsp/vxworks-wind-kernel-analysis-1.html</guid>
+      <description>&lt;p&gt;前言：我曾经在做VxWorks培训期间跟身边的嵌入式工程师同行交流的时候，发现大家对嵌入式VxWorks系统的Wind内核不是特别了解，而网上对于VxWorks的Wind内核也没有系统性的解读与分析，因此我决定发表一系列的博文来系统性地解读Wind内核的设计思想。我选择的是VxWorks5.5系统的Wind 2.6版本内核（这个版本的代码网上都有分享O(∩_∩)O），在分析的过程中，大家有任何的疑问，都可以给我留言，以便我进一步的完善博文，使得后来者阅读起来更为流畅。&lt;/p&gt;
+&lt;p&gt;本文首先从实时内核的定义出发，对实时操作系统进行了介绍，并对实时操作系统的特点进行了说明，接着从内核的功能和结构角度介绍了整体式内核，层次式内核，以及微内核。最后对具有微内核特性的VxWorks Wind内核进行了介绍。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>VxWorks的环形缓冲区设计</title>
-      <link>https://www.vxworks7.com/post/ring-buffer-design-in-vxworks.html</link>
+      <link>https://www.vxworks7.com/post/bsp/ring-buffer-design-in-vxworks.html</link>
       <pubDate>Sat, 17 Dec 2022 22:47:20 -0500</pubDate>
       
-      <guid>https://www.vxworks7.com/post/ring-buffer-design-in-vxworks.html</guid>
+      <guid>https://www.vxworks7.com/post/bsp/ring-buffer-design-in-vxworks.html</guid>
       <description>&lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
 &lt;p&gt;VxWorks环形缓冲模块主要定义在rngLib.c和rngLib.h中，对于数据结构比较了解的小伙伴应该知道，环形缓冲实际就是一个双向循环队列。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>VxWorks 7的启动顺序</title>
+      <link>https://www.vxworks7.com/post/bsp/vxworks-7-boot-sequence.html</link>
+      <pubDate>Tue, 06 Dec 2022 05:35:25 -0400</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/bsp/vxworks-7-boot-sequence.html</guid>
+      <description>&lt;p&gt;之前遍历过使用WorkBench的VIP编译的VxWorks6.9镜像文件VxWorks，今天以32位SMP模式下的Intel处理器为例，看看VxWorks 7的VxWorks执行顺序。通过对比可以看到，VxWorks 6.9和VxWorks 7的执行顺序基本一致&lt;/p&gt;</description>
     </item>
     
     <item>
