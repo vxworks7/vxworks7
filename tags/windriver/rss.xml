@@ -6,7 +6,7 @@
     <description>Recent content in WindRiver on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 13 Oct 2022 08:53:45 -0400</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/windriver/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 19 Dec 2022 10:47:56 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/windriver/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>欢迎加入 VxWorks 俱乐部！</title>
       <link>https://www.vxworks7.com/post/welcome-to-vxworks-club/</link>
@@ -16,6 +16,15 @@
       <description>欢迎来到 北南南北 文档站点！ 相关文章来源于 VxWorks 俱乐部  ，也可能发布于 AI 嵌入式开发  ，专注于技术分享和交流。
 免责声明 所有资源均来自网络，版权归原作者，如有侵权，请联系删除！
 欢迎投稿  欢迎广大网友投稿 欢迎加入网友微信群  </description>
+    </item>
+    
+    <item>
+      <title>风河推VxWorks 7 到底与VxWorks 6.x的区别在哪里</title>
+      <link>https://www.vxworks7.com/post/news/difference-between-vxworks-6-and-vxworks7.html</link>
+      <pubDate>Mon, 19 Dec 2022 10:47:56 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/news/difference-between-vxworks-6-and-vxworks7.html</guid>
+      <description>&lt;p&gt;随着计算机技术的迅速发展和芯片制造工艺的不断进步，嵌入式微处理器的应用日益广泛。从波音飞机到移动终端，都有嵌入式微处理器的存在。在嵌入式微处理器的应用开发中，嵌入式实时操作系统(RTOS)是核心软件。&lt;/p&gt;</description>
     </item>
     
     <item>

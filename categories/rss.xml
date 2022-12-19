@@ -6,7 +6,16 @@
     <description>Recent content in Categories on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 19 Dec 2022 09:33:53 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 19 Dec 2022 10:47:56 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>News</title>
+      <link>https://www.vxworks7.com/categories/news/</link>
+      <pubDate>Mon, 19 Dec 2022 10:47:56 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/categories/news/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>BSP</title>
       <link>https://www.vxworks7.com/categories/bsp/</link>
@@ -40,15 +49,6 @@
       <pubDate>Sat, 29 Oct 2022 06:53:45 -0400</pubDate>
       
       <guid>https://www.vxworks7.com/categories/fpga/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>News</title>
-      <link>https://www.vxworks7.com/categories/news/</link>
-      <pubDate>Thu, 13 Oct 2022 08:53:45 -0400</pubDate>
-      
-      <guid>https://www.vxworks7.com/categories/news/</guid>
       <description></description>
     </item>
     
