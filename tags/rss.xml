@@ -6,11 +6,20 @@
     <description>Recent content in Tags on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 18 Dec 2022 08:23:25 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 19 Dec 2022 09:33:53 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>vxbus</title>
+      <link>https://www.vxworks7.com/tags/vxbus/</link>
+      <pubDate>Mon, 19 Dec 2022 09:33:53 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/vxbus/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>VxWorks</title>
       <link>https://www.vxworks7.com/tags/vxworks/</link>
-      <pubDate>Sun, 18 Dec 2022 08:23:25 -0500</pubDate>
+      <pubDate>Mon, 19 Dec 2022 09:33:53 -0500</pubDate>
       
       <guid>https://www.vxworks7.com/tags/vxworks/</guid>
       <description></description>
