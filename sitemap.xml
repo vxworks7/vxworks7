@@ -7,11 +7,6 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/post/vxworks/vxworks-real-time-feature-explore.html</loc>
-    <lastmod>2022-06-03T16:43:23+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>https://www.vxworks7.com/categories/bsp/</loc>
     <lastmod>2022-12-20T08:45:34-05:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -369,6 +364,11 @@
   </url><url>
     <loc>https://www.vxworks7.com/about.html</loc>
     <lastmod>2022-06-09T20:12:52+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/post/vxworks/vxworks-real-time-feature-explore.html</loc>
+    <lastmod>2022-06-03T16:43:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
