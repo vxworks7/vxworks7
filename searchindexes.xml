@@ -16,6 +16,35 @@
   </entry>
   
   <entry>
+    <title>VxWorks配置多网口</title>
+    <url>/post/bsp/vxworks-config-multi-network-adapter.html</url>
+    <categories><category>BSP</category>
+    </categories>
+    <tags>
+      <tag>VxWorks</tag>
+      <tag>Network</tag>
+    </tags>
+    <content type="html"><![CDATA[ 本文提供在系统运行中对网口进行配置的方法。
+ 概述 本文提供在系统运行中对网口进行配置的方法。
+注意 开发环境：vxWorks6.9.4，workbench3.3.5。
+ 之前小编网上找相关资料时，有博主说使用新增网口不能与已存在的网口处于同一网段。不过经过小编的测试，两个网口ip可以处在同一网段。  使用命令行测试网络连接正常。
+若网口没有连接，状态显示会缺少RUNNING字符。  验证 启动目标机，输入命令ifconfig，查看当前系统只有一个网口（gei2）。
+打开datasheet，根据以太网的信息描述，实际目标机的网卡并不止一个。
+打开bsp，可以看到网络驱动为GEI825XX_VXB_END，挂在VxBus下。
+打开镜像工程，添加组件INCLUDE_VXBUS_SHOW。用于查看vxBus相关信息。
+输入命令vxBusShow，查看当前vxBus相关信息。此时网络驱动已经注册到设备上了。
+向下翻页，看到系统包含四个网口设备。
+此时，我们需要配置其余的网口设备。
+打开帮助文档，5.3.4章节提供了如何在运行时配置网络接口的方法。
+按照提供的方法，执行命令：
+ipAttach 3,&#34;gei&#34;和ifconfig &#34;gei3 10.0.0.2 netmask 255.255.255.0 up&#34;，配置gei3网口。 执行完成后，执行ifconfig，可以看到gei3已经成功配置。
+使用任务管理器测试两个网口均能正常联通。
+同样，我们可以为gei3网口添加ip “192.168.100.7”。
+使用命令行测试网络连接正常。
+]]></content>
+  </entry>
+  
+  <entry>
     <title>VxWorks固件分析</title>
     <url>/post/bsp/vxworks-firmware-analysis.html</url>
     <categories><category>BSP</category>

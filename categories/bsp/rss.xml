@@ -6,7 +6,18 @@
     <description>Recent content in BSP on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 20 Dec 2022 08:45:34 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/bsp/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 20 Dec 2022 09:12:25 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/bsp/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VxWorks配置多网口</title>
+      <link>https://www.vxworks7.com/post/bsp/vxworks-config-multi-network-adapter.html</link>
+      <pubDate>Tue, 20 Dec 2022 09:12:25 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/bsp/vxworks-config-multi-network-adapter.html</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;本文提供在系统运行中对网口进行配置的方法。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
     <item>
       <title>VxWorks固件分析</title>
       <link>https://www.vxworks7.com/post/bsp/vxworks-firmware-analysis.html</link>
