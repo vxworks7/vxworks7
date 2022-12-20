@@ -53,7 +53,8 @@ int i = 1000000; int j = 0; while(i){ j += 0; i--; } timer = 2033 us //执行100
       <tag>VxWorks</tag>
       <tag>Firmware</tag>
     </tags>
-    <content type="html"><![CDATA[介绍 VxWorks 操作系统是美国WindRiver公司于1983年设计开发的一种嵌入式实时操作系统（RTOS），是嵌入式开发环境的关键组成部分。
+    <content type="html"><![CDATA[ VxWorks 操作系统是美国WindRiver公司于1983年设计开发的一种嵌入式实时操作系统（RTOS），是嵌入式开发环境的关键组成部分。
+ 介绍 VxWorks 操作系统是美国WindRiver公司于1983年设计开发的一种嵌入式实时操作系统（RTOS），是嵌入式开发环境的关键组成部分。
 固件分析 固件提取的常用方式是使用binwalk工具进行分析和提取。
 提取 Binwalk分析，该固件内嵌一个使用lzma压缩的二进制数据。
 解压 可采用lzma命令或者binwalkh指令解压缩
