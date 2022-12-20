@@ -6,7 +6,7 @@
     <description>Recent content in Posts on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 19 Dec 2022 10:47:56 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/post/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 20 Dec 2022 08:45:34 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/post/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>欢迎加入 VxWorks 俱乐部！</title>
       <link>https://www.vxworks7.com/post/welcome-to-vxworks-club/</link>
@@ -32,6 +32,28 @@
     VxWorks
     &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
 &lt;/a&gt;, 由大名鼎鼎的风河（WindRiver）开发。本篇文章就是将VxWorks操作系统和市面上几种其他实时操作系统的实时性能进行对比。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>VxWorks固件分析</title>
+      <link>https://www.vxworks7.com/post/bsp/vxworks-firmware-analysis.html</link>
+      <pubDate>Tue, 20 Dec 2022 08:45:34 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/bsp/vxworks-firmware-analysis.html</guid>
+      <description>介绍 VxWorks 操作系统是美国WindRiver公司于1983年设计开发的一种嵌入式实时操作系统（RTOS），是嵌入式开发环境的关键组成部分。
+固件分析 固件提取的常用方式是使用binwalk工具进行分析和提取。
+提取 Binwalk分析，该固件内嵌一个使用lzma压缩的二进制数据。
+解压 可采用lzma命令或者binwalkh指令解压缩
+ lzma   binwalk  该文件就是我们需要分析的VxWorks固件。
+固件加载地址 首先需要查找VxWorks系统固件加载地址，否则系统将无法运行。加载地址将影响后面一些绝对地址的引用比如函数表及字符串的引用。
+查看设备架构  ARM  IDA分析   选择ARM/little   基地址为0   VxWorks采用usrInit进行栈初始化，usrInit是VxWorks系统引导后运行的第一个函数。
+LDR R0,=0x40205000 BIC R0,R0,#3 SUB RO,RO,#4 MOV SP,RO #栈执政赋值 R0=$sp+0  可知加载的基地址为0x40205000
+利用符号表修复函数名 Bzero是VxWorks中一个函数，系统启动过程中会使用bzero函数对bss区的数据进行清零，因此可以利用”grep -r bzero”查找bzero函数。
+$ grep -r bzero  memset  手动定位 符号表
+00 05 1B 29 00 00 34 E4
+文件大小和符号表大小
+8字节之后就是符号表
+00 00 34 E4 =&amp;gt; 13540(10进制)</description>
     </item>
     
     <item>
