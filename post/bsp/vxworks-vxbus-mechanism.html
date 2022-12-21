@@ -10,16 +10,16 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/imgs/icons/favicon_32_32_next.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/imgs/icons/apple_touch_icon_next.png">
-<meta itemprop="name" content="vxWorks系统中vxbus机制总结" />
-<meta itemprop="description" content="vxWorks系统中vxbus机制总结" />
+<meta itemprop="name" content="VxWorks系统中vxbus机制总结" />
+<meta itemprop="description" content="VxWorks系统中vxbus机制总结" />
 <meta itemprop="datePublished" ZgotmplZ />
 <meta itemprop="dateModified" ZgotmplZ />
 <meta itemprop="image" content="https://www.vxworks7.com/imgs/VxWorks_7_logo.png" />
 <meta itemprop="keywords" content="VxWorks,vxbus" />
 
 <meta property="og:type" content="article" />
-<meta property="og:title" content="vxWorks系统中vxbus机制总结" />
-<meta property="og:description" content="vxWorks系统中vxbus机制总结" />
+<meta property="og:title" content="VxWorks系统中vxbus机制总结" />
+<meta property="og:description" content="VxWorks系统中vxbus机制总结" />
 <meta property="og:image" content="/imgs/VxWorks_7_logo.png" />
 <meta property="og:image:width" content="312" />
 <meta property="og:image:height" content="312" />
@@ -44,7 +44,7 @@
       content: "~ 我可是有底线的哟 ~";
     }
   </style>
-  <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"vxworks-vxbus-mechanism.html","permalink":"https://www.vxworks7.com/post/bsp/vxworks-vxbus-mechanism.html","title":"vxWorks系统中vxbus机制总结"}</script>
+  <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"vxworks-vxbus-mechanism.html","permalink":"https://www.vxworks7.com/post/bsp/vxworks-vxbus-mechanism.html","title":"VxWorks系统中vxbus机制总结"}</script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
     var script = document.createElement('script');
@@ -60,7 +60,7 @@
 
 
 
-  <title>vxWorks系统中vxbus机制总结 - VxWorks 7</title>
+  <title>VxWorks系统中vxbus机制总结 - VxWorks 7</title>
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
@@ -269,7 +269,7 @@
       </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-font"></i>总字数：</div>
-      <div class="item-count" id="wordsCount" data-count="10643"></div>
+      <div class="item-count" id="wordsCount" data-count="10645"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-mug-hot"></i>阅读约：</div>
@@ -319,11 +319,11 @@
       <meta itemprop="description" content="Where there is embedded, there is VxWorks.">
     </span>
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="vxWorks系统中vxbus机制总结">
-      <meta itemprop="description" content="vxWorks系统中vxbus机制总结">
+      <meta itemprop="name" content="VxWorks系统中vxbus机制总结">
+      <meta itemprop="description" content="VxWorks系统中vxbus机制总结">
     </span>
     <header class="post-header">
-       <h1 class="post-title" itemprop="name headline">vxWorks系统中vxbus机制总结 </h1> <div class="post-meta-container">
+       <h1 class="post-title" itemprop="name headline">VxWorks系统中vxbus机制总结 </h1> <div class="post-meta-container">
   <div class="post-meta-items">
     
 
@@ -355,7 +355,7 @@
   <span class="post-meta-item-icon">
     <i class="far fa-file-word"></i>
   </span>
-  <span class="post-meta-item-text">字数：</span><span>1190</span>
+  <span class="post-meta-item-text">字数：</span><span>1192</span>
 </span>
     
 <span class="post-meta-item" title="阅读">
@@ -386,7 +386,11 @@
     
     <div class="post-body  autonumber " itemprop="articleBody">
       
-  <p>先介绍一下vxWorks的设备以及驱动的表示方法，以及总的关系：设备和驱动根本都抽象成一个结构体，设备结构体中包含了设备名字、ID号、功能函数指针等必备的信息，驱动结构体包含了初始化函数、名字、ID等信息。总的如图看一下重要的几个结构体的关系：</p>
+  <p>先介绍一下
+<a href="https://www.vxworks.net" title="VxWorks" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+    VxWorks
+    <i class="fa fa-external-link-alt"></i>
+</a>的设备以及驱动的表示方法，以及总的关系：设备和驱动根本都抽象成一个结构体，设备结构体中包含了设备名字、ID号、功能函数指针等必备的信息，驱动结构体包含了初始化函数、名字、ID等信息。总的如图看一下重要的几个结构体的关系：</p>
 <p><img src="//www.vxworks.net/images/vxworks/vxworks-vxbus-1.png" alt="vxworks vxbus"></p>
 <p>vxbus结构设计了几个链表：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#75715e">/*放置驱动的链表*/</span>
@@ -844,7 +848,7 @@ LOCAL STATUS <span style="color:#a6e22e">vxbDevConnectHelper</span>
   <ul>
     <li class="post-copyright-title">
       <strong>文章标题：</strong>
-      vxWorks系统中vxbus机制总结
+      VxWorks系统中vxbus机制总结
     </li>
     <li class="post-copyright-author">
       <strong>本文作者： </strong>
@@ -852,7 +856,7 @@ LOCAL STATUS <span style="color:#a6e22e">vxbDevConnectHelper</span>
     </li>
     <li class="post-copyright-link"> 
       <strong>本文链接：</strong>
-       <a id="post-cr-link" href="https://www.vxworks7.com/post/bsp/vxworks-vxbus-mechanism.html" title="vxWorks系统中vxbus机制总结">https://www.vxworks7.com/post/bsp/vxworks-vxbus-mechanism.html</a>
+       <a id="post-cr-link" href="https://www.vxworks7.com/post/bsp/vxworks-vxbus-mechanism.html" title="VxWorks系统中vxbus机制总结">https://www.vxworks7.com/post/bsp/vxworks-vxbus-mechanism.html</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>

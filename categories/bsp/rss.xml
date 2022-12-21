@@ -30,12 +30,16 @@
     </item>
     
     <item>
-      <title>vxWorks系统中vxbus机制总结</title>
+      <title>VxWorks系统中vxbus机制总结</title>
       <link>https://www.vxworks7.com/post/bsp/vxworks-vxbus-mechanism.html</link>
       <pubDate>Mon, 19 Dec 2022 09:33:53 -0500</pubDate>
       
       <guid>https://www.vxworks7.com/post/bsp/vxworks-vxbus-mechanism.html</guid>
-      <description>&lt;p&gt;先介绍一下vxWorks的设备以及驱动的表示方法，以及总的关系：设备和驱动根本都抽象成一个结构体，设备结构体中包含了设备名字、ID号、功能函数指针等必备的信息，驱动结构体包含了初始化函数、名字、ID等信息。总的如图看一下重要的几个结构体的关系：&lt;/p&gt;</description>
+      <description>&lt;p&gt;先介绍一下
+&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
+    VxWorks
+    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
+&lt;/a&gt;的设备以及驱动的表示方法，以及总的关系：设备和驱动根本都抽象成一个结构体，设备结构体中包含了设备名字、ID号、功能函数指针等必备的信息，驱动结构体包含了初始化函数、名字、ID等信息。总的如图看一下重要的几个结构体的关系：&lt;/p&gt;</description>
     </item>
     
     <item>
