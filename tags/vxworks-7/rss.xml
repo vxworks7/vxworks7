@@ -25,14 +25,5 @@
       <description>&lt;p&gt;之前遍历过使用WorkBench的VIP编译的VxWorks6.9镜像文件VxWorks，今天以32位SMP模式下的Intel处理器为例，看看VxWorks 7的VxWorks执行顺序。通过对比可以看到，VxWorks 6.9和VxWorks 7的执行顺序基本一致&lt;/p&gt;</description>
     </item>
     
-    <item>
-      <title>VxWorks 7的启动顺序</title>
-      <link>https://www.vxworks7.com/post/vxworks-7-boot-sequence.html</link>
-      <pubDate>Thu, 06 Oct 2022 05:35:25 -0400</pubDate>
-      
-      <guid>https://www.vxworks7.com/post/vxworks-7-boot-sequence.html</guid>
-      <description>&lt;p&gt;之前遍历过使用WorkBench的VIP编译的VxWorks6.9镜像文件VxWorks，今天以32位SMP模式下的Intel处理器为例，看看VxWorks 7的VxWorks执行顺序。通过对比可以看到，VxWorks 6.9和VxWorks 7的执行顺序基本一致&lt;/p&gt;</description>
-    </item>
-    
   </channel>
 </rss>
