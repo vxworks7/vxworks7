@@ -6,7 +6,25 @@
     <description>Recent content in Tags on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 21 Dec 2022 08:50:10 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 21 Dec 2022 09:34:04 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SD</title>
+      <link>https://www.vxworks7.com/tags/sd/</link>
+      <pubDate>Wed, 21 Dec 2022 09:34:04 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/sd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VxWorks 7</title>
+      <link>https://www.vxworks7.com/tags/vxworks-7/</link>
+      <pubDate>Wed, 21 Dec 2022 09:34:04 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/vxworks-7/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Interrupt</title>
       <link>https://www.vxworks7.com/tags/interrupt/</link>
@@ -94,15 +112,6 @@
       <pubDate>Mon, 19 Dec 2022 10:47:56 -0500</pubDate>
       
       <guid>https://www.vxworks7.com/tags/vxworks-6/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>VxWorks 7</title>
-      <link>https://www.vxworks7.com/tags/vxworks-7/</link>
-      <pubDate>Mon, 19 Dec 2022 10:47:56 -0500</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/vxworks-7/</guid>
       <description></description>
     </item>
     

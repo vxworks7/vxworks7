@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SD on VxWorks 7</title>
+    <link>https://www.vxworks7.com/tags/sd/</link>
+    <description>Recent content in SD on VxWorks 7</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 21 Dec 2022 09:34:04 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/sd/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VxWorks 7.0下SD卡驱动流程及文件系统格式化</title>
+      <link>https://www.vxworks7.com/post/bsp/SD-card-device-driver-in-vxworks-7.0.html</link>
+      <pubDate>Wed, 21 Dec 2022 09:34:04 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/bsp/SD-card-device-driver-in-vxworks-7.0.html</guid>
+      <description>&lt;p&gt;今天和大家谈谈VxWorks 7.0下SD卡的
+&lt;a href=&#34;https://www.vxbus.com&#34; title=&#34;vxbus&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
+    vxbus
+    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
+&lt;/a&gt;挂接，及文件系统格式化流程，
+&lt;a href=&#34;http://www.vxworks7.com&#34; title=&#34;VxWorks 7&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
+    VxWorks 7
+    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
+&lt;/a&gt;的vxbus是基于设备树的，首先必须增加设备树节点，如下：&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
