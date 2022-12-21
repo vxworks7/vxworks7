@@ -6,22 +6,31 @@
     <description>Recent content in Tags on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 20 Dec 2022 09:12:25 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 20 Dec 2022 23:54:53 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Network</title>
-      <link>https://www.vxworks7.com/tags/network/</link>
-      <pubDate>Tue, 20 Dec 2022 09:12:25 -0500</pubDate>
+      <title>Python</title>
+      <link>https://www.vxworks7.com/tags/python/</link>
+      <pubDate>Tue, 20 Dec 2022 23:54:53 -0500</pubDate>
       
-      <guid>https://www.vxworks7.com/tags/network/</guid>
+      <guid>https://www.vxworks7.com/tags/python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>VxWorks</title>
       <link>https://www.vxworks7.com/tags/vxworks/</link>
-      <pubDate>Tue, 20 Dec 2022 09:12:25 -0500</pubDate>
+      <pubDate>Tue, 20 Dec 2022 23:54:53 -0500</pubDate>
       
       <guid>https://www.vxworks7.com/tags/vxworks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Network</title>
+      <link>https://www.vxworks7.com/tags/network/</link>
+      <pubDate>Tue, 20 Dec 2022 09:12:25 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/network/</guid>
       <description></description>
     </item>
     
@@ -121,15 +130,6 @@
       <pubDate>Fri, 04 Nov 2022 17:52:03 +0800</pubDate>
       
       <guid>https://www.vxworks7.com/tags/device-driver/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>python</title>
-      <link>https://www.vxworks7.com/tags/python/</link>
-      <pubDate>Sat, 29 Oct 2022 07:53:45 -0400</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/python/</guid>
       <description></description>
     </item>
     

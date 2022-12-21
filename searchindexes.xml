@@ -16,6 +16,41 @@
   </entry>
   
   <entry>
+    <title>如何在VxWorks 7下集成Python</title>
+    <url>/post/app/how-to-integrate-python-into-vxworks-7.html</url>
+    <categories><category>APP</category>
+    </categories>
+    <tags>
+      <tag>VxWorks</tag>
+      <tag>Python</tag>
+    </tags>
+    <content type="html"><![CDATA[ VxWorks是由Wind River提供的实时操作系统，而Python是由Python Software Foundation管理的开源解释型编程语言和运行时解释器。
+ 简介 VxWorks是由Wind River提供的实时操作系统，而Python是由Python Software Foundation管理的开源解释型编程语言和运行时解释器。
+Python软件基金会：http://www.python.org
+风河在PowerPC，ARM和Intel架构设备上支持Python。
+这个VxWorks Python文章描述了如何将Python解释器编译和部署到VxWorks 7中。
+前提 本文的说明假定你正在使用：
+ Wind River VxWorks 7 SR0620 Intel target booting from UEFI BIOS A USB flash drive (4 GB minimum)  创建/编译VxWorks Source Build(VSB)项目 打开DOS shell，配置编译环境，然后编译项目。
+cd &#34;WIND_HOME&#34; // your installation directory wrenv -p vxworks-7 cd // your workspace vxprj vsb create python_vsb -bsp itl_generic -smp -force -S cd python_vsb // your workspace vxprj vsb add PYTHON // add the python layer to the VSB make -j 32 // build the VSB VxWorks源代码编译(VSB)编译完成后，检查其是否包含Python运行时环境，验证以下目录是否存在：
+&#34;YOUR_WORKSPACE&#34;/python_vsb/usr/3pp/deploy 创建/编译基本VxWorks Image Project(VIP) 像下面一样创建基本的VxWorks镜像工程
+cd .. vxprj create -smp itl_generic python_vip -profile PROFILE_INTEL_GENERIC -vsb python_vsb cd python_vip vxprj vip component add INCLUDE_MULTI_STAGE_WARM_REBOOT vxprj vip bundle add BUNDLE_STANDALONE_SHELL vxprj parameter set DOSFS_COMPAT_NT TRUE vxprj build Note: 现在你还没有将Python解释器加进VIP
+在目标机上启动VxWorks 部署uEFI的加载器以及VxWorks内核镜像 有关如何在USB闪存驱动器上编译和部署UEFI引导加载程序以及VxWorks镜像文件的说明，请参考itl_generic BSP的readme文件。在下面的路径找到此自述文件：
+&#34;WIND_HOME&#34;/vxworks-7/pkgs_v2/os/board/intel/itl_generic-a.b.c.d/itl_generic_readme.md 根据下述的指令来部署uEFI启动加载器和VxWorks内核镜像后，你可以从USB闪存驱动器上找到如下文件:
+ EFI BOOT bootapp.sys BOOTIA32.EFI BOOTX64.EFI  准备Intel的目标机 配置目标机的BIOS来从USB闪存驱动器启动该目标机，把该USB闪存驱动器接到目标机上。
+启动目标机 给目标机上电，目标启动后，你将看到VxWorks的内核shell的提示符。
+-&gt; 找到VxWorks Usb闪存驱动器的设备名称 在VxWorks内核shell上执行以下命令找出Usb闪存驱动器的设备名称。
+-&gt; devs drv refs name 1 [ 3] / 7 [ 3] /bd0a 5 [ 3] /pcConsole/0 3 [ 3] /ttyS0 value = 2 = 0x2 -&gt; cd &#34;/bd0a&#34; value = 0 = 0x0 -&gt; ls EFI value = 0 = 0x0 在这个实例中，设备名称为/bd0a，记下目标机上的USB设备名称。关闭目标机，然后将USB闪存驱动器接回到工作站。
+将Python运行时环境复制到Usb闪存驱动器 拷贝 “YOUR_WORKSPACE”/python_vsb/usr/3pp/deploy 到USB闪存驱动器的根目录。
+更新基本的VIP以包含Python运行时环境 返回VIP的目录，并将Python运行时环境配置进VIP。
+cd &#34;YOUR_WORKSPACE&#34;\\profile_vip vxprj component add INCLUDE_PYTHON_SUPPORT vxprj component add INCLUDE_FILESYSTEM_SYMLINK_CONFIG vxprj parameter setstring FILESYSTEM_SYMLINK_CONFIG_STR def=/bd0a/deploy;/bin=def/bin;/usr=def/usr;/etc=def/etc;/lib=def/lib;&#34; vxprj build 将更新的VxWorks镜像文件部署到Usb闪存驱动器 拷贝 “YOUR_WORKSPACE”/profile_vip/default/vxWorks到USB闪存驱动器，并改名为EFI/BOOT/bootapp.sys
+在USB闪存驱动器的根目录中创建一个Hello World Python示例 打开文本编辑器，并在USB闪存驱动器的根目录下创建一个名为helloworld.py的文件。文件必须包含如下：
+# helloworld.py import os import sys print(&#34;Hello World!&#34;) 在目标上运行Hello World Python示例程序 将USB闪存驱动器接回到目标机，然后将目标机引导到VxWorks的内核shell，在USB闪存驱动器根目录下找到helloworld.py文件，在shell上输入命令并运行此Python程序。
+-&gt; cd &#34;/bd0a&#34; value = 0 = 0x0 -&gt; ls EFI helloworld.py value = 0 = 0x0 -&gt; cmd [vxWorks *]# python3 helloworld.py Launching process &#39;python3&#39; ... Process &#39;python3&#39; (process Id = 0x809aa340) launched. Hello World! [vxWorks *]# 注意：由于Python是一种解释型的语言，因此你还可以从VxWorks的内核shell上以交互的方式构建python程序。
+[vxWorks *]# python3 Launching process &#39;python3&#39; ... Process &#39;python3&#39; (process ID = 0x809aa340) launched. Python 3.8.0 (default, Apr 27 2020, 17:49:25) [Clang 9.0.1.1 (ssh://diabuild@stash.wrs.com:7999/llvm/clang.git 67f1ee998a3a1d on vxWorks Type &#34;help&#34;, &#34;copyright&#34;, &#34;credits&#34; or &#34;license&#34; for more information. &gt;&gt;&gt; import os &gt;&gt;&gt; import sys &gt;&gt;&gt; print(&#34;Hello World!&#34;) Hello World! &gt;&gt;&gt; 引用 VxWorks 7 是新一代的嵌入式实时操作系统，全新的架构设计，灵活化的组件配置，高可靠性与安全性，丰富的第三方软件包，极大的方便用户的开发和使用。本文对VxWorks7 的功能做个简要的记录。
+]]></content>
+  </entry>
+  
+  <entry>
     <title>VxWorks配置多网口</title>
     <url>/post/bsp/vxworks-config-multi-network-adapter.html</url>
     <categories><category>BSP</category>
