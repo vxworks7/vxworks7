@@ -42,6 +42,11 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>https://www.vxworks7.com/tags/vxworks-6.8/</loc>
+    <lastmod>2022-12-21T08:50:10-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://www.vxworks7.com/</loc>
     <lastmod>2022-12-21T08:50:10-05:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -358,11 +363,6 @@
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.vxworks7.com/categories/vxworks/</loc>
-    <lastmod>2022-10-07T05:35:25-04:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/tags/vxworks-6.8/</loc>
     <lastmod>2022-10-07T05:35:25-04:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
