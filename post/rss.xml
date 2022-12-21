@@ -6,7 +6,7 @@
     <description>Recent content in Posts on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 21 Dec 2022 08:34:59 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/post/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 21 Dec 2022 08:50:10 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/post/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>欢迎加入 VxWorks 俱乐部！</title>
       <link>https://www.vxworks7.com/post/welcome-to-vxworks-club/</link>
@@ -16,6 +16,15 @@
       <description>欢迎来到 北南南北 文档站点！ 相关文章来源于 VxWorks 俱乐部  ，也可能发布于 AI 嵌入式开发  ，专注于技术分享和交流。
 免责声明 所有资源均来自网络，版权归原作者，如有侵权，请联系删除！
 欢迎投稿  欢迎广大网友投稿 欢迎加入网友微信群  </description>
+    </item>
+    
+    <item>
+      <title>实测VxWorks响应PCIe中断的最小时间间隔</title>
+      <link>https://www.vxworks7.com/post/app/mininum-time-for-vxworks-response-pcie-interrupt.html</link>
+      <pubDate>Wed, 21 Dec 2022 08:50:10 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/app/mininum-time-for-vxworks-response-pcie-interrupt.html</guid>
+      <description>&lt;p&gt;中断是外部事件通知操作系统的最常用手段。中断处理机制是计算机多任务环境运行的基础，是系统实时性的保证;VxWorks是美国Wind River公司于1983年设计开发的一种嵌入式实时操作系统。内核wind在任务调度、中断处理及网络处理等方面与其它嵌入式实时操作系统相比具有一定的优势。特别是其提供的微秒级的中断处理为VxWorks在嵌入式实时操作系统领域的旗舰地位奠定了基础。本文通过带有PCIe接口的FPGA开发板，在VxWorks6.8版本的操作系统环境下，实测一下VxWorks操作系统中断处理的最小时间间隔是否是传说中的微秒级。&lt;/p&gt;</description>
     </item>
     
     <item>

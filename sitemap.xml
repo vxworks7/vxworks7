@@ -7,8 +7,48 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>https://www.vxworks7.com/categories/app/</loc>
+    <lastmod>2022-12-21T08:50:10-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://www.vxworks7.com/categories/</loc>
-    <lastmod>2022-12-21T08:34:59-05:00</lastmod>
+    <lastmod>2022-12-21T08:50:10-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/interrupt/</loc>
+    <lastmod>2022-12-21T08:50:10-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/pcie/</loc>
+    <lastmod>2022-12-21T08:50:10-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/post/</loc>
+    <lastmod>2022-12-21T08:50:10-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/</loc>
+    <lastmod>2022-12-21T08:50:10-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/vxworks/</loc>
+    <lastmod>2022-12-21T08:50:10-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/</loc>
+    <lastmod>2022-12-21T08:50:10-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/post/app/mininum-time-for-vxworks-response-pcie-interrupt.html</loc>
+    <lastmod>2022-12-21T08:50:10-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -22,26 +62,6 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/post/</loc>
-    <lastmod>2022-12-21T08:34:59-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/tags/</loc>
-    <lastmod>2022-12-21T08:34:59-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/tags/vxworks/</loc>
-    <lastmod>2022-12-21T08:34:59-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/</loc>
-    <lastmod>2022-12-21T08:34:59-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>https://www.vxworks7.com/tags/windriver/</loc>
     <lastmod>2022-12-21T08:34:59-05:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -49,11 +69,6 @@
   </url><url>
     <loc>https://www.vxworks7.com/post/news/avionics-and-intelligent-edge.html</loc>
     <lastmod>2022-12-21T08:34:59-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/categories/app/</loc>
-    <lastmod>2022-12-20T23:54:53-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
