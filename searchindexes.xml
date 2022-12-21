@@ -24,9 +24,8 @@
       <tag>VxWorks</tag>
       <tag>Python</tag>
     </tags>
-    <content type="html"><![CDATA[ VxWorks是由Wind River提供的实时操作系统，而Python是由Python Software Foundation管理的开源解释型编程语言和运行时解释器。
- 简介 VxWorks是由Wind River提供的实时操作系统，而Python是由Python Software Foundation管理的开源解释型编程语言和运行时解释器。
-Python软件基金会：http://www.python.org
+    <content type="html"><![CDATA[VxWorks是由Wind River提供的实时操作系统，而Python是由Python Software Foundation管理的开源解释型编程语言和运行时解释器。
+简介 Python软件基金会：http://www.python.org
 风河在PowerPC，ARM和Intel架构设备上支持Python。
 这个VxWorks Python文章描述了如何将Python解释器编译和部署到VxWorks 7中。
 前提 本文的说明假定你正在使用：
