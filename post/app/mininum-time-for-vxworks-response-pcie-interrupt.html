@@ -398,18 +398,18 @@
   <p>中断是外部事件通知操作系统的最常用手段。中断处理机制是计算机多任务环境运行的基础，是系统实时性的保证;VxWorks是美国Wind River公司于1983年设计开发的一种嵌入式实时操作系统。内核wind在任务调度、中断处理及网络处理等方面与其它嵌入式实时操作系统相比具有一定的优势。特别是其提供的微秒级的中断处理为VxWorks在嵌入式实时操作系统领域的旗舰地位奠定了基础。本文通过带有PCIe接口的FPGA开发板，在VxWorks6.8版本的操作系统环境下，实测一下VxWorks操作系统中断处理的最小时间间隔是否是传说中的微秒级。</p>
 <h2 id="准备工作">准备工作</h2>
 <p>硬件平台环境如下图所示，采用两台带有以太网口的设备相连，一端是PC机插有PCIe的FPGA开发板，运行Windows操作系统；另一端是嵌入式设备，运行VxWorks操作系统。</p>
-<p><img src="https://www.vxworks.net/images/vxworks/vxworks-pcie-1.png" alt="VxWorks PCIe Interrupe"></p>
+<p><img src="https://www.vxworks.net/images/vxworks/vxworks-pcie-0.png" alt="VxWorks PCIe Interrupe"></p>
 <h3 id="嵌入式设备">嵌入式设备</h3>
 <p>母板为P2020开发板，PCIe板卡为黑金Xilinx Artix-7 PCIE AX7103 FPGA开发板，运行VxWorks操作系统。</p>
-<p><img src="https://www.vxworks.net/images/vxworks/vxworks-pcie-2.png" alt="VxWorks PCIe Interrupe"></p>
+<p><img src="https://www.vxworks.net/images/vxworks/vxworks-pcie-1.png" alt="VxWorks PCIe Interrupe"></p>
 <h2 id="pc端">PC端</h2>
 <p>电脑主机一台，拆开（机箱比较脏，见谅），通过PCIe连线连到黑金Xilinx Artix-7 PCIE AX7103 FPGA开发板上，运行Win7操作系统。</p>
-<p><img src="https://www.vxworks.net/images/vxworks/vxworks-pcie-3.png" alt="VxWorks PCIe Interrupe"></p>
+<p><img src="https://www.vxworks.net/images/vxworks/vxworks-pcie-2.png" alt="VxWorks PCIe Interrupe"></p>
 <p>两台设备之间通过双冗余的网线连接。</p>
 <h2 id="中断处理流程">中断处理流程</h2>
 <p>在上面的环境中，按照以太网帧传递过程中的需求，任何一端的中断处理都包含三个不同的主体，首先是CPU内核的中断响应机制，然后是加上操作系统之后对中断响应的处理又有操作系统的要求，之后是PCIe硬件设备也有一套向CPU操作系统发送中断的规范。任何一方的中断处理机制都可以写很长很长的文字去描述，本文在此不再赘述。</p>
 <p>PCIe总线支持两种中断方式，传统的INTx中断和基于存储器写请求的中断请求机制即消息中断。本文的设计方案中使用的是传统的INTx中断。为了叙述上的方便，我们从FPGA的时序图的角度去描述中断的处理流程，具体分为主机（PCIe发给主机的中断信号）、PCIe硬核、驱动来配置的中断使能信号、FPGA侧的中断源。下图是具体的主机操作系统为VxWorks时FPGA开发板与主机的中断交互流程。</p>
-<p><img src="https://www.vxworks.net/images/vxworks/vxworks-pcie-4.png" alt="VxWorks PCIe Interrupe"></p>
+<p><img src="https://www.vxworks.net/images/vxworks/vxworks-pcie-3.png" alt="VxWorks PCIe Interrupe"></p>
 <p>1）FPGA侧有三个中断源可以触发中断，分别是DMA写开始、DMA写完成和DMA读完成中断，其中，写开始中断源是FPGA告知主机此时有数据要通过DMA写操作进行上传；写完成中断是FPGA将所有的数据封装成DMA写请求包；读完成中断是FPGA收齐了所有来自主机的DMA读完成包。上图中“1”处是中断源mwr_start_interrupt拉高了。</p>
 <p>2）任意一个中断源拉高，FPGA侧给PCIe IP核配置“置中断”时序，在cfg_interrupt和cfg_interrupt_rdy握手成功后，cfg_interrupt_assert为高则为置中断。（cfg_interrupt为PCIe硬核发给主机的中断请求，cfg_interrupt_rdy为主机接收到中断请求后的回应，此时需要看cfg_interrupt_assert的状态，cfg_interrupt_assert为高，则为置中断，如上图中“2”处所示；cfg_interrupt_assert为低电平，则为清中断请求，如上图中“5”处所示。）</p>
 <p>3）“置中断”后一段时间（此处约为17个时钟），主机侧硬中断电平INTA拉高，此时才是FPGA板卡真正的向主机发出了一个中断。如上图中“3”。</p>
@@ -420,33 +420,33 @@
 <p>8）CPU驱动通过PIO写操作往控制状态寄存器04H第[31]位写0，重新开启接收中断功能。如上图中“8”处所示。</p>
 <p>9）重复步骤1）启动下一次中断；10）下一次置中断时序；11）硬中断电平再次拉高。</p>
 <p>下图为一次完整的DMA读操作时CPU与FPGA板卡之间的交互流程，最后会涉及到DMA读完成中断，详细过程的描述略。</p>
-<p><img src="https://www.vxworks.net/images/vxworks/vxworks-pcie-5.png" alt="VxWorks PCIe Interrupe"></p>
+<p><img src="https://www.vxworks.net/images/vxworks/vxworks-pcie-4.png" alt="VxWorks PCIe Interrupe"></p>
 <h2 id="vxwork响应pcie中断的最小间隔">VxWork响应PCIe中断的最小间隔</h2>
 <p>为了得到VxWorks响应PCIe中断的最小间隔，我们在FPGA侧对两次“置中断”间隔，即上图步骤2）与步骤10）进行了时钟计数，在“置中断”时序(cfg_interrupt_rdy &amp; cfg_interrupt_assert)下将间隔时间寄存器inter_intr_clk_cnt[31:0]计数复位，否则计数加一，直到下一次“置中断”进行计数复位，这样就能计算出中断信号两次拉高的时间间隔。</p>
 <p>在测试的过程中，我们用Vivado抓取了实际数据传输时两种不同的中断场景。</p>
 <p>1、场景1：写开始中断和读完成中断一起处理</p>
-<p><img src="https://www.vxworks.net/images/vxworks/vxworks-pcie-6.png" alt="VxWorks PCIe Interrupe"></p>
+<p><img src="https://www.vxworks.net/images/vxworks/vxworks-pcie-5.png" alt="VxWorks PCIe Interrupe"></p>
 <p>有了上面中断处理流程的介绍，就可以很方便的分析具体工作状态下的波形图。从上图可以看到，读完成中断mrd_done_interrupt触发置中断时序，主机的硬中断电平拉高，驱动往控制与状态寄存器04H的最高位（图示int_dis_o信号） PIO操作写“1”，关闭中断功能，此时硬件这边不再产生置中断时序，直到驱动跳出中断复位程序，往04H的int_dis_o写“0”，使能中断；驱动PIO读中断状态寄存器（图示蓝线）“采样”到读完成（图示mrd_done_interrupt信号）和写开始（图示mwr_start_interrupt信号）两个中断标志位为高，此时，驱动会记录下来并同时对这两个中断标志位进行复位操作，然后驱动分别执行读完成中断和写开始中断状态机。</p>
 <p>场景2：写开始中断和读完成中断先后处理</p>
-<p><img src="https://www.vxworks.net/images/vxworks/vxworks-pcie-7.png" alt="VxWorks PCIe Interrupe"></p>
+<p><img src="https://www.vxworks.net/images/vxworks/vxworks-pcie-6.png" alt="VxWorks PCIe Interrupe"></p>
 <p>从上图可以看到，读完成中断mrd_done_interrupt触发置中断时序，主机的硬中断电平拉高，驱动往控制与状态寄存器04H的最高位（图示int_dis_o信号） PIO操作写“1”，关闭中断功能，此时硬件这边不在产生置中断时序，直到驱动跳出中断复位程序，往04H的int_dis_o写“0”，使能中断；驱动PIO读中断状态寄存器（图示蓝线1）采样到读完成（图示mrd_done_interrupt信号）中断标志位为1，硬件产生清中断时序，将主机侧的硬中断电平拉低，注意，此刻写开始中断（图示mwr_start_interrupt信号）刚好拉高，驱动只记录读完成中断并对读完成中断标志位进行复位操作（图示蓝线2），然后驱动执行读完成中断状态机，驱动跳出读完成中断状态机后重新使能中断（图示蓝线3），此时硬件侧因为写开始中断才被允许产生置中断时序，驱动再次检测到硬中断电平信号为高，驱动PIO读中断状态寄存器（图示蓝线4）采样到写开始中断标志位为1，硬件产生清中断时序，将主机侧的硬中断电平拉低，驱动记录写开始中断并对写开始中断标志位进行复位操作（图示蓝线5），然后驱动执行写开始中断状态机。</p>
 <p>在第二个测试场景中，我们可以通过计数得知两个相邻中断的最小时间间隔，，硬件侧产生第一次中断段时序（图示蓝线1），在执行完第一次中断后，驱动侧将int_dis_o拉低，重新使能中断，硬件侧立即产生置中断时序进行第二次中断操作（图示蓝线2），如下图所示：</p>
-<p><img src="https://www.vxworks.net/images/vxworks/vxworks-pcie-8.png" alt="VxWorks PCIe Interrupe"></p>
+<p><img src="https://www.vxworks.net/images/vxworks/vxworks-pcie-7.png" alt="VxWorks PCIe Interrupe"></p>
 <p>我们将图示蓝线2处进行放大得到下图：</p>
-<p><img src="https://www.vxworks.net/images/vxworks/vxworks-pcie-9.png" alt="VxWorks PCIe Interrupe"></p>
+<p><img src="https://www.vxworks.net/images/vxworks/vxworks-pcie-8.png" alt="VxWorks PCIe Interrupe"></p>
 <p>通过相邻中断时钟计数信号inter_intr_clk_cnt[31:0]可以知道相邻两中断的最小间隔是365个钟，后边测试过多次，测试结果有368，364，，我们取365，时钟周期为16ns，由此可以计算得知VxWorks下最小中断间隔是365*16=5.84us。</p>
 <p>结论：VxWorks操作系统中断处理的最小时间间隔确实是传说中的微秒级！</p>
 <h2 id="windows操作系统下pcie中断响应间隔测试">Windows操作系统下PCIe中断响应间隔测试</h2>
 <p>出于好奇，我们也尝试测了一下Windows 操作系统下PCIe中断响应的时间间隔。在Windows平台下的驱动暂未使用开/关中断使能的功能，所以只是测试在点播视频以及拷贝视频文件两种场景下的中断间隔。</p>
 <p>1、场景1：点播视频，速率为10Mbps左右</p>
-<p><img src="https://www.vxworks.net/images/vxworks/vxworks-pcie-10.png" alt="VxWorks PCIe Interrupe"></p>
+<p><img src="https://www.vxworks.net/images/vxworks/vxworks-pcie-9.png" alt="VxWorks PCIe Interrupe"></p>
 <p>从上图可以看到，上一次置中断时序复位后计数12417491个clk（16ns）再次产生置中断时序，此时中断间隔约为198.7ms，后面统计到一些计数值：19026416（304.4ms）,6486433（103.8ms）,9981793（159.7ms）。在点播视频时，带宽并未达到上限，驱动处理两个相邻中断的时间间隔＞100ms。为了在高带宽情况下测试，我们进行了场景2的测试。</p>
 <p>场景2：拷贝视频，速率为几百兆bps</p>
-<p><img src="https://www.vxworks.net/images/vxworks/vxworks-pcie-11.png" alt="VxWorks PCIe Interrupe"></p>
+<p><img src="https://www.vxworks.net/images/vxworks/vxworks-pcie-10.png" alt="VxWorks PCIe Interrupe"></p>
 <p>从上图可以看到，上一次置中断时序复位后计数4175个clk（16ns）再次产生置中断时序，此时中断间隔约为66.8us，后面统计到一些计数值：3595（57.5us）、7456（119.3us）、3582（57.3us）、4159（66.5us）。在带宽提升后，win32驱动处理中断的频率有了显著地提高。</p>
 <h2 id="遇到的问题">遇到的问题</h2>
 <p>在刚开始的时候，中断处理流程中CPU操作时并没有开启或关闭接收中断的操作，结果，在Windows平台下，没有任何的问题，生成PCIe IP核时，设置传输带宽上限为2Gbps，在1G以太网口测试各种业务时都很稳定，没有出现操作系统崩溃的情况；但在VxWorks系统测试时，由于VxWorks系统实时性非常好，响应中断也比较及时，就会出现操作系统正在执行一个中断服务程序时，硬件又来了一个中断，直接导致VxWorks系统死掉，如下图所示。当然，这也是中断处理流程不规范造成的。后续会在Windows驱动中也添加上开关中断使能的步骤，测试一下Windows相应PCIe中断的最小间隔。不过从目前测试数据看，Windows相应PCIe中断的速度肯定会比VxWorks慢很多。</p>
-<p><img src="https://www.vxworks.net/images/vxworks/vxworks-pcie-12.png" alt="VxWorks PCIe Interrupe"></p>
+<p><img src="https://www.vxworks.net/images/vxworks/vxworks-pcie-11.png" alt="VxWorks PCIe Interrupe"></p>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1543398821442998"
      crossorigin="anonymous"></script>
 
