@@ -24,7 +24,11 @@
       <pubDate>Wed, 21 Dec 2022 09:34:04 -0500</pubDate>
       
       <guid>https://www.vxworks7.com/post/bsp/SD-card-device-driver-in-vxworks-7.0.html</guid>
-      <description>&lt;p&gt;今天和大家谈谈VxWorks 7.0下SD卡的
+      <description>&lt;p&gt;今天和大家谈谈
+&lt;a href=&#34;https://vxworks.net/bsp/935-sd-card-driver-initialization-file-system-format-in-vxworks-7-0&#34; title=&#34;VxWorks 7.0下SD卡&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
+    VxWorks 7.0下SD卡
+    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
+&lt;/a&gt;的
 &lt;a href=&#34;https://www.vxbus.com&#34; title=&#34;vxbus&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
     vxbus
     &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
