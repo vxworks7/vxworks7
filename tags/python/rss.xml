@@ -13,14 +13,9 @@
       <pubDate>Tue, 20 Dec 2022 23:54:53 -0500</pubDate>
       
       <guid>https://www.vxworks7.com/post/app/how-to-integrate-python-into-vxworks-7.html</guid>
-      <description>VxWorks是由Wind River提供的实时操作系统，而Python是由Python Software Foundation管理的开源解释型编程语言和运行时解释器。
- 简介 VxWorks是由Wind River提供的实时操作系统，而Python是由Python Software Foundation管理的开源解释型编程语言和运行时解释器。
-Python软件基金会：http://www.python.org
-风河在PowerPC，ARM和Intel架构设备上支持Python。
-这个VxWorks Python文章描述了如何将Python解释器编译和部署到VxWorks 7中。
-前提 本文的说明假定你正在使用：
- Wind River VxWorks 7 SR0620 Intel target booting from UEFI BIOS A USB flash drive (4 GB minimum)  创建/编译VxWorks Source Build(VSB)项目 打开DOS shell，配置编译环境，然后编译项目。
-cd &amp;#34;WIND_HOME&amp;#34; // your installation directory wrenv -p vxworks-7 cd // your workspace vxprj vsb create python_vsb -bsp itl_generic -smp -force -S cd python_vsb // your workspace vxprj vsb add PYTHON // add the python layer to the VSB make -j 32 // build the VSB VxWorks源代码编译(VSB)编译完成后，检查其是否包含Python运行时环境，验证以下目录是否存在：</description>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;VxWorks是由Wind River提供的实时操作系统，而Python是由Python Software Foundation管理的开源解释型编程语言和运行时解释器。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
     </item>
     
     <item>
