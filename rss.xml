@@ -73,8 +73,7 @@
       <pubDate>Sun, 18 Dec 2022 08:23:25 -0500</pubDate>
       
       <guid>https://www.vxworks7.com/post/bsp/vxworks-wind-kernel-analysis-1.html</guid>
-      <description>&lt;p&gt;前言：我曾经在做VxWorks培训期间跟身边的嵌入式工程师同行交流的时候，发现大家对嵌入式VxWorks系统的Wind内核不是特别了解，而网上对于VxWorks的Wind内核也没有系统性的解读与分析，因此我决定发表一系列的博文来系统性地解读Wind内核的设计思想。我选择的是VxWorks5.5系统的Wind 2.6版本内核（这个版本的代码网上都有分享O(∩_∩)O），在分析的过程中，大家有任何的疑问，都可以给我留言，以便我进一步的完善博文，使得后来者阅读起来更为流畅。&lt;/p&gt;
-&lt;p&gt;本文首先从实时内核的定义出发，对实时操作系统进行了介绍，并对实时操作系统的特点进行了说明，接着从内核的功能和结构角度介绍了整体式内核，层次式内核，以及微内核。最后对具有微内核特性的VxWorks Wind内核进行了介绍。&lt;/p&gt;</description>
+      <description>&lt;p&gt;本文首先从实时内核的定义出发，对实时操作系统进行了介绍，并对实时操作系统的特点进行了说明，接着从内核的功能和结构角度介绍了整体式内核，层次式内核，以及微内核。最后对具有微内核特性的VxWorks Wind内核进行了介绍。&lt;/p&gt;</description>
     </item>
     
     <item>
