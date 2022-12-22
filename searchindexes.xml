@@ -16,6 +16,23 @@
   </entry>
   
   <entry>
+    <title>WindRiver WindML 5.3显示图片程序</title>
+    <url>/post/app/how-to-display-photos-with-windml-5.3.html</url>
+    <categories><category>APP</category>
+    </categories>
+    <tags>
+      <tag>VxWorks</tag>
+      <tag>WindML 5.3</tag>
+    </tags>
+    <content type="html"><![CDATA[WindRiver的 WindML5.3  里默认已经支持JPG和PNG的图片格式了
+包含这两个option后，App里就可以直接打开相应的图片文件 - uglImageReadFile()
+这个函数可以把输入的文件转换为DIB，然后就可以随意使用这个位图了。或者直接转换为DBD，更便于显示。闲言少续，上代码
+#include &lt;stdio.h&gt;#include &lt;ugl/ugl.h&gt; void testUglImage(char *name, UINT32 x, UINT32 y) { UGL_REG_DATA *pRegData; UGL_GC_ID gc; UGL_DDB_ID myDdbId; UGL_IMAGE *pImage; if(NULL == name) return; uglDisplayOpen(NULL, NULL, NULL); pRegData = uglRegistryFind(UGL_DISPLAY_TYPE, NULL, NULL, NULL); gc = uglGcCreate((UGL_DEVICE_ID)pRegData-&gt;id); pImage = uglImageReadFile(name, IMAGE_OBJECT_DDB, UGL_NULL, (UGL_DEVICE_ID)pRegData-&gt;id, UGL_NULL); if(UGL_NULL != pImage) { myDdbId = (UGL_DDB_ID)(pImage-&gt;pObject); if(UGL_NULL != myDdbId) { uglBitmapBlt(gc, myDdbId, 0, 0, myDdbId-&gt;width-1, myDdbId-&gt;height-1, UGL_DISPLAY_ID, x, y); uglImageFree(pImage); } } #if 0/* 退出图形 */ uglGcDestroy(gc); uglDisplayClose(NULL); #endif  return; } 这段代码的作用就是把文件转换为DBD，然后贴到屏幕上，看效果
+有些低版本WindML，还不支持PNG，那可以把高版本的这个libpng移植过去，毕竟WindRiver用的就是开源的
+]]></content>
+  </entry>
+  
+  <entry>
     <title>U-boot和VxWorks 7的集成</title>
     <url>/post/bsp/u-boot-on-vxworks-7.html</url>
     <categories><category>BSP</category>

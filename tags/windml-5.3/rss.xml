@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>WindML 5.3 on VxWorks 7</title>
+    <link>https://www.vxworks7.com/tags/windml-5.3/</link>
+    <description>Recent content in WindML 5.3 on VxWorks 7</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 22 Dec 2022 10:30:12 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/windml-5.3/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>WindRiver WindML 5.3显示图片程序</title>
+      <link>https://www.vxworks7.com/post/app/how-to-display-photos-with-windml-5.3.html</link>
+      <pubDate>Thu, 22 Dec 2022 10:30:12 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/app/how-to-display-photos-with-windml-5.3.html</guid>
+      <description>&lt;p&gt;WindRiver的
+&lt;a href=&#34;https://www.vxworks.net/windml&#34; title=&#34;WindML5.3&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
+    WindML5.3
+    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
+&lt;/a&gt;里默认已经支持JPG和PNG的图片格式了&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

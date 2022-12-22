@@ -6,7 +6,25 @@
     <description>Recent content in Tags on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 22 Dec 2022 10:29:12 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 22 Dec 2022 10:30:12 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VxWorks</title>
+      <link>https://www.vxworks7.com/tags/vxworks/</link>
+      <pubDate>Thu, 22 Dec 2022 10:30:12 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/vxworks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>WindML 5.3</title>
+      <link>https://www.vxworks7.com/tags/windml-5.3/</link>
+      <pubDate>Thu, 22 Dec 2022 10:30:12 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/windml-5.3/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>uboot</title>
       <link>https://www.vxworks7.com/tags/uboot/</link>
@@ -58,15 +76,6 @@
       <pubDate>Wed, 21 Dec 2022 08:50:10 -0500</pubDate>
       
       <guid>https://www.vxworks7.com/tags/pcie/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>VxWorks</title>
-      <link>https://www.vxworks7.com/tags/vxworks/</link>
-      <pubDate>Wed, 21 Dec 2022 08:50:10 -0500</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/vxworks/</guid>
       <description></description>
     </item>
     
