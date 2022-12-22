@@ -6,22 +6,31 @@
     <description>Recent content in Tags on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 21 Dec 2022 23:46:58 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 22 Dec 2022 10:29:12 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>VectorCAST</title>
-      <link>https://www.vxworks7.com/tags/vectorcast/</link>
-      <pubDate>Wed, 21 Dec 2022 23:46:58 -0500</pubDate>
+      <title>uboot</title>
+      <link>https://www.vxworks7.com/tags/uboot/</link>
+      <pubDate>Thu, 22 Dec 2022 10:29:12 -0500</pubDate>
       
-      <guid>https://www.vxworks7.com/tags/vectorcast/</guid>
+      <guid>https://www.vxworks7.com/tags/uboot/</guid>
       <description></description>
     </item>
     
     <item>
       <title>VxWorks 7</title>
       <link>https://www.vxworks7.com/tags/vxworks-7/</link>
-      <pubDate>Wed, 21 Dec 2022 23:46:58 -0500</pubDate>
+      <pubDate>Thu, 22 Dec 2022 10:29:12 -0500</pubDate>
       
       <guid>https://www.vxworks7.com/tags/vxworks-7/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VectorCAST</title>
+      <link>https://www.vxworks7.com/tags/vectorcast/</link>
+      <pubDate>Wed, 21 Dec 2022 23:46:58 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/vectorcast/</guid>
       <description></description>
     </item>
     

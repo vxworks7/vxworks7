@@ -16,6 +16,40 @@
   </entry>
   
   <entry>
+    <title>U-boot和VxWorks 7的集成</title>
+    <url>/post/bsp/vxworks-7-boot-sequence.html</url>
+    <categories><category>BSP</category>
+    </categories>
+    <tags>
+      <tag>VxWorks 7</tag>
+      <tag>uboot</tag>
+    </tags>
+    <content type="html"><![CDATA[ VxWorks  是美国风河公司制作的一个实时操作系统， U-Boot  是一个广为人知的通用启动加载器，它是嵌入式系统加电后运行的最早的代码。U-Boot通常被用于嵌入式系统，比如PowerPC或者ARM设备，这些设备上没有X86的BIOS。
+介绍 尽管VxWorks可以有它自己的bootloader(VxWorks Bootrom或者Bootapp)，U-Boot具有更多的功能，如果硬件板子已经提供了U-Boot的支持，那我们更有道理去直接使用它。
+U-boot : http://www.denx.de/wiki/U-Boot/WebHome  
+VxWorks : https://www.windriver.com/products/vxworks/  
+现在最新的VxWorks版本(VxWorks 7)已经比过去的VxWorks版本(我在VxWorks 6.9上遇到了好多问题)更加简单地和U-Boot集成了。
+这篇文章讲述了我们为最近的VxWorks 7 BSP进行设置的细节，我们选择使用一个独立于VxWorks镜像文件的DTB文件，而不是将DTB文件嵌入到VxWorks镜像里面。这将给我们带来更好的灵活性，让启动行能够从U-Boot上进行修改，而不需要重新编译DTB。
+具体地，VxWorks镜像需要将U-Boot头编译进去，然后U-Boot需要配置传递命令行参数以及MAC地址给VxWorks。
+编译VxWorks镜像文件 一个支持U-Boot的VxWorks镜像文件需要编译(将把U-Boot的头加入到VxWorks二进制中)
+从Workbench或者命令行来编译uVxWorks的目标文件。
+打开一个DOS命令行，配置编译环境，然后编译工程项目。
+cd &lt;WIND_HOME&gt; // your installation directory wrenv -p vxworks-7 cd &lt;YOUR_VIP&gt; // your VxWorks Image Project vxprj vip build uVxWorks 这将创建两个文件，用tftp被U-Boot加载到内存：
+   文件名 描述     uVxWorks VxWorks image with U-Boot header   [yourboard].dtb the device tree binary    ##为VxWorks配置U-Boot
+U-Boot需要设置一些环境变量来加载VxWorks，针对VxWorks的启动参数(bootline)：
+=&gt; setenv bootargs memac(2,0)host:vxWorks h=192.168.1.101 e=192.168.1.50:ffffff00 g=192.168.1.254 u=vxworks pw=gaitpu f=0x0 =&gt; saveenv =&gt; printenv bootargs bootargs=memac(2,0)host:vxWorks h=192.168.1.101 e=192.168.1.50:ffffff00 g=192.168.1.254 u=vxworks pw=gaitpu f=0x0 还有你可以随意给网络设备改变MAC地址：
+setenv ethaddr 00:00:13:3a:ad:00 setenv eth1add 00:00:13:3a:ad:01 setenv eth1add 00:00:13:3a:ad:02 setenv eth1add 00:00:13:3a:ad:03 saveenv 加载和执行VxWorks镜像文件 配置一个tftp服务器来加载VxWorks镜像文件和DTB文件。
+你可以从下面下载一个非常好的Windows TFTP服务器：
+http://tftpd32.jounin.net/ 加载VxWorks镜像文件 =&gt; tftp 0x100000 uVxWorks Using FM1@DTSEC3 device TFTP from server 192.168.1.101; our IP address is 192.168.1.50 Filename &#39;uVxWorks&#39;. Load address: 0x100000 Loading: ################################################################# ################################################################# ################################################################# 1.5 MiB/s done Bytes transferred = 2861632 (2baa40 hex) 加载dtb blob =&gt; tftp 0xe00000 t4240qds.dtb Using FM1@DTSEC3 device TFTP from server 192.168.1.101; our IP address is 192.168.1.50 Filename &#39;t4240qds.dtb&#39;. Load address: 0xe00000 Loading: ## 1.4 MiB/s 启动VxWorks镜像文件 =&gt; bootm 0x100000 - 0xe00000 WARNING: adjusting available memory to 30000000 ## Booting kernel from Legacy Image at 00100000 ... Image Name: vxWorks Image Type: PowerPC VxWorks Kernel Image (uncompressed) Data Size: 2861568 Bytes = 2.7 MiB 创建U-boot命令 用下面的步骤创建一个新的U-Boot命令
+setenv vxboot &#39;tftp 0x100000 uVxWorks; tftp 0xe00000 t4240qds.dtb; bootm 0x100000 - 0xe00000&#39; saveenv 运行这个命令：
+run vxboot 配置U-Boot来传递MAC地址 这对于硬件开发者来说是至关重要的，MAC地址通常是在工厂里面分配的，会被VxWorks镜像文件使用。否则每一块板子出厂前都需要编译和加载一个独立的VxWorks，这绝对是一个梦魇般的情况。
+幸运地我们找到了一个方法，因为我们使用一个独立的dtb文件，而不是将dtb文件编译到VxWorks里面，U-Boot会用网络环境变量中的MAC地址覆盖dts文件中的MAC地址。
+不仅仅U-Boot可以覆盖本地的MAC地址，如果你在U-Boot环境变量中存储额外的网络地址变量并在你的设备树中为网络接口添加别名的话，U-Boot可以通过设备树将这些MAC地址传递给VxWorks。所以理论上所有网络设备的MAC地址都可以被覆盖。
+比如针对一块T4240的PowerPC板子：
+/* * U-boot only fixes up MAC Adrress (ethernet0 - n) if * environment variable is set. * aliases simplyfies the path to the property i.e by using a * label &lt;&amp;enet0&gt; to assign a path to a particular node */ aliases{ ethernet0 = &amp;enet0; ethernet1 = &amp;enet1; ethernet2 = &amp;enet2; ethernet3 = &amp;enet3; }; .... fman0: fman@400000 { #address-cells = ;  #size-cells = ;  cell-index = ; compatible = &#34;fsl,fman&#34;; ranges = ; reg = ; interrupts = &lt; 96 2 0 0 16 2 1 1&gt;; clocks = &lt;&amp;hwac1&gt;; clock-names = &#34;fman0-clk&#34;; /* FDT dummyMdio driver : memac0*/ enet0: ethernet@e0000 { compatible = &#34;fsl,fman-memac&#34;; reg = ; phy-handle = &lt;&amp;dummy_phy0&gt;; phy-connection-type = &#34;sgmii&#34;; cell-index = ; local-mac-address = [ 00 04 9F 03 0A 5C ]; }; /* FDT dummyMdio driver : memac1*/ enet1: ethernet@e2000 { .... }; .... }; ]]></content>
+  </entry>
+  
+  <entry>
     <title>利用Wind River VxWorks 7实现自动化软件测试</title>
     <url>/post/app/wind-river-vxworks-7-automatically-software-test-vectorCAST.html</url>
     <categories><category>APP</category>

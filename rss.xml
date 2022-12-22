@@ -6,7 +6,7 @@
     <description>Recent content on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 21 Dec 2022 23:46:58 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 22 Dec 2022 10:29:12 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>欢迎加入 VxWorks 俱乐部！</title>
       <link>https://www.vxworks7.com/post/welcome-to-vxworks-club/</link>
@@ -16,6 +16,23 @@
       <description>欢迎来到 北南南北 文档站点！ 相关文章来源于 VxWorks 俱乐部  ，也可能发布于 AI 嵌入式开发  ，专注于技术分享和交流。
 免责声明 所有资源均来自网络，版权归原作者，如有侵权，请联系删除！
 欢迎投稿  欢迎广大网友投稿 欢迎加入网友微信群  </description>
+    </item>
+    
+    <item>
+      <title>U-boot和VxWorks 7的集成</title>
+      <link>https://www.vxworks7.com/post/bsp/vxworks-7-boot-sequence.html</link>
+      <pubDate>Thu, 22 Dec 2022 10:29:12 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/bsp/vxworks-7-boot-sequence.html</guid>
+      <description>&lt;p&gt;
+&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
+    VxWorks
+    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
+&lt;/a&gt;是美国风河公司制作的一个实时操作系统，
+&lt;a href=&#34;https://www.vxworks.net/bsp/834-u-boot-and-vxworks-7-integration&#34; title=&#34;U-Boot&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
+    U-Boot
+    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
+&lt;/a&gt;是一个广为人知的通用启动加载器，它是嵌入式系统加电后运行的最早的代码。U-Boot通常被用于嵌入式系统，比如PowerPC或者ARM设备，这些设备上没有X86的BIOS。&lt;/p&gt;</description>
     </item>
     
     <item>

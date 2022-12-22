@@ -7,22 +7,47 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/categories/app/</loc>
-    <lastmod>2022-12-21T23:46:58-05:00</lastmod>
+    <loc>https://www.vxworks7.com/categories/bsp/</loc>
+    <lastmod>2022-12-22T10:29:12-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.vxworks7.com/categories/</loc>
-    <lastmod>2022-12-21T23:46:58-05:00</lastmod>
+    <lastmod>2022-12-22T10:29:12-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.vxworks7.com/post/</loc>
-    <lastmod>2022-12-21T23:46:58-05:00</lastmod>
+    <lastmod>2022-12-22T10:29:12-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.vxworks7.com/tags/</loc>
+    <lastmod>2022-12-22T10:29:12-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/post/bsp/vxworks-7-boot-sequence.html</loc>
+    <lastmod>2022-12-22T10:29:12-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/uboot/</loc>
+    <lastmod>2022-12-22T10:29:12-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/vxworks-7/</loc>
+    <lastmod>2022-12-22T10:29:12-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/</loc>
+    <lastmod>2022-12-22T10:29:12-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/categories/app/</loc>
     <lastmod>2022-12-21T23:46:58-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -32,23 +57,8 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/tags/vxworks-7/</loc>
-    <lastmod>2022-12-21T23:46:58-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/</loc>
-    <lastmod>2022-12-21T23:46:58-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>https://www.vxworks7.com/post/app/wind-river-vxworks-7-automatically-software-test-vectorCAST.html</loc>
     <lastmod>2022-12-21T23:46:58-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/categories/bsp/</loc>
-    <lastmod>2022-12-21T09:34:04-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
