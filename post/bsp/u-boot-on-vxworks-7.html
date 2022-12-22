@@ -177,6 +177,7 @@
   <ul>
     <li><a href="#介绍">介绍</a></li>
     <li><a href="#编译vxworks镜像文件">编译VxWorks镜像文件</a></li>
+    <li><a href="#为vxworks配置u-boot">为VxWorks配置U-Boot</a></li>
     <li><a href="#加载和执行vxworks镜像文件">加载和执行VxWorks镜像文件</a>
       <ul>
         <li><a href="#加载vxworks镜像文件">加载VxWorks镜像文件</a></li>
@@ -448,7 +449,7 @@ vxprj vip build uVxWorks
 </tr>
 </tbody>
 </table>
-<p>##为VxWorks配置U-Boot</p>
+<h2 id="为vxworks配置u-boot">为VxWorks配置U-Boot</h2>
 <p>U-Boot需要设置一些环境变量来加载VxWorks，针对VxWorks的启动参数(bootline)：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash"><span style="color:#f92672">=</span>&gt; setenv bootargs memac<span style="color:#f92672">(</span>2,0<span style="color:#f92672">)</span>host:vxWorks h<span style="color:#f92672">=</span>192.168.1.101 e<span style="color:#f92672">=</span>192.168.1.50:ffffff00 
         g<span style="color:#f92672">=</span>192.168.1.254 u<span style="color:#f92672">=</span>vxworks pw<span style="color:#f92672">=</span>gaitpu f<span style="color:#f92672">=</span>0x0

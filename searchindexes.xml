@@ -35,8 +35,7 @@ VxWorks : https://www.windriver.com/products/vxworks/
 从Workbench或者命令行来编译uVxWorks的目标文件。
 打开一个DOS命令行，配置编译环境，然后编译工程项目。
 cd &lt;WIND_HOME&gt; // your installation directory wrenv -p vxworks-7 cd &lt;YOUR_VIP&gt; // your VxWorks Image Project vxprj vip build uVxWorks 这将创建两个文件，用tftp被U-Boot加载到内存：
-   文件名 描述     uVxWorks VxWorks image with U-Boot header   [yourboard].dtb the device tree binary    ##为VxWorks配置U-Boot
-U-Boot需要设置一些环境变量来加载VxWorks，针对VxWorks的启动参数(bootline)：
+   文件名 描述     uVxWorks VxWorks image with U-Boot header   [yourboard].dtb the device tree binary    为VxWorks配置U-Boot U-Boot需要设置一些环境变量来加载VxWorks，针对VxWorks的启动参数(bootline)：
 =&gt; setenv bootargs memac(2,0)host:vxWorks h=192.168.1.101 e=192.168.1.50:ffffff00 g=192.168.1.254 u=vxworks pw=gaitpu f=0x0 =&gt; saveenv =&gt; printenv bootargs bootargs=memac(2,0)host:vxWorks h=192.168.1.101 e=192.168.1.50:ffffff00 g=192.168.1.254 u=vxworks pw=gaitpu f=0x0 还有你可以随意给网络设备改变MAC地址：
 setenv ethaddr 00:00:13:3a:ad:00 setenv eth1add 00:00:13:3a:ad:01 setenv eth1add 00:00:13:3a:ad:02 setenv eth1add 00:00:13:3a:ad:03 saveenv 加载和执行VxWorks镜像文件 配置一个tftp服务器来加载VxWorks镜像文件和DTB文件。
 你可以从下面下载一个非常好的Windows TFTP服务器：
