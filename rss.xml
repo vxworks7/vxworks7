@@ -20,10 +20,10 @@
     
     <item>
       <title>U-boot和VxWorks 7的集成</title>
-      <link>https://www.vxworks7.com/post/bsp/vxworks-7-boot-sequence.html</link>
+      <link>https://www.vxworks7.com/post/bsp/u-boot-on-vxworks-7.html</link>
       <pubDate>Thu, 22 Dec 2022 10:29:12 -0500</pubDate>
       
-      <guid>https://www.vxworks7.com/post/bsp/vxworks-7-boot-sequence.html</guid>
+      <guid>https://www.vxworks7.com/post/bsp/u-boot-on-vxworks-7.html</guid>
       <description>&lt;p&gt;
 &lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
     VxWorks

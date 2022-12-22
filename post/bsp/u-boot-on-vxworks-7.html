@@ -10,26 +10,26 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/imgs/icons/favicon_32_32_next.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/imgs/icons/apple_touch_icon_next.png">
-<meta itemprop="name" content="欢迎加入 VxWorks 俱乐部！" />
-<meta itemprop="description" content="VxWorks 俱乐部专注于分享嵌入式实时操作系统相关的专业知识和实践经验!" />
+<meta itemprop="name" content="U-boot和VxWorks 7的集成" />
+<meta itemprop="description" content="U-Boot和VxWorks 7的集成" />
 <meta itemprop="datePublished" ZgotmplZ />
 <meta itemprop="dateModified" ZgotmplZ />
 <meta itemprop="image" content="https://www.vxworks7.com/imgs/VxWorks_7_logo.png" />
-<meta itemprop="keywords" content="VxWorks,WindRiver" />
+<meta itemprop="keywords" content="VxWorks 7,uboot" />
 
 <meta property="og:type" content="article" />
-<meta property="og:title" content="欢迎加入 VxWorks 俱乐部！" />
-<meta property="og:description" content="VxWorks 俱乐部专注于分享嵌入式实时操作系统相关的专业知识和实践经验!" />
+<meta property="og:title" content="U-boot和VxWorks 7的集成" />
+<meta property="og:description" content="U-Boot和VxWorks 7的集成" />
 <meta property="og:image" content="/imgs/VxWorks_7_logo.png" />
 <meta property="og:image:width" content="312" />
 <meta property="og:image:height" content="312" />
 <meta property="og:image:type" content="image/jpeg/png/svg/jpg" />
-<meta property="og:url" content="https://www.vxworks7.com/post/welcome-to-vxworks-club/"/>
+<meta property="og:url" content="https://www.vxworks7.com/post/bsp/u-boot-on-vxworks-7.html"/>
 <meta property="og:site_name" content="VxWorks 7" />
 <meta property="og:locale" content="zh-CN"/>
 <meta property="article:author" content="VxWorks OS" />
-<meta property="article:published_time" content="2022-05-02 15:59:41 &#43;0800 &#43;0800" />
-<meta property="article:modified_time" content="2022-05-02 15:59:41 &#43;0800 &#43;0800" />
+<meta property="article:published_time" content="2022-12-22 10:29:12 -0500 EST" />
+<meta property="article:modified_time" content="2022-12-22 10:29:12 -0500 EST" />
 
 
   
@@ -44,7 +44,7 @@
       content: "~ 我可是有底线的哟 ~";
     }
   </style>
-  <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"welcome-to-vxworks-club","permalink":"https://www.vxworks7.com/post/welcome-to-vxworks-club/","title":"欢迎加入 VxWorks 俱乐部！"}</script>
+  <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"u-boot-on-vxworks-7.html","permalink":"https://www.vxworks7.com/post/bsp/u-boot-on-vxworks-7.html","title":"U-boot和VxWorks 7的集成"}</script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
     var script = document.createElement('script');
@@ -60,7 +60,7 @@
 
 
 
-  <title>欢迎加入 VxWorks 俱乐部！ - VxWorks 7</title>
+  <title>U-boot和VxWorks 7的集成 - VxWorks 7</title>
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
@@ -175,8 +175,17 @@
       <div class="post-toc-wrap sidebar-panel">
         <div class="post-toc animated"><nav id="TableOfContents">
   <ul>
-    <li><a href="#免责声明">免责声明</a></li>
-    <li><a href="#欢迎投稿">欢迎投稿</a></li>
+    <li><a href="#介绍">介绍</a></li>
+    <li><a href="#编译vxworks镜像文件">编译VxWorks镜像文件</a></li>
+    <li><a href="#加载和执行vxworks镜像文件">加载和执行VxWorks镜像文件</a>
+      <ul>
+        <li><a href="#加载vxworks镜像文件">加载VxWorks镜像文件</a></li>
+        <li><a href="#加载dtb-blob">加载dtb blob</a></li>
+        <li><a href="#启动vxworks镜像文件">启动VxWorks镜像文件</a></li>
+        <li><a href="#创建u-boot命令">创建U-boot命令</a></li>
+      </ul>
+    </li>
+    <li><a href="#配置u-boot来传递mac地址">配置U-Boot来传递MAC地址</a></li>
   </ul>
 </nav></div>
       </div>
@@ -310,7 +319,7 @@
       
   <div class="post-block">
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://www.vxworks7.com/post/welcome-to-vxworks-club/">
+    <link itemprop="mainEntityOfPage" href="https://www.vxworks7.com/post/bsp/u-boot-on-vxworks-7.html">
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/imgs/hugo_next_avatar.png">
       <meta itemprop="name" content="VxWorks OS">
@@ -320,14 +329,11 @@
       <meta itemprop="description" content="Where there is embedded, there is VxWorks.">
     </span>
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="欢迎加入 VxWorks 俱乐部！">
-      <meta itemprop="description" content="VxWorks 俱乐部专注于分享嵌入式实时操作系统相关的专业知识和实践经验!">
+      <meta itemprop="name" content="U-boot和VxWorks 7的集成">
+      <meta itemprop="description" content="U-Boot和VxWorks 7的集成">
     </span>
     <header class="post-header">
-       <h1 class="post-title" itemprop="name headline">
-  <span class="post-sticky-flag" title="置顶">
-    <i class="fa fa-thumbtack"></i>
-  </span>欢迎加入 VxWorks 俱乐部！ </h1> <div class="post-meta-container">
+       <h1 class="post-title" itemprop="name headline">U-boot和VxWorks 7的集成 </h1> <div class="post-meta-container">
   <div class="post-meta-items">
     
 
@@ -337,7 +343,7 @@
     <i class="far fa-calendar"></i>
   </span>
   <span class="post-meta-item-text">发表于：</span>
-  <time title="发表于：2022-05-02 15:59:41 &#43;0800 &#43;0800" itemprop="dateCreated datePublished" datetime="2022-05-02 15:59:41 &#43;0800 &#43;0800">2022-05-02</time>
+  <time title="发表于：2022-12-22 10:29:12 -0500 EST" itemprop="dateCreated datePublished" datetime="2022-12-22 10:29:12 -0500 EST">2022-12-22</time>
 </span>
     
     
@@ -347,8 +353,8 @@
   </span>
   <span class="post-meta-item-text">分类于：</span>
   <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-    <a href="/categories/announce" itemprop="url" rel="index">
-      <span itemprop="name">Announce</span>
+    <a href="/categories/bsp" itemprop="url" rel="index">
+      <span itemprop="name">BSP</span>
     </a>
   </span>
 </span>
@@ -359,7 +365,7 @@
   <span class="post-meta-item-icon">
     <i class="far fa-file-word"></i>
   </span>
-  <span class="post-meta-item-text">字数：</span><span>15</span>
+  <span class="post-meta-item-text">字数：</span><span>366</span>
 </span>
     
 <span class="post-meta-item" title="阅读">
@@ -367,7 +373,7 @@
     <i class="far fa-clock"></i>
   </span>
   <span class="post-meta-item-text">阅读：&asymp;</span>
-  <span>1分钟</span>
+  <span>2分钟</span>
 </span>
 
     
@@ -378,7 +384,7 @@
   <span class="post-meta-item-text">
   浏览：
   </span>
-  <span id="busuanzi_value_page_pv" data-path="/post/welcome-to-vxworks-club/"><i class="fa fa-sync fa-spin"></i></span>
+  <span id="busuanzi_value_page_pv" data-path="/post/bsp/u-boot-on-vxworks-7.html"><i class="fa fa-sync fa-spin"></i></span>
 </span>
 
   </div>
@@ -390,23 +396,164 @@
     
     <div class="post-body  autonumber " itemprop="articleBody">
       
-  <p>欢迎来到 <code>北南南北</code> 文档站点！ 相关文章来源于 
-<a href="https://www.vxworks.net/" title="VxWorks 俱乐部" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
-    VxWorks 俱乐部
+  <p>
+<a href="https://www.vxworks.net" title="VxWorks" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+    VxWorks
     <i class="fa fa-external-link-alt"></i>
-</a>，也可能发布于
-<a href="https://www.gaitpu.com/" title="AI 嵌入式开发" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
-    AI 嵌入式开发
+</a>是美国风河公司制作的一个实时操作系统，
+<a href="https://www.vxworks.net/bsp/834-u-boot-and-vxworks-7-integration" title="U-Boot" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+    U-Boot
     <i class="fa fa-external-link-alt"></i>
-</a>，专注于技术分享和交流。</p>
-<h2 id="免责声明">免责声明</h2>
-<p>所有资源均来自网络，版权归原作者，如有侵权，请联系删除！</p>
-<h2 id="欢迎投稿">欢迎投稿</h2>
-<ul>
-<li>欢迎广大网友投稿</li>
-<li>欢迎加入网友微信群</li>
-</ul>
+</a>是一个广为人知的通用启动加载器，它是嵌入式系统加电后运行的最早的代码。U-Boot通常被用于嵌入式系统，比如PowerPC或者ARM设备，这些设备上没有X86的BIOS。</p>
+<h2 id="介绍">介绍</h2>
+<p><img src="https://www.gaitpu.com/wp-content/uploads/2021/02/u-boot-vxworks-7-850x506.jpg" alt="VxWorks U-Boot"></p>
+<p>尽管VxWorks可以有它自己的bootloader(VxWorks Bootrom或者Bootapp)，U-Boot具有更多的功能，如果硬件板子已经提供了U-Boot的支持，那我们更有道理去直接使用它。</p>
+<p>U-boot : 
+<a href="http://www.denx.de/wiki/U-Boot/WebHome" title="http://www.denx.de/wiki/U-Boot/WebHome" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+    http://www.denx.de/wiki/U-Boot/WebHome
+    <i class="fa fa-external-link-alt"></i>
+</a></p>
+<p>VxWorks : 
+<a href="https://www.windriver.com/products/vxworks/" title="https://www.windriver.com/products/vxworks/" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+    https://www.windriver.com/products/vxworks/
+    <i class="fa fa-external-link-alt"></i>
+</a></p>
+<p>现在最新的VxWorks版本(VxWorks 7)已经比过去的VxWorks版本(我在VxWorks 6.9上遇到了好多问题)更加简单地和U-Boot集成了。</p>
+<p>这篇文章讲述了我们为最近的VxWorks 7 BSP进行设置的细节，我们选择使用一个独立于VxWorks镜像文件的DTB文件，而不是将DTB文件嵌入到VxWorks镜像里面。这将给我们带来更好的灵活性，让启动行能够从U-Boot上进行修改，而不需要重新编译DTB。</p>
+<p>具体地，VxWorks镜像需要将U-Boot头编译进去，然后U-Boot需要配置传递命令行参数以及MAC地址给VxWorks。</p>
+<h2 id="编译vxworks镜像文件">编译VxWorks镜像文件</h2>
+<p>一个支持U-Boot的VxWorks镜像文件需要编译(将把U-Boot的头加入到VxWorks二进制中)</p>
+<p>从Workbench或者命令行来编译uVxWorks的目标文件。</p>
+<p>打开一个DOS命令行，配置编译环境，然后编译工程项目。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">cd &lt;WIND_HOME&gt;              // your installation directory
+wrenv -p vxworks-7
+cd &lt;YOUR_VIP&gt;               // your VxWorks Image Project
+vxprj vip build uVxWorks
+</code></pre></div><p>这将创建两个文件，用tftp被U-Boot加载到内存：</p>
+<table>
+<thead>
+<tr>
+<th>文件名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>uVxWorks</td>
+<td>VxWorks image with U-Boot header</td>
+</tr>
+<tr>
+<td>[yourboard].dtb</td>
+<td>the device tree binary</td>
+</tr>
+</tbody>
+</table>
+<p>##为VxWorks配置U-Boot</p>
+<p>U-Boot需要设置一些环境变量来加载VxWorks，针对VxWorks的启动参数(bootline)：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash"><span style="color:#f92672">=</span>&gt; setenv bootargs memac<span style="color:#f92672">(</span>2,0<span style="color:#f92672">)</span>host:vxWorks h<span style="color:#f92672">=</span>192.168.1.101 e<span style="color:#f92672">=</span>192.168.1.50:ffffff00 
+        g<span style="color:#f92672">=</span>192.168.1.254 u<span style="color:#f92672">=</span>vxworks pw<span style="color:#f92672">=</span>gaitpu f<span style="color:#f92672">=</span>0x0
 
+<span style="color:#f92672">=</span>&gt; saveenv
+
+<span style="color:#f92672">=</span>&gt; printenv bootargs
+   bootargs<span style="color:#f92672">=</span>memac<span style="color:#f92672">(</span>2,0<span style="color:#f92672">)</span>host:vxWorks h<span style="color:#f92672">=</span>192.168.1.101 e<span style="color:#f92672">=</span>192.168.1.50:ffffff00
+        g<span style="color:#f92672">=</span>192.168.1.254 u<span style="color:#f92672">=</span>vxworks pw<span style="color:#f92672">=</span>gaitpu f<span style="color:#f92672">=</span>0x0
+</code></pre></div><p>还有你可以随意给网络设备改变MAC地址：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">setenv ethaddr 00:00:13:3a:ad:00
+setenv eth1add 00:00:13:3a:ad:01
+setenv eth1add 00:00:13:3a:ad:02
+setenv eth1add 00:00:13:3a:ad:03
+saveenv
+</code></pre></div><h2 id="加载和执行vxworks镜像文件">加载和执行VxWorks镜像文件</h2>
+<p>配置一个tftp服务器来加载VxWorks镜像文件和DTB文件。</p>
+<p>你可以从下面下载一个非常好的Windows TFTP服务器：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-fallback" data-lang="fallback">http://tftpd32.jounin.net/ 
+</code></pre></div><h3 id="加载vxworks镜像文件">加载VxWorks镜像文件</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash"><span style="color:#f92672">=</span>&gt; tftp 0x100000 uVxWorks
+Using FM1@DTSEC3 device
+TFTP from server 192.168.1.101; our IP address is 192.168.1.50
+Filename <span style="color:#e6db74">&#39;uVxWorks&#39;</span>.
+Load address: 0x100000
+Loading: <span style="color:#75715e">#################################################################</span>
+         <span style="color:#75715e">#################################################################</span>
+         <span style="color:#75715e">#################################################################</span>
+
+         1.5 MiB/s
+<span style="color:#66d9ef">done</span>
+Bytes transferred <span style="color:#f92672">=</span> <span style="color:#ae81ff">2861632</span> <span style="color:#f92672">(</span>2baa40 hex<span style="color:#f92672">)</span>
+</code></pre></div><h3 id="加载dtb-blob">加载dtb blob</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash"><span style="color:#f92672">=</span>&gt; tftp 0xe00000 t4240qds.dtb
+Using FM1@DTSEC3 device
+TFTP from server 192.168.1.101; our IP address is 192.168.1.50
+Filename <span style="color:#e6db74">&#39;t4240qds.dtb&#39;</span>.
+Load address: 0xe00000
+Loading: <span style="color:#75715e">##</span>
+         1.4 MiB/s
+</code></pre></div><h3 id="启动vxworks镜像文件">启动VxWorks镜像文件</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash"><span style="color:#f92672">=</span>&gt; bootm 0x100000 - 0xe00000
+WARNING: adjusting available memory to <span style="color:#ae81ff">30000000</span>
+<span style="color:#75715e">## Booting kernel from Legacy Image at 00100000 ...</span>
+   Image Name:   vxWorks
+   Image Type:   PowerPC VxWorks Kernel Image <span style="color:#f92672">(</span>uncompressed<span style="color:#f92672">)</span>
+   Data Size:    <span style="color:#ae81ff">2861568</span> Bytes <span style="color:#f92672">=</span> 2.7 MiB
+</code></pre></div><h3 id="创建u-boot命令">创建U-boot命令</h3>
+<p>用下面的步骤创建一个新的U-Boot命令</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">setenv vxboot <span style="color:#e6db74">&#39;tftp 0x100000 uVxWorks; tftp 0xe00000 t4240qds.dtb; bootm 0x100000 - 0xe00000&#39;</span>
+saveenv
+</code></pre></div><p>运行这个命令：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">run vxboot
+</code></pre></div><h2 id="配置u-boot来传递mac地址">配置U-Boot来传递MAC地址</h2>
+<p>这对于硬件开发者来说是至关重要的，MAC地址通常是在工厂里面分配的，会被VxWorks镜像文件使用。否则每一块板子出厂前都需要编译和加载一个独立的VxWorks，这绝对是一个梦魇般的情况。</p>
+<p>幸运地我们找到了一个方法，因为我们使用一个独立的dtb文件，而不是将dtb文件编译到VxWorks里面，U-Boot会用网络环境变量中的MAC地址覆盖dts文件中的MAC地址。</p>
+<p>不仅仅U-Boot可以覆盖本地的MAC地址，如果你在U-Boot环境变量中存储额外的网络地址变量并在你的设备树中为网络接口添加别名的话，U-Boot可以通过设备树将这些MAC地址传递给VxWorks。所以理论上所有网络设备的MAC地址都可以被覆盖。</p>
+<p>比如针对一块T4240的PowerPC板子：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#75715e">/*
+</span><span style="color:#75715e"> * U-boot only fixes up MAC Adrress (ethernet0 - n) if  
+</span><span style="color:#75715e"> * environment variable is set.
+</span><span style="color:#75715e"> * aliases simplyfies the path to the property i.e  by using a 
+</span><span style="color:#75715e"> * label &lt;&amp;enet0&gt; to assign a path to a particular node
+</span><span style="color:#75715e"> */</span>
+
+aliases{
+     ethernet0 <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>enet0; 
+     ethernet1 <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>enet1;
+     ethernet2 <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>enet2;
+     ethernet3 <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>enet3;
+};
+
+....
+
+    fman0: fman<span style="color:#960050;background-color:#1e0010">@</span><span style="color:#ae81ff">400000</span> {
+          <span style="color:#75715e">#address-cells = ;
+</span><span style="color:#75715e"></span>            <span style="color:#75715e">#size-cells = ;
+</span><span style="color:#75715e"></span>            cell<span style="color:#f92672">-</span>index <span style="color:#f92672">=</span> ;
+            compatible <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;fsl,fman&#34;</span>;
+            ranges <span style="color:#f92672">=</span> ;
+            reg <span style="color:#f92672">=</span> ;
+            interrupts <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span>
+                    <span style="color:#ae81ff">96</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span>
+                    <span style="color:#ae81ff">16</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">&gt;</span>;
+
+        clocks <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;&amp;</span>hwac1<span style="color:#f92672">&gt;</span>;
+        clock<span style="color:#f92672">-</span>names <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;fman0-clk&#34;</span>;
+
+        <span style="color:#75715e">/* FDT dummyMdio driver : memac0*/</span>
+        enet0: ethernet<span style="color:#960050;background-color:#1e0010">@</span>e0000 {
+                 compatible <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;fsl,fman-memac&#34;</span>;
+                 reg <span style="color:#f92672">=</span> ;
+                 phy<span style="color:#f92672">-</span>handle <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;&amp;</span>dummy_phy0<span style="color:#f92672">&gt;</span>;
+                 phy<span style="color:#f92672">-</span>connection<span style="color:#f92672">-</span>type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;sgmii&#34;</span>;
+                 cell<span style="color:#f92672">-</span>index <span style="color:#f92672">=</span> ;
+                 local<span style="color:#f92672">-</span>mac<span style="color:#f92672">-</span>address <span style="color:#f92672">=</span> [ <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">04</span> <span style="color:#ae81ff">9F</span> <span style="color:#ae81ff">03</span> <span style="color:#ae81ff">0</span>A <span style="color:#ae81ff">5</span>C ];
+                };
+
+        <span style="color:#75715e">/* FDT dummyMdio driver : memac1*/</span>
+        enet1: ethernet<span style="color:#960050;background-color:#1e0010">@</span>e2000 {
+                ....
+                };
+        ....
+        };
+</code></pre></div>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1543398821442998"
      crossorigin="anonymous"></script>
 
@@ -426,11 +573,11 @@
 
 <div class="post-tags">
   
-    <a href="/tags/vxworks">
-    VxWorks
+    <a href="/tags/vxworks-7">
+    VxWorks 7
   </a>
-    <a href="/tags/windriver">
-    WindRiver
+    <a href="/tags/uboot">
+    uboot
   </a>
 </div>
 
@@ -458,7 +605,7 @@
   <ul>
     <li class="post-copyright-title">
       <strong>文章标题：</strong>
-      欢迎加入 VxWorks 俱乐部！
+      U-boot和VxWorks 7的集成
     </li>
     <li class="post-copyright-author">
       <strong>本文作者： </strong>
@@ -466,7 +613,7 @@
     </li>
     <li class="post-copyright-link"> 
       <strong>本文链接：</strong>
-       <a id="post-cr-link" href="https://www.vxworks7.com/post/welcome-to-vxworks-club/" title="欢迎加入 VxWorks 俱乐部！">https://www.vxworks7.com/post/welcome-to-vxworks-club/</a>
+       <a id="post-cr-link" href="https://www.vxworks7.com/post/bsp/u-boot-on-vxworks-7.html" title="U-boot和VxWorks 7的集成">https://www.vxworks7.com/post/bsp/u-boot-on-vxworks-7.html</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -491,10 +638,13 @@
 </div>
 <div class="post-nav">
   <div class="post-nav-next post-nav-item">
+    <a href="/post/welcome-to-vxworks-club/" rel="next" title="欢迎加入 VxWorks 俱乐部！">
+      <i class="fa fa-chevron-left"></i> 欢迎加入 VxWorks 俱乐部！
+    </a>
   </div>
   <div class="post-nav-prev post-nav-item">
-    <a href="/post/bsp/u-boot-on-vxworks-7.html" rel="prev" title="U-boot和VxWorks 7的集成">
-      U-boot和VxWorks 7的集成
+    <a href="/post/app/wind-river-vxworks-7-automatically-software-test-vectorCAST.html" rel="prev" title="利用Wind River VxWorks 7实现自动化软件测试">
+      利用Wind River VxWorks 7实现自动化软件测试
       <i class="fa fa-chevron-right"></i>
     </a>
   </div>
