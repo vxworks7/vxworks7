@@ -35,7 +35,7 @@ VectorCAST/C++通过/失败（pass/fail）结果和代码覆盖率查看器
 系统测试过程中的代码覆盖率分析 对于系统测试而言，全面的测试是非常紧要的。只有通过代码覆盖率分析，才能合理地度量测试的完整性。
 VectorCAST/Cover可以在项目构建过程中，自动对程序进行插装。插装后的测试程序能够在系统测试正常执行的过程中捕获代码覆盖率。VectorCAST/Cover插装已经得到了充分优化，能够支持嵌入式环境对大小和时间的一般性限制。
 VectorCAST/Cover能与现有的开发工具无缝结合，比如：Wind River Workbench。我们可以通过很多途径将覆盖率发送回主机上，包括调试接口。每个单项测试所获取的结果都会独立保存在VectorCAST/Cover中，以便进行差异分析和总量分析。
-VectorCAST 和Wind River 将VectorCAST/C++与VectorCAST/RSP结合起来用于Wind River，就能够实现Wind River工具链，开发板，VxWorks® 7实时操作系统（RTOS）的完全自动化回归测试了。Wind River工具链可以支持多种芯片架构，JTAG 仿真器，以及开发板。利用这一技术，VectorCAST可以支持绝大多数复杂的无缝目标测试环境。
+VectorCAST 和Wind River 将VectorCAST/C++与VectorCAST/RSP结合起来用于Wind River，就能够实现Wind River工具链，开发板， VxWorks® 7实时操作系统  （RTOS）的完全自动化回归测试了。Wind River工具链可以支持多种芯片架构，JTAG 仿真器，以及开发板。利用这一技术，VectorCAST可以支持绝大多数复杂的无缝目标测试环境。
 在开发过程中，如果测试失败了，可以使用Workbench Debugger手动执行 VectorCAST测试。 一套测试完成之后，就会被提交到回归测试环境中，这样不需要使用Workbench就可以自动执行这些测试了。
 VectorCAST 工具可以与Wind River 支持的所有处理器架构集成，包括：PPC, ARM, MIPS, SBC, x86和68K。VectorCAST也支持在Windows/Linux/Solaris环境下进行本地编译和执行。凭借所使用的微处理器，VectorCAST也能够与RTOS相集成。
 由于VectorCAST目标测试支持具备模块化的特性，因而可以轻松添加新处理器家族。
