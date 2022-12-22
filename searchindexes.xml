@@ -16,6 +16,45 @@
   </entry>
   
   <entry>
+    <title>利用Wind River VxWorks 7实现自动化软件测试</title>
+    <url>/post/app/wind-river-vxworks-7-automatically-software-test-vectorCAST.html</url>
+    <categories><category>APP</category>
+    </categories>
+    <tags>
+      <tag>VxWorks 7</tag>
+      <tag>VectorCAST</tag>
+    </tags>
+    <content type="html"><![CDATA[很多项目都会面临一个问题：怎么才能简单、快速地对实际硬件上的嵌入式应用进行测试 —— 无论是使用模拟器/评估板（处理器在环：PIL）还是生产硬件（硬件在环：HIL）。PIL和HIL测试对于诸如航空航天、汽车电子、医疗、轨道交通等行业内的高安全应用程序来说是尤其重要的，而且这些行业内的应用通常都需要通过资格认证。虽然有些项目并没有那么严格的测试要求，但是如果能尽量在与生产环境相似的环境下进行测试，一定有助于发现更多的问题。
+引言 以硬件为基础的测试会遇到很多挑战，包括：处理有限的目标资源，尽量减少对执行时间的影响，让目标通信机制自动进行数据采集，培训团队成员去配置和调试目标执行。
+Vector Software能提供一系列工具，通过自动化测试配置和执行的过程来解决这些问题，，从而让工程师可以集中精力创建并执行准确而高效的软件测试。VectorCAST™特别能够在两个关键方面帮助实现基于目标板的测试：
+ 软件的单元测试和集成测试，证明应用程序的正确性 测试过程中的覆盖率分析，证明测试的完整性  本白皮书将具体阐述这个测试能实现什么，并讨论如何使用Wind River的工具链（Toolchain）和Workbench IDE进行自动化测试。
+单元测试和集成测试 软件的单元测试和集成测试主要是隔离应用程序中的一部分代码，尤其是一些C/C++源代码文件，然后全面测试那些代码子集，确保这些代码能够正常运行并且符合详细设计需求。
+代码覆盖率分析可以度量哪部分代码已经经过了测试。利用代码覆盖率能够非常简单地量化测试的完整性。我们可以根据这些信息来决定测试应该进行到什么程度。
+利用VectorCAST系列产品，可以轻松地为所有的嵌入式目标环境创建测试套件。这些套件可以像回归测试一样频繁地运行，所以总是能生成当前测试状态的仪表盘报告。
+VectorCAST/C++通过/失败（pass/fail）结果和代码覆盖率查看器
+系统测试过程中的代码覆盖率分析 对于系统测试而言，全面的测试是非常紧要的。只有通过代码覆盖率分析，才能合理地度量测试的完整性。
+VectorCAST/Cover可以在项目构建过程中，自动对程序进行插装。插装后的测试程序能够在系统测试正常执行的过程中捕获代码覆盖率。VectorCAST/Cover插装已经得到了充分优化，能够支持嵌入式环境对大小和时间的一般性限制。
+VectorCAST/Cover能与现有的开发工具无缝结合，比如：Wind River Workbench。我们可以通过很多途径将覆盖率发送回主机上，包括调试接口。每个单项测试所获取的结果都会独立保存在VectorCAST/Cover中，以便进行差异分析和总量分析。
+VectorCAST 和Wind River 将VectorCAST/C++与VectorCAST/RSP结合起来用于Wind River，就能够实现Wind River工具链，开发板，VxWorks® 7实时操作系统（RTOS）的完全自动化回归测试了。Wind River工具链可以支持多种芯片架构，JTAG 仿真器，以及开发板。利用这一技术，VectorCAST可以支持绝大多数复杂的无缝目标测试环境。
+在开发过程中，如果测试失败了，可以使用Workbench Debugger手动执行 VectorCAST测试。 一套测试完成之后，就会被提交到回归测试环境中，这样不需要使用Workbench就可以自动执行这些测试了。
+VectorCAST 工具可以与Wind River 支持的所有处理器架构集成，包括：PPC, ARM, MIPS, SBC, x86和68K。VectorCAST也支持在Windows/Linux/Solaris环境下进行本地编译和执行。凭借所使用的微处理器，VectorCAST也能够与RTOS相集成。
+由于VectorCAST目标测试支持具备模块化的特性，因而可以轻松添加新处理器家族。
+另外，因为VectorCAST的测试用例独立于编译器和目标配置，所以可以先在模拟器上执行测试，然后再转移到生产硬件上。而且只要创建一个新的编译器配置节点，无论在什么编译器版本和微处理器上都可以执行测试。
+Wind River Workbench上的VectorCAST/RSP有3个主要功能：
+ 完全支持Wind River或GNU编译器定义的C和C++扩展语言 利用Wind River Probe或模拟器可以自动下载适用于目标环境的测试套件 在执行过程中自动获取测试结果  只要简单按一下按钮就可以利用VectorCAST执行测试了！
+配置VectorCAST，使其适用于Wind River VxWorks 7 配置适用于Wind River的VectorCAST非常简单。对于大多数用户来说，丰富的内建模板列表提供了使用VxWorks目标板或vxSim模拟器进行测试所需要的一切。
+VectorCAST内建了所有Wind River版本的内置配置文件
+用户选择了合适的目标配置之后，VectorCAST会提供利用Wind River或GNU编译器编译和链接测试套件所需的所有信息。VectorCAST目标配置中也包含执行脚本，利用这些脚本可以自动连接Workbench debugger、加载测试套件、开始执行、收集测试结果和覆盖率。
+用户可以轻松地修改VectorCAST编译器设置，使其与特定的构建设置相匹配，如：处理器变量和优化级别。VectorCAST可以通过直接配置所有的参数来简化修改的工作。
+这个自动化程度对于VxWorks的5.x版本到最新的7.x来说是一样的。在VxWorks 7.x版本中，VectorCAST利用最新的目标通信框架（TCF）来下载测试并记录结果。
+测试的执行和调试 对于回归测试而言，最理想的就是实现自动执行，与此同时，在开发测试用例的过程中利用调试器来解决测试故障并诊断程序中的bug也是至关重要的。
+这也是为什么VectorCAST与Wind River集成时会有一个按钮来调用Workbench调试器。任何一个VectorCAST测试用例都可以在Workbench的控制下执行。
+适用于在Workbench中调试的VectorCAST测试套件
+结论 综上，将VectorCAST和Wind River工具结合起来使用，可以帮助机构或企业完美地解决在提高嵌入式应用软件质量的过程中遇到的问题。
+]]></content>
+  </entry>
+  
+  <entry>
     <title>VxWorks 7.0下SD卡驱动流程及文件系统格式化</title>
     <url>/post/bsp/SD-card-device-driver-in-vxworks-7.0.html</url>
     <categories><category>BSP</category>

@@ -10,26 +10,26 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/imgs/icons/favicon_32_32_next.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/imgs/icons/apple_touch_icon_next.png">
-<meta itemprop="name" content="Markdown 语法支持" />
-<meta itemprop="description" content="描述下 NexT 主题所支持的各种 markdown 语法及效果展示。" />
+<meta itemprop="name" content="利用Wind River VxWorks 7实现自动化软件测试" />
+<meta itemprop="description" content="利用Wind River VxWorks 7实现自动化软件测试" />
 <meta itemprop="datePublished" ZgotmplZ />
 <meta itemprop="dateModified" ZgotmplZ />
 <meta itemprop="image" content="https://www.vxworks7.com/imgs/VxWorks_7_logo.png" />
-<meta itemprop="keywords" content="Markdown,语法" />
+<meta itemprop="keywords" content="VxWorks 7,VectorCAST" />
 
 <meta property="og:type" content="article" />
-<meta property="og:title" content="Markdown 语法支持" />
-<meta property="og:description" content="描述下 NexT 主题所支持的各种 markdown 语法及效果展示。" />
+<meta property="og:title" content="利用Wind River VxWorks 7实现自动化软件测试" />
+<meta property="og:description" content="利用Wind River VxWorks 7实现自动化软件测试" />
 <meta property="og:image" content="/imgs/VxWorks_7_logo.png" />
 <meta property="og:image:width" content="312" />
 <meta property="og:image:height" content="312" />
 <meta property="og:image:type" content="image/jpeg/png/svg/jpg" />
-<meta property="og:url" content="https://www.vxworks7.com/post/markdown-syntax.html"/>
+<meta property="og:url" content="https://www.vxworks7.com/post/app/wind-river-vxworks-7-automatically-software-test-vectorCAST.html"/>
 <meta property="og:site_name" content="VxWorks 7" />
 <meta property="og:locale" content="zh-CN"/>
-<meta property="article:author" content="Mainroad" />
-<meta property="article:published_time" content="2021-06-03 11:52:18 &#43;0800 &#43;0800" />
-<meta property="article:modified_time" content="2021-06-03 11:52:18 &#43;0800 &#43;0800" />
+<meta property="article:author" content="VxWorks OS" />
+<meta property="article:published_time" content="2022-12-21 23:46:58 -0500 EST" />
+<meta property="article:modified_time" content="2022-12-21 23:46:58 -0500 EST" />
 
 
   
@@ -44,7 +44,7 @@
       content: "~ 我可是有底线的哟 ~";
     }
   </style>
-  <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"markdown-syntax.html","permalink":"https://www.vxworks7.com/post/markdown-syntax.html","title":"Markdown 语法支持"}</script>
+  <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"wind-river-vxworks-7-automatically-software-test-vectorCAST.html","permalink":"https://www.vxworks7.com/post/app/wind-river-vxworks-7-automatically-software-test-vectorCAST.html","title":"利用Wind River VxWorks 7实现自动化软件测试"}</script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
     var script = document.createElement('script');
@@ -60,7 +60,7 @@
 
 
 
-  <title>Markdown 语法支持 - VxWorks 7</title>
+  <title>利用Wind River VxWorks 7实现自动化软件测试 - VxWorks 7</title>
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
@@ -161,7 +161,7 @@
 </div>
 <aside class="sidebar">
   
-  <div class="sidebar-inner sidebar-overview-active">
+  <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
     <ul class="sidebar-nav">
       <li class="sidebar-nav-toc">
         文章目录
@@ -173,6 +173,17 @@
     <div class="sidebar-panel-container">
       
       <div class="post-toc-wrap sidebar-panel">
+        <div class="post-toc animated"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#引言">引言</a></li>
+    <li><a href="#单元测试和集成测试">单元测试和集成测试</a></li>
+    <li><a href="#系统测试过程中的代码覆盖率分析">系统测试过程中的代码覆盖率分析</a></li>
+    <li><a href="#vectorcast-和wind-river">VectorCAST 和Wind River</a></li>
+    <li><a href="#配置vectorcast使其适用于wind-river-vxworks-7">配置VectorCAST，使其适用于Wind River VxWorks 7</a></li>
+    <li><a href="#测试的执行和调试">测试的执行和调试</a></li>
+    <li><a href="#结论">结论</a></li>
+  </ul>
+</nav></div>
       </div>
       
       <div class="site-overview-wrap sidebar-panel">
@@ -304,21 +315,21 @@
       
   <div class="post-block">
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://www.vxworks7.com/post/markdown-syntax.html">
+    <link itemprop="mainEntityOfPage" href="https://www.vxworks7.com/post/app/wind-river-vxworks-7-automatically-software-test-vectorCAST.html">
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/imgs/hugo_next_avatar.png">
-      <meta itemprop="name" content="Mainroad">
+      <meta itemprop="name" content="VxWorks OS">
     </span>
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="VxWorks OS">
       <meta itemprop="description" content="Where there is embedded, there is VxWorks.">
     </span>
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Markdown 语法支持">
-      <meta itemprop="description" content="描述下 NexT 主题所支持的各种 markdown 语法及效果展示。">
+      <meta itemprop="name" content="利用Wind River VxWorks 7实现自动化软件测试">
+      <meta itemprop="description" content="利用Wind River VxWorks 7实现自动化软件测试">
     </span>
     <header class="post-header">
-       <h1 class="post-title" itemprop="name headline">Markdown 语法支持 </h1> <div class="post-meta-container">
+       <h1 class="post-title" itemprop="name headline">利用Wind River VxWorks 7实现自动化软件测试 </h1> <div class="post-meta-container">
   <div class="post-meta-items">
     
 
@@ -328,7 +339,7 @@
     <i class="far fa-calendar"></i>
   </span>
   <span class="post-meta-item-text">发表于：</span>
-  <time title="发表于：2021-06-03 11:52:18 &#43;0800 &#43;0800" itemprop="dateCreated datePublished" datetime="2021-06-03 11:52:18 &#43;0800 &#43;0800">2021-06-03</time>
+  <time title="发表于：2022-12-21 23:46:58 -0500 EST" itemprop="dateCreated datePublished" datetime="2022-12-21 23:46:58 -0500 EST">2022-12-21</time>
 </span>
     
     
@@ -338,8 +349,8 @@
   </span>
   <span class="post-meta-item-text">分类于：</span>
   <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-    <a href="/categories/%E7%A4%BA%E4%BE%8B" itemprop="url" rel="index">
-      <span itemprop="name">示例</span>
+    <a href="/categories/app" itemprop="url" rel="index">
+      <span itemprop="name">APP</span>
     </a>
   </span>
 </span>
@@ -350,7 +361,7 @@
   <span class="post-meta-item-icon">
     <i class="far fa-file-word"></i>
   </span>
-  <span class="post-meta-item-text">字数：</span><span>241</span>
+  <span class="post-meta-item-text">字数：</span><span>78</span>
 </span>
     
 <span class="post-meta-item" title="阅读">
@@ -358,7 +369,7 @@
     <i class="far fa-clock"></i>
   </span>
   <span class="post-meta-item-text">阅读：&asymp;</span>
-  <span>2分钟</span>
+  <span>1分钟</span>
 </span>
 
     
@@ -369,7 +380,7 @@
   <span class="post-meta-item-text">
   浏览：
   </span>
-  <span id="busuanzi_value_page_pv" data-path="/post/markdown-syntax.html"><i class="fa fa-sync fa-spin"></i></span>
+  <span id="busuanzi_value_page_pv" data-path="/post/app/wind-river-vxworks-7-automatically-software-test-vectorCAST.html"><i class="fa fa-sync fa-spin"></i></span>
 </span>
 
   </div>
@@ -379,224 +390,54 @@
 
     </header>
     
-    <div class="post-body " itemprop="articleBody">
+    <div class="post-body  autonumber " itemprop="articleBody">
       
-  <p>仅以此篇文章来测试下在 <code>NexT</code> 主题中在通过 <code>Hugo</code> 引擎来建站时，是否支持 <code>Markdown</code> 文件内容中所写的各种语法，并展示下实际的效果。</p>
-<h2 id="标题样式">标题样式</h2>
-<p>让我们从所有可能的标题开始，在 HTML 中 <code>&lt;h1&gt;</code>-<code>&lt;h6&gt;</code>元素分别表示六个不同级别的标题样式，其中 <code>&lt;h1&gt;</code> 为最大标题，<code>&lt;h6&gt;</code>为最小标题，效果如下：</p>
-<h1 id="标题-1">标题 1</h1>
-<h2 id="标题-2">标题 2</h2>
-<h3 id="标题-3">标题 3</h3>
-<h4 id="标题-4">标题 4</h4>
-<h5 id="标题-5">标题 5</h5>
-<h6 id="标题-6">标题 6</h6>
-<h2 id="段落格式">段落格式</h2>
-<p>根据
-<a href="https://www.w3.org/" title=" W3C " rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
-     W3C 
-    <i class="fa fa-external-link-alt"></i>
-</a>定义的
-<a href="https://www.w3.org/TR/html5/dom.html#elements" title=" HTML5 规范" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
-     HTML5 规范
-    <i class="fa fa-external-link-alt"></i>
-</a>，<strong>HTML 文档由元素和文本组成</strong>。每个元素的组成都由一个
-<a href="https://www.w3.org/TR/html5/syntax.html#syntax-start-tags" title="开始标记" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
-    开始标记
-    <i class="fa fa-external-link-alt"></i>
-</a>表示，例如： <code>&lt;body&gt;</code> ，和
-<a href="https://www.w3.org/TR/html5/syntax.html#syntax-end-tags" title="结束标记" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
-    结束标记
-    <i class="fa fa-external-link-alt"></i>
-</a>表示，例如： <code>&lt;/body&gt;</code> 。（<em>某些开始标记和结束标记在某些情况下可以省略，并由其他标记暗示。</em>）
-元素可以具有属性，这些属性控制元素的工作方式。例如：超链接是使用 <code>a</code> 元素及其 <code>href</code> 属性形成的。</p>
-<h3 id="markdown-语法">Markdown 语法</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-markdown" data-lang="markdown">![<span style="color:#f92672">图像说明</span>](<span style="color:#a6e22e">图像地址</span>)
-</code></pre></div><p><img src="//lisenhui.gitee.io/imgs/hugo-next/logo/hugo-next-primary.png" alt="hugo-next-primary"></p>
-<h3 id="html-img-标签">HTML IMG 标签</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;图像地址&#34;</span> <span style="color:#a6e22e">width</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;宽度&#34;</span> <span style="color:#a6e22e">height</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;高度&#34;</span> /&gt;
-</code></pre></div><img src="//lisenhui.gitee.io/imgs/hugo-next/logo/hugo-next-secondary.png" width="150"/>
-<h3 id="svg-格式">SVG 格式</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">svg</span>&gt;xxxxxx&lt;/<span style="color:#f92672">svg</span>&gt;
-</code></pre></div><p><svg class="canon" xmlns="http://www.w3.org/2000/svg" overflow="visible" viewBox="0 0 496 373" height="373" width="496"><g fill="none"><path stroke="#000" stroke-width=".75" d="M.599 372.348L495.263 1.206M.312.633l494.95 370.853M.312 372.633L247.643.92M248.502.92l246.76 370.566M330.828 123.869V1.134M330.396 1.134L165.104 124.515"></path><path stroke="#ED1C24" stroke-width=".75" d="M275.73 41.616h166.224v249.05H275.73zM54.478 41.616h166.225v249.052H54.478z"></path><path stroke="#000" stroke-width=".75" d="M.479.375h495v372h-495zM247.979.875v372"></path><ellipse cx="498.729" cy="177.625" rx=".75" ry="1.25"></ellipse><ellipse cx="247.229" cy="377.375" rx=".75" ry="1.25"></ellipse></g></svg></p>
-<h2 id="列表类型">列表类型</h2>
-<h3 id="有序列表">有序列表</h3>
-<ol>
-<li>第一个元素</li>
-<li>第二个元素</li>
-<li>第三个元素</li>
-</ol>
-<h3 id="无序列表">无序列表</h3>
+  <p>很多项目都会面临一个问题：怎么才能简单、快速地对实际硬件上的嵌入式应用进行测试 —— 无论是使用模拟器/评估板（处理器在环：PIL）还是生产硬件（硬件在环：HIL）。PIL和HIL测试对于诸如航空航天、汽车电子、医疗、轨道交通等行业内的高安全应用程序来说是尤其重要的，而且这些行业内的应用通常都需要通过资格认证。虽然有些项目并没有那么严格的测试要求，但是如果能尽量在与生产环境相似的环境下进行测试，一定有助于发现更多的问题。</p>
+<h2 id="引言">引言</h2>
+<p>以硬件为基础的测试会遇到很多挑战，包括：处理有限的目标资源，尽量减少对执行时间的影响，让目标通信机制自动进行数据采集，培训团队成员去配置和调试目标执行。</p>
+<p>Vector Software能提供一系列工具，通过自动化测试配置和执行的过程来解决这些问题，，从而让工程师可以集中精力创建并执行准确而高效的软件测试。VectorCAST™特别能够在两个关键方面帮助实现基于目标板的测试：</p>
 <ul>
-<li>列表元素</li>
-<li>另一个元素</li>
-<li>和其它元素</li>
+<li>软件的单元测试和集成测试，证明应用程序的正确性</li>
+<li>测试过程中的覆盖率分析，证明测试的完整性</li>
 </ul>
-<h3 id="嵌套列表">嵌套列表</h3>
-<p>借助 HTML 的 <code>ul</code> 元素来实现。</p>
+<p>本白皮书将具体阐述这个测试能实现什么，并讨论如何使用Wind River的工具链（Toolchain）和Workbench IDE进行自动化测试。</p>
+<h2 id="单元测试和集成测试">单元测试和集成测试</h2>
+<p>软件的单元测试和集成测试主要是隔离应用程序中的一部分代码，尤其是一些C/C++源代码文件，然后全面测试那些代码子集，确保这些代码能够正常运行并且符合详细设计需求。</p>
+<p>代码覆盖率分析可以度量哪部分代码已经经过了测试。利用代码覆盖率能够非常简单地量化测试的完整性。我们可以根据这些信息来决定测试应该进行到什么程度。</p>
+<p>利用VectorCAST系列产品，可以轻松地为所有的嵌入式目标环境创建测试套件。这些套件可以像回归测试一样频繁地运行，所以总是能生成当前测试状态的仪表盘报告。</p>
+<p><img src="https://www.vxworks.net/images/vxworks/Wind-River-VxWorks-7-Auto-Software-Test-1.png" alt="VectorCAST"></p>
+<p>VectorCAST/C++通过/失败（pass/fail）结果和代码覆盖率查看器</p>
+<h2 id="系统测试过程中的代码覆盖率分析">系统测试过程中的代码覆盖率分析</h2>
+<p>对于系统测试而言，全面的测试是非常紧要的。只有通过代码覆盖率分析，才能合理地度量测试的完整性。</p>
+<p>VectorCAST/Cover可以在项目构建过程中，自动对程序进行插装。插装后的测试程序能够在系统测试正常执行的过程中捕获代码覆盖率。VectorCAST/Cover插装已经得到了充分优化，能够支持嵌入式环境对大小和时间的一般性限制。</p>
+<p>VectorCAST/Cover能与现有的开发工具无缝结合，比如：Wind River Workbench。我们可以通过很多途径将覆盖率发送回主机上，包括调试接口。每个单项测试所获取的结果都会独立保存在VectorCAST/Cover中，以便进行差异分析和总量分析。</p>
+<h2 id="vectorcast-和wind-river">VectorCAST 和Wind River</h2>
+<p>将VectorCAST/C++与VectorCAST/RSP结合起来用于Wind River，就能够实现Wind River工具链，开发板，VxWorks® 7实时操作系统（RTOS）的完全自动化回归测试了。Wind River工具链可以支持多种芯片架构，JTAG 仿真器，以及开发板。利用这一技术，VectorCAST可以支持绝大多数复杂的无缝目标测试环境。</p>
+<p>在开发过程中，如果测试失败了，可以使用Workbench Debugger手动执行 VectorCAST测试。 一套测试完成之后，就会被提交到回归测试环境中，这样不需要使用Workbench就可以自动执行这些测试了。</p>
+<p>VectorCAST 工具可以与Wind River 支持的所有处理器架构集成，包括：PPC, ARM, MIPS, SBC, x86和68K。VectorCAST也支持在Windows/Linux/Solaris环境下进行本地编译和执行。凭借所使用的微处理器，VectorCAST也能够与RTOS相集成。</p>
+<p>由于VectorCAST目标测试支持具备模块化的特性，因而可以轻松添加新处理器家族。</p>
+<p>另外，因为VectorCAST的测试用例独立于编译器和目标配置，所以可以先在模拟器上执行测试，然后再转移到生产硬件上。而且只要创建一个新的编译器配置节点，无论在什么编译器版本和微处理器上都可以执行测试。</p>
+<p>Wind River Workbench上的VectorCAST/RSP有3个主要功能：</p>
 <ul>
-  <li>第一项</li>
-  <li>第二项
-    <ul>
-      <li>第二项第一个子项目</li>
-      <li>第二项第二个子项目
-        <ul>
-          <li>第二项第二分项第一分项</li>
-          <li>第二项第二分项第二分项</li>
-          <li>第二项第二分项第三分项</li>
-        </ul>
-      </li>
-      <li>第二项第三个子项目
-        <ol>
-          <li>第二项第三分项第一分项</li>
-          <li>第二项第三分项第二分项</li>
-          <li>第二项第三分项第三分项</li>
-        </ol>
-    </ul>
-  </li>
-  <li>第三项</li>
+<li>完全支持Wind River或GNU编译器定义的C和C++扩展语言</li>
+<li>利用Wind River Probe或模拟器可以自动下载适用于目标环境的测试套件</li>
+<li>在执行过程中自动获取测试结果</li>
 </ul>
-<h3 id="自定义列表">自定义列表</h3>
-<p>通过 HTML 的 <code>dl</code> 元素还支持自定义列表（表格列表）。</p>
-<dl>
-  <dt>Hugo 目录结构</dt>
-  <dd>assets</dd>
-  <dd>config.toml</dd>
-  <dd>content</dd>
-  <dd>data</dd>
-  <dd>theme</dd>
-  <dd>static</dd>
-  <dt>Hugo 模板</dt>
-  <dd>基础模板</dd>
-  <dd>列表模板</dd>
-  <dd>单页模板</dd>
-</dl>
-<h2 id="块引用">块引用</h2>
-<p><code>blockquote</code> 元素表示从另一个源引用的内容，可以选择引用必须在 <code>footer</code> 或 <code>cite</code> 元素中，也可以选择使用注释和缩写等行内更改。</p>
-<blockquote>
-<p>引用文本
-这一行也是同样的引用
-同样你也在 <code>blockquote</code> 中使用 <strong>Markdown</strong> 语法书写</p>
-</blockquote>
-<p>带有引文的 <code>Blockquote</code> 元素效果。</p>
-<blockquote>
-  <p>我的目标不是赚大钱,是为了制造好的电脑。当我意识到我可以永远当工程师时，我才创办了这家公司。</p>
-  <footer>— <cite>史蒂夫·沃兹尼亚克</cite></footer>
-</blockquote>
-<p>根据 Mozilla 的网站记录，<q cite="https://www.mozilla.org/en-US/about/history/details/">Firefox 1.0 于 2004 年发布，并取得了巨大成功。</q></p>
-<h2 id="表格">表格</h2>
-<p>表格并不算是 <code>Markdown</code> 的核心要素，但 <code>Hugo</code> 同样支持它。</p>
-<table>
-<thead>
-<tr>
-<th>ID</th>
-<th>创建者</th>
-<th>模型</th>
-<th>年份</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Honda</td>
-<td>Accord</td>
-<td>2009</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Toyota</td>
-<td>Camry</td>
-<td>2012</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Hyundai</td>
-<td>Elantra</td>
-<td>2010</td>
-</tr>
-</tbody>
-</table>
-<p>可以使用 : （英文格式冒号）来对表格内容进行对齐。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">表格</th>
-<th style="text-align:center">可以是</th>
-<th style="text-align:right">很酷</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">左对齐</td>
-<td style="text-align:center">居中</td>
-<td style="text-align:right">右对齐</td>
-</tr>
-<tr>
-<td style="text-align:left">左对齐</td>
-<td style="text-align:center">居中</td>
-<td style="text-align:right">右对齐</td>
-</tr>
-<tr>
-<td style="text-align:left">左对齐</td>
-<td style="text-align:center">居中</td>
-<td style="text-align:right">右对齐</td>
-</tr>
-</tbody>
-</table>
-<p>同样也可以在表格中使用 <code>Markdown</code> 语法。</p>
-<table>
-<thead>
-<tr>
-<th>表格</th>
-<th>中</th>
-<th>使用</th>
-<th>Markdown 语法</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><em>斜体</em></td>
-<td><strong>粗体</strong></td>
-<td><del>中划线</del></td>
-<td><code>代码块</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="code">Code</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
-&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;en&#34;</span>&gt;
-&lt;<span style="color:#f92672">head</span>&gt;
-  &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>&gt;
-  &lt;<span style="color:#f92672">title</span>&gt;Example HTML5 Document&lt;/<span style="color:#f92672">title</span>&gt;
-&lt;/<span style="color:#f92672">head</span>&gt;
-&lt;<span style="color:#f92672">body</span>&gt;
-  &lt;<span style="color:#f92672">p</span>&gt;Test&lt;/<span style="color:#f92672">p</span>&gt;
-&lt;/<span style="color:#f92672">body</span>&gt;
-&lt;/<span style="color:#f92672">html</span>&gt;
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
-&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;en&#34;</span>&gt;
-&lt;<span style="color:#f92672">head</span>&gt;
-  &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>&gt;
-  &lt;<span style="color:#f92672">title</span>&gt;Example HTML5 Document&lt;/<span style="color:#f92672">title</span>&gt;
-&lt;/<span style="color:#f92672">head</span>&gt;
-&lt;<span style="color:#f92672">body</span>&gt;
-  &lt;<span style="color:#f92672">p</span>&gt;Test&lt;/<span style="color:#f92672">p</span>&gt;
-&lt;/<span style="color:#f92672">body</span>&gt;
-&lt;/<span style="color:#f92672">html</span>&gt;</code></pre></div>
-<h2 id="其它元素-abbrsubsupkbd等等">其它元素： abbr、sub、sup、kbd等等</h2>
-<p><abbr title="Graphics Interchange Format">GIF</abbr> 是位图图像格式。</p>
-<p>H<sub>2</sub>O</p>
-<p>C<sub>6</sub>H<sub>12</sub>O<sub>6</sub></p>
-<p>X<sup>n</sup> + Y<sup>n</sup> = Z<sup>n</sup></p>
-<p>按<kbd>X</kbd>获胜。或按<kbd><kbd>CTRL</kbd>+<kbd>ALT</kbd>+<kbd>F</kbd></kbd>显示 FPS 计数器。</p>
-<p><mark>比特作为信息论中的信息单位，也被称为 shannon </mark>，以信息论领域的创始人 Claude shannon 的名字命名。</p>
-<p>参考：</p>
-<ul>
-<li>来自 <strong>Mainroad</strong> 主题的 
-<a href="https://mainroad-demo.netlify.app/post/basic-elements/" title="Basic Elements" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
-    Basic Elements
-    <i class="fa fa-external-link-alt"></i>
-</a> 内容</li>
-</ul>
+<p>只要简单按一下按钮就可以利用VectorCAST执行测试了！</p>
+<h2 id="配置vectorcast使其适用于wind-river-vxworks-7">配置VectorCAST，使其适用于Wind River VxWorks 7</h2>
+<p>配置适用于Wind River的VectorCAST非常简单。对于大多数用户来说，丰富的内建模板列表提供了使用VxWorks目标板或vxSim模拟器进行测试所需要的一切。</p>
+<p><img src="https://www.vxworks.net/images/vxworks/Wind-River-VxWorks-7-Auto-Software-Test-2.png" alt="VectorCAST"></p>
+<p>VectorCAST内建了所有Wind River版本的内置配置文件</p>
+<p>用户选择了合适的目标配置之后，VectorCAST会提供利用Wind River或GNU编译器编译和链接测试套件所需的所有信息。VectorCAST目标配置中也包含执行脚本，利用这些脚本可以自动连接Workbench debugger、加载测试套件、开始执行、收集测试结果和覆盖率。</p>
+<p>用户可以轻松地修改VectorCAST编译器设置，使其与特定的构建设置相匹配，如：处理器变量和优化级别。VectorCAST可以通过直接配置所有的参数来简化修改的工作。</p>
+<p>这个自动化程度对于VxWorks的5.x版本到最新的7.x来说是一样的。在VxWorks 7.x版本中，VectorCAST利用最新的目标通信框架（TCF）来下载测试并记录结果。</p>
+<h2 id="测试的执行和调试">测试的执行和调试</h2>
+<p>对于回归测试而言，最理想的就是实现自动执行，与此同时，在开发测试用例的过程中利用调试器来解决测试故障并诊断程序中的bug也是至关重要的。</p>
+<p>这也是为什么VectorCAST与Wind River集成时会有一个按钮来调用Workbench调试器。任何一个VectorCAST测试用例都可以在Workbench的控制下执行。</p>
+<p><img src="https://www.vxworks.net/images/vxworks/Wind-River-VxWorks-7-Auto-Software-Test-3.png" alt="VectorCAST"></p>
+<p>适用于在Workbench中调试的VectorCAST测试套件</p>
+<h2 id="结论">结论</h2>
+<p>综上，将VectorCAST和Wind River工具结合起来使用，可以帮助机构或企业完美地解决在提高嵌入式应用软件质量的过程中遇到的问题。</p>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1543398821442998"
      crossorigin="anonymous"></script>
 
@@ -616,11 +457,11 @@
 
 <div class="post-tags">
   
-    <a href="/tags/markdown">
-    Markdown
+    <a href="/tags/vxworks-7">
+    VxWorks 7
   </a>
-    <a href="/tags/%e8%af%ad%e6%b3%95">
-    语法
+    <a href="/tags/vectorcast">
+    VectorCAST
   </a>
 </div>
 
@@ -648,15 +489,15 @@
   <ul>
     <li class="post-copyright-title">
       <strong>文章标题：</strong>
-      Markdown 语法支持
+      利用Wind River VxWorks 7实现自动化软件测试
     </li>
     <li class="post-copyright-author">
-      <strong>原文作者： </strong>
-      Mainroad
+      <strong>本文作者： </strong>
+      VxWorks OS
     </li>
     <li class="post-copyright-link"> 
       <strong>本文链接：</strong>
-       <a id="post-cr-link" href="https://www.vxworks7.com/post/markdown-syntax.html" title="Markdown 语法支持">https://www.vxworks7.com/post/markdown-syntax.html</a>
+       <a id="post-cr-link" href="https://www.vxworks7.com/post/app/wind-river-vxworks-7-automatically-software-test-vectorCAST.html" title="利用Wind River VxWorks 7实现自动化软件测试">https://www.vxworks7.com/post/app/wind-river-vxworks-7-automatically-software-test-vectorCAST.html</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -681,11 +522,15 @@
 </div>
 <div class="post-nav">
   <div class="post-nav-next post-nav-item">
-    <a href="/post/emoji-support.html" rel="next" title="支持 Emoji 表情">
-      <i class="fa fa-chevron-left"></i> 支持 Emoji 表情
+    <a href="/post/welcome-to-vxworks-club/" rel="next" title="欢迎加入 VxWorks 俱乐部！">
+      <i class="fa fa-chevron-left"></i> 欢迎加入 VxWorks 俱乐部！
     </a>
   </div>
   <div class="post-nav-prev post-nav-item">
+    <a href="/post/bsp/SD-card-device-driver-in-vxworks-7.0.html" rel="prev" title="VxWorks 7.0下SD卡驱动流程及文件系统格式化">
+      VxWorks 7.0下SD卡驱动流程及文件系统格式化
+      <i class="fa fa-chevron-right"></i>
+    </a>
   </div>
 </div>
 
