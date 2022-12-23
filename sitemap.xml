@@ -8,31 +8,46 @@
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.vxworks7.com/categories/app/</loc>
-    <lastmod>2022-12-22T10:30:12-05:00</lastmod>
+    <lastmod>2022-12-23T11:24:58-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.vxworks7.com/categories/</loc>
-    <lastmod>2022-12-22T10:30:12-05:00</lastmod>
+    <lastmod>2022-12-23T11:24:58-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.vxworks7.com/post/</loc>
-    <lastmod>2022-12-22T10:30:12-05:00</lastmod>
+    <lastmod>2022-12-23T11:24:58-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.vxworks7.com/tags/</loc>
-    <lastmod>2022-12-22T10:30:12-05:00</lastmod>
+    <lastmod>2022-12-23T11:24:58-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/tags/vxworks/</loc>
-    <lastmod>2022-12-22T10:30:12-05:00</lastmod>
+    <loc>https://www.vxworks7.com/tags/vxbus/</loc>
+    <lastmod>2022-12-23T11:24:58-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.vxworks7.com/</loc>
+    <lastmod>2022-12-23T11:24:58-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/vxworks-7.0/</loc>
+    <lastmod>2022-12-23T11:24:58-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/post/app/timer-design-based-on-vxbus-in-vxworks-7-0.html</loc>
+    <lastmod>2022-12-23T11:24:58-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/vxworks/</loc>
     <lastmod>2022-12-22T10:30:12-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -164,11 +179,6 @@
   </url><url>
     <loc>https://www.vxworks7.com/post/news/difference-between-vxworks-6-and-vxworks7.html</loc>
     <lastmod>2022-12-19T10:47:56-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/tags/vxbus/</loc>
-    <lastmod>2022-12-19T09:33:53-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>

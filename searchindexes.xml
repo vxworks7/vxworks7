@@ -16,6 +16,28 @@
   </entry>
   
   <entry>
+    <title>VxWorks 7.0下基于VxBus的定时器子系统</title>
+    <url>/post/app/timer-design-based-on-vxbus-in-vxworks-7-0.html</url>
+    <categories><category>APP</category>
+    </categories>
+    <tags>
+      <tag>VxWorks 7.0</tag>
+      <tag>VxBus</tag>
+    </tags>
+    <content type="html"><![CDATA[最近研究了一下VxWorks 7.0下基于vxbus的定时器子系统，方便我们在需要使用定时器中断的时候引用，开发过程中的一点体会记录下来，如果由理解不对或者不全面的望批评指正，谢谢。
+开发平台为zynq7Z020,该处理器由三个全局的定时器，分别是globaltimer，ttc_0，ttc_1，其中全局定时器用作系统的脉搏，是整个操作系统的ticks定时器，其可通过内核配置完成，具体如下：
+而ttc_0会作为系统的AUX clock在初始化的时候完成匹配，系统使用SPY命令时启用定时器，所以，如果要使用TTC0作为应用，要考虑spy调试对其影响，TTC_1可以作为用户自定义定时器使用，挂接用户中断服务例程。其设备树配置如下：
+globaltimer: globaltimer@f8f00200 { compatible = &#34;arm,cortex-a9-gtc&#34;; reg = ; clock-frequency = ; interrupts = ; interrupt-parent = &lt;&amp;intc&gt;; }; ttc_0: ps7-ttc@f8001000 { compatible = &#34;xlnx,zynq7k-ttc&#34;; reg = ; clock-frequency = ; interrupt-parent = &lt;&amp;intc&gt;; interrupts = ; }; ttc_1: ps7-ttc@f8002000 { compatible = &#34;xlnx,zynq7k-ttc&#34;; reg = ; clock-frequency = ; interrupt-parent = &lt;&amp;intc&gt;; interrupts = ; }; 系统在对vxbus子系统初始化时调用每个驱动的fdtZynqTimerAttach函数，在这个函数中对定时器进行初始化相关操作，同时挂接几个重要的回调函数
+pTimerFunc-&gt;timerAllocate = zynqTimerAllocate; pTimerFunc-&gt;timerRelease = zynqTimerRelease; pTimerFunc-&gt;timerRolloverGet = zynqTimerRolloverGet; pTimerFunc-&gt;timerCountGet = zynqTimerCountGet; pTimerFunc-&gt;timerDisable = zynqTimerDisable; pTimerFunc-&gt;timerEnable = zynqTimerEnable; pTimerFunc-&gt;timerISRSet = zynqTimerISRSet; 最后调用 vxbTimerRegister (pTimerFunc);将定时器注册到定时器子系统，可以通过vxbTimerShow查看，针对此开发驱动，需要做一下工作：
+第一：在定时器子系统中查找一个没有使用的，而且最适合自己的定时器使用，返回定时器的句柄。
+LOCAL struct vxbTimerFunctionality * usrTimerInit(int timerNo) { struct vxbTimerFunctionality *pTimer = NULL; if(timerNo &gt;= TTC_TIMER_SUM) return NULL; pTimer = vxbTimerEval(usrTimer[timerNo].timerEvalFunc); //printf(&#34;timer( point = %08x %s:%d)\n&#34;,pTimer,pTimer-&gt;timerName,pTimer-&gt;timerNo); 	//pTimer1 = TIMERFUNC_TO_TIMERDATA (pTimer); 	//printf(&#34;pTimer1 = %08x allocated = %d\n&#34;,pTimer1,pTimer1-&gt;timerFunc.allocated); 	if(pTimer == NULL) return NULL; pTimer-&gt;timerRelease(pTimer); //printf(&#34;ptimer = %08x\n&#34;,pTimer); 	if ((pTimer-&gt;timerAllocate(pTimer,pTimer-&gt;features &amp; VXB_TIMER_AUTO_RELOAD)) != OK) { printf(&#34;####callocate timer failed\n&#34;, 0, 1, 2, 3, 4, 5); return NULL; } return pTimer; } 第二：根据找到的句柄，初始化定时器，挂接中断服务例程
+LOCAL STATUS usrTimerIntConnect(struct vxbTimerFunctionality *pTimer,FUNCPTR routine,_Vx_usr_arg_t arg) { ZYNQ_TIMER * pTimer1; //printf(&#34;pTimer3 = %08x \n&#34;,pTimer); 	if (pTimer == NULL) return ERROR; //pTimer1 = TIMERFUNC_TO_TIMERDATA (pTimer); 	//printf(&#34;pTimer2 = %08x allocated = %d\n&#34;,pTimer1,pTimer1-&gt;timerFunc.allocated); 	if (pTimer-&gt;timerISRSet (pTimer, (void(*)(_Vx_usr_arg_t))routine,arg) != OK) return ERROR; return (OK); } 第三：设置定时器的中断周期
+LOCAL STATUS usrTimerClkRateSet(struct vxbTimerFunctionality *pTimer,int ticksPerSecond) { if (pTimer == NULL) return ERROR; if ( ((UINT)ticksPerSecond &lt; usrTtc0MinFreq) || ((UINT)ticksPerSecond &gt; usrTtc0MaxFreq) ) return (ERROR); if (pTimer-&gt;ticksPerSecond != (UINT)ticksPerSecond) { pTimer-&gt;ticksPerSecond = ticksPerSecond; usrTimerDisable (pTimer); usrTimerEnable (pTimer); } return (OK); } 第四：使能定时器中断
+LOCAL void usrTimerEnable(struct vxbTimerFunctionality *pTimer) { #ifndef	_WRS_CONFIG_SMP  int key; #endif	/* !_WRS_CONFIG_SMP */ /* check if timer is available */ if (pTimer == NULL) return; #ifndef	_WRS_CONFIG_SMP 	key = intCpuLock (); #endif	/* !_WRS_CONFIG_SMP */	if(!vxbSmpClkRuning) { if (pTimer-&gt;timerEnable (pTimer,(pTimer-&gt;clkFrequency /pTimer-&gt;ticksPerSecond)) != OK) { #ifndef	_WRS_CONFIG_SMP 	intCpuUnlock (key); #endif	/* !_WRS_CONFIG_SMP */	return; } vxbSmpClkRuning = TRUE; } #ifndef	_WRS_CONFIG_SMP 	intCpuUnlock (key); #endif	/* !_WRS_CONFIG_SMP */} 通过以上四步可以实现定时器的初始化及使用。
+]]></content>
+  </entry>
+  
+  <entry>
     <title>WindRiver WindML 5.3显示图片程序</title>
     <url>/post/app/how-to-display-photos-with-windml-5.3.html</url>
     <categories><category>APP</category>

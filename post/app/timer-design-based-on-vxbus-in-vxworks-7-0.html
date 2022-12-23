@@ -10,26 +10,26 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/imgs/icons/favicon_32_32_next.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/imgs/icons/apple_touch_icon_next.png">
-<meta itemprop="name" content="风河推VxWorks 7 到底与VxWorks 6.x的区别在哪里" />
-<meta itemprop="description" content="风河推VxWorks 7 到底与VxWorks 6.x的区别在哪里" />
+<meta itemprop="name" content="VxWorks 7.0下基于VxBus的定时器子系统" />
+<meta itemprop="description" content="VxWorks 7.0下基于VxBus的定时器子系统" />
 <meta itemprop="datePublished" ZgotmplZ />
 <meta itemprop="dateModified" ZgotmplZ />
 <meta itemprop="image" content="https://www.vxworks7.com/imgs/VxWorks_7_logo.png" />
-<meta itemprop="keywords" content="WindRiver,VxWorks 6,VxWorks 7" />
+<meta itemprop="keywords" content="VxWorks 7.0,VxBus" />
 
 <meta property="og:type" content="article" />
-<meta property="og:title" content="风河推VxWorks 7 到底与VxWorks 6.x的区别在哪里" />
-<meta property="og:description" content="风河推VxWorks 7 到底与VxWorks 6.x的区别在哪里" />
+<meta property="og:title" content="VxWorks 7.0下基于VxBus的定时器子系统" />
+<meta property="og:description" content="VxWorks 7.0下基于VxBus的定时器子系统" />
 <meta property="og:image" content="/imgs/VxWorks_7_logo.png" />
 <meta property="og:image:width" content="312" />
 <meta property="og:image:height" content="312" />
 <meta property="og:image:type" content="image/jpeg/png/svg/jpg" />
-<meta property="og:url" content="https://www.vxworks7.com/post/news/difference-between-vxworks-6-and-vxworks7.html"/>
+<meta property="og:url" content="https://www.vxworks7.com/post/app/timer-design-based-on-vxbus-in-vxworks-7-0.html"/>
 <meta property="og:site_name" content="VxWorks 7" />
 <meta property="og:locale" content="zh-CN"/>
 <meta property="article:author" content="VxWorks OS" />
-<meta property="article:published_time" content="2022-12-19 10:47:56 -0500 EST" />
-<meta property="article:modified_time" content="2022-12-19 10:47:56 -0500 EST" />
+<meta property="article:published_time" content="2022-12-23 11:24:58 -0500 EST" />
+<meta property="article:modified_time" content="2022-12-23 11:24:58 -0500 EST" />
 
 
   
@@ -44,7 +44,7 @@
       content: "~ 我可是有底线的哟 ~";
     }
   </style>
-  <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"difference-between-vxworks-6-and-vxworks7.html","permalink":"https://www.vxworks7.com/post/news/difference-between-vxworks-6-and-vxworks7.html","title":"风河推VxWorks 7 到底与VxWorks 6.x的区别在哪里"}</script>
+  <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"timer-design-based-on-vxbus-in-vxworks-7-0.html","permalink":"https://www.vxworks7.com/post/app/timer-design-based-on-vxbus-in-vxworks-7-0.html","title":"VxWorks 7.0下基于VxBus的定时器子系统"}</script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
     var script = document.createElement('script');
@@ -60,7 +60,7 @@
 
 
 
-  <title>风河推VxWorks 7 到底与VxWorks 6.x的区别在哪里 - VxWorks 7</title>
+  <title>VxWorks 7.0下基于VxBus的定时器子系统 - VxWorks 7</title>
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
@@ -173,12 +173,7 @@
     <div class="sidebar-panel-container">
       
       <div class="post-toc-wrap sidebar-panel">
-        <div class="post-toc animated"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#vxworks新平台-确保三年稳定">VxWorks新平台 确保三年稳定</a></li>
-    <li><a href="#平滑演进-版本升级无忧虑">平滑演进 版本升级无忧虑</a></li>
-  </ul>
-</nav></div>
+        <div class="post-toc animated"><nav id="TableOfContents"></nav></div>
       </div>
       
       <div class="site-overview-wrap sidebar-panel">
@@ -310,7 +305,7 @@
       
   <div class="post-block">
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://www.vxworks7.com/post/news/difference-between-vxworks-6-and-vxworks7.html">
+    <link itemprop="mainEntityOfPage" href="https://www.vxworks7.com/post/app/timer-design-based-on-vxbus-in-vxworks-7-0.html">
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/imgs/hugo_next_avatar.png">
       <meta itemprop="name" content="VxWorks OS">
@@ -320,11 +315,11 @@
       <meta itemprop="description" content="Where there is embedded, there is VxWorks.">
     </span>
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="风河推VxWorks 7 到底与VxWorks 6.x的区别在哪里">
-      <meta itemprop="description" content="风河推VxWorks 7 到底与VxWorks 6.x的区别在哪里">
+      <meta itemprop="name" content="VxWorks 7.0下基于VxBus的定时器子系统">
+      <meta itemprop="description" content="VxWorks 7.0下基于VxBus的定时器子系统">
     </span>
     <header class="post-header">
-       <h1 class="post-title" itemprop="name headline">风河推VxWorks 7 到底与VxWorks 6.x的区别在哪里 </h1> <div class="post-meta-container">
+       <h1 class="post-title" itemprop="name headline">VxWorks 7.0下基于VxBus的定时器子系统 </h1> <div class="post-meta-container">
   <div class="post-meta-items">
     
 
@@ -334,7 +329,7 @@
     <i class="far fa-calendar"></i>
   </span>
   <span class="post-meta-item-text">发表于：</span>
-  <time title="发表于：2022-12-19 10:47:56 -0500 EST" itemprop="dateCreated datePublished" datetime="2022-12-19 10:47:56 -0500 EST">2022-12-19</time>
+  <time title="发表于：2022-12-23 11:24:58 -0500 EST" itemprop="dateCreated datePublished" datetime="2022-12-23 11:24:58 -0500 EST">2022-12-23</time>
 </span>
     
     
@@ -344,8 +339,8 @@
   </span>
   <span class="post-meta-item-text">分类于：</span>
   <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-    <a href="/categories/news" itemprop="url" rel="index">
-      <span itemprop="name">News</span>
+    <a href="/categories/app" itemprop="url" rel="index">
+      <span itemprop="name">APP</span>
     </a>
   </span>
 </span>
@@ -356,7 +351,7 @@
   <span class="post-meta-item-icon">
     <i class="far fa-file-word"></i>
   </span>
-  <span class="post-meta-item-text">字数：</span><span>40</span>
+  <span class="post-meta-item-text">字数：</span><span>308</span>
 </span>
     
 <span class="post-meta-item" title="阅读">
@@ -364,7 +359,7 @@
     <i class="far fa-clock"></i>
   </span>
   <span class="post-meta-item-text">阅读：&asymp;</span>
-  <span>1分钟</span>
+  <span>2分钟</span>
 </span>
 
     
@@ -375,7 +370,7 @@
   <span class="post-meta-item-text">
   浏览：
   </span>
-  <span id="busuanzi_value_page_pv" data-path="/post/news/difference-between-vxworks-6-and-vxworks7.html"><i class="fa fa-sync fa-spin"></i></span>
+  <span id="busuanzi_value_page_pv" data-path="/post/app/timer-design-based-on-vxbus-in-vxworks-7-0.html"><i class="fa fa-sync fa-spin"></i></span>
 </span>
 
   </div>
@@ -387,27 +382,132 @@
     
     <div class="post-body  autonumber " itemprop="articleBody">
       
-  <p>随着计算机技术的迅速发展和芯片制造工艺的不断进步，嵌入式微处理器的应用日益广泛。从波音飞机到移动终端，都有嵌入式微处理器的存在。在嵌入式微处理器的应用开发中，嵌入式实时操作系统(RTOS)是核心软件。</p>
-<p>目前市场上，风河公司<code>VxWorks</code>一直被认为是业界领先的RTOS，其长期持续在VxWorks方面的研发河投资，为各个行业市场提供了久经验证、值得信赖的嵌入式系统解决方案，特别是提供了多核设备的支持。在每个版本VxWorks的发布中，风河都持续不断地改进系统性能，扩展硬件支持，有力地支持了新一代设备软件的实现。</p>
-<p>风河之所以在业内拥有独一无二的优势，一定程度上得益于市场领先的操作系统阵容。该操作系统阵容由包括VxWorks在内的运行时间技术、风河Linux和Android技术以及在多核架构和迁移策略方面拥有丰富经验、阵容强大的全球专业服务团队组成。</p>
-<h2 id="vxworks新平台-确保三年稳定">VxWorks新平台 确保三年稳定</h2>
-<p><code>物联网</code>的突然闯入，改变了嵌入式行业的格局，
-<a href="https://www.vxworks.net" title="ROTS" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
-    ROTS
-    <i class="fa fa-external-link-alt"></i>
-</a>不仅必须具备传统的核心实时、确定性性能和可靠性，还必须提供高度互联、全面安全、远程管理等物联网环境所需要的全新能力。作为RTOS领域的领导者，风河公司在2010年推出了全新的
-<a href="https://www.vxworks7.com" title="VxWorks 7" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
-    VxWorks 7
-    <i class="fa fa-external-link-alt"></i>
-</a>平台，再一次强化了市场地位，彰显了其对于帮助企业客服并且把握物联网所带来的全新挑战河机会的愿景。</p>
-<p>笔者近期非常有幸的采访到了风河公司产品线经理Stephen Olsen，在谈到VxWorks升级后所带来的新功能时，他表示，VxWorks 7新的模块化架构，使用户能够对系统组件和协议实施高效且有针对性的升级，无需改变系统内核，从而最大限度地减少了测试和重新认证的工作量，确保客户系统始终能够采用最先进的技术。</p>
-<p>Stephen Olsen强调，VxWorks 7中最主要的改变是这个平台是三年都是稳定的，风河公司三年都不会去动它整个的结构，不管是文件系统的管理还是网络，各个功能就类似于安装包一样上去的。如此一来，对风河公司的合作伙伴的好处是他们不需要跟着风河的改版本而去改他们的版本。通过稳定的平台，带给合作伙伴最大的便利。</p>
-<p>不仅如此，VxWorks 7平台将微内核与标准内核融为一体，使用户能够在不同类别的设备上运用同一个RTOS基础，适用范围十分广泛，从小型消费者可穿戴设备到大型组网设备以及介于二者之间的各类设备，从而降低了开发和维护成本。</p>
-<h2 id="平滑演进-版本升级无忧虑">平滑演进 版本升级无忧虑</h2>
-<p>众所周知，风河公司VxWorks平台在过去的一段时间内，积累的了大量的用户，此次升级对于用户来说，怎么样去平滑演进到最新的版本成了首要问题。为此Stephen Olsen表示，为了方便用户从VxWorks的旧版本转移到新版本上来，VxWorks 7的内核支持VxWorks 6内核操作环境，大多数用于VxWorks 6的板级支持包、驱动程序和用户应用程序都可以在VxWorks 7内核运行，并且开发的一些API也是一样的。对于开发者用户在用的时候，变化并没有那么直接、那么大。这也是因为风河公司在后台做了很多的事情，扫除了用户在升级过程中的顾虑。</p>
-<p>Kontron产品经理Hubert Hafner就曾表示，“VxWorks 7的模块化架构令我们深感兴奋，将使我们通过有效纠错和添加新功能的方式，无需返工或者重新测试系统即可让我们的嵌入式产品在整个寿命期内保持竞争力。由于其体积较小，我们认为VxWorks 7将能够完美匹配本公司对于降低产品体积、重量以及功耗要求极其严格的产品。我们对于VxWorks 7纳入基于Open VG的图形栈、蓝牙、Continua以及新的基于标准的Wind River Workbench 4开发套件表示欢迎。Kontron期待着将最新版的VxWorks 7用于我们现有以及未来的嵌入式产品，并且很方便地从之前版本过渡到VxWorks 7。”</p>
-<p>同样，新平台的安全性依然是用户比较关注的问题。笔者了解到，VxWorks可信系统平台在特殊换下的安全性表现历来良好。作为一款高可靠性实时操作系统，VxWorks具有硬实时性与确定性，可满足最高安全标准。</p>
-<p>值得一提的是，风河公司还为合作伙伴提供了专业的服务，可以帮助企业降低风险、提升竞争力。专业服务围绕VxWorks平台提供多种服务，除了安装、指导、设计及其他服务以外，还包括板级支持包的开发与定制、选定硬件的启动优化河安全启动服务。</p>
+  <p>最近研究了一下VxWorks 7.0下基于vxbus的定时器子系统，方便我们在需要使用定时器中断的时候引用，开发过程中的一点体会记录下来，如果由理解不对或者不全面的望批评指正，谢谢。</p>
+<p>开发平台为zynq7Z020,该处理器由三个全局的定时器，分别是globaltimer，ttc_0，ttc_1，其中全局定时器用作系统的脉搏，是整个操作系统的ticks定时器，其可通过内核配置完成，具体如下：</p>
+<p><img src="http://www.vxworks.net/images/vxworks/vxworks-70-vxbus-timer.png" alt="VxWorks 7.0 vxbus Timer"></p>
+<p>而ttc_0会作为系统的AUX clock在初始化的时候完成匹配，系统使用SPY命令时启用定时器，所以，如果要使用TTC0作为应用，要考虑spy调试对其影响，TTC_1可以作为用户自定义定时器使用，挂接用户中断服务例程。其设备树配置如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">globaltimer: globaltimer<span style="color:#960050;background-color:#1e0010">@</span>f8f00200
+            {
+            compatible <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;arm,cortex-a9-gtc&#34;</span>;
+            reg <span style="color:#f92672">=</span> ;
+            clock<span style="color:#f92672">-</span>frequency <span style="color:#f92672">=</span> ;
+            interrupts <span style="color:#f92672">=</span> ;
+            interrupt<span style="color:#f92672">-</span>parent <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;&amp;</span>intc<span style="color:#f92672">&gt;</span>;
+            }; 
+ttc_0: ps7<span style="color:#f92672">-</span>ttc<span style="color:#960050;background-color:#1e0010">@</span>f8001000
+            {
+            compatible <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;xlnx,zynq7k-ttc&#34;</span>;
+            reg <span style="color:#f92672">=</span> ;
+            clock<span style="color:#f92672">-</span>frequency <span style="color:#f92672">=</span> ;
+            interrupt<span style="color:#f92672">-</span>parent <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;&amp;</span>intc<span style="color:#f92672">&gt;</span>;
+            interrupts <span style="color:#f92672">=</span> ;
+            };
+ 
+        ttc_1: ps7<span style="color:#f92672">-</span>ttc<span style="color:#960050;background-color:#1e0010">@</span>f8002000
+            {
+            compatible <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;xlnx,zynq7k-ttc&#34;</span>;
+            reg <span style="color:#f92672">=</span> ;
+            clock<span style="color:#f92672">-</span>frequency <span style="color:#f92672">=</span> ;
+            interrupt<span style="color:#f92672">-</span>parent <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;&amp;</span>intc<span style="color:#f92672">&gt;</span>;
+            interrupts <span style="color:#f92672">=</span> ;
+            };
+</code></pre></div><p>系统在对vxbus子系统初始化时调用每个驱动的fdtZynqTimerAttach函数，在这个函数中对定时器进行初始化相关操作，同时挂接几个重要的回调函数</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">    pTimerFunc<span style="color:#f92672">-&gt;</span>timerAllocate    <span style="color:#f92672">=</span> zynqTimerAllocate;
+    pTimerFunc<span style="color:#f92672">-&gt;</span>timerRelease     <span style="color:#f92672">=</span> zynqTimerRelease;
+    pTimerFunc<span style="color:#f92672">-&gt;</span>timerRolloverGet <span style="color:#f92672">=</span> zynqTimerRolloverGet;
+    pTimerFunc<span style="color:#f92672">-&gt;</span>timerCountGet    <span style="color:#f92672">=</span> zynqTimerCountGet;
+    pTimerFunc<span style="color:#f92672">-&gt;</span>timerDisable     <span style="color:#f92672">=</span> zynqTimerDisable;
+    pTimerFunc<span style="color:#f92672">-&gt;</span>timerEnable      <span style="color:#f92672">=</span> zynqTimerEnable;
+    pTimerFunc<span style="color:#f92672">-&gt;</span>timerISRSet      <span style="color:#f92672">=</span> zynqTimerISRSet;
+</code></pre></div><p>最后调用 vxbTimerRegister (pTimerFunc);将定时器注册到定时器子系统，可以通过vxbTimerShow查看，针对此开发驱动，需要做一下工作：</p>
+<p>第一：在定时器子系统中查找一个没有使用的，而且最适合自己的定时器使用，返回定时器的句柄。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">LOCAL <span style="color:#66d9ef">struct</span> vxbTimerFunctionality <span style="color:#f92672">*</span> <span style="color:#a6e22e">usrTimerInit</span>(<span style="color:#66d9ef">int</span> timerNo)
+{
+	<span style="color:#66d9ef">struct</span> vxbTimerFunctionality <span style="color:#f92672">*</span>pTimer <span style="color:#f92672">=</span> NULL;
+	
+	<span style="color:#66d9ef">if</span>(timerNo <span style="color:#f92672">&gt;=</span> TTC_TIMER_SUM)
+		<span style="color:#66d9ef">return</span> NULL;
+	
+	pTimer <span style="color:#f92672">=</span> vxbTimerEval(usrTimer[timerNo].timerEvalFunc);
+	<span style="color:#75715e">//printf(&#34;timer( point = %08x %s:%d)\n&#34;,pTimer,pTimer-&gt;timerName,pTimer-&gt;timerNo);
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">//pTimer1 = TIMERFUNC_TO_TIMERDATA (pTimer);
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">//printf(&#34;pTimer1 = %08x allocated = %d\n&#34;,pTimer1,pTimer1-&gt;timerFunc.allocated);
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span>(pTimer <span style="color:#f92672">==</span> NULL)
+		<span style="color:#66d9ef">return</span> NULL;
+	
+	pTimer<span style="color:#f92672">-&gt;</span>timerRelease(pTimer);
+	<span style="color:#75715e">//printf(&#34;ptimer = %08x\n&#34;,pTimer);
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> ((pTimer<span style="color:#f92672">-&gt;</span>timerAllocate(pTimer,pTimer<span style="color:#f92672">-&gt;</span>features <span style="color:#f92672">&amp;</span> VXB_TIMER_AUTO_RELOAD)) <span style="color:#f92672">!=</span> OK)
+	{
+		printf(<span style="color:#e6db74">&#34;####callocate timer failed</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>);
+		<span style="color:#66d9ef">return</span> NULL;
+	}
+ 
+	<span style="color:#66d9ef">return</span> pTimer;
+}
+</code></pre></div><p>第二：根据找到的句柄，初始化定时器，挂接中断服务例程</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">LOCAL STATUS <span style="color:#a6e22e">usrTimerIntConnect</span>(<span style="color:#66d9ef">struct</span> vxbTimerFunctionality <span style="color:#f92672">*</span>pTimer,FUNCPTR routine,_Vx_usr_arg_t arg)
+{
+	 ZYNQ_TIMER <span style="color:#f92672">*</span>         pTimer1;
+	<span style="color:#75715e">//printf(&#34;pTimer3 = %08x \n&#34;,pTimer);
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> (pTimer <span style="color:#f92672">==</span> NULL)
+		<span style="color:#66d9ef">return</span> ERROR;
+	<span style="color:#75715e">//pTimer1 = TIMERFUNC_TO_TIMERDATA (pTimer);
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">//printf(&#34;pTimer2 = %08x allocated = %d\n&#34;,pTimer1,pTimer1-&gt;timerFunc.allocated);
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> (pTimer<span style="color:#f92672">-&gt;</span>timerISRSet (pTimer, (<span style="color:#66d9ef">void</span>(<span style="color:#f92672">*</span>)(_Vx_usr_arg_t))routine,arg) <span style="color:#f92672">!=</span> OK)
+		<span style="color:#66d9ef">return</span> ERROR;
+	
+	<span style="color:#66d9ef">return</span> (OK);
+ 
+}
+</code></pre></div><p>第三：设置定时器的中断周期</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">LOCAL STATUS <span style="color:#a6e22e">usrTimerClkRateSet</span>(<span style="color:#66d9ef">struct</span> vxbTimerFunctionality <span style="color:#f92672">*</span>pTimer,<span style="color:#66d9ef">int</span> ticksPerSecond)
+{
+	<span style="color:#66d9ef">if</span> (pTimer <span style="color:#f92672">==</span> NULL)
+		<span style="color:#66d9ef">return</span> ERROR;
+ 
+	<span style="color:#66d9ef">if</span> ( ((UINT)ticksPerSecond <span style="color:#f92672">&lt;</span> usrTtc0MinFreq) <span style="color:#f92672">||</span> ((UINT)ticksPerSecond <span style="color:#f92672">&gt;</span> usrTtc0MaxFreq) )
+		<span style="color:#66d9ef">return</span> (ERROR);
+ 
+	<span style="color:#66d9ef">if</span> (pTimer<span style="color:#f92672">-&gt;</span>ticksPerSecond <span style="color:#f92672">!=</span> (UINT)ticksPerSecond)
+	{
+		pTimer<span style="color:#f92672">-&gt;</span>ticksPerSecond <span style="color:#f92672">=</span> ticksPerSecond;
+		usrTimerDisable (pTimer);
+		usrTimerEnable (pTimer);
+	}
+	<span style="color:#66d9ef">return</span> (OK);
+}
+</code></pre></div><p>第四：使能定时器中断</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">LOCAL <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">usrTimerEnable</span>(<span style="color:#66d9ef">struct</span> vxbTimerFunctionality <span style="color:#f92672">*</span>pTimer)
+{
+<span style="color:#75715e">#ifndef	_WRS_CONFIG_SMP
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> key;
+<span style="color:#75715e">#endif	</span><span style="color:#75715e">/* !_WRS_CONFIG_SMP */</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span> 
+    <span style="color:#75715e">/* check if timer is available */</span>
+    <span style="color:#66d9ef">if</span> (pTimer <span style="color:#f92672">==</span> NULL)
+        <span style="color:#66d9ef">return</span>;
+<span style="color:#75715e">#ifndef	_WRS_CONFIG_SMP
+</span><span style="color:#75715e"></span>	key <span style="color:#f92672">=</span> intCpuLock ();
+<span style="color:#75715e">#endif	</span><span style="color:#75715e">/* !_WRS_CONFIG_SMP */</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>vxbSmpClkRuning)
+	{
+		<span style="color:#66d9ef">if</span> (pTimer<span style="color:#f92672">-&gt;</span>timerEnable (pTimer,(pTimer<span style="color:#f92672">-&gt;</span>clkFrequency <span style="color:#f92672">/</span>pTimer<span style="color:#f92672">-&gt;</span>ticksPerSecond)) <span style="color:#f92672">!=</span> OK)
+		{
+		<span style="color:#75715e">#ifndef	_WRS_CONFIG_SMP
+</span><span style="color:#75715e"></span>			intCpuUnlock (key);
+		<span style="color:#75715e">#endif	</span><span style="color:#75715e">/* !_WRS_CONFIG_SMP */</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>			<span style="color:#66d9ef">return</span>;
+		}
+		vxbSmpClkRuning <span style="color:#f92672">=</span> TRUE;
+	}
+ 
+ 
+<span style="color:#75715e">#ifndef	_WRS_CONFIG_SMP
+</span><span style="color:#75715e"></span>	intCpuUnlock (key);
+<span style="color:#75715e">#endif	</span><span style="color:#75715e">/* !_WRS_CONFIG_SMP */</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>通过以上四步可以实现定时器的初始化及使用。</p>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1543398821442998"
      crossorigin="anonymous"></script>
 
@@ -427,14 +527,11 @@
 
 <div class="post-tags">
   
-    <a href="/tags/windriver">
-    WindRiver
+    <a href="/tags/vxworks-7.0">
+    VxWorks 7.0
   </a>
-    <a href="/tags/vxworks-6">
-    VxWorks 6
-  </a>
-    <a href="/tags/vxworks-7">
-    VxWorks 7
+    <a href="/tags/vxbus">
+    VxBus
   </a>
 </div>
 
@@ -462,7 +559,7 @@
   <ul>
     <li class="post-copyright-title">
       <strong>文章标题：</strong>
-      风河推VxWorks 7 到底与VxWorks 6.x的区别在哪里
+      VxWorks 7.0下基于VxBus的定时器子系统
     </li>
     <li class="post-copyright-author">
       <strong>本文作者： </strong>
@@ -470,7 +567,7 @@
     </li>
     <li class="post-copyright-link"> 
       <strong>本文链接：</strong>
-       <a id="post-cr-link" href="https://www.vxworks7.com/post/news/difference-between-vxworks-6-and-vxworks7.html" title="风河推VxWorks 7 到底与VxWorks 6.x的区别在哪里">https://www.vxworks7.com/post/news/difference-between-vxworks-6-and-vxworks7.html</a>
+       <a id="post-cr-link" href="https://www.vxworks7.com/post/app/timer-design-based-on-vxbus-in-vxworks-7-0.html" title="VxWorks 7.0下基于VxBus的定时器子系统">https://www.vxworks7.com/post/app/timer-design-based-on-vxbus-in-vxworks-7-0.html</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -495,13 +592,13 @@
 </div>
 <div class="post-nav">
   <div class="post-nav-next post-nav-item">
-    <a href="/post/bsp/vxworks-firmware-analysis.html" rel="next" title="VxWorks固件分析">
-      <i class="fa fa-chevron-left"></i> VxWorks固件分析
+    <a href="/post/welcome-to-vxworks-club/" rel="next" title="欢迎加入 VxWorks 俱乐部！">
+      <i class="fa fa-chevron-left"></i> 欢迎加入 VxWorks 俱乐部！
     </a>
   </div>
   <div class="post-nav-prev post-nav-item">
-    <a href="/post/bsp/vxworks-vxbus-mechanism.html" rel="prev" title="VxWorks系统中vxbus机制总结">
-      VxWorks系统中vxbus机制总结
+    <a href="/post/app/how-to-display-photos-with-windml-5.3.html" rel="prev" title="WindRiver WindML 5.3显示图片程序">
+      WindRiver WindML 5.3显示图片程序
       <i class="fa fa-chevron-right"></i>
     </a>
   </div>
