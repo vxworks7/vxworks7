@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)" />
+<meta name="generator" content="Hugo 0.92.2" />
+<link rel="shortcut icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
+<link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/imgs/icons/favicon_32_32_next.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/imgs/icons/apple_touch_icon_next.png">
+<meta itemprop="name" content="T1042/T2080 VxWorks7 开发笔记" />
+<meta itemprop="description" content="T1042/T2080 VxWorks7 开发笔记" />
+<meta itemprop="datePublished" ZgotmplZ />
+<meta itemprop="dateModified" ZgotmplZ />
+<meta itemprop="image" content="https://www.vxworks7.com/imgs/VxWorks_7_logo.png" />
+<meta itemprop="keywords" content="VxWorks 7,PowerPC,T1042,T2080" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="T1042/T2080 VxWorks7 开发笔记" />
+<meta property="og:description" content="T1042/T2080 VxWorks7 开发笔记" />
+<meta property="og:image" content="/imgs/VxWorks_7_logo.png" />
+<meta property="og:image:width" content="312" />
+<meta property="og:image:height" content="312" />
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg" />
+<meta property="og:url" content="https://www.vxworks7.com/post/bsp/vxworks-7-for-t1042-t2080-how-to.html"/>
+<meta property="og:site_name" content="VxWorks 7" />
+<meta property="og:locale" content="zh-CN"/>
+<meta property="article:author" content="VxWorks OS" />
+<meta property="article:published_time" content="2022-12-24 03:13:31 -0500 EST" />
+<meta property="article:modified_time" content="2022-12-24 03:13:31 -0500 EST" />
+
+
+  
+  <link type="text/css" rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.2/css/all.min.css" />
+  
+  <link type="text/css" rel="stylesheet" href="https://unpkg.com/animate.css@3.1.1/animate.min.css" />
+
+
+<link rel="stylesheet" href="/css/main.min.7d561ec9984cf0cb727fc88e14a92134576c99ccb9ce2f31b5b5541ab4ced328.css">
+  <style type="text/css">
+    .post-footer, .flinks-list-footer hr:after {
+      content: "~ 我可是有底线的哟 ~";
+    }
+  </style>
+  <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"vxworks-7-for-t1042-t2080-how-to.html","permalink":"https://www.vxworks7.com/post/bsp/vxworks-7-for-t1042-t2080-how-to.html","title":"T1042/T2080 VxWorks7 开发笔记"}</script>
+  <script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', () => {
+    var script = document.createElement('script');
+      
+    script.charset = "UTF-8";
+    script.src     = "https:\/\/busuanzi.ibruce.info\/busuanzi\/2.3\/busuanzi.pure.mini.js";
+    script.async   = "true"
+
+    document.head.appendChild(script);
+  });
+</script>
+
+
+
+
+  <title>T1042/T2080 VxWorks7 开发笔记 - VxWorks 7</title>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage"  class="use-motion" >
+  <div class="headband"></div>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner">
+<div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">VxWorks 7</h1>
+      <i class="logo-line"></i>
+    </a>
+    
+      <p class="site-subtitle" itemprop="description">Embedded World</p>
+      <img class="custom-logo-image" src="/imgs/VxWorks_7_logo.png" alt="VxWorks 7">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+      
+      <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+    <li class="menu-item menu-item-home">
+      <a href="/" class="hvr-icon-pulse " rel="section"><i class="fa fa-home hvr-icon"></i>首页
+      </a>
+    </li>
+    <li class="menu-item menu-item-about">
+      <a href="/about.html" class="hvr-icon-pulse " rel="section"><i class="fa fa-user hvr-icon"></i>关于
+      </a>
+    </li>
+    <li class="menu-item menu-item-flinks">
+      <a href="/flinks.html" class="hvr-icon-pulse " rel="section"><i class="fa fa-thumbs-up hvr-icon"></i>友情链接
+      </a>
+    </li>
+    <li class="menu-item menu-item-archives">
+      <a href="/archives/" class="hvr-icon-pulse " rel="section"><i class="fa fa-archive hvr-icon"></i>归档
+        <span class="badge">43</span>
+      </a>
+    </li>
+    <li class="menu-item menu-item-commonweal">
+      <a href="https://www.vxworks.net" class="hvr-icon-pulse " rel="section"><i class="fa fa-heartbeat hvr-icon"></i>赞助商
+      </a>
+    </li>
+    <li class="menu-item menu-item-search">
+      <a role="button" class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+    </div>
+  </div>
+
+      </div>
+      <div class="toggle sidebar-toggle" role="button">
+  <span class="toggle-line"></span>
+  <span class="toggle-line"></span>
+  <span class="toggle-line"></span>
+</div>
+<aside class="sidebar">
+  
+  <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-toc">
+        文章目录
+      </li>
+      <li class="sidebar-nav-overview">
+        站点概览
+      </li>
+    </ul>
+    <div class="sidebar-panel-container">
+      
+      <div class="post-toc-wrap sidebar-panel">
+        <div class="post-toc animated"><nav id="TableOfContents"></nav></div>
+      </div>
+      
+      <div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="VxWorks OS"
+      src="/imgs/hugo_next_avatar.png">
+  <p class="site-author-name" itemprop="name">VxWorks OS</p>
+  <div class="site-description" itemprop="description">Where there is embedded, there is VxWorks.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+    <div class="site-state-item site-state-posts">
+      <a href="/archives/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">日志</span>
+      </a>
+    </div>
+    <div class="site-state-item site-state-categories">
+      <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span>
+      </a>
+    </div>
+    <div class="site-state-item site-state-tags">
+      <a href="/tags/">
+        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-name">标签</span>
+      </a>
+    </div>
+  </nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+
+
+  <span class="links-of-social-item">
+    <a href="https://github.com/" title="Github → https://github.com/" rel="noopener" class="hvr-icon-pulse" target="_blank">
+      <i class="fab fa-github fa-fw  hvr-icon "></i>Github
+    </a>
+  </span>
+  <span class="links-of-social-item">
+    <a href="https://www.zhihu.com/" title="知乎 → https://www.zhihu.com/" rel="noopener" class="hvr-icon-pulse" target="_blank">
+      <i class="fa fa-book fa-fw  hvr-icon "></i>知乎
+    </a>
+  </span>
+</div>
+<div class="cc-license animated" itemprop="license">
+  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank" title="共享知识">
+    <img src="/imgs/cc/big/by_nc_sa.svg" alt="共享知识">
+  </a>
+</div>
+<div class="links-of-blogroll site-overview-item animated">
+  <div class="links-of-blogroll-title">
+    <i class="fa fa-globe fa-fw"></i>友情链接
+  </div>
+  <ul class="links-of-blogroll-list">
+    <li class="links-of-blogroll-item">
+      <a href="https://www.gaitpu.com" title="https://www.gaitpu.com" target="_blank">Google AI TPU</a>
+    </li>
+    <li class="links-of-blogroll-item">
+      <a href="https://www.vxworks.net" title="https://www.vxworks.net" target="_blank">VxWorks俱乐部</a>
+    </li>
+  </ul>
+</div>
+      </div>
+    </div>
+   
+  </div>
+<div class="sidebar-card-widget">
+  <div class="item-headline">
+    <i class="fas fa-chart-line"></i>
+    <span>网站资讯</span>
+  </div>
+  <div class="siteinfo">
+    <div class="siteinfo-item">
+      <div class="item-name"><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+      <div class="item-count" id="runTimes" data-publishdate="2021-06-03T11:52:18&#43;08:00"></div>
+    </div>
+      <div class="siteinfo-item">
+        <div class="item-name">
+          <i class="fas fa fa-user"></i>总访客数：
+        </div>
+        <div class="item-count" id="busuanzi_value_site_uv"></div>
+      </div>
+      <div class="siteinfo-item">
+        <div class="item-name">
+          <i class="fas fa fa-eye"></i>页面浏览：
+        </div>
+        <div class="item-count" id="busuanzi_value_site_pv"></div>
+      </div>
+    <div class="siteinfo-item">
+      <div class="item-name"><i class="fa fa-font"></i>总字数：</div>
+      <div class="item-count" id="wordsCount" data-count="17227"></div>
+    </div>
+    <div class="siteinfo-item">
+      <div class="item-name"><i class="fa fa-mug-hot"></i>阅读约：</div>
+      <div class="item-count" id="readTimes" data-times="108"></div>
+    </div>
+    <div class="siteinfo-item">
+      <div class="item-name"><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+      <div class="item-count" id="last-push-date" data-lastpushdate="2022-12-24T03:13:31-05:00"></div>
+    </div>
+  </div>
+</div>
+</aside>
+<div class="sidebar-dimmer"></div>
+
+    </header>
+    
+    <div class="tool-buttons" >
+  <a id="goto-comments" class="button goto-comments" href="#comments"  title="直达评论">
+    <i class="fas fa-comments"></i>
+  </a> 
+  <div id="switch-theme" class="button" title="深浅模式切换">
+    <i class="fas fa-adjust"></i>
+  </div> 
+  
+  <div class="back-to-top" role="button" title="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div> 
+</div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+    <div class="main-inner post posts-expand">
+      
+  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://www.vxworks7.com/post/bsp/vxworks-7-for-t1042-t2080-how-to.html">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/imgs/hugo_next_avatar.png">
+      <meta itemprop="name" content="VxWorks OS">
+    </span>
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="VxWorks OS">
+      <meta itemprop="description" content="Where there is embedded, there is VxWorks.">
+    </span>
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="T1042/T2080 VxWorks7 开发笔记">
+      <meta itemprop="description" content="T1042/T2080 VxWorks7 开发笔记">
+    </span>
+    <header class="post-header">
+       <h1 class="post-title" itemprop="name headline">T1042/T2080 VxWorks7 开发笔记 </h1> <div class="post-meta-container">
+  <div class="post-meta-items">
+    
+
+
+<span class="post-meta-item">
+  <span class="post-meta-item-icon">
+    <i class="far fa-calendar"></i>
+  </span>
+  <span class="post-meta-item-text">发表于：</span>
+  <time title="发表于：2022-12-24 03:13:31 -0500 EST" itemprop="dateCreated datePublished" datetime="2022-12-24 03:13:31 -0500 EST">2022-12-24</time>
+</span>
+    
+    
+<span class="post-meta-item">
+  <span class="post-meta-item-icon">
+    <i class="far fa-folder-open"></i>
+  </span>
+  <span class="post-meta-item-text">分类于：</span>
+  <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+    <a href="/categories/bsp" itemprop="url" rel="index">
+      <span itemprop="name">BSP</span>
+    </a>
+  </span>
+</span>
+  </div>
+  <div class="post-meta-items">
+    
+<span class="post-meta-item" title="字数">
+  <span class="post-meta-item-icon">
+    <i class="far fa-file-word"></i>
+  </span>
+  <span class="post-meta-item-text">字数：</span><span>2100</span>
+</span>
+    
+<span class="post-meta-item" title="阅读">
+  <span class="post-meta-item-icon">
+    <i class="far fa-clock"></i>
+  </span>
+  <span class="post-meta-item-text">阅读：&asymp;</span>
+  <span>10分钟</span>
+</span>
+
+    
+<span class="post-meta-item" title="浏览">
+  <span class="post-meta-item-icon">
+    <i class="far fa-eye"></i>
+  </span>
+  <span class="post-meta-item-text">
+  浏览：
+  </span>
+  <span id="busuanzi_value_page_pv" data-path="/post/bsp/vxworks-7-for-t1042-t2080-how-to.html"><i class="fa fa-sync fa-spin"></i></span>
+</span>
+
+  </div>
+  
+</div>
+
+
+    </header>
+    
+    <div class="post-body  autonumber " itemprop="articleBody">
+      
+  <p>
+<a href="https://www.vxworks.net" title="VxWorks 7" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+    VxWorks 7
+    <i class="fa fa-external-link-alt"></i>
+</a>是WindRiver推出的新一代版本，相比较VxWorks 6.9特别是驱动部分有很大的改变，VxWorks 7和Linux很像，有设备树的概念，所以从Linux移植驱动到VxWorks 7会方便很多。</p>
+<ol>
+<li>新建VSB工程</li>
+<li>新建VIP工程，编译生成vxworks</li>
+<li>使用库里的dts文件替换bsp里面的dts文件</li>
+<li>网络加载vxworks，可以启动但是没有shell</li>
+</ol>
+<p><img src="https://www.vxworks.net/images/vxworks/T1042-T2080-VxWorks7-1.png" alt="T1042/T2080 VxWorks 7"></p>
+<p>为解决此问题，添加shell组件，rebuild 工程</p>
+<p><img src="https://www.vxworks.net/images/vxworks/T1042-T2080-VxWorks7-2.png" alt="T1042/T2080 VxWorks 7"></p>
+<p><img src="https://www.vxworks.net/images/vxworks/T1042-T2080-VxWorks7-3.png" alt="T1042/T2080 VxWorks 7"></p>
+<p>VxWorks7 启动，有shell</p>
+<p><img src="https://www.vxworks.net/images/vxworks/T1042-T2080-VxWorks7-4.png" alt="T1042/T2080 VxWorks 7"></p>
+<p>不支持CMD命令</p>
+<p><img src="https://www.vxworks.net/images/vxworks/T1042-T2080-VxWorks7-5.png" alt="T1042/T2080 VxWorks 7"></p>
+<p>查看注册的设备驱动</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">-&gt; vxbDrvShow
+Driver <span style="color:#f92672">[</span>fslBookeTimer<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>freescale booke timer driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x2934e4<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>genericPhy<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbMiiBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Generic 10/100/1000 PHY driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x294090<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 3<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>sgmiiPhy<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbMiiBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Freescale SGMII PHY driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x2940e8<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>mmdPhy<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbMiiBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Clause <span style="color:#ae81ff">45</span> MMD PHY driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x29414c<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 4<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>memacMdio<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Freescale MEMAC MDIO driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x2941c0<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 8<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>memac<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Freescale MEMAC END driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x2942c0<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 6<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>QorIQQman<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Freescale QorIQQman driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x294328<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>fsl,qman-portal<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Freescale QorIQQman Portal driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x294378<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>QorIQFman<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Freescale QorIQFman driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x294420<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>QorIQBman<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Freescale QorIQBman driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x294450<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>fsl,bman-portal<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Freescale QorIQBman Portal driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x2944a0<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>qoriqClock<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Freescale QorIQ clock driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x294c98<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>qoriqL3Cache<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>QorIQ L3 cache driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x294cb8<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>coreNetL2Cache<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>CORENET L2 cache driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x294cf8<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>qoriqFpga<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Freescale QorIQ FPGA driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x294d30<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>qoriqLaw<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Freescale Integrated LAW Controller<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x294d98<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>pcib<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbPciBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>PCI generic bridge driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x295340<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>mainbus<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>root<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Freescale T2080QDS<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x295470<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>mpic<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>interrupt controller driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x295570<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>fdtBus<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbNexusBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>FDT bus controller<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x295590<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>simpleBus<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>simple bus controller<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x295644<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 4<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>ns16550<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>ns16550 serial OF driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x29568c<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 2<span style="color:#f92672">)</span>
+
+value <span style="color:#f92672">=</span> 83 <span style="color:#f92672">=</span> 0x53 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;S&#39;</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">-&gt; vxbDevShow
+mainbus-0 at root nexus level<span style="color:#f92672">(</span>0<span style="color:#f92672">)</span>
+
+mainbus-0: &lt;Freescale T2080QDS&gt;
+
+   fdtBus-0 <span style="color:#f92672">(</span>refs: 9<span style="color:#f92672">)</span> on mainbus0 <span style="color:#f92672">(</span>refs: 2<span style="color:#f92672">)</span>
+
+   fdtBus-0: &lt;FDT bus controller&gt; <span style="color:#f92672">(</span>0x2008e4c0<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>1<span style="color:#f92672">)</span>
+
+      fslBookeTimer-0 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on fdtBus0 <span style="color:#f92672">(</span>refs: 9<span style="color:#f92672">)</span>
+
+      fslBookeTimer-0: &lt;freescale booke timer driver&gt; <span style="color:#f92672">(</span>0x2008e550<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
+
+      simpleBus-0 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span> on fdtBus0 <span style="color:#f92672">(</span>refs: 9<span style="color:#f92672">)</span>
+
+      simpleBus-0: &lt;simple bus controller&gt; <span style="color:#f92672">(</span>0x2008e700<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-0 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus0 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-0: &lt;Freescale QorIQBman Portal driver&gt; <span style="color:#f92672">(</span>0x2008ea50<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-1 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus0 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-1: &lt;Freescale QorIQBman Portal driver&gt; <span style="color:#f92672">(</span>0x2008ece0<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-2 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus0 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-2: &lt;Freescale QorIQBman Portal driver&gt; <span style="color:#f92672">(</span>0x2008ef70<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-3 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus0 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-3: &lt;Freescale QorIQBman Portal driver&gt; <span style="color:#f92672">(</span>0x2008f200<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-4 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus0 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-4: &lt;Freescale QorIQBman Portal driver&gt; <span style="color:#f92672">(</span>0x2008f490<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-5 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus0 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-5: &lt;Freescale QorIQBman Portal driver&gt; <span style="color:#f92672">(</span>0x2008f720<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-6 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus0 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-6: &lt;Freescale QorIQBman Portal driver&gt; <span style="color:#f92672">(</span>0x2008f9b0<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-7 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus0 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-7: &lt;Freescale QorIQBman Portal driver&gt; <span style="color:#f92672">(</span>0x2008fc40<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-8 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus0 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-8: &lt;Freescale QorIQBman Portal driver&gt; <span style="color:#f92672">(</span>0x2008fed0<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-9 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus0 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-9: &lt;Freescale QorIQBman Portal driver&gt; <span style="color:#f92672">(</span>0x20090160<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-10 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus0 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-10: &lt;Freescale QorIQBman Portal driver&gt; <span style="color:#f92672">(</span>0x200903f0<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-11 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus0 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-11: &lt;Freescale QorIQBman Portal driver&gt; <span style="color:#f92672">(</span>0x20090680<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-12 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus0 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-12: &lt;Freescale QorIQBman Portal driver&gt; <span style="color:#f92672">(</span>0x20090910<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-13 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus0 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-13: &lt;Freescale QorIQBman Portal driver&gt; <span style="color:#f92672">(</span>0x20090ba0<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-14 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus0 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-14: &lt;Freescale QorIQBman Portal driver&gt; <span style="color:#f92672">(</span>0x20090e30<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-15 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus0 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-15: &lt;Freescale QorIQBman Portal driver&gt; <span style="color:#f92672">(</span>0x200910c0<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-16 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus0 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-16: &lt;Freescale QorIQBman Portal driver&gt; <span style="color:#f92672">(</span>0x20091350<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-17 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus0 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,bman-portal-17: &lt;Freescale QorIQBman Portal driver&gt; <span style="color:#f92672">(</span>0x200915e0<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+      simpleBus-1 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span> on fdtBus0 <span style="color:#f92672">(</span>refs: 9<span style="color:#f92672">)</span>
+
+      simpleBus-1: &lt;simple bus controller&gt; <span style="color:#f92672">(</span>0x20091670<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-0 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus1 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-0: &lt;Freescale QorIQQman Portal driver&gt; <span style="color:#f92672">(</span>0x200919c0<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-1 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus1 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-1: &lt;Freescale QorIQQman Portal driver&gt; <span style="color:#f92672">(</span>0x20091c80<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-2 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus1 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-2: &lt;Freescale QorIQQman Portal driver&gt; <span style="color:#f92672">(</span>0x20091f40<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-3 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus1 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-3: &lt;Freescale QorIQQman Portal driver&gt; <span style="color:#f92672">(</span>0x20092200<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-4 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus1 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-4: &lt;Freescale QorIQQman Portal driver&gt; <span style="color:#f92672">(</span>0x200924c0<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-5 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus1 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-5: &lt;Freescale QorIQQman Portal driver&gt; <span style="color:#f92672">(</span>0x20092780<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-6 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus1 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-6: &lt;Freescale QorIQQman Portal driver&gt; <span style="color:#f92672">(</span>0x20092a40<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-7 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus1 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-7: &lt;Freescale QorIQQman Portal driver&gt; <span style="color:#f92672">(</span>0x20092d00<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-8 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus1 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-8: &lt;Freescale QorIQQman Portal driver&gt; <span style="color:#f92672">(</span>0x20092fc0<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-9 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus1 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-9: &lt;Freescale QorIQQman Portal driver&gt; <span style="color:#f92672">(</span>0x20093280<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-10 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus1 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-10: &lt;Freescale QorIQQman Portal driver&gt; <span style="color:#f92672">(</span>0x20093540<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-11 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus1 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-11: &lt;Freescale QorIQQman Portal driver&gt; <span style="color:#f92672">(</span>0x20093800<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-12 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus1 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-12: &lt;Freescale QorIQQman Portal driver&gt; <span style="color:#f92672">(</span>0x20093ac0<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-13 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus1 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-13: &lt;Freescale QorIQQman Portal driver&gt; <span style="color:#f92672">(</span>0x20093d80<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-14 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus1 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-14: &lt;Freescale QorIQQman Portal driver&gt; <span style="color:#f92672">(</span>0x20094040<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-15 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus1 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-15: &lt;Freescale QorIQQman Portal driver&gt; <span style="color:#f92672">(</span>0x20094300<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-16 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus1 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-16: &lt;Freescale QorIQQman Portal driver&gt; <span style="color:#f92672">(</span>0x200945c0<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-17 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus1 <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+         fsl,qman-portal-17: &lt;Freescale QorIQQman Portal driver&gt; <span style="color:#f92672">(</span>0x20094880<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+      simpleBus-2 <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span> on fdtBus0 <span style="color:#f92672">(</span>refs: 9<span style="color:#f92672">)</span>
+
+      simpleBus-2: &lt;simple bus controller&gt; <span style="color:#f92672">(</span>0x20094940<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
+
+         qoriqFpga-0 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus2 <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span>
+
+         qoriqFpga-0: &lt;Freescale QorIQ FPGA driver&gt; <span style="color:#f92672">(</span>0x20094c10<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+      simpleBus-3 <span style="color:#f92672">(</span>refs: 29<span style="color:#f92672">)</span> on fdtBus0 <span style="color:#f92672">(</span>refs: 9<span style="color:#f92672">)</span>
+
+      simpleBus-3: &lt;simple bus controller&gt; <span style="color:#f92672">(</span>0x20094ca0<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
+
+         coreNetL2Cache-0 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus3 <span style="color:#f92672">(</span>refs: 29<span style="color:#f92672">)</span>
+
+         coreNetL2Cache-0: &lt;CORENET L2 cache driver&gt; <span style="color:#f92672">(</span>0x20094f10<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         qoriqL3Cache-0 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus3 <span style="color:#f92672">(</span>refs: 29<span style="color:#f92672">)</span>
+
+         qoriqL3Cache-0: &lt;QorIQ L3 cache driver&gt; <span style="color:#f92672">(</span>0x20095180<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         qoriqLaw-0 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus3 <span style="color:#f92672">(</span>refs: 29<span style="color:#f92672">)</span>
+
+         qoriqLaw-0: &lt;Freescale Integrated LAW Controller&gt; <span style="color:#f92672">(</span>0x20095370<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         qoriqClock-0 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus3 <span style="color:#f92672">(</span>refs: 29<span style="color:#f92672">)</span>
+
+         qoriqClock-0: &lt;Freescale QorIQ clock driver&gt; <span style="color:#f92672">(</span>0x200a14e0<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         i2c-0 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus3 <span style="color:#f92672">(</span>refs: 29<span style="color:#f92672">)</span>
+
+         i2c-0: &lt;<span style="color:#f92672">(</span>no driver attached<span style="color:#f92672">)</span>&gt; <span style="color:#f92672">(</span>0x200a2160<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         QorIQQman-0 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus3 <span style="color:#f92672">(</span>refs: 29<span style="color:#f92672">)</span>
+
+         QorIQQman-0: &lt;Freescale QorIQQman driver&gt; <span style="color:#f92672">(</span>0x200a2360<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         QorIQBman-0 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus3 <span style="color:#f92672">(</span>refs: 29<span style="color:#f92672">)</span>
+
+         QorIQBman-0: &lt;Freescale QorIQBman driver&gt; <span style="color:#f92672">(</span>0x200bd400<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         QorIQFman-0 <span style="color:#f92672">(</span>refs: 14<span style="color:#f92672">)</span> on simpleBus3 <span style="color:#f92672">(</span>refs: 29<span style="color:#f92672">)</span>
+
+         QorIQFman-0: &lt;Freescale QorIQFman driver&gt; <span style="color:#f92672">(</span>0x200be640<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+            memac-0 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on QorIQFman0 <span style="color:#f92672">(</span>refs: 14<span style="color:#f92672">)</span>
+
+            memac-0: &lt;Freescale MEMAC END driver&gt; <span style="color:#f92672">(</span>0x200bfdc0<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>4<span style="color:#f92672">)</span>
+
+            memac-1 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on QorIQFman0 <span style="color:#f92672">(</span>refs: 14<span style="color:#f92672">)</span>
+
+            memac-1: &lt;Freescale MEMAC END driver&gt; <span style="color:#f92672">(</span>0x202ecb10<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>4<span style="color:#f92672">)</span>
+
+            memacMdio-0 <span style="color:#f92672">(</span>refs: 3<span style="color:#f92672">)</span> on QorIQFman0 <span style="color:#f92672">(</span>refs: 14<span style="color:#f92672">)</span>
+
+            memacMdio-0: &lt;Freescale MEMAC MDIO driver&gt; <span style="color:#f92672">(</span>0x20519790<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>4<span style="color:#f92672">)</span>
+
+               genericPhy-0 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on memacMdio0 <span style="color:#f92672">(</span>refs: 3<span style="color:#f92672">)</span>
+
+               genericPhy-0: &lt;Generic 10/100/1000 PHY driver&gt; <span style="color:#f92672">(</span>0x20519af0<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>5<span style="color:#f92672">)</span>
+
+               genericPhy-1 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on memacMdio0 <span style="color:#f92672">(</span>refs: 3<span style="color:#f92672">)</span>
+
+               genericPhy-1: &lt;Generic 10/100/1000 PHY driver&gt; <span style="color:#f92672">(</span>0x20519cf0<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>5<span style="color:#f92672">)</span>
+
+               genericPhy-2 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on memacMdio0 <span style="color:#f92672">(</span>refs: 3<span style="color:#f92672">)</span>
+
+               genericPhy-2: &lt;Generic 10/100/1000 PHY driver&gt; <span style="color:#f92672">(</span>0x20519e90<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>5<span style="color:#f92672">)</span>
+
+            memac-2 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on QorIQFman0 <span style="color:#f92672">(</span>refs: 14<span style="color:#f92672">)</span>
+
+            memac-2: &lt;Freescale MEMAC END driver&gt; <span style="color:#f92672">(</span>0x2051a030<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>4<span style="color:#f92672">)</span>
+
+            memacMdio-1 <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span> on QorIQFman0 <span style="color:#f92672">(</span>refs: 14<span style="color:#f92672">)</span>
+
+            memacMdio-1: &lt;Freescale MEMAC MDIO driver&gt; <span style="color:#f92672">(</span>0x20f93010<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>4<span style="color:#f92672">)</span>
+
+               mmdPhy-0 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on memacMdio1 <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span>
+
+               mmdPhy-0: &lt;Clause <span style="color:#ae81ff">45</span> MMD PHY driver&gt; <span style="color:#f92672">(</span>0x20f93370<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>5<span style="color:#f92672">)</span>
+
+            memac-3 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on QorIQFman0 <span style="color:#f92672">(</span>refs: 14<span style="color:#f92672">)</span>
+
+            memac-3: &lt;Freescale MEMAC END driver&gt; <span style="color:#f92672">(</span>0x20f934d0<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>4<span style="color:#f92672">)</span>
+
+            memacMdio-2 <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span> on QorIQFman0 <span style="color:#f92672">(</span>refs: 14<span style="color:#f92672">)</span>
+
+            memacMdio-2: &lt;Freescale MEMAC MDIO driver&gt; <span style="color:#f92672">(</span>0x21a0c510<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>4<span style="color:#f92672">)</span>
+
+               mmdPhy-1 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on memacMdio2 <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span>
+
+               mmdPhy-1: &lt;Clause <span style="color:#ae81ff">45</span> MMD PHY driver&gt; <span style="color:#f92672">(</span>0x21a0c830<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>5<span style="color:#f92672">)</span>
+
+            memac-4 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on QorIQFman0 <span style="color:#f92672">(</span>refs: 14<span style="color:#f92672">)</span>
+
+            memac-4: &lt;Freescale MEMAC END driver&gt; <span style="color:#f92672">(</span>0x21a0c990<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>4<span style="color:#f92672">)</span>
+
+            memacMdio-3 <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span> on QorIQFman0 <span style="color:#f92672">(</span>refs: 14<span style="color:#f92672">)</span>
+
+            memacMdio-3: &lt;Freescale MEMAC MDIO driver&gt; <span style="color:#f92672">(</span>0x22b48490<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>4<span style="color:#f92672">)</span>
+
+               mmdPhy-2 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on memacMdio3 <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span>
+
+               mmdPhy-2: &lt;Clause <span style="color:#ae81ff">45</span> MMD PHY driver&gt; <span style="color:#f92672">(</span>0x22b487b0<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>5<span style="color:#f92672">)</span>
+
+            memac-5 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on QorIQFman0 <span style="color:#f92672">(</span>refs: 14<span style="color:#f92672">)</span>
+
+            memac-5: &lt;Freescale MEMAC END driver&gt; <span style="color:#f92672">(</span>0x22b48910<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>4<span style="color:#f92672">)</span>
+
+            memacMdio-4 <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span> on QorIQFman0 <span style="color:#f92672">(</span>refs: 14<span style="color:#f92672">)</span>
+
+            memacMdio-4: &lt;Freescale MEMAC MDIO driver&gt; <span style="color:#f92672">(</span>0x22b48d60<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>4<span style="color:#f92672">)</span>
+
+               mmdPhy-3 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on memacMdio4 <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span>
+
+               mmdPhy-3: &lt;Clause <span style="color:#ae81ff">45</span> MMD PHY driver&gt; <span style="color:#f92672">(</span>0x2344d540<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>5<span style="color:#f92672">)</span>
+
+            memacMdio-5 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on QorIQFman0 <span style="color:#f92672">(</span>refs: 14<span style="color:#f92672">)</span>
+
+            memacMdio-5: &lt;Freescale MEMAC MDIO driver&gt; <span style="color:#f92672">(</span>0x2344d6a0<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>4<span style="color:#f92672">)</span>
+
+            memacMdio-6 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on QorIQFman0 <span style="color:#f92672">(</span>refs: 14<span style="color:#f92672">)</span>
+
+            memacMdio-6: &lt;Freescale MEMAC MDIO driver&gt; <span style="color:#f92672">(</span>0x2344d9a0<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>4<span style="color:#f92672">)</span>
+
+            memacMdio-7 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on QorIQFman0 <span style="color:#f92672">(</span>refs: 14<span style="color:#f92672">)</span>
+
+            memacMdio-7: &lt;Freescale MEMAC MDIO driver&gt; <span style="color:#f92672">(</span>0x2344dcd0<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>4<span style="color:#f92672">)</span>
+
+         spi-0 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus3 <span style="color:#f92672">(</span>refs: 29<span style="color:#f92672">)</span>
+
+         spi-0: &lt;<span style="color:#f92672">(</span>no driver attached<span style="color:#f92672">)</span>&gt; <span style="color:#f92672">(</span>0x21cf9f40<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         usbphy-0 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus3 <span style="color:#f92672">(</span>refs: 29<span style="color:#f92672">)</span>
+
+         usbphy-0: &lt;<span style="color:#f92672">(</span>no driver attached<span style="color:#f92672">)</span>&gt; <span style="color:#f92672">(</span>0x21cfa0c0<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         usbphy-1 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus3 <span style="color:#f92672">(</span>refs: 29<span style="color:#f92672">)</span>
+
+         usbphy-1: &lt;<span style="color:#f92672">(</span>no driver attached<span style="color:#f92672">)</span>&gt; <span style="color:#f92672">(</span>0x21cfa240<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         usb0-0 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus3 <span style="color:#f92672">(</span>refs: 29<span style="color:#f92672">)</span>
+
+         usb0-0: &lt;<span style="color:#f92672">(</span>no driver attached<span style="color:#f92672">)</span>&gt; <span style="color:#f92672">(</span>0x21cfa420<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         usb1-0 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus3 <span style="color:#f92672">(</span>refs: 29<span style="color:#f92672">)</span>
+
+         usb1-0: &lt;<span style="color:#f92672">(</span>no driver attached<span style="color:#f92672">)</span>&gt; <span style="color:#f92672">(</span>0x21cfa600<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         sdhc-0 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus3 <span style="color:#f92672">(</span>refs: 29<span style="color:#f92672">)</span>
+
+         sdhc-0: &lt;<span style="color:#f92672">(</span>no driver attached<span style="color:#f92672">)</span>&gt; <span style="color:#f92672">(</span>0x21cfa7e0<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         mpic-0 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus3 <span style="color:#f92672">(</span>refs: 29<span style="color:#f92672">)</span>
+
+         mpic-0: &lt;interrupt controller driver&gt; <span style="color:#f92672">(</span>0x21cfa960<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         pic-timer-0 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus3 <span style="color:#f92672">(</span>refs: 29<span style="color:#f92672">)</span>
+
+         pic-timer-0: &lt;<span style="color:#f92672">(</span>no driver attached<span style="color:#f92672">)</span>&gt; <span style="color:#f92672">(</span>0x21cfad40<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         msi-0 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus3 <span style="color:#f92672">(</span>refs: 29<span style="color:#f92672">)</span>
+
+         msi-0: &lt;<span style="color:#f92672">(</span>no driver attached<span style="color:#f92672">)</span>&gt; <span style="color:#f92672">(</span>0x21cfb720<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         msi-1 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus3 <span style="color:#f92672">(</span>refs: 29<span style="color:#f92672">)</span>
+
+         msi-1: &lt;<span style="color:#f92672">(</span>no driver attached<span style="color:#f92672">)</span>&gt; <span style="color:#f92672">(</span>0x21cfc100<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         msi-2 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus3 <span style="color:#f92672">(</span>refs: 29<span style="color:#f92672">)</span>
+
+         msi-2: &lt;<span style="color:#f92672">(</span>no driver attached<span style="color:#f92672">)</span>&gt; <span style="color:#f92672">(</span>0x21cfcae0<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         msi-3 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus3 <span style="color:#f92672">(</span>refs: 29<span style="color:#f92672">)</span>
+
+         msi-3: &lt;<span style="color:#f92672">(</span>no driver attached<span style="color:#f92672">)</span>&gt; <span style="color:#f92672">(</span>0x21cfd4c0<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         pic-timer-1 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus3 <span style="color:#f92672">(</span>refs: 29<span style="color:#f92672">)</span>
+
+         pic-timer-1: &lt;<span style="color:#f92672">(</span>no driver attached<span style="color:#f92672">)</span>&gt; <span style="color:#f92672">(</span>0x21cfd840<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         global-utilities-0 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus3 <span style="color:#f92672">(</span>refs: 29<span style="color:#f92672">)</span>
+
+         global-utilities-0: &lt;<span style="color:#f92672">(</span>no driver attached<span style="color:#f92672">)</span>&gt; <span style="color:#f92672">(</span>0x21cfd9c0<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         rcpm-0 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus3 <span style="color:#f92672">(</span>refs: 29<span style="color:#f92672">)</span>
+
+         rcpm-0: &lt;<span style="color:#f92672">(</span>no driver attached<span style="color:#f92672">)</span>&gt; <span style="color:#f92672">(</span>0x21cfdb40<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         ns16550-0 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus3 <span style="color:#f92672">(</span>refs: 29<span style="color:#f92672">)</span>
+
+         ns16550-0: &lt;ns16550 serial OF driver&gt; <span style="color:#f92672">(</span>0x21cfdd40<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         ns16550-1 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus3 <span style="color:#f92672">(</span>refs: 29<span style="color:#f92672">)</span>
+
+         ns16550-1: &lt;ns16550 serial OF driver&gt; <span style="color:#f92672">(</span>0x21d01bf0<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         dma-0 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus3 <span style="color:#f92672">(</span>refs: 29<span style="color:#f92672">)</span>
+
+         dma-0: &lt;<span style="color:#f92672">(</span>no driver attached<span style="color:#f92672">)</span>&gt; <span style="color:#f92672">(</span>0x21d02580<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         dma-1 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus3 <span style="color:#f92672">(</span>refs: 29<span style="color:#f92672">)</span>
+
+         dma-1: &lt;<span style="color:#f92672">(</span>no driver attached<span style="color:#f92672">)</span>&gt; <span style="color:#f92672">(</span>0x21d02700<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         sata-0 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus3 <span style="color:#f92672">(</span>refs: 29<span style="color:#f92672">)</span>
+
+         sata-0: &lt;<span style="color:#f92672">(</span>no driver attached<span style="color:#f92672">)</span>&gt; <span style="color:#f92672">(</span>0x21d02900<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+         sata-1 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on simpleBus3 <span style="color:#f92672">(</span>refs: 29<span style="color:#f92672">)</span>
+
+         sata-1: &lt;<span style="color:#f92672">(</span>no driver attached<span style="color:#f92672">)</span>&gt; <span style="color:#f92672">(</span>0x21d02b00<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+
+      pcie-0 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on fdtBus0 <span style="color:#f92672">(</span>refs: 9<span style="color:#f92672">)</span>
+
+      pcie-0: &lt;<span style="color:#f92672">(</span>no driver attached<span style="color:#f92672">)</span>&gt; <span style="color:#f92672">(</span>0x21d02b60<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
+
+      pcie-1 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on fdtBus0 <span style="color:#f92672">(</span>refs: 9<span style="color:#f92672">)</span>
+
+      pcie-1: &lt;<span style="color:#f92672">(</span>no driver attached<span style="color:#f92672">)</span>&gt; <span style="color:#f92672">(</span>0x21d02d60<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
+
+      pcie-2 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on fdtBus0 <span style="color:#f92672">(</span>refs: 9<span style="color:#f92672">)</span>
+
+      pcie-2: &lt;<span style="color:#f92672">(</span>no driver attached<span style="color:#f92672">)</span>&gt; <span style="color:#f92672">(</span>0x21d02f60<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
+
+      pcie-3 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on fdtBus0 <span style="color:#f92672">(</span>refs: 9<span style="color:#f92672">)</span>
+
+      pcie-3: &lt;<span style="color:#f92672">(</span>no driver attached<span style="color:#f92672">)</span>&gt; <span style="color:#f92672">(</span>0x21d03160<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
+
+   virtBus-0 <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span> on mainbus0 <span style="color:#f92672">(</span>refs: 2<span style="color:#f92672">)</span>
+
+   virtBus-0: &lt;<span style="color:#f92672">(</span>no driver attached<span style="color:#f92672">)</span>&gt; <span style="color:#f92672">(</span>0x21d03360<span style="color:#f92672">)</span> level<span style="color:#f92672">(</span>1<span style="color:#f92672">)</span>
+
+value <span style="color:#f92672">=</span> 567292768 <span style="color:#f92672">=</span> 0x21d03360 <span style="color:#f92672">=</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#e6db74">`</span>
+</code></pre></div><p>本章节主要讲解如何根据组件或根据设备树查找对应的驱动</p>
+<p>网口驱动设备树</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#f92672">&amp;</span>fman0 {
+ethernet<span style="color:#960050;background-color:#1e0010">@</span>f0000 {
+compatible <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;fsl,fman-memac&#34;</span>;
+
+reg <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0xf0000</span> <span style="color:#ae81ff">0x1000</span><span style="color:#f92672">&gt;</span>;
+
+};
+
+mdio<span style="color:#960050;background-color:#1e0010">@</span>f1000 {
+<span style="color:#75715e">#address-cells = &lt;1&gt;;
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">#size-cells = &lt;0&gt;;
+</span><span style="color:#75715e"></span>
+compatible <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;fsl,fman-memac-tbi&#34;</span>;
+
+reg <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0xf1000</span> <span style="color:#ae81ff">0x1000</span><span style="color:#f92672">&gt;</span>;
+
+};
+</code></pre></div><p>MAC名称为fman-memac，在内核组件查询memac</p>
+<p><img src="https://www.vxworks.net/images/vxworks/T1042-T2080-VxWorks7-6.png" alt="T1042/T2080 VxWorks 7"></p>
+<p>可以看到这里的phy ，mdio，mac驱动都找到了，点击获取更加详详细的信息</p>
+<p><img src="https://www.vxworks.net/images/vxworks/T1042-T2080-VxWorks7-7.png" alt="T1042/T2080 VxWorks 7"></p>
+<p>用search 查询具体的驱动文件</p>
+<p><img src="https://www.vxworks.net/images/vxworks/T1042-T2080-VxWorks7-8.png" alt="T1042/T2080 VxWorks 7"></p>
+<p>网口驱动目录所在路径</p>
+<p><img src="https://www.vxworks.net/images/vxworks/T1042-T2080-VxWorks7-9.png" alt="T1042/T2080 VxWorks 7"></p>
+<p><img src="https://www.vxworks.net/images/vxworks/T1042-T2080-VxWorks7-10.png" alt="T1042/T2080 VxWorks 7"></p>
+<p><img src="https://www.vxworks.net/images/vxworks/T1042-T2080-VxWorks7-11.png" alt="T1042/T2080 VxWorks 7"></p>
+<p><img src="https://www.vxworks.net/images/vxworks/T1042-T2080-VxWorks7-12.png" alt="T1042/T2080 VxWorks 7"></p>
+<p>查看串口对应驱动</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">serial0: serial@11c500 <span style="color:#f92672">{</span>
+cell-index <span style="color:#f92672">=</span> &lt;0&gt;;
+
+device_type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;serial&#34;</span>;
+
+compatible <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;fsl,ns16550&#34;</span>, <span style="color:#e6db74">&#34;ns16550&#34;</span>;
+
+    reg <span style="color:#f92672">=</span> &lt;0x11c500 0x100&gt;;
+
+    clocks <span style="color:#f92672">=</span> &lt;&amp;platform 1&gt;;
+
+    clock-names <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;platform-div2&#34;</span>;
+
+interrupts <span style="color:#f92672">=</span> &lt;<span style="color:#ae81ff">36</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">0</span> 0&gt;;
+
+    interrupt-parent <span style="color:#f92672">=</span> &lt;&amp;mpic&gt;;
+
+<span style="color:#f92672">}</span>;
+
+serial1: serial@11c600 <span style="color:#f92672">{</span>
+cell-index <span style="color:#f92672">=</span> &lt;1&gt;;
+
+device_type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;serial&#34;</span>;
+
+compatible <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;fsl,ns16550&#34;</span>, <span style="color:#e6db74">&#34;ns16550&#34;</span>;
+
+reg <span style="color:#f92672">=</span> &lt;0x11c600 0x100&gt;;
+
+    clocks <span style="color:#f92672">=</span> &lt;&amp;platform 1&gt;;
+
+    clock-names <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;platform-div2&#34;</span>;
+
+interrupts <span style="color:#f92672">=</span> &lt;<span style="color:#ae81ff">36</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">0</span> 0&gt;;
+
+    interrupt-parent <span style="color:#f92672">=</span> &lt;&amp;mpic&gt;;
+
+<span style="color:#f92672">}</span>;
+</code></pre></div><p><img src="https://www.vxworks.net/images/vxworks/T1042-T2080-VxWorks7-13.png" alt="T1042/T2080 VxWorks 7"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">Component DRV_SIO_FDT_NS16550 <span style="color:#f92672">{</span>
+    NAME            UART support <span style="color:#66d9ef">for</span> ns16550-compatible FDT devices
+
+    SYNOPSIS        ns16550 SIO support <span style="color:#66d9ef">for</span> FDT device
+
+    MODULES         vxbNs16550Sio.o vxbFdtNs16550Sio.o
+
+    LINK_SYMS       vxbFdtNs16550Drv
+
+    REQUIRES        DRV_BUS_FDT_ROOT  <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>
+                    INCLUDE_ISR_DEFER <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>
+                    INCLUDE_SIO
+
+    _CHILDREN       FOLDER_DRIVERS
+
+<span style="color:#f92672">}</span>
+</code></pre></div><p>shell中不同于以往版本的几个命令</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">vxbDevShowPaths
+
+Note: the <span style="color:#e6db74">&#34;original&#34;</span> path uses the name of the device before a driver is bound.  This
+
+is the path that must be used when blacklisting devices <span style="color:#66d9ef">for</span> the hypervisor
+
+mainbus-0 at root nexus
+
+mainbus-0: &lt;Freescale T2080QDS&gt;
+
+fdtBus0:
+
+        current path: <span style="color:#e6db74">&#39;/mainbus0/fdtBus0&#39;</span>
+
+fslBookeTimer0:
+
+        current path: <span style="color:#e6db74">&#39;/mainbus0/fdtBus0/fslBookeTimer0&#39;</span>
+
+        original path: <span style="color:#e6db74">&#39;/mainbus0/fdtBus0/timer0&#39;</span>
+
+simpleBus0:
+
+        current path: <span style="color:#e6db74">&#39;/mainbus0/fdtBus0/simpleBus0&#39;</span>
+
+        original path: <span style="color:#e6db74">&#39;/mainbus0/fdtBus0/bman-portals0&#39;</span>
+
+fsl,bman-portal0:
+
+        current path: <span style="color:#e6db74">&#39;/mainbus0/fdtBus0/simpleBus0/fsl,bman-portal0&#39;</span>
+
+        original path: <span style="color:#e6db74">&#39;/mainbus0/fdtBus0/simpleBus0/bman-portal0&#39;</span>
+
+fsl,bman-portal1:
+
+        current path: <span style="color:#e6db74">&#39;/mainbus0/fdtBus0/simpleBus0/fsl,bman-portal1&#39;</span>
+
+        original path: <span style="color:#e6db74">&#39;/mainbus0/fdtBus0/simpleBus0/bman-portal0&#39;</span>
+
+fsl,bman-portal2:
+
+        current path: <span style="color:#e6db74">&#39;/mainbus0/fdtBus0/simpleBus0/fsl,bman-portal2&#39;</span>
+
+        original path: <span style="color:#e6db74">&#39;/mainbus0/fdtBus0/simpleBus0/bman-portal0&#39;</span>
+
+fsl,bman-portal3:
+
+        current path: <span style="color:#e6db74">&#39;/mainbus0/fdtBus0/simpleBus0/fsl,bman-portal3&#39;</span>
+
+        original path: <span style="color:#e6db74">&#39;/mainbus0/fdtBus0/simpleBus0/bman-portal0&#39;</span>
+
+fsl,bman-portal4:
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">vxbDrvShow
+
+Driver <span style="color:#f92672">[</span>eeprom<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>At24 eeprom<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x2f815c<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>i2c<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Freescale Integrated I2C Controller<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x2f8194<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>rtc<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Dallas rtc<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x2f81f4<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>fslBookeTimer<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>freescale booke timer driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x2fdb04<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>genericPhy<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbMiiBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Generic 10/100/1000 PHY driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x2fe778<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 3<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>sgmiiPhy<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbMiiBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Freescale SGMII PHY driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x2fe7d0<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>mmdPhy<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbMiiBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Clause <span style="color:#ae81ff">45</span> MMD PHY driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x2fe834<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 4<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>memacMdio<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Freescale MEMAC MDIO driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x2fe8a8<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 8<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>memac<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Freescale MEMAC END driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x2fe9a8<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 6<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>QorIQQman<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Freescale QorIQQman driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x2fea10<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>fsl,qman-portal<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Freescale QorIQQman Portal driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x2fea60<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>QorIQFman<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Freescale QorIQFman driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x2feb08<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>QorIQBman<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Freescale QorIQBman driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x2feb38<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>fsl,bman-portal<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Freescale QorIQBman Portal driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x2feb88<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 18<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>qoriqClock<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Freescale QorIQ clock driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x2ff384<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>qoriqL3Cache<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>QorIQ L3 cache driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x2ff3a4<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>coreNetL2Cache<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>CORENET L2 cache driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x2ff3e4<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>qoriqFpga<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Freescale QorIQ FPGwA driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x2ff41c<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>qoriqLaw<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Freescale Integrated LAW Controller<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x2ff484<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>fslSdhc<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>freescale SDHC driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x2ff52c<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 1<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>usbRootHub<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbUsbRootHub<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>USB Root Hub Driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x2ffb08<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>usbDev<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbUsbBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>usb device driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x2ffb50<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>usbCompDev<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbUsbBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>usb composite device driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x2ffb70<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>refs: 0<span style="color:#f92672">)</span>
+
+Driver <span style="color:#f92672">[</span>ulpiViewPortPhy<span style="color:#f92672">]</span> class <span style="color:#f92672">[</span>vxbFdtBus<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>USB ULPI ViewPort PHY FDT Driver<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>0x2ffc9c<span style="color:#f92672">)</span>
+</code></pre></div><p>VxWorks7 的启动过程</p>
+<p><img src="https://www.vxworks.net/images/vxworks/T1042-T2080-VxWorks7-14.png" alt="T1042/T2080 VxWorks 7"></p>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1543398821442998"
+     crossorigin="anonymous"></script>
+
+<ins class="adsbygoogle"
+     style="display:inline-block;width:970px;height:90px"
+     data-ad-client="ca-pub-1543398821442998"
+     data-ad-slot="4140563281"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+    </div>
+    <footer class="post-footer">
+      
+
+<div class="post-tags">
+  
+    <a href="/tags/vxworks-7">
+    VxWorks 7
+  </a>
+    <a href="/tags/powerpc">
+    PowerPC
+  </a>
+    <a href="/tags/t1042">
+    T1042
+  </a>
+    <a href="/tags/t2080">
+    T2080
+  </a>
+</div>
+
+<div class="addthis_inline_share_toolbox" style="text-align: center;"></div>
+<hr/>
+
+<div class="reward-container">
+  <div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div>
+  <button>赞赏</button>
+  <div class="post-reward">
+    <div class="post-reward-item">
+      <img src="/imgs/ali-pay.png" alt="VxWorks OS - 支付宝">
+      <span>支付宝</span>
+    </div>
+    <div class="post-reward-item">
+      <img src="/imgs/wechat-pay.png" alt="VxWorks OS - 微信">
+      <span>微信</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="post-copyright">
+  <img src="/imgs/cc/cc.svg" width="75" height="75" align="right" />
+  <ul>
+    <li class="post-copyright-title">
+      <strong>文章标题：</strong>
+      T1042/T2080 VxWorks7 开发笔记
+    </li>
+    <li class="post-copyright-author">
+      <strong>本文作者： </strong>
+      VxWorks OS
+    </li>
+    <li class="post-copyright-link"> 
+      <strong>本文链接：</strong>
+       <a id="post-cr-link" href="https://www.vxworks7.com/post/bsp/vxworks-7-for-t1042-t2080-how-to.html" title="T1042/T2080 VxWorks7 开发笔记">https://www.vxworks7.com/post/bsp/vxworks-7-for-t1042-t2080-how-to.html</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <i class="fab fa-fw fa-creative-commons"></i><a target='_blank' href='https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh'>BY-NC-SA</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</div>
+
+  <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+  <div class="social-list">
+    
+    <div class="social-item">
+        <a target="_blank" class="social-link" href="/imgs/wechat_channel.jpg">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
+          <span class="label">WeChat</span>
+        </a>
+      </div>
+  </div>
+</div>
+<div class="post-nav">
+  <div class="post-nav-next post-nav-item">
+    <a href="/post/welcome-to-vxworks-club/" rel="next" title="欢迎加入 VxWorks 俱乐部！">
+      <i class="fa fa-chevron-left"></i> 欢迎加入 VxWorks 俱乐部！
+    </a>
+  </div>
+  <div class="post-nav-prev post-nav-item">
+    <a href="/post/bsp/vxworks-7.0-on-IMX6Q.html" rel="prev" title="IMX6Q 运行 VxWorks 7.0 系统">
+      IMX6Q 运行 VxWorks 7.0 系统
+      <i class="fa fa-chevron-right"></i>
+    </a>
+  </div>
+</div>
+
+    </footer>
+  </article>
+</div>
+<div id="comments" class="post-comments">
+  <div class="comment-head">
+    <div class="comment-headline">
+      <i class="fas fa-comments fa-fw"></i>
+      <span>评论交流</span>
+    </div>
+    <div class="comment-switch">
+      <span class="first-comment">Giscus</span>
+      <span class="switch-btn "></span>
+      <span class="second-comment">Waline</span>
+    </div>
+  </div>
+  <div class="comment-wrap">
+  
+    <div><div class="comment-loading">
+  <i class="fa fa-sync fa-spin"></i>
+</div><div class="giscus-container"></div>
+    </div>
+    <div><div class="comment-loading">
+  <i class="fa fa-sync fa-spin"></i>
+</div><div class="waline-container"></div>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="footer-inner">
+
+<div class="copyright">
+  &copy;
+  <span itemprop="copyrightYear">
+    2010 - 2022
+  </span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">VxWorks OS</span>
+</div>
+
+
+    </div>
+  </footer> 
+  
+  <script type="text/javascript" src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
+
+
+
+
+
+
+
+<script type="text/javascript" src="/js/main.min.7e59cf1a98d842830d8a6f149f78fbbcf9e795b7a9eb76feb34b48c9bf1554d7.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

@@ -6,22 +6,49 @@
     <description>Recent content in Tags on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 23 Dec 2022 22:24:27 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 24 Dec 2022 03:13:31 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>IMX6Q</title>
-      <link>https://www.vxworks7.com/tags/imx6q/</link>
-      <pubDate>Fri, 23 Dec 2022 22:24:27 -0500</pubDate>
+      <title>PowerPC</title>
+      <link>https://www.vxworks7.com/tags/powerpc/</link>
+      <pubDate>Sat, 24 Dec 2022 03:13:31 -0500</pubDate>
       
-      <guid>https://www.vxworks7.com/tags/imx6q/</guid>
+      <guid>https://www.vxworks7.com/tags/powerpc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>T1042</title>
+      <link>https://www.vxworks7.com/tags/t1042/</link>
+      <pubDate>Sat, 24 Dec 2022 03:13:31 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/t1042/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>T2080</title>
+      <link>https://www.vxworks7.com/tags/t2080/</link>
+      <pubDate>Sat, 24 Dec 2022 03:13:31 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/t2080/</guid>
       <description></description>
     </item>
     
     <item>
       <title>VxWorks 7</title>
       <link>https://www.vxworks7.com/tags/vxworks-7/</link>
-      <pubDate>Fri, 23 Dec 2022 22:24:27 -0500</pubDate>
+      <pubDate>Sat, 24 Dec 2022 03:13:31 -0500</pubDate>
       
       <guid>https://www.vxworks7.com/tags/vxworks-7/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>IMX6Q</title>
+      <link>https://www.vxworks7.com/tags/imx6q/</link>
+      <pubDate>Fri, 23 Dec 2022 22:24:27 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/imx6q/</guid>
       <description></description>
     </item>
     

@@ -6,7 +6,7 @@
     <description>Recent content on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 23 Dec 2022 22:24:27 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 24 Dec 2022 03:13:31 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>欢迎加入 VxWorks 俱乐部！</title>
       <link>https://www.vxworks7.com/post/welcome-to-vxworks-club/</link>
@@ -16,6 +16,19 @@
       <description>欢迎来到 北南南北 文档站点！ 相关文章来源于 VxWorks 俱乐部  ，也可能发布于 AI 嵌入式开发  ，专注于技术分享和交流。
 免责声明 所有资源均来自网络，版权归原作者，如有侵权，请联系删除！
 欢迎投稿  欢迎广大网友投稿 欢迎加入网友微信群  </description>
+    </item>
+    
+    <item>
+      <title>T1042/T2080 VxWorks7 开发笔记</title>
+      <link>https://www.vxworks7.com/post/bsp/vxworks-7-for-t1042-t2080-how-to.html</link>
+      <pubDate>Sat, 24 Dec 2022 03:13:31 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/bsp/vxworks-7-for-t1042-t2080-how-to.html</guid>
+      <description>&lt;p&gt;
+&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks 7&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
+    VxWorks 7
+    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
+&lt;/a&gt;是WindRiver推出的新一代版本，相比较VxWorks 6.9特别是驱动部分有很大的改变，VxWorks 7和Linux很像，有设备树的概念，所以从Linux移植驱动到VxWorks 7会方便很多。&lt;/p&gt;</description>
     </item>
     
     <item>
