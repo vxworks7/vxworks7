@@ -6,7 +6,16 @@
     <description>Recent content in News on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 21 Dec 2022 08:34:59 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/news/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 23 Dec 2022 22:16:16 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/news/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>风河携手Synopsys促安全性提升</title>
+      <link>https://www.vxworks7.com/post/news/wind-river-and-synopsys-cowork-to-enhance-security.html</link>
+      <pubDate>Fri, 23 Dec 2022 22:16:16 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/news/wind-river-and-synopsys-cowork-to-enhance-security.html</guid>
+      <description>&lt;p&gt;随着企业客户对于业务创新速度及敏捷性诉求的不断提升，云化、容器化应用大行其道。Gartner预测，到2023年，70%的企业将在生产中运行三个或更多的容器化应用软件。一个真正意义上的云原生时代已经到来。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>航空电子设备与智能边缘</title>
       <link>https://www.vxworks7.com/post/news/avionics-and-intelligent-edge.html</link>

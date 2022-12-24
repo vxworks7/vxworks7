@@ -47,6 +47,41 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>https://www.vxworks7.com/tags/5g/</loc>
+    <lastmod>2022-12-23T22:16:16-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/ai/</loc>
+    <lastmod>2022-12-23T22:16:16-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/ml/</loc>
+    <lastmod>2022-12-23T22:16:16-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/categories/news/</loc>
+    <lastmod>2022-12-23T22:16:16-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/synopsys/</loc>
+    <lastmod>2022-12-23T22:16:16-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/windriver/</loc>
+    <lastmod>2022-12-23T22:16:16-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/post/news/wind-river-and-synopsys-cowork-to-enhance-security.html</loc>
+    <lastmod>2022-12-23T22:16:16-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://www.vxworks7.com/categories/app/</loc>
     <lastmod>2022-12-23T11:24:58-05:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -129,21 +164,6 @@
   </url><url>
     <loc>https://www.vxworks7.com/post/app/mininum-time-for-vxworks-response-pcie-interrupt.html</loc>
     <lastmod>2022-12-21T08:50:10-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/tags/ml/</loc>
-    <lastmod>2022-12-21T08:34:59-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/categories/news/</loc>
-    <lastmod>2022-12-21T08:34:59-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/tags/windriver/</loc>
-    <lastmod>2022-12-21T08:34:59-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -389,11 +409,6 @@
   </url><url>
     <loc>https://www.vxworks7.com/post/linux/how-to-convert-mp4-to-mp3-in-ubuntu-linux.html</loc>
     <lastmod>2022-10-15T16:43:23+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/tags/5g/</loc>
-    <lastmod>2022-10-13T08:53:45-04:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>

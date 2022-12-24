@@ -31,6 +31,31 @@ U-Boot 2015.04 (Jan 01 2017 - 22:35:22) CPU: Freescale i.MX6Q rev1.5 at 792 MHz 
   </entry>
   
   <entry>
+    <title>风河携手Synopsys促安全性提升</title>
+    <url>/post/news/wind-river-and-synopsys-cowork-to-enhance-security.html</url>
+    <categories><category>News</category>
+    </categories>
+    <tags>
+      <tag>WindRiver</tag>
+      <tag>Synopsys</tag>
+      <tag>5G</tag>
+      <tag>AI</tag>
+      <tag>ML</tag>
+    </tags>
+    <content type="html"><![CDATA[随着企业客户对于业务创新速度及敏捷性诉求的不断提升，云化、容器化应用大行其道。Gartner预测，到2023年，70%的企业将在生产中运行三个或更多的容器化应用软件。一个真正意义上的云原生时代已经到来。
+日前，Synopsys（新思科技）基于风河最新版本 Wind River Studio  ，推出了Coverity静态分析解决方案，成为Wind River Studio生态系统首批主要合作伙伴的一员。那么，Coverity静态分析解决方案具备哪些能力特点？其为Wind River Studio云原生平台而言带来哪些价值？
+促云原生安全性提升 Coverity作为一款与安全性相关的服务，主要致力于对应用进行代码级的分析，其本身是一款非常成熟的产品，至今已经拥有超过15年的分析引擎优化经验。
+一个软件的质量及安全性怎样？功能是否完备？运行过程中会不会崩溃？对于客户来说，这是非常关键的问题。但其实软件的缺陷往往在开发的过程中就形成了。那么，在产品推向市场之前如何进行质量及安全性的检验？而Coverity的立足点就是通过测试确保软件质量及安全性，并且覆盖软件的全生命周期。
+据官方资料介绍，Synopsys 推出的Coverity静态分析解决方案可以为Wind River Studio平台上的软件应用提供静态应用安全测试服务，它擅长深入的过程间分析、全程序分析，而且误报率非常低。具有分析全面、准确度高、速度快和具有良好的行业标准合规性等特点。
+强化关键云原生平台定位 Wind River Studio是风河打造的云原生平台。一如风河软件以往面向关键基础设施，注重稳健性、高可靠性的特点风格，Wind River Studio主要面向于关键任务智能系统的开发、部署、运作和服务。
+多年来风河的优势一直集中于软件层面，特别是在物联网操作系统领域一直都在承担着基础性的支撑作用。对于生态伙伴而言，Wind River Studio云原生平台的优势主要体现在两个方面。这两个方面也成为吸引生态伙伴入驻的关键。
+一是Wind River Studio具有强大技术优势。借助风河多年来在基础设施及物联网操作系统领域积累的优势，Wind River Studio云原生平台定位于关键任务领域的智能系统开发、部署、运作和服务，并在该领域拥有领先优势。实时操作系统VxWorks如今已经成为Wind River Studio云原生平台的一部分。而Wind River Studio最新版本则可以提供颠覆性的自动化技术。
+二是Wind River Studio可为生态伙伴提供全生命周期支持。Wind River Studio云原生平台作为一个稳健、可靠的基础性支撑平台，最新版本能够支持智能系统完整生命周期服务。
+值得一提的是，Synopsys是Wind River Studio的首批主要合作伙伴之一。对于Wind River Studio云原生平台而言，Coverity加盟生态系统意味着能够极大地提高平台的生产率、灵活性和应用上市速度，同时实现了无缝技术集成，包括远端边缘云计算、数据分析、系统级安全、5G和AI/ML。同时，平台生态系统也将会逐步走向发展壮大。
+]]></content>
+  </entry>
+  
+  <entry>
     <title>VxWorks 7.0下基于VxBus的定时器子系统</title>
     <url>/post/app/timer-design-based-on-vxbus-in-vxworks-7-0.html</url>
     <categories><category>APP</category>
