@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>pci on VxWorks 7</title>
+    <link>https://www.vxworks7.com/tags/pci/</link>
+    <description>Recent content in pci on VxWorks 7</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 24 Dec 2022 04:04:08 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/pci/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PCI总线在VxWorks中的实现</title>
+      <link>https://www.vxworks7.com/post/bsp/pci-bus-implementation-in-vxworks.html</link>
+      <pubDate>Sat, 24 Dec 2022 04:04:08 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/bsp/pci-bus-implementation-in-vxworks.html</guid>
+      <description>在最近发布的BSP中，风河公司基本上都提供了对PCI BUS的支持，本文主要探讨PCI BUS在VxWorks系统中的实现。
+PCI Address Space and Memory Mapping PCI BUS有三种地址空间：IO Space、Memory Space and Configuration Space。每个PCI设备都通过Configuration Space中的Base Address Registers(BAR)映射到内存或者IO空间，这样就不用像ISA BUS那样，通过硬件Jumpers来设置板卡的Address。PCI BUS的所有配置基本上都是通过Configuration Space的寄存器来控制的。但是，每个PCI Device都必须先配置才能使用，这意味着PCI Device的基地址和中断都必须被系统分配到资源，并且PCI Device能够对正常的PCI配置操作做出回应。
+WRS提供一个名为pciConfigLib.c的标准库给用户访问PCI配置空间，该标准库使用PCI规范中定义的访问机制1和机制2来支持Host-Bridge，风河本身提供的第三个访问机制，名为机制0是针对非标准PCI Bridge的，机制0主要是靠调用BSP包中的特定routine来实现PCI配置空间的read/write的，与此同时，这些特定的routine接口和前面的介绍的机制1和机制2是相同的。pciConfigLib.c提供访问PCI配置空间内任何寄存器的routine，该库同样提供一些用于扫描PCI BUS寻找特定PCI 设备实例的方法，另外该库也提供一些简单的配置接口用于配置简单的PCI设备。
+PCI Interrupt Handling PCI 规范并没有详细说明PCI中断信号是如何路由到中断控制器的。每个PCI设备都有4个可用的中断PIN，分别命名为A,B,C和D。每个单功能的PCI设备都被要求使用中断PIN A来产生中断，而对于多功能PCI设备，每个功能使用一个中断PIN，但是根据PCI规范，每个PCI设备最多可提供8个功能，这样就必须两个功能共用一个中断PIN。当产生PCI中断时，PCI中断处理系统需要调用多个中断服务程序，那么最简单的方法就是每个ISR都调用一遍，ISR必须有能力判断该次中断源是否是自己产生的，如果不是，则立即返回，并接着会调用下一个中断服务程序。
+pciIntLib.c提供一些routine来挂接多个ISR到一个中断LINE上，该库通过挂接一个特殊的ISR，该ISR会遍历一个中断链表，所有共用同一个中断的ISRs都被放在这个链表中。pciIntConnect()用于将设备的ISR挂接到中断链表上，而pciIntDisConnect()用于删除中断链表上的一个ISR。
+例子：
+pciInitConnect(Vector, ISR1, PARAM1); pciInitConnect(Vector, ISR2, PARAM2); pciInitConnect(Vector, ISR3, PARAM3);   上面3个语句把ISR1，ISR2,和ISR3分别挂接到中断向量为Vector的链表intList里面，那么当中断发生时，会执行下面一个函数：
+void sISR(void) { while(intList-&amp;gt;next !=NULL) { (*intList-&amp;gt;INT_ISR)(PARAM);/*分别调用ISR1，ISR2，ISR3，没写很具体，只是个大概理解*/ } } VxWorks中的PCI 配置策略 在BSP中，必须定义宏INCLUDE_PCI来支持PCI BUS，宏PCI_CFG_TYPE必须定义为一下几种类型：
+静态配置：PCI_CFG_FORCE 这种方式要求程序员必须手动通过数据表、配置宏或者其他方法来配置每个PCI设备，PCI设备的基地址和使用的中断号必须事先知道。
+动态配置：PCI_CFG_AUTO 这种配置方法是最常用的，它通过扫描PCI总线并且给每一个found的设备赋予独立的内存或者IO地址，这也是典型的X86 BIOS的PCI初始化方式。程序员并不需要事先知道分配给PCI设备的系统资源，这个功能主要被实现在pciAutoConfigLib.c模块中。
+未配置：PCI_CFG_NONE 这种方法主要是预留给那些不能使用上面的VxWorks配置方法的设备的。此时，所有的PCI设备都是在VxWorks内核启动之前配置好的，这种方法的困难在于VxWorks内核并没有在扫描过程中系统分配给PCI设备的资源信息，如果此时启用MMU，则在使用PCI设备之前，必须把PCI设备使用的地址动态映射到MMU。
+PCI Initialization Sequences 当VxWorks内核起来之后，PCI设备的第一次使用都是必须在调用sysHwInit2()例程之后。但是由于MMU内存映射的初始化和激活是在例程sysHwInit()和sysHwInit2()之间的，所以推荐的PCI初始化顺序为：</description>
+    </item>
+    
+  </channel>
+</rss>
