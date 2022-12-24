@@ -285,7 +285,7 @@
       </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-font"></i>总字数：</div>
-      <div class="item-count" id="wordsCount" data-count="17579"></div>
+      <div class="item-count" id="wordsCount" data-count="17578"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-mug-hot"></i>阅读约：</div>
@@ -371,7 +371,7 @@
   <span class="post-meta-item-icon">
     <i class="far fa-file-word"></i>
   </span>
-  <span class="post-meta-item-text">字数：</span><span>352</span>
+  <span class="post-meta-item-text">字数：</span><span>351</span>
 </span>
     
 <span class="post-meta-item" title="阅读">
@@ -495,13 +495,10 @@ PCI_SLV_MEM_SIZE <span style="color:#75715e">/* window size,0 means disabled */<
 PCI_SLV_IO_LOCAL <span style="color:#75715e">/* Local address of window */</span>
 PCI_SLV_IO_BUS <span style="color:#75715e">/* PCI Bus address of window */</span>
 PCI_SLV_IO_SIZE <span style="color:#75715e">/* window size,0 means disabled */</span>
-
-<span style="color:#960050;background-color:#1e0010">对于</span>X86机器<span style="color:#960050;background-color:#1e0010">，</span>Slave Window将会把PCI IO事务映射为本地总线的IO请求<span style="color:#960050;background-color:#1e0010">。为了传递一个内存地址给</span>Remote端设备<span style="color:#960050;background-color:#1e0010">，本地地址必须被翻译为相应的</span>PCI地址<span style="color:#960050;background-color:#1e0010">，计算本地地址翻译为</span>PCI地址的公式如下<span style="color:#960050;background-color:#1e0010">：</span>
-
-PCI addr <span style="color:#f92672">=</span> Local Addr <span style="color:#f92672">+</span> (PCI_SLV_XXX_BUS <span style="color:#f92672">-</span> PCI_SLV_XXX_LOCAL)
-
-For example:
-<span style="color:#75715e">#define LOCAL2PCI_MEM(x) \
+</code></pre></div><p>对于X86机器，Slave Window将会把PCI IO事务映射为本地总线的IO请求。为了传递一个内存地址给Remote端设备，本地地址必须被翻译为相应的PCI地址，计算本地地址翻译为PCI地址的公式如下：</p>
+<p>PCI addr = Local Addr + (PCI_SLV_XXX_BUS - PCI_SLV_XXX_LOCAL)</p>
+<p>例如：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#75715e">#define LOCAL2PCI_MEM(x) \
 </span><span style="color:#75715e">((x) + PCI_SLV_MEM_BUS - PCI_SLV_MEM_LOCAL)
 </span></code></pre></div>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1543398821442998"

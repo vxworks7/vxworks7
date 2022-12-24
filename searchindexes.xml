@@ -46,7 +46,10 @@ The following is a typical excerpt from config.h in a typical PCI capable BSP: /
 为了访问特定的PCI内存位置，CPU必须该内存位置映射到本地的哪一个地址了，CPU操作都是使用本地地址，而不是设备的PCI地址。把PCI地址转换为本地地址的公式如下：
 Local Addr = PCI addr + (PCI_MSTR_XXX_LOCAL - PCI_MSTR_XXX_BUS) For example:
 #define PCI_MEM2LOCAL(x) \ ((int)(x) + PCI_MSTR_MEM_LOCAL - PCI_MSTR_MEM_BUS) #define PCI_MEMIO2LOCAL(x) \ ((int)(x) + PCI_MSTR_MEMIO_LOCAL - PCI_MSTR_MEMIO_BUS) #define PCI_IO2LOCAL(x) \ ((int)(x) + PCI_MSTR_IO_LOCAL - PCI_MSTR_IO_BUS) PCI Slave Window 上面描述的都是主设备侧的映射方式，使用这些映射方式的主控器都是CPU，Slave Window是被总线上其他设备发起总线事务的目标设备，Slave Window千差万别，但是几乎所有的设备都有至少一种Slave Window来使本地地址对其他PCI设备例如DMA总线主控器或者CPU是可访问的。
-/* * Slave window that makes local memory visible to PCI * devices */ PCI_SLV_MEM_LOCAL /* Local address of window */ PCI_SLV_MEM_BUS /* PCI Bus address of window */ PCI_SLV_MEM_SIZE /* window size,0 means disabled */ /* * For X86 it is possible to have a slave window mapping * PCI IO to Local IO */ PCI_SLV_IO_LOCAL /* Local address of window */ PCI_SLV_IO_BUS /* PCI Bus address of window */ PCI_SLV_IO_SIZE /* window size,0 means disabled */ 对于X86机器，Slave Window将会把PCI IO事务映射为本地总线的IO请求。为了传递一个内存地址给Remote端设备，本地地址必须被翻译为相应的PCI地址，计算本地地址翻译为PCI地址的公式如下： PCI addr = Local Addr + (PCI_SLV_XXX_BUS - PCI_SLV_XXX_LOCAL) For example: #define LOCAL2PCI_MEM(x) \ ((x) + PCI_SLV_MEM_BUS - PCI_SLV_MEM_LOCAL) ]]></content>
+/* * Slave window that makes local memory visible to PCI * devices */ PCI_SLV_MEM_LOCAL /* Local address of window */ PCI_SLV_MEM_BUS /* PCI Bus address of window */ PCI_SLV_MEM_SIZE /* window size,0 means disabled */ /* * For X86 it is possible to have a slave window mapping * PCI IO to Local IO */ PCI_SLV_IO_LOCAL /* Local address of window */ PCI_SLV_IO_BUS /* PCI Bus address of window */ PCI_SLV_IO_SIZE /* window size,0 means disabled */ 对于X86机器，Slave Window将会把PCI IO事务映射为本地总线的IO请求。为了传递一个内存地址给Remote端设备，本地地址必须被翻译为相应的PCI地址，计算本地地址翻译为PCI地址的公式如下：
+PCI addr = Local Addr + (PCI_SLV_XXX_BUS - PCI_SLV_XXX_LOCAL)
+例如：
+#define LOCAL2PCI_MEM(x) \ ((x) + PCI_SLV_MEM_BUS - PCI_SLV_MEM_LOCAL) ]]></content>
   </entry>
   
   <entry>
