@@ -9,10 +9,10 @@
     <lastBuildDate>Sat, 24 Dec 2022 11:35:19 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/telnet/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>VxWorks下Telnet客户端的C语言实现代码</title>
-      <link>https://www.vxworks7.com/post/app/how-to-integrate-python-into-vxworks-7.html</link>
+      <link>https://www.vxworks7.com/post/app/c-code-to-implement-telnet-client-in-vxworks.html</link>
       <pubDate>Sat, 24 Dec 2022 11:35:19 -0500</pubDate>
       
-      <guid>https://www.vxworks7.com/post/app/how-to-integrate-python-into-vxworks-7.html</guid>
+      <guid>https://www.vxworks7.com/post/app/c-code-to-implement-telnet-client-in-vxworks.html</guid>
       <description>&lt;p&gt;本文主要分享了VxWorks系统下实现telnet client客户端的C语言代码&lt;/p&gt;</description>
     </item>
     
