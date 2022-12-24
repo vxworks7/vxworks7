@@ -7,32 +7,52 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>https://www.vxworks7.com/categories/bsp/</loc>
+    <lastmod>2022-12-23T22:24:27-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/categories/</loc>
+    <lastmod>2022-12-23T22:24:27-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/imx6q/</loc>
+    <lastmod>2022-12-23T22:24:27-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/post/bsp/vxworks-7.0-on-IMX6Q.html</loc>
+    <lastmod>2022-12-23T22:24:27-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/post/</loc>
+    <lastmod>2022-12-23T22:24:27-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/</loc>
+    <lastmod>2022-12-23T22:24:27-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/vxworks-7/</loc>
+    <lastmod>2022-12-23T22:24:27-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/</loc>
+    <lastmod>2022-12-23T22:24:27-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://www.vxworks7.com/categories/app/</loc>
     <lastmod>2022-12-23T11:24:58-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/categories/</loc>
-    <lastmod>2022-12-23T11:24:58-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/post/</loc>
-    <lastmod>2022-12-23T11:24:58-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/tags/</loc>
-    <lastmod>2022-12-23T11:24:58-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>https://www.vxworks7.com/tags/vxbus/</loc>
-    <lastmod>2022-12-23T11:24:58-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/</loc>
     <lastmod>2022-12-23T11:24:58-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -62,22 +82,12 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/categories/bsp/</loc>
-    <lastmod>2022-12-22T10:29:12-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>https://www.vxworks7.com/post/bsp/u-boot-on-vxworks-7.html</loc>
     <lastmod>2022-12-22T10:29:12-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.vxworks7.com/tags/uboot/</loc>
-    <lastmod>2022-12-22T10:29:12-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/tags/vxworks-7/</loc>
     <lastmod>2022-12-22T10:29:12-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

@@ -6,7 +6,16 @@
     <description>Recent content on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 22 Dec 2022 10:29:12 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/vxworks-7/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 23 Dec 2022 22:24:27 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/vxworks-7/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IMX6Q 运行 VxWorks 7.0 系统</title>
+      <link>https://www.vxworks7.com/post/bsp/vxworks-7.0-on-IMX6Q.html</link>
+      <pubDate>Fri, 23 Dec 2022 22:24:27 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/bsp/vxworks-7.0-on-IMX6Q.html</guid>
+      <description>&lt;p&gt;本文简要概述了如何在IMX6Q上从uboot下载并启动VxWorks 7.0的过程。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>U-boot和VxWorks 7的集成</title>
       <link>https://www.vxworks7.com/post/bsp/u-boot-on-vxworks-7.html</link>
