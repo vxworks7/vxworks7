@@ -6,7 +6,16 @@
     <description>Recent content on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 24 Dec 2022 23:59:53 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/vxworks-7/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 25 Dec 2022 07:51:55 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/vxworks-7/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VxWorks 7自启动应用程序的四种方法</title>
+      <link>https://www.vxworks7.com/post/app/vxworks-7-app-auto-boot-method.html</link>
+      <pubDate>Sun, 25 Dec 2022 07:51:55 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/app/vxworks-7-app-auto-boot-method.html</guid>
+      <description>&lt;p&gt;本文介绍了VxWorks 7系统下自启动应用程序的四种方法&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>确保可靠性、功能安全性和信息安全性 发展电动垂直起降飞行汽车</title>
       <link>https://www.vxworks7.com/post/news/vxworks-support-development-of-electric-vertical-take-off-and-landing-flying-cars.html</link>
