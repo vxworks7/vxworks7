@@ -178,7 +178,7 @@
     <li><a href="#背景介绍">背景介绍</a>
       <ul>
         <li><a href="#vxworks工程">VxWorks工程</a></li>
-        <li><a href="#vxworks-shell">Vxworks shell</a></li>
+        <li><a href="#vxworks-shell">VxWorks shell</a></li>
       </ul>
     </li>
     <li><a href="#内核应用程序dkm自启动">内核应用程序(DKM)自启动</a>
@@ -438,16 +438,16 @@
 <tr>
 <td>DKM (Downloadable Kernel Module)</td>
 <td>.out</td>
-<td>Vxworks内核态应用程序。可加载的内核模块，类似如linux下的ko文件。对于跑在内核态的用户代码，即可以添加到VIP工程中，也可以使用DKM工程独立成内核模块。在vxworks启动完成后，使用&quot;ld &lt; xxx.out&quot;的命令来动态加载。</td>
+<td>VxWorks内核态应用程序。可加载的内核模块，类似如linux下的ko文件。对于跑在内核态的用户代码，即可以添加到VIP工程中，也可以使用DKM工程独立成内核模块。在vxworks启动完成后，使用&quot;ld &lt; xxx.out&quot;的命令来动态加载。</td>
 </tr>
 <tr>
 <td>RTP(Real-Time Process)</td>
 <td>.vxe</td>
-<td>Vxworks用户态应用程序。跑在用户态的用户代码，使用RTP工程编译成.vxe文件。在vxworks启动完成后，使用“rtp exec xxx.vxe”命令来执行。</td>
+<td>VxWorks用户态应用程序。跑在用户态的用户代码，使用RTP工程编译成.vxe文件。在vxworks启动完成后，使用“rtp exec xxx.vxe”命令来执行。</td>
 </tr>
 </tbody>
 </table>
-<h3 id="vxworks-shell">Vxworks shell</h3>
+<h3 id="vxworks-shell">VxWorks shell</h3>
 <p>VxWorks拥有自己的命令行交互工具kernel shell，比较特殊的是shell有两种模式分别支持两种解析器：C Interpreter和Command Interpreter。</p>
 <table>
 <thead>
