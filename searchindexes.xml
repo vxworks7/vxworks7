@@ -492,8 +492,8 @@ cd &#34;YOUR_WORKSPACE&#34;\\profile_vip vxprj component add INCLUDE_PYTHON_SUPP
       <tag>VxWorks</tag>
       <tag>Network</tag>
     </tags>
-    <content type="html"><![CDATA[ 本文提供在系统运行中对网口进行配置的方法。
- 概述 本文提供在系统运行中对网口进行配置的方法。
+    <content type="html"><![CDATA[本文提供在系统运行中对网口进行配置的方法。
+概述 本文提供在系统运行中对网口进行配置的方法。
 注意 开发环境：vxWorks6.9.4，workbench3.3.5。
  之前小编网上找相关资料时，有博主说使用新增网口不能与已存在的网口处于同一网段。不过经过小编的测试，两个网口ip可以处在同一网段。  使用命令行测试网络连接正常。
 若网口没有连接，状态显示会缺少RUNNING字符。  验证 启动目标机，输入命令ifconfig，查看当前系统只有一个网口（gei2）。
@@ -521,8 +521,8 @@ ipAttach 3,&#34;gei&#34;和ifconfig &#34;gei3 10.0.0.2 netmask 255.255.255.0 up&
       <tag>VxWorks</tag>
       <tag>Firmware</tag>
     </tags>
-    <content type="html"><![CDATA[ VxWorks 操作系统是美国WindRiver公司于1983年设计开发的一种嵌入式实时操作系统（RTOS），是嵌入式开发环境的关键组成部分。
- 介绍 VxWorks 操作系统是美国WindRiver公司于1983年设计开发的一种嵌入式实时操作系统（RTOS），是嵌入式开发环境的关键组成部分。
+    <content type="html"><![CDATA[VxWorks 操作系统是美国WindRiver公司于1983年设计开发的一种嵌入式实时操作系统（RTOS），是嵌入式开发环境的关键组成部分。
+介绍 VxWorks 操作系统是美国WindRiver公司于1983年设计开发的一种嵌入式实时操作系统（RTOS），是嵌入式开发环境的关键组成部分。
 固件分析 固件提取的常用方式是使用binwalk工具进行分析和提取。
 提取 Binwalk分析，该固件内嵌一个使用lzma压缩的二进制数据。
 解压 可采用lzma命令或者binwalkh指令解压缩
