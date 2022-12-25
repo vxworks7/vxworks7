@@ -6,7 +6,34 @@
     <description>Recent content in Tags on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 24 Dec 2022 23:59:53 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 25 Dec 2022 00:10:11 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Device Driver</title>
+      <link>https://www.vxworks7.com/tags/device-driver/</link>
+      <pubDate>Sun, 25 Dec 2022 00:10:11 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/device-driver/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VxBus</title>
+      <link>https://www.vxworks7.com/tags/vxbus/</link>
+      <pubDate>Sun, 25 Dec 2022 00:10:11 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/vxbus/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VxWorks</title>
+      <link>https://www.vxworks7.com/tags/vxworks/</link>
+      <pubDate>Sun, 25 Dec 2022 00:10:11 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/vxworks/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Safety</title>
       <link>https://www.vxworks7.com/tags/safety/</link>
@@ -58,15 +85,6 @@
       <pubDate>Sat, 24 Dec 2022 11:35:19 -0500</pubDate>
       
       <guid>https://www.vxworks7.com/tags/telnet/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>VxWorks</title>
-      <link>https://www.vxworks7.com/tags/vxworks/</link>
-      <pubDate>Sat, 24 Dec 2022 11:35:19 -0500</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/vxworks/</guid>
       <description></description>
     </item>
     
@@ -148,15 +166,6 @@
       <pubDate>Fri, 23 Dec 2022 22:16:16 -0500</pubDate>
       
       <guid>https://www.vxworks7.com/tags/synopsys/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>VxBus</title>
-      <link>https://www.vxworks7.com/tags/vxbus/</link>
-      <pubDate>Fri, 23 Dec 2022 11:24:58 -0500</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/vxbus/</guid>
       <description></description>
     </item>
     
@@ -310,15 +319,6 @@
       <pubDate>Fri, 04 Nov 2022 19:52:03 +0800</pubDate>
       
       <guid>https://www.vxworks7.com/tags/timer/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>device driver</title>
-      <link>https://www.vxworks7.com/tags/device-driver/</link>
-      <pubDate>Fri, 04 Nov 2022 17:52:03 +0800</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/device-driver/</guid>
       <description></description>
     </item>
     

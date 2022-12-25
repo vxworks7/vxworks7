@@ -16,6 +16,27 @@
   </entry>
   
   <entry>
+    <title>VxBus设备驱动模型</title>
+    <url>/post/bsp/vxbus-device-driver-model-in-vxworks.html</url>
+    <categories><category>BSP</category>
+    </categories>
+    <tags>
+      <tag>VxWorks</tag>
+      <tag>vxbus</tag>
+      <tag>Device Driver</tag>
+    </tags>
+    <content type="html"><![CDATA[VxBus是指在VxWorks中用于支持设备驱动的特有的架构，这种架构包含对minimal BSP的支持。
+VxBus简介 它包括以下功能:
+ 允许设备驱动匹配对应设备; 提供驱动程序访问硬件的机制; 软件其他部分访问设备功能; 在VxWorks系统中，实现设备驱动的模块化。  VxBus在总线控制器驱动程序服务的支持下，能在总线上发现设备，并执行一些初始化工作，使驱动与硬件设备之间正常的通讯。
+LOCAL struct vxbPlbRegister windmlGraphicsPlbDevRegistration = { { NULL, /* register next driver */ VXB_DEVID_BUSCTRL, /* bus controller */ VXB_BUSID_PLB, /* bus id - PCI Bus Type */ VXB_VER_4_0_0, /* vxBus version Id */ &#34;graphics&#34;, /* drv name */ &amp;windmlvxbFuncs, /* pDrvBusFuncs */ NULL, /* pMethods */ windmlGraphicsProbe, /* probe routine */ NULL /* vxbParams */ } }; LOCAL struct vxbPciRegister windmlGraphicsPciDevRegistration = { /* b */ { (DRIVER_REGISTRATION *)(&amp;windmlGraphicsPlbDevRegistration), /* pNext */ VXB_DEVID_DEVICE, /* devID */ VXB_BUSID_PCI, /* busID = PCI */ VXB_VER_4_0_0, /* vxbVersion */ &#34;graphics&#34;, /* drvName */ &amp;windmlvxbFuncs, /* pDrvBusFuncs */ NULL, /* pMethods */ windmlGraphicsProbe, /* devProbe */ NULL, }, NELEMENTS(windmlPciDevIDList), &amp;windmlPciDevIDList[0], }; 这个结构就是用于描述一个需要注册的驱动。驱动的初始化的入口函数都需要放在windmlvxbFuncs中。
+//通过这个数据结构，可以向系统注册一些设备初始化函数 LOCAL struct drvBusFuncs windmlvxbFuncs = { windmlStub, /* devInstanceInit */ windmlStub, /* devInstanceInit2 */ windmlStub /* devConnect */ }; 上述代码中把这些函数都设置为了空。这里对三个初始化阶段函数简单介绍一下。devInstanceInit是在vxworks内核启动之前预初始化时调用，完成的主要是关闭设备的中断。然后内核启动初始化，调用init2，这时候就会完成设备驱动内存的初始化，如果驱动初始过程需要使用内核的一些基础设施，那么都可以放到这时候。devInstanceConnect用于设备的连接，通常可以不使用，但如果它依赖于其他设备，则可以把启动代码放在这里。
+另外，还需要注意到的一个就是windmlGraphicsProbe，这是一个设备探测函数，用于探测所有驱动所驱动的设备，并加入到设备列表中。
+windmlGraphicsPciDevRegistration 是通过 usrWindMlInit中的vxbDevRegister函数，完成每个被wind media所支持的设备类型的驱动注册。
+vxbDevRegister((struct vxbDevRegInfo *)&amp;windmlGraphicsPciDevRegistration); vxbDevRegister((struct vxbDevRegInfo *)&amp;windmlKeyboardDevRegistration); vxbDevRegister((struct vxbDevRegInfo *)&amp;windmlMouseDevRegistration); vxbDevRegister((struct vxbDevRegInfo *)&amp;windmlAudioPciDevRegistration); 然后调用uglODrvInit()；这个函数完成的工作就是创建所有的设备驱动，通过阅读源码就可以知道，其实仅仅是创建了设备节点而已。
+]]></content>
+  </entry>
+  
+  <entry>
     <title>确保可靠性、功能安全性和信息安全性 发展电动垂直起降飞行汽车</title>
     <url>/post/news/vxworks-support-development-of-electric-vertical-take-off-and-landing-flying-cars.html</url>
     <categories><category>News</category>
