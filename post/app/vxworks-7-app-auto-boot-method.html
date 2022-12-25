@@ -473,7 +473,7 @@
 </tr>
 </tbody>
 </table>
-<div class="note default ">
+<div class="note warning ">
   详细描述可以参考文档：“installDir\docs\vxworks-7-1.0.8.6\Core\vxworks_7_programmers_guide.pdf”。
 </div>
 <h2 id="内核应用程序dkm自启动">内核应用程序(DKM)自启动</h2>
@@ -826,9 +826,9 @@ By pwl.
 </code></pre></div><p>需要注意的是startup script中可以配置两种不同的自启动方式，上述的参数可以分成两部分：</p>
 <p>(1) “host:D:/pwl_workspace/autorun_c.sh”这部分配置的是vxworks在启动阶段执行一个C Interpreter格式的脚本。autorun_c.sh脚本的具体内容如下：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">rtpSp <span style="color:#e6db74">&#34;host:D:/pwl_workspace/TestSimRtp.vxe&#34;</span>
-</code></pre></div><blockquote>
-<p>需要特别注意的是，这里调用的是C Interpreter格式的脚本，后面的RTP_APPL_INIT_CMD_SHELL_SCRIPT方式调用的是Command Interpreter格式的脚本。</p>
-</blockquote>
+</code></pre></div><div class="note info ">
+  需要特别注意的是，这里调用的是C Interpreter格式的脚本，后面的RTP_APPL_INIT_CMD_SHELL_SCRIPT方式调用的是Command Interpreter格式的脚本。
+</div>
 <p>(2)&quot;#host:D:/pwl_workspace/TestSimRtp.vxe&quot;这部分配置的语法和INCLUDE_RTP_APPL_INIT_STRING选项一样。</p>
 <p>上述参数分别运行了一次TestSimRtp.vxe，所以TestSimRtp.vxe会被运行两次。</p>
 <ol start="3">
