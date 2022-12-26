@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>System Programming on VxWorks 7</title>
+    <link>https://www.vxworks7.com/tags/system-programming/</link>
+    <description>Recent content in System Programming on VxWorks 7</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 26 Dec 2022 11:22:08 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/system-programming/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VxWorks系统编程方法</title>
+      <link>https://www.vxworks7.com/post/app/vxworks-system-programming-method.html</link>
+      <pubDate>Mon, 26 Dec 2022 11:22:08 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/app/vxworks-system-programming-method.html</guid>
+      <description>&lt;p&gt;实时系统主要包括：多任务调度（采用优先级抢占方式），任务间的同步和进程间通信机制.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

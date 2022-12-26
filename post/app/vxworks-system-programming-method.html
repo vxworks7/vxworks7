@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)" />
+<meta name="generator" content="Hugo 0.92.2" />
+<link rel="shortcut icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
+<link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/imgs/icons/favicon_32_32_next.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/imgs/icons/apple_touch_icon_next.png">
+<meta itemprop="name" content="VxWorks系统编程方法" />
+<meta itemprop="description" content="VxWorks系统编程方法" />
+<meta itemprop="datePublished" ZgotmplZ />
+<meta itemprop="dateModified" ZgotmplZ />
+<meta itemprop="image" content="https://www.vxworks7.com/imgs/VxWorks_7_logo.png" />
+<meta itemprop="keywords" content="VxWorks,System Programming" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="VxWorks系统编程方法" />
+<meta property="og:description" content="VxWorks系统编程方法" />
+<meta property="og:image" content="/imgs/VxWorks_7_logo.png" />
+<meta property="og:image:width" content="312" />
+<meta property="og:image:height" content="312" />
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg" />
+<meta property="og:url" content="https://www.vxworks7.com/post/app/vxworks-system-programming-method.html"/>
+<meta property="og:site_name" content="VxWorks 7" />
+<meta property="og:locale" content="zh-CN"/>
+<meta property="article:author" content="VxWorks OS" />
+<meta property="article:published_time" content="2022-12-26 11:22:08 -0500 EST" />
+<meta property="article:modified_time" content="2022-12-26 11:22:08 -0500 EST" />
+
+
+  
+  <link type="text/css" rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.2/css/all.min.css" />
+  
+  <link type="text/css" rel="stylesheet" href="https://unpkg.com/animate.css@3.1.1/animate.min.css" />
+
+
+<link rel="stylesheet" href="/css/main.min.7d561ec9984cf0cb727fc88e14a92134576c99ccb9ce2f31b5b5541ab4ced328.css">
+  <style type="text/css">
+    .post-footer, .flinks-list-footer hr:after {
+      content: "~ 我可是有底线的哟 ~";
+    }
+  </style>
+  <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"vxworks-system-programming-method.html","permalink":"https://www.vxworks7.com/post/app/vxworks-system-programming-method.html","title":"VxWorks系统编程方法"}</script>
+  <script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', () => {
+    var script = document.createElement('script');
+      
+    script.charset = "UTF-8";
+    script.src     = "https:\/\/busuanzi.ibruce.info\/busuanzi\/2.3\/busuanzi.pure.mini.js";
+    script.async   = "true"
+
+    document.head.appendChild(script);
+  });
+</script>
+
+
+
+
+  <title>VxWorks系统编程方法 - VxWorks 7</title>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage"  class="use-motion" >
+  <div class="headband"></div>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner">
+<div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">VxWorks 7</h1>
+      <i class="logo-line"></i>
+    </a>
+    
+      <p class="site-subtitle" itemprop="description">Embedded World</p>
+      <img class="custom-logo-image" src="/imgs/VxWorks_7_logo.png" alt="VxWorks 7">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+      
+      <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+    <li class="menu-item menu-item-home">
+      <a href="/" class="hvr-icon-pulse " rel="section"><i class="fa fa-home hvr-icon"></i>首页
+      </a>
+    </li>
+    <li class="menu-item menu-item-about">
+      <a href="/about.html" class="hvr-icon-pulse " rel="section"><i class="fa fa-user hvr-icon"></i>关于
+      </a>
+    </li>
+    <li class="menu-item menu-item-flinks">
+      <a href="/flinks.html" class="hvr-icon-pulse " rel="section"><i class="fa fa-thumbs-up hvr-icon"></i>友情链接
+      </a>
+    </li>
+    <li class="menu-item menu-item-archives">
+      <a href="/archives/" class="hvr-icon-pulse " rel="section"><i class="fa fa-archive hvr-icon"></i>归档
+        <span class="badge">50</span>
+      </a>
+    </li>
+    <li class="menu-item menu-item-commonweal">
+      <a href="https://www.vxworks.net" class="hvr-icon-pulse " rel="section"><i class="fa fa-heartbeat hvr-icon"></i>赞助商
+      </a>
+    </li>
+    <li class="menu-item menu-item-search">
+      <a role="button" class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+    </div>
+  </div>
+
+      </div>
+      <div class="toggle sidebar-toggle" role="button">
+  <span class="toggle-line"></span>
+  <span class="toggle-line"></span>
+  <span class="toggle-line"></span>
+</div>
+<aside class="sidebar">
+  
+  <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-toc">
+        文章目录
+      </li>
+      <li class="sidebar-nav-overview">
+        站点概览
+      </li>
+    </ul>
+    <div class="sidebar-panel-container">
+      
+      <div class="post-toc-wrap sidebar-panel">
+        <div class="post-toc animated"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#多任务调度">多任务调度</a></li>
+    <li><a href="#任务间的同步和进程间协调">任务间的同步和进程间协调</a></li>
+  </ul>
+</nav></div>
+      </div>
+      
+      <div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="VxWorks OS"
+      src="/imgs/hugo_next_avatar.png">
+  <p class="site-author-name" itemprop="name">VxWorks OS</p>
+  <div class="site-description" itemprop="description">Where there is embedded, there is VxWorks.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+    <div class="site-state-item site-state-posts">
+      <a href="/archives/">
+        <span class="site-state-item-count">50</span>
+        <span class="site-state-item-name">日志</span>
+      </a>
+    </div>
+    <div class="site-state-item site-state-categories">
+      <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span>
+      </a>
+    </div>
+    <div class="site-state-item site-state-tags">
+      <a href="/tags/">
+        <span class="site-state-item-count">81</span>
+        <span class="site-state-item-name">标签</span>
+      </a>
+    </div>
+  </nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+
+
+  <span class="links-of-social-item">
+    <a href="https://github.com/" title="Github → https://github.com/" rel="noopener" class="hvr-icon-pulse" target="_blank">
+      <i class="fab fa-github fa-fw  hvr-icon "></i>Github
+    </a>
+  </span>
+  <span class="links-of-social-item">
+    <a href="https://www.zhihu.com/" title="知乎 → https://www.zhihu.com/" rel="noopener" class="hvr-icon-pulse" target="_blank">
+      <i class="fa fa-book fa-fw  hvr-icon "></i>知乎
+    </a>
+  </span>
+</div>
+<div class="cc-license animated" itemprop="license">
+  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank" title="共享知识">
+    <img src="/imgs/cc/big/by_nc_sa.svg" alt="共享知识">
+  </a>
+</div>
+<div class="links-of-blogroll site-overview-item animated">
+  <div class="links-of-blogroll-title">
+    <i class="fa fa-globe fa-fw"></i>友情链接
+  </div>
+  <ul class="links-of-blogroll-list">
+    <li class="links-of-blogroll-item">
+      <a href="https://www.gaitpu.com" title="https://www.gaitpu.com" target="_blank">Google AI TPU</a>
+    </li>
+    <li class="links-of-blogroll-item">
+      <a href="https://www.vxworks.net" title="https://www.vxworks.net" target="_blank">VxWorks俱乐部</a>
+    </li>
+  </ul>
+</div>
+      </div>
+    </div>
+   
+  </div>
+<div class="sidebar-card-widget">
+  <div class="item-headline">
+    <i class="fas fa-chart-line"></i>
+    <span>网站资讯</span>
+  </div>
+  <div class="siteinfo">
+    <div class="siteinfo-item">
+      <div class="item-name"><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+      <div class="item-count" id="runTimes" data-publishdate="2021-06-03T11:52:18&#43;08:00"></div>
+    </div>
+      <div class="siteinfo-item">
+        <div class="item-name">
+          <i class="fas fa fa-user"></i>总访客数：
+        </div>
+        <div class="item-count" id="busuanzi_value_site_uv"></div>
+      </div>
+      <div class="siteinfo-item">
+        <div class="item-name">
+          <i class="fas fa fa-eye"></i>页面浏览：
+        </div>
+        <div class="item-count" id="busuanzi_value_site_pv"></div>
+      </div>
+    <div class="siteinfo-item">
+      <div class="item-name"><i class="fa fa-font"></i>总字数：</div>
+      <div class="item-count" id="wordsCount" data-count="20884"></div>
+    </div>
+    <div class="siteinfo-item">
+      <div class="item-name"><i class="fa fa-mug-hot"></i>阅读约：</div>
+      <div class="item-count" id="readTimes" data-times="128"></div>
+    </div>
+    <div class="siteinfo-item">
+      <div class="item-name"><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+      <div class="item-count" id="last-push-date" data-lastpushdate="2022-12-26T11:22:08-05:00"></div>
+    </div>
+  </div>
+</div>
+</aside>
+<div class="sidebar-dimmer"></div>
+
+    </header>
+    
+    <div class="tool-buttons" >
+  <a id="goto-comments" class="button goto-comments" href="#comments"  title="直达评论">
+    <i class="fas fa-comments"></i>
+  </a> 
+  <div id="switch-theme" class="button" title="深浅模式切换">
+    <i class="fas fa-adjust"></i>
+  </div> 
+  
+  <div class="back-to-top" role="button" title="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div> 
+</div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+    <div class="main-inner post posts-expand">
+      
+  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://www.vxworks7.com/post/app/vxworks-system-programming-method.html">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/imgs/hugo_next_avatar.png">
+      <meta itemprop="name" content="VxWorks OS">
+    </span>
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="VxWorks OS">
+      <meta itemprop="description" content="Where there is embedded, there is VxWorks.">
+    </span>
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="VxWorks系统编程方法">
+      <meta itemprop="description" content="VxWorks系统编程方法">
+    </span>
+    <header class="post-header">
+       <h1 class="post-title" itemprop="name headline">VxWorks系统编程方法 </h1> <div class="post-meta-container">
+  <div class="post-meta-items">
+    
+
+
+<span class="post-meta-item">
+  <span class="post-meta-item-icon">
+    <i class="far fa-calendar"></i>
+  </span>
+  <span class="post-meta-item-text">发表于：</span>
+  <time title="发表于：2022-12-26 11:22:08 -0500 EST" itemprop="dateCreated datePublished" datetime="2022-12-26 11:22:08 -0500 EST">2022-12-26</time>
+</span>
+    
+    
+<span class="post-meta-item">
+  <span class="post-meta-item-icon">
+    <i class="far fa-folder-open"></i>
+  </span>
+  <span class="post-meta-item-text">分类于：</span>
+  <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+    <a href="/categories/app" itemprop="url" rel="index">
+      <span itemprop="name">APP</span>
+    </a>
+  </span>
+</span>
+  </div>
+  <div class="post-meta-items">
+    
+<span class="post-meta-item" title="字数">
+  <span class="post-meta-item-icon">
+    <i class="far fa-file-word"></i>
+  </span>
+  <span class="post-meta-item-text">字数：</span><span>296</span>
+</span>
+    
+<span class="post-meta-item" title="阅读">
+  <span class="post-meta-item-icon">
+    <i class="far fa-clock"></i>
+  </span>
+  <span class="post-meta-item-text">阅读：&asymp;</span>
+  <span>2分钟</span>
+</span>
+
+    
+<span class="post-meta-item" title="浏览">
+  <span class="post-meta-item-icon">
+    <i class="far fa-eye"></i>
+  </span>
+  <span class="post-meta-item-text">
+  浏览：
+  </span>
+  <span id="busuanzi_value_page_pv" data-path="/post/app/vxworks-system-programming-method.html"><i class="fa fa-sync fa-spin"></i></span>
+</span>
+
+  </div>
+  
+</div>
+
+
+    </header>
+    
+    <div class="post-body  autonumber " itemprop="articleBody">
+      
+  <p>实时系统主要包括：多任务调度（采用优先级抢占方式），任务间的同步和进程间通信机制.</p>
+<p>一个多任务环境允许实时应用程序以一套独立任务的方式构筑，每个任务拥有独立的执行线程和它自己的一套系统资源。进程间通信机制使得这些任务的行为同步、协调。 wind使用中断驱动和优先级的方式。它缩短了上下文转换的时间开销和中断的时延。在 VxWorks 中，任何例程都可以被启动为一个单独的任务，拥有它自己的上下文和堆栈。还有一些其它的任务机制可以使任务挂起、继续、删除、延时或改变优先级。</p>
+<p>另一个重要内容是：硬件中断处理。硬件产生中断,通知系统调用相应的中断历程(ISR)，为使系统得到尽快的响应,ISR在它自己独立的上下文和堆栈中运行.它的优先级高于任何任务优先级.</p>
+<p>中断延迟(Interrupt Latency) 中断延迟是指从硬件中断发生到开始执行中断处理程序第一条指令之间的这段时间。</p>
+<p>优先级驱动(Priority-Driven) 优先级驱动是指多任务系统中，当前运行任务总是具有最高优先级的就绪任务。</p>
+<h2 id="多任务调度">多任务调度</h2>
+<p>两种方式: 优先抢占和轮转调度(Preemptive Priority,Round-Robin Scheduling).</p>
+<p>优先抢占(Preemptive Priority): 每一个任务都有一个优先级，系统核心保证优先级最高的任务运行于CPU.如果有任务优先级高于当前的任务优先级,系统立刻保存当前任务的上下文,切换到优先级高的上下文.</p>
+<p>抢占(Preemptive): 抢占是指当系统处于核心态运行时, 允许任务的重新调度。换句话说就是指正在执行的任务可以被打断，让另一个任务运行。抢占提高了应用对异步事件的响应性能力。操作系统内核可抢占，并不是说任务调度在任何时候都可以发生。例如当一个任务正在通过一个系统调用访问共享数据时，重新调度和中断都被禁止.</p>
+<p>任务上下文(Task Context): 任务上下文是指任务运行的环境。例如，针对x86的CPU，任务上下文可包括程序计数器、堆栈指针、通用寄存器的内容.</p>
+<p>上下文切换（Context Switching）: 多任务系统中，上下文切换是指CPU的控制权由运行任务转移到另外一个就绪任务时所发生的事件，当前运行任务转为就绪（或者挂起、删除）状态，另一个被选定的就绪任务成为当前任务。上下文切换包括保存当前任务的运行环境，恢复将要运行任务的运行环境。上下文的内容依赖于具体的CPU.</p>
+<p>轮转调度(Round-Robin Scheduling):使所有相同优先级,状态为ready的任务公平分享CPU(分配一定的时间间隔,使每个任务流享有CPU). 系统由256个优先级,从0到255,0为最高,255为最低。 任务在被创建时设定了优先级.也可用taskPrioritySet() 来改变任务优先级.</p>
+<p>任务的主要状态: READY,PEND,DELAY,SUSPEND…</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">ready--------&gt;pended -----------semTake<span style="color:#f92672">()</span>/msgQReceive<span style="color:#f92672">()</span>-其他任务 
+ready--------&gt;delayed-----------taskDelay<span style="color:#f92672">()</span>
+ready--------&gt;suspended---------taskSuspend<span style="color:#f92672">()</span>
+pended-------&gt;ready-------------semaGive<span style="color:#f92672">()</span>/msgQSend<span style="color:#f92672">()</span>-其他任务 
+pended-------&gt;suspended---------taskSuspend<span style="color:#f92672">()</span>
+delayed------&gt;ready-------------expired delay 
+delayed------&gt;suspended---------taskSuspend<span style="color:#f92672">()</span>
+suspended----&gt;ready-------------taskResume<span style="color:#f92672">()</span>/taskActivate<span style="color:#f92672">()</span> 
+suspended----&gt;pended------------taskResume<span style="color:#f92672">()</span> 
+suspended----&gt;delayed-----------taskResume<span style="color:#f92672">()</span>
+</code></pre></div><p>轮转调度 (Round-Robin): 轮转调度可以扩充到优先抢占方式中,当多个任务优先级相同的情况下,轮转调度算法使任务按平等的时间片运行于CPU,共享CPU.避免一个任务长时间占用CPU,而导致其他任务不能运行.可以用 kernelTimeSlice() 来定义时间长度. taskLock()和 taskUnlock()用来取消优先抢占方式 和恢复优先抢占方式.</p>
+<p>注意: 一个任务可以调用taskDelete()删除另一个任务,但是如果一个当前正在运行的任务被删除后,该任务的内存没有释放,而其他任务不知道,依然在等待,结果导致系统stop.用 taskSafe()和 taskUnsafe() 来保证正在运行的任务不被删除.</p>
+<p>用法如下:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-cpp" data-lang="cpp">taskSafe (); 
+semTake (semId, WAIT_FOREVER); 
+<span style="color:#75715e">/* Block until semaphore **ailable */</span> 
+. .　. .　critical region . 
+semGive (semId);
+semGive (semId); 
+<span style="color:#75715e">/* Release semaphore */</span> 
+taskUnsafe (); 
+</code></pre></div><h2 id="任务间的同步和进程间协调">任务间的同步和进程间协调</h2>
+<p>信号量作为任务间同步和互斥的机制。在 wind 核中有几种类型的信号量，它们分别针对不同的应用需求：二进制信号量、计数信号量、互斥信号量和 POSIX 信号量。所有的这些信号量是快速和高效的，它们除了被应用在开发设计过程中外，还被广泛地应用在VxWorks 高层应用系统中。对于进程间通信，wind 核也提供了诸如消息队列、管道、套接字和信号等机制。</p>
+<p>任务间的同步和进程间协调的几种方式:</p>
+<ul>
+<li>内存共享(Shared Memory),对简单的数据共享而言.</li>
+<li>信号量(Semaphore),基本的互斥和同步.</li>
+<li>消息队列(Message queues)和管道(Pipe),单个CPU中,任务间的信息传递.</li>
+<li>套结字(Socket)和远程调用(Remote procedure calls),相对于网络任务间的通信.</li>
+<li>信号(Signals),出错处理(Exception handling).</li>
+<li>互斥(Mutual Exclusion)</li>
+<li>互斥是用来控制多任务对共享数据进行串行访问的同步机制。在多任务应用中，当两个或多个任务同时访问共享数据时，可能会造成数据破坏。互斥使它们串行地访问数据，从而达到保护数据的目的.</li>
+</ul>
+<p>解决互斥的几种方法:</p>
+<ol>
+<li>关闭中断的方法(intLock): 能解决任务和中断ISR之间产生的互斥.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-cpp" data-lang="cpp">funcA () 
+{ 
+    <span style="color:#66d9ef">int</span> lock <span style="color:#f92672">=</span> intLock(); 
+    . . critical region that cannot be interrupted . 
+    intUnlock (lock); 
+} 
+</code></pre></div><p>但在实时系统中采取这个办法会影响系统对外部中断及时响应和处理的能力.</p>
+<ol start="2">
+<li>关闭系统优先级(taskLock): 关闭系统优先级,这样在当前任务执行时,除了中断外,不会有其他优先级高的任务来抢占CPU,影响当前程序运行.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-cpp" data-lang="cpp">funcA () 
+{ 
+    taskLock (); 
+    . . critical region that cannot be interrupted . 
+    taskUnlock (); 
+} 
+</code></pre></div><p>这种方法阻止了高优先级的任务抢先运行,在实时系统中也是不适合的,除非关闭优先级的时间特别短.</p>
+<ol start="3">
+<li>信号量(Semaphore): 信号量是解决互斥和同步协调进程最好的方法</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-cpp" data-lang="cpp">SEM_ID semMutex; 
+semMutex <span style="color:#f92672">=</span> semBCreate (SEM_Q_PRIORITY, SEM_FULL); 
+......... 
+semTake (semMutex, WAIT_FOREVER); 
+. . critical region, only accessible by a single task at a time . 
+semGive (semMutex); 
+semBCreat(SEM_Q_FIFO,SEM_EMPTY), SEM_EMPTY <span style="color:#960050;background-color:#1e0010">指明用于任务间同步</span>. 
+
+<span style="color:#75715e">/* includes */</span> 
+<span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;vxWorks.h&#34; </span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;semLib.h&#34; </span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>SEM_ID syncSem; 
+<span style="color:#75715e">/* ID of sync semaphore */</span> 
+init ( <span style="color:#66d9ef">int</span> someIntNum ) 
+{ <span style="color:#75715e">/* connect interrupt service routine */</span> 
+       intConnect (INUM_TO_IVEC (someIntNum), eventInterruptSvcRout, <span style="color:#ae81ff">0</span>); 
+       <span style="color:#75715e">/* create semaphore */</span> 
+       syncSem <span style="color:#f92672">=</span> semBCreate (SEM_Q_FIFO, SEM_EMPTY); 
+       <span style="color:#75715e">/* spawn task used for synchronization. */</span> 
+       taskSpawn (<span style="color:#e6db74">&#34;sample&#34;</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">20000</span>, task1, <span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>); 
+} 
+task1 (<span style="color:#66d9ef">void</span>) 
+{ ... 
+       semTake (syncSem, WAIT_FOREVER); 
+       <span style="color:#75715e">/* wait for event to occur */</span> 
+       printf (<span style="color:#e6db74">&#34;task 1 got the semaphore</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>); 
+       ... 
+       <span style="color:#75715e">/* process event */</span> 
+} 
+eventInterruptSvcRout (<span style="color:#66d9ef">void</span>) 
+{ ... 
+       semGive (syncSem); 
+       <span style="color:#75715e">/* let task 1 process event */</span> 
+       ... 
+} 
+</code></pre></div><p>函数介绍:</p>
+<p>semTake(semID,time out)&mdash;&mdash;&ndash;有Semaphore空闲,就Take, 如果没有,由time out 定,超时则向下执行</p>
+<ol start="4">
+<li>
+<p>优先级反转(Priority Inversion)
+优先级反转是指一个任务等待比它优先级低的任务释放资源而被阻塞，如果这时有中等优先级的就绪任务，阻塞会进一步恶化。优先级继承技术可用来解决优先级反转问题。</p>
+</li>
+<li>
+<p>优先级继承(Priority Inheritance)
+优先级继承可用来解决优先级反转问题。当优先级反转发生时，优先级较低的任务被暂时地提高它的优先级，使得该任务能尽快执行，释放出优先级较高的任务所需要的资源。</p>
+</li>
+</ol>
+<p>互斥信号量具有选项SEM_INVERSION_SAFE，它支持优先级继承算法。优先级继承协议确保拥有资源的任务以该资源上阻止的最高优先级任务的优先级执行。一旦任务优先级被提升，它将保持在更高的级别，直到任务拥有的所有互斥信号量被释放；然后任务返回其正常或标准优先级。因此，“继承”任务不受任何中间优先级任务的抢占。此选项必须与优先级队列（SEM_Q_priority）一起使用。</p>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1543398821442998"
+     crossorigin="anonymous"></script>
+
+<ins class="adsbygoogle"
+     style="display:inline-block;width:970px;height:90px"
+     data-ad-client="ca-pub-1543398821442998"
+     data-ad-slot="4140563281"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+    </div>
+    <footer class="post-footer">
+      
+
+<div class="post-tags">
+  
+    <a href="/tags/vxworks">
+    VxWorks
+  </a>
+    <a href="/tags/system-programming">
+    System Programming
+  </a>
+</div>
+
+<div class="addthis_inline_share_toolbox" style="text-align: center;"></div>
+<hr/>
+
+<div class="reward-container">
+  <div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div>
+  <button>赞赏</button>
+  <div class="post-reward">
+    <div class="post-reward-item">
+      <img src="/imgs/ali-pay.png" alt="VxWorks OS - 支付宝">
+      <span>支付宝</span>
+    </div>
+    <div class="post-reward-item">
+      <img src="/imgs/wechat-pay.png" alt="VxWorks OS - 微信">
+      <span>微信</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="post-copyright">
+  <img src="/imgs/cc/cc.svg" width="75" height="75" align="right" />
+  <ul>
+    <li class="post-copyright-title">
+      <strong>文章标题：</strong>
+      VxWorks系统编程方法
+    </li>
+    <li class="post-copyright-author">
+      <strong>本文作者： </strong>
+      VxWorks OS
+    </li>
+    <li class="post-copyright-link"> 
+      <strong>本文链接：</strong>
+       <a id="post-cr-link" href="https://www.vxworks7.com/post/app/vxworks-system-programming-method.html" title="VxWorks系统编程方法">https://www.vxworks7.com/post/app/vxworks-system-programming-method.html</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <i class="fab fa-fw fa-creative-commons"></i><a target='_blank' href='https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh'>BY-NC-SA</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</div>
+
+  <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+  <div class="social-list">
+    
+    <div class="social-item">
+        <a target="_blank" class="social-link" href="/imgs/wechat_channel.jpg">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
+          <span class="label">WeChat</span>
+        </a>
+      </div>
+  </div>
+</div>
+<div class="post-nav">
+  <div class="post-nav-next post-nav-item">
+    <a href="/post/welcome-to-vxworks-club/" rel="next" title="欢迎加入 VxWorks 俱乐部！">
+      <i class="fa fa-chevron-left"></i> 欢迎加入 VxWorks 俱乐部！
+    </a>
+  </div>
+  <div class="post-nav-prev post-nav-item">
+    <a href="/post/bsp/embedded-os-vxworks-introduction.html" rel="prev" title="嵌入式操作系统VxWorks简介">
+      嵌入式操作系统VxWorks简介
+      <i class="fa fa-chevron-right"></i>
+    </a>
+  </div>
+</div>
+
+    </footer>
+  </article>
+</div>
+<div id="comments" class="post-comments">
+  <div class="comment-head">
+    <div class="comment-headline">
+      <i class="fas fa-comments fa-fw"></i>
+      <span>评论交流</span>
+    </div>
+    <div class="comment-switch">
+      <span class="first-comment">Giscus</span>
+      <span class="switch-btn "></span>
+      <span class="second-comment">Waline</span>
+    </div>
+  </div>
+  <div class="comment-wrap">
+  
+    <div><div class="comment-loading">
+  <i class="fa fa-sync fa-spin"></i>
+</div><div class="giscus-container"></div>
+    </div>
+    <div><div class="comment-loading">
+  <i class="fa fa-sync fa-spin"></i>
+</div><div class="waline-container"></div>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="footer-inner">
+
+<div class="copyright">
+  &copy;
+  <span itemprop="copyrightYear">
+    2010 - 2022
+  </span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">VxWorks OS</span>
+</div>
+
+
+    </div>
+  </footer> 
+  
+  <script type="text/javascript" src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
+
+
+
+
+
+
+
+<script type="text/javascript" src="/js/main.min.7e59cf1a98d842830d8a6f149f78fbbcf9e795b7a9eb76feb34b48c9bf1554d7.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

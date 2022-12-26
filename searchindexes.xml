@@ -16,6 +16,43 @@
   </entry>
   
   <entry>
+    <title>VxWorks系统编程方法</title>
+    <url>/post/app/vxworks-system-programming-method.html</url>
+    <categories><category>APP</category>
+    </categories>
+    <tags>
+      <tag>VxWorks</tag>
+      <tag>System Programming</tag>
+    </tags>
+    <content type="html"><![CDATA[实时系统主要包括：多任务调度（采用优先级抢占方式），任务间的同步和进程间通信机制.
+一个多任务环境允许实时应用程序以一套独立任务的方式构筑，每个任务拥有独立的执行线程和它自己的一套系统资源。进程间通信机制使得这些任务的行为同步、协调。 wind使用中断驱动和优先级的方式。它缩短了上下文转换的时间开销和中断的时延。在 VxWorks 中，任何例程都可以被启动为一个单独的任务，拥有它自己的上下文和堆栈。还有一些其它的任务机制可以使任务挂起、继续、删除、延时或改变优先级。
+另一个重要内容是：硬件中断处理。硬件产生中断,通知系统调用相应的中断历程(ISR)，为使系统得到尽快的响应,ISR在它自己独立的上下文和堆栈中运行.它的优先级高于任何任务优先级.
+中断延迟(Interrupt Latency) 中断延迟是指从硬件中断发生到开始执行中断处理程序第一条指令之间的这段时间。
+优先级驱动(Priority-Driven) 优先级驱动是指多任务系统中，当前运行任务总是具有最高优先级的就绪任务。
+多任务调度 两种方式: 优先抢占和轮转调度(Preemptive Priority,Round-Robin Scheduling).
+优先抢占(Preemptive Priority): 每一个任务都有一个优先级，系统核心保证优先级最高的任务运行于CPU.如果有任务优先级高于当前的任务优先级,系统立刻保存当前任务的上下文,切换到优先级高的上下文.
+抢占(Preemptive): 抢占是指当系统处于核心态运行时, 允许任务的重新调度。换句话说就是指正在执行的任务可以被打断，让另一个任务运行。抢占提高了应用对异步事件的响应性能力。操作系统内核可抢占，并不是说任务调度在任何时候都可以发生。例如当一个任务正在通过一个系统调用访问共享数据时，重新调度和中断都被禁止.
+任务上下文(Task Context): 任务上下文是指任务运行的环境。例如，针对x86的CPU，任务上下文可包括程序计数器、堆栈指针、通用寄存器的内容.
+上下文切换（Context Switching）: 多任务系统中，上下文切换是指CPU的控制权由运行任务转移到另外一个就绪任务时所发生的事件，当前运行任务转为就绪（或者挂起、删除）状态，另一个被选定的就绪任务成为当前任务。上下文切换包括保存当前任务的运行环境，恢复将要运行任务的运行环境。上下文的内容依赖于具体的CPU.
+轮转调度(Round-Robin Scheduling):使所有相同优先级,状态为ready的任务公平分享CPU(分配一定的时间间隔,使每个任务流享有CPU). 系统由256个优先级,从0到255,0为最高,255为最低。 任务在被创建时设定了优先级.也可用taskPrioritySet() 来改变任务优先级.
+任务的主要状态: READY,PEND,DELAY,SUSPEND…
+ready--------&gt;pended -----------semTake()/msgQReceive()-其他任务 ready--------&gt;delayed-----------taskDelay() ready--------&gt;suspended---------taskSuspend() pended-------&gt;ready-------------semaGive()/msgQSend()-其他任务 pended-------&gt;suspended---------taskSuspend() delayed------&gt;ready-------------expired delay delayed------&gt;suspended---------taskSuspend() suspended----&gt;ready-------------taskResume()/taskActivate() suspended----&gt;pended------------taskResume() suspended----&gt;delayed-----------taskResume() 轮转调度 (Round-Robin): 轮转调度可以扩充到优先抢占方式中,当多个任务优先级相同的情况下,轮转调度算法使任务按平等的时间片运行于CPU,共享CPU.避免一个任务长时间占用CPU,而导致其他任务不能运行.可以用 kernelTimeSlice() 来定义时间长度. taskLock()和 taskUnlock()用来取消优先抢占方式 和恢复优先抢占方式.
+注意: 一个任务可以调用taskDelete()删除另一个任务,但是如果一个当前正在运行的任务被删除后,该任务的内存没有释放,而其他任务不知道,依然在等待,结果导致系统stop.用 taskSafe()和 taskUnsafe() 来保证正在运行的任务不被删除.
+用法如下:
+taskSafe (); semTake (semId, WAIT_FOREVER); /* Block until semaphore **ailable */ . .　. .　critical region . semGive (semId); semGive (semId); /* Release semaphore */ taskUnsafe (); 任务间的同步和进程间协调 信号量作为任务间同步和互斥的机制。在 wind 核中有几种类型的信号量，它们分别针对不同的应用需求：二进制信号量、计数信号量、互斥信号量和 POSIX 信号量。所有的这些信号量是快速和高效的，它们除了被应用在开发设计过程中外，还被广泛地应用在VxWorks 高层应用系统中。对于进程间通信，wind 核也提供了诸如消息队列、管道、套接字和信号等机制。
+任务间的同步和进程间协调的几种方式:
+ 内存共享(Shared Memory),对简单的数据共享而言. 信号量(Semaphore),基本的互斥和同步. 消息队列(Message queues)和管道(Pipe),单个CPU中,任务间的信息传递. 套结字(Socket)和远程调用(Remote procedure calls),相对于网络任务间的通信. 信号(Signals),出错处理(Exception handling). 互斥(Mutual Exclusion) 互斥是用来控制多任务对共享数据进行串行访问的同步机制。在多任务应用中，当两个或多个任务同时访问共享数据时，可能会造成数据破坏。互斥使它们串行地访问数据，从而达到保护数据的目的.  解决互斥的几种方法:
+ 关闭中断的方法(intLock): 能解决任务和中断ISR之间产生的互斥.  funcA () { int lock = intLock(); . . critical region that cannot be interrupted . intUnlock (lock); } 但在实时系统中采取这个办法会影响系统对外部中断及时响应和处理的能力.
+关闭系统优先级(taskLock): 关闭系统优先级,这样在当前任务执行时,除了中断外,不会有其他优先级高的任务来抢占CPU,影响当前程序运行.  funcA () { taskLock (); . . critical region that cannot be interrupted . taskUnlock (); } 这种方法阻止了高优先级的任务抢先运行,在实时系统中也是不适合的,除非关闭优先级的时间特别短.
+信号量(Semaphore): 信号量是解决互斥和同步协调进程最好的方法  SEM_ID semMutex; semMutex = semBCreate (SEM_Q_PRIORITY, SEM_FULL); ......... semTake (semMutex, WAIT_FOREVER); . . critical region, only accessible by a single task at a time . semGive (semMutex); semBCreat(SEM_Q_FIFO,SEM_EMPTY), SEM_EMPTY 指明用于任务间同步. /* includes */ #include &#34;vxWorks.h&#34; #include &#34;semLib.h&#34; SEM_ID syncSem; /* ID of sync semaphore */ init ( int someIntNum ) { /* connect interrupt service routine */ intConnect (INUM_TO_IVEC (someIntNum), eventInterruptSvcRout, 0); /* create semaphore */ syncSem = semBCreate (SEM_Q_FIFO, SEM_EMPTY); /* spawn task used for synchronization. */ taskSpawn (&#34;sample&#34;, 100, 0, 20000, task1, 0,0,0,0,0,0,0,0,0,0); } task1 (void) { ... semTake (syncSem, WAIT_FOREVER); /* wait for event to occur */ printf (&#34;task 1 got the semaphore\n&#34;); ... /* process event */ } eventInterruptSvcRout (void) { ... semGive (syncSem); /* let task 1 process event */ ... } 函数介绍:
+semTake(semID,time out)&mdash;&mdash;&ndash;有Semaphore空闲,就Take, 如果没有,由time out 定,超时则向下执行
+ 优先级反转(Priority Inversion) 优先级反转是指一个任务等待比它优先级低的任务释放资源而被阻塞，如果这时有中等优先级的就绪任务，阻塞会进一步恶化。优先级继承技术可用来解决优先级反转问题。
+  优先级继承(Priority Inheritance) 优先级继承可用来解决优先级反转问题。当优先级反转发生时，优先级较低的任务被暂时地提高它的优先级，使得该任务能尽快执行，释放出优先级较高的任务所需要的资源。
+  互斥信号量具有选项SEM_INVERSION_SAFE，它支持优先级继承算法。优先级继承协议确保拥有资源的任务以该资源上阻止的最高优先级任务的优先级执行。一旦任务优先级被提升，它将保持在更高的级别，直到任务拥有的所有互斥信号量被释放；然后任务返回其正常或标准优先级。因此，“继承”任务不受任何中间优先级任务的抢占。此选项必须与优先级队列（SEM_Q_priority）一起使用。
+]]></content>
+  </entry>
+  
+  <entry>
     <title>嵌入式操作系统VxWorks简介</title>
     <url>/post/bsp/embedded-os-vxworks-introduction.html</url>
     <categories><category>BSP</category>
