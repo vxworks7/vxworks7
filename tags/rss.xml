@@ -6,7 +6,25 @@
     <description>Recent content in Tags on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 25 Dec 2022 07:51:55 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 26 Dec 2022 10:23:56 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Embedded OS</title>
+      <link>https://www.vxworks7.com/tags/embedded-os/</link>
+      <pubDate>Mon, 26 Dec 2022 10:23:56 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/embedded-os/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VxWorks</title>
+      <link>https://www.vxworks7.com/tags/vxworks/</link>
+      <pubDate>Mon, 26 Dec 2022 10:23:56 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/vxworks/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>APP Auto Boot</title>
       <link>https://www.vxworks7.com/tags/app-auto-boot/</link>
@@ -40,15 +58,6 @@
       <pubDate>Sun, 25 Dec 2022 00:10:11 -0500</pubDate>
       
       <guid>https://www.vxworks7.com/tags/vxbus/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>VxWorks</title>
-      <link>https://www.vxworks7.com/tags/vxworks/</link>
-      <pubDate>Sun, 25 Dec 2022 00:10:11 -0500</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/vxworks/</guid>
       <description></description>
     </item>
     
