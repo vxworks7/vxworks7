@@ -16,6 +16,20 @@
   </entry>
   
   <entry>
+    <title>VxWorks下多任务调试</title>
+    <url>/post/app/vxworks-multiple-tasks-debug.html</url>
+    <categories><category>APP</category>
+    </categories>
+    <tags>
+      <tag>VxWorks</tag>
+      <tag>Multiple Task</tag>
+    </tags>
+    <content type="html"><![CDATA[在任务运行过程中,会出现一些异常的情况,导致任务不能正常运行或者对操作系统造成影响。
+VxWorks任务编程中常见异常分析 一般来说,这些异常是由程序的逻辑错误造成的,防止这些异常情况的出现和出现后进行补救就有格外重要的意义。
+]]></content>
+  </entry>
+  
+  <entry>
     <title>VxWorks系统编程方法</title>
     <url>/post/app/vxworks-system-programming-method.html</url>
     <categories><category>APP</category>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Multiple Task on VxWorks 7</title>
+    <link>https://www.vxworks7.com/tags/multiple-task/</link>
+    <description>Recent content in Multiple Task on VxWorks 7</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 28 Dec 2022 10:48:17 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/multiple-task/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VxWorks下多任务调试</title>
+      <link>https://www.vxworks7.com/post/app/vxworks-multiple-tasks-debug.html</link>
+      <pubDate>Wed, 28 Dec 2022 10:48:17 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/app/vxworks-multiple-tasks-debug.html</guid>
+      <description>在任务运行过程中,会出现一些异常的情况,导致任务不能正常运行或者对操作系统造成影响。
+VxWorks任务编程中常见异常分析 一般来说,这些异常是由程序的逻辑错误造成的,防止这些异常情况的出现和出现后进行补救就有格外重要的意义。</description>
+    </item>
+    
+  </channel>
+</rss>
