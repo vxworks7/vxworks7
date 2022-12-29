@@ -7,37 +7,62 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>https://www.vxworks7.com/categories/bsp/</loc>
+    <lastmod>2022-12-29T07:32:24-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/categories/</loc>
+    <lastmod>2022-12-29T07:32:24-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/device-driver/</loc>
+    <lastmod>2022-12-29T07:32:24-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/network/</loc>
+    <lastmod>2022-12-29T07:32:24-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/post/</loc>
+    <lastmod>2022-12-29T07:32:24-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/</loc>
+    <lastmod>2022-12-29T07:32:24-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/vxbus/</loc>
+    <lastmod>2022-12-29T07:32:24-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/vxworks/</loc>
+    <lastmod>2022-12-29T07:32:24-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/</loc>
+    <lastmod>2022-12-29T07:32:24-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/post/bsp/network-device-driver-design-based-on-vxbus.html</loc>
+    <lastmod>2022-12-29T07:32:24-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://www.vxworks7.com/categories/app/</loc>
     <lastmod>2022-12-28T10:48:17-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/categories/</loc>
-    <lastmod>2022-12-28T10:48:17-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>https://www.vxworks7.com/tags/multiple-task/</loc>
-    <lastmod>2022-12-28T10:48:17-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/post/</loc>
-    <lastmod>2022-12-28T10:48:17-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/tags/</loc>
-    <lastmod>2022-12-28T10:48:17-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/tags/vxworks/</loc>
-    <lastmod>2022-12-28T10:48:17-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/</loc>
     <lastmod>2022-12-28T10:48:17-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -54,11 +79,6 @@
   </url><url>
     <loc>https://www.vxworks7.com/post/app/vxworks-system-programming-method.html</loc>
     <lastmod>2022-12-26T11:22:08-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/categories/bsp/</loc>
-    <lastmod>2022-12-26T10:23:56-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -84,16 +104,6 @@
   </url><url>
     <loc>https://www.vxworks7.com/post/app/vxworks-7-app-auto-boot-method.html</loc>
     <lastmod>2022-12-25T07:51:55-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/tags/device-driver/</loc>
-    <lastmod>2022-12-25T00:10:11-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/tags/vxbus/</loc>
-    <lastmod>2022-12-25T00:10:11-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -289,11 +299,6 @@
   </url><url>
     <loc>https://www.vxworks7.com/post/app/how-to-integrate-python-into-vxworks-7.html</loc>
     <lastmod>2022-12-20T23:54:53-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/tags/network/</loc>
-    <lastmod>2022-12-20T09:12:25-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>

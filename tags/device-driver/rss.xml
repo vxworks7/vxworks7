@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Device Driver on VxWorks 7</title>
+    <title>device driver on VxWorks 7</title>
     <link>https://www.vxworks7.com/tags/device-driver/</link>
-    <description>Recent content in Device Driver on VxWorks 7</description>
+    <description>Recent content in device driver on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 25 Dec 2022 00:10:11 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/device-driver/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 29 Dec 2022 07:32:24 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/device-driver/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VxWorks6.6下基于VxBus的以太网驱动开发</title>
+      <link>https://www.vxworks7.com/post/bsp/network-device-driver-design-based-on-vxbus.html</link>
+      <pubDate>Thu, 29 Dec 2022 07:32:24 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/bsp/network-device-driver-design-based-on-vxbus.html</guid>
+      <description>&lt;p&gt;最近更换mpc8313的phy芯片，由原来的lxt972Phy更换为DP83849I，在此记录下本人在驱动开发过程中的点滴记录，以备日后查询。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>VxBus设备驱动模型</title>
       <link>https://www.vxworks7.com/post/bsp/vxbus-device-driver-model-in-vxworks.html</link>

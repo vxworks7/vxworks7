@@ -6,7 +6,7 @@
     <description>Recent content in VxWorks on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 28 Dec 2022 10:48:17 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/vxworks/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 29 Dec 2022 07:32:24 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/vxworks/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>欢迎加入 VxWorks 俱乐部！</title>
       <link>https://www.vxworks7.com/post/welcome-to-vxworks-club/</link>
@@ -16,6 +16,15 @@
       <description>欢迎来到 北南南北 文档站点！ 相关文章来源于 VxWorks 俱乐部  ，也可能发布于 AI 嵌入式开发  ，专注于技术分享和交流。
 免责声明 所有资源均来自网络，版权归原作者，如有侵权，请联系删除！
 欢迎投稿  欢迎广大网友投稿 欢迎加入网友微信群  </description>
+    </item>
+    
+    <item>
+      <title>VxWorks6.6下基于VxBus的以太网驱动开发</title>
+      <link>https://www.vxworks7.com/post/bsp/network-device-driver-design-based-on-vxbus.html</link>
+      <pubDate>Thu, 29 Dec 2022 07:32:24 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/bsp/network-device-driver-design-based-on-vxbus.html</guid>
+      <description>&lt;p&gt;最近更换mpc8313的phy芯片，由原来的lxt972Phy更换为DP83849I，在此记录下本人在驱动开发过程中的点滴记录，以备日后查询。&lt;/p&gt;</description>
     </item>
     
     <item>

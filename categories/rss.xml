@@ -6,22 +6,22 @@
     <description>Recent content in Categories on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 28 Dec 2022 10:48:17 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 29 Dec 2022 07:32:24 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>BSP</title>
+      <link>https://www.vxworks7.com/categories/bsp/</link>
+      <pubDate>Thu, 29 Dec 2022 07:32:24 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/categories/bsp/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>APP</title>
       <link>https://www.vxworks7.com/categories/app/</link>
       <pubDate>Wed, 28 Dec 2022 10:48:17 -0500</pubDate>
       
       <guid>https://www.vxworks7.com/categories/app/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>BSP</title>
-      <link>https://www.vxworks7.com/categories/bsp/</link>
-      <pubDate>Mon, 26 Dec 2022 10:23:56 -0500</pubDate>
-      
-      <guid>https://www.vxworks7.com/categories/bsp/</guid>
       <description></description>
     </item>
     
