@@ -383,7 +383,8 @@
     <div class="post-body  autonumber " itemprop="articleBody">
       
   <p>最近更换mpc8313的phy芯片，由原来的lxt972Phy更换为DP83849I，在此记录下本人在驱动开发过程中的点滴记录，以备日后查询。</p>
-<p>基于vxbus的网络驱动，vxBus驱动的注册遵循一致的方法，驱动接口为：</p>
+<p><img src="https://www.vxworks.net/images/bsp/MPC8313E.png" alt="MPC8313E">
+基于vxbus的网络驱动，vxBus驱动的注册遵循一致的方法，驱动接口为：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"> device_method_t dp83849PhyMethods[] <span style="color:#f92672">=</span>
     {
     DEVMETHOD(miiModeGet,      dp83849PhyModeGet),
