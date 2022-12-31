@@ -16,6 +16,44 @@
   </entry>
   
   <entry>
+    <title>VxWorks操作系统下的USB摄像头驱动总结</title>
+    <url>/post/bsp/vxworks-device-driver-for-logitech-C200-USB-camera.html</url>
+    <categories><category>BSP</category>
+    </categories>
+    <tags>
+      <tag>VxWorks</tag>
+      <tag>usb</tag>
+      <tag>Camera</tag>
+    </tags>
+    <content type="html"><![CDATA[本文分享了VxWorks下USB摄像头驱动总结
+VxWorks驱动开发步骤： 声明设备struct，必须包含DEV_HDR，例如：
+typedef struct { DEV_HDR myDevHdr; BOOL bIsAvailable; int iUserCount; char *pBuf[]; } MY_DEV; 定义全局变量int myDrvNum; /* 设备号 */
+MY_DEV myDev; 声明设备操作函数（创建、打开、读/写等）;
+声明中断处理函数；
+myDrvNum = iosDrvInstall(myDevCreate, myDevRemove, myDevOpen, myDevClose, myDevRead, myDevWrite, myDevIoctl); /* 创建驱动 */ intConnect(intvec, myIntHandler, 0); /* 连接中断 */ status = iosDevAdd(&amp;myDev, &#34;my device&#34;, myDrvNum); /* 创建设备描述符结构 */ /* 完成相关函数 */
+VxWorsk下USB协议栈 (USBD Client Module)&lt;-&gt;(USB Host Driver)&lt;-&gt;(USB Host Controller Driver)&lt;-&gt;(USB Host Controller)，共四层。
+最下层是硬件，有两种主机控制器，OHCI（微软）和UHCI（Intel），相应的驱动分别在usbHcdOhciLib.c和usbHcdUhciLib.c中定义。
+USB Host Driver（USBD）是客户驱动和HCD之间的中介，接受客户发送来命令，发送给HCD，HCD在驱动硬件接受。
+数据发送路线及格式：客户驱动(USB_IRP包)-&gt;USBD(URB包)-&gt;HCD(HRB包)。
+USBD入口函数usbdCoreEntry(pURB_HEADER pUrb)，所有请求函数都先进入此函数，根据pUrb-&gt;function的值调用相应函数。
+一个用户设置interface例子：
+(用户)usbdInterfaceSet()-&gt;(USBD)生成URB_INTERFACE_GET_SET结构的变量Urb，结构中第一个变量是URB_HEADER， 调用urbExecBlock(&amp;Urb.header)-&gt;usbdCoreEntry(pUrb)-&gt;(USBD)由于pUrb-&gt;function=USBD_FNC_INTERFACE_SET，调用fncInterfaceSet(pUrb)-&gt; (USBD)调用controlRequest()-&gt; (USBD)生成USB_IRP，USB_SETUP包，调用usbdTransfer()-&gt; (USBD)生成URB_TRANSFER结构的变量Urb，调用urbExecBlock(&amp;Urb.header)-&gt;usbdCoreEntry(pUrb)-&gt; (USBD)由于pUrb-&gt;function=USBD_FNC_TRANSFER，调用fncTransfer()-&gt; (USBD)生成USB_IRP包，调用usbHcdIrpSubmit()-&gt; (HCD)生成HRB_IRP_SUBMIT结构hrb，结构中第一个变量是HRB_HEADER，执行(*pNexus-&gt;hcdExecFunc) ((pVOID) &amp;hrb); 这里HCD中也只有一个入口函数，在HCD注册时提供给系统，这里也就是hcdExecFunc所指向的函数。根据HCD类型选择注册usbHcdOhciExec()或者usbHcdUhciExec()，这两个函数都接 受HRB数据，根据pHrb-&gt;function类型进行不同的处理。
+上面例子中(*pNexus-&gt;hcdExecFunc) ((pVOID) &amp;hrb);（在jx2410开发板采用ohciHCD）相当于执行usbHcdOhciExex((pVOID)&amp;hrb)-&gt; (HCD)由于hrb-&gt;function=HCD_FNC_IRP_SUBMIT，调用fncIrpSubmit()-&gt; (HCD)在fncIrpSubmit里真正完成数据传送，步骤包括：（根据数据块个数）USER_FLUSH();
+if (pPipe-&gt;busAddress == pHost-&gt;rootAddress) rootIrpHandler() ; else busIrpHandler(); setIrpResult(); 应用程序的关键在于发送合适的USB_IRP包，完成控制USB设备，获取数据的功能。
+VxWorks下USB驱动编写流程 生成bootable工程，添加以下组件：
+hardware-&gt;buses-&gt;USB Hosts-&gt;OHCI hardware-&gt;buses-&gt;USB Hosts-&gt;USB Host Stack hardware-&gt;buses-&gt;USB Hosts-&gt;USB Host Init-&gt;OHCI Init hardware-&gt;buses-&gt;USB Hosts-&gt;USB Host Init-&gt;USB Host Stack Init 此时编译后的内核在启动时如果出现Attach OHCI&hellip;OK，表示USB协议栈加载成功。
+usbdInitialize(); /* USBD初始化 */ usbdClientRegister(); /* 注册驱动程序 */ usbdDynamicAttachRegister(); /* 为驱动程序注册感兴趣的设备 */ 本例中USB摄像头类型号分别为：DeviceClass是0xff，DeviceSubClass是0x00，DeviceProtocol不限。
+完成以下函数：
+usbOv511Probe(); /* 当摄像头动态插入时调用；功能：加载驱动，完成设备初始化 / usbOv511Config(); / 摄像头初始化 */
+USB设备  物理特征：4条电缆，电源线、地线、数据线、脉冲线。 速度：低速1.5Mbps，全速12Mbps，高速480Mbps。 规范版本：1998年USB1.1，2000年USB2.0。 连接：PCI总线&lt;-&gt;USB控制器(OHCI或UHCI)&lt;-&gt;USB设备。 单个USB控制器最大连接个数：127。 距离限制：USB单条线缆长度不能超过5m，通过hub可延长至30m。 重要概念：主机-USB设备采用master-slave方式分工，所有通信都是主机发起的；在某一时刻，只有一个设备与主机通信。  一个USB物理设备可以抽象为一个或多个逻辑设备。
+USB逻辑设备层次：逻辑设备-&gt;配置（configuration）-&gt;接口（interface）-&gt;端点（endpoint），端点是一个地址标实，是驱动和设备数据交换的一个终点，类似于网络编程中的客户短套接字或者服务器端套接字。
+一个从驱动到设备的数据传输管道包括以下几个要素：
+ 设备的端点（通过读取/设置配置、接口得到）； 设备号（设备动态插入后由USBD分配）； 传输方向（从设备到主机、或从主机到设备）； 带宽要求； 延迟要求。  主机与USB间有4种传输方式：控制（小批量数据、保证到达）、同步（大批量数据、定时传输、不能保证到达）、批量（大批量数据、保证到达）、中断（小批量数据、不定时产 生、保证到达）。控制用于读取/设置USB设备，所有USB设备的端口0默认（或者说强制）给控制管道使用；同步主要用时视频设备如摄像头定时产生的批量数据，允许在带宽不足的情况下丢弃部分 数据包；批量用于一次性的大批量数据传输；中断用于异步数据入键盘（或鼠标）按下事件发生等。
+系统为不同传输类型分配不同的可使用带宽。因此，控制管道必须占有10%的可用带宽，而批量管道不能达到USB的理想速率，实际中USB设备与主机的传输速率比理想速率低很多。
+]]></content>
+  </entry>
+  
+  <entry>
     <title>VxWorks6.6下基于VxBus的以太网驱动开发</title>
     <url>/post/bsp/network-device-driver-design-based-on-vxbus.html</url>
     <categories><category>BSP</category>

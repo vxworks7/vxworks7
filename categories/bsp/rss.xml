@@ -6,7 +6,16 @@
     <description>Recent content in BSP on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 29 Dec 2022 07:32:24 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/bsp/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2022 01:26:47 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/bsp/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VxWorks操作系统下的USB摄像头驱动总结</title>
+      <link>https://www.vxworks7.com/post/bsp/vxworks-device-driver-for-logitech-C200-USB-camera.html</link>
+      <pubDate>Sat, 31 Dec 2022 01:26:47 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/bsp/vxworks-device-driver-for-logitech-C200-USB-camera.html</guid>
+      <description>&lt;p&gt;本文分享了VxWorks下USB摄像头驱动总结&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>VxWorks6.6下基于VxBus的以太网驱动开发</title>
       <link>https://www.vxworks7.com/post/bsp/network-device-driver-design-based-on-vxbus.html</link>
