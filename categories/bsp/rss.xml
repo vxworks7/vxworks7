@@ -6,7 +6,16 @@
     <description>Recent content in BSP on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 31 Dec 2022 01:26:47 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/bsp/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2022 09:55:36 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/bsp/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VxWorks环境搭建与学习</title>
+      <link>https://www.vxworks7.com/post/bsp/how-to-setup-vxworks-development-environment.html</link>
+      <pubDate>Sat, 31 Dec 2022 09:55:36 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/bsp/how-to-setup-vxworks-development-environment.html</guid>
+      <description>&lt;p&gt;本文讲述了如何搭建VxWorks开发环境，对于学习VxWorks的网友来说是一篇比较好的入门文档。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>VxWorks操作系统下的USB摄像头驱动总结</title>
       <link>https://www.vxworks7.com/post/bsp/vxworks-device-driver-for-usb-camera.html</link>

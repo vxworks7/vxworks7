@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Workbench on VxWorks 7</title>
+    <link>https://www.vxworks7.com/tags/workbench/</link>
+    <description>Recent content in Workbench on VxWorks 7</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 31 Dec 2022 09:55:36 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/workbench/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VxWorks环境搭建与学习</title>
+      <link>https://www.vxworks7.com/post/bsp/how-to-setup-vxworks-development-environment.html</link>
+      <pubDate>Sat, 31 Dec 2022 09:55:36 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/bsp/how-to-setup-vxworks-development-environment.html</guid>
+      <description>&lt;p&gt;本文讲述了如何搭建VxWorks开发环境，对于学习VxWorks的网友来说是一篇比较好的入门文档。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

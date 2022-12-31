@@ -8,7 +8,42 @@
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.vxworks7.com/categories/bsp/</loc>
-    <lastmod>2022-12-31T01:26:47-05:00</lastmod>
+    <lastmod>2022-12-31T09:55:36-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/categories/</loc>
+    <lastmod>2022-12-31T09:55:36-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/post/</loc>
+    <lastmod>2022-12-31T09:55:36-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/</loc>
+    <lastmod>2022-12-31T09:55:36-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/vxworks/</loc>
+    <lastmod>2022-12-31T09:55:36-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/</loc>
+    <lastmod>2022-12-31T09:55:36-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/post/bsp/how-to-setup-vxworks-development-environment.html</loc>
+    <lastmod>2022-12-31T09:55:36-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/workbench/</loc>
+    <lastmod>2022-12-31T09:55:36-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -17,32 +52,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/categories/</loc>
-    <lastmod>2022-12-31T01:26:47-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/post/</loc>
-    <lastmod>2022-12-31T01:26:47-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/tags/</loc>
-    <lastmod>2022-12-31T01:26:47-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>https://www.vxworks7.com/tags/usb/</loc>
-    <lastmod>2022-12-31T01:26:47-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/tags/vxworks/</loc>
-    <lastmod>2022-12-31T01:26:47-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/</loc>
     <lastmod>2022-12-31T01:26:47-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

@@ -6,7 +6,25 @@
     <description>Recent content in Tags on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 31 Dec 2022 01:26:47 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2022 09:55:36 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VxWorks</title>
+      <link>https://www.vxworks7.com/tags/vxworks/</link>
+      <pubDate>Sat, 31 Dec 2022 09:55:36 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/vxworks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Workbench</title>
+      <link>https://www.vxworks7.com/tags/workbench/</link>
+      <pubDate>Sat, 31 Dec 2022 09:55:36 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/workbench/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Camera</title>
       <link>https://www.vxworks7.com/tags/camera/</link>
@@ -22,15 +40,6 @@
       <pubDate>Sat, 31 Dec 2022 01:26:47 -0500</pubDate>
       
       <guid>https://www.vxworks7.com/tags/usb/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>VxWorks</title>
-      <link>https://www.vxworks7.com/tags/vxworks/</link>
-      <pubDate>Sat, 31 Dec 2022 01:26:47 -0500</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/vxworks/</guid>
       <description></description>
     </item>
     
