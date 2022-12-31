@@ -17,7 +17,7 @@
   
   <entry>
     <title>VxWorks操作系统下的USB摄像头驱动总结</title>
-    <url>/post/bsp/vxworks-device-driver-for-logitech-C200-USB-camera.html</url>
+    <url>/post/bsp/vxworks-device-driver-for-usb-camera.html</url>
     <categories><category>BSP</category>
     </categories>
     <tags>
