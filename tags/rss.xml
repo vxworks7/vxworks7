@@ -6,7 +6,43 @@
     <description>Recent content in Tags on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 01 Jan 2023 23:35:44 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 02 Jan 2023 09:08:24 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>5G</title>
+      <link>https://www.vxworks7.com/tags/5g/</link>
+      <pubDate>Mon, 02 Jan 2023 09:08:24 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/5g/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>O-RAN</title>
+      <link>https://www.vxworks7.com/tags/o-ran/</link>
+      <pubDate>Mon, 02 Jan 2023 09:08:24 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/o-ran/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vodafone</title>
+      <link>https://www.vxworks7.com/tags/vodafone/</link>
+      <pubDate>Mon, 02 Jan 2023 09:08:24 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/vodafone/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>WindRiver</title>
+      <link>https://www.vxworks7.com/tags/windriver/</link>
+      <pubDate>Mon, 02 Jan 2023 09:08:24 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/windriver/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>VxWorks</title>
       <link>https://www.vxworks7.com/tags/vxworks/</link>
@@ -143,15 +179,6 @@
     </item>
     
     <item>
-      <title>WindRiver</title>
-      <link>https://www.vxworks7.com/tags/windriver/</link>
-      <pubDate>Sat, 24 Dec 2022 23:59:53 -0500</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/windriver/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Telnet</title>
       <link>https://www.vxworks7.com/tags/telnet/</link>
       <pubDate>Sat, 24 Dec 2022 11:35:19 -0500</pubDate>
@@ -202,15 +229,6 @@
       <pubDate>Fri, 23 Dec 2022 22:24:27 -0500</pubDate>
       
       <guid>https://www.vxworks7.com/tags/imx6q/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>5G</title>
-      <link>https://www.vxworks7.com/tags/5g/</link>
-      <pubDate>Fri, 23 Dec 2022 22:16:16 -0500</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/5g/</guid>
       <description></description>
     </item>
     

@@ -7,32 +7,62 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>https://www.vxworks7.com/tags/5g/</loc>
+    <lastmod>2023-01-02T09:08:24-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/categories/</loc>
+    <lastmod>2023-01-02T09:08:24-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/categories/news/</loc>
+    <lastmod>2023-01-02T09:08:24-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/o-ran/</loc>
+    <lastmod>2023-01-02T09:08:24-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/post/</loc>
+    <lastmod>2023-01-02T09:08:24-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/</loc>
+    <lastmod>2023-01-02T09:08:24-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/vodafone/</loc>
+    <lastmod>2023-01-02T09:08:24-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/</loc>
+    <lastmod>2023-01-02T09:08:24-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/windriver/</loc>
+    <lastmod>2023-01-02T09:08:24-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/post/news/wind-river-help-vodafone-for-O-RAN.html</loc>
+    <lastmod>2023-01-02T09:08:24-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://www.vxworks7.com/categories/app/</loc>
     <lastmod>2023-01-01T23:35:44-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/categories/</loc>
-    <lastmod>2023-01-01T23:35:44-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/post/</loc>
-    <lastmod>2023-01-01T23:35:44-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/tags/</loc>
-    <lastmod>2023-01-01T23:35:44-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>https://www.vxworks7.com/tags/vxworks/</loc>
-    <lastmod>2023-01-01T23:35:44-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/</loc>
     <lastmod>2023-01-01T23:35:44-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -142,11 +172,6 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/categories/news/</loc>
-    <lastmod>2022-12-24T23:59:53-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>https://www.vxworks7.com/tags/safety/</loc>
     <lastmod>2022-12-24T23:59:53-05:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -158,11 +183,6 @@
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.vxworks7.com/tags/vehicle/</loc>
-    <lastmod>2022-12-24T23:59:53-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/tags/windriver/</loc>
     <lastmod>2022-12-24T23:59:53-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -219,11 +239,6 @@
   </url><url>
     <loc>https://www.vxworks7.com/post/bsp/vxworks-7.0-on-IMX6Q.html</loc>
     <lastmod>2022-12-23T22:24:27-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/tags/5g/</loc>
-    <lastmod>2022-12-23T22:16:16-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
