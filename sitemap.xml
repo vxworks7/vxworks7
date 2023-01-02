@@ -372,6 +372,21 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>https://www.vxworks7.com/tags/artemis-i/</loc>
+    <lastmod>2022-12-18T05:21:48-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/nasa/</loc>
+    <lastmod>2022-12-18T05:21:48-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/post/news/our-journey-back-to-the-moon.html</loc>
+    <lastmod>2022-12-18T05:21:48-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://www.vxworks7.com/tags/ring-buffer/</loc>
     <lastmod>2022-12-17T22:47:20-05:00</lastmod>
     <changefreq>weekly</changefreq>

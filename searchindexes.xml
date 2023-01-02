@@ -1017,6 +1017,27 @@ Wind内核的特性 VxWorks的Wind内核自然具有1.2节所描述的所有RTOS
   </entry>
   
   <entry>
+    <title>开启重返月球之旅</title>
+    <url>/post/news/our-journey-back-to-the-moon.html</url>
+    <categories><category>News</category>
+    </categories>
+    <tags>
+      <tag>WindRiver</tag>
+      <tag>VxWorks</tag>
+      <tag>Artemis I</tag>
+      <tag>NASA</tag>
+    </tags>
+    <content type="html"><![CDATA[风河公司祝贺NASA（美国宇航局）成功推进 Artemis I 工程，由此开启了新的返回月球之旅。
+近30年来，风河为NASA提供了非常成熟的软件平台，将数十套智能系统送入太空，其中包括许多载入人类史册的太空工程。我们非常自豪，Artemis I 工程再一次丰富了我们的航天工程成功榜单。  Artemis I工程的每个组成部分都离不开智能系统，包括提供一级发射和地月轨道转移控制的空间发射系统(Space Launch System，SLS)以及提供生命环境、通信和月球轨道控制系统的猎户座载人飞船，其中都采用了风河的VxWorks实时操作系统，还有很多功能在部署之前都已经在Wind River Simics全系统仿真环境中进行了测试。值得注意的是， VxWorks  和Simics都已经包含在了Wind River Studio之中。
+Artemis 1工程彰显了猎户座飞船和SLS火箭的性能，并将在绕月飞行和返回地球的过程中展现其魅力。据美国宇航局公布的消息，这次飞行将为未来的进一步探月工程铺平道路，包括让第一位女性和第一位有色人种在月球表面着陆。
+这项工程还创造了多项“首次”。例如，这是美国宇航局猎户座载人飞船第一次飞向月球，尽管其中还没有乘坐宇航员。再如，这也是新型太空发射系统的第一次实用测试，这套系统为本次任务提供了大约880万磅的推力，并将会为后续的宇航任务提供更强大的推力。还有一个“首次”是将多项创新科技实验任务合并起来作为火箭的有效载荷。
+紧随其后的Artemis 2将从这次任务中收集的数据中学习，以便完成更多的载人登月任务。NASA的最终计划是建立一个月球基地，进行常规月球旅行，进而支持人们在月球上生活并从事科研工作。
+NASA还会推进载人月球飞行和其他13项科研工作，探索多个不同的课题，例如辐射对生命体的影响和月球上的氢元素分布，以及太阳帆和拉格朗日点的相关控制技术。在飞向月球的旅途中，将会根据科研需求在许多不同的空间位置上部署CubeSat。
+欢迎大家去NASA的Artemis I网站上查阅更多相关的科技资料！
+]]></content>
+  </entry>
+  
+  <entry>
     <title>VxWorks的环形缓冲区设计</title>
     <url>/post/bsp/ring-buffer-design-in-vxworks.html</url>
     <categories><category>BSP</category>
