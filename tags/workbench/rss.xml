@@ -6,7 +6,16 @@
     <description>Recent content in Workbench on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 31 Dec 2022 09:55:36 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/workbench/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 01 Jan 2023 23:35:44 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/workbench/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VxWorks Workbench开发环境的快速介绍</title>
+      <link>https://www.vxworks7.com/post/app/a-quick-intro-to-vxworks-workbench-development-environment.html</link>
+      <pubDate>Sun, 01 Jan 2023 23:35:44 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/app/a-quick-intro-to-vxworks-workbench-development-environment.html</guid>
+      <description>&lt;p&gt;本文介绍了VxWorks Workbench开发环境相关的指南&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>VxWorks环境搭建与学习</title>
       <link>https://www.vxworks7.com/post/bsp/how-to-setup-vxworks-development-environment.html</link>

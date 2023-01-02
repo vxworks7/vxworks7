@@ -10,26 +10,26 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/imgs/icons/favicon_32_32_next.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/imgs/icons/apple_touch_icon_next.png">
-<meta itemprop="name" content="VxWorks 7的启动顺序" />
-<meta itemprop="description" content="VxWorks 7的启动顺序" />
+<meta itemprop="name" content="VxWorks Workbench开发环境的快速介绍" />
+<meta itemprop="description" content="VxWorks Workbench开发环境的快速介绍" />
 <meta itemprop="datePublished" ZgotmplZ />
 <meta itemprop="dateModified" ZgotmplZ />
 <meta itemprop="image" content="https://www.vxworks7.com/imgs/VxWorks_7_logo.png" />
-<meta itemprop="keywords" content="VxWorks 7,Boot" />
+<meta itemprop="keywords" content="VxWorks,Workbench" />
 
 <meta property="og:type" content="article" />
-<meta property="og:title" content="VxWorks 7的启动顺序" />
-<meta property="og:description" content="VxWorks 7的启动顺序" />
+<meta property="og:title" content="VxWorks Workbench开发环境的快速介绍" />
+<meta property="og:description" content="VxWorks Workbench开发环境的快速介绍" />
 <meta property="og:image" content="/imgs/VxWorks_7_logo.png" />
 <meta property="og:image:width" content="312" />
 <meta property="og:image:height" content="312" />
 <meta property="og:image:type" content="image/jpeg/png/svg/jpg" />
-<meta property="og:url" content="https://www.vxworks7.com/post/bsp/vxworks-7-boot-sequence.html"/>
+<meta property="og:url" content="https://www.vxworks7.com/post/app/a-quick-intro-to-vxworks-workbench-development-environment.html"/>
 <meta property="og:site_name" content="VxWorks 7" />
 <meta property="og:locale" content="zh-CN"/>
 <meta property="article:author" content="VxWorks OS" />
-<meta property="article:published_time" content="2022-12-06 05:35:25 -0400 -0400" />
-<meta property="article:modified_time" content="2022-12-06 05:35:25 -0400 -0400" />
+<meta property="article:published_time" content="2023-01-01 23:35:44 -0500 EST" />
+<meta property="article:modified_time" content="2023-01-01 23:35:44 -0500 EST" />
 
 
   
@@ -44,7 +44,7 @@
       content: "~ 我可是有底线的哟 ~";
     }
   </style>
-  <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"vxworks-7-boot-sequence.html","permalink":"https://www.vxworks7.com/post/bsp/vxworks-7-boot-sequence.html","title":"VxWorks 7的启动顺序"}</script>
+  <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"a-quick-intro-to-vxworks-workbench-development-environment.html","permalink":"https://www.vxworks7.com/post/app/a-quick-intro-to-vxworks-workbench-development-environment.html","title":"VxWorks Workbench开发环境的快速介绍"}</script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
     var script = document.createElement('script');
@@ -60,7 +60,7 @@
 
 
 
-  <title>VxWorks 7的启动顺序 - VxWorks 7</title>
+  <title>VxWorks Workbench开发环境的快速介绍 - VxWorks 7</title>
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
@@ -173,7 +173,23 @@
     <div class="sidebar-panel-container">
       
       <div class="post-toc-wrap sidebar-panel">
-        <div class="post-toc animated"><nav id="TableOfContents"></nav></div>
+        <div class="post-toc animated"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#启动wind-river-workbench">启动Wind River Workbench</a></li>
+    <li><a href="#创建新项目">创建新项目</a>
+      <ul>
+        <li><a href="#示例代码">示例代码</a></li>
+      </ul>
+    </li>
+    <li><a href="#编译应用程序">编译应用程序</a></li>
+    <li><a href="#启动模拟器">启动模拟器</a></li>
+    <li><a href="#运行应用程序">运行应用程序</a></li>
+    <li><a href="#终止程序">终止程序</a></li>
+    <li><a href="#调试">调试</a></li>
+    <li><a href="#帮助和文档">帮助和文档</a></li>
+    <li><a href="#系统viewer">系统Viewer</a></li>
+  </ul>
+</nav></div>
       </div>
       
       <div class="site-overview-wrap sidebar-panel">
@@ -305,7 +321,7 @@
       
   <div class="post-block">
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://www.vxworks7.com/post/bsp/vxworks-7-boot-sequence.html">
+    <link itemprop="mainEntityOfPage" href="https://www.vxworks7.com/post/app/a-quick-intro-to-vxworks-workbench-development-environment.html">
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/imgs/hugo_next_avatar.png">
       <meta itemprop="name" content="VxWorks OS">
@@ -315,11 +331,11 @@
       <meta itemprop="description" content="Where there is embedded, there is VxWorks.">
     </span>
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="VxWorks 7的启动顺序">
-      <meta itemprop="description" content="VxWorks 7的启动顺序">
+      <meta itemprop="name" content="VxWorks Workbench开发环境的快速介绍">
+      <meta itemprop="description" content="VxWorks Workbench开发环境的快速介绍">
     </span>
     <header class="post-header">
-       <h1 class="post-title" itemprop="name headline">VxWorks 7的启动顺序 </h1> <div class="post-meta-container">
+       <h1 class="post-title" itemprop="name headline">VxWorks Workbench开发环境的快速介绍 </h1> <div class="post-meta-container">
   <div class="post-meta-items">
     
 
@@ -329,7 +345,7 @@
     <i class="far fa-calendar"></i>
   </span>
   <span class="post-meta-item-text">发表于：</span>
-  <time title="发表于：2022-12-06 05:35:25 -0400 -0400" itemprop="dateCreated datePublished" datetime="2022-12-06 05:35:25 -0400 -0400">2022-12-06</time>
+  <time title="发表于：2023-01-01 23:35:44 -0500 EST" itemprop="dateCreated datePublished" datetime="2023-01-01 23:35:44 -0500 EST">2023-01-01</time>
 </span>
     
     
@@ -339,8 +355,8 @@
   </span>
   <span class="post-meta-item-text">分类于：</span>
   <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-    <a href="/categories/bsp" itemprop="url" rel="index">
-      <span itemprop="name">BSP</span>
+    <a href="/categories/app" itemprop="url" rel="index">
+      <span itemprop="name">APP</span>
     </a>
   </span>
 </span>
@@ -351,7 +367,7 @@
   <span class="post-meta-item-icon">
     <i class="far fa-file-word"></i>
   </span>
-  <span class="post-meta-item-text">字数：</span><span>356</span>
+  <span class="post-meta-item-text">字数：</span><span>243</span>
 </span>
     
 <span class="post-meta-item" title="阅读">
@@ -370,7 +386,7 @@
   <span class="post-meta-item-text">
   浏览：
   </span>
-  <span id="busuanzi_value_page_pv" data-path="/post/bsp/vxworks-7-boot-sequence.html"><i class="fa fa-sync fa-spin"></i></span>
+  <span id="busuanzi_value_page_pv" data-path="/post/app/a-quick-intro-to-vxworks-workbench-development-environment.html"><i class="fa fa-sync fa-spin"></i></span>
 </span>
 
   </div>
@@ -382,102 +398,129 @@
     
     <div class="post-body  autonumber " itemprop="articleBody">
       
-  <p>之前遍历过使用WorkBench的VIP编译的VxWorks6.9镜像文件VxWorks，今天以32位SMP模式下的Intel处理器为例，看看VxWorks 7的VxWorks执行顺序。通过对比可以看到，VxWorks 6.9和VxWorks 7的执行顺序基本一致</p>
-<p><img src="//www.vxworks.net/images/vxworks/VxWorks-7-Boot-Sequence.jpg" alt="VxWorks 7 boot Sequence"></p>
+  <p>本文介绍了VxWorks Workbench开发环境相关的指南</p>
+<h2 id="启动wind-river-workbench">启动Wind River Workbench</h2>
+<p>可以按照如下步骤来启动Wind River Workbench IDE(Integrated Develoment Environment)，从菜单选择，Applications men -&gt; Development -&gt; Wind River Workbenche，
+或者从命令行运行/opt/WindRiver/workbench-4/startWorkbench.sh，下面的窗口将会询问并让我们选择工作空间workspace。</p>
+<p><img src="https://www.vxworks.net/images/vxworks/quick-intro-to-WRS-workbench-1-workspace.png" alt="WRS Workspace How To"></p>
+<p>这儿的Workspace是你的项目存放的地方，建议将workspace放置到你的Home目录下(/home.nfs/<login>)。</p>
+<h2 id="创建新项目">创建新项目</h2>
+<p>为了创建一个新的项目，可以依次选择File -&gt; New -&gt; Project，并选择 VxWorks -&gt; VxWorks Downloadable Kernel Module Project。(后面你也会和Real-Time Process Projects打交道)，一个对话窗口将会打开，你可以指定一个项目名称，可选地，你可以改变项目的保存目录，继续点击Next按钮。</p>
+<p><img src="https://www.vxworks.net/images/vxworks/quick-intro-to-WRS-workbench-2-new-project.png" alt="WRS Workspace How To"></p>
+<p>在下一个窗口，选择我们项目基于的类型，因为我们将在模拟器中运行程序，选择<code>image project</code>和<code>vip_vxsim_linux_llvm (prebuild)</code>，然后点击Finish。</p>
+<p><img src="https://www.vxworks.net/images/vxworks/quick-intro-to-WRS-workbench-3-new-project2.png" alt="WRS Workspace How To"></p>
+<p>现在你可以在Project Explore选项卡下看到刚新建的项目，这个项目包含了一个简单的C语言模板dkm.c。</p>
+<p><img src="https://www.vxworks.net/images/vxworks/quick-intro-to-WRS-workbench-4-workbench-newprj.png" alt="WRS Workspace How To"></p>
+<h3 id="示例代码">示例代码</h3>
+<p>用下面的代码代换dkm.c中的代码。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;taskLib.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;kernelLib.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> task_run[] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">450</span>, <span style="color:#ae81ff">200</span>};
+<span style="color:#66d9ef">int</span> task_stop[] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">25</span>, <span style="color:#ae81ff">30</span>};
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">task</span>(<span style="color:#66d9ef">int</span> n)
+{
+        <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">int</span> x;
+
+        printf(<span style="color:#e6db74">&#34;Task %i has been started</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, n);
+
+        <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
+        {
+                printf(<span style="color:#e6db74">&#34;task %d: running</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, n);
+                x <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000000</span> <span style="color:#f92672">*</span> task_run[n];
+                <span style="color:#66d9ef">while</span> (x <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) x<span style="color:#f92672">--</span>;
+                printf(<span style="color:#e6db74">&#34;task %d: delayed</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, n);
+                taskDelay(task_stop[n]);
+        }
+}
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">CreateTasks</span>(<span style="color:#66d9ef">void</span>)
+{
+        TASK_ID id1, id2, id3;
+
+        <span style="color:#75715e">/*  kernelTimeSlice(1); */</span>
+
+        cpuset_t affinity;
+        CPUSET_ZERO(affinity);
+        CPUSET_SET(affinity, <span style="color:#ae81ff">0</span>);
+        taskCpuAffinitySet(taskIdSelf(), affinity);
+
+        id1 <span style="color:#f92672">=</span> taskSpawn(<span style="color:#e6db74">&#34;Task0&#34;</span>, <span style="color:#ae81ff">210</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4096</span>, (FUNCPTR) task, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+        id2 <span style="color:#f92672">=</span> taskSpawn(<span style="color:#e6db74">&#34;Task1&#34;</span>, <span style="color:#ae81ff">210</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4096</span>, (FUNCPTR) task, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+        id3 <span style="color:#f92672">=</span> taskSpawn(<span style="color:#e6db74">&#34;Task2&#34;</span>, <span style="color:#ae81ff">210</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4096</span>, (FUNCPTR) task, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+}
+</code></pre></div><h2 id="编译应用程序">编译应用程序</h2>
+<p>就像很多现代IDE一样，通过一个单一的点击动作就可实现编译和运行一个应用程序，但是，理解这个场景背后究竟发生什么也是非常有帮助的。我们将会看看运行一个VxWorks应用程序所需要的每一个步骤，然后我们将会展示如何通过一个点击动作来实现。</p>
+<p>编译一个项目，右键点击测试项目名称并选择Build（或者按Ctrl + B，或者按Ctrl +  P）。</p>
+<p><img src="https://www.vxworks.net/images/vxworks/quick-intro-to-WRS-workbench-5-build-prj1.png" alt="WRS Workspace How To"></p>
+<p>第一次编译的时候会询问头文件搜索的目录，这儿，你可以点击Continue继续。</p>
+<p><img src="https://www.vxworks.net/images/vxworks/quick-intro-to-WRS-workbench-6-build-prj2.png" alt="WRS Workspace How To"></p>
+<p>编译的控制台将会自动打开并显示编译过程的输出内容。</p>
+<p><img src="https://www.vxworks.net/images/vxworks/quick-intro-to-WRS-workbench-7-build-prj3.png" alt="WRS Workspace How To"></p>
+<p>如果你看到编译结束(Build Finished)的黑体字，表示编译是成功的，否则，你需要修正报告的错误(和警告)。</p>
+<h2 id="启动模拟器">启动模拟器</h2>
+<p>因为我们将要在模拟器中运行程序，我们必须要先设置，从Workbench的工具栏，从下拉列表中选择New Connection</p>
+<p><img src="https://www.vxworks.net/images/vxworks/quick-intro-to-WRS-workbench-8-simulator1.png" alt="WRS Workspace How To"></p>
+<p>在这个新连接的对话框中，输入一个Connection Name并选择:</p>
 <ul>
-<li>sysInit() - $(BSP)/sysALib.s，这是VxWorks的启动地址，也就是说sysInit()就存放在RAM_LOW_ADRS，它的主要工作：关中断、设置usrInit()的栈、调用usrInit()</li>
-<li>usrInit() - $(Prj)/prjConfig.c，这是VxWorks的第一条C指令，主要负责pre-kernel的初始化，因此它的内部会调用大量的初始化函数</li>
-<li>sysStart() - os\core\kernel\configlette\usrStartup.c，清除BSS、设置中断向量表基址</li>
-<li>cacheLibInit() - os\core\kernel\src\aim\cacheLib.c初始化指令Cache和数据Cache</li>
-<li>usrFdtInit() - os\firmware\fdt\cfg\usrFdt.c,初始化FDT库</li>
-<li>usrBoardLibInit() - os\utils\boardlib\cfg\usrBoardLibInit.c,初始化板级子系统，</li>
-<li>sysHwInit() - os\psl\intel\itl_x86_common\cfg\usrItlCommon.c，初始化系统硬件</li>
-<li>usrAimCpuInit() - os\core\kernel\configlette\usrAimCpu.c,初始化主CPU，其实啥也没干</li>
-<li>excShowInit() - os\arch\ia\kernel\src\cpu\excArchShow.c,映射exception的几个show函数</li>
-<li>excVecInit() - os\arch\ia\kernel\src\cpu\excArchLib.c,初始化exception向量</li>
-<li>vxCpuLibInit() - os\core\kernel\src\multicore\vxCpuLib.c,初始化CPU标识函数，例如vxCpuIdGet()</li>
-<li>usrCacheEnable() - os\core\kernel\configlette\usrCache.c，使能Cache</li>
-<li>objOwnershipInit() - os\core\kernel\src\wind\obj\objOwnerLib.c,设置object ownership的几个函数</li>
-<li>objLibInit() - os\core\kernel\src\wind\obj\objLib.c，初始化对象管理库</li>
-<li>vxMemProbeInit() - os\core\kernel\src\services\vxMemProbeLib.c,添加vxMemProbe()的异常处理</li>
-<li>classListLibInit() - os\core\kernel\src\wind\obj\classListLib.c，初始化Class的列表库</li>
-<li>semLibInit() - os\core\kernel\src\wind\semLib.c，初始化信号量机制</li>
-<li>condVarLibInit() - os\core\kernel\src\wind\condVarLib.c,初始化condition variables库</li>
-<li>classLibInit() - os\core\kernel\src\wind\obj\classLib.c，初始化Class库</li>
-<li>kernelBaseInit() - os\core\kernel\src\services\kernelBaseLib.c，初始化内核使用的对象</li>
-<li>taskCreateHookInit() - os\core\kernel\src\wind\taskCreateHookLib.c,初始化task hook机制</li>
-<li>sysDebugModeInit() - os\core\kernel\src\edr\sysDbgLib.c,设置debug mode的flag</li>
-<li>usrKernelInit() - os\core\kernel\configlette\usrKernel.c，配置内核使用的数据结构，包括初始化ISR对象、初始化内核的Task库、配置调度策略、初始化Tick队列、初始化中断级deferred work队列、记录系统内存池尺寸、调用kernelInit()初始化内核</li>
-<li>kernelInit() - os\core\kernel\src\wind\kernelLib.c，初始化并启动内核，包括设置中断栈尺寸、设置内存池位置、初始化中断lock-out等级、关闭时间片轮转策略、将系统Tick清零、初始化中断栈、初始化并启动系统的第一个任务tRootTask</li>
-<li>usrRoot() - $(Prj)/prjConfig.c，这就是系统第一个任务的入口地址，主要负责post-kernel的初始化，逐步加载系统服务，它内部同样由大量初始化函数组成</li>
-<li>usrKernelCoreInit() - 初始化内核的一些机制，包括Event、信号量的open机制、condition variables的open机制、消息队列及其open机制、看门狗、任务的open机制等</li>
-<li>poolLibInit() - os\core\kernel\src\mm\poolLib.c,初始化Memory Pool库</li>
-<li>memInit() - os\core\kernel\src\mm\memLib.c，初始化系统内存分区</li>
-<li>memPartLibInit() - os\core\kernel\src\mm\memPartLib.c，初始化系统内存分区的class Id</li>
-<li>kProxHeapInit() - 创建kernel proximity heap，这个heap可以用于存储downloaded kernel models、 ISR handlers等，以及kernel common heap创建之前的内存分配</li>
-<li>pgPoolLibInit() - os\core\kernel\src\mm\pgPoolLib.c,初始化page pool库</li>
-<li>usrMmuInit() - os\core\kernel\configlette\usrMmuInit.c，初始化MMU</li>
-<li>pmapInit() - 提供物理地址映射机制</li>
-<li>kCommonHeapInit() - os\core\kernel\src\mm\kCommonHeapLib.c,创建kernel Common Heap</li>
-<li>usrKernelCreateInit() - $(Prj)/prjConfig.c，初始化内核对象的creation机制，例如任务、消息队列、看门狗</li>
-<li>usrDebugAgentBannerInit() - os\debug_analysis\rttools\agent\src\osconfig\vxworks\cfg\usrDebugAgent.c,注册debug agent banner</li>
-<li>usrShellBannerInit() - 注册shell banner</li>
-<li>intVecTableWriteProtect() - os\arch\ia\kernel\src\cpu\x86\intArchLib.c, 写保护exception向量表</li>
-<li>cacheDma32PartInit() - os\core\kernel\src\services\cacheDma32Lib.c,初始化DMA buffers分区</li>
-<li>miiBusLibInit() - os\net\end\drv\src\mii\vxbMiiLib.c,初始化mii总线库</li>
-<li>vxbParamLibInit() - os\drv\vxbus\core\src\util\vxbParamLib.c,初始化driver parameter机制</li>
-<li>usrIaPciUtilsInit() - os\psl\intel\itl_x86_common\cfg\usrIaPciUtils.c, Intel PCI机制的早期初始化</li>
-<li>sysHwInit1() - os\psl\intel\itl_x86_common\cfg\usrItlCommon.c,额外的系统初始化，例如初始化PIC、IPI向量等</li>
-<li>boardInit() - os\utils\boardlib\src\boardLib.c,板级初始化</li>
-<li>sysHwInit2() - os\psl\intel\itl_x86_common\cfg\usrItlCommon.c,</li>
-<li>usrTextProtect() - os\core\kernel\configlette\usrTextProtect.c, 写保护文本段</li>
-<li>excOsmInit() - os\arch\ia\kernel\src\cpu\x86\sysOsmLib.c, Handler for exception stack overflow</li>
-<li>usrKernelIntStkProtect() - os\core\kernel\configlette\usrKernelStack.c,中断栈保护</li>
-<li>taskStackGuardPageEnable() - os\core\kernel\src\mm\taskMemLib.c,任务栈保护</li>
-<li>usrNetApplUtilInit() - os\core\kernel\configlette\usrNetApplUtil.c,初始化Networks的application/stack logging机制</li>
-<li>envLibInit() - os\core\kernel\src\services\envLib.c,初始化环境变量机制</li>
-<li>edrStubInit() - os\core\kernel\configlette\edrStub.c,在ED&amp;R中记录boot类型</li>
-<li>usrSysctlInit() - os\core\kernel\configlette\usrSysctl.c,提供SYSCTL机制</li>
-<li>kernelIdleTaskActivate() - os\core\kernel\src\wind\kernelLib.c,激活idle任务</li>
-<li>randomInit() - $(Prj)/prjConfig.c, 随机数生成器</li>
-<li>usrIosCoreInit () - $(Prj)/prjConfig.c，初始化IO系统</li>
-<li>usrNetworkInit0() - $(Prj)/prjConfig.c，初始化网络子系统</li>
-<li>usrHwSysctlInit() - os\core\kernel\configlette\usrHwSysctl.c,初始化硬件的sysctl</li>
-<li>vxbDmaLibInit() - os\drv\vxbus\subsystem\src\dma\vxbDmaLib.c,初始化DMA库</li>
-<li>vxbIsrHandlerInit() - os\drv\vxbus\subsystem\src\int\vxbIsrHandler.c,初始化VxBus ISR handler</li>
-<li>vxbIntLibInit() - os\drv\vxbus\subsystem\src\int\vxbIntLib.c,初始化vxbIntLib库</li>
-<li>vxDyncIntLibInit() - os\drv\vxbus\subsystem\src\int\vxbDyncIntLib.c,初始化MSI支持库</li>
-<li>vxIpiLibInit() - os\drv\vxbus\subsystem\src\int\vxIpiLib.c, 初始化IPI</li>
-<li>vxbLibInit() - os\drv\vxbus\core\src\vxbLib.c, 初始化VxBus子系统</li>
-<li>intStartupUnlock() - os\arch\ia\kernel\src\cpu\x86\intArchLib.c, 打开中断</li>
-<li>sysIntEnableFlagSet() - os\drv\vxbus\subsystem\src\int\vxbIntLib.c, 标记中断已使能</li>
-<li>usrSerialInit() - os\core\kernel\configlette\usrSerial.c, 设置标准输入、输出设备</li>
-<li>usrClkInit() - $(Prj)/prjConfig.c, 初始化时钟、Aux、Timestamp</li>
-<li>cpcInit() - os\core\kernel\src\multicore\cpcLib.c, 使能IPI</li>
-<li>vxdbgCpuLibInit() - os\debug_analysis\debug\vxdbg\src\vxdbgCpuLib.c, 初始化debug IPI库</li>
-<li>miiBusMonitorTaskInit() - os\net\end\drv\src\mii\vxbMiiLib.c, 启动MII总线监测任务</li>
-<li>kbdDelayStart() - os\psl\intel\itl_x86_common\src\vxbI8042Kbd.c, 启动Intel 8042 Keyboard</li>
-<li>pgMgrBaseLibInit() - os\core\kernel\src\mm\pgMgrBaseLib.c, 初始化Basic Page Manager库</li>
-<li>pgMgrLibInit() - os\core\kernel\src\mm\pgMgrLib.c, 初始化Page Manager库</li>
-<li>usrRtpInit() - $(Prj)/prjConfig.c, 初始化RTP机制</li>
-<li>mmanLibInit() - os\core\kernel\src\posix\mm\mmanLib.c, 初始化POSIX内存管理机制</li>
-<li>usrKernelExtraInit() - $(Prj)/prjConfig.c，初始化内核其它机制，例如Signal、POSIX Clock等</li>
-<li>usrPcConsoleInit() - os\arch\ia\kernel\configlette\usrPcConsole.c, 初始化PC console</li>
-<li>usrIosExtraInit() - $(Prj)/prjConfig.c，初始化IO系统其它机制，例如任务级job机制、message logging库、管道驱动、标准IO库、设备管理、文件系统相关机制、pty(pseudo-terminal)驱动、Boot Line解析等</li>
-<li>usrHostnameSetup() - os\core\kernel\configlette\usrHostnameSetup.c, 给Target分配名字TARGET_HOSTNAME_DEFAULT</li>
-<li>sockLibInit() - os\service\socket\src\sockLib.c, 初始化Socket API</li>
-<li>selTaskDeleteHookAdd() - os\core\io\src\ios\selectLib.c, 完成select机制的初始化</li>
-<li>cpuPwrMgrEnable() - os\drv\vxbus\core\src\util\cpuPwrLightLib.c, 使能CPU电源管理</li>
-<li>cplusCtorsLink() - os\lang_lib\libcplus\cplus_kernel\src\rts\cplusXtors.c, 加载静态对象的构造函数</li>
-<li>usrScInit() - $(Prj)/prjConfig.c，初始化系统调用机制</li>
-<li>usrKernelIntStkProtectNonCore0() - os\core\kernel\configlette\usrKernelStack.c, 保护非引导核的中断栈</li>
-<li>usrSmpInit() - os\core\kernel\configlette\usrSmp.c, 使能SMP</li>
-<li>usrBanner() - os\core\kernel\configlette\usrBanner.c, 打印Shell的Banner</li>
-<li>usrNetworkInit() - $(Prj)/prjConfig.c，完成网络系统初始化</li>
-<li>usrToolsInit() - $(Prj)/prjConfig.c，软件开发工具，例如spy()、timex()、target loader、符号表、debug库、kernel shell等</li>
-<li>usrMmuOptimize() - os\core\kernel\configlette\usrMmuOptimize.c, 优化MMU的page sizing</li>
-<li>usrAppInit() - $(Prj)/usrAppInit.c，VxWorks系统启动过程中调用的最后一个函数，因此一般把应用程序的入口放在这里</li>
+<li>Target Type: VxWorks Simulator</li>
+<li>Connection Mode: Application Mode</li>
 </ul>
+<p><img src="https://www.vxworks.net/images/vxworks/quick-intro-to-WRS-workbench-9-simulator2.png" alt="WRS Workspace How To"></p>
+<p>选择Finished，然后模拟器就会启动，两个选项卡将会打开：</p>
+<ul>
+<li>Simulator选项卡将会显示Connection details</li>
+<li>Terminal选项卡将会显示模拟系统的控制台</li>
+</ul>
+<p>尝试在控制台里的VxWorks控制台提示行输入命令<code>i</code>:</p>
+<p><img src="https://www.vxworks.net/images/vxworks/quick-intro-to-WRS-workbench-10-shell-i.png" alt="WRS Workspace How To"></p>
+<p>这个命令将会系统里面正在运行的所有任务。</p>
+<p>相似的信息也可以从系统监控(System Monitor)选项卡中获取。</p>
+<p><img src="https://www.vxworks.net/images/vxworks/quick-intro-to-WRS-workbench-11-system-monitor.png" alt="WRS Workspace How To"></p>
+<h2 id="运行应用程序">运行应用程序</h2>
+<p>现在通过右键点击项目并选择Run/Debug Kernel Task来运行程序</p>
+<p><img src="https://www.vxworks.net/images/vxworks/quick-intro-to-WRS-workbench-12-simulator3.png" alt="WRS Workspace How To"></p>
+<p>在Run Kernel Task对话框中，指定Entry Point，就是将要运行的函数的名称，输入<code>CreateTasks</code>或者通过<code>Browse...</code>按钮来选择。</p>
+<p><img src="https://www.vxworks.net/images/vxworks/quick-intro-to-WRS-workbench-13-simulator4.png" alt="WRS Workspace How To"></p>
+<p>从可用的entry points中选择<strong>CreateTasks</strong>。</p>
+<p><img src="https://www.vxworks.net/images/vxworks/quick-intro-to-WRS-workbench-14-simulator5.png" alt="WRS Workspace How To"></p>
+<p>在按了<code>OK</code>按钮后，应用程序将会在模拟器中运行并且输出内容将会在<code>Terminal</code>选项卡中显示出来。</p>
+<p><img src="https://www.vxworks.net/images/vxworks/quick-intro-to-WRS-workbench-15-simulator6.png" alt="WRS Workspace How To"></p>
+<p>如果你想再次运行程序程序，按组合建Ctrl + Shift + F11就足够了，或者从Target actions菜单中选择Run Kernel Task</p>
+<p><img src="https://www.vxworks.net/images/vxworks/quick-intro-to-WRS-workbench-16-quick-run.png" alt="WRS Workspace How To"></p>
+<h2 id="终止程序">终止程序</h2>
+<p>有多种方法来终止应用程序:</p>
+<ul>
+<li>点击红色的图标来停止整个模拟器</li>
+<li>从System Monitor选项卡，通过右键菜单点击单个应用任务来终止它</li>
+</ul>
+<p><img src="https://www.vxworks.net/images/vxworks/quick-intro-to-WRS-workbench-17-terminate-task.png" alt="WRS Workspace How To"></p>
+<h2 id="调试">调试</h2>
+<p>你可以在运行某个应用程序的时候，通过选择Attach Debugger选项来调试一个应用程序。</p>
+<p><img src="https://www.vxworks.net/images/vxworks/quick-intro-to-WRS-workbench-18-debug1.png" alt="WRS Workspace How To"></p>
+<p>Workbench会在entry point或者任何其他手动添加的断点处停止应用程序，现在你可以像别的IDE一样step并调试代码。</p>
+<p><img src="https://www.vxworks.net/images/vxworks/quick-intro-to-WRS-workbench-19-debug2.png" alt="WRS Workspace How To"></p>
+<h2 id="帮助和文档">帮助和文档</h2>
+<p>有两种类型的文档是可用的：</p>
+<ul>
+<li>参考手册</li>
+<li>指南，教程</li>
+</ul>
+<p>指南文档在/opt/WindRiver/vxworks/22.06/docs目录下，对大家来说最重要的文档将是Kernel_Application_Development/VxWorks_Application_Programmer_s_Guide_22.06.pdf</p>
+<p>参考手册可以在IDE自身的环境中获得，Help-&gt;Show Context Help，帮助窗口将会在编辑器里面鼠标的位置显示文档的链接。</p>
+<p><img src="https://www.vxworks.net/images/vxworks/quick-intro-to-WRS-workbench-20-helprelated.png" alt="WRS Workspace How To"></p>
+<h2 id="系统viewer">系统Viewer</h2>
+<p>系统Viewer是你可以记录系统活动的轨迹然后通过图形的方式进行显示的工具。</p>
+<p>系统Viewer可以被配置来记录不同数量的信息，我们将通过选择Additional Instrumentation来选择中等数量，如下所述。</p>
+<p><img src="https://www.vxworks.net/images/vxworks/quick-intro-to-WRS-workbench-21-system-viewer-start.png" alt="WRS Workspace How To"></p>
+<p>下面你就可以开始从运行的系统中记录运行轨迹。</p>
+<p><img src="https://www.vxworks.net/images/vxworks/quick-intro-to-WRS-workbench-22-sysviewer3.png" alt="WRS Workspace How To"></p>
+<p>记录停止后，带有记录数据的新窗口将会出现。</p>
+<p><img src="https://www.vxworks.net/images/vxworks/quick-intro-to-WRS-workbench-23-sysviewer4.png" alt="WRS Workspace How To"></p>
+<p>你也可以从view隐藏任何任务。</p>
+<p><img src="https://www.vxworks.net/images/vxworks/quick-intro-to-WRS-workbench-24-sysviewer5.png" alt="WRS Workspace How To"></p>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1543398821442998"
      crossorigin="anonymous"></script>
 
@@ -497,11 +540,11 @@
 
 <div class="post-tags">
   
-    <a href="/tags/vxworks-7">
-    VxWorks 7
+    <a href="/tags/vxworks">
+    VxWorks
   </a>
-    <a href="/tags/boot">
-    Boot
+    <a href="/tags/workbench">
+    Workbench
   </a>
 </div>
 
@@ -529,7 +572,7 @@
   <ul>
     <li class="post-copyright-title">
       <strong>文章标题：</strong>
-      VxWorks 7的启动顺序
+      VxWorks Workbench开发环境的快速介绍
     </li>
     <li class="post-copyright-author">
       <strong>本文作者： </strong>
@@ -537,7 +580,7 @@
     </li>
     <li class="post-copyright-link"> 
       <strong>本文链接：</strong>
-       <a id="post-cr-link" href="https://www.vxworks7.com/post/bsp/vxworks-7-boot-sequence.html" title="VxWorks 7的启动顺序">https://www.vxworks7.com/post/bsp/vxworks-7-boot-sequence.html</a>
+       <a id="post-cr-link" href="https://www.vxworks7.com/post/app/a-quick-intro-to-vxworks-workbench-development-environment.html" title="VxWorks Workbench开发环境的快速介绍">https://www.vxworks7.com/post/app/a-quick-intro-to-vxworks-workbench-development-environment.html</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -562,13 +605,13 @@
 </div>
 <div class="post-nav">
   <div class="post-nav-next post-nav-item">
-    <a href="/post/bsp/ring-buffer-design-in-vxworks.html" rel="next" title="VxWorks的环形缓冲区设计">
-      <i class="fa fa-chevron-left"></i> VxWorks的环形缓冲区设计
+    <a href="/post/welcome-to-vxworks-club/" rel="next" title="欢迎加入 VxWorks 俱乐部！">
+      <i class="fa fa-chevron-left"></i> 欢迎加入 VxWorks 俱乐部！
     </a>
   </div>
   <div class="post-nav-prev post-nav-item">
-    <a href="/post/linux/linux-programming-multiple-time-wheel-timer.html" rel="prev" title="Linux编程之经典多级时间轮定时器">
-      Linux编程之经典多级时间轮定时器
+    <a href="/post/bsp/how-to-setup-vxworks-development-environment.html" rel="prev" title="VxWorks环境搭建与学习">
+      VxWorks环境搭建与学习
       <i class="fa fa-chevron-right"></i>
     </a>
   </div>

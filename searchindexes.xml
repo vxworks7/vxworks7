@@ -16,6 +16,52 @@
   </entry>
   
   <entry>
+    <title>VxWorks Workbench开发环境的快速介绍</title>
+    <url>/post/app/a-quick-intro-to-vxworks-workbench-development-environment.html</url>
+    <categories><category>APP</category>
+    </categories>
+    <tags>
+      <tag>VxWorks</tag>
+      <tag>Workbench</tag>
+    </tags>
+    <content type="html"><![CDATA[本文介绍了VxWorks Workbench开发环境相关的指南
+启动Wind River Workbench 可以按照如下步骤来启动Wind River Workbench IDE(Integrated Develoment Environment)，从菜单选择，Applications men -&gt; Development -&gt; Wind River Workbenche， 或者从命令行运行/opt/WindRiver/workbench-4/startWorkbench.sh，下面的窗口将会询问并让我们选择工作空间workspace。
+这儿的Workspace是你的项目存放的地方，建议将workspace放置到你的Home目录下(/home.nfs/)。
+创建新项目 为了创建一个新的项目，可以依次选择File -&gt; New -&gt; Project，并选择 VxWorks -&gt; VxWorks Downloadable Kernel Module Project。(后面你也会和Real-Time Process Projects打交道)，一个对话窗口将会打开，你可以指定一个项目名称，可选地，你可以改变项目的保存目录，继续点击Next按钮。
+在下一个窗口，选择我们项目基于的类型，因为我们将在模拟器中运行程序，选择image project和vip_vxsim_linux_llvm (prebuild)，然后点击Finish。
+现在你可以在Project Explore选项卡下看到刚新建的项目，这个项目包含了一个简单的C语言模板dkm.c。
+示例代码 用下面的代码代换dkm.c中的代码。
+#include &lt;taskLib.h&gt;#include &lt;stdio.h&gt;#include &lt;kernelLib.h&gt; int task_run[] = {100, 450, 200}; int task_stop[] = {18, 25, 30}; void task(int n) { long int x; printf(&#34;Task %i has been started\n&#34;, n); while (1) { printf(&#34;task %d: running\n&#34;, n); x = 1000000 * task_run[n]; while (x &gt; 0) x--; printf(&#34;task %d: delayed\n&#34;, n); taskDelay(task_stop[n]); } } void CreateTasks(void) { TASK_ID id1, id2, id3; /* kernelTimeSlice(1); */ cpuset_t affinity; CPUSET_ZERO(affinity); CPUSET_SET(affinity, 0); taskCpuAffinitySet(taskIdSelf(), affinity); id1 = taskSpawn(&#34;Task0&#34;, 210, 0, 4096, (FUNCPTR) task, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); id2 = taskSpawn(&#34;Task1&#34;, 210, 0, 4096, (FUNCPTR) task, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0); id3 = taskSpawn(&#34;Task2&#34;, 210, 0, 4096, (FUNCPTR) task, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0); } 编译应用程序 就像很多现代IDE一样，通过一个单一的点击动作就可实现编译和运行一个应用程序，但是，理解这个场景背后究竟发生什么也是非常有帮助的。我们将会看看运行一个VxWorks应用程序所需要的每一个步骤，然后我们将会展示如何通过一个点击动作来实现。
+编译一个项目，右键点击测试项目名称并选择Build（或者按Ctrl + B，或者按Ctrl + P）。
+第一次编译的时候会询问头文件搜索的目录，这儿，你可以点击Continue继续。
+编译的控制台将会自动打开并显示编译过程的输出内容。
+如果你看到编译结束(Build Finished)的黑体字，表示编译是成功的，否则，你需要修正报告的错误(和警告)。
+启动模拟器 因为我们将要在模拟器中运行程序，我们必须要先设置，从Workbench的工具栏，从下拉列表中选择New Connection
+在这个新连接的对话框中，输入一个Connection Name并选择:
+ Target Type: VxWorks Simulator Connection Mode: Application Mode  选择Finished，然后模拟器就会启动，两个选项卡将会打开：
+ Simulator选项卡将会显示Connection details Terminal选项卡将会显示模拟系统的控制台  尝试在控制台里的VxWorks控制台提示行输入命令i:
+这个命令将会系统里面正在运行的所有任务。
+相似的信息也可以从系统监控(System Monitor)选项卡中获取。
+运行应用程序 现在通过右键点击项目并选择Run/Debug Kernel Task来运行程序
+在Run Kernel Task对话框中，指定Entry Point，就是将要运行的函数的名称，输入CreateTasks或者通过Browse...按钮来选择。
+从可用的entry points中选择CreateTasks。
+在按了OK按钮后，应用程序将会在模拟器中运行并且输出内容将会在Terminal选项卡中显示出来。
+如果你想再次运行程序程序，按组合建Ctrl + Shift + F11就足够了，或者从Target actions菜单中选择Run Kernel Task
+终止程序 有多种方法来终止应用程序:
+ 点击红色的图标来停止整个模拟器 从System Monitor选项卡，通过右键菜单点击单个应用任务来终止它  调试 你可以在运行某个应用程序的时候，通过选择Attach Debugger选项来调试一个应用程序。
+Workbench会在entry point或者任何其他手动添加的断点处停止应用程序，现在你可以像别的IDE一样step并调试代码。
+帮助和文档 有两种类型的文档是可用的：
+ 参考手册 指南，教程  指南文档在/opt/WindRiver/vxworks/22.06/docs目录下，对大家来说最重要的文档将是Kernel_Application_Development/VxWorks_Application_Programmer_s_Guide_22.06.pdf
+参考手册可以在IDE自身的环境中获得，Help-&gt;Show Context Help，帮助窗口将会在编辑器里面鼠标的位置显示文档的链接。
+系统Viewer 系统Viewer是你可以记录系统活动的轨迹然后通过图形的方式进行显示的工具。
+系统Viewer可以被配置来记录不同数量的信息，我们将通过选择Additional Instrumentation来选择中等数量，如下所述。
+下面你就可以开始从运行的系统中记录运行轨迹。
+记录停止后，带有记录数据的新窗口将会出现。
+你也可以从view隐藏任何任务。
+]]></content>
+  </entry>
+  
+  <entry>
     <title>VxWorks环境搭建与学习</title>
     <url>/post/bsp/how-to-setup-vxworks-development-environment.html</url>
     <categories><category>BSP</category>
