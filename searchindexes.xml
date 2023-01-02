@@ -16,7 +16,7 @@
   </entry>
   
   <entry>
-    <title>VxWorks Workbench开发环境的快速介绍</title>
+    <title>VxWorks Workbench开发环境快速介绍</title>
     <url>/post/app/a-quick-intro-to-vxworks-workbench-development-environment.html</url>
     <categories><category>APP</category>
     </categories>
@@ -24,7 +24,7 @@
       <tag>VxWorks</tag>
       <tag>Workbench</tag>
     </tags>
-    <content type="html"><![CDATA[本文介绍了VxWorks Workbench开发环境相关的指南
+    <content type="html"><![CDATA[本文介绍了VxWorks Workbench开发环境相关的快速教程
 启动Wind River Workbench 可以按照如下步骤来启动Wind River Workbench IDE(Integrated Develoment Environment)，从菜单选择，Applications men -&gt; Development -&gt; Wind River Workbenche， 或者从命令行运行/opt/WindRiver/workbench-4/startWorkbench.sh，下面的窗口将会询问并让我们选择工作空间workspace。
 这儿的Workspace是你的项目存放的地方，建议将workspace放置到你的Home目录下(/home.nfs/)。
 创建新项目 为了创建一个新的项目，可以依次选择File -&gt; New -&gt; Project，并选择 VxWorks -&gt; VxWorks Downloadable Kernel Module Project。(后面你也会和Real-Time Process Projects打交道)，一个对话窗口将会打开，你可以指定一个项目名称，可选地，你可以改变项目的保存目录，继续点击Next按钮。
