@@ -6,7 +6,34 @@
     <description>Recent content in Tags on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 02 Jan 2023 09:08:24 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 03 Jan 2023 08:27:58 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tornado</title>
+      <link>https://www.vxworks7.com/tags/tornado/</link>
+      <pubDate>Tue, 03 Jan 2023 08:27:58 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/tornado/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VxWorks</title>
+      <link>https://www.vxworks7.com/tags/vxworks/</link>
+      <pubDate>Tue, 03 Jan 2023 08:27:58 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/vxworks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Workbench</title>
+      <link>https://www.vxworks7.com/tags/workbench/</link>
+      <pubDate>Tue, 03 Jan 2023 08:27:58 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/workbench/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>5G</title>
       <link>https://www.vxworks7.com/tags/5g/</link>
@@ -40,24 +67,6 @@
       <pubDate>Mon, 02 Jan 2023 09:08:24 -0500</pubDate>
       
       <guid>https://www.vxworks7.com/tags/windriver/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>VxWorks</title>
-      <link>https://www.vxworks7.com/tags/vxworks/</link>
-      <pubDate>Sun, 01 Jan 2023 23:35:44 -0500</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/vxworks/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Workbench</title>
-      <link>https://www.vxworks7.com/tags/workbench/</link>
-      <pubDate>Sun, 01 Jan 2023 23:35:44 -0500</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/workbench/</guid>
       <description></description>
     </item>
     
