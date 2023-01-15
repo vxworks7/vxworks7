@@ -6,7 +6,34 @@
     <description>Recent content in Tags on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 03 Jan 2023 08:27:58 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 14 Jan 2023 22:12:22 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nokia</title>
+      <link>https://www.vxworks7.com/tags/nokia/</link>
+      <pubDate>Sat, 14 Jan 2023 22:12:22 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/nokia/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Virtualization</title>
+      <link>https://www.vxworks7.com/tags/virtualization/</link>
+      <pubDate>Sat, 14 Jan 2023 22:12:22 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/virtualization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>WindRiver</title>
+      <link>https://www.vxworks7.com/tags/windriver/</link>
+      <pubDate>Sat, 14 Jan 2023 22:12:22 -0500</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/windriver/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Tornado</title>
       <link>https://www.vxworks7.com/tags/tornado/</link>
@@ -58,15 +85,6 @@
       <pubDate>Mon, 02 Jan 2023 09:08:24 -0500</pubDate>
       
       <guid>https://www.vxworks7.com/tags/vodafone/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>WindRiver</title>
-      <link>https://www.vxworks7.com/tags/windriver/</link>
-      <pubDate>Mon, 02 Jan 2023 09:08:24 -0500</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/windriver/</guid>
       <description></description>
     </item>
     

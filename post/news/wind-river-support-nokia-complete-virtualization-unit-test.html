@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)" />
+<meta name="generator" content="Hugo 0.92.2" />
+<link rel="shortcut icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
+<link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/imgs/icons/favicon_32_32_next.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/imgs/icons/apple_touch_icon_next.png">
+<meta itemprop="name" content="风河支持诺基亚成功完成虚拟化分布式单元测试" />
+<meta itemprop="description" content="风河支持诺基亚成功完成虚拟化分布式单元测试" />
+<meta itemprop="datePublished" ZgotmplZ />
+<meta itemprop="dateModified" ZgotmplZ />
+<meta itemprop="image" content="https://www.vxworks7.com/imgs/VxWorks_7_logo.png" />
+<meta itemprop="keywords" content="WindRiver,Nokia,Virtualization" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="风河支持诺基亚成功完成虚拟化分布式单元测试" />
+<meta property="og:description" content="风河支持诺基亚成功完成虚拟化分布式单元测试" />
+<meta property="og:image" content="/imgs/VxWorks_7_logo.png" />
+<meta property="og:image:width" content="312" />
+<meta property="og:image:height" content="312" />
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg" />
+<meta property="og:url" content="https://www.vxworks7.com/post/news/wind-river-support-nokia-complete-virtualization-unit-test.html"/>
+<meta property="og:site_name" content="VxWorks 7" />
+<meta property="og:locale" content="zh-CN"/>
+<meta property="article:author" content="VxWorks OS" />
+<meta property="article:published_time" content="2023-01-14 22:12:22 -0500 EST" />
+<meta property="article:modified_time" content="2023-01-14 22:12:22 -0500 EST" />
+
+
+  
+  <link type="text/css" rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.2/css/all.min.css" />
+  
+  <link type="text/css" rel="stylesheet" href="https://unpkg.com/animate.css@3.1.1/animate.min.css" />
+
+
+<link rel="stylesheet" href="/css/main.min.7d561ec9984cf0cb727fc88e14a92134576c99ccb9ce2f31b5b5541ab4ced328.css">
+  <style type="text/css">
+    .post-footer, .flinks-list-footer hr:after {
+      content: "~ 我可是有底线的哟 ~";
+    }
+  </style>
+  <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"wind-river-support-nokia-complete-virtualization-unit-test.html","permalink":"https://www.vxworks7.com/post/news/wind-river-support-nokia-complete-virtualization-unit-test.html","title":"风河支持诺基亚成功完成虚拟化分布式单元测试"}</script>
+  <script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', () => {
+    var script = document.createElement('script');
+      
+    script.charset = "UTF-8";
+    script.src     = "https:\/\/busuanzi.ibruce.info\/busuanzi\/2.3\/busuanzi.pure.mini.js";
+    script.async   = "true"
+
+    document.head.appendChild(script);
+  });
+</script>
+
+
+
+
+  <title>风河支持诺基亚成功完成虚拟化分布式单元测试 - VxWorks 7</title>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage"  class="use-motion" >
+  <div class="headband"></div>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner">
+<div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">VxWorks 7</h1>
+      <i class="logo-line"></i>
+    </a>
+    
+      <p class="site-subtitle" itemprop="description">Embedded World</p>
+      <img class="custom-logo-image" src="/imgs/VxWorks_7_logo.png" alt="VxWorks 7">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+      
+      <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+    <li class="menu-item menu-item-home">
+      <a href="/" class="hvr-icon-pulse " rel="section"><i class="fa fa-home hvr-icon"></i>首页
+      </a>
+    </li>
+    <li class="menu-item menu-item-about">
+      <a href="/about.html" class="hvr-icon-pulse " rel="section"><i class="fa fa-user hvr-icon"></i>关于
+      </a>
+    </li>
+    <li class="menu-item menu-item-flinks">
+      <a href="/flinks.html" class="hvr-icon-pulse " rel="section"><i class="fa fa-thumbs-up hvr-icon"></i>友情链接
+      </a>
+    </li>
+    <li class="menu-item menu-item-archives">
+      <a href="/archives/" class="hvr-icon-pulse " rel="section"><i class="fa fa-archive hvr-icon"></i>归档
+        <span class="badge">59</span>
+      </a>
+    </li>
+    <li class="menu-item menu-item-commonweal">
+      <a href="https://www.vxworks.net" class="hvr-icon-pulse " rel="section"><i class="fa fa-heartbeat hvr-icon"></i>赞助商
+      </a>
+    </li>
+    <li class="menu-item menu-item-search">
+      <a role="button" class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+    </div>
+  </div>
+
+      </div>
+      <div class="toggle sidebar-toggle" role="button">
+  <span class="toggle-line"></span>
+  <span class="toggle-line"></span>
+  <span class="toggle-line"></span>
+</div>
+<aside class="sidebar">
+  
+  <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-toc">
+        文章目录
+      </li>
+      <li class="sidebar-nav-overview">
+        站点概览
+      </li>
+    </ul>
+    <div class="sidebar-panel-container">
+      
+      <div class="post-toc-wrap sidebar-panel">
+        <div class="post-toc animated"><nav id="TableOfContents"></nav></div>
+      </div>
+      
+      <div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="VxWorks OS"
+      src="/imgs/hugo_next_avatar.png">
+  <p class="site-author-name" itemprop="name">VxWorks OS</p>
+  <div class="site-description" itemprop="description">Where there is embedded, there is VxWorks.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+    <div class="site-state-item site-state-posts">
+      <a href="/archives/">
+        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-name">日志</span>
+      </a>
+    </div>
+    <div class="site-state-item site-state-categories">
+      <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span>
+      </a>
+    </div>
+    <div class="site-state-item site-state-tags">
+      <a href="/tags/">
+        <span class="site-state-item-count">92</span>
+        <span class="site-state-item-name">标签</span>
+      </a>
+    </div>
+  </nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+
+
+  <span class="links-of-social-item">
+    <a href="https://github.com/" title="Github → https://github.com/" rel="noopener" class="hvr-icon-pulse" target="_blank">
+      <i class="fab fa-github fa-fw  hvr-icon "></i>Github
+    </a>
+  </span>
+  <span class="links-of-social-item">
+    <a href="https://www.zhihu.com/" title="知乎 → https://www.zhihu.com/" rel="noopener" class="hvr-icon-pulse" target="_blank">
+      <i class="fa fa-book fa-fw  hvr-icon "></i>知乎
+    </a>
+  </span>
+</div>
+<div class="cc-license animated" itemprop="license">
+  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank" title="共享知识">
+    <img src="/imgs/cc/big/by_nc_sa.svg" alt="共享知识">
+  </a>
+</div>
+<div class="links-of-blogroll site-overview-item animated">
+  <div class="links-of-blogroll-title">
+    <i class="fa fa-globe fa-fw"></i>友情链接
+  </div>
+  <ul class="links-of-blogroll-list">
+    <li class="links-of-blogroll-item">
+      <a href="https://www.gaitpu.com" title="https://www.gaitpu.com" target="_blank">Google AI TPU</a>
+    </li>
+    <li class="links-of-blogroll-item">
+      <a href="https://www.vxworks.net" title="https://www.vxworks.net" target="_blank">VxWorks俱乐部</a>
+    </li>
+  </ul>
+</div>
+      </div>
+    </div>
+   
+  </div>
+<div class="sidebar-card-widget">
+  <div class="item-headline">
+    <i class="fas fa-chart-line"></i>
+    <span>网站资讯</span>
+  </div>
+  <div class="siteinfo">
+    <div class="siteinfo-item">
+      <div class="item-name"><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+      <div class="item-count" id="runTimes" data-publishdate="2021-06-03T11:52:18&#43;08:00"></div>
+    </div>
+      <div class="siteinfo-item">
+        <div class="item-name">
+          <i class="fas fa fa-user"></i>总访客数：
+        </div>
+        <div class="item-count" id="busuanzi_value_site_uv"></div>
+      </div>
+      <div class="siteinfo-item">
+        <div class="item-name">
+          <i class="fas fa fa-eye"></i>页面浏览：
+        </div>
+        <div class="item-count" id="busuanzi_value_site_pv"></div>
+      </div>
+    <div class="siteinfo-item">
+      <div class="item-name"><i class="fa fa-font"></i>总字数：</div>
+      <div class="item-count" id="wordsCount" data-count="22802"></div>
+    </div>
+    <div class="siteinfo-item">
+      <div class="item-name"><i class="fa fa-mug-hot"></i>阅读约：</div>
+      <div class="item-count" id="readTimes" data-times="142"></div>
+    </div>
+    <div class="siteinfo-item">
+      <div class="item-name"><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+      <div class="item-count" id="last-push-date" data-lastpushdate="2023-01-14T22:12:22-05:00"></div>
+    </div>
+  </div>
+</div>
+</aside>
+<div class="sidebar-dimmer"></div>
+
+    </header>
+    
+    <div class="tool-buttons" >
+  <a id="goto-comments" class="button goto-comments" href="#comments"  title="直达评论">
+    <i class="fas fa-comments"></i>
+  </a> 
+  <div id="switch-theme" class="button" title="深浅模式切换">
+    <i class="fas fa-adjust"></i>
+  </div> 
+  
+  <div class="back-to-top" role="button" title="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div> 
+</div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+    <div class="main-inner post posts-expand">
+      
+  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://www.vxworks7.com/post/news/wind-river-support-nokia-complete-virtualization-unit-test.html">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/imgs/hugo_next_avatar.png">
+      <meta itemprop="name" content="VxWorks OS">
+    </span>
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="VxWorks OS">
+      <meta itemprop="description" content="Where there is embedded, there is VxWorks.">
+    </span>
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="风河支持诺基亚成功完成虚拟化分布式单元测试">
+      <meta itemprop="description" content="风河支持诺基亚成功完成虚拟化分布式单元测试">
+    </span>
+    <header class="post-header">
+       <h1 class="post-title" itemprop="name headline">风河支持诺基亚成功完成虚拟化分布式单元测试 </h1> <div class="post-meta-container">
+  <div class="post-meta-items">
+    
+
+
+<span class="post-meta-item">
+  <span class="post-meta-item-icon">
+    <i class="far fa-calendar"></i>
+  </span>
+  <span class="post-meta-item-text">发表于：</span>
+  <time title="发表于：2023-01-14 22:12:22 -0500 EST" itemprop="dateCreated datePublished" datetime="2023-01-14 22:12:22 -0500 EST">2023-01-14</time>
+</span>
+    
+    
+<span class="post-meta-item">
+  <span class="post-meta-item-icon">
+    <i class="far fa-folder-open"></i>
+  </span>
+  <span class="post-meta-item-text">分类于：</span>
+  <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+    <a href="/categories/news" itemprop="url" rel="index">
+      <span itemprop="name">News</span>
+    </a>
+  </span>
+</span>
+  </div>
+  <div class="post-meta-items">
+    
+<span class="post-meta-item" title="字数">
+  <span class="post-meta-item-icon">
+    <i class="far fa-file-word"></i>
+  </span>
+  <span class="post-meta-item-text">字数：</span><span>33</span>
+</span>
+    
+<span class="post-meta-item" title="阅读">
+  <span class="post-meta-item-icon">
+    <i class="far fa-clock"></i>
+  </span>
+  <span class="post-meta-item-text">阅读：&asymp;</span>
+  <span>1分钟</span>
+</span>
+
+    
+<span class="post-meta-item" title="浏览">
+  <span class="post-meta-item-icon">
+    <i class="far fa-eye"></i>
+  </span>
+  <span class="post-meta-item-text">
+  浏览：
+  </span>
+  <span id="busuanzi_value_page_pv" data-path="/post/news/wind-river-support-nokia-complete-virtualization-unit-test.html"><i class="fa fa-sync fa-spin"></i></span>
+</span>
+
+  </div>
+  
+</div>
+
+
+    </header>
+    
+    <div class="post-body  autonumber " itemprop="articleBody">
+      
+  <p>从现在到2025年，通信服务提供商针对移动CAPEX的投资将高达9000亿美元，主要用于5G网络。</p>
+<p><img src="https://www.vxworks.net/images/vxworks/Nokia-AirScale-Cloud-RAN.png" alt="Nokia AirScale Cloud RAN"></p>
+<p>作者：Jeff Gowan</p>
+<p>从现在到2025年，通信服务提供商针对移动CAPEX的投资将高达9000亿美元，主要用于5G网络。在同一时间段，他们还会投资18亿美元用于5G互连设备，其中还不包括授权许可的蜂窝IOT,而这部分投资的金额将会呈指数增长。上述投资所带来的机会可谓不可限量。5G带来了新的应用场景和新的需求。为了抓住5G业务和技术所带来的商业机会，需要具备可伸缩性、低延迟、高性能和大容量，更需要新的商业模式。</p>
+<p>投资的关键领域之一就是无线接入网（RAN），这是因为数据必须在最接近应用的地方以超低延迟来进行处理，才能获得5G优势。而且，由于数据处理可能会跨越地理上分散各地的数千个节点，因此需要通过单一集中式的仪表板或“单一用户界面”来进行分析、优化和维护，这是获得高效运作的必备条件。</p>
+<p>在
+<a href="https://www.vxworks.net" title="风河" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+    风河
+    <i class="fa fa-external-link-alt"></i>
+</a>的云基础架构上，诺基亚和风河成功地测试验证了诺基亚5G AirScale Cloud RAN虚拟化分布式单元 (virtualized Distributed Unit，vDU)。</p>
+<p>诺基亚的下一代5G AirScale云计算解决方案包括虚拟化分布式单元（vDU）和虚拟化集中式单元（vCU），提供了高可扩展性、低延迟、高性能和大容量以及多种网络架构选项，可以满足不断增长的市场需求。这也为CSP提供了RAN部署的新选项，支持他们以更加经济有效的方式满足应用需求，同时更好地满足各种场景之下的低延迟高性能要求。</p>
+<p>AirScale Cloud RAN vRAN2.0是完全云化的5G基站，它将实时基带处理放在网络远边缘的云中，更加靠近无线部件。网络边缘基于云的实时处理不仅要满足最极端的低延迟要求，还必须能够灵活扩展，以满足需求的不断变化。这套解决方案因为采用5G技术而具备了更大的覆盖范围和容量，而且可以显著降低TCO。AirScale Cloud RAN与Wind River Studio云基础设施平台技术已经成功通过测试，可谓珠联璧合。</p>
+<p>风河是全球领先的智能边缘互连软件提供商。Wind River Studio是业界第一个云原生平台，用于开发、部署、运营和服务于对信息安全性、功能安全性和可靠性要求极高的智能系统。其架构设计目标是通过单一窗口在整个生命周期中提供数字化体系，以加速业务成果的变革。</p>
+<p>在Studio当中包含了集成化的云平台、一体化的基础设施和分析工具，拥有这两项关键能力，足以支持运营商在全球部署和管理其5G智能边缘网络。</p>
+<p>以分布式云为出发点，Studio提供了生产级的Kubernetes云平台，运行空间极小，从而适用于边缘云基础设施的管理。它的基础是开源StarlingX项目，采用了一流的开源技术来部署和管理分布式网络。</p>
+<p>在Cloud RAN这类分布式云部署完成后，Studio就可以通过机器学习算法采集和处理数据，支持对分布式云系统的有效管理，从而为决策提供有价值的支持。通过对云基础设施集群和服务的全栈监控，Studio可以对云行为进行数据收集、分析和可视化，这样就可以在降低运营成本的同时保持云的正常运行和不断优化。</p>
+<p>诺基亚和风河已经在这套系统中实现了5G数据端到端调用，结果表明Nokia vDU在风河云基础架构中运行十分顺畅。</p>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1543398821442998"
+     crossorigin="anonymous"></script>
+
+<ins class="adsbygoogle"
+     style="display:inline-block;width:970px;height:90px"
+     data-ad-client="ca-pub-1543398821442998"
+     data-ad-slot="4140563281"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+    </div>
+    <footer class="post-footer">
+      
+
+<div class="post-tags">
+  
+    <a href="/tags/windriver">
+    WindRiver
+  </a>
+    <a href="/tags/nokia">
+    Nokia
+  </a>
+    <a href="/tags/virtualization">
+    Virtualization
+  </a>
+</div>
+
+<div class="addthis_inline_share_toolbox" style="text-align: center;"></div>
+<hr/>
+
+<div class="reward-container">
+  <div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div>
+  <button>赞赏</button>
+  <div class="post-reward">
+    <div class="post-reward-item">
+      <img src="/imgs/ali-pay.png" alt="VxWorks OS - 支付宝">
+      <span>支付宝</span>
+    </div>
+    <div class="post-reward-item">
+      <img src="/imgs/wechat-pay.png" alt="VxWorks OS - 微信">
+      <span>微信</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="post-copyright">
+  <img src="/imgs/cc/cc.svg" width="75" height="75" align="right" />
+  <ul>
+    <li class="post-copyright-title">
+      <strong>文章标题：</strong>
+      风河支持诺基亚成功完成虚拟化分布式单元测试
+    </li>
+    <li class="post-copyright-author">
+      <strong>本文作者： </strong>
+      VxWorks OS
+    </li>
+    <li class="post-copyright-link"> 
+      <strong>本文链接：</strong>
+       <a id="post-cr-link" href="https://www.vxworks7.com/post/news/wind-river-support-nokia-complete-virtualization-unit-test.html" title="风河支持诺基亚成功完成虚拟化分布式单元测试">https://www.vxworks7.com/post/news/wind-river-support-nokia-complete-virtualization-unit-test.html</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <i class="fab fa-fw fa-creative-commons"></i><a target='_blank' href='https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh'>BY-NC-SA</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</div>
+
+  <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+  <div class="social-list">
+    
+    <div class="social-item">
+        <a target="_blank" class="social-link" href="/imgs/wechat_channel.jpg">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
+          <span class="label">WeChat</span>
+        </a>
+      </div>
+  </div>
+</div>
+<div class="post-nav">
+  <div class="post-nav-next post-nav-item">
+    <a href="/post/welcome-to-vxworks-club/" rel="next" title="欢迎加入 VxWorks 俱乐部！">
+      <i class="fa fa-chevron-left"></i> 欢迎加入 VxWorks 俱乐部！
+    </a>
+  </div>
+  <div class="post-nav-prev post-nav-item">
+    <a href="/post/bsp/introduction-of-workbench-and-tornado-for-vxworks.html" rel="prev" title="VxWorks开发环境Workbench与Tornado介绍">
+      VxWorks开发环境Workbench与Tornado介绍
+      <i class="fa fa-chevron-right"></i>
+    </a>
+  </div>
+</div>
+
+    </footer>
+  </article>
+</div>
+<div id="comments" class="post-comments">
+  <div class="comment-head">
+    <div class="comment-headline">
+      <i class="fas fa-comments fa-fw"></i>
+      <span>评论交流</span>
+    </div>
+    <div class="comment-switch">
+      <span class="first-comment">Giscus</span>
+      <span class="switch-btn "></span>
+      <span class="second-comment">Waline</span>
+    </div>
+  </div>
+  <div class="comment-wrap">
+  
+    <div><div class="comment-loading">
+  <i class="fa fa-sync fa-spin"></i>
+</div><div class="giscus-container"></div>
+    </div>
+    <div><div class="comment-loading">
+  <i class="fa fa-sync fa-spin"></i>
+</div><div class="waline-container"></div>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="footer-inner">
+
+<div class="copyright">
+  &copy;
+  <span itemprop="copyrightYear">
+    2010 - 2023
+  </span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">VxWorks OS</span>
+</div>
+
+
+    </div>
+  </footer> 
+  
+  <script type="text/javascript" src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
+
+
+
+
+
+
+
+<script type="text/javascript" src="/js/main.min.7e59cf1a98d842830d8a6f149f78fbbcf9e795b7a9eb76feb34b48c9bf1554d7.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

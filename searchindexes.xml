@@ -16,6 +16,31 @@
   </entry>
   
   <entry>
+    <title>风河支持诺基亚成功完成虚拟化分布式单元测试</title>
+    <url>/post/news/wind-river-support-nokia-complete-virtualization-unit-test.html</url>
+    <categories><category>News</category>
+    </categories>
+    <tags>
+      <tag>WindRiver</tag>
+      <tag>Nokia</tag>
+      <tag>Virtualization</tag>
+    </tags>
+    <content type="html"><![CDATA[从现在到2025年，通信服务提供商针对移动CAPEX的投资将高达9000亿美元，主要用于5G网络。
+作者：Jeff Gowan
+从现在到2025年，通信服务提供商针对移动CAPEX的投资将高达9000亿美元，主要用于5G网络。在同一时间段，他们还会投资18亿美元用于5G互连设备，其中还不包括授权许可的蜂窝IOT,而这部分投资的金额将会呈指数增长。上述投资所带来的机会可谓不可限量。5G带来了新的应用场景和新的需求。为了抓住5G业务和技术所带来的商业机会，需要具备可伸缩性、低延迟、高性能和大容量，更需要新的商业模式。
+投资的关键领域之一就是无线接入网（RAN），这是因为数据必须在最接近应用的地方以超低延迟来进行处理，才能获得5G优势。而且，由于数据处理可能会跨越地理上分散各地的数千个节点，因此需要通过单一集中式的仪表板或“单一用户界面”来进行分析、优化和维护，这是获得高效运作的必备条件。
+在 风河  的云基础架构上，诺基亚和风河成功地测试验证了诺基亚5G AirScale Cloud RAN虚拟化分布式单元 (virtualized Distributed Unit，vDU)。
+诺基亚的下一代5G AirScale云计算解决方案包括虚拟化分布式单元（vDU）和虚拟化集中式单元（vCU），提供了高可扩展性、低延迟、高性能和大容量以及多种网络架构选项，可以满足不断增长的市场需求。这也为CSP提供了RAN部署的新选项，支持他们以更加经济有效的方式满足应用需求，同时更好地满足各种场景之下的低延迟高性能要求。
+AirScale Cloud RAN vRAN2.0是完全云化的5G基站，它将实时基带处理放在网络远边缘的云中，更加靠近无线部件。网络边缘基于云的实时处理不仅要满足最极端的低延迟要求，还必须能够灵活扩展，以满足需求的不断变化。这套解决方案因为采用5G技术而具备了更大的覆盖范围和容量，而且可以显著降低TCO。AirScale Cloud RAN与Wind River Studio云基础设施平台技术已经成功通过测试，可谓珠联璧合。
+风河是全球领先的智能边缘互连软件提供商。Wind River Studio是业界第一个云原生平台，用于开发、部署、运营和服务于对信息安全性、功能安全性和可靠性要求极高的智能系统。其架构设计目标是通过单一窗口在整个生命周期中提供数字化体系，以加速业务成果的变革。
+在Studio当中包含了集成化的云平台、一体化的基础设施和分析工具，拥有这两项关键能力，足以支持运营商在全球部署和管理其5G智能边缘网络。
+以分布式云为出发点，Studio提供了生产级的Kubernetes云平台，运行空间极小，从而适用于边缘云基础设施的管理。它的基础是开源StarlingX项目，采用了一流的开源技术来部署和管理分布式网络。
+在Cloud RAN这类分布式云部署完成后，Studio就可以通过机器学习算法采集和处理数据，支持对分布式云系统的有效管理，从而为决策提供有价值的支持。通过对云基础设施集群和服务的全栈监控，Studio可以对云行为进行数据收集、分析和可视化，这样就可以在降低运营成本的同时保持云的正常运行和不断优化。
+诺基亚和风河已经在这套系统中实现了5G数据端到端调用，结果表明Nokia vDU在风河云基础架构中运行十分顺畅。
+]]></content>
+  </entry>
+  
+  <entry>
     <title>VxWorks开发环境Workbench与Tornado介绍</title>
     <url>/post/bsp/introduction-of-workbench-and-tornado-for-vxworks.html</url>
     <categories><category>BSP</category>
