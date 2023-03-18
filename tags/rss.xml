@@ -6,25 +6,7 @@
     <description>Recent content in Tags on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 18 Mar 2023 11:35:48 -0400</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>linux</title>
-      <link>https://www.vxworks7.com/tags/linux/</link>
-      <pubDate>Sat, 18 Mar 2023 11:35:48 -0400</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>shell script</title>
-      <link>https://www.vxworks7.com/tags/shell-script/</link>
-      <pubDate>Sat, 18 Mar 2023 11:35:48 -0400</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/shell-script/</guid>
-      <description></description>
-    </item>
-    
+    <lastBuildDate>Sat, 14 Jan 2023 22:12:22 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Nokia</title>
       <link>https://www.vxworks7.com/tags/nokia/</link>
@@ -445,6 +427,15 @@
       <pubDate>Tue, 06 Dec 2022 05:35:25 -0400</pubDate>
       
       <guid>https://www.vxworks7.com/tags/boot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://www.vxworks7.com/tags/linux/</link>
+      <pubDate>Fri, 04 Nov 2022 19:52:03 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/linux/</guid>
       <description></description>
     </item>
     
