@@ -6,7 +6,16 @@
     <description>Recent content in Linux on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 04 Nov 2022 19:52:03 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/linux/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 18 Mar 2023 11:35:48 -0400</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/linux/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>40个简单但有效的Linux Shell脚本示例</title>
+      <link>https://www.vxworks7.com/post/linux/40-simple-and-useful-linux-shell-script.html</link>
+      <pubDate>Sat, 18 Mar 2023 11:35:48 -0400</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/linux/40-simple-and-useful-linux-shell-script.html</guid>
+      <description>&lt;p&gt;历史上，shell一直是类Unix系统的本地命令行解释器。它已被证明是Unix的主要功能之一，并发展成为一个全新的主题。Linux提供了各种功能强大的shell，包括Bash、Zsh、Tcsh和Ksh。这些外壳最令人惊讶的特性之一是其可编程性。创建简单而有效的Linux shell脚本来处理日常工作非常容易。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Linux编程之经典多级时间轮定时器</title>
       <link>https://www.vxworks7.com/post/linux/linux-programming-multiple-time-wheel-timer.html</link>
