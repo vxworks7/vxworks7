@@ -6,22 +6,31 @@
     <description>Recent content in Tags on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 25 Mar 2023 22:40:08 -0400</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 26 Mar 2023 10:39:45 -0400</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Tornado</title>
-      <link>https://www.vxworks7.com/tags/tornado/</link>
-      <pubDate>Sat, 25 Mar 2023 22:40:08 -0400</pubDate>
+      <title>RTOS</title>
+      <link>https://www.vxworks7.com/tags/rtos/</link>
+      <pubDate>Sun, 26 Mar 2023 10:39:45 -0400</pubDate>
       
-      <guid>https://www.vxworks7.com/tags/tornado/</guid>
+      <guid>https://www.vxworks7.com/tags/rtos/</guid>
       <description></description>
     </item>
     
     <item>
       <title>VxWorks</title>
       <link>https://www.vxworks7.com/tags/vxworks/</link>
-      <pubDate>Sat, 25 Mar 2023 22:40:08 -0400</pubDate>
+      <pubDate>Sun, 26 Mar 2023 10:39:45 -0400</pubDate>
       
       <guid>https://www.vxworks7.com/tags/vxworks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tornado</title>
+      <link>https://www.vxworks7.com/tags/tornado/</link>
+      <pubDate>Sat, 25 Mar 2023 22:40:08 -0400</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/tornado/</guid>
       <description></description>
     </item>
     
