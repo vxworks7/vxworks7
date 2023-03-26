@@ -16,6 +16,21 @@
   </entry>
   
   <entry>
+    <title>如何在命令行下编译VxWorks 5.5项目</title>
+    <url>/post/bsp/how-to-compile-vxworks-5.5-project-from-command-line.html</url>
+    <categories><category>BSP</category>
+    </categories>
+    <tags>
+      <tag>VxWorks</tag>
+      <tag>Tornado</tag>
+    </tags>
+    <content type="html"><![CDATA[如何从命令行来编译VxWorks 5.5/Tornado的项目呢？
+在VxWorks 5.5/Tornado 2.2的年代，集成开发环境(Tornado)会在项目的目录下创建一个Makefile文件，为了能从命令行来使用这个Makefile文件来编译一个项目，你需要初始化一些变量，然后再调用make命令。
+你可以将下述内容放入batch文件中，然后在项目的目录中，从命令行来调用这个bat文件即可。
+rem this file initilizes variables then builds rem run from the project directory set WIND_BASE=C:\Tornado2.2 set WIND_HOST=x86-win32 set WIND_HOST_TYPE=x86-win32 set path=C:\Tornado2.2\host\x86-win32\bin;%path% make ]]></content>
+  </entry>
+  
+  <entry>
     <title>风河支持诺基亚成功完成虚拟化分布式单元测试</title>
     <url>/post/news/wind-river-support-nokia-complete-virtualization-unit-test.html</url>
     <categories><category>News</category>

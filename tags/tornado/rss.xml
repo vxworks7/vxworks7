@@ -6,7 +6,16 @@
     <description>Recent content in Tornado on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 03 Jan 2023 08:27:58 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/tornado/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 25 Mar 2023 22:40:08 -0400</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/tornado/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>如何在命令行下编译VxWorks 5.5项目</title>
+      <link>https://www.vxworks7.com/post/bsp/how-to-compile-vxworks-5.5-project-from-command-line.html</link>
+      <pubDate>Sat, 25 Mar 2023 22:40:08 -0400</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/bsp/how-to-compile-vxworks-5.5-project-from-command-line.html</guid>
+      <description>&lt;p&gt;如何从命令行来编译VxWorks 5.5/Tornado的项目呢？&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>VxWorks开发环境Workbench与Tornado介绍</title>
       <link>https://www.vxworks7.com/post/bsp/introduction-of-workbench-and-tornado-for-vxworks.html</link>
