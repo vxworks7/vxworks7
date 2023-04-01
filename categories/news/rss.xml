@@ -6,7 +6,16 @@
     <description>Recent content in News on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 26 Mar 2023 10:39:45 -0400</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/news/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 31 Mar 2023 21:27:45 -0400</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/news/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>XaaS为制造业注入无限动力</title>
+      <link>https://www.vxworks7.com/post/news/the-power-of-xaas-in-manufacturing.html</link>
+      <pubDate>Fri, 31 Mar 2023 21:27:45 -0400</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/news/the-power-of-xaas-in-manufacturing.html</guid>
+      <description>&lt;p&gt;工业设备，如土方机械或制造机器人，不再仅仅是具备大肌肉力量或机械能力。如今，嵌入软件驱动的传感器让这些机器在智能边缘运行，使它们成为数字信息流中的重要环节。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>选择实时操作系统(RTOS)的要点详解</title>
       <link>https://www.vxworks7.com/post/news/how-to-select-real-time-operating-system.html</link>
