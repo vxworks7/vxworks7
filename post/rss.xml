@@ -6,7 +6,7 @@
     <description>Recent content in Posts on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 15 Apr 2023 06:03:55 -0400</lastBuildDate><atom:link href="https://www.vxworks7.com/post/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 Apr 2023 08:51:48 -0400</lastBuildDate><atom:link href="https://www.vxworks7.com/post/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>欢迎加入 VxWorks 俱乐部！</title>
       <link>https://www.vxworks7.com/post/welcome-to-vxworks-club/</link>
@@ -16,6 +16,15 @@
       <description>欢迎来到 北南南北 文档站点！ 相关文章来源于 VxWorks 俱乐部  ，也可能发布于 AI 嵌入式开发  ，专注于技术分享和交流。
 免责声明 所有资源均来自网络，版权归原作者，如有侵权，请联系删除！
 欢迎投稿  欢迎广大网友投稿 欢迎加入网友微信群  </description>
+    </item>
+    
+    <item>
+      <title>Wind River Studio支持最新英特尔处理器，满足CSP之5G需求</title>
+      <link>https://www.vxworks7.com/post/news/wind-river-studio-supports-the-latest-intel-processors-to-meet-5g-needs-of-cloud-service-provider.html</link>
+      <pubDate>Sat, 15 Apr 2023 08:51:48 -0400</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/news/wind-river-studio-supports-the-latest-intel-processors-to-meet-5g-needs-of-cloud-service-provider.html</guid>
+      <description>&lt;p&gt;全球领先的关键任务智能系统软件提供商风河公司近日于西班牙巴塞罗那2023世界移动大会上宣布Wind River Studio支持第四代Intel Xeon Scalable处理器，同时搭载Intel vRAN Boost，包含集成化加速功能，有助提升吞吐量并降低延迟与功耗，从而满足极具挑战性的5G负载，且仅占用单核物理空间。&lt;/p&gt;</description>
     </item>
     
     <item>
