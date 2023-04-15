@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Device Tree on VxWorks 7</title>
+    <link>https://www.vxworks7.com/tags/device-tree/</link>
+    <description>Recent content in Device Tree on VxWorks 7</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 15 Apr 2023 06:03:55 -0400</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/device-tree/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VxWorks 7.0基于设备树驱动程序编写方法</title>
+      <link>https://www.vxworks7.com/post/bsp/vxworks-7-driver-design-method-based-on-device-tree.html</link>
+      <pubDate>Sat, 15 Apr 2023 06:03:55 -0400</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/bsp/vxworks-7-driver-design-method-based-on-device-tree.html</guid>
+      <description>&lt;p&gt;本身讲述了VxWorks 7.0基于设备树驱动程序编写方法&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

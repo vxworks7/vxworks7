@@ -6,7 +6,34 @@
     <description>Recent content in Tags on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 06 Apr 2023 09:35:42 -0400</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 Apr 2023 06:03:55 -0400</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Device Tree</title>
+      <link>https://www.vxworks7.com/tags/device-tree/</link>
+      <pubDate>Sat, 15 Apr 2023 06:03:55 -0400</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/device-tree/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Driver Design</title>
+      <link>https://www.vxworks7.com/tags/driver-design/</link>
+      <pubDate>Sat, 15 Apr 2023 06:03:55 -0400</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/driver-design/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VxWorks 7</title>
+      <link>https://www.vxworks7.com/tags/vxworks-7/</link>
+      <pubDate>Sat, 15 Apr 2023 06:03:55 -0400</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/vxworks-7/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>DevOps</title>
       <link>https://www.vxworks7.com/tags/devops/</link>
@@ -202,15 +229,6 @@
       <pubDate>Sun, 25 Dec 2022 07:51:55 -0500</pubDate>
       
       <guid>https://www.vxworks7.com/tags/app-auto-boot/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>VxWorks 7</title>
-      <link>https://www.vxworks7.com/tags/vxworks-7/</link>
-      <pubDate>Sun, 25 Dec 2022 07:51:55 -0500</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/vxworks-7/</guid>
       <description></description>
     </item>
     

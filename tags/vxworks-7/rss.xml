@@ -6,7 +6,16 @@
     <description>Recent content on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 25 Dec 2022 07:51:55 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/vxworks-7/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 Apr 2023 06:03:55 -0400</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/vxworks-7/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VxWorks 7.0基于设备树驱动程序编写方法</title>
+      <link>https://www.vxworks7.com/post/bsp/vxworks-7-driver-design-method-based-on-device-tree.html</link>
+      <pubDate>Sat, 15 Apr 2023 06:03:55 -0400</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/bsp/vxworks-7-driver-design-method-based-on-device-tree.html</guid>
+      <description>&lt;p&gt;本身讲述了VxWorks 7.0基于设备树驱动程序编写方法&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>VxWorks 7自启动应用程序的四种方法</title>
       <link>https://www.vxworks7.com/post/app/vxworks-7-app-auto-boot-method.html</link>

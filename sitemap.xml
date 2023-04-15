@@ -7,8 +7,48 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>https://www.vxworks7.com/categories/bsp/</loc>
+    <lastmod>2023-04-15T06:03:55-04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://www.vxworks7.com/categories/</loc>
-    <lastmod>2023-04-06T09:35:42-04:00</lastmod>
+    <lastmod>2023-04-15T06:03:55-04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/device-tree/</loc>
+    <lastmod>2023-04-15T06:03:55-04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/driver-design/</loc>
+    <lastmod>2023-04-15T06:03:55-04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/post/</loc>
+    <lastmod>2023-04-15T06:03:55-04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/</loc>
+    <lastmod>2023-04-15T06:03:55-04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/vxworks-7/</loc>
+    <lastmod>2023-04-15T06:03:55-04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/</loc>
+    <lastmod>2023-04-15T06:03:55-04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/post/bsp/vxworks-7-driver-design-method-based-on-device-tree.html</loc>
+    <lastmod>2023-04-15T06:03:55-04:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -27,22 +67,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/post/</loc>
-    <lastmod>2023-04-06T09:35:42-04:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>https://www.vxworks7.com/tags/simics-simulates-systems/</loc>
-    <lastmod>2023-04-06T09:35:42-04:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/tags/</loc>
-    <lastmod>2023-04-06T09:35:42-04:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/</loc>
     <lastmod>2023-04-06T09:35:42-04:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -74,11 +99,6 @@
   </url><url>
     <loc>https://www.vxworks7.com/post/news/how-to-select-real-time-operating-system.html</loc>
     <lastmod>2023-03-26T10:39:45-04:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/categories/bsp/</loc>
-    <lastmod>2023-03-25T22:40:08-04:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -218,11 +238,6 @@
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.vxworks7.com/tags/app-auto-boot/</loc>
-    <lastmod>2022-12-25T07:51:55-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/tags/vxworks-7/</loc>
     <lastmod>2022-12-25T07:51:55-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

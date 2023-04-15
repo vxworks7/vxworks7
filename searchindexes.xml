@@ -16,6 +16,20 @@
   </entry>
   
   <entry>
+    <title>VxWorks 7.0基于设备树驱动程序编写方法</title>
+    <url>/post/bsp/vxworks-7-driver-design-method-based-on-device-tree.html</url>
+    <categories><category>BSP</category>
+    </categories>
+    <tags>
+      <tag>VxWorks 7</tag>
+      <tag>Driver Design</tag>
+      <tag>Device Tree</tag>
+    </tags>
+    <content type="html"><![CDATA[本身讲述了VxWorks 7.0基于设备树驱动程序编写方法
+创建vxbus函数方法表，必须包括probe和attach函数 LOCAL VXB_DRV_METHOD vxbxMethodList[] = { {VXB_DEVMETHOD_CALL(vxbDevProbe), vxbxProbe}, {VXB_DEVMETHOD_CALL(vxbDevAttach), vxbxAttach}, {0, NULL}}; } 创建VXB_DRV结构，在选项里必须是VXB_BUSID_FDT类，表示是设备树。 VXB_DRV vxbxDrv = { {NULL}, &#34;drvname&#34;, /* Name */ &#34;FDT vxBus driver&#34;, /* Description */ VXB_BUSID_FDT, /* Class */ 0, /* Flags */ 0, /* Reference count */ vxbMCP251xMethodList, /* Method table */ }; VXB_DRV_DEF(vxbxDrv ) 创建VXB_FDT_DEV_MATCH_ENTRY 匹配结构，属性名称为&quot;exp,expdrvname&quot;,对应设备树 device@520000 { compatible = &#34;exp,expdrvname&#34;; }; LOCAL const VXB_FDT_DEV_MATCH_ENTRY vxbxMatch[] = { { &#34;exp,expdrvname&#34;, /* compatible */ (void *)NULL, }, {} /* Empty terminated list */ }; 编写vxbxProbe函数 LOCAL STATUS vxbxProbe(VXB_DEV_ID pDev) { return vxbFdtDevMatch(pDev, vxbxMatch, NULL); } 编写vxbxAttach 函数 LOCAL STATUS vxbxAttach(VXB_DEV_ID pInst) { //申请驱动数据结构内存  FD_DEV *pDev = NULL; pDev = (FD_DEV *)vxbMemAlloc(sizeof(FD_DEV )); //装在驱动  if (ERROR == vxbxIosDrvNum) { vxbxIosDrvNum = iosDrvInstall( (DRV_CREATE_PTR)NULL, (DRV_REMOVE_PTR)NULL, (DRV_OPEN_PTR)vxbxIosOpen, (DRV_CLOSE_PTR)vxbxIosClose, (DRV_READ_PTR)NULL, (DRV_WRITE_PTR)NULL, (DRV_IOCTL_PTR)NULL); if (ERROR == vxbxIosDrvNum ) { (void)vxbMemFree(pDev); return ERROR; } } //获取设备树相关参数 vxbGpioGetByFdtIndex //设置相关参数  pDev-&gt;pDev= pInst; vxbDevSoftcSet (pInst, (void *)pDev); //  return OK; } 新建mk文件 OBJS_ARM += drv.o 新建cdf文件 Component DRV_FDT_DRVNAME { NAME new vxBus driver SYNOPSIS new vxBus driver MODULES drv.o LINK_SYMS vxbxDrv _CHILDREN FOLDER_DRIVERS_OTHER REQUIRES INCLUDE_VXBUS \ INCLUDE_VXBUS_RTC_LIB \ DRV_BUS_FDT_ROOT } ]]></content>
+  </entry>
+  
+  <entry>
     <title>DevOps与模拟仿真如何帮您解决硬件问题</title>
     <url>/post/news/use-DevOps-and-simulation-to-resolve-hardware-issues.html</url>
     <categories><category>News</category>
