@@ -6,22 +6,40 @@
     <description>Recent content in Tags on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 22 Apr 2023 11:36:52 -0400</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 22 Apr 2023 12:31:25 -0400</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>IoT</title>
-      <link>https://www.vxworks7.com/tags/iot/</link>
-      <pubDate>Sat, 22 Apr 2023 11:36:52 -0400</pubDate>
+      <title>Memory</title>
+      <link>https://www.vxworks7.com/tags/memory/</link>
+      <pubDate>Sat, 22 Apr 2023 12:31:25 -0400</pubDate>
       
-      <guid>https://www.vxworks7.com/tags/iot/</guid>
+      <guid>https://www.vxworks7.com/tags/memory/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MMU</title>
+      <link>https://www.vxworks7.com/tags/mmu/</link>
+      <pubDate>Sat, 22 Apr 2023 12:31:25 -0400</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/mmu/</guid>
       <description></description>
     </item>
     
     <item>
       <title>VxWorks 7</title>
       <link>https://www.vxworks7.com/tags/vxworks-7/</link>
-      <pubDate>Sat, 22 Apr 2023 11:36:52 -0400</pubDate>
+      <pubDate>Sat, 22 Apr 2023 12:31:25 -0400</pubDate>
       
       <guid>https://www.vxworks7.com/tags/vxworks-7/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>IoT</title>
+      <link>https://www.vxworks7.com/tags/iot/</link>
+      <pubDate>Sat, 22 Apr 2023 11:36:52 -0400</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/iot/</guid>
       <description></description>
     </item>
     

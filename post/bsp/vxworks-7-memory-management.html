@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)" />
+<meta name="generator" content="Hugo 0.92.2" />
+<link rel="shortcut icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
+<link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/imgs/icons/favicon_32_32_next.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/imgs/icons/apple_touch_icon_next.png">
+<meta itemprop="name" content="使用VxWorks 7内核 shell 来访问设备的寄存器" />
+<meta itemprop="description" content="使用VxWorks 7内核 shell 来访问设备的寄存器" />
+<meta itemprop="datePublished" ZgotmplZ />
+<meta itemprop="dateModified" ZgotmplZ />
+<meta itemprop="image" content="https://www.vxworks7.com/imgs/VxWorks_7_logo.png" />
+<meta itemprop="keywords" content="VxWorks 7,MMU,Memory" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="使用VxWorks 7内核 shell 来访问设备的寄存器" />
+<meta property="og:description" content="使用VxWorks 7内核 shell 来访问设备的寄存器" />
+<meta property="og:image" content="/imgs/VxWorks_7_logo.png" />
+<meta property="og:image:width" content="312" />
+<meta property="og:image:height" content="312" />
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg" />
+<meta property="og:url" content="https://www.vxworks7.com/post/bsp/vxworks-7-memory-management.html"/>
+<meta property="og:site_name" content="VxWorks 7" />
+<meta property="og:locale" content="zh-CN"/>
+<meta property="article:author" content="VxWorks OS" />
+<meta property="article:published_time" content="2023-04-22 12:31:25 -0400 EDT" />
+<meta property="article:modified_time" content="2023-04-22 12:31:25 -0400 EDT" />
+
+
+  
+  <link type="text/css" rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.2/css/all.min.css" />
+  
+  <link type="text/css" rel="stylesheet" href="https://unpkg.com/animate.css@3.1.1/animate.min.css" />
+
+
+<link rel="stylesheet" href="/css/main.min.7d561ec9984cf0cb727fc88e14a92134576c99ccb9ce2f31b5b5541ab4ced328.css">
+  <style type="text/css">
+    .post-footer, .flinks-list-footer hr:after {
+      content: "~ 我可是有底线的哟 ~";
+    }
+  </style>
+  <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"vxworks-7-memory-management.html","permalink":"https://www.vxworks7.com/post/bsp/vxworks-7-memory-management.html","title":"使用VxWorks 7内核 shell 来访问设备的寄存器"}</script>
+  <script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', () => {
+    var script = document.createElement('script');
+      
+    script.charset = "UTF-8";
+    script.src     = "https:\/\/busuanzi.ibruce.info\/busuanzi\/2.3\/busuanzi.pure.mini.js";
+    script.async   = "true"
+
+    document.head.appendChild(script);
+  });
+</script>
+
+
+
+
+  <title>使用VxWorks 7内核 shell 来访问设备的寄存器 - VxWorks 7</title>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage"  class="use-motion" >
+  <div class="headband"></div>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner">
+<div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">VxWorks 7</h1>
+      <i class="logo-line"></i>
+    </a>
+    
+      <p class="site-subtitle" itemprop="description">Embedded World</p>
+      <img class="custom-logo-image" src="/imgs/VxWorks_7_logo.png" alt="VxWorks 7">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+      
+      <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+    <li class="menu-item menu-item-home">
+      <a href="/" class="hvr-icon-pulse " rel="section"><i class="fa fa-home hvr-icon"></i>首页
+      </a>
+    </li>
+    <li class="menu-item menu-item-about">
+      <a href="/about.html" class="hvr-icon-pulse " rel="section"><i class="fa fa-user hvr-icon"></i>关于
+      </a>
+    </li>
+    <li class="menu-item menu-item-flinks">
+      <a href="/flinks.html" class="hvr-icon-pulse " rel="section"><i class="fa fa-thumbs-up hvr-icon"></i>友情链接
+      </a>
+    </li>
+    <li class="menu-item menu-item-archives">
+      <a href="/archives/" class="hvr-icon-pulse " rel="section"><i class="fa fa-archive hvr-icon"></i>归档
+        <span class="badge">67</span>
+      </a>
+    </li>
+    <li class="menu-item menu-item-commonweal">
+      <a href="https://www.vxworks.net" class="hvr-icon-pulse " rel="section"><i class="fa fa-heartbeat hvr-icon"></i>赞助商
+      </a>
+    </li>
+    <li class="menu-item menu-item-search">
+      <a role="button" class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+    </div>
+  </div>
+
+      </div>
+      <div class="toggle sidebar-toggle" role="button">
+  <span class="toggle-line"></span>
+  <span class="toggle-line"></span>
+  <span class="toggle-line"></span>
+</div>
+<aside class="sidebar">
+  
+  <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-toc">
+        文章目录
+      </li>
+      <li class="sidebar-nav-overview">
+        站点概览
+      </li>
+    </ul>
+    <div class="sidebar-panel-container">
+      
+      <div class="post-toc-wrap sidebar-panel">
+        <div class="post-toc animated"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#vxworks-69内核shell控制台">VxWorks 6.9内核Shell控制台</a></li>
+    <li><a href="#vxworks-7内核shell控制台">VxWorks 7内核Shell控制台</a></li>
+    <li><a href="#内存管理">内存管理</a></li>
+    <li><a href="#虚拟内存上下文">虚拟内存上下文</a></li>
+    <li><a href="#手动映射">手动映射</a></li>
+    <li><a href="#最终结果">最终结果</a></li>
+    <li><a href="#结论">结论</a></li>
+  </ul>
+</nav></div>
+      </div>
+      
+      <div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="VxWorks OS"
+      src="/imgs/hugo_next_avatar.png">
+  <p class="site-author-name" itemprop="name">VxWorks OS</p>
+  <div class="site-description" itemprop="description">Where there is embedded, there is VxWorks.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+    <div class="site-state-item site-state-posts">
+      <a href="/archives/">
+        <span class="site-state-item-count">67</span>
+        <span class="site-state-item-name">日志</span>
+      </a>
+    </div>
+    <div class="site-state-item site-state-categories">
+      <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span>
+      </a>
+    </div>
+    <div class="site-state-item site-state-tags">
+      <a href="/tags/">
+        <span class="site-state-item-count">103</span>
+        <span class="site-state-item-name">标签</span>
+      </a>
+    </div>
+  </nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+
+
+  <span class="links-of-social-item">
+    <a href="https://github.com/" title="Github → https://github.com/" rel="noopener" class="hvr-icon-pulse" target="_blank">
+      <i class="fab fa-github fa-fw  hvr-icon "></i>Github
+    </a>
+  </span>
+  <span class="links-of-social-item">
+    <a href="https://www.zhihu.com/" title="知乎 → https://www.zhihu.com/" rel="noopener" class="hvr-icon-pulse" target="_blank">
+      <i class="fa fa-book fa-fw  hvr-icon "></i>知乎
+    </a>
+  </span>
+</div>
+<div class="cc-license animated" itemprop="license">
+  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank" title="共享知识">
+    <img src="/imgs/cc/big/by_nc_sa.svg" alt="共享知识">
+  </a>
+</div>
+<div class="links-of-blogroll site-overview-item animated">
+  <div class="links-of-blogroll-title">
+    <i class="fa fa-globe fa-fw"></i>友情链接
+  </div>
+  <ul class="links-of-blogroll-list">
+    <li class="links-of-blogroll-item">
+      <a href="https://www.gaitpu.com" title="https://www.gaitpu.com" target="_blank">Google AI TPU</a>
+    </li>
+    <li class="links-of-blogroll-item">
+      <a href="https://www.vxworks.net" title="https://www.vxworks.net" target="_blank">VxWorks俱乐部</a>
+    </li>
+  </ul>
+</div>
+      </div>
+    </div>
+   
+  </div>
+<div class="sidebar-card-widget">
+  <div class="item-headline">
+    <i class="fas fa-chart-line"></i>
+    <span>网站资讯</span>
+  </div>
+  <div class="siteinfo">
+    <div class="siteinfo-item">
+      <div class="item-name"><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+      <div class="item-count" id="runTimes" data-publishdate="2021-06-03T11:52:18&#43;08:00"></div>
+    </div>
+      <div class="siteinfo-item">
+        <div class="item-name">
+          <i class="fas fa fa-user"></i>总访客数：
+        </div>
+        <div class="item-count" id="busuanzi_value_site_uv"></div>
+      </div>
+      <div class="siteinfo-item">
+        <div class="item-name">
+          <i class="fas fa fa-eye"></i>页面浏览：
+        </div>
+        <div class="item-count" id="busuanzi_value_site_pv"></div>
+      </div>
+    <div class="siteinfo-item">
+      <div class="item-name"><i class="fa fa-font"></i>总字数：</div>
+      <div class="item-count" id="wordsCount" data-count="24230"></div>
+    </div>
+    <div class="siteinfo-item">
+      <div class="item-name"><i class="fa fa-mug-hot"></i>阅读约：</div>
+      <div class="item-count" id="readTimes" data-times="154"></div>
+    </div>
+    <div class="siteinfo-item">
+      <div class="item-name"><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+      <div class="item-count" id="last-push-date" data-lastpushdate="2023-04-22T12:31:25-04:00"></div>
+    </div>
+  </div>
+</div>
+</aside>
+<div class="sidebar-dimmer"></div>
+
+    </header>
+    
+    <div class="tool-buttons" >
+  <a id="goto-comments" class="button goto-comments" href="#comments"  title="直达评论">
+    <i class="fas fa-comments"></i>
+  </a> 
+  <div id="switch-theme" class="button" title="深浅模式切换">
+    <i class="fas fa-adjust"></i>
+  </div> 
+  
+  <div class="back-to-top" role="button" title="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div> 
+</div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+    <div class="main-inner post posts-expand">
+      
+  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://www.vxworks7.com/post/bsp/vxworks-7-memory-management.html">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/imgs/hugo_next_avatar.png">
+      <meta itemprop="name" content="VxWorks OS">
+    </span>
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="VxWorks OS">
+      <meta itemprop="description" content="Where there is embedded, there is VxWorks.">
+    </span>
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="使用VxWorks 7内核 shell 来访问设备的寄存器">
+      <meta itemprop="description" content="使用VxWorks 7内核 shell 来访问设备的寄存器">
+    </span>
+    <header class="post-header">
+       <h1 class="post-title" itemprop="name headline">使用VxWorks 7内核 shell 来访问设备的寄存器 </h1> <div class="post-meta-container">
+  <div class="post-meta-items">
+    
+
+
+<span class="post-meta-item">
+  <span class="post-meta-item-icon">
+    <i class="far fa-calendar"></i>
+  </span>
+  <span class="post-meta-item-text">发表于：</span>
+  <time title="发表于：2023-04-22 12:31:25 -0400 EDT" itemprop="dateCreated datePublished" datetime="2023-04-22 12:31:25 -0400 EDT">2023-04-22</time>
+</span>
+    
+    
+<span class="post-meta-item">
+  <span class="post-meta-item-icon">
+    <i class="far fa-folder-open"></i>
+  </span>
+  <span class="post-meta-item-text">分类于：</span>
+  <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+    <a href="/categories/bsp" itemprop="url" rel="index">
+      <span itemprop="name">bsp</span>
+    </a>
+  </span>
+</span>
+  </div>
+  <div class="post-meta-items">
+    
+<span class="post-meta-item" title="字数">
+  <span class="post-meta-item-icon">
+    <i class="far fa-file-word"></i>
+  </span>
+  <span class="post-meta-item-text">字数：</span><span>739</span>
+</span>
+    
+<span class="post-meta-item" title="阅读">
+  <span class="post-meta-item-icon">
+    <i class="far fa-clock"></i>
+  </span>
+  <span class="post-meta-item-text">阅读：&asymp;</span>
+  <span>4分钟</span>
+</span>
+
+    
+<span class="post-meta-item" title="浏览">
+  <span class="post-meta-item-icon">
+    <i class="far fa-eye"></i>
+  </span>
+  <span class="post-meta-item-text">
+  浏览：
+  </span>
+  <span id="busuanzi_value_page_pv" data-path="/post/bsp/vxworks-7-memory-management.html"><i class="fa fa-sync fa-spin"></i></span>
+</span>
+
+  </div>
+  
+</div>
+
+
+    </header>
+    
+    <div class="post-body  autonumber " itemprop="articleBody">
+      
+  <p>在这篇博文中，我将解释如何使用 
+<a href="https://www.vxworks7.com" title="VxWorks 7" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+    VxWorks 7
+    <i class="fa fa-external-link-alt"></i>
+</a> 内核控制台(shell)读写硬件设备中的寄存器。对于任何一个开发设备驱动程序或其他直接与内存映射设备进行交付的代码的人来说，这是一个非常有用的功能。</p>
+<h2 id="vxworks-69内核shell控制台">VxWorks 6.9内核Shell控制台</h2>
+<p>如果您使用过 
+<a href="https://www.vxworks.net" title="VxWorks 6.9" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+    VxWorks 6.9
+    <i class="fa fa-external-link-alt"></i>
+</a>，你可能常常使用内核 shell 访问目标硬件中的内存映射寄存器。 例如，你可以使用<code>d</code>命令（实际上是一个函数）转储映射到内存中已知基地址的一组寄存器：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">-&gt; d 0xffd02000, 8, <span style="color:#ae81ff">4</span>
+NOTE: memory values are displayed in hexadecimal.
+0xffd02000: <span style="color:#ae81ff">00000001</span> 000000ee 3fe449ea <span style="color:#ae81ff">00000000</span> *.........I.?....*
+0xffd02010: <span style="color:#ae81ff">00000000</span> <span style="color:#ae81ff">00000000</span> 3130362a <span style="color:#ae81ff">00000000</span> *........*601....*
+value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
+-&gt;
+</code></pre></div><p>以上命令可以转储从地质 0xffd02000 开始, 宽度为4个字节的8个寄存器。</p>
+<p>或者使用<code>m</code>命令修改寄存器：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">-&gt; m ffd02000, <span style="color:#ae81ff">4</span>
+0xffd02000: 00000001-
+0xffd02004: 000000ee-ff
+0xffd02008: 3e63054e-.
+value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
+-&gt;
+</code></pre></div><p>同样，上述命令中的<code>4</code>，指定了寄存器以字节为单位的宽度</p>
+<p>你还可以使用如下指针语法来修改寄存器：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">-&gt; *0xffd02000 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
+-&gt;
+</code></pre></div><p>顺便说一句，我在这些示例中访问的硬件是 Intel (Altera) Cyclone V 硬处理器系统 (HPS) 中的 L4 看门狗定时器。</p>
+<h2 id="vxworks-7内核shell控制台">VxWorks 7内核Shell控制台</h2>
+<p>如果你使用 VxWorks 7 内核 shell 来尝试同样的访问，你可能会惊讶地看到不一样的情况：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">-&gt; d 0xffd02000, 32, <span style="color:#ae81ff">4</span>
+NOTE: memory values are displayed in hexadecimal.
+0xffd02000:
+Data abort
+
+Exception address: 0x003736a8
+Current Processor Status Register: 0x60000013
+Data Fault Address Register: 0xffd02000
+Data Fault Status Register : 0x00000005
+0x00358ea0 shellInterpCparse+0x1328: 0x0035f364 <span style="color:#f92672">()</span>
+0x0035f450 shellInterpClex+0x6074: shellInternalFunctionCall <span style="color:#f92672">()</span>
+0x00355854 shellInternalFunctionCall+0x88 : memoryDump <span style="color:#f92672">()</span>
+
+Shell task <span style="color:#e6db74">&#39;tShell0&#39;</span> restarted...
+
+-&gt;
+</code></pre></div><p>那里出了什么问题？ 简而言之，读取设备寄存器的操作失败了，导致了异常，因为 VxWorks 7 以与 VxWorks 6.9 截然不同的方式来管理地址映射。</p>
+<h2 id="内存管理">内存管理</h2>
+<p>要了解发生了什么，我们必须谈谈内存管理。 VxWorks 通常配置为使用集成到现代处理器（微控制器除外）中的内存管理单元来控制程序如何访问内存和其他内存映射硬件。 这意味着有两种地址：</p>
+<ul>
+<li>虚拟地址：软件用虚拟地址来初始化内存访问——本质上等同于 C 语言中的指针</li>
+<li>物理地址：硬件用于将“内存”访问定向到正确的硬件（内存、I/O 设备等）——这就是您将在硬件文档的地址映射部分看到的内容</li>
+</ul>
+<p>无需深入细节，当 VxWorks 运行时，它会设置并维护从虚拟地址到物理地址的映射。 维基百科的这张图给出了地址映射如何工作的一般图：</p>
+<p>虽然该图不是特定于 VxWorks，但它显示了适用于 VxWorks 7 的地址映射的几个特性：</p>
+<ul>
+<li>虚拟地址的数值可能与它映射到的物理地址的数值不匹配（也就是说，它不是“恒等映射”或“一对一转换”）</li>
+<li>可能存在不映射到任何物理地址的虚拟地址空间区域</li>
+<li>可能存在未被任何虚拟地址映射的物理地址空间区域</li>
+</ul>
+<p>VxWorks 6.9 和 VxWorks 7 之间的一个关键区别是大多数虚拟地址到物理地址的映射不是“一对一”的，因此通常虚拟地址在数值上与它们映射的物理地址不同。</p>
+<h2 id="虚拟内存上下文">虚拟内存上下文</h2>
+<p>如果你想查看内核设置的地址映射，可以通过从内核 shell 控制台调用函数 vmContextShow 来实现：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">-&gt; vmContextShow
+VIRTUAL ADDR BLOCK LENGTH PHYSICAL ADDR PROT <span style="color:#f92672">(</span>S/U<span style="color:#f92672">)</span> CACHE SPECIAL
+------------ ------------ ------------- ---------- -------- ------------
+0x00000000 0x00050000 0x00000000 RW- / --- CB-/CO/- --/S3
+0x00050000 0x00001000 0x00050000 R-X / --- CB-/CO/- --/S3
+0x00051000 0x000af000 0x00051000 RW- / --- CB-/CO/- --/S3
+0x00100000 0x00418000 0x00100000 R-X / --- CB-/CO/- --
+...
+0x00943000 0x00001000 0x00943000 R-- / --- CB-/CO/- --/S3
+0x00944000 0x00cb9000 0x00944000 RW- / --- CB-/CO/- --/S3
+0x20000000 0x00008000 0x015fd000 RW- / --- CB-/CO/- --/S3
+0x20008000 0x00002000 0x01605000 RWX / --- CB-/CO/- --/S3
+0x2000a000 0x0006f000 0x01607000 RW- / --- CB-/CO/- --/S3
+0x20079000 0x00002000 0x01676000 RWX / --- OFF/CO/G --
+0x2007b000 0x01f85000 0x01678000 RW- / --- CB-/CO/- --/S3
+0x22000000 0x00004000 0xffd08000 RW- / --- OFF/CO/G --
+0x22004000 0x00001000 0xffd05000 RW- / --- OFF/CO/G --
+0x22005000 0x00001000 0xff708000 RW- / --- OFF/CO/G --
+0x22006000 0x00002000 0xffc03000 RW- / --- OFF/CO/G --
+0x22008000 0x00001000 0xffd05000 RW- / --- OFF/CO/G --
+0x22009000 0x00001000 0xffd04000 RW- / --- OFF/CO/G --
+0x2200a000 0x00002000 0xfffec000 RW- / --- OFF/CO/G --
+0x2200c000 0x00001000 0xfffec000 RW- / --- OFF/CO/G --
+0x2200d000 0x00001000 0xfffef000 RW- / --- OFF/CO/G --
+0x2200e000 0x00002000 0xffc08000 RW- / --- OFF/CO/G --
+...
+0x22d32000 0x00002000 0x040c3000 RW- / --- CB-/CO/- --/S3
+0x22d35000 0x00001000 0x040c6000 RW- / --- CB-/CO/- --/S3
+0x22d37000 0x00002000 0x040c8000 RW- / --- CB-/CO/- --/S3
+0x22d3a000 0x00001000 0x040cb000 RW- / --- CB-/CO/- --/S3
+0x22d3c000 0x00002000 0x040cd000 RW- / --- CB-/CO/- --/S3
+0x22d3f000 0x00f01000 0x040d0000 RW- / --- CB-/CO/- --/S3
+value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
+-&gt;
+</code></pre></div><p>此函数显示整个虚拟内存上下文，通常会产生多行输出，其中大部分是我从该输出中截取的。 它只显示有效的虚拟地址区域，也就是说，映射到物理地址。</p>
+<p>你可以看到这个命令输出按虚拟地址递增的顺序排序，你可以发现我们刚才在寄存器转储的操作中使用的虚拟地址 (0xffd02000) 未映射到任何物理地址。 这正是我们得到数据中止异常的原因：该虚拟地址不访问任何硬件。</p>
+<p>你还可以看到，我们感兴趣的硬件附近有一些物理地址空间区域被映射到虚拟地址空间。 例如，虚拟地址 0x22008000 映射到物理地址 0xffd05000，它恰好是 Cyclone V HPS Reset Manager。</p>
+<p>如果你想知道为什么某些硬件设备映射到了虚拟地址空间而其他硬件设备不被映射，简短的回答，这是由设备树定义的，它描述了硬件并指定了它在物理地址空间中的布局方式。 当 VxWorks 7 启动时，它会解析设备树并找到硬件设备的驱动程序。 当这些驱动程序被初始化时，它们会映射与其设备关联的物理内存区域。</p>
+<h2 id="手动映射">手动映射</h2>
+<p>也可以在操作系统启动后映射物理地址空间区域。 有几种方法可以做到这一点，但我发现最方便的是使用带有三个参数的函数 pmapGlobalMap ：</p>
+<ul>
+<li>要映射的区域的物理地址</li>
+<li>要映射的区域的字节长度</li>
+<li>该区域应该映射的属性</li>
+</ul>
+<p>pmapGlobalMap 返回映射的虚拟地址。</p>
+<p>在继续之前，这里有一个例子：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">-&gt; l4wd0 <span style="color:#f92672">=</span> pmapGlobalMap <span style="color:#f92672">(</span>0xffd02000ULL, 0x1000, 0x483<span style="color:#f92672">)</span>
+New symbol <span style="color:#e6db74">&#34;l4wd0&#34;</span> added to kernel symbol table.
+l4wd0 <span style="color:#f92672">=</span> 0x22bea338: value <span style="color:#f92672">=</span> 579825664 <span style="color:#f92672">=</span> 0x228f7000
+-&gt;
+</code></pre></div><p>物理地址是你可以在硬件数据表中找到的内容，以及你在 VxWorks 6.9 中使用的内容：例如，要访问 Cyclone V HPS L4 看门狗定时器，它将是 0xffd02000。</p>
+<p>请注意，VxWorks 使用 64 位表示物理地址，因此为了确保 shell 将 64 位值传递给 pmapGlobalMap，我添加了 ULL 后缀。 有时你可以不用它就可以逃脱，但是添加它可以确保不会出现任何意外。</p>
+<p>长度是你感兴趣的一组寄存器所需要被映射的任何长度。（VxWorks 将默默地四舍五入 tje 长度，以便映射至少是一个虚拟内存页面，通常为 4 KiB。）</p>
+<p>这些属性将定义您可以通过虚拟地址使用的访问类型。 要访问硬件寄存器，你通常需要读写访问权限，但你可能还需要一些额外的属性来确保您的访问绕过缓存。</p>
+<p>通过在<code>VxWorks vmLibCommon.h</code>中找到<code>MMU_ATTR_*</code> 定义，我设定了属性值 0x483。 分解一下：0x3 提供读/写访问权限，0x80 使访问不可缓存，0x400 使访问受保护以保留访问顺序（在 ARM 架构上）。</p>
+<p>在示例中，我还将返回的虚拟地址存储在新变量 l4wd0 中。 这不是必需的，它只是在引用虚拟地址时更方便。</p>
+<h2 id="最终结果">最终结果</h2>
+<p>所以，最后，我们可以从 VxWorks 7 内核 shell 中转储 HPS L4 看门狗寄存器：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">-&gt; d l4wd0, 32, <span style="color:#ae81ff">4</span>
+NOTE: memory values are displayed in hexadecimal.
+0x228f7000: <span style="color:#ae81ff">00000001</span> 000000ff 7b02c5be <span style="color:#ae81ff">00000000</span> *...........<span style="color:#f92672">{</span>....*
+0x228f7010: <span style="color:#ae81ff">00000000</span> <span style="color:#ae81ff">00000000</span> 3130362a <span style="color:#ae81ff">00000000</span> *........*601....*
+0x228f7020: <span style="color:#ae81ff">00000000</span> <span style="color:#ae81ff">00000000</span> <span style="color:#ae81ff">00000000</span> <span style="color:#ae81ff">00000000</span> *................*
+0x228f7030: <span style="color:#ae81ff">00000000</span> <span style="color:#ae81ff">00000000</span> <span style="color:#ae81ff">00000000</span> <span style="color:#ae81ff">00000000</span> *................*
+0x228f7040: <span style="color:#ae81ff">00000000</span> <span style="color:#ae81ff">00000000</span> <span style="color:#ae81ff">00000000</span> <span style="color:#ae81ff">00000000</span> *................*
+0x228f7050: <span style="color:#ae81ff">00000000</span> <span style="color:#ae81ff">00000000</span> <span style="color:#ae81ff">00000000</span> <span style="color:#ae81ff">00000000</span> *................*
+0x228f7060: <span style="color:#ae81ff">00000000</span> <span style="color:#ae81ff">00000000</span> <span style="color:#ae81ff">00000000</span> <span style="color:#ae81ff">00000000</span> *................*
+0x228f7070: <span style="color:#ae81ff">00000000</span> <span style="color:#ae81ff">00000000</span> <span style="color:#ae81ff">00000000</span> <span style="color:#ae81ff">00000000</span> *................*
+value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
+-&gt;
+</code></pre></div><p>你还可以确认映射显示在 vmContextShow 的输出中：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">-&gt; vmContextShow
+VIRTUAL ADDR BLOCK LENGTH PHYSICAL ADDR PROT <span style="color:#f92672">(</span>S/U<span style="color:#f92672">)</span> CACHE SPECIAL
+------------ ------------ ------------- ---------- -------- ------------
+0x00000000 0x00050000 0x00000000 RW- / --- CB-/CO/- --/S3
+0x00050000 0x00001000 0x00050000 R-X / --- CB-/CO/- --/S3
+0x00051000 0x000af000 0x00051000 RW- / --- CB-/CO/- --/S3
+0x00100000 0x00418000 0x00100000 R-X / --- CB-/CO/- --
+...
+0x228f7000 0x00001000 0xffd02000 RW- / --- OFF/CO/G --
+...
+0x22d32000 0x00002000 0x040c3000 RW- / --- CB-/CO/- --/S3
+0x22d35000 0x00001000 0x040c6000 RW- / --- CB-/CO/- --/S3
+0x22d37000 0x00002000 0x040c8000 RW- / --- CB-/CO/- --/S3
+0x22d3a000 0x00001000 0x040cb000 RW- / --- CB-/CO/- --/S3
+0x22d3c000 0x00002000 0x040cd000 RW- / --- CB-/CO/- --/S3
+0x22d3f000 0x00f01000 0x040d0000 RW- / --- CB-/CO/- --/S3
+value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
+-&gt;
+</code></pre></div><h2 id="结论">结论</h2>
+<p>虽然这看起来是一个冗长的过程，但实际上只有两个步骤：</p>
+<ol>
+<li>使用 pmapGlobalMap 映射硬件以获得虚拟地址</li>
+<li>使用与 VxWorks 6.9 相同的方法访问它，但使用的是新的虚拟地址</li>
+</ol>
+<p>我希望这对你有所帮助，如果你希望我在以后的博文中涵盖任何其他主题，请告诉我。</p>
+<p>引用于: 
+<a href="https://www.vxworks.net/bsp/1000-using-vxworks-7-kernel-shell-to-access-device-registers" title="使用VxWorks 7内核 shell 来访问设备的寄存器" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+    使用VxWorks 7内核 shell 来访问设备的寄存器
+    <i class="fa fa-external-link-alt"></i>
+</a></p>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1543398821442998"
+     crossorigin="anonymous"></script>
+
+<ins class="adsbygoogle"
+     style="display:inline-block;width:970px;height:90px"
+     data-ad-client="ca-pub-1543398821442998"
+     data-ad-slot="4140563281"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+    </div>
+    <footer class="post-footer">
+      
+
+<div class="post-tags">
+  
+    <a href="/tags/vxworks-7">
+    VxWorks 7
+  </a>
+    <a href="/tags/mmu">
+    MMU
+  </a>
+    <a href="/tags/memory">
+    Memory
+  </a>
+</div>
+
+<div class="addthis_inline_share_toolbox" style="text-align: center;"></div>
+<hr/>
+
+<div class="reward-container">
+  <div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div>
+  <button>赞赏</button>
+  <div class="post-reward">
+    <div class="post-reward-item">
+      <img src="/imgs/ali-pay.png" alt="VxWorks OS - 支付宝">
+      <span>支付宝</span>
+    </div>
+    <div class="post-reward-item">
+      <img src="/imgs/wechat-pay.png" alt="VxWorks OS - 微信">
+      <span>微信</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="post-copyright">
+  <img src="/imgs/cc/cc.svg" width="75" height="75" align="right" />
+  <ul>
+    <li class="post-copyright-title">
+      <strong>文章标题：</strong>
+      使用VxWorks 7内核 shell 来访问设备的寄存器
+    </li>
+    <li class="post-copyright-author">
+      <strong>本文作者： </strong>
+      VxWorks OS
+    </li>
+    <li class="post-copyright-link"> 
+      <strong>本文链接：</strong>
+       <a id="post-cr-link" href="https://www.vxworks7.com/post/bsp/vxworks-7-memory-management.html" title="使用VxWorks 7内核 shell 来访问设备的寄存器">https://www.vxworks7.com/post/bsp/vxworks-7-memory-management.html</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <i class="fab fa-fw fa-creative-commons"></i><a target='_blank' href='https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh'>BY-NC-SA</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</div>
+
+  <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+  <div class="social-list">
+    
+    <div class="social-item">
+        <a target="_blank" class="social-link" href="/imgs/wechat_channel.jpg">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
+          <span class="label">WeChat</span>
+        </a>
+      </div>
+  </div>
+</div>
+<div class="post-nav">
+  <div class="post-nav-next post-nav-item">
+    <a href="/post/welcome-to-vxworks-club/" rel="next" title="欢迎加入 VxWorks 俱乐部！">
+      <i class="fa fa-chevron-left"></i> 欢迎加入 VxWorks 俱乐部！
+    </a>
+  </div>
+  <div class="post-nav-prev post-nav-item">
+    <a href="/post/news/iot-operating-system-vxworks7.html" rel="prev" title="引领未来的N大物联网操作系统之VxWorks 7">
+      引领未来的N大物联网操作系统之VxWorks 7
+      <i class="fa fa-chevron-right"></i>
+    </a>
+  </div>
+</div>
+
+    </footer>
+  </article>
+</div>
+<div id="comments" class="post-comments">
+  <div class="comment-head">
+    <div class="comment-headline">
+      <i class="fas fa-comments fa-fw"></i>
+      <span>评论交流</span>
+    </div>
+    <div class="comment-switch">
+      <span class="first-comment">Giscus</span>
+      <span class="switch-btn "></span>
+      <span class="second-comment">Waline</span>
+    </div>
+  </div>
+  <div class="comment-wrap">
+  
+    <div><div class="comment-loading">
+  <i class="fa fa-sync fa-spin"></i>
+</div><div class="giscus-container"></div>
+    </div>
+    <div><div class="comment-loading">
+  <i class="fa fa-sync fa-spin"></i>
+</div><div class="waline-container"></div>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="footer-inner">
+
+<div class="copyright">
+  &copy;
+  <span itemprop="copyrightYear">
+    2010 - 2023
+  </span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">VxWorks OS</span>
+</div>
+
+
+    </div>
+  </footer> 
+  
+  <script type="text/javascript" src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
+
+
+
+
+
+
+
+<script type="text/javascript" src="/js/main.min.7e59cf1a98d842830d8a6f149f78fbbcf9e795b7a9eb76feb34b48c9bf1554d7.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
