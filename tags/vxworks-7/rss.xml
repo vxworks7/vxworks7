@@ -6,7 +6,16 @@
     <description>Recent content on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 15 Apr 2023 06:03:55 -0400</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/vxworks-7/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 22 Apr 2023 11:36:52 -0400</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/vxworks-7/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>引领未来的N大物联网操作系统之VxWorks 7</title>
+      <link>https://www.vxworks7.com/post/news/iot-operating-system-vxworks7.html</link>
+      <pubDate>Sat, 22 Apr 2023 11:36:52 -0400</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/news/iot-operating-system-vxworks7.html</guid>
+      <description>&lt;p&gt;物联网尽管被提了多年，也得到各方力量的推动，但是产业的发展相对比较缓慢，而且目前鲜有企业在这个领域赚到钱。究其原因，一些行业分析师认为，要想让每个场景中的设备实现物联网化，单兵作战难以实现，整个物联网行业缺乏平台的支撑。这句话讲到了关键点。但是，有能力做物联网平台的企业并不多，能够下决心专注物联网领域的更是少之又少。风河可以算物联网能力平台中的一个。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>VxWorks 7.0基于设备树驱动程序编写方法</title>
       <link>https://www.vxworks7.com/post/bsp/vxworks-7-driver-design-method-based-on-device-tree.html</link>
