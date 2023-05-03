@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>实时操作系统 on VxWorks 7</title>
+    <link>https://www.vxworks7.com/tags/%E5%AE%9E%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
+    <description>Recent content in 实时操作系统 on VxWorks 7</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 03 May 2023 09:57:17 -0400</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/%E5%AE%9E%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VxWorks实时操作系统的特点</title>
+      <link>https://www.vxworks7.com/post/vxworks/feature-of-vxworks.html</link>
+      <pubDate>Wed, 03 May 2023 09:57:17 -0400</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/vxworks/feature-of-vxworks.html</guid>
+      <description>&lt;p&gt;
+&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
+    VxWorks
+    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
+&lt;/a&gt;是美国风河系统（WindRiver）公司于1983年设计开发的一种嵌入式实时操作系统（RTOS），是嵌入式开发环境的关键组成部分。良好的持续发展能力、高性能的内核以及友好的用户开发环境，在嵌入式实时操作系统领域占据一席之地。VxWorks支持几乎所有现代市场上的嵌入式CPU，包括x86系列、MIPS、 PowerPC、Freescale ColdFire、Intel i960、SPARC、SH-4、ARM, StrongARM以及xScale CPU。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

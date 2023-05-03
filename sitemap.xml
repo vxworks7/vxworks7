@@ -7,12 +7,47 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/categories/bsp/</loc>
-    <lastmod>2023-04-22T12:31:25-04:00</lastmod>
+    <loc>https://www.vxworks7.com/categories/</loc>
+    <lastmod>2023-05-03T09:57:17-04:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/categories/</loc>
+    <loc>https://www.vxworks7.com/post/</loc>
+    <lastmod>2023-05-03T09:57:17-04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/</loc>
+    <lastmod>2023-05-03T09:57:17-04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/vxworks/</loc>
+    <lastmod>2023-05-03T09:57:17-04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/categories/vxworks/</loc>
+    <lastmod>2023-05-03T09:57:17-04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/</loc>
+    <lastmod>2023-05-03T09:57:17-04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/post/vxworks/feature-of-vxworks.html</loc>
+    <lastmod>2023-05-03T09:57:17-04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/%E5%AE%9E%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</loc>
+    <lastmod>2023-05-03T09:57:17-04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/categories/bsp/</loc>
     <lastmod>2023-04-22T12:31:25-04:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -27,22 +62,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/post/</loc>
-    <lastmod>2023-04-22T12:31:25-04:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/tags/</loc>
-    <lastmod>2023-04-22T12:31:25-04:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>https://www.vxworks7.com/tags/vxworks-7/</loc>
-    <lastmod>2023-04-22T12:31:25-04:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/</loc>
     <lastmod>2023-04-22T12:31:25-04:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -119,11 +139,6 @@
   </url><url>
     <loc>https://www.vxworks7.com/tags/windriver/</loc>
     <lastmod>2023-04-06T09:35:42-04:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/tags/vxworks/</loc>
-    <lastmod>2023-03-31T21:27:45-04:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -723,11 +738,6 @@
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.vxworks7.com/tags/uart/</loc>
-    <lastmod>2022-10-07T05:35:25-04:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/categories/vxworks/</loc>
     <lastmod>2022-10-07T05:35:25-04:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
