@@ -6,7 +6,16 @@
     <description>Recent content in Wind River on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 15 Apr 2023 08:51:48 -0400</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/wind-river/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 07 May 2023 06:32:29 -0400</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/wind-river/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Wind River风河系统公司的发展历史</title>
+      <link>https://www.vxworks7.com/post/news/wind-river-systems-development-history.html</link>
+      <pubDate>Sun, 07 May 2023 06:32:29 -0400</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/news/wind-river-systems-development-history.html</guid>
+      <description>&lt;p&gt;风河系统公司由Jerry Fiddler和Dave Wilner共同创立，1981年Fiddler离开美国劳伦斯伯克利国家实验室，从事控制系统的软件编写工作，但他想在“计算机音乐合成”方面创业，于是他投资了一家致力于实时处理方面的咨询公司。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Wind River Studio支持最新英特尔处理器，满足CSP之5G需求</title>
       <link>https://www.vxworks7.com/post/news/wind-river-studio-supports-the-latest-intel-processors-to-meet-5g-needs-of-cloud-service-provider.html</link>

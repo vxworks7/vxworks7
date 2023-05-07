@@ -6,7 +6,16 @@
     <description>Recent content in linux on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 04 Nov 2022 19:52:03 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/linux/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 07 May 2023 06:32:29 -0400</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/linux/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Wind River风河系统公司的发展历史</title>
+      <link>https://www.vxworks7.com/post/news/wind-river-systems-development-history.html</link>
+      <pubDate>Sun, 07 May 2023 06:32:29 -0400</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/news/wind-river-systems-development-history.html</guid>
+      <description>&lt;p&gt;风河系统公司由Jerry Fiddler和Dave Wilner共同创立，1981年Fiddler离开美国劳伦斯伯克利国家实验室，从事控制系统的软件编写工作，但他想在“计算机音乐合成”方面创业，于是他投资了一家致力于实时处理方面的咨询公司。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Linux编程之经典多级时间轮定时器</title>
       <link>https://www.vxworks7.com/post/linux/linux-programming-multiple-time-wheel-timer.html</link>

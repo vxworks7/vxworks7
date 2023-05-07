@@ -10,26 +10,26 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/imgs/icons/favicon_32_32_next.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/imgs/icons/apple_touch_icon_next.png">
-<meta itemprop="name" content="如何在VxWorks 7下集成Python" />
-<meta itemprop="description" content="如何在VxWorks 7下集成Python" />
+<meta itemprop="name" content="风河携手TCS建构5G/Open RAN分布式移动网络基础设施生态系统" />
+<meta itemprop="description" content="风河携手TCS建构5G/Open RAN分布式移动网络基础设施生态系统" />
 <meta itemprop="datePublished" ZgotmplZ />
 <meta itemprop="dateModified" ZgotmplZ />
 <meta itemprop="image" content="https://www.vxworks7.com/imgs/VxWorks_7_logo.png" />
-<meta itemprop="keywords" content="VxWorks,Python" />
+<meta itemprop="keywords" content="WindRiver,vRan,TCS,5G" />
 
 <meta property="og:type" content="article" />
-<meta property="og:title" content="如何在VxWorks 7下集成Python" />
-<meta property="og:description" content="如何在VxWorks 7下集成Python" />
+<meta property="og:title" content="风河携手TCS建构5G/Open RAN分布式移动网络基础设施生态系统" />
+<meta property="og:description" content="风河携手TCS建构5G/Open RAN分布式移动网络基础设施生态系统" />
 <meta property="og:image" content="/imgs/VxWorks_7_logo.png" />
 <meta property="og:image:width" content="312" />
 <meta property="og:image:height" content="312" />
 <meta property="og:image:type" content="image/jpeg/png/svg/jpg" />
-<meta property="og:url" content="https://www.vxworks7.com/post/app/how-to-integrate-python-into-vxworks-7.html"/>
+<meta property="og:url" content="https://www.vxworks7.com/post/news/wind-river-and-TCS-build-5G-Open-Ran-ecos.html"/>
 <meta property="og:site_name" content="VxWorks 7" />
 <meta property="og:locale" content="zh-CN"/>
 <meta property="article:author" content="VxWorks OS" />
-<meta property="article:published_time" content="2022-12-20 23:54:53 -0500 EST" />
-<meta property="article:modified_time" content="2022-12-20 23:54:53 -0500 EST" />
+<meta property="article:published_time" content="2022-10-13 08:53:45 -0400 EDT" />
+<meta property="article:modified_time" content="2022-10-13 08:53:45 -0400 EDT" />
 
 
   
@@ -44,7 +44,7 @@
       content: "~ 我可是有底线的哟 ~";
     }
   </style>
-  <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"how-to-integrate-python-into-vxworks-7.html","permalink":"https://www.vxworks7.com/post/app/how-to-integrate-python-into-vxworks-7.html","title":"如何在VxWorks 7下集成Python"}</script>
+  <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"wind-river-and-TCS-build-5G-Open-Ran-ecos.html","permalink":"https://www.vxworks7.com/post/news/wind-river-and-TCS-build-5G-Open-Ran-ecos.html","title":"风河携手TCS建构5G/Open RAN分布式移动网络基础设施生态系统"}</script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
     var script = document.createElement('script');
@@ -60,7 +60,7 @@
 
 
 
-  <title>如何在VxWorks 7下集成Python - VxWorks 7</title>
+  <title>风河携手TCS建构5G/Open RAN分布式移动网络基础设施生态系统 - VxWorks 7</title>
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
@@ -173,27 +173,7 @@
     <div class="sidebar-panel-container">
       
       <div class="post-toc-wrap sidebar-panel">
-        <div class="post-toc animated"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#简介">简介</a></li>
-    <li><a href="#前提">前提</a></li>
-    <li><a href="#创建编译vxworks-source-buildvsb项目">创建/编译VxWorks Source Build(VSB)项目</a></li>
-    <li><a href="#创建编译基本vxworks-image-projectvip">创建/编译基本VxWorks Image Project(VIP)</a></li>
-    <li><a href="#在目标机上启动vxworks">在目标机上启动VxWorks</a>
-      <ul>
-        <li><a href="#部署uefi的加载器以及vxworks内核镜像">部署uEFI的加载器以及VxWorks内核镜像</a></li>
-        <li><a href="#准备intel的目标机">准备Intel的目标机</a></li>
-        <li><a href="#启动目标机">启动目标机</a></li>
-      </ul>
-    </li>
-    <li><a href="#找到vxworks-usb闪存驱动器的设备名称">找到VxWorks Usb闪存驱动器的设备名称</a></li>
-    <li><a href="#将python运行时环境复制到usb闪存驱动器">将Python运行时环境复制到Usb闪存驱动器</a></li>
-    <li><a href="#更新基本的vip以包含python运行时环境">更新基本的VIP以包含Python运行时环境</a></li>
-    <li><a href="#将更新的vxworks镜像文件部署到usb闪存驱动器">将更新的VxWorks镜像文件部署到Usb闪存驱动器</a></li>
-    <li><a href="#在usb闪存驱动器的根目录中创建一个hello-world-python示例">在USB闪存驱动器的根目录中创建一个Hello World Python示例</a></li>
-    <li><a href="#在目标上运行hello-world-python示例程序">在目标上运行Hello World Python示例程序</a></li>
-  </ul>
-</nav></div>
+        <div class="post-toc animated"><nav id="TableOfContents"></nav></div>
       </div>
       
       <div class="site-overview-wrap sidebar-panel">
@@ -325,7 +305,7 @@
       
   <div class="post-block">
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://www.vxworks7.com/post/app/how-to-integrate-python-into-vxworks-7.html">
+    <link itemprop="mainEntityOfPage" href="https://www.vxworks7.com/post/news/wind-river-and-TCS-build-5G-Open-Ran-ecos.html">
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/imgs/hugo_next_avatar.png">
       <meta itemprop="name" content="VxWorks OS">
@@ -335,11 +315,11 @@
       <meta itemprop="description" content="Where there is embedded, there is VxWorks.">
     </span>
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="如何在VxWorks 7下集成Python">
-      <meta itemprop="description" content="如何在VxWorks 7下集成Python">
+      <meta itemprop="name" content="风河携手TCS建构5G/Open RAN分布式移动网络基础设施生态系统">
+      <meta itemprop="description" content="风河携手TCS建构5G/Open RAN分布式移动网络基础设施生态系统">
     </span>
     <header class="post-header">
-       <h1 class="post-title" itemprop="name headline">如何在VxWorks 7下集成Python </h1> <div class="post-meta-container">
+       <h1 class="post-title" itemprop="name headline">风河携手TCS建构5G/Open RAN分布式移动网络基础设施生态系统 </h1> <div class="post-meta-container">
   <div class="post-meta-items">
     
 
@@ -349,7 +329,7 @@
     <i class="far fa-calendar"></i>
   </span>
   <span class="post-meta-item-text">发表于：</span>
-  <time title="发表于：2022-12-20 23:54:53 -0500 EST" itemprop="dateCreated datePublished" datetime="2022-12-20 23:54:53 -0500 EST">2022-12-20</time>
+  <time title="发表于：2022-10-13 08:53:45 -0400 EDT" itemprop="dateCreated datePublished" datetime="2022-10-13 08:53:45 -0400 EDT">2022-10-13</time>
 </span>
     
     
@@ -359,8 +339,8 @@
   </span>
   <span class="post-meta-item-text">分类于：</span>
   <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-    <a href="/categories/app" itemprop="url" rel="index">
-      <span itemprop="name">APP</span>
+    <a href="/categories/news" itemprop="url" rel="index">
+      <span itemprop="name">News</span>
     </a>
   </span>
 </span>
@@ -371,7 +351,7 @@
   <span class="post-meta-item-icon">
     <i class="far fa-file-word"></i>
   </span>
-  <span class="post-meta-item-text">字数：</span><span>315</span>
+  <span class="post-meta-item-text">字数：</span><span>30</span>
 </span>
     
 <span class="post-meta-item" title="阅读">
@@ -379,7 +359,7 @@
     <i class="far fa-clock"></i>
   </span>
   <span class="post-meta-item-text">阅读：&asymp;</span>
-  <span>2分钟</span>
+  <span>1分钟</span>
 </span>
 
     
@@ -390,7 +370,7 @@
   <span class="post-meta-item-text">
   浏览：
   </span>
-  <span id="busuanzi_value_page_pv" data-path="/post/app/how-to-integrate-python-into-vxworks-7.html"><i class="fa fa-sync fa-spin"></i></span>
+  <span id="busuanzi_value_page_pv" data-path="/post/news/wind-river-and-TCS-build-5G-Open-Ran-ecos.html"><i class="fa fa-sync fa-spin"></i></span>
 </span>
 
   </div>
@@ -402,119 +382,20 @@
     
     <div class="post-body  autonumber " itemprop="articleBody">
       
-  <p>VxWorks是由Wind River提供的实时操作系统，而Python是由Python Software Foundation管理的开源解释型编程语言和运行时解释器。</p>
-<h2 id="简介">简介</h2>
-<p><img src="https://www.gaitpu.com/wp-content/uploads/2020/12/python-integrated-in-vxworks-7-850x550.png" alt="VxWorks 7 Python"></p>
-<p>Python软件基金会：http://www.python.org</p>
-<p>风河在PowerPC，ARM和Intel架构设备上支持Python。</p>
-<p>这个VxWorks Python文章描述了如何将Python解释器编译和部署到VxWorks 7中。</p>
-<h2 id="前提">前提</h2>
-<p>本文的说明假定你正在使用：</p>
-<ul>
-<li>Wind River VxWorks 7 SR0620</li>
-<li>Intel target booting from UEFI BIOS</li>
-<li>A USB flash drive (4 GB minimum)</li>
-</ul>
-<h2 id="创建编译vxworks-source-buildvsb项目">创建/编译VxWorks Source Build(VSB)项目</h2>
-<p>打开DOS shell，配置编译环境，然后编译项目。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">cd <span style="color:#e6db74">&#34;WIND_HOME&#34;</span>              // your installation directory
-wrenv -p vxworks-7
-cd          // your workspace
-vxprj vsb create python_vsb -bsp itl_generic -smp -force -S
-cd python_vsb               // your workspace
-vxprj vsb add PYTHON        // add the python layer to the VSB
-make -j <span style="color:#ae81ff">32</span>                  // build the VSB
-</code></pre></div><p>VxWorks源代码编译(VSB)编译完成后，检查其是否包含Python运行时环境，验证以下目录是否存在：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-fallback" data-lang="fallback">&#34;YOUR_WORKSPACE&#34;/python_vsb/usr/3pp/deploy
-</code></pre></div><h2 id="创建编译基本vxworks-image-projectvip">创建/编译基本VxWorks Image Project(VIP)</h2>
-<p>像下面一样创建基本的VxWorks镜像工程</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">cd ..
-vxprj create -smp itl_generic python_vip -profile PROFILE_INTEL_GENERIC -vsb python_vsb
-cd python_vip
-vxprj vip component add INCLUDE_MULTI_STAGE_WARM_REBOOT
-vxprj vip bundle add BUNDLE_STANDALONE_SHELL
-vxprj parameter set DOSFS_COMPAT_NT TRUE
-vxprj build
-</code></pre></div><p>Note: 现在你还没有将Python解释器加进VIP</p>
-<h2 id="在目标机上启动vxworks">在目标机上启动VxWorks</h2>
-<h3 id="部署uefi的加载器以及vxworks内核镜像">部署uEFI的加载器以及VxWorks内核镜像</h3>
-<p>有关如何在USB闪存驱动器上编译和部署UEFI引导加载程序以及VxWorks镜像文件的说明，请参考itl_generic BSP的readme文件。在下面的路径找到此自述文件：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-fallback" data-lang="fallback">&#34;WIND_HOME&#34;/vxworks-7/pkgs_v2/os/board/intel/itl_generic-a.b.c.d/itl_generic_readme.md
-</code></pre></div><p>根据下述的指令来部署uEFI启动加载器和VxWorks内核镜像后，你可以从USB闪存驱动器上找到如下文件:</p>
-<ul>
-<li>EFI</li>
-<li>BOOT</li>
-<li>bootapp.sys</li>
-<li>BOOTIA32.EFI</li>
-<li>BOOTX64.EFI</li>
-</ul>
-<h3 id="准备intel的目标机">准备Intel的目标机</h3>
-<p>配置目标机的BIOS来从USB闪存驱动器启动该目标机，把该USB闪存驱动器接到目标机上。</p>
-<h3 id="启动目标机">启动目标机</h3>
-<p>给目标机上电，目标启动后，你将看到VxWorks的内核shell的提示符。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">-&gt;
-</code></pre></div><h2 id="找到vxworks-usb闪存驱动器的设备名称">找到VxWorks Usb闪存驱动器的设备名称</h2>
-<p>在VxWorks内核shell上执行以下命令找出Usb闪存驱动器的设备名称。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">-&gt; devs
-drv refs name
-  <span style="color:#ae81ff">1</span> <span style="color:#f92672">[</span> 3<span style="color:#f92672">]</span> /
-  <span style="color:#ae81ff">7</span> <span style="color:#f92672">[</span> 3<span style="color:#f92672">]</span> /bd0a
-  <span style="color:#ae81ff">5</span> <span style="color:#f92672">[</span> 3<span style="color:#f92672">]</span> /pcConsole/0
-  <span style="color:#ae81ff">3</span> <span style="color:#f92672">[</span> 3<span style="color:#f92672">]</span> /ttyS0
-value <span style="color:#f92672">=</span> 2 <span style="color:#f92672">=</span> 0x2
-
--&gt; cd <span style="color:#e6db74">&#34;/bd0a&#34;</span>
-value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
--&gt; ls
-EFI
-value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
-</code></pre></div><p>在这个实例中，设备名称为/bd0a，记下目标机上的USB设备名称。关闭目标机，然后将USB闪存驱动器接回到工作站。</p>
-<h2 id="将python运行时环境复制到usb闪存驱动器">将Python运行时环境复制到Usb闪存驱动器</h2>
-<p>拷贝 “YOUR_WORKSPACE”/python_vsb/usr/3pp/deploy 到USB闪存驱动器的根目录。</p>
-<h2 id="更新基本的vip以包含python运行时环境">更新基本的VIP以包含Python运行时环境</h2>
-<p>返回VIP的目录，并将Python运行时环境配置进VIP。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">cd <span style="color:#e6db74">&#34;YOUR_WORKSPACE&#34;</span><span style="color:#ae81ff">\\</span>profile_vip
-vxprj component add INCLUDE_PYTHON_SUPPORT
-vxprj component add INCLUDE_FILESYSTEM_SYMLINK_CONFIG
-vxprj parameter setstring FILESYSTEM_SYMLINK_CONFIG_STR
-    def<span style="color:#f92672">=</span>/bd0a/deploy;/bin<span style="color:#f92672">=</span>def/bin;/usr<span style="color:#f92672">=</span>def/usr;/etc<span style="color:#f92672">=</span>def/etc;/lib<span style="color:#f92672">=</span>def/lib;<span style="color:#e6db74">&#34;
-</span><span style="color:#e6db74">vxprj build
-</span></code></pre></div><h2 id="将更新的vxworks镜像文件部署到usb闪存驱动器">将更新的VxWorks镜像文件部署到Usb闪存驱动器</h2>
-<p>拷贝 “YOUR_WORKSPACE”/profile_vip/default/vxWorks到USB闪存驱动器，并改名为EFI/BOOT/bootapp.sys</p>
-<h2 id="在usb闪存驱动器的根目录中创建一个hello-world-python示例">在USB闪存驱动器的根目录中创建一个Hello World Python示例</h2>
-<p>打开文本编辑器，并在USB闪存驱动器的根目录下创建一个名为helloworld.py的文件。文件必须包含如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># helloworld.py</span>
-import os
-import sys
-print<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Hello World!&#34;</span><span style="color:#f92672">)</span>
-</code></pre></div><h2 id="在目标上运行hello-world-python示例程序">在目标上运行Hello World Python示例程序</h2>
-<p>将USB闪存驱动器接回到目标机，然后将目标机引导到VxWorks的内核shell，在USB闪存驱动器根目录下找到helloworld.py文件，在shell上输入命令并运行此Python程序。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">-&gt; cd <span style="color:#e6db74">&#34;/bd0a&#34;</span>
-value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
--&gt; ls
-EFI
-helloworld.py
-value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
--&gt; cmd
-<span style="color:#f92672">[</span>vxWorks *<span style="color:#f92672">]</span><span style="color:#75715e"># python3 helloworld.py</span>
-Launching process <span style="color:#e6db74">&#39;python3&#39;</span> ...
-Process <span style="color:#e6db74">&#39;python3&#39;</span> <span style="color:#f92672">(</span>process Id <span style="color:#f92672">=</span> 0x809aa340<span style="color:#f92672">)</span> launched.
-Hello World!
-<span style="color:#f92672">[</span>vxWorks *<span style="color:#f92672">]</span><span style="color:#75715e">#</span>
-</code></pre></div><p>注意：由于Python是一种解释型的语言，因此你还可以从VxWorks的内核shell上以交互的方式构建python程序。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>vxWorks *<span style="color:#f92672">]</span><span style="color:#75715e"># python3</span>
-Launching process <span style="color:#e6db74">&#39;python3&#39;</span> ...
-Process <span style="color:#e6db74">&#39;python3&#39;</span> <span style="color:#f92672">(</span>process ID <span style="color:#f92672">=</span> 0x809aa340<span style="color:#f92672">)</span> launched.
-Python 3.8.0 <span style="color:#f92672">(</span>default, Apr <span style="color:#ae81ff">27</span> 2020, 17:49:25<span style="color:#f92672">)</span>
-<span style="color:#f92672">[</span>Clang 9.0.1.1 <span style="color:#f92672">(</span>ssh://diabuild@stash.wrs.com:7999/llvm/clang.git 67f1ee998a3a1d on vxWorks
-Type <span style="color:#e6db74">&#34;help&#34;</span>, <span style="color:#e6db74">&#34;copyright&#34;</span>, <span style="color:#e6db74">&#34;credits&#34;</span> or <span style="color:#e6db74">&#34;license&#34;</span> <span style="color:#66d9ef">for</span> more information.
-&gt;&gt;&gt; import os
-&gt;&gt;&gt; import sys
-&gt;&gt;&gt; print<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Hello World!&#34;</span><span style="color:#f92672">)</span>
-Hello World!
-&gt;&gt;&gt;
-</code></pre></div><p>引用
-VxWorks 7 是新一代的嵌入式实时操作系统，全新的架构设计，灵活化的组件配置，高可靠性与安全性，丰富的第三方软件包，极大的方便用户的开发和使用。本文对VxWorks7 的功能做个简要的记录。</p>
+  <blockquote>
+<p>全球领先的关键任务智能系统软件提供商风河公司®宣布，正在与塔塔咨询服务公司（TCS）合作，在Wind River Studio上托管vRAN解决方案。这项战略合作将创建一个全栈移动基础设施解决方案，在4G-5G vRAN下一代网络中开展TCS部署和工程服务，并以Studio作为云平台。</p>
+</blockquote>
+<p><code>TCS</code>网络解决方案与服务副总裁Vimal Kumar表示：“我们很高兴与风河合作，帮助我们的客户借助5G技术改善他们的业务。我们的Cognitive Network Operations平台运行在Wind River Studio之上，由此帮助电信网络运营商运用AI和ML技术来监测网络健康状况，预测可能发生的故障，提供以客户为中心的网络体验，并确保卓越的服务质量。”</p>
+<p><code>风河</code>公司首席产品官Avijit Sinha表示：“运营商正在致力于创造数字化、云原生的未来，他们正在寻求灵活、经济的解决方案，以便降低部署复杂度并进行持续性维护。风河公司提供了成熟的生产就绪产品，与领先运营商实现了实用化部署，其基础正是经过广泛验证的Wind River Studio技术。”</p>
+<p><img src="https://www.vxworks.net/images/kad8/windriver-vran.jpg" alt="WindRiver vRan"></p>
+<p>风河公司印度销售主管Rajeev Rawal表示：“与TCS携手，提供敏捷、安全、可靠和超低延迟解决方案，以支持新的应用场景，让云计算、边缘计算和智能化技术承担起更加重要的任务。”</p>
+<p>作为5G市场的领导者，风河在世界首次成功5G数据会话和商业vRAN/O-RAN项目中发挥了关键作用，其中包括世界上最大的Open RAN网络。</p>
+<p>Wind River Studio提供了一个完全基于云原生、Kubernetes和容器的体系结构，可用于大规模分布式边缘网络的开发、部署、运营和服务。这套平台为地理分布的管理解决方案提供了基础，能够为数千个节点提供单一窗口（SPoG）、零接触的自动化管理，从而简化Day 1和Day 2运营，而且与节点的物理位置无关。Studio解决了部署和管理物理地理分散云原生vRAN基础设施的复杂挑战，在vRAN部署中提供了传统的RAN性能。</p>
+<blockquote>
+<p>塔塔咨询服务 (TCS）简介</p>
+</blockquote>
+<p>塔塔咨询服务公司是一家IT服务、咨询和业务解决方案提供商，50多年来一直与许多全球最大企业合作，帮助他们实现转型。TCS提供以咨询为主导、以认知为动力的综合性商业、技术和工程服务以及解决方案。所有这些都通过独特的Location Independent Agile™ 模式来提供，被作为卓越软件开发的基准指标。</p>
+<p>作为印度最大的跨国商业集团塔塔集团的一部分，TCS在55个国家拥有超过606,000名训练有素的咨询师。在截至2022年3月31日的财年中，TCS创造了257亿美元的合并营收，并在印度的BSE和NSE上市。</p>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1543398821442998"
      crossorigin="anonymous"></script>
 
@@ -534,11 +415,17 @@ VxWorks 7 是新一代的嵌入式实时操作系统，全新的架构设计，�
 
 <div class="post-tags">
   
-    <a href="/tags/vxworks">
-    VxWorks
+    <a href="/tags/windriver">
+    WindRiver
   </a>
-    <a href="/tags/python">
-    Python
+    <a href="/tags/vran">
+    vRan
+  </a>
+    <a href="/tags/tcs">
+    TCS
+  </a>
+    <a href="/tags/5g">
+    5G
   </a>
 </div>
 
@@ -566,7 +453,7 @@ VxWorks 7 是新一代的嵌入式实时操作系统，全新的架构设计，�
   <ul>
     <li class="post-copyright-title">
       <strong>文章标题：</strong>
-      如何在VxWorks 7下集成Python
+      风河携手TCS建构5G/Open RAN分布式移动网络基础设施生态系统
     </li>
     <li class="post-copyright-author">
       <strong>本文作者： </strong>
@@ -574,7 +461,7 @@ VxWorks 7 是新一代的嵌入式实时操作系统，全新的架构设计，�
     </li>
     <li class="post-copyright-link"> 
       <strong>本文链接：</strong>
-       <a id="post-cr-link" href="https://www.vxworks7.com/post/app/how-to-integrate-python-into-vxworks-7.html" title="如何在VxWorks 7下集成Python">https://www.vxworks7.com/post/app/how-to-integrate-python-into-vxworks-7.html</a>
+       <a id="post-cr-link" href="https://www.vxworks7.com/post/news/wind-river-and-TCS-build-5G-Open-Ran-ecos.html" title="风河携手TCS建构5G/Open RAN分布式移动网络基础设施生态系统">https://www.vxworks7.com/post/news/wind-river-and-TCS-build-5G-Open-Ran-ecos.html</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -599,13 +486,13 @@ VxWorks 7 是新一代的嵌入式实时操作系统，全新的架构设计，�
 </div>
 <div class="post-nav">
   <div class="post-nav-next post-nav-item">
-    <a href="/post/news/avionics-and-intelligent-edge.html" rel="next" title="航空电子设备与智能边缘">
-      <i class="fa fa-chevron-left"></i> 航空电子设备与智能边缘
+    <a href="/post/linux/how-to-convert-mp4-to-mp3-in-ubuntu-linux.html" rel="next" title="如何在Ubuntu Linux下将mp4转成mp3">
+      <i class="fa fa-chevron-left"></i> 如何在Ubuntu Linux下将mp4转成mp3
     </a>
   </div>
   <div class="post-nav-prev post-nav-item">
-    <a href="/post/bsp/vxworks-config-multi-network-adapter.html" rel="prev" title="VxWorks配置多网口">
-      VxWorks配置多网口
+    <a href="/post/vxworks/vxworks-6.8-qt-uart-programming.html" rel="prev" title="VxWorks 6.8下基于QT的串口编程">
+      VxWorks 6.8下基于QT的串口编程
       <i class="fa fa-chevron-right"></i>
     </a>
   </div>

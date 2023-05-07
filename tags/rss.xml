@@ -6,22 +6,40 @@
     <description>Recent content in Tags on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 03 May 2023 09:57:17 -0400</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 07 May 2023 06:32:29 -0400</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Real Time OS</title>
-      <link>https://www.vxworks7.com/tags/real-time-os/</link>
-      <pubDate>Wed, 03 May 2023 09:57:17 -0400</pubDate>
+      <title>linux</title>
+      <link>https://www.vxworks7.com/tags/linux/</link>
+      <pubDate>Sun, 07 May 2023 06:32:29 -0400</pubDate>
       
-      <guid>https://www.vxworks7.com/tags/real-time-os/</guid>
+      <guid>https://www.vxworks7.com/tags/linux/</guid>
       <description></description>
     </item>
     
     <item>
       <title>VxWorks</title>
       <link>https://www.vxworks7.com/tags/vxworks/</link>
-      <pubDate>Wed, 03 May 2023 09:57:17 -0400</pubDate>
+      <pubDate>Sun, 07 May 2023 06:32:29 -0400</pubDate>
       
       <guid>https://www.vxworks7.com/tags/vxworks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Wind River</title>
+      <link>https://www.vxworks7.com/tags/wind-river/</link>
+      <pubDate>Sun, 07 May 2023 06:32:29 -0400</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/wind-river/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Real Time OS</title>
+      <link>https://www.vxworks7.com/tags/real-time-os/</link>
+      <pubDate>Wed, 03 May 2023 09:57:17 -0400</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/real-time-os/</guid>
       <description></description>
     </item>
     
@@ -76,15 +94,6 @@
       <pubDate>Sat, 15 Apr 2023 08:51:48 -0400</pubDate>
       
       <guid>https://www.vxworks7.com/tags/5g/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Wind River</title>
-      <link>https://www.vxworks7.com/tags/wind-river/</link>
-      <pubDate>Sat, 15 Apr 2023 08:51:48 -0400</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/wind-river/</guid>
       <description></description>
     </item>
     
@@ -535,15 +544,6 @@
       <pubDate>Tue, 06 Dec 2022 05:35:25 -0400</pubDate>
       
       <guid>https://www.vxworks7.com/tags/boot/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>linux</title>
-      <link>https://www.vxworks7.com/tags/linux/</link>
-      <pubDate>Fri, 04 Nov 2022 19:52:03 +0800</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/linux/</guid>
       <description></description>
     </item>
     

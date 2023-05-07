@@ -16,6 +16,76 @@
   </entry>
   
   <entry>
+    <title>Wind River风河系统公司的发展历史</title>
+    <url>/post/news/wind-river-systems-development-history.html</url>
+    <categories><category>News</category>
+    </categories>
+    <tags>
+      <tag>Wind River</tag>
+      <tag>VxWorks</tag>
+      <tag>Linux</tag>
+    </tags>
+    <content type="html"><![CDATA[风河系统公司由Jerry Fiddler和Dave Wilner共同创立，1981年Fiddler离开美国劳伦斯伯克利国家实验室，从事控制系统的软件编写工作，但他想在“计算机音乐合成”方面创业，于是他投资了一家致力于实时处理方面的咨询公司。
+早期的客户包括美式橄榄球联盟和电影导演弗朗西斯·福特·科波拉（黑帮电影《教父》导演）。Wilner是之前伯克利实验室的同事，加入了Fiddler并成立了合伙公司风河系统公司 (名称来源于Fiddler常去度假的wind river山脉，位于怀俄明州)。
+Youtube上还有创始人Jerry Fiddler的演讲，名字叫做Jerry Fiddler Principal Zygote Ventures; Chairman Solazyme，现在他已经成为一名风险投资家。
+下面是风河系统公司的主要客户：
+航天和国防领域： NASA 喷气推进实验室： 负责为美国国家航空航天局开发和管理无人空间探测任务。
+波音公司： 世界上最大的民用和军用飞机制造商之一。
+加那利大型望远镜： 是目前在世界上最大的一个最先进的光学和红外望远镜。
+阿古斯塔·韦斯特兰公司： 全球第二大直升机制造商。
+诺斯洛普·格鲁门公司： 世界第4大军工生产厂商。
+BAE系统公司： 2000年，在世界100家最大军品公司中居第三位。
+TaxiBot： 飞机牵引车。
+汽车领域： 博世集团： 生产汽车零部件。
+德国大陆集团： 世界第三大轮胎制造企业、欧洲最大的汽车配件供应商。
+博泰： 国内最大前装车联网解决方案公司。
+HYUNDAI MOBIS： 韩国现代汽车集团下属子公司。
+欧科佳集团： 汽车故障诊断和商用车车载电子设备领域中的国际领先企业。
+玛涅蒂 马瑞利： 从事先进汽车系统和零部件的设计和生产。
+歌乐： 日本汽车电子设备制造商。
+工业领域： 西门子： 电子电气工程领域的领先企业。
+库卡机器人： 工业机器人。
+罗克韦尔自动化： 全球最大的致力于工业自动化与信息的公司。
+上海富欣： 前身为上海贝尔股份有限公司交通自动化事业部。
+富士施乐： 全球最大数字与信息技术产品生产商。
+欧姆龙自动化： 全球知名的自动化控制及电子设备制造厂商。
+医疗领域： 奥林巴斯株式会社： 精密、光学技术的代表企业之一。
+Fedegari Autoclavi SpA： 意大利知名工业用消毒器材制造商。
+西诺德： 全球数字口腔解决方案领导者。
+通信领域： 华为： 通信设备制造商。
+Ubee-AirWALK： 小蜂窝（Small Cell）技术领导者。
+瑞斯康达： 通信设备制造商。
+下面是一些里程碑事件： 1983：成为股份制公司，每个股东出资3000美元和一张桌子。
+1987：推出，一种领导性的嵌入式实时操作系统。
+1993：Wind River成为第一家公开上市（IPO）的嵌入式运算公司。
+1995：VxWorks在NASA Clementine 月球探测器上，发射入太空。Tornado集成开发环境出现，作为第一个图形化嵌入式开发环境，赢得了EDN嵌入式开发软件年度创新奖。
+1997：VxWorks作为NASA火星探险者号飞船的实时操作系统，登陆火星。
+1999：收购一个主要竞争对手，pSOS的发明者，集成系统公司。从那以后风河公司不再支持pSOS产品线，并推荐现存的pSOS客户转向VxWorks。
+2004：风河针对网络和通信市场，推出便携的Linux平台，正式进入嵌入式市场。NASA的火星探测车（勇气号和机遇号），被控制，登录火星。风河帮助美国天气频道制造IntelliStar （用于在电缆前端的天气频道的程序中插入当地天气）。
+2007：风河作为早期的Linux商业化伙伴，加入谷歌的开放手机联盟。
+2008：四年之后，风河的嵌入式Linux市场份额超过30%。
+2009：Intel以8.84亿美元收购风河，风河变为了一个全资子公司。风河开发出了一个商业安卓软件平台。风河成为GENIVI 联盟的创始成员。
+2010：风河将Simics（一种完整系统模拟技术）加入产品集中。成为第一个通过wurldtech公司的安全验证程序（一种工业网络安全）的RTOS。风河与intel和Linux基金会创建了Yocto Project，这是一个开源合作项目，提供模板、工具和方法帮助基于嵌入式Linux的开发。
+2011：风河被VDC Research Group评为嵌入式市场领导者。包括连续2年传统RTOS市场领导者的头衔和连续3年嵌入式Linux市场领导者的头衔。
+2012：NASA JPL成功发射好奇号火星探测器。风河的物联网网关和节点软件平台初次露面。
+2013：风河变成Intel物联网组(IOTG)的一部分，但仍然是一个子公司。
+2014：风河推出NFV应用的商业便携软件平台，和为物联网重塑的下一代VxWorks平台。风河被工业和安全局罚款75万美元，因为向以色列和朝鲜提供密码技术。
+2015：风河被控告违反Grsecurity project的商标和证书，作为回应限制了商业伙伴对代码的使用。
+2016：Intel宣布计划完全将风河纳入自己的部门。
+2018：英特尔以未公开的条款将 Wind River Systems 剥离给另类资产基金管理公司 TPG。
+2018：福特选择风河无线更新技术。
+2018：NASA 的 InSight 使用 VxWorks 操作系统登陆火星。
+2019：Wind River 成为第一个 OpenChain 2.0 合规组织。
+2020：凯文·达拉斯 (Kevin Dallas) 被任命为首席执行官和董事会成员。
+2020：Verizon 使用 Wind River 的软件基础架构来部署虚拟化 5G RAN。
+2020：Wind River 成为第一个也是唯一一个实现 Linux 的 The Open Group FACE™ 一致性的公司。
+2021：Perseverance Mars 成为第四个运行 VxWorks 操作系统的火星探测器。
+2021：沃达丰选择 Wind River 作为合作伙伴来建设欧洲首个商用开放式 RAN 网络。
+2022：安波福以 43 亿美元现金从 TPG Capital 手中收购 Wind River。
+]]></content>
+  </entry>
+  
+  <entry>
     <title>VxWorks实时操作系统的特点</title>
     <url>/post/vxworks/feature-of-vxworks.html</url>
     <categories><category>VxWorks</category>
@@ -1798,7 +1868,7 @@ ffmpeg -i filename.mp4 -b:a 192K -vn filename.mp3 一个流的说明符可以匹
   
   <entry>
     <title>风河携手TCS建构5G/Open RAN分布式移动网络基础设施生态系统</title>
-    <url>/post/news/windriver-and-TCS-build-5G-Open-Ran-ecos.html</url>
+    <url>/post/news/wind-river-and-TCS-build-5G-Open-Ran-ecos.html</url>
     <categories><category>News</category>
     </categories>
     <tags>
