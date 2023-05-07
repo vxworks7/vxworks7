@@ -6,7 +6,7 @@
     <description>Recent content on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 07 May 2023 06:32:29 -0400</lastBuildDate><atom:link href="https://www.vxworks7.com/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 07 May 2023 11:13:00 -0400</lastBuildDate><atom:link href="https://www.vxworks7.com/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>欢迎加入 VxWorks 俱乐部！</title>
       <link>https://www.vxworks7.com/post/welcome-to-vxworks-club/</link>
@@ -16,6 +16,15 @@
       <description>欢迎来到 北南南北 文档站点！ 相关文章来源于 VxWorks 俱乐部  ，也可能发布于 AI 嵌入式开发  ，专注于技术分享和交流。
 免责声明 所有资源均来自网络，版权归原作者，如有侵权，请联系删除！
 欢迎投稿  欢迎广大网友投稿 欢迎加入网友微信群  </description>
+    </item>
+    
+    <item>
+      <title>风河Helix虚拟化平台和VxWorks 653提供更广泛的安全认证证据以加速航天航空和国防系统的开发</title>
+      <link>https://www.vxworks7.com/post/news/wind-river-helix-virtualization-platform-and-vxworks-653.html</link>
+      <pubDate>Sun, 07 May 2023 11:13:00 -0400</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/news/wind-river-helix-virtualization-platform-and-vxworks-653.html</guid>
+      <description>&lt;p&gt;全球领先的关键任务智能系统软件提供商风河公司近日宣布，提供更广泛的安全认证平台架构支持。&lt;/p&gt;</description>
     </item>
     
     <item>

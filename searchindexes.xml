@@ -16,6 +16,26 @@
   </entry>
   
   <entry>
+    <title>风河Helix虚拟化平台和VxWorks 653提供更广泛的安全认证证据以加速航天航空和国防系统的开发</title>
+    <url>/post/news/wind-river-helix-virtualization-platform-and-vxworks-653.html</url>
+    <categories><category>News</category>
+    </categories>
+    <tags>
+      <tag>Wind River</tag>
+      <tag>Helix</tag>
+    </tags>
+    <content type="html"><![CDATA[全球领先的关键任务智能系统软件提供商风河公司近日宣布，提供更广泛的安全认证平台架构支持。
+使得其在行业领先的平台软件进一步满足关键任务应用系统的高密度计算需求，特别是满足航空航天与国防领域的相关需求。支持运行在Armv8-A架构之上的Wind River Helix™ Virtualization Platform，DO-178C DAL A级认证证据现已上市。最新版本的 VxWorks® 653  在PowerPC平台上也已获得更新的DO-178C DAL A级认证证据。
+带有DO-178C DAL A级认证证据的Helix平台，是一个可获得安全认证的多核、多租户平台，支持多个独立关键性认证等级。其设计目标是面向广泛的关键任务领域应用场景，例如商用与军用航空，支持企业客户将非安全软件与获得安全认证的软件一起运行，并达到航空电子（DO-178C）、汽车（ISO 26262）、工业（IEC 61508）及其它行业标准的最高要求。Helix平台也符合ARINC 653标准，可在最新的硬件平台上提供完善的时间分区和空间分区，从而确保故障隔离机制并把测试和集成工作量降至最少。
+同样具备DO-178C DAL A级认证证据的VxWorks 653，是一个安全可靠的多核、多租户平台，适用于PowerPC架构，而且符合ARINC 653标准，具备与Helix平台同等的健壮性。
+风河公司首席产品官Avijit Sinha介绍说：“智能边缘的发展向航空航天和国防等行业提出了一系列特殊的要求和挑战，特别是与认证需求相关的复杂度急剧增加。新推出的Helix平台和VxWorks 653都获得了最新的安全认证证据，支持我们为客户提供更大的灵活性，进一步加速创新，有力推动新一代安全可靠多操作系统智能设备的发展。”
+VxWorks 653已在最具挑战性的安全关键应用中得到验证，风河的技术让其更便捷、更经济地满足EN 50128、IEC 61508、ISO 26262、DO-178C和ED-12C等严苛的安全认证要求。
+历经120多个型号的民用和军用飞机、880多个安全项目以及400多家企业客户的验证，风河不断推动航空航天和国防市场向软件定义系统的演进。
+风河简介 风河公司是全球领先的关键任务智能边缘软件提供商。40年来，风河一直甘当创新者和开拓者，推动着数十亿设备与系统的正常运行，提供了最高级别的信息安全性、功能安全性和可靠性。风河公司的软件与专业技能不断加速汽车、宇航、国防、工业、医疗和电信等行业的数字化转型。风河公司提供全面的产品阵容，并由覆盖全球的专业服务以及广泛的合作伙伴生态体系提供支持。
+]]></content>
+  </entry>
+  
+  <entry>
     <title>Wind River风河系统公司的发展历史</title>
     <url>/post/news/wind-river-systems-development-history.html</url>
     <categories><category>News</category>
