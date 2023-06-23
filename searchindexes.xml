@@ -16,6 +16,18 @@
   </entry>
   
   <entry>
+    <title>VxWorks技术资料免费下载</title>
+    <url>/post/vxworks/free-vxworks-technical-resouce.html</url>
+    <categories><category>VxWorks</category>
+    </categories>
+    <tags>
+      <tag>VxWorks</tag>
+    </tags>
+    <content type="html"><![CDATA[VxWorks技术资料免费下载，资源来源网络，版权归原作者所有！
+  Wind River Workbench3.3使用技巧    VxWorks 6.9 BSP开发指南    使用VxWorks 7内核 shell 来访问设备的寄存器    VxWorks内核解读-1    VxWorks内核解读-2    VxWorks内核解读-3    VxWorks内核解读-4    VxWorks内核解读-5    VxWorks内核解读-6    VxWorks内核解读-7    VxWorks Workbench开发环境快速介绍   ]]></content>
+  </entry>
+  
+  <entry>
     <title>VxWorks任务编程中常见异常分析</title>
     <url>/post/vxworks/analysis-of-common-exception-in-vxworks-task-programming.html</url>
     <categories><category>VxWorks</category>
