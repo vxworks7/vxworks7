@@ -6,13 +6,40 @@
     <description>Recent content in Tags on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 23 Jun 2023 11:46:30 -0400</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 08 Jul 2023 10:47:20 -0400</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GPOS</title>
+      <link>https://www.vxworks7.com/tags/gpos/</link>
+      <pubDate>Sat, 08 Jul 2023 10:47:20 -0400</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/gpos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>RTOS</title>
+      <link>https://www.vxworks7.com/tags/rtos/</link>
+      <pubDate>Sat, 08 Jul 2023 10:47:20 -0400</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/rtos/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>VxWorks</title>
       <link>https://www.vxworks7.com/tags/vxworks/</link>
-      <pubDate>Fri, 23 Jun 2023 11:46:30 -0400</pubDate>
+      <pubDate>Sat, 08 Jul 2023 10:47:20 -0400</pubDate>
       
       <guid>https://www.vxworks7.com/tags/vxworks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VxWorks 653</title>
+      <link>https://www.vxworks7.com/tags/vxworks-653/</link>
+      <pubDate>Sat, 08 Jul 2023 10:47:20 -0400</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/vxworks-653/</guid>
       <description></description>
     </item>
     
@@ -184,15 +211,6 @@
       <pubDate>Fri, 31 Mar 2023 21:27:45 -0400</pubDate>
       
       <guid>https://www.vxworks7.com/tags/xaas/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>RTOS</title>
-      <link>https://www.vxworks7.com/tags/rtos/</link>
-      <pubDate>Sun, 26 Mar 2023 10:39:45 -0400</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/rtos/</guid>
       <description></description>
     </item>
     
