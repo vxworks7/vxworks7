@@ -16,6 +16,23 @@
   </entry>
   
   <entry>
+    <title>TP-LINK WDR 7660 VxWorks系统分析</title>
+    <url>/post/app/tp-link-WDR-7660-VxWorks-system-analysis.html</url>
+    <categories><category>APP</category>
+    </categories>
+    <tags>
+      <tag>VxWorks</tag>
+      <tag>TP-LINK</tag>
+      <tag>WDR 7660</tag>
+    </tags>
+    <content type="html"><![CDATA[本文介绍了TP-LINK WDR 7660 VxWorks系统的逆向分析，并给出了获取VxWorks系统加载基址和利用符号表修复函数名的方法。
+前言：路由器是使用最广泛的IoT设备，TP-LINK是国内最大的路由器厂商，其WDR 7660型号的路由器首次采用了 VxWorks  操作系统，具有较高的实时性和可靠性，但同时给逆向分析带来了较大的难度。
+从升级包中获取VxWorks文件系统 从官网获取最新的升级包，利用binwalk进行分析。 根据binwalk结果，发现0x10400-0x15a477有一块很大的lzma压缩文件，dd提取后解压，显示压缩文件失败。丢到UltraEdit中人工看，发现0x15a477处并不像lzma文件的结尾，如下图： 往上看，找到lzma的结尾，应该是0x15a477处。 提取出来解压，得到VxWorks文件系统： 确定加载基址 使用ida或者ghidra等反汇编工具进行分析时，需要了解VxWorks系统的加载基址，否则无法正确的分析系统。VxWorks系统的加载基址与栈初始化地址相同，根据VxWorks官方给出的说明，其采用usrInit进行栈初始化，而usrInit是VxWorks系统引导后运行的第一个函数，因此可以直接把VxWorks系统文件丢到ida中，先用0作为加载基址，然后找sp寄存器首次出现的位置，就是VxWorks系统的加载基址。 直接把VxWorks系统丢到ida中，加载基址设为0，看一下最开头的代码。 发现”LDR R0, =0x40205000”，后面接着”MOV SP, R0”，可以确定加载基址为0x40205000。
+利用符号表修复函数名 TP-LINK WDR7660的符号表和VxWorks系统文件是分离的，所以需要从binwalk解压升级文件后得到的文件中寻找符号文件。Bzero是VxWorks中一个函数，系统启动过程中会使用bzero函数对bss区的数据进行清零，因此可以利用”grep -r bzero”查找bzero函数，找到一个文件，很明显就是符号表所在文件了。 找到符号文件后，可以看出符号表的位置是从0x08到0x1a728，符号字符串的起始位置是0x1a728。 经过分析，得出符号文件中符号的存储规则如下：每8字节为一组，以54 00 00 00 40 37 36 84为例，54表示符号的类型（54表示函数名），00 00 00 表示符号在字符串表中的偏移，40 37 36 84表示符号对象在内存中的绝对地址。 知道了符号表的位置、符号字符串的位置和存储规则后，就可以利用ida脚本来恢复函数名了，这里有个小技巧，如果不太清楚符号表的存储规则，可以先在ida中随便找一个函数，大概判断这个函数是哪一个常用函数，比如下面我们可以猜测0x40290030处的函数为memset函数。 最后我们利用上述规则提取出来的符号表中证实了我们的猜测。 总结 本文简单介绍了从升级包中获取VxWorks系统文件以及VxWorks系统的分析方法，确定完加载基址和修复完函数名后，基本上后续的工作就是二进制逆向分析了。
+]]></content>
+  </entry>
+  
+  <entry>
     <title>为什么有些应用非VxWorks不可</title>
     <url>/post/vxworks/the-necessity-of-using-vxworks-for-some-application.html</url>
     <categories><category>VxWorks</category>
