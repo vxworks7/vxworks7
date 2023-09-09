@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>QEMU(AI) on VxWorks 7</title>
+    <link>https://www.vxworks7.com/tags/qemuai/</link>
+    <description>Recent content in QEMU(AI) on VxWorks 7</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 09 Sep 2023 12:04:22 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/qemuai/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>适用于QEMU(IA)的VxWorks 7 SDK</title>
+      <link>https://www.vxworks7.com/post/bsp/qemu-ia-vxworks-7-sdk.html</link>
+      <pubDate>Sat, 09 Sep 2023 12:04:22 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/bsp/qemu-ia-vxworks-7-sdk.html</guid>
+      <description>&lt;p&gt;本指南可帮助您开始并运行针对VxWorks的平台而开发的应用程序。 您可以使用它来创建新应用程序，或者只是探索 VxWorks 功能。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
