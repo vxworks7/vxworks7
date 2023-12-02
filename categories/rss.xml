@@ -6,7 +6,16 @@
     <description>Recent content in Categories on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 02 Dec 2023 22:45:59 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 02 Dec 2023 22:58:16 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>News</title>
+      <link>https://www.vxworks7.com/categories/news/</link>
+      <pubDate>Sat, 02 Dec 2023 22:58:16 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/categories/news/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>VxWorks</title>
       <link>https://www.vxworks7.com/categories/vxworks/</link>
@@ -31,15 +40,6 @@
       <pubDate>Sat, 08 Jul 2023 13:00:54 -0400</pubDate>
       
       <guid>https://www.vxworks7.com/categories/app/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>News</title>
-      <link>https://www.vxworks7.com/categories/news/</link>
-      <pubDate>Sun, 07 May 2023 11:13:00 -0400</pubDate>
-      
-      <guid>https://www.vxworks7.com/categories/news/</guid>
       <description></description>
     </item>
     
