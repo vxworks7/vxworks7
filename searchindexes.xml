@@ -16,6 +16,22 @@
   </entry>
   
   <entry>
+    <title>微软开源实时操作系统 ThreadX</title>
+    <url>/post/news/microsoft-open-source-the-rtos-ThreadX.html</url>
+    <categories><category>News</category>
+    </categories>
+    <tags>
+      <tag>Microsoft</tag>
+      <tag>ThreadX</tag>
+      <tag>RTOS</tag>
+    </tags>
+    <content type="html"><![CDATA[微软宣布将 ThreadX RTOS   开源,遵守 MIT 开源许可证，并将其捐赠给 Eclipse 基金会，改名为 Eclipse ThreadX （简称 ThreadX）。
+实时操作系统 ThreadX 是微软在 2019 年收购的 Express Logic 公司旗下产品，微软称全球超过 120 亿台设备上都运行 ThreadX 实时操作系统，Eclipse ThreadX 为实时应用程序提供供应商中立、开源、安全认证的操作系统，通过开源，微软想达到以下目标：
+ 不间断访问：更广泛、更持续地访问 ThreadX 技术 加速创新：通过社区参与提供更快的更新和改进 开放和可预测：透明的开发过程，以加强社区协作 覆盖范围更广：更易于访问和通用，适用于各种应用  原文地址： 微软开源实时操作系统 ThreadX  
+]]></content>
+  </entry>
+  
+  <entry>
     <title>风河，助力构建远端边缘云</title>
     <url>/post/news/wind-river-helps-build-remote-edge-cloud.html</url>
     <categories><category>News</category>

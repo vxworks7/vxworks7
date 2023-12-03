@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Microsoft on VxWorks 7</title>
+    <link>https://www.vxworks7.com/tags/microsoft/</link>
+    <description>Recent content in Microsoft on VxWorks 7</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 03 Dec 2023 09:34:18 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/microsoft/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>微软开源实时操作系统 ThreadX</title>
+      <link>https://www.vxworks7.com/post/news/microsoft-open-source-the-rtos-ThreadX.html</link>
+      <pubDate>Sun, 03 Dec 2023 09:34:18 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/news/microsoft-open-source-the-rtos-ThreadX.html</guid>
+      <description>&lt;p&gt;微软宣布将 ThreadX 
+&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;RTOS&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
+    RTOS
+    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
+&lt;/a&gt; 开源,遵守 MIT 开源许可证，并将其捐赠给 Eclipse 基金会，改名为 Eclipse ThreadX （简称 ThreadX）。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

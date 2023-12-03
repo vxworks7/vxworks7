@@ -8,31 +8,51 @@
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.vxworks7.com/categories/</loc>
-    <lastmod>2023-12-02T22:58:16+08:00</lastmod>
+    <lastmod>2023-12-03T09:34:18+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/tags/edge-cloud/</loc>
-    <lastmod>2023-12-02T22:58:16+08:00</lastmod>
+    <loc>https://www.vxworks7.com/tags/microsoft/</loc>
+    <lastmod>2023-12-03T09:34:18+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.vxworks7.com/categories/news/</loc>
-    <lastmod>2023-12-02T22:58:16+08:00</lastmod>
+    <lastmod>2023-12-03T09:34:18+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.vxworks7.com/post/</loc>
-    <lastmod>2023-12-02T22:58:16+08:00</lastmod>
+    <lastmod>2023-12-03T09:34:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/rtos/</loc>
+    <lastmod>2023-12-03T09:34:18+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.vxworks7.com/tags/</loc>
-    <lastmod>2023-12-02T22:58:16+08:00</lastmod>
+    <lastmod>2023-12-03T09:34:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/threadx/</loc>
+    <lastmod>2023-12-03T09:34:18+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.vxworks7.com/</loc>
+    <lastmod>2023-12-03T09:34:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/post/news/microsoft-open-source-the-rtos-ThreadX.html</loc>
+    <lastmod>2023-12-03T09:34:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/edge-cloud/</loc>
     <lastmod>2023-12-02T22:58:16+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -44,11 +64,6 @@
   </url><url>
     <loc>https://www.vxworks7.com/post/news/wind-river-helps-build-remote-edge-cloud.html</loc>
     <lastmod>2023-12-02T22:58:16+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/tags/rtos/</loc>
-    <lastmod>2023-12-02T22:45:59+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
