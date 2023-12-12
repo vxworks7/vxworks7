@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Interview on VxWorks 7</title>
+    <link>https://www.vxworks7.com/tags/interview/</link>
+    <description>Recent content in Interview on VxWorks 7</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 12 Dec 2023 23:22:17 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/interview/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>20个常见的VxWorks面试题和答案</title>
+      <link>https://www.vxworks7.com/post/app/20-common-vxworks-interview-questions-and-answers.html</link>
+      <pubDate>Tue, 12 Dec 2023 23:22:17 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/app/20-common-vxworks-interview-questions-and-answers.html</guid>
+      <description>&lt;p&gt;准备你在面试会使用
+&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
+    VxWorks
+    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
+&lt;/a&gt;的职位时会被问到的问题类型。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
