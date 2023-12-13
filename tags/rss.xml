@@ -6,22 +6,49 @@
     <description>Recent content in Tags on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 12 Dec 2023 23:22:17 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 13 Dec 2023 21:59:53 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Interview</title>
-      <link>https://www.vxworks7.com/tags/interview/</link>
-      <pubDate>Tue, 12 Dec 2023 23:22:17 +0800</pubDate>
+      <title>Edge Operating System</title>
+      <link>https://www.vxworks7.com/tags/edge-operating-system/</link>
+      <pubDate>Wed, 13 Dec 2023 21:59:53 +0800</pubDate>
       
-      <guid>https://www.vxworks7.com/tags/interview/</guid>
+      <guid>https://www.vxworks7.com/tags/edge-operating-system/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://www.vxworks7.com/tags/linux/</link>
+      <pubDate>Wed, 13 Dec 2023 21:59:53 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/linux/</guid>
       <description></description>
     </item>
     
     <item>
       <title>VxWorks</title>
       <link>https://www.vxworks7.com/tags/vxworks/</link>
-      <pubDate>Tue, 12 Dec 2023 23:22:17 +0800</pubDate>
+      <pubDate>Wed, 13 Dec 2023 21:59:53 +0800</pubDate>
       
       <guid>https://www.vxworks7.com/tags/vxworks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>WindRiver</title>
+      <link>https://www.vxworks7.com/tags/windriver/</link>
+      <pubDate>Wed, 13 Dec 2023 21:59:53 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/windriver/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Interview</title>
+      <link>https://www.vxworks7.com/tags/interview/</link>
+      <pubDate>Tue, 12 Dec 2023 23:22:17 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/interview/</guid>
       <description></description>
     </item>
     
@@ -58,15 +85,6 @@
       <pubDate>Sat, 02 Dec 2023 22:58:16 +0800</pubDate>
       
       <guid>https://www.vxworks7.com/tags/edge-cloud/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>WindRiver</title>
-      <link>https://www.vxworks7.com/tags/windriver/</link>
-      <pubDate>Sat, 02 Dec 2023 22:58:16 +0800</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/windriver/</guid>
       <description></description>
     </item>
     
@@ -166,15 +184,6 @@
       <pubDate>Sun, 07 May 2023 11:13:00 -0400</pubDate>
       
       <guid>https://www.vxworks7.com/tags/wind-river/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>linux</title>
-      <link>https://www.vxworks7.com/tags/linux/</link>
-      <pubDate>Sun, 07 May 2023 06:32:29 -0400</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/linux/</guid>
       <description></description>
     </item>
     
