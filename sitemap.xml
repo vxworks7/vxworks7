@@ -8,7 +8,47 @@
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.vxworks7.com/categories/</loc>
-    <lastmod>2023-12-13T21:59:53+08:00</lastmod>
+    <lastmod>2023-12-15T17:00:17+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/fifo/</loc>
+    <lastmod>2023-12-15T17:00:17+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/categories/fpga/</loc>
+    <lastmod>2023-12-15T17:00:17+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/fpga/</loc>
+    <lastmod>2023-12-15T17:00:17+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/post/fpga/ping-pong-operation-with-fpga.html</loc>
+    <lastmod>2023-12-15T17:00:17+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/ping-pong/</loc>
+    <lastmod>2023-12-15T17:00:17+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/post/</loc>
+    <lastmod>2023-12-15T17:00:17+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/</loc>
+    <lastmod>2023-12-15T17:00:17+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/</loc>
+    <lastmod>2023-12-15T17:00:17+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -27,22 +67,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/post/</loc>
-    <lastmod>2023-12-13T21:59:53+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/tags/</loc>
-    <lastmod>2023-12-13T21:59:53+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>https://www.vxworks7.com/tags/vxworks/</loc>
-    <lastmod>2023-12-13T21:59:53+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/</loc>
     <lastmod>2023-12-13T21:59:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -733,16 +758,6 @@
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.vxworks7.com/tags/cpu/</loc>
-    <lastmod>2022-10-29T06:53:45-04:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/categories/fpga/</loc>
-    <lastmod>2022-10-29T06:53:45-04:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/tags/fpga/</loc>
     <lastmod>2022-10-29T06:53:45-04:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

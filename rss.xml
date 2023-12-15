@@ -6,7 +6,7 @@
     <description>Recent content on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 13 Dec 2023 21:59:53 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 15 Dec 2023 17:00:17 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>欢迎加入 VxWorks 俱乐部！</title>
       <link>https://www.vxworks7.com/post/welcome-to-vxworks-club/</link>
@@ -16,6 +16,27 @@
       <description>欢迎来到 北南南北 文档站点！ 相关文章来源于 VxWorks 俱乐部  ，也可能发布于 AI 嵌入式开发  ，专注于技术分享和交流。
 免责声明 所有资源均来自网络，版权归原作者，如有侵权，请联系删除！
 欢迎投稿  欢迎广大网友投稿 欢迎加入网友微信群  </description>
+    </item>
+    
+    <item>
+      <title>FPGA乒乓操作详解，知道与FIFO的区别吗</title>
+      <link>https://www.vxworks7.com/post/fpga/ping-pong-operation-with-fpga.html</link>
+      <pubDate>Fri, 15 Dec 2023 17:00:17 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/fpga/ping-pong-operation-with-fpga.html</guid>
+      <description>FPGA  乒乓操作是一种高效的数据流控制处理技巧，它主要应用于需要快速且连续数据处理和缓冲的场合。
+乒乓操作的基本原理 乒乓操作的核心在于利用两个缓冲区交替存储数据流，从而实现数据的无缝实时传输和处理。
+本文将详细介绍乒乓操作的基本原理、应用场景以及与FIFO的区别。
+乒乓操作的基本原理非常简单。它使用两个并行的数据缓冲区，一个用于读取数据，另一个用于写入数据。当一个缓冲区满了之后，立刻切换到另一个缓冲区进行读写操作。这样，数据处理模块就可以连续不断地从缓冲区读取数据，同时将新的数据写入另一个缓冲区，实现数据的实时处理。
+具体步骤如下：
+ 在第一个缓冲周期，输入数据流写入数据缓冲模块1，写完后进入第二个缓冲周期。 在第二个缓冲周期，输入数据流写入数据缓冲模块2，同时将数据缓冲模块1中的数据读出。 在第三个缓冲周期，输入数据流再次写入数据缓冲模块1，同时将数据缓冲模块2中的数据读出。  这个过程会反复循环进行，即为乒乓操作。
+乒乓操作的应用场景 FPGA乒乓操作主要应用于视频图像处理、高速数据传输等应用场合中，涉及大量数据的实时传输。
+乒乓操作是一种设计思想，在实际设计系统框架时，可根据需要来采用这种方案。
+乒乓操作的逻辑相对简单，易于在FPGA设计中实现和验证。
+乒乓操作的缓存区可以是双口BRAM、也可以是DDR中的内存区域，关键是理解这种设计思想。
+乒乓操作与FIFO的区别 这里分享下乒乓操作与FIFO的区别，在使用乒乓操作的过程中，大家可能发现，使用“乒乓操作设计”，还不如直接用一个FIFO来的简单，比如简单的数据缓冲、串并转换等等。
+这个确实如此，相比FIFO，乒乓操作的更适合应用于，非顺序读取数据时，比如随机读取数据、改变数据输出顺序。
+比如按行写入的数据缓存2行，变成2*2的块数据顺序依次输出，这时则用基于BRAM的乒乓操作更好控制。</description>
     </item>
     
     <item>
