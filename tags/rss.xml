@@ -6,7 +6,34 @@
     <description>Recent content in Tags on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 17 Dec 2023 17:49:17 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 17 Dec 2023 19:50:49 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>network</title>
+      <link>https://www.vxworks7.com/tags/network/</link>
+      <pubDate>Sun, 17 Dec 2023 19:50:49 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/network/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Redundant Network</title>
+      <link>https://www.vxworks7.com/tags/redundant-network/</link>
+      <pubDate>Sun, 17 Dec 2023 19:50:49 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/redundant-network/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VxWorks</title>
+      <link>https://www.vxworks7.com/tags/vxworks/</link>
+      <pubDate>Sun, 17 Dec 2023 19:50:49 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/vxworks/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Cosign</title>
       <link>https://www.vxworks7.com/tags/cosign/</link>
@@ -26,15 +53,6 @@
     </item>
     
     <item>
-      <title>VxWorks</title>
-      <link>https://www.vxworks7.com/tags/vxworks/</link>
-      <pubDate>Sun, 17 Dec 2023 17:49:17 +0800</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/vxworks/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>WindRiver</title>
       <link>https://www.vxworks7.com/tags/windriver/</link>
       <pubDate>Sun, 17 Dec 2023 17:49:17 +0800</pubDate>
@@ -49,15 +67,6 @@
       <pubDate>Fri, 15 Dec 2023 20:50:54 +0800</pubDate>
       
       <guid>https://www.vxworks7.com/tags/ip/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>network</title>
-      <link>https://www.vxworks7.com/tags/network/</link>
-      <pubDate>Fri, 15 Dec 2023 20:50:54 +0800</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/network/</guid>
       <description></description>
     </item>
     
