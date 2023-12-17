@@ -16,6 +16,25 @@
   </entry>
   
   <entry>
+    <title>「VxWorks」のコンテナエンジンにおけるデプロイと管理のセキュリティを強化</title>
+    <url>/post/news/enhanced-deployment-and-management-security-for-VxWorks-container-engine.html</url>
+    <categories><category>News</category>
+    </categories>
+    <tags>
+      <tag>WindRiver</tag>
+      <tag>VxWorks</tag>
+      <tag>Cosign</tag>
+      <tag>OCI</tag>
+    </tags>
+    <content type="html"><![CDATA[Wind River Systems（Wind River）は2023年11月15日（現地時間）、RTOS（リアルタイムオペレーティングシステム）のコンテナエンジンがSigstoreのCosignをサポートしたと発表した。
+Wind Riverが販売するRTOSのVxWorksをベースとしたデバイスは、コンテナを使用してソフトウェアをデプロイおよび管理する際のセキュリティを強化できるようになる。VxWorksはOCI（Open Container Initiative）準拠のコンテナをサポートする。
+今回の機能強化は、Wind Riverのリアルタイム組み込みコンテナエンジンが基となっている。同エンジンはオーバーヘッドが少なく、CNCF（Cloud Native Computing Foundation）に基づくパッケージ化、配布、ランタイム、runCといったOCI（Open Container Initiative）仕様を利用して開発。2022年には、アプリケーション分離のためのオーバーレイファイルシステムをサポートした。
+また、Wind Riverは、Kubernetesのサポートを提供している。リアルタイム性を保持しながら、安全かつ信頼性の高いRTOS用ソフトウェアのデプロイ、運用、管理、更新が可能となる。
+VxWorksコンテナエンジンにCosignのサポートを追加したことで、署名付きコンテナ処理が可能となった。開発者は、クラウドマネージドのKMSやコンテナレジストリなどを再利用し、署名と検証のプロセスが簡素化できる。
+]]></content>
+  </entry>
+  
+  <entry>
     <title>计算机网络基础——IP地址基础知识介绍</title>
     <url>/post/linux/introduction-to-IP-address-basics.html</url>
     <categories><category>Linux</category>

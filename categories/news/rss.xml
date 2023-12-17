@@ -6,7 +6,16 @@
     <description>Recent content in News on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 13 Dec 2023 21:59:53 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/news/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 17 Dec 2023 17:49:17 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/news/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>「VxWorks」のコンテナエンジンにおけるデプロイと管理のセキュリティを強化</title>
+      <link>https://www.vxworks7.com/post/news/enhanced-deployment-and-management-security-for-VxWorks-container-engine.html</link>
+      <pubDate>Sun, 17 Dec 2023 17:49:17 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/news/enhanced-deployment-and-management-security-for-VxWorks-container-engine.html</guid>
+      <description>&lt;p&gt;Wind River Systems（Wind River）は2023年11月15日（現地時間）、RTOS（リアルタイムオペレーティングシステム）のコンテナエンジンがSigstoreのCosignをサポートしたと発表した。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>风河持续保持边缘操作系统平台排名第一</title>
       <link>https://www.vxworks7.com/post/news/wind-river-maintains-no-1-edge-operating-system-platform-ranking.html</link>
