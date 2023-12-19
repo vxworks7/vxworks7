@@ -6,7 +6,61 @@
     <description>Recent content in Tags on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 17 Dec 2023 19:50:49 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 19 Dec 2023 15:19:34 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>BSP</title>
+      <link>https://www.vxworks7.com/tags/bsp/</link>
+      <pubDate>Tue, 19 Dec 2023 15:19:34 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/bsp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>T2080</title>
+      <link>https://www.vxworks7.com/tags/t2080/</link>
+      <pubDate>Tue, 19 Dec 2023 15:19:34 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/t2080/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>T20A80</title>
+      <link>https://www.vxworks7.com/tags/t20a80/</link>
+      <pubDate>Tue, 19 Dec 2023 15:19:34 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/t20a80/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Uboot</title>
+      <link>https://www.vxworks7.com/tags/uboot/</link>
+      <pubDate>Tue, 19 Dec 2023 15:19:34 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/uboot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VxWorks</title>
+      <link>https://www.vxworks7.com/tags/vxworks/</link>
+      <pubDate>Tue, 19 Dec 2023 15:19:34 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/vxworks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VxWorks 7.0</title>
+      <link>https://www.vxworks7.com/tags/vxworks-7.0/</link>
+      <pubDate>Tue, 19 Dec 2023 15:19:34 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/vxworks-7.0/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>network</title>
       <link>https://www.vxworks7.com/tags/network/</link>
@@ -22,15 +76,6 @@
       <pubDate>Sun, 17 Dec 2023 19:50:49 +0800</pubDate>
       
       <guid>https://www.vxworks7.com/tags/redundant-network/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>VxWorks</title>
-      <link>https://www.vxworks7.com/tags/vxworks/</link>
-      <pubDate>Sun, 17 Dec 2023 19:50:49 +0800</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/vxworks/</guid>
       <description></description>
     </item>
     
@@ -548,15 +593,6 @@
     </item>
     
     <item>
-      <title>T2080</title>
-      <link>https://www.vxworks7.com/tags/t2080/</link>
-      <pubDate>Sat, 24 Dec 2022 03:13:31 -0500</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/t2080/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>IMX6Q</title>
       <link>https://www.vxworks7.com/tags/imx6q/</link>
       <pubDate>Fri, 23 Dec 2022 22:24:27 -0500</pubDate>
@@ -593,29 +629,11 @@
     </item>
     
     <item>
-      <title>VxWorks 7.0</title>
-      <link>https://www.vxworks7.com/tags/vxworks-7.0/</link>
-      <pubDate>Fri, 23 Dec 2022 11:24:58 -0500</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/vxworks-7.0/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>WindML 5.3</title>
       <link>https://www.vxworks7.com/tags/windml-5.3/</link>
       <pubDate>Thu, 22 Dec 2022 10:30:12 -0500</pubDate>
       
       <guid>https://www.vxworks7.com/tags/windml-5.3/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>uboot</title>
-      <link>https://www.vxworks7.com/tags/uboot/</link>
-      <pubDate>Thu, 22 Dec 2022 10:29:12 -0500</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/uboot/</guid>
       <description></description>
     </item>
     

@@ -16,6 +16,51 @@
   </entry>
   
   <entry>
+    <title>基于T20A80处理器的VxWorks7.0操作系统研究与适配</title>
+    <url>/post/bsp/research-and-adaptive-of-vxworks7-0-based-on-t2080-processor.html</url>
+    <categories><category>BSP</category>
+    </categories>
+    <tags>
+      <tag>VxWorks</tag>
+      <tag>VxWorks 7.0</tag>
+      <tag>T20A80</tag>
+      <tag>T2080</tag>
+      <tag>BSP</tag>
+      <tag>Uboot</tag>
+    </tags>
+    <content type="html"><![CDATA[为满足机载系统中雷达处理单元等设备高实时、 高性能的需求，本文使用 T2080 处理器研制了一款通用处理卡，并基于该卡研究并完成了 VxWorks7.0   操作系统的 BSP 开发及操作系统适配工作。
+ VxWorks   操作系统是一个应用广泛的高性能可裁剪实时多任务操作系统， 提供并支持多任务调度机制， 用户可以根据需求将对事件的控制通过不同任务的协调而完成。 VxWorks7.0   为风河公司开发的最新一代操作系统， 其采用高度模块化的方式，实现了内核与文件系统和网络栈等组件的分离，有利于模块化设计， 同时 VxWorks7.0 对 PowerPC 处理器的 64 位操作系统开发进行了支持，大大提高了处理性能。
+PowerPC处理器是Motorola和IBM共同研发的RISC结构体系，具有高性能和低功耗的特点，广泛应用于机载、舰载等设备。T2080处理器是一款飞思卡尔公司推出的QorIQ系列 PowerPC 架构四核八线程处理器。T2080 处理器内部集成有飞思卡尔最新一代 AltiVec 引擎， 提供 172GFLOPS 矢量处理，比飞思卡尔上一代 AltiVec 器件的性能高七倍以上。 AltiVec 引擎强大的单指令多数据（SIMD）信号处理能力，使得 T2080 处理器可满足网络、医疗、工业、印刷、航空航天和国防等应用的高带宽数据处理和算法密集型计算要求， 在很多嵌入式信号处理领域可以取代传统的 DSP 处理器成为信号处理器件的首选。
+为满足机载系统中雷达处理单元等设备高实时、 高性能的需求，本文使用 T2080 处理器研制了一款通用处理卡，并基于该卡研究并完成了 VxWorks7.0 操作系统的 BSP 开发及操作系统适配工作。
+VxWorks7.0 引导程序开发 嵌入式操作系统启动运行之前需要引导程序 （bootloader）。处理器上电以后需要首先运行该引导程序对处理器及DDR 内存等外设初始化，建立 MMU 映射表，然后根据配置选择从 Nor Flash、SPI Flash、eMMC 等存储器或者以太网接口加载操作系统内核到主存，跳转到操作系统内核运行。 风河公司为VxWorks6.x 提供的引导程序为 bootrom。 从 VxWorks7 版本后风河开始支持并推荐采用 uboot 作为 VxWorks 的引导程序 。uboot 的原生支持大大减少了 VxWorks7.0 操作系统的适配时间及人力成本。
+uboot 的全称是 universal boot loader， 它 是 一 个 遵 循GPL 协议的开源软件， 其本身可以看作是一个裸机综合例程。uboot 是 ARM 与 PowerPC 处理器目标板最常用的引导程序。与 bootrom 相比，uboot 功能强大，支持数十种命令，基于这些命令开发者可在bootloader 阶段即可对硬件进行调试。
+uboot 开发环境搭建 引导程序uboot的开发与构建需要基于Linux系统环境，因此设计师需要搭建虚拟机软件环境安装 Linux 系统。 本文虚拟机软件选择的是 VMware 16.0， 安装的Linux操作系统版本是 Ubuntu14.04。在Ubuntu系统安装完成后需要安装uboot源码包与交叉编译工具链。
+交叉编译指在宿主机平台编译生成目标机可运行的执行代码， 比如在 Windows 的台式机上编译生成目标板在 VxWorks环境下运行的程序。 交叉编译工具就是在宿主机平台使用的编译工具。用户需要根据实际的硬件平台选择交叉编译工具。本文使用的交叉编译工具以及 uboot源码均从NXP官方提供的Yocto SDK 包“QorIQ-SDK-V2.0-20160527-yocto.iso”中提取。
+uboot自从2010年升级以后 ， 结构目录发生改变 ， 与T2080 处理器相关的主要目录与文件如表1所示：
+uboot 启动流程分析 T2080处理器支持多种启动模式，包括IFC Nor Flash启动模式，SPI Flash 启动模式及 eMMC启动模式等。不同启动模式下，uboot 启动执行流程有所区别。
+IFC Nor Flash 启动模式下的 uboot 程序执行分为两阶段，阶段 1 与阶段 2。 阶段 1 代码主要由汇编语言编写，功能是完成硬件初始化、DDR 内存初始化以及将自身代码全部复制到 DDR 内存中，设置 Ｃ 语言运行所需的堆栈空间，为阶段 2 的运行做好准备。 由于 IFC Nor Flash 存储器支持片上执行，因此阶段 1 代码均直接在 Nor Flash 存储器中执行。 代码 1 执行完成后处理器跳转到拷贝至 DDR 内存的阶段 2 代码。阶段 2 代码主要是 C 语言编写， 功能是进行后续的初始化，MMU 地址映射，网口配置，提供命令交互环境，同时引导系统内核。
+SPI Nor Flash 启动模式与 eMMC 启动模式下的 uboot 启动流程基本相同。 启动流程分为两阶段，阶段 1 为 BL1，一般也称 之 为 uboot_spl 阶 段 。 SPL 含 义 是 Secondary Program Loader（SPL）。 由于 SPI Nor Flash 与 eMMC 存储器均不支持片上执行功能，因此 BL1 阶段需要在处理器内部 SRAM 空间中执行。 BL1 负责工作包括关闭中断、MMU、TLB 等，实现 DDR 内存初始化，以及拷贝阶段 2 的代码至 DDR 内存。阶段 2 为 BL2，BL2 才是实际的 uboot 阶段。 uboot 代码主要是 C 语言编写，功能是进行后续的初始化，包括网口配置、MMU 地址映射、提供命令交互环境以及引导系统内核。
+uboot 移植步骤 本文在 uboot 目录中寻找与 T2080 通用处理卡类似的目标板，然后修改相关代码定制 uboot，步骤如下：
+ 创建 board 目录：由于本子卡采用的 T2080 处理器为飞思卡尔公司产品， 在 board/freescale 目录下创建 t208xleihua目录，并将官方开发板 t208xrdb 目录下的代码复制到该目录下修改，其中需要注意 MakeFile 以及 Kconfig 两个文件的修改； 创建板级头文件 ： 复制 t208xrdb.h 文件 ，重命名为t208xleihua.h 并根据需求修改其中相关配置，例如内存大小、是否进行内存测试、网络 Phy 器件地址等； 创建编译配置文件：如果需要生成IFC Nor Flash启动模式下的 uboot，在./configs 目录下复制T2080RDB_defconfig文件，重命名为T2080LEIHUA_defconfig，将该文件中的 CONFIG_TARGET_T208XRDB 替换为 CONFIG_TARGET_T208XLEIHUA；如果需要生成 SPI Flash 启动模式下的 uboot，在./configs 目录下复制 T2080RDB_SPIFLASH_defconfig 文件， 重命名为 T2080LEIHUA_SPIFLASH_defconfig，将该文件中的CONFIG_TARGET_T208XRDB 替换为 CONFIG_TARGET_T208XLEIHUA；如果需要生成 eMMC 启动模式下的 uboot，在./configs目录下复制 T2080RDB_SDCARD_defconfig 文件， 重命名为T2080LEIHUA_ SDCARD_defconfig， 将 该 文 件 中 的 CONFIG_TARGET_T208XRDB 替换为 CONFIG_TARGET_T208XLEIHUA； 如果需要生成 SPI Flash 启动模式或者 eMMC 启动模式下的 uboot， 还需更新 board/freescale/t208xleihua 目录下的RCW 控 制 字 文 件 t2080_spi_rcw.cfg 或者t2080_sd_rcw.cfg中的内容； 修改arch/powerpc/cpu/mpc85xx/Kconfig文件，添加以下内容：  config TARGET_T208XLEIHUA bool “Support T208Xleihua” select SUPPORT_SPL select PHYS_64BIT … source “board/freescale/t208xleihua/Kconfig” 果使用 IFC Nor Flash 启动模式，执行以下命令生成uboot 文件：  make T2080LEIHUA_defconfig make 如果使用 SPI Flash 启动模式，则执行以下命令生成 uboot 文件：  make T2080LEIHUA_SPIFLASH_defconfig make 如果使用 MMC Flash 启动模式，则执行以下命令生成uboot 文件：  make T2080LEIHUA_SDCARD_defconfig make VxWorks7.0 系统内核开发 引导程序开发完成后，需要进行操作系统的适配工作。系统内核适配、 设备树开发以及驱动开发等工作均是基于VxWorks7.0操作系统的集成开发工具Wind River WorkBench 4.0完成。VxWorks 7.0版本相对VxWorks6.x底层目录及架构区别较大，BSP、ARCH、驱动均被重新规划。BSP 中的ARCH相关部分被挪到ARCH代码中，C代码部分通过CPU子系统调用 。BSP之间的共享代码被抽象到了平台支持包（PSL）中；BSP中的驱动和非单板相关功能代码全部被清理出去。VxBus驱动模型更新到VxBus GEN2，引入了 DTS（设备树）与子系统的概念，去掉了原来BSP中的硬件配置和寄存器空间映射等代码。
+内核开发 VxWorks7.0下内核开发方式与VxWorks6.x以及更早版本有所区别。VxWorks7.0 的系统 VIP（VxWorks Image Project）工程必须基于VSB（VxWorks Image Project）工程构建，因此在创建 VIP 工程之前需要先创建VSB工程，而VxWorks6.x版本基于VSB工程创建VIP仅是可选要求。
+VSB（Source Builed Project）工程用于源码编译 ，为VIP工程和DKM工程提供库文件。 VIP（VxWorks 7 Image Project）工程用于构建系统镜像和设备树。VIP工程需要根据板卡需要添加或删减组件来配置具体功能，组件配置方法为：
+  点击所要配置的 VIP 工程，选中 Kernel Configuration；
+  在新弹出Components窗口下查找到所要组件，也可使用ctrl+F进行快速查找；查找到所需组件后，点击所需组件，右击，选择Include，完成组件添加；若要去除组件，点击该组件，右击，选中 Exlude，完成组件去除；
+  待组件添加完成后，选中VIP工程，右击选中Build project 完成 VIP 工程编译。
+  设备树开发 VxWorks 传统的驱动模型有两种： 第一种模型是直接在驱动代码中配置设备参数，每次设备的变动都需要修改驱动，重新生成系统内核。第二种模型是VxBus GEN1 驱动模型，该模型将设备与驱动分离，设备参数在 BSP 中 hwconf.c 文件设备列表结构体中配置实现；第二种驱动模型提高了驱动的通用性、可移植性，但依然存在缺点，当某个设备参数与当前 BSP 稍有区别，就需要重构系统内核。风河公司为了克服这个缺点 ， 在 VxWorks7.0 中引入了Linux 系统中的设备树（Device Tree）概念。设备树是 Linux 社区参考 PowerPC 等体系架构中使用的 Flattened Device Tree（FDT）设计的。 设备硬件参数可以通过设备树传递给内核，而不再需要在内核中进行大量的冗余编码。
+设备树的内容由结点（node）和属性（property）组成，而结点本身可包含子结点。 属性是指成对出现的名称（name）和值（value）。在设备树中，可描述的信息包括 CPU 的数量和类别、内存基地址和大小、中断控制器参数、时钟参数、总线和桥以及外设设备参数。
+引导程序 uboot 启动过程中，可以将设备树传递给内核，内核可以识别解析设备树，并根据设备树中的信息实现驱动匹配、设备初始化及分配资源等。 通过这种方式， 驱动与设备彻底分离，而且设备列表易于扩展，设备增加或者移除、设备参数改动均只需要修改设备树，无需重新编译内核或者驱动程序。
+VxWorks7.0 环境下 dts 文件位于 BSP 目录下，dts 文件以文本方式对系统设备树进行描述。 用户根据实际需求对该文件直接进行修改。 经过系统内核工程编译后，该 dts 文件被转换成二进制文件 binary device tree blob(dtb)。dtb 文件可以被 VxWorks7.0内核识别解析，并可以通过 vxFdtDtbDump 函数打印显示。
+驱动开发 VxWorks7.0 操作系统安装目录提供了许多常用的接口与设备驱动，创建 VSB 工程时可选择将相关驱动源码集成进工程目录。 为了修正某些驱动的 bug 或者满足其他特殊需求，设计师需要在 VSB 工程驱动源码里直接修改，并重新构建工程更新底层库文件。
+T2080 处理器通用处理卡上 VxWorks 未支持的接口与设备例如 SRIO 接口驱动需要设计师单独开发。 此类驱动设计师可采用 DKM 工程进行编码、 开发及调试。 驱动开发需遵循 VxBusGEN2 规范，并在设备树中建立设备节点。 以 SRIO 接口驱动为例，T2080 处理器通用处理卡设计了两路 SRIO 接口，两路 SRIO接口共享部分全局寄存器，设计时将两路 SRIO 接口认作为一个设备的两路端口，在设备树中添加一个设备节点，如图 1 所示。
+图 1 SRIO 设备节点
+结束语 本文为了满足现代雷达系统对高性能强实时的应用需求，基于 T2080 处理器研究并实现了 VxWorks7.0 实时操作系统的适配工作，介绍了 VxWorks7.0 操作系统的引导程序、系统内核以及驱动的开发流程。 本文可作为同类处理器平台适配 VxWorks7.0 操作系统的参考。
+参考文献 ［１］WindRiver Inc. Vxworks Application Programmer &rsquo;s Guide 7.0［Ａ］. WindRiver Inc, 2012 ［２］WindRiver Inc. Vxworks Kernel Programmer &rsquo;s Guide 7.0［Ａ］.WindRiver Inc, 2012 ［３］WindRiver Inc. Vxworks BSP Developer &rsquo;s Guide 7.0［Ａ］.WindRiver Inc, 2012 ［４］周启平，张杨．VxWorks 下设备驱动程序及 BSP 开发指南［Ｍ］.北京：中国电力出版社，2004 ［５］隋霞，许录平．基于 VxWorks 的 BSP 技术分析［Ｊ］．微计算机信息，2006（2３）：86-88
+原文连接： 基于T20A80处理器的VxWorks7.0操作系统研究与适配  
+]]></content>
+  </entry>
+  
+  <entry>
     <title>VxWorks环境下双冗余以太网卡技术在底层驱动中的实现</title>
     <url>/post/vxworks/implementation-of-redundant-network-in-vxworks.html</url>
     <categories><category>VxWorks</category>

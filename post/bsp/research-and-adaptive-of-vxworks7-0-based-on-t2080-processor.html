@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)" />
+<meta name="generator" content="Hugo 0.92.2" />
+<link rel="shortcut icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
+<link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/imgs/icons/favicon_32_32_next.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/imgs/icons/apple_touch_icon_next.png">
+<meta itemprop="name" content="基于T20A80处理器的VxWorks7.0操作系统研究与适配" />
+<meta itemprop="description" content="基于T20A80处理器的VxWorks7.0操作系统研究与适配" />
+<meta itemprop="datePublished" ZgotmplZ />
+<meta itemprop="dateModified" ZgotmplZ />
+<meta itemprop="image" content="https://www.vxworks7.com/imgs/VxWorks_7_logo.png" />
+<meta itemprop="keywords" content="VxWorks,VxWorks 7.0,T20A80,T2080,BSP,Uboot" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="基于T20A80处理器的VxWorks7.0操作系统研究与适配" />
+<meta property="og:description" content="基于T20A80处理器的VxWorks7.0操作系统研究与适配" />
+<meta property="og:image" content="/imgs/VxWorks_7_logo.png" />
+<meta property="og:image:width" content="312" />
+<meta property="og:image:height" content="312" />
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg" />
+<meta property="og:url" content="https://www.vxworks7.com/post/bsp/research-and-adaptive-of-vxworks7-0-based-on-t2080-processor.html"/>
+<meta property="og:site_name" content="VxWorks 7" />
+<meta property="og:locale" content="zh-CN"/>
+<meta property="article:author" content="VxWorks OS" />
+<meta property="article:published_time" content="2023-12-19 15:19:34 &#43;0800 CST" />
+<meta property="article:modified_time" content="2023-12-19 15:19:34 &#43;0800 CST" />
+
+
+  
+  <link type="text/css" rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.2/css/all.min.css" />
+  
+  <link type="text/css" rel="stylesheet" href="https://unpkg.com/animate.css@3.1.1/animate.min.css" />
+
+
+<link rel="stylesheet" href="/css/main.min.7d561ec9984cf0cb727fc88e14a92134576c99ccb9ce2f31b5b5541ab4ced328.css">
+  <style type="text/css">
+    .post-footer, .flinks-list-footer hr:after {
+      content: "~ 我可是有底线的哟 ~";
+    }
+  </style>
+  <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"research-and-adaptive-of-vxworks7-0-based-on-t2080-processor.html","permalink":"https://www.vxworks7.com/post/bsp/research-and-adaptive-of-vxworks7-0-based-on-t2080-processor.html","title":"基于T20A80处理器的VxWorks7.0操作系统研究与适配"}</script>
+  <script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', () => {
+    var script = document.createElement('script');
+      
+    script.charset = "UTF-8";
+    script.src     = "https:\/\/busuanzi.ibruce.info\/busuanzi\/2.3\/busuanzi.pure.mini.js";
+    script.async   = "true"
+
+    document.head.appendChild(script);
+  });
+</script>
+
+
+
+
+  <title>基于T20A80处理器的VxWorks7.0操作系统研究与适配 - VxWorks 7</title>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage"  class="use-motion" >
+  <div class="headband"></div>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner">
+<div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">VxWorks 7</h1>
+      <i class="logo-line"></i>
+    </a>
+    
+      <p class="site-subtitle" itemprop="description">Embedded World</p>
+      <img class="custom-logo-image" src="/imgs/VxWorks_7_logo.png" alt="VxWorks 7">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+      
+      <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+    <li class="menu-item menu-item-home">
+      <a href="/" class="hvr-icon-pulse " rel="section"><i class="fa fa-home hvr-icon"></i>首页
+      </a>
+    </li>
+    <li class="menu-item menu-item-about">
+      <a href="/about.html" class="hvr-icon-pulse " rel="section"><i class="fa fa-user hvr-icon"></i>关于
+      </a>
+    </li>
+    <li class="menu-item menu-item-flinks">
+      <a href="/flinks.html" class="hvr-icon-pulse " rel="section"><i class="fa fa-thumbs-up hvr-icon"></i>友情链接
+      </a>
+    </li>
+    <li class="menu-item menu-item-archives">
+      <a href="/archives/" class="hvr-icon-pulse " rel="section"><i class="fa fa-archive hvr-icon"></i>归档
+        <span class="badge">85</span>
+      </a>
+    </li>
+    <li class="menu-item menu-item-commonweal">
+      <a href="https://www.vxworks.net" class="hvr-icon-pulse " rel="section"><i class="fa fa-heartbeat hvr-icon"></i>赞助商
+      </a>
+    </li>
+    <li class="menu-item menu-item-search">
+      <a role="button" class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+    </div>
+  </div>
+
+      </div>
+      <div class="toggle sidebar-toggle" role="button">
+  <span class="toggle-line"></span>
+  <span class="toggle-line"></span>
+  <span class="toggle-line"></span>
+</div>
+<aside class="sidebar">
+  
+  <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-toc">
+        文章目录
+      </li>
+      <li class="sidebar-nav-overview">
+        站点概览
+      </li>
+    </ul>
+    <div class="sidebar-panel-container">
+      
+      <div class="post-toc-wrap sidebar-panel">
+        <div class="post-toc animated"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#vxworks70-引导程序开发">VxWorks7.0 引导程序开发</a>
+      <ul>
+        <li><a href="#uboot-开发环境搭建">uboot 开发环境搭建</a></li>
+        <li><a href="#uboot-启动流程分析">uboot 启动流程分析</a></li>
+        <li><a href="#uboot-移植步骤">uboot 移植步骤</a></li>
+      </ul>
+    </li>
+    <li><a href="#vxworks70-系统内核开发">VxWorks7.0 系统内核开发</a>
+      <ul>
+        <li><a href="#内核开发">内核开发</a></li>
+        <li><a href="#设备树开发">设备树开发</a></li>
+        <li><a href="#驱动开发">驱动开发</a></li>
+      </ul>
+    </li>
+    <li><a href="#结束语">结束语</a></li>
+  </ul>
+</nav></div>
+      </div>
+      
+      <div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="VxWorks OS"
+      src="/imgs/hugo_next_avatar.png">
+  <p class="site-author-name" itemprop="name">VxWorks OS</p>
+  <div class="site-description" itemprop="description">Where there is embedded, there is VxWorks.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+    <div class="site-state-item site-state-posts">
+      <a href="/archives/">
+        <span class="site-state-item-count">85</span>
+        <span class="site-state-item-name">日志</span>
+      </a>
+    </div>
+    <div class="site-state-item site-state-categories">
+      <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span>
+      </a>
+    </div>
+    <div class="site-state-item site-state-tags">
+      <a href="/tags/">
+        <span class="site-state-item-count">126</span>
+        <span class="site-state-item-name">标签</span>
+      </a>
+    </div>
+  </nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+
+
+  <span class="links-of-social-item">
+    <a href="https://github.com/" title="Github → https://github.com/" rel="noopener" class="hvr-icon-pulse" target="_blank">
+      <i class="fab fa-github fa-fw  hvr-icon "></i>Github
+    </a>
+  </span>
+  <span class="links-of-social-item">
+    <a href="https://www.zhihu.com/" title="知乎 → https://www.zhihu.com/" rel="noopener" class="hvr-icon-pulse" target="_blank">
+      <i class="fa fa-book fa-fw  hvr-icon "></i>知乎
+    </a>
+  </span>
+</div>
+<div class="cc-license animated" itemprop="license">
+  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank" title="共享知识">
+    <img src="/imgs/cc/big/by_nc_sa.svg" alt="共享知识">
+  </a>
+</div>
+<div class="links-of-blogroll site-overview-item animated">
+  <div class="links-of-blogroll-title">
+    <i class="fa fa-globe fa-fw"></i>友情链接
+  </div>
+  <ul class="links-of-blogroll-list">
+    <li class="links-of-blogroll-item">
+      <a href="https://www.gaitpu.com" title="https://www.gaitpu.com" target="_blank">Google AI TPU</a>
+    </li>
+    <li class="links-of-blogroll-item">
+      <a href="https://www.vxworks.net" title="https://www.vxworks.net" target="_blank">VxWorks俱乐部</a>
+    </li>
+  </ul>
+</div>
+      </div>
+    </div>
+   
+  </div>
+<div class="sidebar-card-widget">
+  <div class="item-headline">
+    <i class="fas fa-chart-line"></i>
+    <span>网站资讯</span>
+  </div>
+  <div class="siteinfo">
+    <div class="siteinfo-item">
+      <div class="item-name"><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+      <div class="item-count" id="runTimes" data-publishdate="2021-06-03T11:52:18&#43;08:00"></div>
+    </div>
+      <div class="siteinfo-item">
+        <div class="item-name">
+          <i class="fas fa fa-user"></i>总访客数：
+        </div>
+        <div class="item-count" id="busuanzi_value_site_uv"></div>
+      </div>
+      <div class="siteinfo-item">
+        <div class="item-name">
+          <i class="fas fa fa-eye"></i>页面浏览：
+        </div>
+        <div class="item-count" id="busuanzi_value_site_pv"></div>
+      </div>
+    <div class="siteinfo-item">
+      <div class="item-name"><i class="fa fa-font"></i>总字数：</div>
+      <div class="item-count" id="wordsCount" data-count="26770"></div>
+    </div>
+    <div class="siteinfo-item">
+      <div class="item-name"><i class="fa fa-mug-hot"></i>阅读约：</div>
+      <div class="item-count" id="readTimes" data-times="177"></div>
+    </div>
+    <div class="siteinfo-item">
+      <div class="item-name"><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+      <div class="item-count" id="last-push-date" data-lastpushdate="2023-12-19T15:19:34&#43;08:00"></div>
+    </div>
+  </div>
+</div>
+</aside>
+<div class="sidebar-dimmer"></div>
+
+    </header>
+    
+    <div class="tool-buttons" >
+  <a id="goto-comments" class="button goto-comments" href="#comments"  title="直达评论">
+    <i class="fas fa-comments"></i>
+  </a> 
+  <div id="switch-theme" class="button" title="深浅模式切换">
+    <i class="fas fa-adjust"></i>
+  </div> 
+  
+  <div class="back-to-top" role="button" title="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div> 
+</div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+    <div class="main-inner post posts-expand">
+      
+  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://www.vxworks7.com/post/bsp/research-and-adaptive-of-vxworks7-0-based-on-t2080-processor.html">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/imgs/hugo_next_avatar.png">
+      <meta itemprop="name" content="VxWorks OS">
+    </span>
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="VxWorks OS">
+      <meta itemprop="description" content="Where there is embedded, there is VxWorks.">
+    </span>
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="基于T20A80处理器的VxWorks7.0操作系统研究与适配">
+      <meta itemprop="description" content="基于T20A80处理器的VxWorks7.0操作系统研究与适配">
+    </span>
+    <header class="post-header">
+       <h1 class="post-title" itemprop="name headline">基于T20A80处理器的VxWorks7.0操作系统研究与适配 </h1> <div class="post-meta-container">
+  <div class="post-meta-items">
+    
+
+
+<span class="post-meta-item">
+  <span class="post-meta-item-icon">
+    <i class="far fa-calendar"></i>
+  </span>
+  <span class="post-meta-item-text">发表于：</span>
+  <time title="发表于：2023-12-19 15:19:34 &#43;0800 CST" itemprop="dateCreated datePublished" datetime="2023-12-19 15:19:34 &#43;0800 CST">2023-12-19</time>
+</span>
+    
+    
+<span class="post-meta-item">
+  <span class="post-meta-item-icon">
+    <i class="far fa-folder-open"></i>
+  </span>
+  <span class="post-meta-item-text">分类于：</span>
+  <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+    <a href="/categories/bsp" itemprop="url" rel="index">
+      <span itemprop="name">BSP</span>
+    </a>
+  </span>
+</span>
+  </div>
+  <div class="post-meta-items">
+    
+<span class="post-meta-item" title="字数">
+  <span class="post-meta-item-icon">
+    <i class="far fa-file-word"></i>
+  </span>
+  <span class="post-meta-item-text">字数：</span><span>538</span>
+</span>
+    
+<span class="post-meta-item" title="阅读">
+  <span class="post-meta-item-icon">
+    <i class="far fa-clock"></i>
+  </span>
+  <span class="post-meta-item-text">阅读：&asymp;</span>
+  <span>3分钟</span>
+</span>
+
+    
+<span class="post-meta-item" title="浏览">
+  <span class="post-meta-item-icon">
+    <i class="far fa-eye"></i>
+  </span>
+  <span class="post-meta-item-text">
+  浏览：
+  </span>
+  <span id="busuanzi_value_page_pv" data-path="/post/bsp/research-and-adaptive-of-vxworks7-0-based-on-t2080-processor.html"><i class="fa fa-sync fa-spin"></i></span>
+</span>
+
+  </div>
+  
+</div>
+
+
+    </header>
+    
+    <div class="post-body  autonumber " itemprop="articleBody">
+      
+  <p>为满足机载系统中雷达处理单元等设备高实时、 高性能的需求，本文使用 T2080 处理器研制了一款通用处理卡，并基于该卡研究并完成了 
+<a href="https://www.vxworks.net" title="VxWorks7.0" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+    VxWorks7.0
+    <i class="fa fa-external-link-alt"></i>
+</a> 操作系统的 BSP 开发及操作系统适配工作。</p>
+<p>
+<a href="https://www.vxworks.net" title="VxWorks" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+    VxWorks
+    <i class="fa fa-external-link-alt"></i>
+</a> 操作系统是一个应用广泛的高性能可裁剪实时多任务操作系统， 提供并支持多任务调度机制， 用户可以根据需求将对事件的控制通过不同任务的协调而完成。 
+<a href="https://www.vxworks7.com" title="VxWorks7.0" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+    VxWorks7.0
+    <i class="fa fa-external-link-alt"></i>
+</a> 为风河公司开发的最新一代操作系统， 其采用高度模块化的方式，实现了内核与文件系统和网络栈等组件的分离，有利于模块化设计， 同时 VxWorks7.0 对 PowerPC 处理器的 64 位操作系统开发进行了支持，大大提高了处理性能。</p>
+<p>PowerPC处理器是Motorola和IBM共同研发的RISC结构体系，具有高性能和低功耗的特点，广泛应用于机载、舰载等设备。T2080处理器是一款飞思卡尔公司推出的QorIQ系列 PowerPC 架构四核八线程处理器。T2080 处理器内部集成有飞思卡尔最新一代 AltiVec 引擎， 提供 172GFLOPS 矢量处理，比飞思卡尔上一代 AltiVec 器件的性能高七倍以上。 AltiVec 引擎强大的单指令多数据（SIMD）信号处理能力，使得 T2080 处理器可满足网络、医疗、工业、印刷、航空航天和国防等应用的高带宽数据处理和算法密集型计算要求， 在很多嵌入式信号处理领域可以取代传统的 DSP 处理器成为信号处理器件的首选。</p>
+<p>为满足机载系统中雷达处理单元等设备高实时、 高性能的需求，本文使用 T2080 处理器研制了一款通用处理卡，并基于该卡研究并完成了 VxWorks7.0 操作系统的 BSP 开发及操作系统适配工作。</p>
+<h2 id="vxworks70-引导程序开发">VxWorks7.0 引导程序开发</h2>
+<p>嵌入式操作系统启动运行之前需要引导程序 （bootloader）。处理器上电以后需要首先运行该引导程序对处理器及DDR 内存等外设初始化，建立 MMU 映射表，然后根据配置选择从 Nor Flash、SPI Flash、eMMC 等存储器或者以太网接口加载操作系统内核到主存，跳转到操作系统内核运行。 风河公司为VxWorks6.x 提供的引导程序为 bootrom。 从 VxWorks7 版本后风河开始支持并推荐采用 uboot 作为 VxWorks 的引导程序 。uboot 的原生支持大大减少了 VxWorks7.0 操作系统的适配时间及人力成本。</p>
+<p>uboot 的全称是 universal boot loader， 它 是 一 个 遵 循GPL 协议的开源软件， 其本身可以看作是一个裸机综合例程。uboot 是 ARM 与 PowerPC 处理器目标板最常用的引导程序。与 bootrom 相比，uboot 功能强大，支持数十种命令，基于这些命令开发者可在bootloader 阶段即可对硬件进行调试。</p>
+<h3 id="uboot-开发环境搭建">uboot 开发环境搭建</h3>
+<p>引导程序uboot的开发与构建需要基于Linux系统环境，因此设计师需要搭建虚拟机软件环境安装 Linux 系统。 本文虚拟机软件选择的是 VMware 16.0， 安装的Linux操作系统版本是 Ubuntu14.04。在Ubuntu系统安装完成后需要安装uboot源码包与交叉编译工具链。</p>
+<p>交叉编译指在宿主机平台编译生成目标机可运行的执行代码， 比如在 Windows 的台式机上编译生成目标板在 VxWorks环境下运行的程序。 交叉编译工具就是在宿主机平台使用的编译工具。用户需要根据实际的硬件平台选择交叉编译工具。本文使用的交叉编译工具以及 uboot源码均从NXP官方提供的Yocto SDK 包“QorIQ-SDK-V2.0-20160527-yocto.iso”中提取。</p>
+<p>uboot自从2010年升级以后 ， 结构目录发生改变 ， 与T2080 处理器相关的主要目录与文件如表1所示：</p>
+<p><img src="https://www.vxworks.net/images/bsp/T2080-VxWorks-7-0.png" alt="T2080 VxWorks 7.0"></p>
+<h3 id="uboot-启动流程分析">uboot 启动流程分析</h3>
+<p>T2080处理器支持多种启动模式，包括IFC Nor Flash启动模式，SPI Flash 启动模式及 eMMC启动模式等。不同启动模式下，uboot 启动执行流程有所区别。</p>
+<p>IFC Nor Flash 启动模式下的 uboot 程序执行分为两阶段，阶段 1 与阶段 2。 阶段 1 代码主要由汇编语言编写，功能是完成硬件初始化、DDR 内存初始化以及将自身代码全部复制到 DDR 内存中，设置 Ｃ 语言运行所需的堆栈空间，为阶段 2 的运行做好准备。 由于 IFC Nor Flash 存储器支持片上执行，因此阶段 1 代码均直接在 Nor Flash 存储器中执行。 代码 1 执行完成后处理器跳转到拷贝至 DDR 内存的阶段 2 代码。阶段 2 代码主要是 C 语言编写， 功能是进行后续的初始化，MMU 地址映射，网口配置，提供命令交互环境，同时引导系统内核。</p>
+<p>SPI Nor Flash 启动模式与 eMMC 启动模式下的 uboot 启动流程基本相同。 启动流程分为两阶段，阶段 1 为 BL1，一般也称 之 为 uboot_spl 阶 段 。 SPL 含 义 是 Secondary Program Loader（SPL）。 由于 SPI Nor Flash 与 eMMC 存储器均不支持片上执行功能，因此 BL1 阶段需要在处理器内部 SRAM 空间中执行。 BL1 负责工作包括关闭中断、MMU、TLB 等，实现 DDR 内存初始化，以及拷贝阶段 2 的代码至 DDR 内存。阶段 2 为 BL2，BL2 才是实际的 uboot 阶段。 uboot 代码主要是 C 语言编写，功能是进行后续的初始化，包括网口配置、MMU 地址映射、提供命令交互环境以及引导系统内核。</p>
+<h3 id="uboot-移植步骤">uboot 移植步骤</h3>
+<p>本文在 uboot 目录中寻找与 T2080 通用处理卡类似的目标板，然后修改相关代码定制 uboot，步骤如下：</p>
+<ol>
+<li>创建 board 目录：由于本子卡采用的 T2080 处理器为飞思卡尔公司产品， 在 board/freescale 目录下创建 t208xleihua目录，并将官方开发板 t208xrdb 目录下的代码复制到该目录下修改，其中需要注意 MakeFile 以及 Kconfig 两个文件的修改；</li>
+<li>创建板级头文件 ： 复制 t208xrdb.h 文件 ，重命名为t208xleihua.h 并根据需求修改其中相关配置，例如内存大小、是否进行内存测试、网络 Phy 器件地址等；</li>
+<li>创建编译配置文件：如果需要生成IFC Nor Flash启动模式下的 uboot，在./configs 目录下复制T2080RDB_defconfig文件，重命名为T2080LEIHUA_defconfig，将该文件中的 CONFIG_TARGET_T208XRDB 替换为 CONFIG_TARGET_T208XLEIHUA；如果需要生成 SPI Flash 启动模式下的 uboot，在./configs 目录下复制 T2080RDB_SPIFLASH_defconfig 文件， 重命名为 T2080LEIHUA_SPIFLASH_defconfig，将该文件中的CONFIG_TARGET_T208XRDB 替换为 CONFIG_TARGET_T208XLEIHUA；如果需要生成 eMMC 启动模式下的 uboot，在./configs目录下复制 T2080RDB_SDCARD_defconfig 文件， 重命名为T2080LEIHUA_ SDCARD_defconfig， 将 该 文 件 中 的 CONFIG_TARGET_T208XRDB 替换为 CONFIG_TARGET_T208XLEIHUA；</li>
+<li>如果需要生成 SPI Flash 启动模式或者 eMMC 启动模式下的 uboot， 还需更新 board/freescale/t208xleihua 目录下的RCW 控 制 字 文 件 t2080_spi_rcw.cfg 或者t2080_sd_rcw.cfg中的内容；</li>
+<li>修改arch/powerpc/cpu/mpc85xx/Kconfig文件，添加以下内容：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">config TARGET_T208XLEIHUA
+bool “Support T208Xleihua”
+<span style="color:#66d9ef">select</span> SUPPORT_SPL
+<span style="color:#66d9ef">select</span> PHYS_64BIT
+…
+source “board/freescale/t208xleihua/Kconfig”
+</code></pre></div><ol start="6">
+<li>果使用 IFC Nor Flash 启动模式，执行以下命令生成uboot 文件：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">make T2080LEIHUA_defconfig
+make
+</code></pre></div><ol start="7">
+<li>如果使用 SPI Flash 启动模式，则执行以下命令生成 uboot 文件：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">make T2080LEIHUA_SPIFLASH_defconfig
+make
+</code></pre></div><ol start="8">
+<li>如果使用 MMC Flash 启动模式，则执行以下命令生成uboot 文件：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">make T2080LEIHUA_SDCARD_defconfig
+make
+</code></pre></div><h2 id="vxworks70-系统内核开发">VxWorks7.0 系统内核开发</h2>
+<p>引导程序开发完成后，需要进行操作系统的适配工作。系统内核适配、 设备树开发以及驱动开发等工作均是基于VxWorks7.0操作系统的集成开发工具Wind River WorkBench 4.0完成。VxWorks 7.0版本相对VxWorks6.x底层目录及架构区别较大，BSP、ARCH、驱动均被重新规划。BSP 中的ARCH相关部分被挪到ARCH代码中，C代码部分通过CPU子系统调用 。BSP之间的共享代码被抽象到了平台支持包（PSL）中；BSP中的驱动和非单板相关功能代码全部被清理出去。VxBus驱动模型更新到VxBus GEN2，引入了 DTS（设备树）与子系统的概念，去掉了原来BSP中的硬件配置和寄存器空间映射等代码。</p>
+<h3 id="内核开发">内核开发</h3>
+<p>VxWorks7.0下内核开发方式与VxWorks6.x以及更早版本有所区别。VxWorks7.0 的系统 VIP（VxWorks Image Project）工程必须基于VSB（VxWorks Image Project）工程构建，因此在创建 VIP 工程之前需要先创建VSB工程，而VxWorks6.x版本基于VSB工程创建VIP仅是可选要求。</p>
+<p>VSB（Source Builed Project）工程用于源码编译 ，为VIP工程和DKM工程提供库文件。 VIP（VxWorks 7 Image Project）工程用于构建系统镜像和设备树。VIP工程需要根据板卡需要添加或删减组件来配置具体功能，组件配置方法为：</p>
+<ol>
+<li>
+<p>点击所要配置的 VIP 工程，选中 Kernel Configuration；</p>
+</li>
+<li>
+<p>在新弹出Components窗口下查找到所要组件，也可使用ctrl+F进行快速查找；查找到所需组件后，点击所需组件，右击，选择Include，完成组件添加；若要去除组件，点击该组件，右击，选中 Exlude，完成组件去除；</p>
+</li>
+<li>
+<p>待组件添加完成后，选中VIP工程，右击选中Build project 完成 VIP 工程编译。</p>
+</li>
+</ol>
+<h3 id="设备树开发">设备树开发</h3>
+<p>VxWorks 传统的驱动模型有两种： 第一种模型是直接在驱动代码中配置设备参数，每次设备的变动都需要修改驱动，重新生成系统内核。第二种模型是VxBus GEN1 驱动模型，该模型将设备与驱动分离，设备参数在 BSP 中 hwconf.c 文件设备列表结构体中配置实现；第二种驱动模型提高了驱动的通用性、可移植性，但依然存在缺点，当某个设备参数与当前 BSP 稍有区别，就需要重构系统内核。风河公司为了克服这个缺点 ， 在 VxWorks7.0 中引入了Linux 系统中的设备树（Device Tree）概念。设备树是 Linux 社区参考 PowerPC 等体系架构中使用的 Flattened Device Tree（FDT）设计的。 设备硬件参数可以通过设备树传递给内核，而不再需要在内核中进行大量的冗余编码。</p>
+<p>设备树的内容由结点（node）和属性（property）组成，而结点本身可包含子结点。 属性是指成对出现的名称（name）和值（value）。在设备树中，可描述的信息包括 CPU 的数量和类别、内存基地址和大小、中断控制器参数、时钟参数、总线和桥以及外设设备参数。</p>
+<p>引导程序 uboot 启动过程中，可以将设备树传递给内核，内核可以识别解析设备树，并根据设备树中的信息实现驱动匹配、设备初始化及分配资源等。 通过这种方式， 驱动与设备彻底分离，而且设备列表易于扩展，设备增加或者移除、设备参数改动均只需要修改设备树，无需重新编译内核或者驱动程序。</p>
+<p>VxWorks7.0 环境下 dts 文件位于 BSP 目录下，dts 文件以文本方式对系统设备树进行描述。 用户根据实际需求对该文件直接进行修改。 经过系统内核工程编译后，该 dts 文件被转换成二进制文件 binary device tree blob(dtb)。dtb 文件可以被 VxWorks7.0内核识别解析，并可以通过 vxFdtDtbDump 函数打印显示。</p>
+<h3 id="驱动开发">驱动开发</h3>
+<p>VxWorks7.0 操作系统安装目录提供了许多常用的接口与设备驱动，创建 VSB 工程时可选择将相关驱动源码集成进工程目录。 为了修正某些驱动的 bug 或者满足其他特殊需求，设计师需要在 VSB 工程驱动源码里直接修改，并重新构建工程更新底层库文件。</p>
+<p>T2080 处理器通用处理卡上 VxWorks 未支持的接口与设备例如 SRIO 接口驱动需要设计师单独开发。 此类驱动设计师可采用 DKM 工程进行编码、 开发及调试。 驱动开发需遵循 VxBusGEN2 规范，并在设备树中建立设备节点。 以 SRIO 接口驱动为例，T2080 处理器通用处理卡设计了两路 SRIO 接口，两路 SRIO接口共享部分全局寄存器，设计时将两路 SRIO 接口认作为一个设备的两路端口，在设备树中添加一个设备节点，如图 1 所示。</p>
+<p><img src="https://www.vxworks.net/images/bsp/T2080-VxWorks-7-1.png" alt="T2080 VxWorks 7.0">
+图 1 SRIO 设备节点</p>
+<h2 id="结束语">结束语</h2>
+<p>本文为了满足现代雷达系统对高性能强实时的应用需求，基于 T2080 处理器研究并实现了 VxWorks7.0 实时操作系统的适配工作，介绍了 VxWorks7.0 操作系统的引导程序、系统内核以及驱动的开发流程。 本文可作为同类处理器平台适配 VxWorks7.0 操作系统的参考。</p>
+<p>参考文献
+［１］WindRiver Inc. Vxworks Application Programmer &rsquo;s Guide 7.0［Ａ］. WindRiver Inc, 2012
+［２］WindRiver Inc. Vxworks Kernel Programmer &rsquo;s Guide 7.0［Ａ］.WindRiver Inc, 2012
+［３］WindRiver Inc. Vxworks BSP Developer &rsquo;s Guide 7.0［Ａ］.WindRiver Inc, 2012
+［４］周启平，张杨．VxWorks 下设备驱动程序及 BSP 开发指南［Ｍ］.北京：中国电力出版社，2004
+［５］隋霞，许录平．基于 VxWorks 的 BSP 技术分析［Ｊ］．微计算机信息，2006（2３）：86-88</p>
+<p>原文连接：
+<a href="https://www.vxworks.net/bsp/1173-research-and-adaptive-of-vxworks7-0-based-on-t2080-processor" title="基于T20A80处理器的VxWorks7.0操作系统研究与适配" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+    基于T20A80处理器的VxWorks7.0操作系统研究与适配
+    <i class="fa fa-external-link-alt"></i>
+</a></p>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1543398821442998"
+     crossorigin="anonymous"></script>
+
+<ins class="adsbygoogle"
+     style="display:inline-block;width:970px;height:90px"
+     data-ad-client="ca-pub-1543398821442998"
+     data-ad-slot="4140563281"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+    </div>
+    <footer class="post-footer">
+      
+
+<div class="post-tags">
+  
+    <a href="/tags/vxworks">
+    VxWorks
+  </a>
+    <a href="/tags/vxworks-7.0">
+    VxWorks 7.0
+  </a>
+    <a href="/tags/t20a80">
+    T20A80
+  </a>
+    <a href="/tags/t2080">
+    T2080
+  </a>
+    <a href="/tags/bsp">
+    BSP
+  </a>
+    <a href="/tags/uboot">
+    Uboot
+  </a>
+</div>
+
+<div class="addthis_inline_share_toolbox" style="text-align: center;"></div>
+<hr/>
+
+<div class="reward-container">
+  <div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div>
+  <button>赞赏</button>
+  <div class="post-reward">
+    <div class="post-reward-item">
+      <img src="/imgs/ali-pay.png" alt="VxWorks OS - 支付宝">
+      <span>支付宝</span>
+    </div>
+    <div class="post-reward-item">
+      <img src="/imgs/wechat-pay.png" alt="VxWorks OS - 微信">
+      <span>微信</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="post-copyright">
+  <img src="/imgs/cc/cc.svg" width="75" height="75" align="right" />
+  <ul>
+    <li class="post-copyright-title">
+      <strong>文章标题：</strong>
+      基于T20A80处理器的VxWorks7.0操作系统研究与适配
+    </li>
+    <li class="post-copyright-author">
+      <strong>本文作者： </strong>
+      VxWorks OS
+    </li>
+    <li class="post-copyright-link"> 
+      <strong>本文链接：</strong>
+       <a id="post-cr-link" href="https://www.vxworks7.com/post/bsp/research-and-adaptive-of-vxworks7-0-based-on-t2080-processor.html" title="基于T20A80处理器的VxWorks7.0操作系统研究与适配">https://www.vxworks7.com/post/bsp/research-and-adaptive-of-vxworks7-0-based-on-t2080-processor.html</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <i class="fab fa-fw fa-creative-commons"></i><a target='_blank' href='https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh'>BY-NC-SA</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</div>
+
+  <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+  <div class="social-list">
+    
+    <div class="social-item">
+        <a target="_blank" class="social-link" href="/imgs/wechat_channel.jpg">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
+          <span class="label">WeChat</span>
+        </a>
+      </div>
+  </div>
+</div>
+<div class="post-nav">
+  <div class="post-nav-next post-nav-item">
+    <a href="/post/welcome-to-vxworks-club/" rel="next" title="欢迎加入 VxWorks 俱乐部！">
+      <i class="fa fa-chevron-left"></i> 欢迎加入 VxWorks 俱乐部！
+    </a>
+  </div>
+  <div class="post-nav-prev post-nav-item">
+    <a href="/post/vxworks/implementation-of-redundant-network-in-vxworks.html" rel="prev" title="VxWorks环境下双冗余以太网卡技术在底层驱动中的实现">
+      VxWorks环境下双冗余以太网卡技术在底层驱动中的实现
+      <i class="fa fa-chevron-right"></i>
+    </a>
+  </div>
+</div>
+
+    </footer>
+  </article>
+</div>
+<div id="comments" class="post-comments">
+  <div class="comment-head">
+    <div class="comment-headline">
+      <i class="fas fa-comments fa-fw"></i>
+      <span>评论交流</span>
+    </div>
+    <div class="comment-switch">
+      <span class="first-comment">Giscus</span>
+      <span class="switch-btn "></span>
+      <span class="second-comment">Waline</span>
+    </div>
+  </div>
+  <div class="comment-wrap">
+  
+    <div><div class="comment-loading">
+  <i class="fa fa-sync fa-spin"></i>
+</div><div class="giscus-container"></div>
+    </div>
+    <div><div class="comment-loading">
+  <i class="fa fa-sync fa-spin"></i>
+</div><div class="waline-container"></div>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="footer-inner">
+
+<div class="copyright">
+  &copy;
+  <span itemprop="copyrightYear">
+    2010 - 2023
+  </span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">VxWorks OS</span>
+</div>
+
+
+    </div>
+  </footer> 
+  
+  <script type="text/javascript" src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
+
+
+
+
+
+
+
+<script type="text/javascript" src="/js/main.min.7e59cf1a98d842830d8a6f149f78fbbcf9e795b7a9eb76feb34b48c9bf1554d7.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

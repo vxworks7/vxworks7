@@ -6,7 +6,20 @@
     <description>Recent content in VxWorks 7.0 on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 23 Dec 2022 11:24:58 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/vxworks-7.0/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 19 Dec 2023 15:19:34 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/vxworks-7.0/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>基于T20A80处理器的VxWorks7.0操作系统研究与适配</title>
+      <link>https://www.vxworks7.com/post/bsp/research-and-adaptive-of-vxworks7-0-based-on-t2080-processor.html</link>
+      <pubDate>Tue, 19 Dec 2023 15:19:34 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/bsp/research-and-adaptive-of-vxworks7-0-based-on-t2080-processor.html</guid>
+      <description>&lt;p&gt;为满足机载系统中雷达处理单元等设备高实时、 高性能的需求，本文使用 T2080 处理器研制了一款通用处理卡，并基于该卡研究并完成了 
+&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks7.0&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
+    VxWorks7.0
+    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
+&lt;/a&gt; 操作系统的 BSP 开发及操作系统适配工作。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>VxWorks 7.0下基于VxBus的定时器子系统</title>
       <link>https://www.vxworks7.com/post/app/timer-design-based-on-vxbus-in-vxworks-7-0.html</link>
