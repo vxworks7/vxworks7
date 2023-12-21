@@ -6,7 +6,20 @@
     <description>Recent content in BSP on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 19 Dec 2023 15:19:34 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/bsp/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 21 Dec 2023 16:08:39 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/bsp/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>一种对无符号VxWorks固件系统的符号恢复方法研究</title>
+      <link>https://www.vxworks7.com/post/bsp/research-on-a-symbol-recovery-method-for-unsigned-VxWorks-firmware-system.html</link>
+      <pubDate>Thu, 21 Dec 2023 16:08:39 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/bsp/research-on-a-symbol-recovery-method-for-unsigned-VxWorks-firmware-system.html</guid>
+      <description>&lt;p&gt;在前面两篇关于
+&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
+    VxWorks
+    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
+&lt;/a&gt;设备固件的提取和VxWorks系统加载地址分析的文章之后，我们对VxWorks函数符号的恢复方法进行了研究，找到了一种对无符号VxWorks固件系统的符号恢复方法。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>基于T20A80处理器的VxWorks7.0操作系统研究与适配</title>
       <link>https://www.vxworks7.com/post/bsp/research-and-adaptive-of-vxworks7-0-based-on-t2080-processor.html</link>
