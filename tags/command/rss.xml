@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Command on VxWorks 7</title>
+    <link>https://www.vxworks7.com/tags/command/</link>
+    <description>Recent content in Command on VxWorks 7</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 21 Dec 2023 19:53:48 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/command/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux常用命令TOP 10超详细汇总</title>
+      <link>https://www.vxworks7.com/post/linux/linux-top-10-commands.html</link>
+      <pubDate>Thu, 21 Dec 2023 19:53:48 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/linux/linux-top-10-commands.html</guid>
+      <description>&lt;p&gt;大家应该都知道
+&lt;a href=&#34;https://www.vxworks.net/linux&#34; title=&#34;Linux&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
+    Linux
+    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
+&lt;/a&gt;操作系统，就算不熟悉至少也听说过吧，由于它是开放性的，也是免费的，且安全性比较高等，近些年受到越来越多人的喜欢，不少公司也都是使用Linux系统办公。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
