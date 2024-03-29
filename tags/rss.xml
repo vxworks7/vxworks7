@@ -6,7 +6,25 @@
     <description>Recent content in Tags on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 21 Dec 2023 19:53:48 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 29 Mar 2024 17:30:40 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DNF5</title>
+      <link>https://www.vxworks7.com/tags/dnf5/</link>
+      <pubDate>Fri, 29 Mar 2024 17:30:40 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/dnf5/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Fedora 41</title>
+      <link>https://www.vxworks7.com/tags/fedora-41/</link>
+      <pubDate>Fri, 29 Mar 2024 17:30:40 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/fedora-41/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Command</title>
       <link>https://www.vxworks7.com/tags/command/</link>

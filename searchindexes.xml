@@ -16,6 +16,31 @@
   </entry>
   
   <entry>
+    <title>Fedora 41引入了全新 DNF5 软件包管理</title>
+    <url>/post/linux/fedora-41-introduces-new-dnf5-package-management.html</url>
+    <categories><category>Linux</category>
+    </categories>
+    <tags>
+      <tag>Fedora 41</tag>
+      <tag>DNF5</tag>
+    </tags>
+    <content type="html"><![CDATA[Fedora是一个各方面都经过精心打磨的发行版，在众多Linux发行版中名列前茅。然而，它的软件包管理器是其软肋，与当今标准相比显得过时。
+使用它可能会考验用户的耐心，因为其性能明显落后于Debian快速的APT。与Arch的Pacman相比更是毫无竞争力。然而，在Fedora 41中，这一切都可能会发生改变。
+提案 Fedora项目宣布了一项提案，计划在即将发布的Fedora 41中将默认软件包管理器从DNF更换为DNF5，预计在十月中旬发布。
+由Red Hat的Jan Kolarik和Jaroslav Mracek领导的这项提议目前正在公开审查阶段，等待Fedora工程指导委员会（FESCo）的批准。
+DNF5：功能和改进 DNF5承诺带来显著的改进。它旨在通过提供更快的查询处理速度和更小的占用空间来提升用户体验。
+这意味着它不需要Python依赖项，并且将通过在dnf5和新的dnf5daemon之间共享元数据来帮助消除元数据的冗余。以下是可以期待的主要好处。
+ 增强性能：DNF5承诺加快仓库元数据处理速度和改进软件包查询操作，旨在节省用户在软件包管理任务中宝贵的时间。 减少系统占用：通过消除Python依赖项并合并DNF和MicroDNF的功能，DNF5提供了一个显著较小的安装大小，减少了元数据的冗余。 统一体验：Fedora旨在为所有平台提供一致的软件包管理体验，DNF5将成为服务器、工作站和容器的唯一软件包管理器。  展望未来 DNF团队已经为那些担心过渡的人制定了详细的计划，以确保顺利的升级路径。在系统升级或安装DNF5时，DNF5软件包将自动替换现有的DNF软件包。
+此外，为了保持用户体验的连续性，还包括了对yum命令的向后兼容性和一个新的守护进程服务dnf5daemon。
+然而，为了实现这一切，Fedora工程指导委员会（FESCo）必须首先批准该提议。目前，它正在进行第二次迭代，收集了来自初始尝试的广泛社区反馈。
+总之，值得注意的是，关于DNF5成为默认软件包管理器的讨论始于大约一年半前，目的是将其引入Fedora 39中。
+显然，那次过渡没有发生，甚至即将到来的Fedora 40版本，预计下个月发布，也避免了实施这一重大改变。
+尽管如此，人们对此次DNF5提案能够获得批准充满了乐观情绪，为其在Fedora 41中的预期首次亮相铺平了道路。可以在此处查看提案的全部内容。
+原文地址： Fedora 41引入了全新 DNF5 软件包管理  
+]]></content>
+  </entry>
+  
+  <entry>
     <title>Linux常用命令TOP 10超详细汇总</title>
     <url>/post/linux/linux-top-10-commands.html</url>
     <categories><category>Linux</category>

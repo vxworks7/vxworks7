@@ -8,7 +8,42 @@
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.vxworks7.com/categories/</loc>
-    <lastmod>2023-12-21T19:53:48+08:00</lastmod>
+    <lastmod>2024-03-29T17:30:40+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/dnf5/</loc>
+    <lastmod>2024-03-29T17:30:40+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/fedora-41/</loc>
+    <lastmod>2024-03-29T17:30:40+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/post/linux/fedora-41-introduces-new-dnf5-package-management.html</loc>
+    <lastmod>2024-03-29T17:30:40+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/categories/linux/</loc>
+    <lastmod>2024-03-29T17:30:40+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/post/</loc>
+    <lastmod>2024-03-29T17:30:40+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/</loc>
+    <lastmod>2024-03-29T17:30:40+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/</loc>
+    <lastmod>2024-03-29T17:30:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -17,27 +52,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/categories/linux/</loc>
-    <lastmod>2023-12-21T19:53:48+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>https://www.vxworks7.com/post/linux/linux-top-10-commands.html</loc>
-    <lastmod>2023-12-21T19:53:48+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/post/</loc>
-    <lastmod>2023-12-21T19:53:48+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/tags/</loc>
-    <lastmod>2023-12-21T19:53:48+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/</loc>
     <lastmod>2023-12-21T19:53:48+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
