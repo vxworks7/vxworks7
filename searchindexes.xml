@@ -912,6 +912,26 @@ XaaS为制造业注入无限动力 ]]></content>
   </entry>
   
   <entry>
+    <title>ITTIA DB 支持 VxWorks 和 Wind River Linux</title>
+    <url>/post/news/the-power-of-xaas-in-manufacturing.html</url>
+    <categories><category>News</category>
+    </categories>
+    <tags>
+      <tag>VxWorks</tag>
+      <tag>XaaS</tag>
+    </tags>
+    <content type="html"><![CDATA[ITTIA 宣布立即推出适用于 VxWorks RTOS   和 Wind River Linux 操作系统的 ITTIA DB 软件。
+ITTIA DB 是一种嵌入式高性能数据库，它将时间序列与实时数据处理集成在一起，其中占用空间少的事务和分析查询均在嵌入式设备上本地执行。 新软件和风河软件共同为嵌入式系统应用程序开发人员提供了一个出色的边缘计算平台。
+嵌入式系统和物联网 (IoT) 的最新发展引入了汽车、工厂机器人和消费电子产品等互联 嵌入式系统  ，以便在 IoT Edge 上尽可能靠近嵌入式设备处理数据。 ITTIA DB 是一个专门用于存储、累积、处理和分析数据流的实时数据库。 每个数据流都是从多个资源连续生成的。 ITTIA DB 使系统能够通过流处理增量处理信息，而无需传输完整数据集的开销。
+ITTIA SDL 是一种安全开发生命周期，符合 IEC/ISO 62443 的原则，ITTIA 安全实践通过基于零信任原则的安全开发生命周期为制造商提供先进的集成软件开发方法，为制造商提供支持 以减轻不可预测性。 数据加密、身份验证和 ITTIA DB 安全专家代理库、DB-SEAL 是整体集成中包含的安全功能。
+该软件被设计为时间序列数据库，提供嵌入式应用程序来快速添加记录、处理和管理大量时间序列数据。 数据被高效、持续地摄取，速度快、精度高。 ITTIA DB 专用算法和架构满足边缘计算对速度和大数据量的要求。 该软件处理并发时间序列，并行测量许多不同的变量或指标。
+ITTIA DB 先进的多版本并发控制 (MVCC) 减少了对数据库锁的需求，从而减少了数据库访问争用问题，例如死锁。 读访问性能大大提高，不会阻塞连续的、孤立的写操作。
+“ITTIA 和风河的合作意味着为我们的客户提供重要的嵌入式软件开发价值，并共同解决物联网边缘上最复杂的实时数据计算问题。 ITTIA 总裁 Sasan Montaseri 表示：“这也意味着我们正在不断改进和发展与合作伙伴的合作方式，为客户提供最好的支持。我们的合作伙伴关系将有助于丰富我们共同客户的边缘计算体验，ITTIA 和风河可以提供 现代嵌入式计算令人兴奋的新功能。”
+“智能边缘的增长和任务关键型行业日益复杂的计算工作负载带来了一系列独特的要求和障碍。 通过与 ITTIA 的合作，我们可以帮助我们共同的客户克服苛刻的技术和业务挑战，以实现他们的目标。”风河企业发展副总裁 Christina Ungaro 说道。
+]]></content>
+  </entry>
+  
+  <entry>
     <title>选择实时操作系统(RTOS)的要点详解</title>
     <url>/post/news/how-to-select-real-time-operating-system.html</url>
     <categories><category>News</category>
