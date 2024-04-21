@@ -6,7 +6,25 @@
     <description>Recent content in Tags on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 30 Mar 2024 09:35:16 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 21 Apr 2024 11:43:54 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Interview</title>
+      <link>https://www.vxworks7.com/tags/interview/</link>
+      <pubDate>Sun, 21 Apr 2024 11:43:54 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/interview/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VxWorks</title>
+      <link>https://www.vxworks7.com/tags/vxworks/</link>
+      <pubDate>Sun, 21 Apr 2024 11:43:54 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/vxworks/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>linux</title>
       <link>https://www.vxworks7.com/tags/linux/</link>
@@ -58,15 +76,6 @@
       <pubDate>Thu, 21 Dec 2023 19:53:48 +0800</pubDate>
       
       <guid>https://www.vxworks7.com/tags/command/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>VxWorks</title>
-      <link>https://www.vxworks7.com/tags/vxworks/</link>
-      <pubDate>Thu, 21 Dec 2023 16:08:39 +0800</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/vxworks/</guid>
       <description></description>
     </item>
     
@@ -202,15 +211,6 @@
       <pubDate>Wed, 13 Dec 2023 21:59:53 +0800</pubDate>
       
       <guid>https://www.vxworks7.com/tags/edge-operating-system/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Interview</title>
-      <link>https://www.vxworks7.com/tags/interview/</link>
-      <pubDate>Tue, 12 Dec 2023 23:22:17 +0800</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/interview/</guid>
       <description></description>
     </item>
     

@@ -6,7 +6,16 @@
     <description>Recent content in VxWorks on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 17 Dec 2023 19:50:49 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/vxworks/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 21 Apr 2024 11:43:54 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/vxworks/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>20 Vxworks Interview Questions and Answers</title>
+      <link>https://www.vxworks7.com/post/vxworks/20-vxworks-interview-questions-and-answers.html</link>
+      <pubDate>Sun, 21 Apr 2024 11:43:54 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/vxworks/20-vxworks-interview-questions-and-answers.html</guid>
+      <description>&lt;p&gt;Prepare for the types of questions you are likely to be asked when interviewing for a position where VxWorks will be used.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>VxWorks环境下双冗余以太网卡技术在底层驱动中的实现</title>
       <link>https://www.vxworks7.com/post/vxworks/implementation-of-redundant-network-in-vxworks.html</link>
