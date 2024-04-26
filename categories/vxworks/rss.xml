@@ -6,7 +6,24 @@
     <description>Recent content in VxWorks on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 21 Apr 2024 11:43:54 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/vxworks/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 26 Apr 2024 23:10:04 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/vxworks/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>基于VxWorks 系统的航电激励器设计与实现</title>
+      <link>https://www.vxworks7.com/post/vxworks/design-and-implementation-of-avionics-exciter-based-on-vxworks-system.html</link>
+      <pubDate>Fri, 26 Apr 2024 23:10:04 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/vxworks/design-and-implementation-of-avionics-exciter-based-on-vxworks-system.html</guid>
+      <description>&lt;p&gt;航电激励器在民用飞机航电系统半物理仿真平台中起着至关重要的作用。在航电系统开发过程中，航电激励器向航电仿真设备提供的激励数据是进行航电系统仿真验证的基础，所以在航电激励数据的获取和处理中，航电激励器的设计与实现是极其重要的一个环节。该文基于
+&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
+    VxWorks
+    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
+&lt;/a&gt; 系统设计一款航电激励器，对航电激励器进行总体设计，从激励数据获取模块、激励数据转换模块等方面进行研究，完成软件设计以及硬件平台搭建。通过对设计的航电激励器进行仿真验证，实现飞机模拟飞行数据的获取以及航电系统中
+&lt;a href=&#34;https://www.vxworks6.com&#34; title=&#34;ARINC429&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
+    ARINC429
+    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
+&lt;/a&gt; 总线数据和AFDX 总线数据的相互转换，使得激励数据在传输过程中具有良好的实时性。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>20 Vxworks Interview Questions and Answers</title>
       <link>https://www.vxworks7.com/post/vxworks/20-vxworks-interview-questions-and-answers.html</link>
