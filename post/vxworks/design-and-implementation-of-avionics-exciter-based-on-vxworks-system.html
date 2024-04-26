@@ -284,7 +284,7 @@
       </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-font"></i>总字数：</div>
-      <div class="item-count" id="wordsCount" data-count="28748"></div>
+      <div class="item-count" id="wordsCount" data-count="28751"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-mug-hot"></i>阅读约：</div>
@@ -370,7 +370,7 @@
   <span class="post-meta-item-icon">
     <i class="far fa-file-word"></i>
   </span>
-  <span class="post-meta-item-text">字数：</span><span>186</span>
+  <span class="post-meta-item-text">字数：</span><span>189</span>
 </span>
     
 <span class="post-meta-item" title="阅读">
@@ -437,15 +437,15 @@
 <h3 id="arinc429-总线激励信号数据测试">ARINC429 总线激励信号数据测试</h3>
 <p>航电激励器对接收到的ARINC429 总线激励信号进行数据符合性测试。在飞行数据中获取其中5 种激励数据进行测试，如表1 所示。将航电激励器的一条ARINC429 输出通道连接到ARINC429 总线分析仪，将表1 中激励数据统一设置发送周期为200 ms，输出到ARINC429 总线分析仪。总线分析仪所显示的激励数据如图5 所示。</p>
 <center>表1 激励参量取值</center>
-![激励参量取值](https://www.vxworks7.com/imgs/post/vxworks-avionics-5.webp)
+![reference data](https://www.vxworks7.com/imgs/post/vxworks-avionics-5.webp)
 <p><img src="https://www.vxworks7.com/imgs/post/vxworks-avionics-6.webp" alt="ARINC429 总线分析仪显示的数据"></p>
 <center>图5 ARINC429 总线分析仪显示的数据</center>
 <p>将表1 数据信息与图5 显示结果进行对比，结果显示二者所包含的数据信息一致，航电激励器输出的ARINC429 总线激励信号满足数据符合性要求。</p>
 <h3 id="afdx-总线激励信号数据测试">AFDX 总线激励信号数据测试</h3>
 <p>激励数据获取模块选择飞行仿真软件中模拟飞机的VOR1 频率飞行数据进行验证，激励数据VOR1 频率的相关信息如表2 所示。航电激励器将AFDX 总线激励信号通过AFDX 板卡发送至交换机，通过Wireshark 抓取AFDX 数据包，对应抓取数据包为十六进制数：3800DC84，结果如图6 所示。通过对比验证，航电激励器输出的AFDX 总线激励信号中的数据信息与ARINC429 负载数据一致，航电激励器实现了ARINC429 总线激励信号转化为AFDX 信号的预期功能。</p>
 <center>表2 航电激励器输出AFDX 信号配置信息</center>
-![航电激励器输出AFDX 信号配置信息](https://www.vxworks7.com/imgs/post/vxworks-avionics-7.webp)
-<p><img src="https://www.vxworks7.com/imgs/post/vxworks-avionics-8.webp" alt="VOR1 频率数据包"></p>
+![AFDX signal configuration info](https://www.vxworks7.com/imgs/post/vxworks-avionics-7.webp)
+<p><img src="https://www.vxworks7.com/imgs/post/vxworks-avionics-8.webp" alt="VOR1 frequency data pkg"></p>
 <center>图6 VOR1 频率数据包</center>
 <h3 id="激励信号实时性测试">激励信号实时性测试</h3>
 <p>本文依靠VxWorks 系统的独特优势保证数据获取的实时性。“实时”并不意味着是“快”，而是指系统响应的时间确定性。时间确定性具体体现为航电激励器能否完全按照规定周期对激励信号进行收发。首先基于VxWorks 系统下的航电激励器对ARINC429 总线激励信号进行输出，配置输出数据信息如表3 所示。</p>
