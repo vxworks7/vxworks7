@@ -6,11 +6,29 @@
     <description>Recent content in Tags on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 26 Apr 2024 23:10:04 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 03 Aug 2024 18:02:03 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI</title>
+      <link>https://www.vxworks7.com/tags/ai/</link>
+      <pubDate>Sat, 03 Aug 2024 18:02:03 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/ai/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ORAN</title>
+      <link>https://www.vxworks7.com/tags/oran/</link>
+      <pubDate>Sat, 03 Aug 2024 18:02:03 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/oran/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>RTOS</title>
       <link>https://www.vxworks7.com/tags/rtos/</link>
-      <pubDate>Fri, 26 Apr 2024 23:10:04 +0800</pubDate>
+      <pubDate>Sat, 03 Aug 2024 18:02:03 +0800</pubDate>
       
       <guid>https://www.vxworks7.com/tags/rtos/</guid>
       <description></description>
@@ -19,9 +37,18 @@
     <item>
       <title>VxWorks</title>
       <link>https://www.vxworks7.com/tags/vxworks/</link>
-      <pubDate>Fri, 26 Apr 2024 23:10:04 +0800</pubDate>
+      <pubDate>Sat, 03 Aug 2024 18:02:03 +0800</pubDate>
       
       <guid>https://www.vxworks7.com/tags/vxworks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>WindRiver</title>
+      <link>https://www.vxworks7.com/tags/windriver/</link>
+      <pubDate>Sat, 03 Aug 2024 18:02:03 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/windriver/</guid>
       <description></description>
     </item>
     
@@ -166,15 +193,6 @@
       <pubDate>Sun, 17 Dec 2023 17:49:17 +0800</pubDate>
       
       <guid>https://www.vxworks7.com/tags/oci/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>WindRiver</title>
-      <link>https://www.vxworks7.com/tags/windriver/</link>
-      <pubDate>Sun, 17 Dec 2023 17:49:17 +0800</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/windriver/</guid>
       <description></description>
     </item>
     
@@ -643,15 +661,6 @@
       <pubDate>Fri, 23 Dec 2022 22:24:27 -0500</pubDate>
       
       <guid>https://www.vxworks7.com/tags/imx6q/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>AI</title>
-      <link>https://www.vxworks7.com/tags/ai/</link>
-      <pubDate>Fri, 23 Dec 2022 22:16:16 -0500</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/ai/</guid>
       <description></description>
     </item>
     

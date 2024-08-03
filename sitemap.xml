@@ -7,37 +7,62 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>https://www.vxworks7.com/tags/ai/</loc>
+    <lastmod>2024-08-03T18:02:03+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://www.vxworks7.com/categories/</loc>
-    <lastmod>2024-04-26T23:10:04+08:00</lastmod>
+    <lastmod>2024-08-03T18:02:03+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/categories/news/</loc>
+    <lastmod>2024-08-03T18:02:03+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/oran/</loc>
+    <lastmod>2024-08-03T18:02:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.vxworks7.com/post/</loc>
-    <lastmod>2024-04-26T23:10:04+08:00</lastmod>
+    <lastmod>2024-08-03T18:02:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.vxworks7.com/tags/rtos/</loc>
-    <lastmod>2024-04-26T23:10:04+08:00</lastmod>
+    <lastmod>2024-08-03T18:02:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.vxworks7.com/tags/</loc>
-    <lastmod>2024-04-26T23:10:04+08:00</lastmod>
+    <lastmod>2024-08-03T18:02:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.vxworks7.com/tags/vxworks/</loc>
-    <lastmod>2024-04-26T23:10:04+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/categories/vxworks/</loc>
-    <lastmod>2024-04-26T23:10:04+08:00</lastmod>
+    <lastmod>2024-08-03T18:02:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.vxworks7.com/</loc>
+    <lastmod>2024-08-03T18:02:03+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/tags/windriver/</loc>
+    <lastmod>2024-08-03T18:02:03+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/post/news/windriver-supports-telecom-industry-to-realize-the-potential-of-AI.html</loc>
+    <lastmod>2024-08-03T18:02:03+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.vxworks7.com/categories/vxworks/</loc>
     <lastmod>2024-04-26T23:10:04+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -167,17 +192,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/categories/news/</loc>
-    <lastmod>2023-12-17T17:49:17+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>https://www.vxworks7.com/tags/oci/</loc>
-    <lastmod>2023-12-17T17:49:17+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/tags/windriver/</loc>
     <lastmod>2023-12-17T17:49:17+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -659,11 +674,6 @@
   </url><url>
     <loc>https://www.vxworks7.com/post/bsp/vxworks-7.0-on-IMX6Q.html</loc>
     <lastmod>2022-12-23T22:24:27-05:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/tags/ai/</loc>
-    <lastmod>2022-12-23T22:16:16-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
