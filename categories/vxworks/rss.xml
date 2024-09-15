@@ -6,7 +6,16 @@
     <description>Recent content in VxWorks on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 26 Apr 2024 23:10:04 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/vxworks/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 Sep 2024 23:54:35 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/vxworks/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VxWorks免费书籍下载</title>
+      <link>https://www.vxworks7.com/post/vxworks/vxworks-books.html</link>
+      <pubDate>Sun, 15 Sep 2024 23:54:35 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/vxworks/vxworks-books.html</guid>
+      <description>&lt;p&gt;网络资源，免费下载，仅供学习使用!&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>基于VxWorks 系统的航电激励器设计与实现</title>
       <link>https://www.vxworks7.com/post/vxworks/design-and-implementation-of-avionics-exciter-based-on-vxworks-system.html</link>
