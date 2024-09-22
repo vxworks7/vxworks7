@@ -1,0 +1,271 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Command-line Editing and Object-Module Loader</title>
+		<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!-- Code Highlight -->
+		<link rel="stylesheet" type="text/css" href="codehl/prism.css"/>
+		<script src="codehl/prism.js" type="text/javascript"> </script>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>VxWorks</strong> RTOS</a>
+									<ul class="icons">
+										<li><a href="https://www.vxworks7.com" target="_blank" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="https://www.vxworks.net" target="_blank" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                                                                                <li><a href="https://www.gaitpu.com" target="_blank" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+
+									</ul>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Command-line Editing and Object-Module Loader</h1>
+									</header>
+                                                                </section>
+
+									<!-- Content -->
+										<div class="row">
+											<div class="col-6 col-12-small">
+												<span class="image"><img src="images/Command-line-Editing-and-Object-Module-Loader.png" alt="Command-line Editing and Object-Module Loader" /></span>
+											</div>
+											<div class="col-6 col-12-small">
+												<h3>Learning Objectives</h3>
+												<p>After this section you will be able to: </p>
+												<ul>
+													<li>Use the VI editor</li>
+													<li>Describe and implement the object-module loader</li>
+												</ul>
+											</div>
+										</div>
+
+                                                                		<section>
+                                                                        		<header class="major">
+												<h2>The kernel shell makes use of command line editors, this is a quick guide on their functionality.</h2>
+                                                                        		</header>
+                                                                		</section>
+
+										<h2 id="content">Command Line Editing</h2>
+										<p>The kernel shell supports the VI editor as its primary editor and emacs as a secondary editor. While working in the shell, it will store commands in a history list with a maximum length of 20 commands. The shell supports command-line completion.</p>
+
+										<p class="button primary">Step 1</p>
+                                                                                <h3 id="content">Navigating in VI</h3>
+										<p>To start working with the VI editor, you need to press <b>ESC</b> to enter line-editing mode. Here is a list of those commands.</p>
+										<ul>
+											<li><b>k -</b> Backwards through history buffer</li>
+											<li><b>j -</b> Forwards through history buffer</li>
+											<li><b>h -</b> Move cursor to the left</li>
+											<li><b>l -</b> Move cursor to the right</li>
+											<li><b>a -</b> Append after cursor</li>
+											<li><b>A -</b> Append at end of line</li>
+											<li><b>i -</b> Insert before cursor</li>
+											<li><b>I -</b> Insert at beginning of line</li>
+											<li><b>rc -</b> Replace current character with character c</li>
+											<li><b>x -</b> Delete current character</li>
+											<li><b>dd -</b> Delete entire line</li>
+											<li><b>nG -</b> Go to history line /string Search for string</li>
+										</ul>
+
+										<p class="button primary">Step 2</p>
+                                                                                <h3 id="content">Command-Line Completion</h3>
+										<p>Mentioned before, the shell supports command autocompletion. To perform this, use the following commands:</p>
+										<ul>
+											<li><b>CTRL+D -</b> To list symbols</li>
+											<li><b>CTRL+D, TAB -</b> To list and autocomplete symbols or file names</li>
+										</ul>
+
+										<p class="button primary">Step 3</p>
+                                                                                <h3 id="content">Emacs mode</h3>
+										<p>To enable emacs use the following command:</p>
+										<p><b>shConfig "LINE_EDIT_MODE=emacs"</b></p>
+										<p>As a note, emacs can do a lot more than the Vi editor but has much more overhead. This is why VI is the primary by default.</p>
+
+										<p class="button primary">Step 4</p>
+                                                                                <h3 id="content">Command History Limit</h3>
+										<span class="image"><img src="images/Command-line-history.png" alt="Command Line History" /></span>
+										<p>Lastly you can modify the command line history with the <b>h()</b> function. This can increases the default of 20 all the way to 500 if you use <b>h 500</b>, for example.</p>
+
+                                                                		<section>
+                                                                        		<header class="major">
+												<h2>That covers the text editors that VxWorks uses. Next you will be learning about the object module loader.</h2>
+                                                                        		</header>
+                                                                		</section>
+
+                                                                        <!-- Content -->
+										<h2 id="content">Object-Module Loader</h2>
+										<p>The object-module loader interacts with the kernel to load or unload code at runtime. This is useful during project development because it lets you unload, recompile, and then reload the object-modules that are being developed.</p>
+										<p>The alternative is to link the development code to a VIP. In this case, every time you want recompile that code you will have to rebuild the VIP and reboot the target.</p>
+
+										<div class="box">
+											<p>To use an object module loader, first configure your VIP to include the component:  <b>INCLUDE_LOADER</b>.</p>
+											<p>The loader must have access to the symbol table, as the object-module relies on information from it.</p>
+											<span class="image"><img src="images/Target-Loader.png" alt="Target Loader" /></span>
+                                                                                </div>
+
+										<div class="box">
+											<p>After the project has been configured you have access to two new functions. The first is <b>ld()</b> which lets you load C interpreter commands and <b>unld()</b> which unloads C interpreter commands.</p>
+											<p>The object-module loader lets you dynamically expand VxWorks. When code is loaded onto the OS, it makes no distinction between the original image and the new module loaded in.</p>
+										</div>
+
+										<div class="box">
+											<p>Lastly the object-module loader allows for the handling of memory allocation. This happens on a per-load basis and for modules that are downloaded.</p>
+											<p>This has two applications. First, to dynamically allocate memory for downloaded code and free that memory when an unload is called. Second, the caller can specify the addresses of memory that have already been allocated. This allows you to have more control over the layout of the code in memory.</p>
+										</div>
+
+										<blockquote>
+                                                                                        <ul class="contact">
+                                                                                                <li class="icon solid fa-exclamation-triangle">Do not unload an object-module while its tasks are still running, this may result in unexpected ways.</li>
+                                                                                        </ul>
+                                                                                </blockquote>
+
+                                                                		<!-- Break -->
+
+										<hr class="major" />
+
+										<div class="row">
+                                                                                        <div class="col-4 col-12-medium">
+                                                                                        </div>
+                                                                                        <div class="col-4 col-12-medium">
+												<ul class="actions">
+													<li><a href="kernel-shell-configuration-and-commands.html" class="button primary fit">Continue</a></li>
+												</ul>
+                                                                                        </div>
+                                                                                        <div class="col-4 col-12-medium">
+                                                                                        </div>
+                                                                                </div>
+
+
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Search -->
+								<section id="search" class="alt">
+									<form method="get" action="https://www.google.com/search" target="_blank">
+										<input type="hidden" name="sitesearch" value="www.vxworks6.com" />
+										<input type="text" name="query" id="query" placeholder="Search" />
+									</form>
+								</section>
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li>
+											<span class="opener">Getting started with VxWorks</span>
+											<ul>
+												<li><a href="the-wind-river-ecosystem.html">The Wind River Ecosystem</a></li>
+												<li><a href="vxworks-key-features.html">VxWorks Key Features</a></li>
+												<li><a href="workbench-4-overview.html">Workbench 4 Overview</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Target and connections overview</span>
+											<ul>
+												<li><a href="hardware-target-configuration.html">Hardware Target Configuration</a></li>
+												<li><a href="booting-a-hardware-target.html">Booting a Hardware Target</a></li>
+												<li><a href="workbench-tools-architecture.html">Workbench Tools Architecture</a></li>
+												<li><a href="simulation-overview.html">Simulation Overview</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Managing Projects in Workbench</span>
+											<ul>
+												<li><a href="introduction-to-projects-and-workspaces.html">Introduction to Projects and Workspaces</a></li>
+												<li><a href="vxworks-directory-structure-and-package-management.html">VxWorks Directory Structure and Package Management</a></li>
+												<li><a href="vxworks-source-build-and-image-projects.html">VxWorks Source Build and Image Projects</a></li>
+												<li><a href="the-vxprj-utility.html">The vxprj Utility</a></li>
+												<li><a href="read-only-memory-file-system.html">Read-Only Memory File System</a></li>
+												<li><a href="configuring-and-building-a-project.html">Configuring and Building a Project</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">VxWorks Kernel Shell</span>
+											<ul>
+												<li><a href="introduction-to-the-kernel-shell.html">Introduction to the Kernel Shell</a></li>
+												<li><a href="command-line-editing-and-object-module-loader.html">Command-line Editing and Object-Module Loader</a></li>
+												<li><a href="kernel-shell-configuration-and-commands.html">Kernel Shell Configuration and Commands</a></li>
+												<li><a href="kernel-shell-usage.html">Kernel Shell Usage</a></li>
+												<li><a href="wrap-up.html">Let's Wrap Up</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Popular</h2>
+									</header>
+									<div class="mini-posts">
+										<article>
+											<a href="configuring-and-building-a-project.html" class="image"><img src="images/Configuring-and-Building-a-Project-small.png" alt="Configuring and Building a Project" /></a>
+											<p>Configuring and setting up the VSB and VIP is known as platform development.</p>
+										</article>
+										<article>
+											<a href="vxworks-key-features.html" class="image"><img src="images/VxWorks-key-features-small.png" alt="VxWorks Key Features" /></a>
+											<p>VxWorks is a robust operating system; it has many useful and powerful features for you to use in your project.</p>
+										</article>
+										<article>
+											<a href="hardware-target-configuration.html" class="image"><img src="images/Hardware-Target-Configuration-small.png" alt="Hardware Target Configuration" /></a>
+											<p>All VxWorks projects are different, but they all require hardware configuration.</p>
+										</article>
+										<article>
+											<a href="using-vxWorks-bsp-with-zynq-7000-ap-soc.html" class="image"><img src="images/soc/VxWorks-on-Zynq-UltraScale-MPSoC-small.png" alt="VxWorks BSP with Zynq 7000" /></a>
+											<p>Step-by-step instructions for running the VxWorks 6.9.3.1 BSP on the Zynq-7000 SoC.</p>
+										</article>
+									</div>
+									<ul class="actions">
+										<li><a href="using-vxWorks-bsp-with-zynq-7000-ap-soc.html" class="button">More</a></li>
+									</ul>
+								</section>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Get in touch</h2>
+									</header>
+									<ul class="contact">
+										<li class="icon solid fa-envelope"><a href="#">admin@vxworks6.com</a></li>
+									</ul>
+								</section>
+
+							<!-- Footer -->
+								<footer id="footer">
+                                                                        <p class="copyright">VxWorks Club &copy; <a href="https://www.vxworks.net" target="_blank">VxWorks</a></p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

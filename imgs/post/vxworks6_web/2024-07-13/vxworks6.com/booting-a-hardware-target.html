@@ -1,0 +1,291 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Booting a Hardware Target</title>
+		<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!-- Code Highlight -->
+		<link rel="stylesheet" type="text/css" href="codehl/prism.css"/>
+		<script src="codehl/prism.js" type="text/javascript"> </script>
+		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1543398821442998"
+			crossorigin="anonymous"></script>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>VxWorks</strong> RTOS</a>
+									<ul class="icons">
+										<li><a href="https://www.vxworks7.com" target="_blank" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="https://www.vxworks.net" target="_blank" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                                                                                <li><a href="https://www.gaitpu.com" target="_blank" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+
+									</ul>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Booting a Hardware Target</h1>
+									</header>
+                                                                </section>
+
+									<!-- Content -->
+										<div class="row">
+											<div class="col-6 col-12-small">
+												<span class="image"><img src="images/Booting-a-Hardware-Target.png" alt="Booting a Hardware Target" /></span>
+											</div>
+											<div class="col-6 col-12-small">
+												<h3>Learning Objectives</h3>
+												<p>After this section you will be able to: </p>
+												<ul>
+													<li>Explain how VxWorks boots</li>
+													<li>Use the VxBL and BootApp commands</li>
+												</ul>
+											</div>
+										</div>
+
+                                                                		<section>
+                                                                        		<header class="major">
+												<h2>To start working with the hardware in a VxWorks project you need to deploy a kernel image to it.</h2>
+                                                                        		</header>
+                                                                		</section>
+
+                                                                        <!-- Content -->
+										<h2 id="content">How does a target boot?</h2>
+										<p>When you write the code for a target in Workbench you are modifying the kernel image, but how do you deploy the kernel image?  You must use a bootloader. This is code that deploys the kernel image and then executes the startup sequence for the kernel.</p>
+										<p>VxWorks supports a variety of boot strategies, many of which are board specific.</p>
+										<blockquote>
+											<ul class="contact">
+												<li class="icon solid fa-exclamation-triangle">For board-specific information, see the readme.md file in your BSP directory.</br>
+													installDir/<b>vxworks</b>/release/<strong>source/os/arch</strong></br>
+													All BSPs start in this directory, find the CPU architecture that you are using and then choose the board vendor.</li>
+											</ul>
+										</blockquote>
+
+										<div class="row">
+											<iframe width="560" height="315" src="https://www.youtube.com/embed/Z6BNMhxIUd0?si=cfP1HFATT0XEAd4h" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+										</div>
+
+										<section>
+                                                                        		<header class="major">
+												<h2>VxWorks primarily operates with a two-stage bootloader model. Follow the image below to see how this model interacts with the system.</h2>
+                                                                        		</header>
+                                                                		</section>
+
+										<span class="image fit"><img src="images/VxBL-and-BootAPP-image.png" alt="VxBL and BootAPP" /></span>
+
+										<ol>
+											<li>Power On</br>
+												This is the power signal going to the target.</li>
+											<li>Stage 1 bootloader</br>
+												In this example VxBL launches but it can be any stage 1 bootloader. You might see this stage be referred to as BootStrap code.</li>
+											<li>Physical Storage</br>
+												This is the physical storage you want to use to launch the bootloader. This can be Flash memory, SD card, SSD, HDD or some other physical drive.</li>
+											<li>Stage 2 Bootloader</br>
+												A stage 2 bootloader requires a stage 1 bootloader to help get things started. The stage 2 is able to do more heavy lifting since it's not limited to space on a drive for its code, just the memory on the target.</li>
+											<li>Network Connection</br>
+												A stage 2 bootloader can use the network that it is connected to help launch the kernel image. This can be from a File Transfer Protocol (FTP) or a Network File System (NFS) server.</li>
+											<li>The Kernel Image</br>
+												After the bootloaders do their magic, the kernel image is launched. Your VxWorks project is now running!</li>
+											<li>ROM or System?</br>
+												When VxWorks launches and it needs to initialize the code, it can either use a romInit or a sysInit.</br>
+												ROM or read only memory is used when you need to boot the system rapidly.</br>
+												SysInit is the default initialization mode.</li>
+										</ol>
+
+										<section>
+                                                                        		<header class="major">
+												<h2>To make full use of the VxBL and the BootApp, examine their commands in the chart below.</h2>
+                                                                        		</header>
+                                                                		</section>
+
+										<h3 id="content">VxBL Commands</h2>
+										<p>When running VxBL, if you ever need the list of commands type help in the terminal.</br>
+										Here is a list of the commands for reference:</p>
+										<ul>
+											<li>fdt - perform device tree operations: fdt &lt;cmd&gt; &lt;arg&gt;</li>
+											<li>env - perform environmental variable operations</li>
+											<li>ls - list directory content</li>
+											<li>pwd - get current working directory: pwd</li>
+											<li>cd - change current working directory: cd &lt;dir&gt;</li>
+											<li>load - load file content to memory: load &lt;file name&gt; &lt;memory address&gt;</li>
+											<li>boot - boot kernel: boot &lt;kernel address&gt; - &lt;device tree address&gt;</li>
+											<li>pm - show persistent memory area</li>
+											<li>help - print help message</li>
+											<li>@ - boot kernel using pre-defined scripts</li>
+											<li>d - display address content</li>
+										</ul>
+
+										<h3 id="content">BootApp Commands</h2>
+										<p>When running bootApp, if you ever need the list of commands type h in the terminal.</br>
+										Here is a list of the commands for reference:</p>
+										<ul>
+											<li>? - print this list</li>
+											<li>@ - boot (load and go)</li>
+											<li>p - print boot params</li>
+											<li>c - change boot params</li>
+											<li>l - load boot file</li>
+											<li>g adrs - go to adrs</li>
+											<li>e - print fatal exception</li>
+											<li>v - print boot logo with version</li>
+											<li>d adrs[,n] - display memory</li>
+											<li>m adrs - modify memory</li>
+											<li>f adrs, nbytes, value - fill memory</li>
+											<li>t adrs, adrs, nbytes  - copy memory</li>
+										</ul>
+
+										<blockquote>
+                                                                                        <ul class="contact">
+												<li class="icon solid fa-exclamation-triangle">For more information on the non-Wind River bootloaders refer to the Wind River documentation site.</br>
+													<a href="https://docs.windriver.com/" target="_blank">Wind River Documentation</a></li>
+                                                                                        </ul>
+                                                                                </blockquote>
+
+                                                                		<!-- Break -->
+
+										<hr class="major" />
+
+										<div class="row">
+                                                                                        <div class="col-4 col-12-medium">
+                                                                                        </div>
+                                                                                        <div class="col-4 col-12-medium">
+												<ul class="actions">
+													<li><a href="workbench-tools-architecture.html" class="button primary fit">Continue</a></li>
+												</ul>
+                                                                                        </div>
+                                                                                        <div class="col-4 col-12-medium">
+                                                                                        </div>
+                                                                                </div>
+
+
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Search -->
+								<section id="search" class="alt">
+									<form method="get" action="https://www.google.com/search" target="_blank">
+										<input type="hidden" name="sitesearch" value="www.vxworks6.com" />
+										<input type="text" name="query" id="query" placeholder="Search" />
+									</form>
+								</section>
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li>
+											<span class="opener">Getting started with VxWorks</span>
+											<ul>
+												<li><a href="the-wind-river-ecosystem.html">The Wind River Ecosystem</a></li>
+												<li><a href="vxworks-key-features.html">VxWorks Key Features</a></li>
+												<li><a href="workbench-4-overview.html">Workbench 4 Overview</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Target and connections overview</span>
+											<ul>
+												<li><a href="hardware-target-configuration.html">Hardware Target Configuration</a></li>
+												<li><a href="booting-a-hardware-target.html">Booting a Hardware Target</a></li>
+												<li><a href="workbench-tools-architecture.html">Workbench Tools Architecture</a></li>
+												<li><a href="simulation-overview.html">Simulation Overview</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Managing Projects in Workbench</span>
+											<ul>
+												<li><a href="introduction-to-projects-and-workspaces.html">Introduction to Projects and Workspaces</a></li>
+												<li><a href="vxworks-directory-structure-and-package-management.html">VxWorks Directory Structure and Package Management</a></li>
+												<li><a href="vxworks-source-build-and-image-projects.html">VxWorks Source Build and Image Projects</a></li>
+												<li><a href="the-vxprj-utility.html">The vxprj Utility</a></li>
+												<li><a href="read-only-memory-file-system.html">Read-Only Memory File System</a></li>
+												<li><a href="configuring-and-building-a-project.html">Configuring and Building a Project</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">VxWorks Kernel Shell</span>
+											<ul>
+												<li><a href="introduction-to-the-kernel-shell.html">Introduction to the Kernel Shell</a></li>
+												<li><a href="command-line-editing-and-object-module-loader.html">Command-line Editing and Object-Module Loader</a></li>
+												<li><a href="kernel-shell-configuration-and-commands.html">Kernel Shell Configuration and Commands</a></li>
+												<li><a href="kernel-shell-usage.html">Kernel Shell Usage</a></li>
+												<li><a href="wrap-up.html">Let's Wrap Up</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Popular</h2>
+									</header>
+									<div class="mini-posts">
+										<article>
+											<a href="configuring-and-building-a-project.html" class="image"><img src="images/Configuring-and-Building-a-Project-small.png" alt="Configuring and Building a Project" /></a>
+											<p>Configuring and setting up the VSB and VIP is known as platform development.</p>
+										</article>
+										<article>
+											<a href="vxworks-key-features.html" class="image"><img src="images/VxWorks-key-features-small.png" alt="VxWorks Key Features" /></a>
+											<p>VxWorks is a robust operating system; it has many useful and powerful features for you to use in your project.</p>
+										</article>
+										<article>
+											<a href="hardware-target-configuration.html" class="image"><img src="images/Hardware-Target-Configuration-small.png" alt="Hardware Target Configuration" /></a>
+											<p>All VxWorks projects are different, but they all require hardware configuration.</p>
+										</article>
+										<article>
+											<a href="using-vxWorks-bsp-with-zynq-7000-ap-soc.html" class="image"><img src="images/soc/VxWorks-on-Zynq-UltraScale-MPSoC-small.png" alt="VxWorks BSP with Zynq 7000" /></a>
+											<p>Step-by-step instructions for running the VxWorks 6.9.3.1 BSP on the Zynq-7000 SoC.</p>
+										</article>
+									</div>
+									<ul class="actions">
+										<li><a href="using-vxWorks-bsp-with-zynq-7000-ap-soc.html" class="button">More</a></li>
+									</ul>
+								</section>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Get in touch</h2>
+									</header>
+									<ul class="contact">
+										<li class="icon solid fa-envelope"><a href="#">admin@vxworks6.com</a></li>
+									</ul>
+								</section>
+
+							<!-- Footer -->
+								<footer id="footer">
+                                                                        <p class="copyright">VxWorks Club &copy; <a href="https://www.vxworks.net" target="_blank">VxWorks</a></p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

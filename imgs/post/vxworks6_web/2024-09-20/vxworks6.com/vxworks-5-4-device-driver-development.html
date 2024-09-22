@@ -1,0 +1,1050 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>VxWorks 5.4 device driver development</title>
+		<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!-- Code Highlight -->
+		<link rel="stylesheet" type="text/css" href="codehl/prism.css"/>
+		<script src="codehl/prism.js" type="text/javascript"> </script>
+		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1543398821442998"
+			crossorigin="anonymous"></script>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>VxWorks</strong> RTOS</a>
+									<ul class="icons">
+										<li><a href="https://www.vxworks7.com" target="_blank" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="https://www.vxworks.net" target="_blank" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                                                                                <li><a href="https://www.gaitpu.com" target="_blank" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+
+									</ul>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>VxWorks 5.4 device driver development</h1>
+									</header>
+                                                                </section>
+
+									<!-- Content -->
+										<div class="row">
+											<div class="col-6 col-12-small">
+												<span class="image"><img src="images/Tornado-and-vxworks.png" alt="VxWorks 5.4 device driver development" /></span>
+											</div>
+											<div class="col-6 col-12-small">
+												<h3>Preface</h3>
+												<p>This guide is for device driver developers, who have general background in real time operating systems. This guide addresses device driver development using VxWorks 5.4/Tornado 2.0.</p>
+												<p>We referred to VxWorks 5.4 programmers manual and other <a href="https://www.vxworks.net" target="_blank" >VxWorks</a> website to make sure the content is as accurate as possible.</p>
+											</div>
+										</div>
+
+                                                                		<section>
+                                                                        		<header class="major">
+												<h2>Real Time Operating System and VxWorks</h2>
+                                                                        		</header>
+                                                                		</section>
+
+										<p>Operating systems can be categorized into real-time and non-real-time systems. A real-time system is defined as a system where the response time for an event is predictable and deterministic with minimal latency. The architecture of the operating system's scheduler, also referred to as the dispatcher, has a significant impact on the responsiveness of the OS. Preemptive scheduling ensures the highest priority task/thread always runs and doesn’t relinquish the CPU until its work is done or a higher priority task becomes available. A preemptive scheduler also implies a real-time kernel. Several aspects to consider when selecting a real-time OS are:</p>
+										<ul>
+											<li>Foot print of the kernel</li>
+											<li>Interrupt latency</li>
+											<li>Interrupt response time</li>
+											<li>Interrupt recovery</li>
+											<li>Multi-tasking</li>
+											<li>Task context switching</li>
+											<li>Virtual memory support</li>
+										</ul>
+										<p>VxWorks provides a real-time kernel that interleaves the execution of multiple tasks employing a scheduling algorithm. Thus the user sees multiple tasks executing simultaneously. VxWorks uses a single common address space for all tasks thus avoiding virtual-to-physical memory mapping.  Complete virtual memory support is available with the optional vxMem library.</p>
+
+                                                                		<section>
+                                                                        		<header class="major">
+												<h2>Tour of VxWorks</h2>
+                                                                        		</header>
+                                                                		</section>
+
+										<h3 id="content">Tasks</h3>
+										<p>A task is an independent program with its own thread of execution and execution context. Every task contains a structure called the task control block that is responsible for managing the task's context. A task's context includes</p>
+										<ul>
+											<li>program counter or thread of execution</li>
+											<li>CPU registers</li>
+											<li>Stack of dynamic variables and function calls</li>
+											<li>Signal handlers</li>
+											<li>IO assignments</li>
+											<li>Kernel control structures</li>
+										</ul>
+										<p>Every task has a name and an ID associated with it. Each task is assigned a default priority as well. A task has four states as shown below.</p>
+										<span class="image"><img src="images/VxWorks-task-status.png" alt="VxWorks Task Status" /></span>
+										<p>A task can be created with <b>taskInit()</b> and then activated with <b>taskActivate()</b> routine or both these actions can be performed in a single step using <b>taskSpawn()</b>. Once a task is created it is set to the suspend state and suspended until it is activated, after which it is added to the ready queue to be picked up by the scheduler and run. A task may be suspended by either the debugging your task, or the occurrence an exception. The difference between the pend and suspend states is that a task pends when it is waiting for a resource. A task that is put to sleep is added to delay queue.</p>
+
+
+										<h3 id="content">Scheduler</h3>
+
+										<p>VxWorks scheduler determines which task to own the CPU time. By default, the scheduler runs a preemptive algorithm. Preemptive scheduler guarantees that the highest priority task preempts a lower priority task. There are some special cases called priority inversion which is discussed in advanced concepts.</p>
+										<p>The scheduler can be set to run round robin algorithm which is a time slicing algorithm.</p>
+
+										<h3 id="content">Mutual Exclusion</h3>
+
+										<p>Mutual exclusion can be implemented in VxWorks in the following three ways.</p>
+										<ul>
+											<li>Semaphores</li>
+											<li>Disabling Interrupts</li>
+											<li>Disabling the scheduler using <b>taskLock()</b></li>
+										</ul>
+
+										<h3 id="content">Semaphores</h3>
+
+										<p>VxWorks supports three types of semaphores, binary, mutual exclusion, and counting, each of which is optimized for a specific application. Semaphores are generally used for task synchronization and communication, and protection of shared resources also referred to as concurrency control or mutual exclusion.</p>
+
+										<ul>
+											<li>Binary semaphores are the fastest and are best suited for basic task synchronization and communication.</li>
+											<li>Mutual exclusion semaphores are sophisticated binary semaphores that are designed to address the issues relating to task priority inversion and semaphore deletion in a multitasking environment.</li>
+											<li>Counting semaphores maintain a count of the number of times a resource is given. This is useful when an action is required for each event occurrence. For example if you have ten buffers, and multiple tasks can grab and release the buffers, then you want to limit the access to this buffer pool using a counting semaphore.</li>
+										</ul>
+
+										<h3 id="content">Message Queues</h3>
+
+										<p>VxWorks supports messages queues for inter task communication. A variable number of messages, each of variable length, can be sent to any task. ISRs and tasks can send messages but only tasks can receive messages.</p>
+										<p>Multiple tasks can wait on a single message queue and can be ordered by their priority. Messages can be marked urgent for faster delivery.</p>
+
+										<h3 id="content">Network Intertask Communication</h3>
+
+										<p>VxWorks supports general facilities like pipes, sockets, RPC and signals for network inter task communications.</p>
+
+										<h3 id="content">Additional Facilities</h3>
+
+										<p>VxWorks provides facilities like Asynchronous IO and buffered IO for application and driver development. It is also POSIX library.</p>
+
+                                                                		<section>
+                                                                        		<header class="major">
+												<h2>Interrupts and Interrupt handling</h2>
+                                                                        		</header>
+                                                                		</section>
+
+                                                                        <!-- Content -->
+
+										<p>Interrupt is the mechanism by which a device seeks the attention of CPU. The piece of user code that the CPU executes on interrupt is called interrupt service routine (ISR). The Kernel doesn't transfer execution to the ISR immediately. It does some house keeping before the ISR is executed. The delay between the occurrence of interrupt and time spent by the kernel before it executes the first ISR instruction is called Interrupt response time. This equals the sum of interrupt latency and time to save CPU's context and execution time of kernel ISR entry function.</p>
+										<p>VxWorks provides a special context for interrupt service code to avoid task context switching, and thus renders fast response. VxWorks supplies interrupt routines which connect to C functions and pass arguments to the functions to be executed at interrupt level. To return from an interrupt, the connected function simply returns. A routine connected to an interrupt in this way is referred to as an interrupt service routine (ISR) or interrupt handler. When an interrupt occurs, the registers are saved, a stack for the arguments to be passed is set up, then the C function is called. On return from the ISR, stack and registers are restored.</p>
+
+										<p><b>IntConnect(INUM_TO_IVEC(intNum), intHandler, argToHandler)</b> allows C functions to be connected to any interrupt. The first argument to this routine is the byte offset of the interrupt vector to connect to. The second argument is the interrupt handler and the last is any argument to this handler.</p>
+
+										<p>One can disable interrupts using <b>intLock()</b> for synchronization. Care should be taken to re-enable the interrupts using <b>intUnlock()</b>. If you are planning for nested interrupts, you should not disable interrupts using intLock(). Also make sure that your code is reentrant and you allocate enough stack resources for nesting.</p>
+
+										<p><b>Points to remember</b></p>
+										<ul>
+											<li>Within an ISR, limited capabilities exist for the user code. Not all library functions are available.</li>
+											<li>Since memory facilities <b>malloc()</b> and <b>free()</b> take semaphores, they cannot be called within ISR.</li>
+											<li>Any blocking call is to be avoided.</li>
+											<li>Semaphores can be given, but not taken from an ISR.</li>
+										</ul>
+
+										<p><b>Points to remember</b></p>
+										<p>ISR can communicate with user tasks via</p>
+										<ul>
+											<li>shared memory and ring buffers</li>
+											<li>release of semaphores</li>
+											<li>signal tasks</li>
+											<li>writing to pipes</li>
+											<li>sending messages using message queue</li>
+										</ul>
+
+										<p>Understanding ISR and what goes on within interrupt handler is the key to designing your driver. Many real world drivers just have an interrupt handler and interact with user and device without the rest of the interfaces. Please refer to 7) for examples.</p>
+
+                                                                		<section>
+                                                                        		<header class="major">
+												<h2>Devices and Drivers</h2>
+                                                                        		</header>
+                                                                		</section>
+										<p>A driver supplies a uniform device independent logical interface to the user to interact with a device. A device can be a piece of hardware such as your hard drive or can be a piece of software such as a pipe or a socket, but a driver is always a software module. A driver can control multiple devices. If the architecture allows virtual memory, driver works in a logical/virtual address space, but a device works in a physical address space.</p>
+
+										<span class="image"><img src="images/VxWorks-device-driver-interaction.png" alt="VxWorks Device Driver Interaction" /></span>
+
+										<p>All interactions with devices in VxWorks are performed through the IO sub-system. VxWorks treats all devices as files. Devices are opened just like normal files are for IO operations. An example device is <b>/tyCo/0</b> that represents a serial channel. When a filename is specified in an IO call by the user task, the IO system searches for a device with a name that matches the specified filename. Two most important devices are character devices or non-block and block devices. Character devices perform IO operations character by character. Block devices are used for storing file systems. Block devices perform IO in blocks of characters and can support complicated operations such as random access. Block devices are accessed via file system routines as shown in the above figure. The driver interface to character devices are not filesystem routines.</p>
+
+										<p><b>Points to remember</b></p>
+
+										<ul>
+											<li>A character device is named usually at the system initialization</li>
+											<li>Block devices are always associated with a file system like raw file system, dos file system. They are named when initialized for a specific file system.</li>
+											<li>Drivers can be loaded and unloaded dynamically.</li>
+											<li>Drivers work in thee context of the task invoked an interface routine. Hence drivers are preemptable and should be designed as such.</li>
+										</ul>
+
+                                                                		<section>
+                                                                        		<header class="major">
+												<h2>Character Drivers</h2>
+                                                                        		</header>
+                                                                		</section>
+
+										<p>creat(), remove(), open(), close(), read(), write(), ioctl() are the seven standard driver interfaces that can be exposed to the user. Not all of the interfaces are mandatory.</p>
+										<p>Four steps are involved in the driver design and install process.</p>
+
+										<h3 id="content">Step 1: Decide the interfaces you want to expose and install the driver</h3>
+
+										<p>The following piece of code is the driver initialization routine.</p>
+										
+										<pre><code class="lang-c">
+STATUS myDrv()
+{
+	myDrvNum = iosDrvInstall(myDevCreate /* create */ ,
+    			0 /* remove() is null */ ,
+			myDevOpen /* open() */ ,
+			0 /* close() */ ,
+			myDevRead /* read() */ ,
+			myDevWrite /* write() */ ,
+			myDevIoctl /* ioctl() */
+			);
+	/* connect the ISR */
+	intConnect(intvec, myIntHandler, 0);
+}
+										</code></pre>
+										<p>As shown in the above piece of code, we can skip the driver interface routines like remove and close. But it is always a good practice to include them and return an error. VxWorks returns an error on your behalf, if it doesn't find a particular interface. Also you can initialize any relevant data structures in the myDrv routine.</p>
+										<p><b>Points to remember</b></p>
+										<ul>
+											<li>myDrvNum is used by the IO subsystem in locating your device.</li>
+											<li>The device driver gets installed into a driver table. The index is based on driver number. Since a driver can service more then one device, a list of devices are tied together in a linked list, with the same driver number, but different device names and device descriptors.</li>
+										</ul>
+
+										<h3 id="content">Step 2: Create your device descriptor structure</h3>
+
+										<p>Capture the essence of your device in a structure. This structure will hold all the information related to your device. This structure will be passed back by the IO subsystem, as a parameter to the rest of the interfaces like read(), write(), ioctl() etc., You can even get this structure within your ISR.</p>
+
+										<pre><code class="lang-c">
+typedef struct {
+    DEV_HDR myDevHdr;
+    BOOL isDevAvailable;
+    Semaphore getAccess;
+} MY_DEV;
+										</code></pre>
+										<p>If you are using semaphores to control the access to your device, make sure you create and initialize them before you make use of them.</p>
+										<p>Once you are ready with your structure, pass it as an address to <b>iosDevAdd</b> as shown in the below piece of code.</p>
+
+										<pre><code class="lang-c">
+STATUS myDevCreate(char *name, …)
+{
+    MY_DEV *pMyDevice;
+
+    status = iosDevAdd(pMyDevice, /* pointer to MY_DEV device */
+		       name, /* input param */
+		       myDrvNum /* return value from <b>iosDrvInstall</b> */
+        );
+
+	/* do other work as necessary */
+}
+										</code></pre>
+
+										<p><b>iosDevAdd</b> takes three arguments. The first argument is the address of device descriptor structure. A device descriptor structure always starts with DEV_HDR structure as it's first member. It can contain any other private data structures for your own use. The second argument is the name of the device. The third argument is the driver number, the return value of <b>iosDrvInstall</b>.</p>
+
+										<p><b>Points to remember</b></p>
+
+										<p>IO subsystem searches the correct device based on device name and driver number. They are held in a header structure DEV_HDR.</p>
+
+										<h3 id="content">Step 3: Finish the definitions of all other interfaces</h3>
+										
+										<pre><code class="lang-c">
+STATUS myDevOpen(MY_DEV * pMyDev, char *additionalInfo, int mode)
+{
+
+}
+
+STATUS myDevRead(MY_DEV * pMyDev, char *buffer, int nBytes)
+{
+
+/* read nBytes from the device and put them into the buffer*/
+
+}
+
+STATUS myDevWrite(MY_DEV * pMyDev, char *buffer, int nBytes)
+{
+
+/* write to the device from buffer if the device has room*/
+
+}
+										</code></pre>
+
+										<p>IOCTL needs some explanation. It is through IOCTL that a user can control the device. This the preferred way of controlling the device. The code within the IOCTL depends upon the way your device perform and the way you want to control the device.</p>
+
+
+										<pre><code class="lang-c">
+STATUS myDevIoctl(MY_DEV * pMyDev, int request, int arg)
+{
+	switch (request) {
+	CASE SET_DEVICE:
+		/* set the device */
+	CASE MODIFY_PARAM:
+
+	}
+}
+										</code></pre>
+
+										<h3 id="content">Step 4: Complete your interrupt handler</h3>
+
+										<pre><code class="lang-c">
+Void myIntHandler(arg)
+{
+	/* disable any further interrupts */
+	intLock();
+
+	// now read the interrupt register and indicate to the other tasks that you received an interrupt.
+	// You can do this in multiple ways. Refer to 'Tour of VxWorks'
+	// One easy way is to give a semaphore
+
+	semGive(getAccess);
+
+	/* re-enable interrupts*/
+
+	intUnlock();
+
+	return;
+}
+										</code></pre>
+
+										<p>Once your interrupt handler has been installed using intConnect(), the kernel will call your ISR when the CPU receives an interrupt from the device.</p>
+
+                                                                		<section>
+                                                                        		<header class="major">
+												<h2>Block Drivers</h2>
+                                                                        		</header>
+                                                                		</section>
+
+										<p>A block device is a device that is organized as a sequence of individually accessible blocks of data. A block is the smallest addressable unit on a block device. Block devices have a slightly different interface than that of other IO drivers. Rather than interacting directly with the IO system, block drivers interact via file-system. The file system in turn interacts with the IO system. Every block device is typically associated with a specific file system. DOS, SCCI, and raw file systems are supported.</p>
+
+										<p>Block devices are divided into two categories based on their write capabilities. Direct Access BLOCK Devices are slightly different from SEQUENTIAL Devices in that data can be written only to the end of written medium for sequential devices, where as for true block devices, data can be written any where randomly.</p>
+
+										<p>There is no difference between BLOCK and Sequential devices as far as reading from the device is concerned.</p>
+
+										<p>A device driver for a block device must provide a means for creating logical device structure, a BLK_DEV for direct access block devices and SEQ_DEV for sequential block devices. BLK_DEV/SEQ_DEV structures describe the device, contain routines to access the device, describe the device in a general fashion so that the underlying file system that serves this device can know about this device.</p>
+										<p><b>Points to remember</b></p>
+										<ul>
+											<li>When the driver creates the block device, the device has no name or file system associated with it. These are assigned during the device initialization routine for the specific file system (example dosFsDevInit()).</li>
+											<li>The low-level driver is not installed in the IO system driver table. Instead the underlying file system is installed as an entry into the driver table. Only one entry of file system is installed even if multiple devices are using this file system.</li>
+										</ul>
+
+										<p>The following three steps are involved in  writing a Block device driver. I shall explain this example by using ram driver with DOS as the underlying file system.</p>
+										<p>Ram driver emulates a disk driver, but actually keeps all data in memory. The memory location and size are specified when the "disk" is created. The RAM disk feature is useful when data must be preserved between boots of VxWorks or when sharing data between CPUs. The RAM driver is called in response to <b>ioctl()</b> codes in the same manner as a normal disk driver. When the file system is unable to handle a specific <b>ioctl()</b> request, it is passed to the <b>ramDrv</b> driver. Although there is no physical device to be controlled, <b>ramDrv</b> does handle a <b>FIODISKFORMAT</b> request, which always returns OK. All other ioctl() requests return an <b>error</b> and set the task's errno to <b>S_ioLib_UNKNOWN_REQUEST</b>.</p>
+
+										<h3 id="content">Step 1: Initialize and finish the interfaces within BLK_DEV structure</h3>
+
+										<p>Declare all your data structures, create your semaphores, initialize the interrupt vectors and enable the interrupts just as been discussed for character devices.</p>
+										<p>This step is required, only when you are creating your own device and not making use of existing block devices (like ram drive, scsi device etc.,) supported by VxWorks. Check VxWorks reference manual and programmers guide before you fill out the interfaces.</p>
+
+										<p><b>Points to remember</b></p>
+
+										<p>If these interfaces are filled, the file system will call them for you, if not it will call the default routines of the file system itself.</p>
+
+										<p>BLK_DEV is a structure that has the address of certain routines. If you decided to fill the structure, just declare the required interfaces and pass the address of the interfaces to BLK_DEV.</p>
+
+										<p>Declare your private device descriptor structure. Or you can directly use BLK_DEV structure.</p>
+ 
+										<pre><code class="lang-c">
+typedef struct {
+    BLK_DEV myDev;
+    Bool privateData;
+    Semaphore giveAccess;
+} DEVICE;
+										</code></pre>
+
+										<p>The various fields within BLK_DEV structure are</p>
+										<p><b>bd_blkRd:</b> Address of driver routine that reads blocks from the device, if your device is myBlkDevice, then call this routine as myBlkDevRd.</p>
+
+										<pre><code class="lang-c">
+STATUS myBlkDevRd(
+		DEVICE * pDev,	/* pointer to driver's device descriptor.
+					 * The file system passes the address of BLK_DEV structure.
+					 * These two are equivalent because BLK_DEV is the first item of DEVICE structure */
+		Int startBlk,
+		Int numBlks,
+		Char * pBuf		/*the address where data read is copied to */
+		);
+										</code></pre>
+
+										<p><b>bd_blkWrt:</b> Address of driver routine that writes blocks to the device</p>
+
+										<pre><code class="lang-c">
+STATUS myBlkDevWrt(
+		DEVICE * pDev,	/* pointer to driver's device descriptor. */
+		Int startBlk,
+		Int numBlks,
+		Char * pBuf		/*the address where data is copied from and written to the device */
+		);
+										</code></pre>
+
+										<p><b>bd_ioctl:</b> Address of driver routine that performs the device IO control</p>
+
+										<pre><code class="lang-c">
+STATUS myBlkDevIoctl(
+		DEVICE * pDev,	/* pointer to driver’s device descriptor. */
+		Int functioncode,  /* ioctl function code */
+		Int arg
+		);
+										</code></pre>
+
+										<p><b>bd_reset:</b> Address of driver routine that performs the device reset. Null if none</p>
+
+										<pre><code class="lang-c">
+STATUS myBlkDevReset(
+		DEVICE * pDev,	/* pointer to driver’s device descriptor. */
+		);
+										</code></pre>
+
+										<p><b>bd_statusChk:</b> Address of driver routine that checks the device status. Null if none</p>
+
+										<pre><code class="lang-c">
+STATUS myBlkDevStatus(
+		DEVICE * pDev, /* pointer to driver’s device descriptor. */
+		);
+										</code></pre>
+
+										<p><b>bd_removable:</b> TRUE if the device is removable(like floppy)</p>
+										<p><b>bd_nBlocks:</b> Total number of blocks on the device</p>
+										<p><b>bd_nbytesPerBlk</b></p>
+										<p><b>bd_lksPerTrack</b></p>
+										<p><b>bd_nHeads</b></p>
+										<p><b>bd_retry:</b> Number of times to retry failed reads or writes</p>
+										<p><b>bd_mode:</b> Deice mode (write protected etc.,), typically set to O_RDWR</p>
+										<p><b>bd_readyChanged:</b> True if the device ready status has changed. Defaults to true</p>
+
+										<p>A similar structure SEQ_DEV needs to be filled if your device is sequential.</p>
+
+										<h3 id="content">Step 2: Create your device</h3>
+
+										<p>Include your header files for the file system library. In our case it is dos file system. The libaray is <b>dosFsLib</b>.</p>
+
+										<pre><code class="lang-c">
+BLK_DEV *pBlkDev;	// declare your BLK_DEV structure
+DOS_VOL_DESC *pVolDesc;
+
+PBlkDev = ramDevCreate(0, 512, 400, 400, 0);
+PvolDesc = dosFsMkfs("DEV1:", PblkDev);
+										</code></pre>
+
+										<p>Explanation about  the above code.</p>
+
+										<pre><code class="lang-c">
+BLK_DEV *ramDevCreate
+(
+	char * ramAddr, /* where it is in memory (0 = malloc) */
+	int bytesPerBlk, /* number of bytes per block */
+	int blksPerTrack, /* number of blocks per track */
+	int nBlocks, /* number of blocks on this device */
+	int blkOffset /* no. of blks to skip at start of device */
+}
+										</code></pre>
+										<p>if you have already pre-allocated memory, pass the address as the first argument. If not, VxWorks will allocate memory on your behalf using malloc, if you pass zero as the first argument.</p>
+
+										<pre><code class="lang-c">
+DOS_VOL_DESC *dosFsMkfs
+(
+	char * volName, /* volume name to use */
+	BLK_DEV * pBlkDev /* pointer to block device struct */
+)
+										</code></pre>
+										<p>dosFsMkfs routine calls dosFsDevInit() with default parameters and initializes the file system on the disk by calling ioctl() with FIODISKINIT.</p>
+
+										<pre><code class="lang-c">
+DOS_VOL_DESC *dosFsDevInit
+(
+	char * devName, /* device name */
+	BLK_DEV * pBlkDev, /* pointer to block device struct */
+	DOS_VOL_CONFIG * pConfig /* pointer to volume config data */
+)
+										</code></pre>
+										<p>This routine takes a block device structure (<b>BLK_DEV</b>) created by a device driver and defines it as a dosFs volume. As a result, when high-level I/O operations (e.g., <i><b>open(), write()</b></i>) are performed on the device, the calls will be routed through <b>dosFsLib</b>. The pBlkDev parameter is the address of the <b>BLK_DEV</b> structure which describes this device. This routine associates the name devName with the device and installs it in the VxWorks I/O system’s device table. The driver number used when the device is added to the table is that which was assigned to the dosFs library during <i><b>dosFsInit()</b></i>. (The driver number is placed in the global variable <b>dosFsDrvNum</b>.)</p>
+										<p>The <b>BLK_DEV</b> structure contains configuration data describing the device and the addresses of five routines which will be called to read sectors, write sectors, reset the device, check device status, and perform other control functions (<b>ioctl()</b>). These routines will not be called until they are required by subsequent I/O operations.</p>
+										<p>The pConfig parameter is the address of a <b>DOS_VOL_CONFIG</b> structure. This structure must have been previously initialized with the specific dosFs configuration data to be used for this volume. This structure may be easily initialized using <b>dosFsConfigInit()</b>. If the device being initialized already has a valid dosFs (MS-DOS) file system on it, the pConfig parameter may be NULL. In this case, the volume will be mounted and the configuration data will be read from the boot sector of the disk. (If pConfig is NULL, both change-no-warn and auto-sync options are initially disabled. These can be enabled using the <b>dosFsVolOptionsSet()</b> routine.)</p>
+
+										<h3 id="content">Step 3: Finish your ISR</h3>
+
+										<p>Finish your interrupt handler routine. You just need to connect the ISR using <b>intConnect</b>.</p>
+
+                                                                		<section>
+                                                                        		<header class="major">
+												<h2>Real World Scenarios</h2>
+                                                                        		</header>
+                                                                		</section>
+
+										<p>I will cover two sample drivers. The first one is a standard serial driver. The second one is a hypothetical network processor driver, which doesn't follow the required conventions. Both of these are character drivers.</p>
+ 
+										<h3 id="content">Serial Driver</h3>
+										<p>This driver deals with PowerPC 8245 DUART. You can download PPC 8245 manual online from here <a href="https://www.nxp.com/docs/en/reference-manual/MPC8245UM.pdf" target="_blank">MPC8245.</a> Look into chapter 11 and 12 of this manual. This example deals with NS16550 or equivalent UART (Universal Asynchronous Receiver Transmitter).</p>
+
+										<pre><code class="lang-c">
+// forward declare our interrupt handler
+void DuartISRHandler();
+
+#define EUMBARR_BASE	DEFINE_YOUR_OWN
+#define DUART_CH1_IVR	EUMBARR_BASE+0x51120
+#define IACK_REG	EUMBARR_BASE+0x600A0
+#define EOI_REG		EUMBARR_BASE+0x600B0
+										</code></pre>
+										<p>Embedded utilities Block(EUMBARR) holds the EPIC register definition. It serves as an offset for the rest of the registers within EPIC unit. The programming model of EPIC is as follows.</p>
+										<ul>
+											<li>set the required interrupt vector/priority register. In this case we are interested in DUART channel 1 IVR.</li>
+											<li>Once an interrupt occurs, EPIC will notify the CPU. CPU has to read the interrupt acknowledge register to determine the interrupt source. Most of the times this portion will be taken care for your by the BSP(Board support package) and the kernel. But I will show you how to do this. Typically your kernel will determine the source and call the installed interrupt handler.</li>
+											<li>Once you have finished your work within ISR, you have to return. Your kernel will typically write to EOI register. I will show this step too.</li>
+										</ul>
+
+										<pre><code class="lang-c">
+#define		DCR	EUMBARR_BASE+0x4511
+#define		ULCR	EUMBARR_BASE+0x4503
+#define		UFCR	EUMBARR_BASE+0x4502
+#define		UIIR	UFCR
+#define		URBR	EUMBARR_BASE+0x4500
+#define		UTHR	URBR
+#define		UDLB	URBR
+#define		UIER	EUMBARR_BASE+0x4501
+#define		UDMB	UIER
+#define		ULSR	EUMBARR_BASE+0x4505
+#define		UDSR	EUMBARR_BASE+0x4510
+										</code></pre>
+
+										<p>Let us get into details about the DUART itself . Refer to 12.3 DUART initialization sequence.</p>
+
+										<pre><code class="lang-c">
+/*
+ * declare buffersize to be  greater then 14.
+ * This the value we set for FIFO capacity, 14 bytes of data.
+ * We make use of a ring buffer to handle the incoming and out going data.
+ * A ring Buffer is a circular array (liner array around which we wrap around).
+ * */
+
+#define BUF_SIZE 141
+
+typedef struct {
+    DEV_HDR DuartHdr;
+    Char readBuf[BUF_SIZE];
+    Char writeBuf[BUF_SIZE];
+    Int readCount;
+    Int readPtr;
+    Int writePtr;
+    Int writeCount;
+    Int mode;
+    BOOL intUse;
+    Semaphore getRDAccess;
+    Semaphore getWRAccess;
+} MY_DEV;
+
+/* some global definitions */
+
+MY_DEV gDuartStruct;
+
+Static int gDuartDrvNum;
+
+STATUS DuartInit()
+{
+    *ULSR = 0;	/* This lets access to UDLB, UAFR and UDMB. */
+    *UDLB = 1;
+    *UDMB = 0;
+    /* we have set divisor to be 16, the max baud rate allowed. */
+    *UAFR = 0;	/* disable concurrent writes */
+    *ULSR = (1 &lt;&lt; 1) | 1;	/* set bit 8 bit characters (bits 0 and 1) */
+    *DCR = 0; /* route the interrupts to EPIC in four signal mode */
+    *UIER = (1 &lt;&lt; 2) | (1 &lt;&lt; 1) | 1; /* we are not setting modem status. We program assuming no modem is going to be connected. */
+    *UFCR = (1 &lt;&lt; 7) | (1 &lt;&lt; 6) | (1 &lt;&lt; 3) | (1 &lt;&lt; 2) | (1 &lt;&lt; 1) | 1; /* enable the FIFO Tx and Rx for 14 bytes */
+    *DUART_CH1_IVR = 0;         /* clear it first; */
+    int priority = 16;          /* actual priority will be 1 */
+    int vector = 0x7;           /*  the vector number associated with UART interrupt.
+				    * make sure no one else has this vector already taken.
+				    * It returns vector 128 when IACK register is read.
+				    * */
+    *DUART_CH1_IVR = (1 &lt;&lt; priority) | (1 &lt;&lt; vector);
+    gDuartDrvNum = iosDrvInstall(myDevCreate /* create */ ,
+                                 0 /* remove() is null */ ,
+                                 DuartOpen /* open() */ ,
+                                 DuartClose /* close() */ ,
+                                 DuartRead /* read() */ ,
+                                 DuartWrite /* write() */ ,
+                                 DuartIoctl /* ioctl() */
+        );
+    // register our ISR
+    intConnect(128, DuartISRHandler, 0);
+    gDuartStruct.getWRAccess = semBCreate(SEM_Q_PRIORITY, SEM_FULL);
+    gDuartStruct.getRDAccess = semBCreate(SEM_Q_PRIORITY, SEM_EMPTY);
+}
+										</code></pre>
+										<p>Inside the DuartInit routine, we initialized various registers. One point to note is we created two semaphores, one for read and one for write. They protect the read and write buffers readBuf and writeBuf. <b>getWRAccess</b> has been created full, meaning the  write semaphore is available immediately for access, which indicates that the user can write to the DUART and writeBuf can hold bytes. <b>getRDAccess</b> has been created empty, meaning there is no data available for reading immediately from readBuf, until someone gives the semaphore.</p>
+										<p>Semaphores are taken in read and write routines and given in the ISR. ISR can modify readPtr and writeCount. It doesn't modify writePtr and readCount. DuratRead() routines modifies readCount and doesn't modify readPtr. DuratWrite() routine modifes writePtr and doesn't modify writeCount. This way, I am making sure that no race conditions exisit.</p>
+
+												
+										<pre><code class="lang-c">
+STATUS DuartCreate(char *name, …)
+{
+    MY_DEV *pDuart = &gDuartStruct;
+    status = iosDevAdd(pDuart,  /* pointer to MY_DEV device */
+                       name,    /* input param */
+                       gDuartDrvNum     /* return value from iosDrvInstall */
+        );
+}
+
+STATUS DuartOpen(MY_DEV * pDuart, char *remainder, int mode)
+{
+    /* serial devices should have no file name remainder */
+    /* if multiple opens occur, we reject, note that I have not protected inUse variable here. They should be protected */
+
+    if (remainder[0] != 0 || pDuart-&gt;intUse) {
+        return ERROR;
+    }
+    else {
+        pDuart-&gt;intUse = true;  // only one access at a time
+        pDuart-&gt;mode = mode;
+        return (int)pDuart;
+    }
+}
+
+STATUS DuartClose(char *name, …)
+{
+    pDuart-&gt;intUse = false;
+    return OK;
+}
+
+// read from the DUART and Put it into the buffer
+// here we will not always be able to read the required number of bytes for two reasons.
+// 1) Not enough data is available
+// 2) We code it little lazy, and the user has to do one more read to get the data, if readPtr has wrapped around
+// we manipulate pDuart-&gt;readPtr only in the ISR and pDuart-&gt;readCount from this code to avoid race conditions
+
+STATUS DuartRead(MY_DEV * pDuart, char *buffer, int nBytes)
+{
+	/* read nBytes from the device and put them into the buffer */
+	/* define RDMASK and WRITEMASK */
+	if (pDuart-&gt;mode & RDMASK)  // if it is readable
+	{
+	}
+
+	/* this is a blocking call.
+	 * If there is no data available, we cannot proceed further,
+	 * until data arrives and we release the semaphore from the ISR.
+	 */
+
+	semTake(pDuart-&gt;getRDAccess, WAIT_FOREVER)
+
+	/* grab whatever data is available and return it,
+	 * don't wait till you get all the required nBytes data.
+	 */
+
+	int NumBytestoRead = 0;
+	int I = 0;
+	int readPtr = pDuart-&gt;readPtr;
+	NumBytestoRead = readPtr - pDuart-&gt;readCount;
+	if (pDuart-&gt;readCount &gt;= readPtr) {
+		// no race condition detected
+		while ((NumBytestoRead &gt; 0) && (pDuart-&gt;readCount &gt; readPtr))
+		{
+			buffer[I] = pDuart-&gt;readBuf[pDuart-&gt;readCount++];
+			I++;
+			pDuart-&gt;readCount %= BUF_SIZE;
+			NumBytestoRead--;
+		}
+	}
+	if (pDuart-&gt;readCount &lt; readPtr)
+	{
+		while ((NumBytestoRead &gt; 0) && (pDuart-&gt;readCount &lt; readPtr))
+		{
+			buffer[I] = pDuart-&gt;readBuf[pDuart-&gt;readCount++];
+			I++;
+			NumBytestoRead--;
+		}
+	}
+	return I;
+}
+
+/* write to the device from buffer if the device has room */
+// We manipulate the writePtr from here and writeCount from the ISR
+
+STATUS DuartWrite(MY_DEV * pDuart, char *buffer, int nBytes)
+{
+    // define RDMASK and WRITEMASK
+    if (pDuart-&gt;mode & WRITEMASK)       // if it is writeable mode
+    {
+    }
+    Int NumBytestoWrite = nBytes;
+    Int I = 0;
+    Int writeCount = pDuart-&gt;writeCount;
+    if (pDuart-&gt;writePtr &gt;= writeCount) {
+        // no race condition detected
+        while ((NumBytestoWrite &gt; 0) && (pDuart-&gt;writePtr &gt;= writeCount)) {
+            pDuart-&gt;writeBuf[pDuart-&gt;writePtr++] = buffer[I];
+            I++;
+            pDuart-&gt;writePtr %= BUF_SIZE;
+            NumBytestoWrite--;
+        }
+    }
+
+    if (pDuart-&gt;writePtr &lt; writeCount)
+    {
+        while ((NumBytestoWrite &gt; 0) && (writeCount &gt;= pDuart-&gt;writePtr))
+	{
+            pDuart-&gt;writeBuf[pDuart-&gt;writePtr++] = buffer[I];
+            I++;
+            NumBytestoWrite--;
+        }
+    }
+    return I;
+}
+										</code></pre>
+										<p>IOCTL requires some explanation. IOCTL provides an interface for a user to control the device, and is the preferred way of controlling the device. The implementation of IOCTL is dependant upon the way your device performs and how you want to control the device.</p>
+
+										<pre><code class="lang-c">
+STATUS DuartIoctl(MY_DEV* pDuart,  int command, int baudrate)
+{
+	switch(command)
+	{
+                  CASE SET_DEVICE:
+                  /* set the device*/
+                  break;
+                  CASE MODIFY_BAUD:
+                              // our argument has the new baud rate.
+                              // we will have to modify the registers to set the baud rate
+                              // you need to know the clock frequency of your CPU.
+                              // assume it is a global value
+                              int divisor = clock_frequency/ (baud* 16);
+                              // UDLB is the least significant byte register and UDMB is the most significant.
+                              // each register is 8 bits wide, so the max value for 8 bits  of data is 255.
+                              // if divisor is less then 256, we assign it to UDLB and make UDMB zero.
+                              If(divisor &lt; 256)
+                              {
+			      	*UDLB = divisor;
+                              }
+                              else
+                              {
+                              	*UDMB = divisor - 255;
+				*UDLB = 255;
+                              }
+                  break;
+                  default:
+                  break;
+      }
+}
+										</code></pre>
+
+										<p>Let us finish the interrupt handler routine. We enter into the handler after the kernel has determined that the vector within IACK register matches to DuartISRHandler.</p>
+
+										<p>// The logic for the code is as follows</p>
+										<ul>
+											<li>read interrupt read register UIIR</li>
+											<li>if error occurred, read ULSR</li>
+											<li>read URBR, if data is recd. This will clear the UIIR</li>
+											<li>write to UTHR, if FIFO is empty. This will clear the UIIR</li>
+										</ul>
+
+										<pre><code class="lang-c">
+#define lastThreeBits	(1 &lt;&lt; 3) | (1 &lt;&lt; 2) | (1 &lt;&lt; 1)
+#define RxLineError	(1 &lt;&lt; 2) | (1 &lt;&lt; 1)
+#define RxDataAvailable	(1 &lt;&lt; 2)
+#define charTimeOut	(1 &lt;&lt; 3) | (1 &lt;&lt; 2)
+#define uthrEmpty	(1 &lt;&lt; 1)
+#define RFE		(1 &lt;&lt; 7)
+#define FE		(1 &lt;&lt; 3)
+#define TxEmpty   	(1 &lt;&lt; 6)
+#define TxHrEmpty  	(1 &lt;&lt; 5)
+
+void DuartISRHandler()
+{
+	int oldlevel = intLock();	// let us lock interrupts
+	unsigned char regUIIR = *UIIR;
+	switch(regUIIR & lastThreeBits)
+	{
+		// we handle both cases in the same fashion
+		CASE RxLineError:
+		CASE uthrEmpty:
+		// ULSR gives us the status of the interrupt that just occurred on the DURAT.
+		unsigned char regULSR = *ULSR;
+		if(regULSR & RFE)
+		{
+			// Framing Error
+			logMsg("Framing Error DUART");
+		}
+
+		if((regULSR & TxEmpty) || (regULSR & TxHrEmpty))
+		{
+			// Tx is empty, we can write more to the device.
+			if(gDuartStruct.writeCount &gt; gDuartStruct.writePtr)
+			{
+				While(!(*UDSR & 2) && (gDuartStruct.writeCount &gt;= gDuartStruct.writePtr))
+				{
+					*UTHR = writeBuf[gDuartStruct.writeCount++];
+					gDuartStruct.writeCount %= BUF_SIZE;
+				}
+			}
+						
+			if(gDuartStruct.writeCount &lt;= gDuartStruct.writePtr)
+			{
+				while(!(*UDSR & 2) &&(gDuartStruct.writeCount &lt;= gDuartStruct.writePtr))
+				{
+					*UTHR = writeBuf[gDuartStruct.writeCount++];
+				}
+								
+			}
+			// indicate to the user that write buffer can be filled.
+			semGive(gDuartStruct.getWRAcess);
+		}
+		break;      // end case
+								
+		CASE RxDataAvailable:
+		if(gDuartStruct.readPtr &gt; gDuartStruct.readCount)
+		{
+			while(!(*UDSR & 1) && (gDuartStruct.readPtr &gt; gDuartStruct.readCount))
+			{
+				readBuf[gDuartStruct.readPtr++] = *URBR;
+				gDuartStruct.readPtr %= BUF_SIZE;
+			}
+		}
+
+		if(gDuartStruct.readPtr &lt; gDuartStruct.readCount) 
+		{
+			while(!(*UDSR & 1) && (gDuartStruct.readCount &gt;= gDuartStruct.readPtr))
+			{
+				readBuf[gDuartStruct.readPtr++] = *URBR;
+			}
+		}
+		// indicate to the user that read buffer has more data.
+		semGive(gDuartStruct.getRDAcess);
+	}
+	intUnlock(oldlevel);    // re-enable interrupts
+}
+										</code></pre>
+										<p>Once we left the ISR, the kernel will call EOI (end of Interrupt) and will notify the CPU.</p>
+										<p>In the real world however, many times you will not be using all the interface functions. So your design will not involve adding a device (<b>iosDevAdd</b>), installing interfaces (<b>iosDrvInstall</b>) etc,.</p>
+										<p>You directly declare your ISR and connect it to a particular vector. After that you can communicate to your device back and forth via interrupts and via user task that processes the responses from the ISR.</p>
+										<p>Here is a diagram which helps you understand more clearly.</p>
+
+										<span class="image"><img src="images/VxWorks-user-task-and-isr.png" alt="VxWorks User Task and ISR" /></span>
+
+                                                                		<section>
+                                                                        		<header class="major">
+												<h2>User Interaction with a driver</h2>
+                                                                        		</header>
+                                                                		</section>
+
+										<p>Once you have compiled your driver module, you can link it statically or load it dynamically.</p>
+										<p>For the DUART driver to be used, you have to install the device and add the device. You can modify your DuartInit routine to automatically call DuartCreate function.</p>
+
+										<pre><code class="lang-c">
+fd = DuartCreate("/duart0");
+										</code></pre>
+										<p>Make sure your DuartInit is called during your system initialization, say at the end of <b>SysHardwareInit()</b></p>
+
+										<p>Write a user application to use the duart by using the following code.</p>
+
+										<p>Open the device with required permissions.</p>
+
+										<pre><code class="lang-c">
+										
+if((fd=open("/duart0", O_RDWR, 0666)) == ERROR)
+{
+
+}
+else
+{
+	// you can read and write to the device
+	write(fd, buf, size);
+	read(fd, buf, size);
+	close(fd);
+}
+										</code></pre>
+
+										<p>For debugging your driver, connect your Tornado and use GDB.</p>
+
+                                                                		<section>
+                                                                        		<header class="major">
+												<h2>Advanced Topics</h2>
+                                                                        		</header>
+                                                                		</section>
+										
+										<h3 id="content">Context Switching</h3>
+
+										<p>When the scheduler preempts a task it has to store the current state of the task in task's context storage area and will retrieve it later when the task is resumed. The current runnable tasks context is retrieved. This process of switching the contexts is called task switching or context switching.</p>
+
+										<ul>
+											<li>The highest priority task always runs till it requires no CPU time.</li>
+											<li>Higher priority tasks that are made ready preempt the currently executing task.</li>
+											<li>A context switch can occur by the currently executing task relinquishing control, or a higher priority task becoming ready. A currently executing task can relinquish control via a blocking call, which suspends task execution until the blocking requirement is met, or if a timeout of a blocking call invoked by a higher priority task occurs. A higher priority task may become available also via a blocking call requirement fulfilled resulting in the operating system performing a context switch, or a timeout on a blocking call occurring as previously mentioned. Interrupt handlers and currently executing tasks are common ways to initiate a context switch that results in the execution of a higher priority task.</li>
+											<li>Interrupt Service Routines (ISR) do not have a persistent context. ISRs have a transient execution context that executes at a higher priority than a task. Therefore, interrupt handlers preempt a task irrespective of the task's priority. Due to the transient nature of ISRs, they should not perform any blocking operation and therefore can not invoke a system call, or any routine, that does such. An ISR that attempts to block will more than likely result with the system in a deadlock state. Therefore special attention should be given to any calls made, or actions taken, from within the context of an ISR.</li>
+											<li>It is possible for an ISR to preempt another ISR, however this is board dependent and may not be allowed. The handling of the hardware interrupt, that in turn invokes the ISR registered for the interrupt, is board specific and is performed by the board support package software (BSP).  VxWorks provides an API that allows the developer to register an ISR with the BSP's board specific handler. This abstraction layer allows for board specific code to be segregated from the remainder of the application thus allowing for easier porting to new board types.</li>
+											<li>You can tell the system not to preempt your code by using taskLock() and release it later once you finished your critical section code using taskUnlock(). Note this is not a suggested mechanism, as your code cannot be interrupted. Also this might lead to unacceptable real time behavior, because a higher priority task can preempt a lower priority task that locked itself.</li>
+										</ul>
+
+										<h3 id="content">Reentrancy</h3>
+										<p>If a piece of code can be used by more then one task without the fear of data corruption, then it is said to be Reentrant. A reentrant function can be interrupted at any time and resumed latter without loss or corruption of data.</p>
+										<p>To achieve reentrancy, use either local variables (i.e variables on stack rather then on heap, and CPU registers etc.,) or treat the code as critical section and protect the data. Most library routines are reentrant within VxWorks. If a function ends with _r(), then it is non reentrant.</p>
+
+										<h3 id="content">Priority inheritance</h3>
+										<p>Assume three tasks t1, t2, t3 with task priorities p1, p2, p3 such that p1 &gt; p2 &gt; p3. If task t3 is currently executing and holds access to shared resource s1 (ex. by holding a semaphore sem1), and if t1 preempts t3 and wants to access s1 via the sem1, t1 will be suspended as soon as it wants to access sem1, which  is held by t3. So to prevent deadlock, priority of task t3 will be made greater than or equal to that of t1 (i.e p3 &gt;= p1) till t3 gives the semaphore and relinquishes it's access to s1. Tasks t2 and t1 cannot preempt t3 until t3 gives sem1.</p>
+										<p>To support priority inversion, RTOS should support dynamic priorities.</p>
+
+										<h3 id="content">Address space</h3>
+										<p>In VxWorks, all code and text live together in a single address space. (VxWorks has come up with new version called AE which has different user and kernel address spaces). So if your code is poorly written, it can actually enter the kernel text and corrupt the OS, which can cause some serious problems. Having a single common address space improves the performance of your system. When you are using virtual memory, you still have to map between virtual and physical memory within your driver.</p>
+
+										<h3 id="content">Cache Coherency</h3>
+
+										<span class="image"><img src="images/VxWorks-cpu-cache.png" alt="VxWorks CPU Cache" /></span>
+
+										<p>Depending upon your processor and BSP design, typically CPU caches data and instructions for improved performance. If you are DMAing data between your device and RAM, then your driver should guarantee cache coherency. This is typically done in two ways.</p>
+										<ol>
+											<li>Mark a portion of memory within your RAM as non-cachable. Allocate cache safe buffers from this memory.</li>
+											<li>Alternatively, use <b>cacheFlush()</b> and <b>cacheInvalidate()</b> routines provided by VxWorks. If Device is reading data from RAM, first flush the cache and then read data. If Device is writing to RAM, write to RAM and then invalidate the cache immediately. This way CPU's cache will be in sync with RAM.</li>
+										</ol>
+
+										<h3 id="content">Implementing Select Call</h3>
+
+										<p>Select call lets your driver support multiple devices and a task can wait on all or some of these devices at the same time for at least one of the devices to be ready for IO. These tasks can specify timeout period for the devices to become ready.</p>
+										<p>Most of the functionality for select call is supported in <b>selectLib</b> library. Your <b>ioctl()</b> is called whenever user calls select() with an argument <b>FIOSELECT</b>. To support select() call,</p>
+										<ol>
+											<li>Declare <b>SEL_WAKEUP_LIST</b> as part of your device descriptor structure and initialize it by calling <b>selWakeupList</b> within your <b>xxDevCreate()</b> routine.</li>
+											<li>Add <b>SEL_WAKEUP_NODE</b>, which is the third argument to your ioctl(), to the wakeup list.</li>
+											<li>Use <b>selWakeupType</b> to determine if the task is waiting for read or write.</li>
+											<li>If the device is ready, call <b>selWakeupAll</b>, to unblock all tasks waiting.</li>
+											<li>Implement FIOUNSELECT to delete a node</li>
+										</ol>
+
+
+                                                                		<!-- Break -->
+
+										<hr class="major" />
+
+										<div class="row">
+                                                                                        <div class="col-4 col-12-medium">
+                                                                                        </div>
+                                                                                        <div class="col-4 col-12-medium">
+												<ul class="actions">
+													<li><a href="index.html" class="button primary fit">Back to Home</a></li>
+												</ul>
+                                                                                        </div>
+                                                                                        <div class="col-4 col-12-medium">
+                                                                                        </div>
+                                                                                </div>
+
+
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Search -->
+								<section id="search" class="alt">
+									<form method="get" action="https://www.google.com/search" target="_blank">
+										<input type="hidden" name="sitesearch" value="www.vxworks6.com" />
+										<input type="text" name="query" id="query" placeholder="Search" />
+									</form>
+								</section>
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li>
+											<span class="opener">Getting started with VxWorks</span>
+											<ul>
+												<li><a href="the-wind-river-ecosystem.html">The Wind River Ecosystem</a></li>
+												<li><a href="vxworks-key-features.html">VxWorks Key Features</a></li>
+												<li><a href="workbench-4-overview.html">Workbench 4 Overview</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Target and connections overview</span>
+											<ul>
+												<li><a href="hardware-target-configuration.html">Hardware Target Configuration</a></li>
+												<li><a href="booting-a-hardware-target.html">Booting a Hardware Target</a></li>
+												<li><a href="workbench-tools-architecture.html">Workbench Tools Architecture</a></li>
+												<li><a href="simulation-overview.html">Simulation Overview</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Managing Projects in Workbench</span>
+											<ul>
+												<li><a href="introduction-to-projects-and-workspaces.html">Introduction to Projects and Workspaces</a></li>
+												<li><a href="vxworks-directory-structure-and-package-management.html">VxWorks Directory Structure and Package Management</a></li>
+												<li><a href="vxworks-source-build-and-image-projects.html">VxWorks Source Build and Image Projects</a></li>
+												<li><a href="the-vxprj-utility.html">The vxprj Utility</a></li>
+												<li><a href="read-only-memory-file-system.html">Read-Only Memory File System</a></li>
+												<li><a href="configuring-and-building-a-project.html">Configuring and Building a Project</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">VxWorks Kernel Shell</span>
+											<ul>
+												<li><a href="introduction-to-the-kernel-shell.html">Introduction to the Kernel Shell</a></li>
+												<li><a href="command-line-editing-and-object-module-loader.html">Command-line Editing and Object-Module Loader</a></li>
+												<li><a href="kernel-shell-configuration-and-commands.html">Kernel Shell Configuration and Commands</a></li>
+												<li><a href="kernel-shell-usage.html">Kernel Shell Usage</a></li>
+												<li><a href="wrap-up.html">Let's Wrap Up</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Popular</h2>
+									</header>
+									<div class="mini-posts">
+										<article>
+											<a href="configuring-and-building-a-project.html" class="image"><img src="images/Configuring-and-Building-a-Project-small.png" alt="Configuring and Building a Project" /></a>
+											<p>Configuring and setting up the VSB and VIP is known as platform development.</p>
+										</article>
+										<article>
+											<a href="vxworks-key-features.html" class="image"><img src="images/VxWorks-key-features-small.png" alt="VxWorks Key Features" /></a>
+											<p>VxWorks is a robust operating system; it has many useful and powerful features for you to use in your project.</p>
+										</article>
+										<article>
+											<a href="hardware-target-configuration.html" class="image"><img src="images/Hardware-Target-Configuration-small.png" alt="Hardware Target Configuration" /></a>
+											<p>All VxWorks projects are different, but they all require hardware configuration.</p>
+										</article>
+										<article>
+											<a href="using-vxWorks-bsp-with-zynq-7000-ap-soc.html" class="image"><img src="images/soc/VxWorks-on-Zynq-UltraScale-MPSoC-small.png" alt="VxWorks BSP with Zynq 7000" /></a>
+											<p>Step-by-step instructions for running the VxWorks 6.9.3.1 BSP on the Zynq-7000 SoC.</p>
+										</article>
+									</div>
+									<ul class="actions">
+										<li><a href="using-vxWorks-bsp-with-zynq-7000-ap-soc.html" class="button">More</a></li>
+									</ul>
+								</section>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Get in touch</h2>
+									</header>
+									<ul class="contact">
+										<li class="icon solid fa-envelope"><a href="#">admin@vxworks6.com</a></li>
+									</ul>
+								</section>
+
+							<!-- Footer -->
+								<footer id="footer">
+                                                                        <p class="copyright">VxWorks Club &copy; <a href="https://www.vxworks.net" target="_blank">VxWorks</a></p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

@@ -6,7 +6,16 @@
     <description>Recent content in VxWorks on VxWorks 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 15 Sep 2024 23:54:35 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/vxworks/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 22 Sep 2024 15:41:16 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/vxworks/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VxWorks操作系统下的串口读写程序</title>
+      <link>https://www.vxworks7.com/post/vxworks/research-on-semi-physical-simulation-platform-for-flight-control-system-of-uav-based-on-matlab-and-vxworks.html</link>
+      <pubDate>Sun, 22 Sep 2024 15:41:16 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/post/vxworks/research-on-semi-physical-simulation-platform-for-flight-control-system-of-uav-based-on-matlab-and-vxworks.html</guid>
+      <description>&lt;p&gt;本文介绍了一种新的基于Matlab/ RTW(Real2Time Workshop) 和VxWorks 实时操作系统的仿真方法,构建了基于Simulink 的某型无人机飞控系统仿真模型,可自动生成优化的嵌入式实时仿真代码、在线调整模型参数并监视仿真数据。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>VxWorks免费书籍下载</title>
       <link>https://www.vxworks7.com/post/vxworks/vxworks-books.html</link>
