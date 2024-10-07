@@ -4,17 +4,16 @@
     <title>TP-LINK on VxWorks 7</title>
     <link>https://www.vxworks7.com/tags/tp-link/</link>
     <description>Recent content in TP-LINK on VxWorks 7</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 08 Jul 2023 13:00:54 -0400</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/tp-link/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 08 Jul 2023 13:00:54 -0400</lastBuildDate>
+    <atom:link href="https://www.vxworks7.com/tags/tp-link/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>TP-LINK WDR 7660 VxWorks系统分析</title>
       <link>https://www.vxworks7.com/post/app/tp-link-WDR-7660-VxWorks-system-analysis.html</link>
       <pubDate>Sat, 08 Jul 2023 13:00:54 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/post/app/tp-link-WDR-7660-VxWorks-system-analysis.html</guid>
       <description>&lt;p&gt;本文介绍了TP-LINK WDR 7660 VxWorks系统的逆向分析，并给出了获取VxWorks系统加载基址和利用符号表修复函数名的方法。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

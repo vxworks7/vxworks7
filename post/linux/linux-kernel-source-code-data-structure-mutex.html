@@ -4,7 +4,7 @@
 <head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)" />
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.135.0">
 <link rel="shortcut icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
@@ -32,6 +32,7 @@
 <meta property="article:modified_time" content="2022-10-16 16:43:23 &#43;0800 CST" />
 
 
+
   
   <link type="text/css" rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.2/css/all.min.css" />
   
@@ -39,11 +40,6 @@
 
 
 <link rel="stylesheet" href="/css/main.min.7d561ec9984cf0cb727fc88e14a92134576c99ccb9ce2f31b5b5541ab4ced328.css">
-  <style type="text/css">
-    .post-footer, .flinks-list-footer hr:after {
-      content: "~ 我可是有底线的哟 ~";
-    }
-  </style>
   <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"linux-kernel-source-code-data-structure-mutex.html","permalink":"https://www.vxworks7.com/post/linux/linux-kernel-source-code-data-structure-mutex.html","title":"带你走进Linux内核源码中最常见的数据结构之「mutex」"}</script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
@@ -116,7 +112,7 @@
     </li>
     <li class="menu-item menu-item-archives">
       <a href="/archives/" class="hvr-icon-pulse " rel="section"><i class="fa fa-archive hvr-icon"></i>归档
-        <span class="badge">95</span>
+        <span class="badge">94</span>
       </a>
     </li>
     <li class="menu-item menu-item-commonweal">
@@ -205,7 +201,7 @@
   <nav class="site-state">
     <div class="site-state-item site-state-posts">
       <a href="/archives/">
-        <span class="site-state-item-count">95</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -217,7 +213,7 @@
     </div>
     <div class="site-state-item site-state-tags">
       <a href="/tags/">
-        <span class="site-state-item-count">133</span>
+        <span class="site-state-item-count">131</span>
         <span class="site-state-item-name">标签</span>
       </a>
     </div>
@@ -283,11 +279,11 @@
       </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-font"></i>总字数：</div>
-      <div class="item-count" id="wordsCount" data-count="28953"></div>
+      <div class="item-count" id="wordsCount" data-count="28814"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-mug-hot"></i>阅读约：</div>
-      <div class="item-count" id="readTimes" data-times="193"></div>
+      <div class="item-count" id="readTimes" data-times="192"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
@@ -377,7 +373,7 @@
   <span class="post-meta-item-icon">
     <i class="far fa-file-word"></i>
   </span>
-  <span class="post-meta-item-text">字数：</span><span>497</span>
+  <span class="post-meta-item-text">字数：</span><span>499</span>
 </span>
     
 <span class="post-meta-item" title="阅读">
@@ -429,35 +425,35 @@
 <p>mutex就像一个司机返回的信号，说“我们到了！”</p>
 <h2 id="实现">实现</h2>
 <p>看一下Linux kernel-5.8是如何实现mutex的2 实现</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#66d9ef">struct</span> mutex {
-  atomic_long_t    owner;
-  spinlock_t    wait_lock;
-<span style="color:#75715e">#ifdef CONFIG_MUTEX_SPIN_ON_OWNER
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">struct</span> optimistic_spin_queue osq; <span style="color:#75715e">/* Spinner MCS lock */</span>
-<span style="color:#75715e">#endif
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">struct</span> list_head  wait_list;
-<span style="color:#75715e">#ifdef CONFIG_DEBUG_MUTEXES
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">void</span>      <span style="color:#f92672">*</span>magic;
-<span style="color:#75715e">#endif
-</span><span style="color:#75715e">#ifdef CONFIG_DEBUG_LOCK_ALLOC
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">struct</span> lockdep_map  dep_map;
-<span style="color:#75715e">#endif
-</span><span style="color:#75715e"></span>};
-</code></pre></div><p>可以看到，mutex使用了原子变量owner来追踪锁的状态，owner实际上是指向当前mutex锁拥有者的struct task_struct *指针，所以当锁没有被持有时，owner为NULL。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#75715e">/*
-</span><span style="color:#75715e"> * This is the control structure for tasks blocked on mutex,
-</span><span style="color:#75715e"> * which resides on the blocked task&#39;s kernel stack:
-</span><span style="color:#75715e"> * 表示等待队列wait_list中进程的结构体
-</span><span style="color:#75715e"> */</span>
-<span style="color:#66d9ef">struct</span> mutex_waiter {
-  <span style="color:#66d9ef">struct</span> list_head  list;
-  <span style="color:#66d9ef">struct</span> task_struct  <span style="color:#f92672">*</span>task;
-  <span style="color:#66d9ef">struct</span> ww_acquire_ctx  <span style="color:#f92672">*</span>ww_ctx;
-<span style="color:#75715e">#ifdef CONFIG_DEBUG_MUTEXES
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">void</span>      <span style="color:#f92672">*</span>magic;
-<span style="color:#75715e">#endif
-</span><span style="color:#75715e"></span>};
-</code></pre></div><h3 id="上锁">上锁</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> mutex {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">atomic_long_t</span>    owner;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">spinlock_t</span>    wait_lock;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#ifdef CONFIG_MUTEX_SPIN_ON_OWNER
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">struct</span> optimistic_spin_queue osq; <span style="color:#75715e">/* Spinner MCS lock */</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">struct</span> list_head  wait_list;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#ifdef CONFIG_DEBUG_MUTEXES
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">void</span>      <span style="color:#f92672">*</span>magic;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#ifdef CONFIG_DEBUG_LOCK_ALLOC
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">struct</span> lockdep_map  dep_map;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>};
+</span></span></code></pre></div><p>可以看到，mutex使用了原子变量owner来追踪锁的状态，owner实际上是指向当前mutex锁拥有者的struct task_struct *指针，所以当锁没有被持有时，owner为NULL。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * This is the control structure for tasks blocked on mutex,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * which resides on the blocked task&#39;s kernel stack:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 表示等待队列wait_list中进程的结构体
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> mutex_waiter {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">struct</span> list_head  list;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">struct</span> task_struct  <span style="color:#f92672">*</span>task;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">struct</span> ww_acquire_ctx  <span style="color:#f92672">*</span>ww_ctx;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#ifdef CONFIG_DEBUG_MUTEXES
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">void</span>      <span style="color:#f92672">*</span>magic;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>};
+</span></span></code></pre></div><h3 id="上锁">上锁</h3>
 <p>当要获取mutex时，通常有三种路径方式</p>
 <p>fastpath: 通过 cmpxchg() 当前任务与所有者来尝试原子性的获取锁。这仅适用于无竞争的情况（cmpxchg() 检查 0UL，因此上面的所有 3 个状态位都必须为 0）。如果锁被争用，它会转到下一个可能的路径。</p>
 <p>midpath: 又名乐观旋转（optimistic spinning）—在锁的持有者正在运行并且没有其他具有更高优先级（need_resched）的任务准备运行时，通过旋转来获取锁。理由是如果锁的所有者正在运行，它很可能很快就会释放锁。mutex spinner使用 MCS 锁排队，因此只有一个spinner可以竞争mutex。</p>
@@ -465,163 +461,161 @@
 <p>slowpath: 最后的手段，如果仍然无法获得锁，则将任务添加到等待队列并休眠，直到被解锁路径唤醒。在正常情况下它阻塞为 TASK_UNINTERRUPTIBLE。
 虽然正式的内核互斥锁是可休眠的锁，但midpath路径 (ii) 使它们更实际地成为混合类型。通过简单地不中断任务并忙于等待几个周期而不是立即休眠，此锁的性能已被视为显着改善了许多工作负载。请注意，此技术也用于 rw 信号量。</p>
 <p>具体代码调用链很长…</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#75715e">/*不可中断的获取锁*/</span>
-<span style="color:#66d9ef">void</span> __sched <span style="color:#a6e22e">mutex_lock</span>(<span style="color:#66d9ef">struct</span> mutex <span style="color:#f92672">*</span>lock)
-{
-    might_sleep();
-    <span style="color:#75715e">/*fastpath*/</span>
-    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>__mutex_trylock_fast(lock))
-        <span style="color:#75715e">/*midpath and slowpath*/</span>
-        __mutex_lock_slowpath(lock);
-}
-
-__mutex_trylock_fast(lock) <span style="color:#f92672">-&gt;</span> atomic_long_try_cmpxchg_acquire(<span style="color:#f92672">&amp;</span>lock<span style="color:#f92672">-&gt;</span>owner, <span style="color:#f92672">&amp;</span>zero, curr) <span style="color:#f92672">-&gt;</span> atomic64_try_cmpxchg_acquire(v, (s64 <span style="color:#f92672">*</span>)old, new);
-
-__mutex_lock_slowpath(lock)<span style="color:#f92672">-&gt;</span>__mutex_lock(lock, TASK_UNINTERRUPTIBLE, <span style="color:#ae81ff">0</span>, NULL, _RET_IP_) <span style="color:#f92672">-&gt;</span>  __mutex_lock_common(lock, state, subclass, nest_lock, ip, NULL, false)
-  
-  
-<span style="color:#75715e">/*可中断的获取锁*/</span>
-<span style="color:#66d9ef">int</span> mutex_lock_interruptible(<span style="color:#66d9ef">struct</span> mutex <span style="color:#f92672">*</span>lock);
-</code></pre></div><h3 id="尝试上锁">尝试上锁</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> __sched <span style="color:#a6e22e">mutex_trylock</span>(<span style="color:#66d9ef">struct</span> mutex <span style="color:#f92672">*</span>lock)
-{
-  <span style="color:#66d9ef">bool</span> locked;
-
-<span style="color:#75715e">#ifdef CONFIG_DEBUG_MUTEXES
-</span><span style="color:#75715e"></span>  DEBUG_LOCKS_WARN_ON(lock<span style="color:#f92672">-&gt;</span>magic <span style="color:#f92672">!=</span> lock);
-<span style="color:#75715e">#endif
-</span><span style="color:#75715e"></span>
-  locked <span style="color:#f92672">=</span> __mutex_trylock(lock);
-  <span style="color:#66d9ef">if</span> (locked)
-    mutex_acquire(<span style="color:#f92672">&amp;</span>lock<span style="color:#f92672">-&gt;</span>dep_map, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, _RET_IP_);
-
-  <span style="color:#66d9ef">return</span> locked;
-}
-
-<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">__mutex_trylock</span>(<span style="color:#66d9ef">struct</span> mutex <span style="color:#f92672">*</span>lock)
-{
-  <span style="color:#66d9ef">return</span> <span style="color:#f92672">!</span>__mutex_trylock_or_owner(lock);
-}
-</code></pre></div><h3 id="释放锁">释放锁</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#66d9ef">void</span> __sched <span style="color:#a6e22e">mutex_unlock</span>(<span style="color:#66d9ef">struct</span> mutex <span style="color:#f92672">*</span>lock)
-{
-<span style="color:#75715e">#ifndef CONFIG_DEBUG_LOCK_ALLOC
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (__mutex_unlock_fast(lock))
-    <span style="color:#66d9ef">return</span>;
-<span style="color:#75715e">#endif
-</span><span style="color:#75715e"></span>  __mutex_unlock_slowpath(lock, _RET_IP_);
-}
-<span style="color:#960050;background-color:#1e0010">跟加锁对称，也有</span>fastpath, midpath, slowpath三条路径<span style="color:#960050;background-color:#1e0010">。</span>
-</code></pre></div><p>判断锁状态</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">mutex_is_locked</span>(<span style="color:#66d9ef">struct</span> mutex <span style="color:#f92672">*</span>lock)
-{
-  <span style="color:#66d9ef">return</span> __mutex_owner(lock) <span style="color:#f92672">!=</span> NULL;
-}
-</code></pre></div><p>很显而易见，mutex持有者不为NULL即表示锁定状态。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">/*不可中断的获取锁*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> __sched <span style="color:#a6e22e">mutex_lock</span>(<span style="color:#66d9ef">struct</span> mutex <span style="color:#f92672">*</span>lock)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">might_sleep</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/*fastpath*/</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">__mutex_trylock_fast</span>(lock))
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/*midpath and slowpath*/</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">__mutex_lock_slowpath</span>(lock);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">__mutex_trylock_fast</span>(lock) <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">atomic_long_try_cmpxchg_acquire</span>(<span style="color:#f92672">&amp;</span>lock<span style="color:#f92672">-&gt;</span>owner, <span style="color:#f92672">&amp;</span>zero, curr) <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">atomic64_try_cmpxchg_acquire</span>(v, (s64 <span style="color:#f92672">*</span>)old, new);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">__mutex_lock_slowpath</span>(lock)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">__mutex_lock</span>(lock, TASK_UNINTERRUPTIBLE, <span style="color:#ae81ff">0</span>, NULL, _RET_IP_) <span style="color:#f92672">-&gt;</span>  <span style="color:#a6e22e">__mutex_lock_common</span>(lock, state, subclass, nest_lock, ip, NULL, false)
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/*可中断的获取锁*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">mutex_lock_interruptible</span>(<span style="color:#66d9ef">struct</span> mutex <span style="color:#f92672">*</span>lock);
+</span></span></code></pre></div><h3 id="尝试上锁">尝试上锁</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> __sched <span style="color:#a6e22e">mutex_trylock</span>(<span style="color:#66d9ef">struct</span> mutex <span style="color:#f92672">*</span>lock)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">bool</span> locked;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#ifdef CONFIG_DEBUG_MUTEXES
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">DEBUG_LOCKS_WARN_ON</span>(lock<span style="color:#f92672">-&gt;</span>magic <span style="color:#f92672">!=</span> lock);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  locked <span style="color:#f92672">=</span> <span style="color:#a6e22e">__mutex_trylock</span>(lock);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (locked)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mutex_acquire</span>(<span style="color:#f92672">&amp;</span>lock<span style="color:#f92672">-&gt;</span>dep_map, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, _RET_IP_);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> locked;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">__mutex_trylock</span>(<span style="color:#66d9ef">struct</span> mutex <span style="color:#f92672">*</span>lock)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">__mutex_trylock_or_owner</span>(lock);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="释放锁">释放锁</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> __sched <span style="color:#a6e22e">mutex_unlock</span>(<span style="color:#66d9ef">struct</span> mutex <span style="color:#f92672">*</span>lock)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#ifndef CONFIG_DEBUG_LOCK_ALLOC
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">__mutex_unlock_fast</span>(lock))
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">__mutex_unlock_slowpath</span>(lock, _RET_IP_);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">跟加锁对称，也有</span>fastpath, midpath, slowpath三条路径<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span></code></pre></div><p>判断锁状态</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">mutex_is_locked</span>(<span style="color:#66d9ef">struct</span> mutex <span style="color:#f92672">*</span>lock)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">__mutex_owner</span>(lock) <span style="color:#f92672">!=</span> NULL;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>很显而易见，mutex持有者不为NULL即表示锁定状态。</p>
 <h2 id="实际案例">实际案例</h2>
 <p>实验：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pthread.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">#define LOOP 1000000
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">int</span> cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-<span style="color:#66d9ef">int</span> cs1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, cs2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-
-<span style="color:#66d9ef">void</span><span style="color:#f92672">*</span> <span style="color:#a6e22e">task</span>(<span style="color:#66d9ef">void</span><span style="color:#f92672">*</span> args) {
-    <span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">1</span>)
-    {
-        <span style="color:#66d9ef">if</span>(cnt <span style="color:#f92672">&gt;=</span> LOOP)
-        {
-            <span style="color:#66d9ef">break</span>;
-        }
-        cnt<span style="color:#f92672">++</span>;
-        <span style="color:#66d9ef">if</span>((<span style="color:#66d9ef">int</span>)args <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) cs1 <span style="color:#f92672">++</span>; <span style="color:#66d9ef">else</span> cs2<span style="color:#f92672">++</span>;
-    }
-    <span style="color:#66d9ef">return</span> NULL;
-}
-
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
-    pthread_t tid1;
-    pthread_t tid2;
-    <span style="color:#75715e">/* create the thread */</span>
-    pthread_create(<span style="color:#f92672">&amp;</span>tid1, NULL, task, (<span style="color:#66d9ef">void</span><span style="color:#f92672">*</span>)<span style="color:#ae81ff">1</span>);
-    pthread_create(<span style="color:#f92672">&amp;</span>tid2, NULL, task, (<span style="color:#66d9ef">void</span><span style="color:#f92672">*</span>)<span style="color:#ae81ff">2</span>);
-    <span style="color:#75715e">/* wait for thread to exit */</span>
-    pthread_join(tid1, NULL);
-    pthread_join(tid2, NULL);
-
-    printf(<span style="color:#e6db74">&#34;cnt = %d cs1=%d cs2=%d total=%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, cnt,cs1,cs2,cs1<span style="color:#f92672">+</span>cs2);
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-</code></pre></div><p>输出：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000000</span> cs1<span style="color:#f92672">=</span><span style="color:#ae81ff">958560</span> cs2<span style="color:#f92672">=</span><span style="color:#ae81ff">1520226</span> total<span style="color:#f92672">=</span><span style="color:#ae81ff">2478786</span>
-</code></pre></div><p>正确结果不应该是1000000吗？为什么会出错呢，我们可以从汇编角度来分析一下。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">$&gt; g++ -E test.c -o test.i
-$&gt; g++ -S test.i -o test.s
-$&gt; vim test.s
-  
-.file <span style="color:#e6db74">&#34;test.c&#34;</span>
-  .globl  _cnt
-  .bss
-  .align <span style="color:#ae81ff">4</span>
-_cnt:
-  .space <span style="color:#ae81ff">4</span>
-  .text
-  .globl  __Z5task1Pv
-  .def  __Z5task1Pv;  .scl  2;  .type 32; .endef
-__Z5task1Pv:
-  ...
-
-</code></pre></div><p>我们可以看到一个简单的cnt++，对应</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">movl  _cnt, %eax
-addl  $1, %eax
-movl  %eax, _cnt
-</code></pre></div><p>CPU先将cnt的值读到寄存器eax中，然后将[eax] + 1，最后将eax的值返回到cnt中，这些操作不是**原子性质(atomic)**的，这就导致cnt被多个线程操作时，+1过程会被打断。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pthread.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define LOOP 1000000
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> cs1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, cs2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span><span style="color:#f92672">*</span> <span style="color:#a6e22e">task</span>(<span style="color:#66d9ef">void</span><span style="color:#f92672">*</span> args) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(cnt <span style="color:#f92672">&gt;=</span> LOOP)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        cnt<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>((<span style="color:#66d9ef">int</span>)args <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) cs1 <span style="color:#f92672">++</span>; <span style="color:#66d9ef">else</span> cs2<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> NULL;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pthread_t</span> tid1;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pthread_t</span> tid2;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/* create the thread */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">pthread_create</span>(<span style="color:#f92672">&amp;</span>tid1, NULL, task, (<span style="color:#66d9ef">void</span><span style="color:#f92672">*</span>)<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">pthread_create</span>(<span style="color:#f92672">&amp;</span>tid2, NULL, task, (<span style="color:#66d9ef">void</span><span style="color:#f92672">*</span>)<span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/* wait for thread to exit */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">pthread_join</span>(tid1, NULL);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">pthread_join</span>(tid2, NULL);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;cnt = %d cs1=%d cs2=%d total=%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, cnt,cs1,cs2,cs1<span style="color:#f92672">+</span>cs2);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>输出：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000000</span> cs1<span style="color:#f92672">=</span><span style="color:#ae81ff">958560</span> cs2<span style="color:#f92672">=</span><span style="color:#ae81ff">1520226</span> total<span style="color:#f92672">=</span><span style="color:#ae81ff">2478786</span>
+</span></span></code></pre></div><p>正确结果不应该是1000000吗？为什么会出错呢，我们可以从汇编角度来分析一下。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$&gt; g++ -E test.c -o test.i
+</span></span><span style="display:flex;"><span>$&gt; g++ -S test.i -o test.s
+</span></span><span style="display:flex;"><span>$&gt; vim test.s
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>.file <span style="color:#e6db74">&#34;test.c&#34;</span>
+</span></span><span style="display:flex;"><span>  .globl  _cnt
+</span></span><span style="display:flex;"><span>  .bss
+</span></span><span style="display:flex;"><span>  .align <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>_cnt:
+</span></span><span style="display:flex;"><span>  .space <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>  .text
+</span></span><span style="display:flex;"><span>  .globl  __Z5task1Pv
+</span></span><span style="display:flex;"><span>  .def  __Z5task1Pv;  .scl  2;  .type 32; .endef
+</span></span><span style="display:flex;"><span>__Z5task1Pv:
+</span></span><span style="display:flex;"><span>  ...
+</span></span></code></pre></div><p>我们可以看到一个简单的cnt++，对应</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>movl  _cnt, %eax
+</span></span><span style="display:flex;"><span>addl  $1, %eax
+</span></span><span style="display:flex;"><span>movl  %eax, _cnt
+</span></span></code></pre></div><p>CPU先将cnt的值读到寄存器eax中，然后将[eax] + 1，最后将eax的值返回到cnt中，这些操作不是**原子性质(atomic)**的，这就导致cnt被多个线程操作时，+1过程会被打断。</p>
 <p>加入mutex保护临界资源</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pthread.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">#define LOOP 1000000
-</span><span style="color:#75715e"></span>
-pthread_mutex_t mutex;
-<span style="color:#66d9ef">int</span> cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-<span style="color:#66d9ef">int</span> cs1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, cs2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-
-<span style="color:#66d9ef">void</span><span style="color:#f92672">*</span> <span style="color:#a6e22e">task</span>(<span style="color:#66d9ef">void</span><span style="color:#f92672">*</span> args) {
-    <span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">1</span>)
-    {
-        pthread_mutex_lock(<span style="color:#f92672">&amp;</span>mutex);
-        <span style="color:#66d9ef">if</span>(cnt <span style="color:#f92672">&gt;=</span> LOOP)
-        {
-            pthread_mutex_unlock(<span style="color:#f92672">&amp;</span>mutex);
-            <span style="color:#66d9ef">break</span>;
-        }
-        cnt<span style="color:#f92672">++</span>;
-        pthread_mutex_unlock(<span style="color:#f92672">&amp;</span>mutex);
-        <span style="color:#66d9ef">if</span>((<span style="color:#66d9ef">int</span>)args <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) cs1 <span style="color:#f92672">++</span>; <span style="color:#66d9ef">else</span> cs2<span style="color:#f92672">++</span>;
-    }
-    <span style="color:#66d9ef">return</span> NULL;
-}
-
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
-    pthread_mutex_init(<span style="color:#f92672">&amp;</span>mutex , NULL);
-    pthread_t tid1;
-    pthread_t tid2;
-    <span style="color:#75715e">/* create the thread */</span>
-    pthread_create(<span style="color:#f92672">&amp;</span>tid1, NULL, task, (<span style="color:#66d9ef">void</span><span style="color:#f92672">*</span>)<span style="color:#ae81ff">1</span>);
-    pthread_create(<span style="color:#f92672">&amp;</span>tid2, NULL, task, (<span style="color:#66d9ef">void</span><span style="color:#f92672">*</span>)<span style="color:#ae81ff">2</span>);
-    <span style="color:#75715e">/* wait for thread to exit */</span>
-    pthread_join(tid1, NULL);
-    pthread_join(tid2, NULL);
-
-    printf(<span style="color:#e6db74">&#34;cnt = %d cs1=%d cs2=%d total=%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, cnt,cs1,cs2,cs1<span style="color:#f92672">+</span>cs2);
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-
-</code></pre></div><p>输出：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000000</span> cs1<span style="color:#f92672">=</span><span style="color:#ae81ff">517007</span> cs2<span style="color:#f92672">=</span><span style="color:#ae81ff">482993</span> total<span style="color:#f92672">=</span><span style="color:#ae81ff">1000000</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pthread.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define LOOP 1000000
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">pthread_mutex_t</span> mutex;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> cs1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, cs2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span><span style="color:#f92672">*</span> <span style="color:#a6e22e">task</span>(<span style="color:#66d9ef">void</span><span style="color:#f92672">*</span> args) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">pthread_mutex_lock</span>(<span style="color:#f92672">&amp;</span>mutex);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(cnt <span style="color:#f92672">&gt;=</span> LOOP)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">pthread_mutex_unlock</span>(<span style="color:#f92672">&amp;</span>mutex);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        cnt<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">pthread_mutex_unlock</span>(<span style="color:#f92672">&amp;</span>mutex);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>((<span style="color:#66d9ef">int</span>)args <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) cs1 <span style="color:#f92672">++</span>; <span style="color:#66d9ef">else</span> cs2<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> NULL;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">pthread_mutex_init</span>(<span style="color:#f92672">&amp;</span>mutex , NULL);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pthread_t</span> tid1;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pthread_t</span> tid2;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/* create the thread */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">pthread_create</span>(<span style="color:#f92672">&amp;</span>tid1, NULL, task, (<span style="color:#66d9ef">void</span><span style="color:#f92672">*</span>)<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">pthread_create</span>(<span style="color:#f92672">&amp;</span>tid2, NULL, task, (<span style="color:#66d9ef">void</span><span style="color:#f92672">*</span>)<span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/* wait for thread to exit */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">pthread_join</span>(tid1, NULL);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">pthread_join</span>(tid2, NULL);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;cnt = %d cs1=%d cs2=%d total=%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, cnt,cs1,cs2,cs1<span style="color:#f92672">+</span>cs2);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>输出：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000000</span> cs1<span style="color:#f92672">=</span><span style="color:#ae81ff">517007</span> cs2<span style="color:#f92672">=</span><span style="color:#ae81ff">482993</span> total<span style="color:#f92672">=</span><span style="color:#ae81ff">1000000</span>
+</span></span></code></pre></div>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1543398821442998"
      crossorigin="anonymous"></script>
 
@@ -768,7 +762,7 @@ pthread_mutex_t mutex;
   
   <script type="text/javascript" src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js" defer></script>
 
-<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
+<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com/","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
 
 
 
@@ -776,7 +770,7 @@ pthread_mutex_t mutex;
 
 
 
-<script type="text/javascript" src="/js/main.min.7e59cf1a98d842830d8a6f149f78fbbcf9e795b7a9eb76feb34b48c9bf1554d7.js" defer></script>
+<script type="text/javascript" src="/js/main.min.8bc1e2a2ac040735a2a32d113d257bd75c45142b9842ad7526f7de5e3d3a9298.js" defer></script>
 
 
 

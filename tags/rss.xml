@@ -4,1205 +4,926 @@
     <title>Tags on VxWorks 7</title>
     <link>https://www.vxworks7.com/tags/</link>
     <description>Recent content in Tags on VxWorks 7</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 22 Sep 2024 15:41:16 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 22 Sep 2024 15:41:16 +0800</lastBuildDate>
+    <atom:link href="https://www.vxworks7.com/tags/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Matlab</title>
       <link>https://www.vxworks7.com/tags/matlab/</link>
       <pubDate>Sun, 22 Sep 2024 15:41:16 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/matlab/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Books</title>
       <link>https://www.vxworks7.com/tags/books/</link>
       <pubDate>Sun, 15 Sep 2024 23:54:35 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/books/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>VxWorks</title>
       <link>https://www.vxworks7.com/tags/vxworks/</link>
       <pubDate>Sun, 15 Sep 2024 23:54:35 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/vxworks/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>AI</title>
       <link>https://www.vxworks7.com/tags/ai/</link>
       <pubDate>Sat, 03 Aug 2024 18:02:03 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/ai/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>ORAN</title>
       <link>https://www.vxworks7.com/tags/oran/</link>
       <pubDate>Sat, 03 Aug 2024 18:02:03 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/oran/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>RTOS</title>
       <link>https://www.vxworks7.com/tags/rtos/</link>
       <pubDate>Sat, 03 Aug 2024 18:02:03 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/rtos/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>WindRiver</title>
       <link>https://www.vxworks7.com/tags/windriver/</link>
       <pubDate>Sat, 03 Aug 2024 18:02:03 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/windriver/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Interview</title>
       <link>https://www.vxworks7.com/tags/interview/</link>
       <pubDate>Sun, 21 Apr 2024 11:43:54 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/interview/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>linux</title>
+      <title>Linux</title>
       <link>https://www.vxworks7.com/tags/linux/</link>
       <pubDate>Sat, 30 Mar 2024 09:35:16 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/linux/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>LTS</title>
       <link>https://www.vxworks7.com/tags/lts/</link>
       <pubDate>Sat, 30 Mar 2024 09:35:16 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/lts/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>ubuntu</title>
+      <title>Ubuntu</title>
       <link>https://www.vxworks7.com/tags/ubuntu/</link>
       <pubDate>Sat, 30 Mar 2024 09:35:16 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/ubuntu/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>DNF5</title>
       <link>https://www.vxworks7.com/tags/dnf5/</link>
       <pubDate>Fri, 29 Mar 2024 17:30:40 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/dnf5/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Fedora 41</title>
       <link>https://www.vxworks7.com/tags/fedora-41/</link>
       <pubDate>Fri, 29 Mar 2024 17:30:40 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/fedora-41/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Command</title>
       <link>https://www.vxworks7.com/tags/command/</link>
       <pubDate>Thu, 21 Dec 2023 19:53:48 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/command/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>BSP</title>
       <link>https://www.vxworks7.com/tags/bsp/</link>
       <pubDate>Tue, 19 Dec 2023 15:19:34 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/bsp/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>T2080</title>
       <link>https://www.vxworks7.com/tags/t2080/</link>
       <pubDate>Tue, 19 Dec 2023 15:19:34 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/t2080/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>T20A80</title>
       <link>https://www.vxworks7.com/tags/t20a80/</link>
       <pubDate>Tue, 19 Dec 2023 15:19:34 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/t20a80/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Uboot</title>
       <link>https://www.vxworks7.com/tags/uboot/</link>
       <pubDate>Tue, 19 Dec 2023 15:19:34 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/uboot/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>VxWorks 7.0</title>
       <link>https://www.vxworks7.com/tags/vxworks-7.0/</link>
       <pubDate>Tue, 19 Dec 2023 15:19:34 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/vxworks-7.0/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>network</title>
+      <title>Network</title>
       <link>https://www.vxworks7.com/tags/network/</link>
       <pubDate>Sun, 17 Dec 2023 19:50:49 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/network/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Redundant Network</title>
       <link>https://www.vxworks7.com/tags/redundant-network/</link>
       <pubDate>Sun, 17 Dec 2023 19:50:49 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/redundant-network/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Cosign</title>
       <link>https://www.vxworks7.com/tags/cosign/</link>
       <pubDate>Sun, 17 Dec 2023 17:49:17 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/cosign/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>OCI</title>
       <link>https://www.vxworks7.com/tags/oci/</link>
       <pubDate>Sun, 17 Dec 2023 17:49:17 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/oci/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>IP</title>
       <link>https://www.vxworks7.com/tags/ip/</link>
       <pubDate>Fri, 15 Dec 2023 20:50:54 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/ip/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>FIFO</title>
       <link>https://www.vxworks7.com/tags/fifo/</link>
       <pubDate>Fri, 15 Dec 2023 17:00:17 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/fifo/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>fpga</title>
+      <title>FPGA</title>
       <link>https://www.vxworks7.com/tags/fpga/</link>
       <pubDate>Fri, 15 Dec 2023 17:00:17 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/fpga/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Ping Pong</title>
       <link>https://www.vxworks7.com/tags/ping-pong/</link>
       <pubDate>Fri, 15 Dec 2023 17:00:17 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/ping-pong/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Edge Operating System</title>
       <link>https://www.vxworks7.com/tags/edge-operating-system/</link>
       <pubDate>Wed, 13 Dec 2023 21:59:53 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/edge-operating-system/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Microsoft</title>
       <link>https://www.vxworks7.com/tags/microsoft/</link>
       <pubDate>Sun, 03 Dec 2023 09:34:18 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/microsoft/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>ThreadX</title>
       <link>https://www.vxworks7.com/tags/threadx/</link>
       <pubDate>Sun, 03 Dec 2023 09:34:18 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/threadx/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Edge Cloud</title>
       <link>https://www.vxworks7.com/tags/edge-cloud/</link>
       <pubDate>Sat, 02 Dec 2023 22:58:16 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/edge-cloud/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>QEMU(AI)</title>
       <link>https://www.vxworks7.com/tags/qemuai/</link>
       <pubDate>Sat, 09 Sep 2023 12:04:22 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/qemuai/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>VxWorks 7</title>
       <link>https://www.vxworks7.com/tags/vxworks-7/</link>
       <pubDate>Sat, 09 Sep 2023 12:04:22 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/vxworks-7/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>TP-LINK</title>
       <link>https://www.vxworks7.com/tags/tp-link/</link>
       <pubDate>Sat, 08 Jul 2023 13:00:54 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/tp-link/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>WDR 7660</title>
       <link>https://www.vxworks7.com/tags/wdr-7660/</link>
       <pubDate>Sat, 08 Jul 2023 13:00:54 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/wdr-7660/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>GPOS</title>
       <link>https://www.vxworks7.com/tags/gpos/</link>
       <pubDate>Sat, 08 Jul 2023 10:47:20 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/gpos/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>VxWorks 653</title>
       <link>https://www.vxworks7.com/tags/vxworks-653/</link>
       <pubDate>Sat, 08 Jul 2023 10:47:20 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/vxworks-653/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Exception</title>
       <link>https://www.vxworks7.com/tags/exception/</link>
       <pubDate>Sun, 18 Jun 2023 07:15:37 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/exception/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Programming</title>
       <link>https://www.vxworks7.com/tags/programming/</link>
       <pubDate>Sun, 18 Jun 2023 07:15:37 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/programming/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Task</title>
       <link>https://www.vxworks7.com/tags/task/</link>
       <pubDate>Sun, 18 Jun 2023 07:15:37 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/task/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Helix</title>
       <link>https://www.vxworks7.com/tags/helix/</link>
       <pubDate>Sun, 07 May 2023 11:13:00 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/helix/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Wind River</title>
       <link>https://www.vxworks7.com/tags/wind-river/</link>
       <pubDate>Sun, 07 May 2023 11:13:00 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/wind-river/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Real Time OS</title>
       <link>https://www.vxworks7.com/tags/real-time-os/</link>
       <pubDate>Wed, 03 May 2023 09:57:17 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/real-time-os/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Memory</title>
       <link>https://www.vxworks7.com/tags/memory/</link>
       <pubDate>Sat, 22 Apr 2023 12:31:25 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/memory/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>MMU</title>
       <link>https://www.vxworks7.com/tags/mmu/</link>
       <pubDate>Sat, 22 Apr 2023 12:31:25 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/mmu/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>IoT</title>
       <link>https://www.vxworks7.com/tags/iot/</link>
       <pubDate>Sat, 22 Apr 2023 11:36:52 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/iot/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>4th Intel Xeon Scalable</title>
       <link>https://www.vxworks7.com/tags/4th-intel-xeon-scalable/</link>
       <pubDate>Sat, 15 Apr 2023 08:51:48 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/4th-intel-xeon-scalable/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>5G</title>
       <link>https://www.vxworks7.com/tags/5g/</link>
       <pubDate>Sat, 15 Apr 2023 08:51:48 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/5g/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Device Tree</title>
       <link>https://www.vxworks7.com/tags/device-tree/</link>
       <pubDate>Sat, 15 Apr 2023 06:03:55 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/device-tree/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Driver Design</title>
       <link>https://www.vxworks7.com/tags/driver-design/</link>
       <pubDate>Sat, 15 Apr 2023 06:03:55 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/driver-design/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>DevOps</title>
       <link>https://www.vxworks7.com/tags/devops/</link>
       <pubDate>Thu, 06 Apr 2023 09:35:42 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/devops/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Simics Simulates Systems</title>
       <link>https://www.vxworks7.com/tags/simics-simulates-systems/</link>
       <pubDate>Thu, 06 Apr 2023 09:35:42 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/simics-simulates-systems/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>XaaS</title>
       <link>https://www.vxworks7.com/tags/xaas/</link>
       <pubDate>Fri, 31 Mar 2023 21:27:45 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/xaas/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Tornado</title>
       <link>https://www.vxworks7.com/tags/tornado/</link>
       <pubDate>Sat, 25 Mar 2023 22:40:08 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/tornado/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Nokia</title>
       <link>https://www.vxworks7.com/tags/nokia/</link>
       <pubDate>Sat, 14 Jan 2023 22:12:22 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/nokia/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Virtualization</title>
       <link>https://www.vxworks7.com/tags/virtualization/</link>
       <pubDate>Sat, 14 Jan 2023 22:12:22 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/virtualization/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Workbench</title>
       <link>https://www.vxworks7.com/tags/workbench/</link>
       <pubDate>Tue, 03 Jan 2023 08:27:58 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/workbench/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>O-RAN</title>
       <link>https://www.vxworks7.com/tags/o-ran/</link>
       <pubDate>Mon, 02 Jan 2023 09:08:24 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/o-ran/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Vodafone</title>
       <link>https://www.vxworks7.com/tags/vodafone/</link>
       <pubDate>Mon, 02 Jan 2023 09:08:24 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/vodafone/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Camera</title>
       <link>https://www.vxworks7.com/tags/camera/</link>
       <pubDate>Sat, 31 Dec 2022 01:26:47 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/camera/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>usb</title>
+      <title>Usb</title>
       <link>https://www.vxworks7.com/tags/usb/</link>
       <pubDate>Sat, 31 Dec 2022 01:26:47 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/usb/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>device driver</title>
+      <title>Device Driver</title>
       <link>https://www.vxworks7.com/tags/device-driver/</link>
       <pubDate>Thu, 29 Dec 2022 07:32:24 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/device-driver/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>VxBus</title>
+      <title>Vxbus</title>
       <link>https://www.vxworks7.com/tags/vxbus/</link>
       <pubDate>Thu, 29 Dec 2022 07:32:24 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/vxbus/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Multiple Task</title>
       <link>https://www.vxworks7.com/tags/multiple-task/</link>
       <pubDate>Wed, 28 Dec 2022 10:48:17 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/multiple-task/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>System Programming</title>
       <link>https://www.vxworks7.com/tags/system-programming/</link>
       <pubDate>Mon, 26 Dec 2022 11:22:08 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/system-programming/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Embedded OS</title>
       <link>https://www.vxworks7.com/tags/embedded-os/</link>
       <pubDate>Mon, 26 Dec 2022 10:23:56 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/embedded-os/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>APP Auto Boot</title>
       <link>https://www.vxworks7.com/tags/app-auto-boot/</link>
       <pubDate>Sun, 25 Dec 2022 07:51:55 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/app-auto-boot/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Safety</title>
       <link>https://www.vxworks7.com/tags/safety/</link>
       <pubDate>Sat, 24 Dec 2022 23:59:53 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/safety/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Security</title>
       <link>https://www.vxworks7.com/tags/security/</link>
       <pubDate>Sat, 24 Dec 2022 23:59:53 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/security/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Vehicle</title>
       <link>https://www.vxworks7.com/tags/vehicle/</link>
       <pubDate>Sat, 24 Dec 2022 23:59:53 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/vehicle/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Telnet</title>
       <link>https://www.vxworks7.com/tags/telnet/</link>
       <pubDate>Sat, 24 Dec 2022 11:35:19 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/telnet/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>pci</title>
+      <title>Pci</title>
       <link>https://www.vxworks7.com/tags/pci/</link>
       <pubDate>Sat, 24 Dec 2022 04:04:08 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/pci/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>PowerPC</title>
       <link>https://www.vxworks7.com/tags/powerpc/</link>
       <pubDate>Sat, 24 Dec 2022 03:13:31 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/powerpc/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>T1042</title>
       <link>https://www.vxworks7.com/tags/t1042/</link>
       <pubDate>Sat, 24 Dec 2022 03:13:31 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/t1042/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>IMX6Q</title>
       <link>https://www.vxworks7.com/tags/imx6q/</link>
       <pubDate>Fri, 23 Dec 2022 22:24:27 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/imx6q/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>ML</title>
       <link>https://www.vxworks7.com/tags/ml/</link>
       <pubDate>Fri, 23 Dec 2022 22:16:16 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/ml/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Synopsys</title>
       <link>https://www.vxworks7.com/tags/synopsys/</link>
       <pubDate>Fri, 23 Dec 2022 22:16:16 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/synopsys/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>WindML 5.3</title>
       <link>https://www.vxworks7.com/tags/windml-5.3/</link>
       <pubDate>Thu, 22 Dec 2022 10:30:12 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/windml-5.3/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>VectorCAST</title>
       <link>https://www.vxworks7.com/tags/vectorcast/</link>
       <pubDate>Wed, 21 Dec 2022 23:46:58 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/vectorcast/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>SD</title>
       <link>https://www.vxworks7.com/tags/sd/</link>
       <pubDate>Wed, 21 Dec 2022 09:34:04 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/sd/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Interrupt</title>
       <link>https://www.vxworks7.com/tags/interrupt/</link>
       <pubDate>Wed, 21 Dec 2022 08:50:10 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/interrupt/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>PCIe</title>
       <link>https://www.vxworks7.com/tags/pcie/</link>
       <pubDate>Wed, 21 Dec 2022 08:50:10 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/pcie/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>VxWorks 6.8</title>
       <link>https://www.vxworks7.com/tags/vxworks-6.8/</link>
       <pubDate>Wed, 21 Dec 2022 08:50:10 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/vxworks-6.8/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Python</title>
       <link>https://www.vxworks7.com/tags/python/</link>
       <pubDate>Tue, 20 Dec 2022 23:54:53 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/python/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Firmware</title>
       <link>https://www.vxworks7.com/tags/firmware/</link>
       <pubDate>Tue, 20 Dec 2022 08:45:34 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/firmware/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>VxWorks 6</title>
       <link>https://www.vxworks7.com/tags/vxworks-6/</link>
       <pubDate>Mon, 19 Dec 2022 10:47:56 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/vxworks-6/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Wind Kernel</title>
       <link>https://www.vxworks7.com/tags/wind-kernel/</link>
       <pubDate>Sun, 18 Dec 2022 08:23:25 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/wind-kernel/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Artemis I</title>
       <link>https://www.vxworks7.com/tags/artemis-i/</link>
       <pubDate>Sun, 18 Dec 2022 05:21:48 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/artemis-i/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>NASA</title>
       <link>https://www.vxworks7.com/tags/nasa/</link>
       <pubDate>Sun, 18 Dec 2022 05:21:48 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/nasa/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Ring Buffer</title>
       <link>https://www.vxworks7.com/tags/ring-buffer/</link>
       <pubDate>Sat, 17 Dec 2022 22:47:20 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/ring-buffer/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Boot</title>
       <link>https://www.vxworks7.com/tags/boot/</link>
       <pubDate>Tue, 06 Dec 2022 05:35:25 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/boot/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>timer</title>
+      <title>Timer</title>
       <link>https://www.vxworks7.com/tags/timer/</link>
       <pubDate>Fri, 04 Nov 2022 19:52:03 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/timer/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Altera</title>
       <link>https://www.vxworks7.com/tags/altera/</link>
       <pubDate>Sat, 29 Oct 2022 06:53:45 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/altera/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>CPU</title>
       <link>https://www.vxworks7.com/tags/cpu/</link>
       <pubDate>Sat, 29 Oct 2022 06:53:45 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/cpu/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>processor</title>
+      <title>Processor</title>
       <link>https://www.vxworks7.com/tags/processor/</link>
       <pubDate>Sat, 29 Oct 2022 06:53:45 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/processor/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Xilinx</title>
       <link>https://www.vxworks7.com/tags/xilinx/</link>
       <pubDate>Sat, 29 Oct 2022 06:53:45 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/xilinx/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>LCD</title>
       <link>https://www.vxworks7.com/tags/lcd/</link>
       <pubDate>Fri, 28 Oct 2022 06:53:45 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/lcd/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>RGB</title>
       <link>https://www.vxworks7.com/tags/rgb/</link>
       <pubDate>Fri, 28 Oct 2022 06:53:45 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/rgb/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>kernel</title>
+      <title>Kernel</title>
       <link>https://www.vxworks7.com/tags/kernel/</link>
       <pubDate>Sun, 16 Oct 2022 11:52:03 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/kernel/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>mutex</title>
+      <title>Mutex</title>
       <link>https://www.vxworks7.com/tags/mutex/</link>
       <pubDate>Sun, 16 Oct 2022 11:52:03 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/mutex/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>openssl</title>
+      <title>Openssl</title>
       <link>https://www.vxworks7.com/tags/openssl/</link>
       <pubDate>Sat, 15 Oct 2022 21:52:03 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/openssl/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>系统安全</title>
       <link>https://www.vxworks7.com/tags/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/</link>
       <pubDate>Sat, 15 Oct 2022 21:52:03 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>系统管理</title>
       <link>https://www.vxworks7.com/tags/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/</link>
       <pubDate>Sat, 15 Oct 2022 21:52:03 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>syslog</title>
+      <title>Syslog</title>
       <link>https://www.vxworks7.com/tags/syslog/</link>
       <pubDate>Sat, 15 Oct 2022 20:52:03 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/syslog/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>ffmpeg</title>
+      <title>Ffmpeg</title>
       <link>https://www.vxworks7.com/tags/ffmpeg/</link>
       <pubDate>Sat, 15 Oct 2022 11:52:03 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/ffmpeg/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>mp3</title>
+      <title>Mp3</title>
       <link>https://www.vxworks7.com/tags/mp3/</link>
       <pubDate>Sat, 15 Oct 2022 11:52:03 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/mp3/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>mp4</title>
+      <title>Mp4</title>
       <link>https://www.vxworks7.com/tags/mp4/</link>
       <pubDate>Sat, 15 Oct 2022 11:52:03 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/mp4/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>TCS</title>
       <link>https://www.vxworks7.com/tags/tcs/</link>
       <pubDate>Thu, 13 Oct 2022 08:53:45 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/tcs/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>vRan</title>
+      <title>VRan</title>
       <link>https://www.vxworks7.com/tags/vran/</link>
       <pubDate>Thu, 13 Oct 2022 08:53:45 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/vran/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>QT</title>
       <link>https://www.vxworks7.com/tags/qt/</link>
       <pubDate>Fri, 07 Oct 2022 05:35:25 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/qt/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>UART</title>
       <link>https://www.vxworks7.com/tags/uart/</link>
       <pubDate>Fri, 07 Oct 2022 05:35:25 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/uart/</guid>
       <description></description>
     </item>
-    
-    <item>
-      <title>串口</title>
-      <link>https://www.vxworks7.com/tags/%E4%B8%B2%E5%8F%A3/</link>
-      <pubDate>Fri, 07 Oct 2022 05:35:25 -0400</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/%E4%B8%B2%E5%8F%A3/</guid>
-      <description></description>
-    </item>
-    
     <item>
       <title>编程</title>
       <link>https://www.vxworks7.com/tags/%E7%BC%96%E7%A8%8B/</link>
       <pubDate>Fri, 07 Oct 2022 05:35:25 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/%E7%BC%96%E7%A8%8B/</guid>
       <description></description>
     </item>
-    
+    <item>
+      <title>串口</title>
+      <link>https://www.vxworks7.com/tags/%E4%B8%B2%E5%8F%A3/</link>
+      <pubDate>Fri, 07 Oct 2022 05:35:25 -0400</pubDate>
+      <guid>https://www.vxworks7.com/tags/%E4%B8%B2%E5%8F%A3/</guid>
+      <description></description>
+    </item>
     <item>
       <title>图像</title>
       <link>https://www.vxworks7.com/tags/%E5%9B%BE%E5%83%8F/</link>
       <pubDate>Thu, 06 Oct 2022 05:35:25 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/%E5%9B%BE%E5%83%8F/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>实时性</title>
       <link>https://www.vxworks7.com/tags/%E5%AE%9E%E6%97%B6%E6%80%A7/</link>
       <pubDate>Thu, 02 Jun 2022 11:52:03 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/%E5%AE%9E%E6%97%B6%E6%80%A7/</guid>
       <description></description>
     </item>
-    
-    <item>
-      <title>时序图</title>
-      <link>https://www.vxworks7.com/tags/%E6%97%B6%E5%BA%8F%E5%9B%BE/</link>
-      <pubDate>Sat, 18 Sep 2021 20:58:13 +0800</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/%E6%97%B6%E5%BA%8F%E5%9B%BE/</guid>
-      <description></description>
-    </item>
-    
     <item>
       <title>流程图</title>
       <link>https://www.vxworks7.com/tags/%E6%B5%81%E7%A8%8B%E5%9B%BE/</link>
       <pubDate>Sat, 18 Sep 2021 20:58:13 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/%E6%B5%81%E7%A8%8B%E5%9B%BE/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>katex</title>
+      <title>时序图</title>
+      <link>https://www.vxworks7.com/tags/%E6%97%B6%E5%BA%8F%E5%9B%BE/</link>
+      <pubDate>Sat, 18 Sep 2021 20:58:13 +0800</pubDate>
+      <guid>https://www.vxworks7.com/tags/%E6%97%B6%E5%BA%8F%E5%9B%BE/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Katex</title>
       <link>https://www.vxworks7.com/tags/katex/</link>
       <pubDate>Sat, 11 Sep 2021 10:16:02 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/katex/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>mathjax</title>
+      <title>Mathjax</title>
       <link>https://www.vxworks7.com/tags/mathjax/</link>
       <pubDate>Sat, 11 Sep 2021 10:16:02 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/mathjax/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>数学公式</title>
       <link>https://www.vxworks7.com/tags/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/</link>
       <pubDate>Sat, 11 Sep 2021 10:16:02 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/</guid>
       <description></description>
     </item>
-    
-    <item>
-      <title>个性化</title>
-      <link>https://www.vxworks7.com/tags/%E4%B8%AA%E6%80%A7%E5%8C%96/</link>
-      <pubDate>Fri, 10 Sep 2021 21:02:32 +0800</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/%E4%B8%AA%E6%80%A7%E5%8C%96/</guid>
-      <description></description>
-    </item>
-    
     <item>
       <title>布局</title>
       <link>https://www.vxworks7.com/tags/%E5%B8%83%E5%B1%80/</link>
       <pubDate>Fri, 10 Sep 2021 21:02:32 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/%E5%B8%83%E5%B1%80/</guid>
       <description></description>
     </item>
-    
+    <item>
+      <title>个性化</title>
+      <link>https://www.vxworks7.com/tags/%E4%B8%AA%E6%80%A7%E5%8C%96/</link>
+      <pubDate>Fri, 10 Sep 2021 21:02:32 +0800</pubDate>
+      <guid>https://www.vxworks7.com/tags/%E4%B8%AA%E6%80%A7%E5%8C%96/</guid>
+      <description></description>
+    </item>
     <item>
       <title>自定义</title>
       <link>https://www.vxworks7.com/tags/%E8%87%AA%E5%AE%9A%E4%B9%89/</link>
       <pubDate>Fri, 10 Sep 2021 21:02:32 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/%E8%87%AA%E5%AE%9A%E4%B9%89/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>短代码</title>
       <link>https://www.vxworks7.com/tags/%E7%9F%AD%E4%BB%A3%E7%A0%81/</link>
       <pubDate>Fri, 06 Aug 2021 14:41:50 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/%E7%9F%AD%E4%BB%A3%E7%A0%81/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>语法</title>
       <link>https://www.vxworks7.com/tags/%E8%AF%AD%E6%B3%95/</link>
       <pubDate>Fri, 06 Aug 2021 14:41:50 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/%E8%AF%AD%E6%B3%95/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>博客</title>
       <link>https://www.vxworks7.com/tags/%E5%8D%9A%E5%AE%A2/</link>
       <pubDate>Tue, 08 Jun 2021 21:12:52 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/%E5%8D%9A%E5%AE%A2/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>导航</title>
       <link>https://www.vxworks7.com/tags/%E5%AF%BC%E8%88%AA/</link>
       <pubDate>Tue, 08 Jun 2021 21:12:52 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/%E5%AF%BC%E8%88%AA/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>目录</title>
       <link>https://www.vxworks7.com/tags/%E7%9B%AE%E5%BD%95/</link>
       <pubDate>Tue, 08 Jun 2021 21:12:52 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/%E7%9B%AE%E5%BD%95/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>Chroma</title>
-      <link>https://www.vxworks7.com/tags/chroma/</link>
-      <pubDate>Mon, 07 Jun 2021 19:09:52 +0800</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/chroma/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>高亮</title>
-      <link>https://www.vxworks7.com/tags/%E9%AB%98%E4%BA%AE/</link>
-      <pubDate>Mon, 07 Jun 2021 19:09:52 +0800</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/%E9%AB%98%E4%BA%AE/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>emoji</title>
+      <title>Emoji</title>
       <link>https://www.vxworks7.com/tags/emoji/</link>
       <pubDate>Fri, 04 Jun 2021 19:46:45 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/emoji/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>表情</title>
       <link>https://www.vxworks7.com/tags/%E8%A1%A8%E6%83%85/</link>
       <pubDate>Fri, 04 Jun 2021 19:46:45 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/%E8%A1%A8%E6%83%85/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Markdown</title>
       <link>https://www.vxworks7.com/tags/markdown/</link>
       <pubDate>Thu, 03 Jun 2021 11:52:18 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/tags/markdown/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

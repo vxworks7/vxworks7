@@ -4,7 +4,7 @@
 <head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)" />
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.135.0">
 <link rel="shortcut icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
@@ -32,6 +32,7 @@
 <meta property="article:modified_time" content="2022-12-17 22:47:20 -0500 -0500" />
 
 
+
   
   <link type="text/css" rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.2/css/all.min.css" />
   
@@ -39,11 +40,6 @@
 
 
 <link rel="stylesheet" href="/css/main.min.7d561ec9984cf0cb727fc88e14a92134576c99ccb9ce2f31b5b5541ab4ced328.css">
-  <style type="text/css">
-    .post-footer, .flinks-list-footer hr:after {
-      content: "~ 我可是有底线的哟 ~";
-    }
-  </style>
   <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"ring-buffer-design-in-vxworks.html","permalink":"https://www.vxworks7.com/post/bsp/ring-buffer-design-in-vxworks.html","title":"VxWorks的环形缓冲区设计"}</script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
@@ -116,7 +112,7 @@
     </li>
     <li class="menu-item menu-item-archives">
       <a href="/archives/" class="hvr-icon-pulse " rel="section"><i class="fa fa-archive hvr-icon"></i>归档
-        <span class="badge">95</span>
+        <span class="badge">94</span>
       </a>
     </li>
     <li class="menu-item menu-item-commonweal">
@@ -221,7 +217,7 @@
   <nav class="site-state">
     <div class="site-state-item site-state-posts">
       <a href="/archives/">
-        <span class="site-state-item-count">95</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -233,7 +229,7 @@
     </div>
     <div class="site-state-item site-state-tags">
       <a href="/tags/">
-        <span class="site-state-item-count">133</span>
+        <span class="site-state-item-count">131</span>
         <span class="site-state-item-name">标签</span>
       </a>
     </div>
@@ -299,11 +295,11 @@
       </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-font"></i>总字数：</div>
-      <div class="item-count" id="wordsCount" data-count="28953"></div>
+      <div class="item-count" id="wordsCount" data-count="28814"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-mug-hot"></i>阅读约：</div>
-      <div class="item-count" id="readTimes" data-times="193"></div>
+      <div class="item-count" id="readTimes" data-times="192"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
@@ -439,107 +435,105 @@
 <h3 id="官方接口">官方接口</h3>
 <p>官方环形缓冲接口定义主要包含在rngLib.h头文件中。</p>
 <h4 id="环形缓冲接口定义">环形缓冲接口定义</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">        <span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span>		<span style="color:#75715e">/* RING - ring buffer */</span>
-        {
-            size_t pToBuf;	<span style="color:#75715e">/* 写指针 */</span>
-            size_t pFromBuf;	<span style="color:#75715e">/* 读指针 */</span>
-            size_t bufSize;	<span style="color:#75715e">/* 数据长度 */</span>
-            <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>buf;		<span style="color:#75715e">/* 存放数据 */</span>
-        } RING;
-         
-        <span style="color:#75715e">/* END_HIDDEN */</span>
-        <span style="color:#66d9ef">typedef</span> RING <span style="color:#f92672">*</span>RING_ID;
-</code></pre></div><h4 id="创建删除环形缓冲">创建/删除环形缓冲</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">        <span style="color:#75715e">/**
-</span><span style="color:#75715e">         * @创建环形缓冲
-</span><span style="color:#75715e">         * @nbytes: 缓冲尺寸
-</span><span style="color:#75715e">         * @成功返回环形缓冲ID，失败返回NULL。
-</span><span style="color:#75715e">         */</span>
-        <span style="color:#66d9ef">extern</span> RING_ID <span style="color:#a6e22e">rngCreate</span> (size_t nbytes);
-         
-        <span style="color:#75715e">/**
-</span><span style="color:#75715e">         * @删除环形缓冲
-</span><span style="color:#75715e">         * @ringId: 环形缓冲ID   
-</span><span style="color:#75715e">         */</span>
-        <span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">rngDelete</span> (RING_ID ringId);
-</code></pre></div><h4 id="判断缓冲是否空满">判断缓冲是否空/满</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">        <span style="color:#75715e">/**
-</span><span style="color:#75715e">         * @判断环形缓冲是否为空
-</span><span style="color:#75715e">         * @ringId: 环形缓冲ID   
-</span><span style="color:#75715e">         * @不为空返回0，否则返回其它。
-</span><span style="color:#75715e">         */</span>
-        <span style="color:#66d9ef">extern</span> BOOL <span style="color:#a6e22e">rngIsEmpty</span> (RING_ID ringId);
-         
-        <span style="color:#75715e">/**
-</span><span style="color:#75715e">         * @判断环形缓冲是否为满
-</span><span style="color:#75715e">         * @ringId: 环形缓冲ID   
-</span><span style="color:#75715e">         * @不为满返回0，否则返回其它。
-</span><span style="color:#75715e">         */</span>
-        <span style="color:#66d9ef">extern</span> BOOL <span style="color:#a6e22e">rngIsFull</span> (RING_ID ringId);
-</code></pre></div><h4 id="读写数据">读写数据</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">        <span style="color:#75715e">/**
-</span><span style="color:#75715e">         * @从环形缓冲中读取数据
-</span><span style="color:#75715e">         * @ringId: 环形缓冲ID         buffer：数据         maxbytes：长度
-</span><span style="color:#75715e">         * @返回实际读取到的数据长度。
-</span><span style="color:#75715e">         */</span>
-        <span style="color:#66d9ef">extern</span> size_t <span style="color:#a6e22e">rngBufGet</span> (RING_ID rngId, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>buffer, size_t maxbytes);
-         
-        <span style="color:#75715e">/**
-</span><span style="color:#75715e">         * @写数据到环形缓冲
-</span><span style="color:#75715e">         * @ringId: 环形缓冲ID         buffer：数据         nbytes：长度  
-</span><span style="color:#75715e">         * @返回实际写入数据长度
-</span><span style="color:#75715e">         */</span>
-        <span style="color:#66d9ef">extern</span> size_t <span style="color:#a6e22e">rngBufPut</span> (RING_ID rngId, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>buffer, size_t nbytes);
-</code></pre></div><h4 id="获取缓冲区剩余空间已占空间">获取缓冲区剩余空间/已占空间</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">        <span style="color:#75715e">/**
-</span><span style="color:#75715e">         * @获取环形缓冲剩余空间长度
-</span><span style="color:#75715e">         * @ringId: 环形缓冲ID 
-</span><span style="color:#75715e">         * @返回剩余空间长度。
-</span><span style="color:#75715e">         */</span>
-        <span style="color:#66d9ef">extern</span> size_t     <span style="color:#a6e22e">rngFreeBytes</span> (RING_ID ringId);
-         
-        <span style="color:#75715e">/**
-</span><span style="color:#75715e">         * @获取环形缓冲已占空间长度
-</span><span style="color:#75715e">         * @ringId: 环形缓冲ID
-</span><span style="color:#75715e">         * @返回已占空间长度。
-</span><span style="color:#75715e">         */</span>
-        <span style="color:#66d9ef">extern</span> size_t     <span style="color:#a6e22e">rngNBytes</span> (RING_ID ringId);
-</code></pre></div><h4 id="清空缓冲">清空缓冲</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">        <span style="color:#75715e">/**
-</span><span style="color:#75715e">         * @清空环形缓冲
-</span><span style="color:#75715e">         * @ringId: 环形缓冲ID
-</span><span style="color:#75715e">         */</span>
-        <span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">rngFlush</span> (RING_ID ringId);
-
-</code></pre></div><h3 id="环形缓冲对象接口">环形缓冲对象接口</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>        <span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span>		<span style="color:#75715e">/* RING - ring buffer */</span>
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">size_t</span> pToBuf;	<span style="color:#75715e">/* 写指针 */</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">size_t</span> pFromBuf;	<span style="color:#75715e">/* 读指针 */</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">size_t</span> bufSize;	<span style="color:#75715e">/* 数据长度 */</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>buf;		<span style="color:#75715e">/* 存放数据 */</span>
+</span></span><span style="display:flex;"><span>        } RING;
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/* END_HIDDEN */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">typedef</span> RING <span style="color:#f92672">*</span>RING_ID;
+</span></span></code></pre></div><h4 id="创建删除环形缓冲">创建/删除环形缓冲</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>        <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @创建环形缓冲
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @nbytes: 缓冲尺寸
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @成功返回环形缓冲ID，失败返回NULL。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">extern</span> RING_ID <span style="color:#a6e22e">rngCreate</span> (<span style="color:#66d9ef">size_t</span> nbytes);
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @删除环形缓冲
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @ringId: 环形缓冲ID   
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">rngDelete</span> (RING_ID ringId);
+</span></span></code></pre></div><h4 id="判断缓冲是否空满">判断缓冲是否空/满</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>        <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @判断环形缓冲是否为空
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @ringId: 环形缓冲ID   
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @不为空返回0，否则返回其它。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">extern</span> BOOL <span style="color:#a6e22e">rngIsEmpty</span> (RING_ID ringId);
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @判断环形缓冲是否为满
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @ringId: 环形缓冲ID   
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @不为满返回0，否则返回其它。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">extern</span> BOOL <span style="color:#a6e22e">rngIsFull</span> (RING_ID ringId);
+</span></span></code></pre></div><h4 id="读写数据">读写数据</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>        <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @从环形缓冲中读取数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @ringId: 环形缓冲ID         buffer：数据         maxbytes：长度
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @返回实际读取到的数据长度。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">size_t</span> <span style="color:#a6e22e">rngBufGet</span> (RING_ID rngId, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>buffer, <span style="color:#66d9ef">size_t</span> maxbytes);
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @写数据到环形缓冲
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @ringId: 环形缓冲ID         buffer：数据         nbytes：长度  
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @返回实际写入数据长度
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">size_t</span> <span style="color:#a6e22e">rngBufPut</span> (RING_ID rngId, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>buffer, <span style="color:#66d9ef">size_t</span> nbytes);
+</span></span></code></pre></div><h4 id="获取缓冲区剩余空间已占空间">获取缓冲区剩余空间/已占空间</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>        <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @获取环形缓冲剩余空间长度
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @ringId: 环形缓冲ID 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @返回剩余空间长度。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">size_t</span>     <span style="color:#a6e22e">rngFreeBytes</span> (RING_ID ringId);
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @获取环形缓冲已占空间长度
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @ringId: 环形缓冲ID
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @返回已占空间长度。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">size_t</span>     <span style="color:#a6e22e">rngNBytes</span> (RING_ID ringId);
+</span></span></code></pre></div><h4 id="清空缓冲">清空缓冲</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>        <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @清空环形缓冲
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @ringId: 环形缓冲ID
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">rngFlush</span> (RING_ID ringId);
+</span></span></code></pre></div><h3 id="环形缓冲对象接口">环形缓冲对象接口</h3>
 <h4 id="属性定义">属性定义</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">        <span style="color:#75715e">/* 环形缓冲类 */</span>
-        <span style="color:#66d9ef">struct</span> t_rng {
-            u8_t            flag;   <span style="color:#75715e">/* 创建标志，=1已创建，=0未创建 */</span>
-            RING_ID       id;      <span style="color:#75715e">/* 环形缓冲 */</span> 
-            <span style="color:#66d9ef">struct</span> t_sem    msem;   <span style="color:#75715e">/* 环形缓冲互斥信号量 */</span> 
-        };
-</code></pre></div><h4 id="保存数据到环形缓冲">保存数据到环形缓冲</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">        <span style="color:#75715e">/**
-</span><span style="color:#75715e">         * @保存数据到环形缓冲
-</span><span style="color:#75715e">         * @p_rng：环形缓冲类   buf: 数据   len：长度
-</span><span style="color:#75715e">         **/</span>
-        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">put_rng</span>(<span style="color:#66d9ef">struct</span> t_rng <span style="color:#f92672">*</span>p_rng, s8_t <span style="color:#f92672">*</span>buf, s32_t len);
-
-</code></pre></div><h4 id="获取环形缓冲数据">获取环形缓冲数据</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">        <span style="color:#75715e">/**
-</span><span style="color:#75715e">         * @获取环形缓冲数据
-</span><span style="color:#75715e">         * @p_rng：环形缓冲类    buf装载数据, len数据长度
-</span><span style="color:#75715e">         * 成功返回实际数据长度，失败返回ERROR
-</span><span style="color:#75715e">         **/</span>
-        s32_t <span style="color:#a6e22e">get_rng</span>(<span style="color:#66d9ef">struct</span> t_rng <span style="color:#f92672">*</span>p_rng, s8_t <span style="color:#f92672">*</span>buf, s32_t len);
-</code></pre></div><h4 id="创建环形缓冲">创建环形缓冲</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">        <span style="color:#75715e">/**
-</span><span style="color:#75715e">         * @创建环形缓冲
-</span><span style="color:#75715e">         * @p_rng：环形缓冲类   nbyte申请缓冲大小, name互斥信号名
-</span><span style="color:#75715e">         **/</span>
-        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">create_rng</span>(<span style="color:#66d9ef">struct</span> t_rng <span style="color:#f92672">*</span>p_rng, size_t nbytes, s8_t <span style="color:#f92672">*</span>name);
-</code></pre></div><h2 id="示例">示例</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>        <span style="color:#75715e">/* 环形缓冲类 */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">struct</span> t_rng {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">u8_t</span>            flag;   <span style="color:#75715e">/* 创建标志，=1已创建，=0未创建 */</span>
+</span></span><span style="display:flex;"><span>            RING_ID       id;      <span style="color:#75715e">/* 环形缓冲 */</span> 
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">struct</span> t_sem    msem;   <span style="color:#75715e">/* 环形缓冲互斥信号量 */</span> 
+</span></span><span style="display:flex;"><span>        };
+</span></span></code></pre></div><h4 id="保存数据到环形缓冲">保存数据到环形缓冲</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>        <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @保存数据到环形缓冲
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @p_rng：环形缓冲类   buf: 数据   len：长度
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         **/</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">put_rng</span>(<span style="color:#66d9ef">struct</span> t_rng <span style="color:#f92672">*</span>p_rng, <span style="color:#66d9ef">s8_t</span> <span style="color:#f92672">*</span>buf, <span style="color:#66d9ef">s32_t</span> len);
+</span></span></code></pre></div><h4 id="获取环形缓冲数据">获取环形缓冲数据</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>        <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @获取环形缓冲数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @p_rng：环形缓冲类    buf装载数据, len数据长度
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * 成功返回实际数据长度，失败返回ERROR
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         **/</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">s32_t</span> <span style="color:#a6e22e">get_rng</span>(<span style="color:#66d9ef">struct</span> t_rng <span style="color:#f92672">*</span>p_rng, <span style="color:#66d9ef">s8_t</span> <span style="color:#f92672">*</span>buf, <span style="color:#66d9ef">s32_t</span> len);
+</span></span></code></pre></div><h4 id="创建环形缓冲">创建环形缓冲</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>        <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @创建环形缓冲
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @p_rng：环形缓冲类   nbyte申请缓冲大小, name互斥信号名
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         **/</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">create_rng</span>(<span style="color:#66d9ef">struct</span> t_rng <span style="color:#f92672">*</span>p_rng, <span style="color:#66d9ef">size_t</span> nbytes, <span style="color:#66d9ef">s8_t</span> <span style="color:#f92672">*</span>name);
+</span></span></code></pre></div><h2 id="示例">示例</h2>
 <ul>
 <li>
 <p>示例创建两个任务（生产者/消费者），生产者向缓冲写入数据，消费者从缓冲读取数据，缓冲访问时使用互斥信号量进行互斥。</p>
@@ -552,222 +546,221 @@
 </li>
 </ul>
 <h3 id="rngh">rng.h</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">        <span style="color:#75715e">/**
-</span><span style="color:#75715e">         * @Filename : rng.h
-</span><span style="color:#75715e">         * @Revision : $Revision: 1.00 $
-</span><span style="color:#75715e">         * @Author : Feng
-</span><span style="color:#75715e">         * @Description : 环形缓冲类，在系统自带环形缓冲基础上封装互斥信号量
-</span><span style="color:#75715e">        **/</span>
-         
-        <span style="color:#75715e">#ifndef __RNG_CLASS_H__
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">#define __RNG_CLASS_H__
-</span><span style="color:#75715e"></span>         
-        <span style="color:#75715e">#include</span>   
-        <span style="color:#75715e">#include </span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">#include</span> 
-        <span style="color:#75715e">#include </span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">#include</span> 
-        <span style="color:#75715e">#include &#34;sem.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>         
-        <span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">struct</span> sem sem; <span style="color:#75715e">/* 保存系统信号量信息 */</span>
-         
-        <span style="color:#75715e">/* 环形缓冲类 */</span>
-        <span style="color:#66d9ef">struct</span> t_rng {
-            u8_t            flag;   <span style="color:#75715e">/* 创建标志，=1已创建，=0未创建 */</span>
-            RING_ID       id;      <span style="color:#75715e">/* 环形缓冲 */</span> 
-            <span style="color:#66d9ef">struct</span> t_sem    msem;   <span style="color:#75715e">/* 环形缓冲互斥信号量 */</span> 
-        };
-         
-        <span style="color:#75715e">/**
-</span><span style="color:#75715e">         * @保存数据到环形缓冲
-</span><span style="color:#75715e">         * @p_rng：环形缓冲类   buf: 数据   len：长度
-</span><span style="color:#75715e">         **/</span>
-        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">put_rng</span>(<span style="color:#66d9ef">struct</span> t_rng <span style="color:#f92672">*</span>p_rng, s8_t <span style="color:#f92672">*</span>buf, s32_t len);
-         
-        <span style="color:#75715e">/**
-</span><span style="color:#75715e">         * @获取环形缓冲数据
-</span><span style="color:#75715e">         * @p_rng：环形缓冲类    buf装载数据, len数据长度
-</span><span style="color:#75715e">         * 成功返回实际数据长度，失败返回ERROR
-</span><span style="color:#75715e">         **/</span>
-        s32_t <span style="color:#a6e22e">get_rng</span>(<span style="color:#66d9ef">struct</span> t_rng <span style="color:#f92672">*</span>p_rng, s8_t <span style="color:#f92672">*</span>buf, s32_t len);
-         
-        <span style="color:#75715e">/**
-</span><span style="color:#75715e">         * @创建环形缓冲
-</span><span style="color:#75715e">         * @p_rng：环形缓冲类   nbyte申请缓冲大小, name互斥信号名
-</span><span style="color:#75715e">         **/</span>
-        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">create_rng</span>(<span style="color:#66d9ef">struct</span> t_rng <span style="color:#f92672">*</span>p_rng, size_t nbytes, s8_t <span style="color:#f92672">*</span>name);
-         
-        <span style="color:#75715e">#endif
-</span></code></pre></div><h3 id="rngc">rng.c</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">        <span style="color:#75715e">/**
-</span><span style="color:#75715e">         * @Filename : rng.c
-</span><span style="color:#75715e">         * @Revision : $Revision: 1.00 $
-</span><span style="color:#75715e">         * @Author : Feng
-</span><span style="color:#75715e">         * @Description : 环形缓冲类，在系统自带环形缓冲基础上封装互斥信号量
-</span><span style="color:#75715e">        **/</span>
-         
-        <span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;rng.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>         
-        <span style="color:#75715e">/**
-</span><span style="color:#75715e">         * @保存数据到环形缓冲
-</span><span style="color:#75715e">         * @p_rng：环形缓冲类   buf: 数据   len：长度
-</span><span style="color:#75715e">         **/</span>
-        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">put_rng</span>(<span style="color:#66d9ef">struct</span> t_rng <span style="color:#f92672">*</span>p_rng, s8_t <span style="color:#f92672">*</span>buf, s32_t len)
-        {  
-            <span style="color:#66d9ef">if</span> (p_rng<span style="color:#f92672">-&gt;</span>flag <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
-                <span style="color:#66d9ef">return</span>;
-         
-            get_sem(<span style="color:#f92672">&amp;</span>p_rng<span style="color:#f92672">-&gt;</span>msem);                  
-            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>(rngIsFull(p_rng<span style="color:#f92672">-&gt;</span>id)))
-                rngBufPut(p_rng<span style="color:#f92672">-&gt;</span>id, buf, len); 
-            lose_sem(<span style="color:#f92672">&amp;</span>p_rng<span style="color:#f92672">-&gt;</span>msem); 
-        }
-         
-        <span style="color:#75715e">/**
-</span><span style="color:#75715e">         * @获取环形缓冲数据
-</span><span style="color:#75715e">         * buf装载数据, len数据长度
-</span><span style="color:#75715e">         * 成功返回实际数据长度，失败返回ERROR
-</span><span style="color:#75715e">         **/</span>
-        s32_t <span style="color:#a6e22e">get_rng</span>(<span style="color:#66d9ef">struct</span> t_rng <span style="color:#f92672">*</span>p_rng, s8_t <span style="color:#f92672">*</span>buf, s32_t len)
-        {  
-            s32_t rLen <span style="color:#f92672">=</span> ERROR;
-         
-            <span style="color:#66d9ef">if</span> (p_rng<span style="color:#f92672">-&gt;</span>flag <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
-                <span style="color:#66d9ef">return</span> ERROR;
-         
-            get_sem(<span style="color:#f92672">&amp;</span>p_rng<span style="color:#f92672">-&gt;</span>msem);                  
-            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>(rngIsEmpty(p_rng<span style="color:#f92672">-&gt;</span>id)))
-                rLen <span style="color:#f92672">=</span> rngBufGet(p_rng<span style="color:#f92672">-&gt;</span>id, buf, len);
-            lose_sem(<span style="color:#f92672">&amp;</span>p_rng<span style="color:#f92672">-&gt;</span>msem); 
-         
-            <span style="color:#66d9ef">return</span> (rLen);
-        }
-         
-        <span style="color:#75715e">/**
-</span><span style="color:#75715e">         * @创建环形缓冲
-</span><span style="color:#75715e">         * nbyte申请缓冲大小, name互斥信号名
-</span><span style="color:#75715e">         **/</span>
-        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">create_rng</span>(<span style="color:#66d9ef">struct</span> t_rng <span style="color:#f92672">*</span>p_rng, size_t nbytes, s8_t <span style="color:#f92672">*</span>name)
-        {
-            <span style="color:#66d9ef">if</span> (p_rng<span style="color:#f92672">-&gt;</span>flag <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)
-                <span style="color:#66d9ef">return</span>;
-         
-            p_rng<span style="color:#f92672">-&gt;</span>id <span style="color:#f92672">=</span> rngCreate(nbytes);
-         
-            p_rng<span style="color:#f92672">-&gt;</span>msem.sem <span style="color:#f92672">=</span> NULL;
-            p_rng<span style="color:#f92672">-&gt;</span>msem.type <span style="color:#f92672">=</span> SEM_MUTEX;   
-            strcpy(p_rng<span style="color:#f92672">-&gt;</span>msem.name, name);
-            resgister_sem(<span style="color:#f92672">&amp;</span>sem, <span style="color:#f92672">&amp;</span>p_rng<span style="color:#f92672">-&gt;</span>msem);  
-         
-            p_rng<span style="color:#f92672">-&gt;</span>flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        }
-</code></pre></div><h3 id="mainc">main.c</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">        <span style="color:#75715e">/**
-</span><span style="color:#75715e">         * @Filename : main.c
-</span><span style="color:#75715e">         * @Revision : $Revision: 1.00 $
-</span><span style="color:#75715e">         * @Author : Feng
-</span><span style="color:#75715e">         * @Description : 环形缓冲类使用示例
-</span><span style="color:#75715e">        **/</span>
-         
-        <span style="color:#75715e">#include</span>      
-        <span style="color:#75715e">#include     </span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stdioLib.h&#34;     </span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;strLib.h&#34;     </span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;task.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;sem.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;rng.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;feng_type.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>         
-        <span style="color:#75715e">#define RNG_SIZE    100 </span><span style="color:#75715e">/* 缓冲大小 */</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">struct</span> sem     sem; <span style="color:#75715e">/* 保存系统信号量信息 */</span>
-        <span style="color:#66d9ef">struct</span> t_task s_task, s_task1;
-        <span style="color:#66d9ef">struct</span> t_sem s_sem, s_sem1;
-        <span style="color:#66d9ef">struct</span> t_rng rng;
-         
-        <span style="color:#75715e">/**
-</span><span style="color:#75715e">         * @生产者：定时存储数据到环形缓冲
-</span><span style="color:#75715e">        **/</span>
-        <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">_thread</span>(<span style="color:#66d9ef">void</span>)
-        {  
-            <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">77</span>;
-         
-            <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) { 
-                get_sem(<span style="color:#f92672">&amp;</span>s_sem);        
-                put_rng(<span style="color:#f92672">&amp;</span>rng, <span style="color:#f92672">&amp;</span>cnt, <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">int</span>));       
-                printf(<span style="color:#e6db74">&#34;put data : %d...</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, cnt<span style="color:#f92672">++</span>);
-            }
-        }
-         
-        <span style="color:#75715e">/**
-</span><span style="color:#75715e">         * @消费者：定时从环形缓冲中取出数据
-</span><span style="color:#75715e">        **/</span>
-        <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">_thread1</span>(<span style="color:#66d9ef">void</span>)
-        {  
-            <span style="color:#66d9ef">int</span> cnt1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-         
-            <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) { 
-                get_sem(<span style="color:#f92672">&amp;</span>s_sem1);
-         
-                <span style="color:#66d9ef">if</span> (get_rng(<span style="color:#f92672">&amp;</span>rng, <span style="color:#f92672">&amp;</span>cnt1, <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">int</span>)) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>)
-                    printf(<span style="color:#e6db74">&#34;get data : %d...</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, cnt1);
-            }
-        }
-         
-        <span style="color:#75715e">/**
-</span><span style="color:#75715e">         * @创建任务
-</span><span style="color:#75715e">         * @p_task：任务类    name：任务名        thread：函数
-</span><span style="color:#75715e">        **/</span>
-        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">_create_task</span>(<span style="color:#66d9ef">struct</span> t_task <span style="color:#f92672">*</span>p_task, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>name, FUNCPTR <span style="color:#66d9ef">thread</span>)
-        {
-            strcpy(p_task<span style="color:#f92672">-&gt;</span>name, name);     
-            p_task<span style="color:#f92672">-&gt;</span>options    <span style="color:#f92672">=</span> VX_FP_TASK;
-            p_task<span style="color:#f92672">-&gt;</span>stackSize  <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1024</span>;
-            p_task<span style="color:#f92672">-&gt;</span>pFunc      <span style="color:#f92672">=</span> <span style="color:#66d9ef">thread</span>;
-            p_task<span style="color:#f92672">-&gt;</span>tid        <span style="color:#f92672">=</span> NULL;
-            p_task<span style="color:#f92672">-&gt;</span>core       <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-            p_task<span style="color:#f92672">-&gt;</span>priority   <span style="color:#f92672">=</span> <span style="color:#ae81ff">102</span>;
-         
-            create_task(p_task);
-            start_task(p_task);
-        }
-         
-        <span style="color:#75715e">/**
-</span><span style="color:#75715e">         * @创建信号量
-</span><span style="color:#75715e">         * @p_sem：信号量类        name：信号量名       type：类型
-</span><span style="color:#75715e">        **/</span>
-        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">_create_sem</span>(<span style="color:#66d9ef">struct</span> t_sem <span style="color:#f92672">*</span>p_sem, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>name, E_SEM_TYPE type)
-        {
-            strcpy(p_sem<span style="color:#f92672">-&gt;</span>name, name);      
-            p_sem<span style="color:#f92672">-&gt;</span>period <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
-            p_sem<span style="color:#f92672">-&gt;</span>type <span style="color:#f92672">=</span> type;
-            p_sem<span style="color:#f92672">-&gt;</span>sem <span style="color:#f92672">=</span> SEM_ID_NULL;
-         
-            resgister_sem(<span style="color:#f92672">&amp;</span>sem, p_sem);
-        }
-         
-         
-        <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
-        {
-            sysClkRateSet(<span style="color:#ae81ff">100</span>);         <span style="color:#75715e">/* 时间片设置 */</span>
-         
-            create_rng(<span style="color:#f92672">&amp;</span>rng, RNG_SIZE, <span style="color:#e6db74">&#34;my_rng&#34;</span>);
-         
-            _create_sem(<span style="color:#f92672">&amp;</span>s_sem, <span style="color:#e6db74">&#34;my_sem&#34;</span>, SEM_BIN);
-            _create_sem(<span style="color:#f92672">&amp;</span>s_sem1, <span style="color:#e6db74">&#34;my_sem1&#34;</span>, SEM_BIN);
-         
-            _create_task(<span style="color:#f92672">&amp;</span>s_task, <span style="color:#e6db74">&#34;my_task&#34;</span>, (FUNCPTR)_thread);
-            _create_task(<span style="color:#f92672">&amp;</span>s_task1, <span style="color:#e6db74">&#34;my_task1&#34;</span>, (FUNCPTR)_thread1);
-         
-            <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) { 
-                taskDelay(<span style="color:#ae81ff">500</span>);     <span style="color:#75715e">/* 5s */</span>
-                lose_sem_by_name(<span style="color:#f92672">&amp;</span>sem, <span style="color:#e6db74">&#34;my_sem&#34;</span>);
-                lose_sem_by_name(<span style="color:#f92672">&amp;</span>sem, <span style="color:#e6db74">&#34;my_sem1&#34;</span>);  
-            }
-         
-            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-        }
-
-</code></pre></div><h2 id="验证">验证</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>        <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @Filename : rng.h
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @Revision : $Revision: 1.00 $
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @Author : Feng
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @Description : 环形缓冲类，在系统自带环形缓冲基础上封装互斥信号量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        **/</span>
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#ifndef __RNG_CLASS_H__
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">#define __RNG_CLASS_H__
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>         
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#include</span>   
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#include </span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">#include</span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#include </span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">#include</span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#include &#34;sem.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>         
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">struct</span> sem sem; <span style="color:#75715e">/* 保存系统信号量信息 */</span>
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/* 环形缓冲类 */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">struct</span> t_rng {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">u8_t</span>            flag;   <span style="color:#75715e">/* 创建标志，=1已创建，=0未创建 */</span>
+</span></span><span style="display:flex;"><span>            RING_ID       id;      <span style="color:#75715e">/* 环形缓冲 */</span> 
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">struct</span> t_sem    msem;   <span style="color:#75715e">/* 环形缓冲互斥信号量 */</span> 
+</span></span><span style="display:flex;"><span>        };
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @保存数据到环形缓冲
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @p_rng：环形缓冲类   buf: 数据   len：长度
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         **/</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">put_rng</span>(<span style="color:#66d9ef">struct</span> t_rng <span style="color:#f92672">*</span>p_rng, <span style="color:#66d9ef">s8_t</span> <span style="color:#f92672">*</span>buf, <span style="color:#66d9ef">s32_t</span> len);
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @获取环形缓冲数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @p_rng：环形缓冲类    buf装载数据, len数据长度
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * 成功返回实际数据长度，失败返回ERROR
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         **/</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">s32_t</span> <span style="color:#a6e22e">get_rng</span>(<span style="color:#66d9ef">struct</span> t_rng <span style="color:#f92672">*</span>p_rng, <span style="color:#66d9ef">s8_t</span> <span style="color:#f92672">*</span>buf, <span style="color:#66d9ef">s32_t</span> len);
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @创建环形缓冲
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @p_rng：环形缓冲类   nbyte申请缓冲大小, name互斥信号名
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         **/</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">create_rng</span>(<span style="color:#66d9ef">struct</span> t_rng <span style="color:#f92672">*</span>p_rng, <span style="color:#66d9ef">size_t</span> nbytes, <span style="color:#66d9ef">s8_t</span> <span style="color:#f92672">*</span>name);
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#endif
+</span></span></span></code></pre></div><h3 id="rngc">rng.c</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>        <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @Filename : rng.c
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @Revision : $Revision: 1.00 $
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @Author : Feng
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @Description : 环形缓冲类，在系统自带环形缓冲基础上封装互斥信号量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        **/</span>
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;rng.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>         
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @保存数据到环形缓冲
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @p_rng：环形缓冲类   buf: 数据   len：长度
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         **/</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">put_rng</span>(<span style="color:#66d9ef">struct</span> t_rng <span style="color:#f92672">*</span>p_rng, <span style="color:#66d9ef">s8_t</span> <span style="color:#f92672">*</span>buf, <span style="color:#66d9ef">s32_t</span> len)
+</span></span><span style="display:flex;"><span>        {  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (p_rng<span style="color:#f92672">-&gt;</span>flag <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">get_sem</span>(<span style="color:#f92672">&amp;</span>p_rng<span style="color:#f92672">-&gt;</span>msem);                  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>(<span style="color:#a6e22e">rngIsFull</span>(p_rng<span style="color:#f92672">-&gt;</span>id)))
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">rngBufPut</span>(p_rng<span style="color:#f92672">-&gt;</span>id, buf, len); 
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">lose_sem</span>(<span style="color:#f92672">&amp;</span>p_rng<span style="color:#f92672">-&gt;</span>msem); 
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @获取环形缓冲数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * buf装载数据, len数据长度
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * 成功返回实际数据长度，失败返回ERROR
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         **/</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">s32_t</span> <span style="color:#a6e22e">get_rng</span>(<span style="color:#66d9ef">struct</span> t_rng <span style="color:#f92672">*</span>p_rng, <span style="color:#66d9ef">s8_t</span> <span style="color:#f92672">*</span>buf, <span style="color:#66d9ef">s32_t</span> len)
+</span></span><span style="display:flex;"><span>        {  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">s32_t</span> rLen <span style="color:#f92672">=</span> ERROR;
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (p_rng<span style="color:#f92672">-&gt;</span>flag <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> ERROR;
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">get_sem</span>(<span style="color:#f92672">&amp;</span>p_rng<span style="color:#f92672">-&gt;</span>msem);                  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>(<span style="color:#a6e22e">rngIsEmpty</span>(p_rng<span style="color:#f92672">-&gt;</span>id)))
+</span></span><span style="display:flex;"><span>                rLen <span style="color:#f92672">=</span> <span style="color:#a6e22e">rngBufGet</span>(p_rng<span style="color:#f92672">-&gt;</span>id, buf, len);
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">lose_sem</span>(<span style="color:#f92672">&amp;</span>p_rng<span style="color:#f92672">-&gt;</span>msem); 
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> (rLen);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @创建环形缓冲
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * nbyte申请缓冲大小, name互斥信号名
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         **/</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">create_rng</span>(<span style="color:#66d9ef">struct</span> t_rng <span style="color:#f92672">*</span>p_rng, <span style="color:#66d9ef">size_t</span> nbytes, <span style="color:#66d9ef">s8_t</span> <span style="color:#f92672">*</span>name)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (p_rng<span style="color:#f92672">-&gt;</span>flag <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>            p_rng<span style="color:#f92672">-&gt;</span>id <span style="color:#f92672">=</span> <span style="color:#a6e22e">rngCreate</span>(nbytes);
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>            p_rng<span style="color:#f92672">-&gt;</span>msem.sem <span style="color:#f92672">=</span> NULL;
+</span></span><span style="display:flex;"><span>            p_rng<span style="color:#f92672">-&gt;</span>msem.type <span style="color:#f92672">=</span> SEM_MUTEX;   
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">strcpy</span>(p_rng<span style="color:#f92672">-&gt;</span>msem.name, name);
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">resgister_sem</span>(<span style="color:#f92672">&amp;</span>sem, <span style="color:#f92672">&amp;</span>p_rng<span style="color:#f92672">-&gt;</span>msem);  
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>            p_rng<span style="color:#f92672">-&gt;</span>flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span></code></pre></div><h3 id="mainc">main.c</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>        <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @Filename : main.c
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @Revision : $Revision: 1.00 $
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @Author : Feng
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @Description : 环形缓冲类使用示例
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        **/</span>
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#include</span>      
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#include     </span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stdioLib.h&#34;     </span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;strLib.h&#34;     </span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;task.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;sem.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;rng.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;feng_type.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>         
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#define RNG_SIZE    100 </span><span style="color:#75715e">/* 缓冲大小 */</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">struct</span> sem     sem; <span style="color:#75715e">/* 保存系统信号量信息 */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">struct</span> t_task s_task, s_task1;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">struct</span> t_sem s_sem, s_sem1;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">struct</span> t_rng rng;
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @生产者：定时存储数据到环形缓冲
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        **/</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">_thread</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>        {  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">77</span>;
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) { 
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">get_sem</span>(<span style="color:#f92672">&amp;</span>s_sem);        
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">put_rng</span>(<span style="color:#f92672">&amp;</span>rng, <span style="color:#f92672">&amp;</span>cnt, <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">int</span>));       
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;put data : %d...</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, cnt<span style="color:#f92672">++</span>);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @消费者：定时从环形缓冲中取出数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        **/</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">_thread1</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>        {  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> cnt1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) { 
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">get_sem</span>(<span style="color:#f92672">&amp;</span>s_sem1);
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">get_rng</span>(<span style="color:#f92672">&amp;</span>rng, <span style="color:#f92672">&amp;</span>cnt1, <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">int</span>)) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;get data : %d...</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, cnt1);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @创建任务
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @p_task：任务类    name：任务名        thread：函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        **/</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">_create_task</span>(<span style="color:#66d9ef">struct</span> t_task <span style="color:#f92672">*</span>p_task, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>name, FUNCPTR <span style="color:#66d9ef">thread</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">strcpy</span>(p_task<span style="color:#f92672">-&gt;</span>name, name);     
+</span></span><span style="display:flex;"><span>            p_task<span style="color:#f92672">-&gt;</span>options    <span style="color:#f92672">=</span> VX_FP_TASK;
+</span></span><span style="display:flex;"><span>            p_task<span style="color:#f92672">-&gt;</span>stackSize  <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1024</span>;
+</span></span><span style="display:flex;"><span>            p_task<span style="color:#f92672">-&gt;</span>pFunc      <span style="color:#f92672">=</span> <span style="color:#66d9ef">thread</span>;
+</span></span><span style="display:flex;"><span>            p_task<span style="color:#f92672">-&gt;</span>tid        <span style="color:#f92672">=</span> NULL;
+</span></span><span style="display:flex;"><span>            p_task<span style="color:#f92672">-&gt;</span>core       <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>            p_task<span style="color:#f92672">-&gt;</span>priority   <span style="color:#f92672">=</span> <span style="color:#ae81ff">102</span>;
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">create_task</span>(p_task);
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">start_task</span>(p_task);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @创建信号量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * @p_sem：信号量类        name：信号量名       type：类型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        **/</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">_create_sem</span>(<span style="color:#66d9ef">struct</span> t_sem <span style="color:#f92672">*</span>p_sem, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>name, E_SEM_TYPE type)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">strcpy</span>(p_sem<span style="color:#f92672">-&gt;</span>name, name);      
+</span></span><span style="display:flex;"><span>            p_sem<span style="color:#f92672">-&gt;</span>period <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
+</span></span><span style="display:flex;"><span>            p_sem<span style="color:#f92672">-&gt;</span>type <span style="color:#f92672">=</span> type;
+</span></span><span style="display:flex;"><span>            p_sem<span style="color:#f92672">-&gt;</span>sem <span style="color:#f92672">=</span> SEM_ID_NULL;
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">resgister_sem</span>(<span style="color:#f92672">&amp;</span>sem, p_sem);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">sysClkRateSet</span>(<span style="color:#ae81ff">100</span>);         <span style="color:#75715e">/* 时间片设置 */</span>
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">create_rng</span>(<span style="color:#f92672">&amp;</span>rng, RNG_SIZE, <span style="color:#e6db74">&#34;my_rng&#34;</span>);
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">_create_sem</span>(<span style="color:#f92672">&amp;</span>s_sem, <span style="color:#e6db74">&#34;my_sem&#34;</span>, SEM_BIN);
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">_create_sem</span>(<span style="color:#f92672">&amp;</span>s_sem1, <span style="color:#e6db74">&#34;my_sem1&#34;</span>, SEM_BIN);
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">_create_task</span>(<span style="color:#f92672">&amp;</span>s_task, <span style="color:#e6db74">&#34;my_task&#34;</span>, (FUNCPTR)_thread);
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">_create_task</span>(<span style="color:#f92672">&amp;</span>s_task1, <span style="color:#e6db74">&#34;my_task1&#34;</span>, (FUNCPTR)_thread1);
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) { 
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">taskDelay</span>(<span style="color:#ae81ff">500</span>);     <span style="color:#75715e">/* 5s */</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">lose_sem_by_name</span>(<span style="color:#f92672">&amp;</span>sem, <span style="color:#e6db74">&#34;my_sem&#34;</span>);
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">lose_sem_by_name</span>(<span style="color:#f92672">&amp;</span>sem, <span style="color:#e6db74">&#34;my_sem1&#34;</span>);  
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span></code></pre></div><h2 id="验证">验证</h2>
 <p>使用环形缓冲之前需要先添加INCLUDE_RNG_BUF组件。</p>
 <p>打开镜像工程，选择kernel Configuration。按住Ctrl+F，输入rng，找到ring buffers，添加组件。</p>
 <p><img src="//www.vxworks.net/images/vxworks/vxworks-ring-buff-1.png" alt="vxworks ring buffer"></p>
@@ -921,7 +914,7 @@
   
   <script type="text/javascript" src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js" defer></script>
 
-<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
+<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com/","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
 
 
 
@@ -929,7 +922,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.7e59cf1a98d842830d8a6f149f78fbbcf9e795b7a9eb76feb34b48c9bf1554d7.js" defer></script>
+<script type="text/javascript" src="/js/main.min.8bc1e2a2ac040735a2a32d113d257bd75c45142b9842ad7526f7de5e3d3a9298.js" defer></script>
 
 
 

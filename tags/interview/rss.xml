@@ -4,30 +4,23 @@
     <title>Interview on VxWorks 7</title>
     <link>https://www.vxworks7.com/tags/interview/</link>
     <description>Recent content in Interview on VxWorks 7</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 21 Apr 2024 11:43:54 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/interview/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 21 Apr 2024 11:43:54 +0800</lastBuildDate>
+    <atom:link href="https://www.vxworks7.com/tags/interview/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>20 Vxworks Interview Questions and Answers</title>
       <link>https://www.vxworks7.com/post/vxworks/20-vxworks-interview-questions-and-answers.html</link>
       <pubDate>Sun, 21 Apr 2024 11:43:54 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/post/vxworks/20-vxworks-interview-questions-and-answers.html</guid>
       <description>&lt;p&gt;Prepare for the types of questions you are likely to be asked when interviewing for a position where VxWorks will be used.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>20个常见的VxWorks面试题和答案</title>
       <link>https://www.vxworks7.com/post/app/20-common-vxworks-interview-questions-and-answers.html</link>
       <pubDate>Tue, 12 Dec 2023 23:22:17 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/post/app/20-common-vxworks-interview-questions-and-answers.html</guid>
-      <description>&lt;p&gt;准备你在面试会使用
-&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    VxWorks
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt;的职位时会被问到的问题类型。&lt;/p&gt;</description>
+      <description>&lt;p&gt;准备你在面试会使用&#xA;&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    VxWorks&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt;的职位时会被问到的问题类型。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -4,17 +4,16 @@
     <title>Redundant Network on VxWorks 7</title>
     <link>https://www.vxworks7.com/tags/redundant-network/</link>
     <description>Recent content in Redundant Network on VxWorks 7</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 17 Dec 2023 19:50:49 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/redundant-network/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 17 Dec 2023 19:50:49 +0800</lastBuildDate>
+    <atom:link href="https://www.vxworks7.com/tags/redundant-network/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>VxWorks环境下双冗余以太网卡技术在底层驱动中的实现</title>
       <link>https://www.vxworks7.com/post/vxworks/implementation-of-redundant-network-in-vxworks.html</link>
       <pubDate>Sun, 17 Dec 2023 19:50:49 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/post/vxworks/implementation-of-redundant-network-in-vxworks.html</guid>
       <description>&lt;p&gt;本文讲解了VxWorks环境下双冗余以太网卡技术在底层驱动中的实现。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -4,17 +4,16 @@
     <title>Vodafone on VxWorks 7</title>
     <link>https://www.vxworks7.com/tags/vodafone/</link>
     <description>Recent content in Vodafone on VxWorks 7</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 02 Jan 2023 09:08:24 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/vodafone/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 02 Jan 2023 09:08:24 -0500</lastBuildDate>
+    <atom:link href="https://www.vxworks7.com/tags/vodafone/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>风河支持沃达丰开创O-RAN未来</title>
       <link>https://www.vxworks7.com/post/news/wind-river-help-vodafone-for-O-RAN.html</link>
       <pubDate>Mon, 02 Jan 2023 09:08:24 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/news/wind-river-help-vodafone-for-O-RAN.html</guid>
       <description>&lt;p&gt;作为全球领先的智能边缘软件提供商，风河公司正在大力推进关键任务系统的数字化转型，同时把新型智能机器经济提升到更高的水平。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

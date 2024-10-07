@@ -4,17 +4,16 @@
     <title>ORAN on VxWorks 7</title>
     <link>https://www.vxworks7.com/tags/oran/</link>
     <description>Recent content in ORAN on VxWorks 7</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 03 Aug 2024 18:02:03 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/oran/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 03 Aug 2024 18:02:03 +0800</lastBuildDate>
+    <atom:link href="https://www.vxworks7.com/tags/oran/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>支持电信业发挥AI潜能，迎接Open RAN革命</title>
       <link>https://www.vxworks7.com/post/news/windriver-supports-telecom-industry-to-realize-the-potential-of-AI.html</link>
       <pubDate>Sat, 03 Aug 2024 18:02:03 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/post/news/windriver-supports-telecom-industry-to-realize-the-potential-of-AI.html</guid>
       <description>&lt;p&gt;电信业持续发展，而且正处于一个关键时刻，这是因为获得了Open RAN和人工智能(AI)的双重动力。这两项革命性的技术正在重塑电信基础设施的基础架构。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

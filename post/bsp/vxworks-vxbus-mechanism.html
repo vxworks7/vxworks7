@@ -4,7 +4,7 @@
 <head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)" />
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.135.0">
 <link rel="shortcut icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
@@ -32,6 +32,7 @@
 <meta property="article:modified_time" content="2022-12-19 09:33:53 -0500 -0500" />
 
 
+
   
   <link type="text/css" rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.2/css/all.min.css" />
   
@@ -39,11 +40,6 @@
 
 
 <link rel="stylesheet" href="/css/main.min.7d561ec9984cf0cb727fc88e14a92134576c99ccb9ce2f31b5b5541ab4ced328.css">
-  <style type="text/css">
-    .post-footer, .flinks-list-footer hr:after {
-      content: "~ 我可是有底线的哟 ~";
-    }
-  </style>
   <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"vxworks-vxbus-mechanism.html","permalink":"https://www.vxworks7.com/post/bsp/vxworks-vxbus-mechanism.html","title":"VxWorks系统中vxbus机制总结"}</script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
@@ -116,7 +112,7 @@
     </li>
     <li class="menu-item menu-item-archives">
       <a href="/archives/" class="hvr-icon-pulse " rel="section"><i class="fa fa-archive hvr-icon"></i>归档
-        <span class="badge">95</span>
+        <span class="badge">94</span>
       </a>
     </li>
     <li class="menu-item menu-item-commonweal">
@@ -191,7 +187,7 @@
   <nav class="site-state">
     <div class="site-state-item site-state-posts">
       <a href="/archives/">
-        <span class="site-state-item-count">95</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -203,7 +199,7 @@
     </div>
     <div class="site-state-item site-state-tags">
       <a href="/tags/">
-        <span class="site-state-item-count">133</span>
+        <span class="site-state-item-count">131</span>
         <span class="site-state-item-name">标签</span>
       </a>
     </div>
@@ -269,11 +265,11 @@
       </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-font"></i>总字数：</div>
-      <div class="item-count" id="wordsCount" data-count="28953"></div>
+      <div class="item-count" id="wordsCount" data-count="28814"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-mug-hot"></i>阅读约：</div>
-      <div class="item-count" id="readTimes" data-times="193"></div>
+      <div class="item-count" id="readTimes" data-times="192"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
@@ -393,409 +389,407 @@
 </a>的设备以及驱动的表示方法，以及总的关系：设备和驱动根本都抽象成一个结构体，设备结构体中包含了设备名字、ID号、功能函数指针等必备的信息，驱动结构体包含了初始化函数、名字、ID等信息。总的如图看一下重要的几个结构体的关系：</p>
 <p><img src="//www.vxworks.net/images/vxworks/vxworks-vxbus-1.png" alt="vxworks vxbus"></p>
 <p>vxbus结构设计了几个链表：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#75715e">/*放置驱动的链表*/</span>
-<span style="color:#66d9ef">struct</span> vxbDevRegInfo <span style="color:#f92672">*</span> pDriverListHead <span style="color:#f92672">=</span> NULL;
-<span style="color:#75715e">/*放置注册的总线的链表*/</span>
-<span style="color:#66d9ef">struct</span> vxbBusTypeInfo <span style="color:#f92672">*</span> pBusListHead <span style="color:#f92672">=</span> NULL;
-<span style="color:#75715e">/*匹配好的设备和驱动称为instlist，没有找到驱动的设备链表，*/</span>
-<span style="color:#66d9ef">struct</span> vxbBusPresent <span style="color:#f92672">*</span> pBusHead <span style="color:#f92672">=</span> NULL;
-</code></pre></div><p>当一个设备注册进来之后，就会从pDriverListHead中查找驱动，如果找到了就会放到pBusHead链表中的instList链表中，没有找到驱动就会放置到pBusHead-&gt;devList中；而当一个新的总线注册进来后就会放置到pBusListHead链表中。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">/*放置驱动的链表*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> vxbDevRegInfo <span style="color:#f92672">*</span> pDriverListHead <span style="color:#f92672">=</span> NULL;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/*放置注册的总线的链表*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> vxbBusTypeInfo <span style="color:#f92672">*</span> pBusListHead <span style="color:#f92672">=</span> NULL;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/*匹配好的设备和驱动称为instlist，没有找到驱动的设备链表，*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> vxbBusPresent <span style="color:#f92672">*</span> pBusHead <span style="color:#f92672">=</span> NULL;
+</span></span></code></pre></div><p>当一个设备注册进来之后，就会从pDriverListHead中查找驱动，如果找到了就会放到pBusHead链表中的instList链表中，没有找到驱动就会放置到pBusHead-&gt;devList中；而当一个新的总线注册进来后就会放置到pBusListHead链表中。</p>
 <h2 id="vxbus的初始化">vxbus的初始化。</h2>
 <p>vxbus的初始化流程中的函数调用：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">usrInit
-    sysHwInit
-	hardWareInterFaceInit
-		hardWareInterFaceBusInit
-			vxbLibInit (vxbInitPhase <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) 
-			plbRegister
-			vxbInit(vxbInitPhase <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
-			    plbInit1
-    usrRoot
-	sysClkInit
-		sysClkConnect
-			sysHwInit2
-		             vxbDevInit
-				vxbDevInitInternal (vxbInitPhase <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>)
-					vxbDevInit2Helper(<span style="color:#960050;background-color:#1e0010">对所有设备进行</span>)
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">					vxbDevConnect
-					vxbDevConnectInternal(vxbInitPhase <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">						vxbDevConnectHelper(<span style="color:#960050;background-color:#1e0010">对所有设备进行</span>)
-</code></pre></div><p>vxbus的初始化分为按照vxbInitPhase=0,1,2,3分为4部分进行，接下来分别进行介绍。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>usrInit
+</span></span><span style="display:flex;"><span>    sysHwInit
+</span></span><span style="display:flex;"><span>	hardWareInterFaceInit
+</span></span><span style="display:flex;"><span>		hardWareInterFaceBusInit
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">vxbLibInit</span> (vxbInitPhase <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) 
+</span></span><span style="display:flex;"><span>			plbRegister
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">vxbInit</span>(vxbInitPhase <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>			    plbInit1
+</span></span><span style="display:flex;"><span>    usrRoot
+</span></span><span style="display:flex;"><span>	sysClkInit
+</span></span><span style="display:flex;"><span>		sysClkConnect
+</span></span><span style="display:flex;"><span>			sysHwInit2
+</span></span><span style="display:flex;"><span>		             vxbDevInit
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">vxbDevInitInternal</span> (vxbInitPhase <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>					<span style="color:#a6e22e">vxbDevInit2Helper</span>(<span style="color:#960050;background-color:#1e0010">对所有设备进行</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>					vxbDevConnect
+</span></span><span style="display:flex;"><span>					<span style="color:#a6e22e">vxbDevConnectInternal</span>(vxbInitPhase <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>						<span style="color:#a6e22e">vxbDevConnectHelper</span>(<span style="color:#960050;background-color:#1e0010">对所有设备进行</span>)
+</span></span></code></pre></div><p>vxbus的初始化分为按照vxbInitPhase=0,1,2,3分为4部分进行，接下来分别进行介绍。</p>
 <p>vxbInitPhase=0时：函数vxbLibInit所做工作&quot;</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">STATUS <span style="color:#a6e22e">vxbLibInit</span> (<span style="color:#66d9ef">void</span>)
-    {
-    vxbInitPhase <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">return</span>(OK);
-    }
-</code></pre></div><p>只是声明了这是vxbInitPhase=0阶段，之后就是驱动函数的注册。也就是说0阶段只要是驱动函数的注册。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>STATUS <span style="color:#a6e22e">vxbLibInit</span> (<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>    vxbInitPhase <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span>(OK);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>只是声明了这是vxbInitPhase=0阶段，之后就是驱动函数的注册。也就是说0阶段只要是驱动函数的注册。</p>
 <p>vxbInitPhase=1：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">STATUS <span style="color:#a6e22e">vxbInit</span> (<span style="color:#66d9ef">void</span>)
-    {
-    vxbInitPhase <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
- 
-    plbInit1(pPlbDev);
-    <span style="color:#66d9ef">return</span>(OK);
-    }
-
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">STATUS <span style="color:#a6e22e">plbInit1</span>
-    (
-    <span style="color:#66d9ef">struct</span> vxbDev <span style="color:#f92672">*</span> pCtlr
-    )
-    {
-    <span style="color:#66d9ef">int</span> i, j;
-    <span style="color:#66d9ef">char</span> regBase[] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;regBase0&#34;</span>;
-    <span style="color:#66d9ef">struct</span> vxbDev <span style="color:#f92672">*</span> pDev;
-    HCF_DEVICE <span style="color:#f92672">*</span>    pHcf;
- 
-    VXBPLB_DEBUG_MSG1(<span style="color:#e6db74">&#34;plbInit1() called</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>);
- 
-<span style="color:#75715e">#ifdef	VXB_LEGACY_ACCESS
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">/* call the function to initialize the access module of PLB */</span>
-    plbAccessInit ();
-<span style="color:#75715e">#endif	</span><span style="color:#75715e">/* VXB_LEGACY_ACCESS */</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span> 
-    <span style="color:#75715e">/*
-</span><span style="color:#75715e">     * now populate the bus with devices from the table created by the
-</span><span style="color:#75715e">     * configuration tool
-</span><span style="color:#75715e">     */</span>
-    <span style="color:#66d9ef">for</span> ( i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ; i <span style="color:#f92672">&lt;</span> hcfDeviceNum ; i<span style="color:#f92672">++</span> )
-        {
-        <span style="color:#66d9ef">if</span> ( hcfDeviceList[i].busType <span style="color:#f92672">!=</span> VXB_BUSID_PLB )
-            {
-            VXBPLB_DEBUG_MSG1(<span style="color:#e6db74">&#34;plbInit1(): skipping non-PLB device %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,
-                         (<span style="color:#66d9ef">int</span>)hcfDeviceList[i].devName, <span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>);
-            }
-        <span style="color:#66d9ef">else</span>
-            {
-            VXBPLB_DEBUG_MSG1(<span style="color:#e6db74">&#34;plbInit1(): processing device %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,
-                         (<span style="color:#66d9ef">int</span>)hcfDeviceList[i].devName, <span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>);
-            pHcf <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>hcfDeviceList[i];
-            <span style="color:#75715e">/* allocate device structure */</span>
-            pDev <span style="color:#f92672">=</span> vxbDevStructAlloc(WAIT_FOREVER);
-            <span style="color:#66d9ef">if</span> ( pDev <span style="color:#f92672">==</span> NULL )
-                {
-                <span style="color:#66d9ef">return</span>(ERROR);
-                }
-            <span style="color:#75715e">/* bus subsystem overhead */</span>
-            pDev<span style="color:#f92672">-&gt;</span>busID <span style="color:#f92672">=</span> VXB_BUSID_PLB;
-            pDev<span style="color:#f92672">-&gt;</span>pNext <span style="color:#f92672">=</span> NULL;
-            <span style="color:#75715e">/* save resources with device */</span>
-            pDev<span style="color:#f92672">-&gt;</span>pBusSpecificDevInfo <span style="color:#f92672">=</span> (<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>hcfDeviceList[i];
-            <span style="color:#75715e">/* access functions */</span>
-<span style="color:#75715e">#ifdef	VXB_LEGACY_ACCESS
-</span><span style="color:#75715e"></span>            pDev<span style="color:#f92672">-&gt;</span>pAccess <span style="color:#f92672">=</span> (pVXB_ACCESS_LIST)hwMemAlloc(<span style="color:#66d9ef">sizeof</span>(VXB_ACCESS_LIST));
-            <span style="color:#66d9ef">if</span> ( pDev<span style="color:#f92672">-&gt;</span>pAccess <span style="color:#f92672">==</span> NULL )
-                {
-                <span style="color:#75715e">/* hwMemFree((char *)pDev); */</span>
-                vxbDevStructFree(pDev);
-                <span style="color:#66d9ef">return</span>(ERROR);
-                }
-            <span style="color:#75715e">/* copy the arch specific access function pointers */</span>
-            vxbPlbAccessCopy (pDev<span style="color:#f92672">-&gt;</span>pAccess);
-<span style="color:#75715e">#endif	</span><span style="color:#75715e">/* VXB_LEGACY_ACCESS */</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>            <span style="color:#75715e">/* nothing needs to be done if the return value is not ok */</span>
-            <span style="color:#75715e">/* assign register base address */</span>
-           <span style="color:#66d9ef">for</span> (j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> VXB_MAXBARS; j<span style="color:#f92672">++</span>)
-                {
-                pDev<span style="color:#f92672">-&gt;</span>pRegBase[j] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-                <span style="color:#75715e">/*
-</span><span style="color:#75715e">                 * Decode all BARs labeled &#34;regBase0&#34; to &#34;regBase9.&#34; For
-</span><span style="color:#75715e">                 * backwards compatibility, &#34;regBase0&#34; and &#34;regBase&#34; are
-</span><span style="color:#75715e">                 * equivalent.
-</span><span style="color:#75715e">                 */</span>
-                regBase[<span style="color:#ae81ff">7</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;0&#39;</span><span style="color:#f92672">+</span>j; <span style="color:#75715e">/* Avoid use of sprintf()/strcat()/etc) */</span>
-                <span style="color:#75715e">/* 
-</span><span style="color:#75715e">                 * resourceDesc {
-</span><span style="color:#75715e">                 * The regBaseN resources specify up to 10
-</span><span style="color:#75715e">                 * base addresses for device registers (N = [0-9]). }
-</span><span style="color:#75715e">                 */</span>
-                <span style="color:#66d9ef">if</span> (devResourceGet (pHcf, regBase, HCF_RES_INT,
-                    (<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>(pDev<span style="color:#f92672">-&gt;</span>pRegBase[j])) <span style="color:#f92672">!=</span> OK <span style="color:#f92672">&amp;&amp;</span> j <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
-                <span style="color:#75715e">/* 
-</span><span style="color:#75715e">                 * resourceDesc {
-</span><span style="color:#75715e">                 * The regBase resource is synonymous with regBase0. }
-</span><span style="color:#75715e">                 */</span>
-                    devResourceGet (pHcf, <span style="color:#e6db74">&#34;regBase&#34;</span>, HCF_RES_INT,
-                        (<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>(pDev<span style="color:#f92672">-&gt;</span>pRegBase[j]));
-                <span style="color:#75715e">/*
-</span><span style="color:#75715e">                 * On x86, local bus devices are assumed to be
-</span><span style="color:#75715e">                 * accessed using I/O space registers. Everywhere
-</span><span style="color:#75715e">                 * else, registers are simply memory mapped.
-</span><span style="color:#75715e">                 */</span>
-                <span style="color:#66d9ef">if</span> (pDev<span style="color:#f92672">-&gt;</span>pRegBase[j] <span style="color:#f92672">==</span> NULL)
-                    pDev<span style="color:#f92672">-&gt;</span>regBaseFlags[j] <span style="color:#f92672">=</span> VXB_REG_NONE;
-                <span style="color:#66d9ef">else</span>
-<span style="color:#75715e">#if (CPU_FAMILY == I80X86)
-</span><span style="color:#75715e"></span>                    pDev<span style="color:#f92672">-&gt;</span>regBaseFlags[j] <span style="color:#f92672">=</span> VXB_REG_IO;
-<span style="color:#75715e">#else
-</span><span style="color:#75715e"></span>                    pDev<span style="color:#f92672">-&gt;</span>regBaseFlags[j] <span style="color:#f92672">=</span> VXB_REG_MEM;
-<span style="color:#75715e">#endif
-</span><span style="color:#75715e"></span>                }
-            <span style="color:#75715e">/* bus-specific info */</span>
-            pDev<span style="color:#f92672">-&gt;</span>u.pSubordinateBus <span style="color:#f92672">=</span> NULL;
-            <span style="color:#75715e">/* device name */</span>
-            pDev<span style="color:#f92672">-&gt;</span>pName <span style="color:#f92672">=</span> hcfDeviceList[i].devName;
-            <span style="color:#75715e">/* update the device unit number */</span>
-            pDev<span style="color:#f92672">-&gt;</span>unitNumber <span style="color:#f92672">=</span> hcfDeviceList[i].devUnit;
-            <span style="color:#75715e">/* per-driver info -- filled in later */</span>
-            pDev<span style="color:#f92672">-&gt;</span>pDrvCtrl <span style="color:#f92672">=</span> NULL;
-            <span style="color:#75715e">/* dev bus handle is controller&#39;s subordinate bus */</span>
-            pDev<span style="color:#f92672">-&gt;</span>pParentBus <span style="color:#f92672">=</span> pCtlr<span style="color:#f92672">-&gt;</span>u.pSubordinateBus;
-            <span style="color:#75715e">/* interrupt information from the configuration */</span>
-            devResourceIntrGet(pDev, pHcf);
-            VXBPLB_DEBUG_MSG1(<span style="color:#e6db74">&#34;plbInit1(): announcing device %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,
-                         (<span style="color:#66d9ef">int</span>)pDev<span style="color:#f92672">-&gt;</span>pName, <span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>);
-            <span style="color:#75715e">/* we now have the device, so let the bus subsystem know */</span>
-            (<span style="color:#66d9ef">void</span>) vxbDeviceAnnounce(pDev);
-            VXBPLB_DEBUG_MSG1(<span style="color:#e6db74">&#34;plbInit1(): device %s OK</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,
-                         (<span style="color:#66d9ef">int</span>)pDev<span style="color:#f92672">-&gt;</span>pName, <span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>);
-            }
-        }
-    <span style="color:#66d9ef">return</span>(OK);
-    }
-</code></pre></div><p>这个函数所做的主要工作就是对系统中所定义的设备进行结构体的构建，也就是为每个设备抽象一个结构体，并按照所定义的信息对结构体进行填充。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">
-STATUS <span style="color:#a6e22e">vxbDeviceAnnounce</span>
-    (
-    <span style="color:#66d9ef">struct</span> vxbDev <span style="color:#f92672">*</span> pDev  <span style="color:#75715e">/* device information */</span>
-    )
-    {
-    <span style="color:#66d9ef">struct</span> vxbBusTypeInfo <span style="color:#f92672">*</span> pBusEntry;
-    <span style="color:#66d9ef">struct</span> vxbBusTypeInfo <span style="color:#f92672">*</span> busMatch <span style="color:#f92672">=</span> NULL;
-    BOOL         drvFound <span style="color:#f92672">=</span> FALSE;
-    <span style="color:#66d9ef">struct</span> vxbDevRegInfo <span style="color:#f92672">*</span>  pDrv;
-    <span style="color:#66d9ef">struct</span> vxbBusPresent <span style="color:#f92672">*</span> pBus;
-    FUNCPTR pMethod;
-    <span style="color:#66d9ef">if</span> ( pPlbDev <span style="color:#f92672">==</span> NULL <span style="color:#f92672">&amp;&amp;</span> pDev<span style="color:#f92672">-&gt;</span>busID <span style="color:#f92672">==</span> VXB_BUSID_LOCAL )
-        {
-        pPlbDev <span style="color:#f92672">=</span> pDev;
-        <span style="color:#66d9ef">return</span>(OK);
-        }
-    VXB_DEBUG_MSG(<span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#34;vxbDeviceAnnounce(0x%08x(%s))</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, (<span style="color:#66d9ef">int</span>)pDev,
-                  (<span style="color:#66d9ef">int</span>)pDev<span style="color:#f92672">-&gt;</span>pName, <span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>);
-    <span style="color:#66d9ef">if</span> (pPlbDev <span style="color:#f92672">!=</span> NULL)
-	{
-	pMethod <span style="color:#f92672">=</span> vxbDevMethodGet(pPlbDev, DEVMETHOD_CALL(sysBspDevFilter));
-	<span style="color:#66d9ef">if</span> (pMethod <span style="color:#f92672">!=</span> NULL)
-	    {
-	    <span style="color:#66d9ef">if</span> ((<span style="color:#f92672">*</span>pMethod)(pDev) <span style="color:#f92672">!=</span> OK)
-		{
-		VXB_DEBUG_MSG(<span style="color:#ae81ff">1</span>,
-			      <span style="color:#e6db74">&#34;vxbDeviceAnnounce(0x%08x(%s)) excluded by BSP</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,
-			      (<span style="color:#66d9ef">int</span>)pDev,
-			      (<span style="color:#66d9ef">int</span>)pDev<span style="color:#f92672">-&gt;</span>pName, <span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>);
-		<span style="color:#66d9ef">return</span> ERROR;
-		}
-	    }  
-	}
-    <span style="color:#75715e">/* acquire global lock as reader */</span>
-    vxbLockTake(<span style="color:#f92672">&amp;</span>vxbGlobalListsLock, VXB_LOCK_READER);
-    <span style="color:#66d9ef">for</span> ( pBusEntry <span style="color:#f92672">=</span> pBusListHead ; pBusEntry <span style="color:#f92672">!=</span> NULL ;
-          pBusEntry <span style="color:#f92672">=</span> pBusEntry<span style="color:#f92672">-&gt;</span>pNext )
-        {
-        <span style="color:#75715e">/* check for matching bus type */</span>
-        <span style="color:#66d9ef">if</span> ( pBusEntry<span style="color:#f92672">-&gt;</span>busID <span style="color:#f92672">!=</span> pDev<span style="color:#f92672">-&gt;</span>busID )
-            <span style="color:#66d9ef">continue</span>;
-        <span style="color:#66d9ef">for</span> ( pDrv <span style="color:#f92672">=</span> pDriverListHead ; pDrv <span style="color:#f92672">!=</span> NULL ;
-             pDrv <span style="color:#f92672">=</span> pDrv<span style="color:#f92672">-&gt;</span>pNext )
-            {
-            VXB_DEBUG_MSG(<span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#34;vxbDeviceAnnounce(): checking 0x%08x (%s) &#34;</span>
-                            <span style="color:#e6db74">&#34;against %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,
-                        (<span style="color:#66d9ef">int</span>)pDev, (<span style="color:#66d9ef">int</span>)pDev<span style="color:#f92672">-&gt;</span>pName,
-                        (<span style="color:#66d9ef">int</span>)<span style="color:#f92672">&amp;</span>pDrv<span style="color:#f92672">-&gt;</span>drvName[<span style="color:#ae81ff">0</span>], <span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>);
-            <span style="color:#66d9ef">if</span> ( pDrv<span style="color:#f92672">-&gt;</span>busID <span style="color:#f92672">!=</span> pDev<span style="color:#f92672">-&gt;</span>busID )
-                {
-                VXB_DEBUG_MSG(<span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#34;vxbDeviceAnnounce(): &#34;</span>
-                                <span style="color:#e6db74">&#34;%s@%p failed type check</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,
-                            (<span style="color:#66d9ef">int</span>)pDev<span style="color:#f92672">-&gt;</span>pName, (<span style="color:#66d9ef">int</span>)pDev,
-                            <span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>);
-                <span style="color:#66d9ef">continue</span>;
-                }
-            <span style="color:#75715e">/* check bus-specific match routine */</span>
-            drvFound <span style="color:#f92672">=</span> (<span style="color:#f92672">*</span>(pBusEntry<span style="color:#f92672">-&gt;</span>vxbDevMatch))(pDrv, pDev);
-            <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span> drvFound )
-                {
-                VXB_DEBUG_MSG(<span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#34;vxbDeviceAnnounce(): &#34;</span>
-                                <span style="color:#e6db74">&#34;%s@%p failed bus match</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,
-                            (<span style="color:#66d9ef">int</span>)pDev<span style="color:#f92672">-&gt;</span>pName, (<span style="color:#66d9ef">int</span>)pDev,
-                            <span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>);
-                <span style="color:#66d9ef">continue</span>;
-                }
-            busMatch <span style="color:#f92672">=</span> pBusEntry;
-            <span style="color:#75715e">/* check driver-supplied probe routine */</span>
-            <span style="color:#66d9ef">if</span> ( pDrv<span style="color:#f92672">-&gt;</span>devProbe <span style="color:#f92672">==</span> NULL )
-                {
-                VXB_DEBUG_MSG(<span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#34;vxbDeviceAnnounce(): &#34;</span>
-                                <span style="color:#e6db74">&#34;no driver probe available</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,
-                              <span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>);
-                drvFound <span style="color:#f92672">=</span> TRUE;
-                }
-            <span style="color:#66d9ef">else</span>
-                {
-                VXB_DEBUG_MSG(<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;vxbDeviceAnnounce(): &#34;</span>
-                                <span style="color:#e6db74">&#34;calling driver probe</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,
-                              <span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>);
-                drvFound <span style="color:#f92672">=</span> (<span style="color:#f92672">*</span>(pDrv<span style="color:#f92672">-&gt;</span>devProbe))(pDev);
-                <span style="color:#66d9ef">if</span> ( drvFound <span style="color:#f92672">==</span> FALSE )
-                    {
-                    VXB_DEBUG_MSG(<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;vxbDeviceAnnounce(): &#34;</span>
-                                    <span style="color:#e6db74">&#34;driver probe failed</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,
-                                  <span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>);
-                    <span style="color:#66d9ef">continue</span>;
-                    }
-                }
-            VXB_DEBUG_MSG(<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;vxbDeviceAnnounce(): &#34;</span>
-                            <span style="color:#e6db74">&#34;found match, driver @ %p</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,
-                          (<span style="color:#66d9ef">int</span>)pDrv, <span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>);
-            <span style="color:#75715e">/* attach driver registration info */</span>
-            pDev<span style="color:#f92672">-&gt;</span>pDriver <span style="color:#f92672">=</span> pDrv;
-            <span style="color:#75715e">/* adjust name */</span>
-            pDev<span style="color:#f92672">-&gt;</span>pName <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>pDrv<span style="color:#f92672">-&gt;</span>drvName[<span style="color:#ae81ff">0</span>];
-            <span style="color:#75715e">/* get parent bus */</span>
-            pBus <span style="color:#f92672">=</span> (<span style="color:#66d9ef">struct</span> vxbBusPresent <span style="color:#f92672">*</span>)pDev<span style="color:#f92672">-&gt;</span>pParentBus;
-            <span style="color:#66d9ef">if</span> ( pBus <span style="color:#f92672">==</span> NULL )
-                pBus <span style="color:#f92672">=</span> pPlbBus;
-            <span style="color:#75715e">/* acquire the lock */</span>
-            vxbLockTake(<span style="color:#f92672">&amp;</span>pBus<span style="color:#f92672">-&gt;</span>listLock, VXB_LOCK_WRITER);
-            <span style="color:#75715e">/* add this instance to bus device list */</span>
-            vxbInstInsert (<span style="color:#f92672">&amp;</span>pBus<span style="color:#f92672">-&gt;</span>instList, pDev);
-            <span style="color:#75715e">/* release the lock */</span>
-            vxbLockGive(<span style="color:#f92672">&amp;</span>pBus<span style="color:#f92672">-&gt;</span>listLock, VXB_LOCK_WRITER);
-            <span style="color:#75715e">/* perform initialization */</span>
-            vxbDevInitRun(pDev, pDrv);
-            <span style="color:#66d9ef">break</span>;
-            }
-        }
-    <span style="color:#75715e">/* release global lock */</span>
-    vxbLockGive(<span style="color:#f92672">&amp;</span>vxbGlobalListsLock, VXB_LOCK_READER);
-    <span style="color:#66d9ef">if</span> ( drvFound <span style="color:#f92672">==</span> FALSE )
-        {
-        <span style="color:#75715e">/* get parent bus */</span>
-        pBus <span style="color:#f92672">=</span> (<span style="color:#66d9ef">struct</span> vxbBusPresent <span style="color:#f92672">*</span>)pDev<span style="color:#f92672">-&gt;</span>pParentBus;
-        <span style="color:#75715e">/* if the parent bus is NULL, add to the global list of lost devices */</span>
-        <span style="color:#66d9ef">if</span> ( pBus <span style="color:#f92672">==</span> NULL )
-            {
-<span style="color:#75715e">#ifdef VXB_PERFORM_SANITY_CHECKS
-</span><span style="color:#75715e"></span>            <span style="color:#75715e">/* acquire the lock */</span>
-            vxbLockTake(<span style="color:#f92672">&amp;</span>vxbLostDevListLock, VXB_LOCK_WRITER);
-            vxbInstInsert (<span style="color:#f92672">&amp;</span>pLostDevHead, pDev);
-            <span style="color:#75715e">/* release the lock */</span>
-            vxbLockGive(<span style="color:#f92672">&amp;</span>vxbLostDevListLock, VXB_LOCK_WRITER);
-<span style="color:#75715e">#endif </span><span style="color:#75715e">/* VXB_PERFORM_SANITY_CHECKS */</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">return</span>(ERROR);
-            }
-        <span style="color:#75715e">/* insure pDriver is initialized */</span>
-        pDev<span style="color:#f92672">-&gt;</span>pDriver <span style="color:#f92672">=</span> NULL;
-        <span style="color:#75715e">/* acquire the lock */</span>
-        vxbLockTake(<span style="color:#f92672">&amp;</span>pBus<span style="color:#f92672">-&gt;</span>listLock, VXB_LOCK_WRITER);
-        <span style="color:#75715e">/* keep track of unattached device */</span>
-        vxbInstInsert (<span style="color:#f92672">&amp;</span>pBus<span style="color:#f92672">-&gt;</span>devList, pDev);
-        <span style="color:#75715e">/* release the lock */</span>
-        vxbLockGive(<span style="color:#f92672">&amp;</span>pBus<span style="color:#f92672">-&gt;</span>listLock, VXB_LOCK_WRITER);
-        }
-    <span style="color:#66d9ef">return</span> OK;
-    }
-</code></pre></div><p>每当一个设备的结构体初始化完成时，也就是一个设备构建完成，这时调用vxbDeviceAnnounce，告诉系统有新设备了。vxbDeviceAnnounce的功能就是在驱动链表中进行查找，看有没有与当前设备匹配的驱动，分别比对name,之后比对ID，如果相同就匹配完成，放到pBusHead-&gt;instList链表中，如果没有驱动就放到pBusHead-&gt;devlist中，之后调用函数vxbDevInitRun：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">LOCAL <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">vxbDevInitRun</span>
-    (
-    VXB_DEVICE_ID devID,
-    <span style="color:#66d9ef">struct</span> vxbDevRegInfo <span style="color:#f92672">*</span> pDrv
-    )
-    {
-    <span style="color:#75715e">/* first pass */</span>
-    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>(devID<span style="color:#f92672">-&gt;</span>flags <span style="color:#f92672">&amp;</span> VXB_INST_INIT_DONE))
-        {
-        <span style="color:#66d9ef">if</span> ( pDrv<span style="color:#f92672">-&gt;</span>pDrvBusFuncs<span style="color:#f92672">-&gt;</span>devInstanceInit <span style="color:#f92672">!=</span> NULL )
-	    (<span style="color:#f92672">*</span>(pDrv<span style="color:#f92672">-&gt;</span>pDrvBusFuncs<span style="color:#f92672">-&gt;</span>devInstanceInit))(devID);
-        devID<span style="color:#f92672">-&gt;</span>flags <span style="color:#f92672">|=</span> VXB_INST_INIT_DONE;
-        }
-    <span style="color:#75715e">/* second pass */</span>
-    <span style="color:#66d9ef">if</span> (vxbInitPhase <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>(devID<span style="color:#f92672">-&gt;</span>flags <span style="color:#f92672">&amp;</span> VXB_INST_INIT2_DONE))
-        {
-        <span style="color:#66d9ef">if</span> ( pDrv<span style="color:#f92672">-&gt;</span>pDrvBusFuncs<span style="color:#f92672">-&gt;</span>devInstanceInit2 <span style="color:#f92672">!=</span> NULL )
-	    (<span style="color:#f92672">*</span>(pDrv<span style="color:#f92672">-&gt;</span>pDrvBusFuncs<span style="color:#f92672">-&gt;</span>devInstanceInit2))(devID);
-        devID<span style="color:#f92672">-&gt;</span>flags <span style="color:#f92672">|=</span> VXB_INST_INIT2_DONE;
-        }
-    <span style="color:#75715e">/* third pass */</span>
-    <span style="color:#66d9ef">if</span> (vxbInitPhase <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>(devID<span style="color:#f92672">-&gt;</span>flags <span style="color:#f92672">&amp;</span> VXB_INST_CONNECT_DONE))
-        {
-        <span style="color:#66d9ef">if</span> ( pDrv<span style="color:#f92672">-&gt;</span>pDrvBusFuncs<span style="color:#f92672">-&gt;</span>devInstanceConnect <span style="color:#f92672">!=</span> NULL )
-	    (<span style="color:#f92672">*</span>(pDrv<span style="color:#f92672">-&gt;</span>pDrvBusFuncs<span style="color:#f92672">-&gt;</span>devInstanceConnect))(devID);
-        devID<span style="color:#f92672">-&gt;</span>flags <span style="color:#f92672">|=</span> VXB_INST_CONNECT_DONE;
-        }
-    }
-</code></pre></div><p>vxbDevInitRun的作用就是分别调用设备的初始化函数，对设备进行初始化。
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>STATUS <span style="color:#a6e22e">vxbInit</span> (<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>    vxbInitPhase <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">plbInit1</span>(pPlbDev);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span>(OK);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>STATUS <span style="color:#a6e22e">plbInit1</span>
+</span></span><span style="display:flex;"><span>    (
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> vxbDev <span style="color:#f92672">*</span> pCtlr
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> i, j;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> regBase[] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;regBase0&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> vxbDev <span style="color:#f92672">*</span> pDev;
+</span></span><span style="display:flex;"><span>    HCF_DEVICE <span style="color:#f92672">*</span>    pHcf;
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">VXBPLB_DEBUG_MSG1</span>(<span style="color:#e6db74">&#34;plbInit1() called</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#ifdef	VXB_LEGACY_ACCESS
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">/* call the function to initialize the access module of PLB */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">plbAccessInit</span> ();
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif	</span><span style="color:#75715e">/* VXB_LEGACY_ACCESS */</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * now populate the bus with devices from the table created by the
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * configuration tool
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> ( i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ; i <span style="color:#f92672">&lt;</span> hcfDeviceNum ; i<span style="color:#f92672">++</span> )
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ( hcfDeviceList[i].busType <span style="color:#f92672">!=</span> VXB_BUSID_PLB )
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">VXBPLB_DEBUG_MSG1</span>(<span style="color:#e6db74">&#34;plbInit1(): skipping non-PLB device %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,
+</span></span><span style="display:flex;"><span>                         (<span style="color:#66d9ef">int</span>)hcfDeviceList[i].devName, <span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">VXBPLB_DEBUG_MSG1</span>(<span style="color:#e6db74">&#34;plbInit1(): processing device %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,
+</span></span><span style="display:flex;"><span>                         (<span style="color:#66d9ef">int</span>)hcfDeviceList[i].devName, <span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>);
+</span></span><span style="display:flex;"><span>            pHcf <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>hcfDeviceList[i];
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">/* allocate device structure */</span>
+</span></span><span style="display:flex;"><span>            pDev <span style="color:#f92672">=</span> <span style="color:#a6e22e">vxbDevStructAlloc</span>(WAIT_FOREVER);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> ( pDev <span style="color:#f92672">==</span> NULL )
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span>(ERROR);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">/* bus subsystem overhead */</span>
+</span></span><span style="display:flex;"><span>            pDev<span style="color:#f92672">-&gt;</span>busID <span style="color:#f92672">=</span> VXB_BUSID_PLB;
+</span></span><span style="display:flex;"><span>            pDev<span style="color:#f92672">-&gt;</span>pNext <span style="color:#f92672">=</span> NULL;
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">/* save resources with device */</span>
+</span></span><span style="display:flex;"><span>            pDev<span style="color:#f92672">-&gt;</span>pBusSpecificDevInfo <span style="color:#f92672">=</span> (<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>hcfDeviceList[i];
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">/* access functions */</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#ifdef	VXB_LEGACY_ACCESS
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            pDev<span style="color:#f92672">-&gt;</span>pAccess <span style="color:#f92672">=</span> (pVXB_ACCESS_LIST)<span style="color:#a6e22e">hwMemAlloc</span>(<span style="color:#66d9ef">sizeof</span>(VXB_ACCESS_LIST));
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> ( pDev<span style="color:#f92672">-&gt;</span>pAccess <span style="color:#f92672">==</span> NULL )
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">/* hwMemFree((char *)pDev); */</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">vxbDevStructFree</span>(pDev);
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span>(ERROR);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">/* copy the arch specific access function pointers */</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">vxbPlbAccessCopy</span> (pDev<span style="color:#f92672">-&gt;</span>pAccess);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif	</span><span style="color:#75715e">/* VXB_LEGACY_ACCESS */</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#75715e">/* nothing needs to be done if the return value is not ok */</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">/* assign register base address */</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#66d9ef">for</span> (j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> VXB_MAXBARS; j<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                pDev<span style="color:#f92672">-&gt;</span>pRegBase[j] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                 * Decode all BARs labeled &#34;regBase0&#34; to &#34;regBase9.&#34; For
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                 * backwards compatibility, &#34;regBase0&#34; and &#34;regBase&#34; are
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                 * equivalent.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                 */</span>
+</span></span><span style="display:flex;"><span>                regBase[<span style="color:#ae81ff">7</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;0&#39;</span><span style="color:#f92672">+</span>j; <span style="color:#75715e">/* Avoid use of sprintf()/strcat()/etc) */</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">/* 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                 * resourceDesc {
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                 * The regBaseN resources specify up to 10
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                 * base addresses for device registers (N = [0-9]). }
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                 */</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">devResourceGet</span> (pHcf, regBase, HCF_RES_INT,
+</span></span><span style="display:flex;"><span>                    (<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>(pDev<span style="color:#f92672">-&gt;</span>pRegBase[j])) <span style="color:#f92672">!=</span> OK <span style="color:#f92672">&amp;&amp;</span> j <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">/* 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                 * resourceDesc {
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                 * The regBase resource is synonymous with regBase0. }
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                 */</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">devResourceGet</span> (pHcf, <span style="color:#e6db74">&#34;regBase&#34;</span>, HCF_RES_INT,
+</span></span><span style="display:flex;"><span>                        (<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>(pDev<span style="color:#f92672">-&gt;</span>pRegBase[j]));
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                 * On x86, local bus devices are assumed to be
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                 * accessed using I/O space registers. Everywhere
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                 * else, registers are simply memory mapped.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                 */</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (pDev<span style="color:#f92672">-&gt;</span>pRegBase[j] <span style="color:#f92672">==</span> NULL)
+</span></span><span style="display:flex;"><span>                    pDev<span style="color:#f92672">-&gt;</span>regBaseFlags[j] <span style="color:#f92672">=</span> VXB_REG_NONE;
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#if (CPU_FAMILY == I80X86)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                    pDev<span style="color:#f92672">-&gt;</span>regBaseFlags[j] <span style="color:#f92672">=</span> VXB_REG_IO;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#else
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                    pDev<span style="color:#f92672">-&gt;</span>regBaseFlags[j] <span style="color:#f92672">=</span> VXB_REG_MEM;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                }
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">/* bus-specific info */</span>
+</span></span><span style="display:flex;"><span>            pDev<span style="color:#f92672">-&gt;</span>u.pSubordinateBus <span style="color:#f92672">=</span> NULL;
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">/* device name */</span>
+</span></span><span style="display:flex;"><span>            pDev<span style="color:#f92672">-&gt;</span>pName <span style="color:#f92672">=</span> hcfDeviceList[i].devName;
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">/* update the device unit number */</span>
+</span></span><span style="display:flex;"><span>            pDev<span style="color:#f92672">-&gt;</span>unitNumber <span style="color:#f92672">=</span> hcfDeviceList[i].devUnit;
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">/* per-driver info -- filled in later */</span>
+</span></span><span style="display:flex;"><span>            pDev<span style="color:#f92672">-&gt;</span>pDrvCtrl <span style="color:#f92672">=</span> NULL;
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">/* dev bus handle is controller&#39;s subordinate bus */</span>
+</span></span><span style="display:flex;"><span>            pDev<span style="color:#f92672">-&gt;</span>pParentBus <span style="color:#f92672">=</span> pCtlr<span style="color:#f92672">-&gt;</span>u.pSubordinateBus;
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">/* interrupt information from the configuration */</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">devResourceIntrGet</span>(pDev, pHcf);
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">VXBPLB_DEBUG_MSG1</span>(<span style="color:#e6db74">&#34;plbInit1(): announcing device %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,
+</span></span><span style="display:flex;"><span>                         (<span style="color:#66d9ef">int</span>)pDev<span style="color:#f92672">-&gt;</span>pName, <span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">/* we now have the device, so let the bus subsystem know */</span>
+</span></span><span style="display:flex;"><span>            (<span style="color:#66d9ef">void</span>) <span style="color:#a6e22e">vxbDeviceAnnounce</span>(pDev);
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">VXBPLB_DEBUG_MSG1</span>(<span style="color:#e6db74">&#34;plbInit1(): device %s OK</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,
+</span></span><span style="display:flex;"><span>                         (<span style="color:#66d9ef">int</span>)pDev<span style="color:#f92672">-&gt;</span>pName, <span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span>(OK);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>这个函数所做的主要工作就是对系统中所定义的设备进行结构体的构建，也就是为每个设备抽象一个结构体，并按照所定义的信息对结构体进行填充。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>STATUS <span style="color:#a6e22e">vxbDeviceAnnounce</span>
+</span></span><span style="display:flex;"><span>    (
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> vxbDev <span style="color:#f92672">*</span> pDev  <span style="color:#75715e">/* device information */</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> vxbBusTypeInfo <span style="color:#f92672">*</span> pBusEntry;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> vxbBusTypeInfo <span style="color:#f92672">*</span> busMatch <span style="color:#f92672">=</span> NULL;
+</span></span><span style="display:flex;"><span>    BOOL         drvFound <span style="color:#f92672">=</span> FALSE;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> vxbDevRegInfo <span style="color:#f92672">*</span>  pDrv;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> vxbBusPresent <span style="color:#f92672">*</span> pBus;
+</span></span><span style="display:flex;"><span>    FUNCPTR pMethod;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ( pPlbDev <span style="color:#f92672">==</span> NULL <span style="color:#f92672">&amp;&amp;</span> pDev<span style="color:#f92672">-&gt;</span>busID <span style="color:#f92672">==</span> VXB_BUSID_LOCAL )
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>        pPlbDev <span style="color:#f92672">=</span> pDev;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>(OK);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">VXB_DEBUG_MSG</span>(<span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#34;vxbDeviceAnnounce(0x%08x(%s))</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, (<span style="color:#66d9ef">int</span>)pDev,
+</span></span><span style="display:flex;"><span>                  (<span style="color:#66d9ef">int</span>)pDev<span style="color:#f92672">-&gt;</span>pName, <span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (pPlbDev <span style="color:#f92672">!=</span> NULL)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>	pMethod <span style="color:#f92672">=</span> <span style="color:#a6e22e">vxbDevMethodGet</span>(pPlbDev, <span style="color:#a6e22e">DEVMETHOD_CALL</span>(sysBspDevFilter));
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (pMethod <span style="color:#f92672">!=</span> NULL)
+</span></span><span style="display:flex;"><span>	    {
+</span></span><span style="display:flex;"><span>	    <span style="color:#66d9ef">if</span> ((<span style="color:#f92672">*</span>pMethod)(pDev) <span style="color:#f92672">!=</span> OK)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">VXB_DEBUG_MSG</span>(<span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>			      <span style="color:#e6db74">&#34;vxbDeviceAnnounce(0x%08x(%s)) excluded by BSP</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,
+</span></span><span style="display:flex;"><span>			      (<span style="color:#66d9ef">int</span>)pDev,
+</span></span><span style="display:flex;"><span>			      (<span style="color:#66d9ef">int</span>)pDev<span style="color:#f92672">-&gt;</span>pName, <span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>);
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> ERROR;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	    }  
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/* acquire global lock as reader */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">vxbLockTake</span>(<span style="color:#f92672">&amp;</span>vxbGlobalListsLock, VXB_LOCK_READER);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> ( pBusEntry <span style="color:#f92672">=</span> pBusListHead ; pBusEntry <span style="color:#f92672">!=</span> NULL ;
+</span></span><span style="display:flex;"><span>          pBusEntry <span style="color:#f92672">=</span> pBusEntry<span style="color:#f92672">-&gt;</span>pNext )
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/* check for matching bus type */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ( pBusEntry<span style="color:#f92672">-&gt;</span>busID <span style="color:#f92672">!=</span> pDev<span style="color:#f92672">-&gt;</span>busID )
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> ( pDrv <span style="color:#f92672">=</span> pDriverListHead ; pDrv <span style="color:#f92672">!=</span> NULL ;
+</span></span><span style="display:flex;"><span>             pDrv <span style="color:#f92672">=</span> pDrv<span style="color:#f92672">-&gt;</span>pNext )
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">VXB_DEBUG_MSG</span>(<span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#34;vxbDeviceAnnounce(): checking 0x%08x (%s) &#34;</span>
+</span></span><span style="display:flex;"><span>                            <span style="color:#e6db74">&#34;against %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,
+</span></span><span style="display:flex;"><span>                        (<span style="color:#66d9ef">int</span>)pDev, (<span style="color:#66d9ef">int</span>)pDev<span style="color:#f92672">-&gt;</span>pName,
+</span></span><span style="display:flex;"><span>                        (<span style="color:#66d9ef">int</span>)<span style="color:#f92672">&amp;</span>pDrv<span style="color:#f92672">-&gt;</span>drvName[<span style="color:#ae81ff">0</span>], <span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> ( pDrv<span style="color:#f92672">-&gt;</span>busID <span style="color:#f92672">!=</span> pDev<span style="color:#f92672">-&gt;</span>busID )
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">VXB_DEBUG_MSG</span>(<span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#34;vxbDeviceAnnounce(): &#34;</span>
+</span></span><span style="display:flex;"><span>                                <span style="color:#e6db74">&#34;%s@%p failed type check</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,
+</span></span><span style="display:flex;"><span>                            (<span style="color:#66d9ef">int</span>)pDev<span style="color:#f92672">-&gt;</span>pName, (<span style="color:#66d9ef">int</span>)pDev,
+</span></span><span style="display:flex;"><span>                            <span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>);
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">/* check bus-specific match routine */</span>
+</span></span><span style="display:flex;"><span>            drvFound <span style="color:#f92672">=</span> (<span style="color:#f92672">*</span>(pBusEntry<span style="color:#f92672">-&gt;</span>vxbDevMatch))(pDrv, pDev);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span> drvFound )
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">VXB_DEBUG_MSG</span>(<span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#34;vxbDeviceAnnounce(): &#34;</span>
+</span></span><span style="display:flex;"><span>                                <span style="color:#e6db74">&#34;%s@%p failed bus match</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,
+</span></span><span style="display:flex;"><span>                            (<span style="color:#66d9ef">int</span>)pDev<span style="color:#f92672">-&gt;</span>pName, (<span style="color:#66d9ef">int</span>)pDev,
+</span></span><span style="display:flex;"><span>                            <span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>);
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            busMatch <span style="color:#f92672">=</span> pBusEntry;
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">/* check driver-supplied probe routine */</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> ( pDrv<span style="color:#f92672">-&gt;</span>devProbe <span style="color:#f92672">==</span> NULL )
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">VXB_DEBUG_MSG</span>(<span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#34;vxbDeviceAnnounce(): &#34;</span>
+</span></span><span style="display:flex;"><span>                                <span style="color:#e6db74">&#34;no driver probe available</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,
+</span></span><span style="display:flex;"><span>                              <span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>);
+</span></span><span style="display:flex;"><span>                drvFound <span style="color:#f92672">=</span> TRUE;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">VXB_DEBUG_MSG</span>(<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;vxbDeviceAnnounce(): &#34;</span>
+</span></span><span style="display:flex;"><span>                                <span style="color:#e6db74">&#34;calling driver probe</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,
+</span></span><span style="display:flex;"><span>                              <span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>);
+</span></span><span style="display:flex;"><span>                drvFound <span style="color:#f92672">=</span> (<span style="color:#f92672">*</span>(pDrv<span style="color:#f92672">-&gt;</span>devProbe))(pDev);
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> ( drvFound <span style="color:#f92672">==</span> FALSE )
+</span></span><span style="display:flex;"><span>                    {
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">VXB_DEBUG_MSG</span>(<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;vxbDeviceAnnounce(): &#34;</span>
+</span></span><span style="display:flex;"><span>                                    <span style="color:#e6db74">&#34;driver probe failed</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,
+</span></span><span style="display:flex;"><span>                                  <span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>);
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">VXB_DEBUG_MSG</span>(<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;vxbDeviceAnnounce(): &#34;</span>
+</span></span><span style="display:flex;"><span>                            <span style="color:#e6db74">&#34;found match, driver @ %p</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,
+</span></span><span style="display:flex;"><span>                          (<span style="color:#66d9ef">int</span>)pDrv, <span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">/* attach driver registration info */</span>
+</span></span><span style="display:flex;"><span>            pDev<span style="color:#f92672">-&gt;</span>pDriver <span style="color:#f92672">=</span> pDrv;
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">/* adjust name */</span>
+</span></span><span style="display:flex;"><span>            pDev<span style="color:#f92672">-&gt;</span>pName <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>pDrv<span style="color:#f92672">-&gt;</span>drvName[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">/* get parent bus */</span>
+</span></span><span style="display:flex;"><span>            pBus <span style="color:#f92672">=</span> (<span style="color:#66d9ef">struct</span> vxbBusPresent <span style="color:#f92672">*</span>)pDev<span style="color:#f92672">-&gt;</span>pParentBus;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> ( pBus <span style="color:#f92672">==</span> NULL )
+</span></span><span style="display:flex;"><span>                pBus <span style="color:#f92672">=</span> pPlbBus;
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">/* acquire the lock */</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">vxbLockTake</span>(<span style="color:#f92672">&amp;</span>pBus<span style="color:#f92672">-&gt;</span>listLock, VXB_LOCK_WRITER);
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">/* add this instance to bus device list */</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">vxbInstInsert</span> (<span style="color:#f92672">&amp;</span>pBus<span style="color:#f92672">-&gt;</span>instList, pDev);
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">/* release the lock */</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">vxbLockGive</span>(<span style="color:#f92672">&amp;</span>pBus<span style="color:#f92672">-&gt;</span>listLock, VXB_LOCK_WRITER);
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">/* perform initialization */</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">vxbDevInitRun</span>(pDev, pDrv);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/* release global lock */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">vxbLockGive</span>(<span style="color:#f92672">&amp;</span>vxbGlobalListsLock, VXB_LOCK_READER);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ( drvFound <span style="color:#f92672">==</span> FALSE )
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/* get parent bus */</span>
+</span></span><span style="display:flex;"><span>        pBus <span style="color:#f92672">=</span> (<span style="color:#66d9ef">struct</span> vxbBusPresent <span style="color:#f92672">*</span>)pDev<span style="color:#f92672">-&gt;</span>pParentBus;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/* if the parent bus is NULL, add to the global list of lost devices */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ( pBus <span style="color:#f92672">==</span> NULL )
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#ifdef VXB_PERFORM_SANITY_CHECKS
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#75715e">/* acquire the lock */</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">vxbLockTake</span>(<span style="color:#f92672">&amp;</span>vxbLostDevListLock, VXB_LOCK_WRITER);
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">vxbInstInsert</span> (<span style="color:#f92672">&amp;</span>pLostDevHead, pDev);
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">/* release the lock */</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">vxbLockGive</span>(<span style="color:#f92672">&amp;</span>vxbLostDevListLock, VXB_LOCK_WRITER);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif </span><span style="color:#75715e">/* VXB_PERFORM_SANITY_CHECKS */</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">return</span>(ERROR);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/* insure pDriver is initialized */</span>
+</span></span><span style="display:flex;"><span>        pDev<span style="color:#f92672">-&gt;</span>pDriver <span style="color:#f92672">=</span> NULL;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/* acquire the lock */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">vxbLockTake</span>(<span style="color:#f92672">&amp;</span>pBus<span style="color:#f92672">-&gt;</span>listLock, VXB_LOCK_WRITER);
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/* keep track of unattached device */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">vxbInstInsert</span> (<span style="color:#f92672">&amp;</span>pBus<span style="color:#f92672">-&gt;</span>devList, pDev);
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/* release the lock */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">vxbLockGive</span>(<span style="color:#f92672">&amp;</span>pBus<span style="color:#f92672">-&gt;</span>listLock, VXB_LOCK_WRITER);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> OK;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>每当一个设备的结构体初始化完成时，也就是一个设备构建完成，这时调用vxbDeviceAnnounce，告诉系统有新设备了。vxbDeviceAnnounce的功能就是在驱动链表中进行查找，看有没有与当前设备匹配的驱动，分别比对name,之后比对ID，如果相同就匹配完成，放到pBusHead-&gt;instList链表中，如果没有驱动就放到pBusHead-&gt;devlist中，之后调用函数vxbDevInitRun：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>LOCAL <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">vxbDevInitRun</span>
+</span></span><span style="display:flex;"><span>    (
+</span></span><span style="display:flex;"><span>    VXB_DEVICE_ID devID,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> vxbDevRegInfo <span style="color:#f92672">*</span> pDrv
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/* first pass */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>(devID<span style="color:#f92672">-&gt;</span>flags <span style="color:#f92672">&amp;</span> VXB_INST_INIT_DONE))
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ( pDrv<span style="color:#f92672">-&gt;</span>pDrvBusFuncs<span style="color:#f92672">-&gt;</span>devInstanceInit <span style="color:#f92672">!=</span> NULL )
+</span></span><span style="display:flex;"><span>	    (<span style="color:#f92672">*</span>(pDrv<span style="color:#f92672">-&gt;</span>pDrvBusFuncs<span style="color:#f92672">-&gt;</span>devInstanceInit))(devID);
+</span></span><span style="display:flex;"><span>        devID<span style="color:#f92672">-&gt;</span>flags <span style="color:#f92672">|=</span> VXB_INST_INIT_DONE;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/* second pass */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (vxbInitPhase <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>(devID<span style="color:#f92672">-&gt;</span>flags <span style="color:#f92672">&amp;</span> VXB_INST_INIT2_DONE))
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ( pDrv<span style="color:#f92672">-&gt;</span>pDrvBusFuncs<span style="color:#f92672">-&gt;</span>devInstanceInit2 <span style="color:#f92672">!=</span> NULL )
+</span></span><span style="display:flex;"><span>	    (<span style="color:#f92672">*</span>(pDrv<span style="color:#f92672">-&gt;</span>pDrvBusFuncs<span style="color:#f92672">-&gt;</span>devInstanceInit2))(devID);
+</span></span><span style="display:flex;"><span>        devID<span style="color:#f92672">-&gt;</span>flags <span style="color:#f92672">|=</span> VXB_INST_INIT2_DONE;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/* third pass */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (vxbInitPhase <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>(devID<span style="color:#f92672">-&gt;</span>flags <span style="color:#f92672">&amp;</span> VXB_INST_CONNECT_DONE))
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ( pDrv<span style="color:#f92672">-&gt;</span>pDrvBusFuncs<span style="color:#f92672">-&gt;</span>devInstanceConnect <span style="color:#f92672">!=</span> NULL )
+</span></span><span style="display:flex;"><span>	    (<span style="color:#f92672">*</span>(pDrv<span style="color:#f92672">-&gt;</span>pDrvBusFuncs<span style="color:#f92672">-&gt;</span>devInstanceConnect))(devID);
+</span></span><span style="display:flex;"><span>        devID<span style="color:#f92672">-&gt;</span>flags <span style="color:#f92672">|=</span> VXB_INST_CONNECT_DONE;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>vxbDevInitRun的作用就是分别调用设备的初始化函数，对设备进行初始化。
 这时第一阶段的初始化就完成了，完成工作：大部分设备和驱动已经进行了匹配，并放入到相应的链表中，并且匹配好的设备进行了第一阶段的初始化。但是此时请注意了，因为部分设备没有匹配到驱动，放入到了pBusHead-&gt;devlist中，那这个设备也就没有进行初始化操作。所以之后的第二第三阶段的初始化操作，主要是对这些没有匹配成功的设备进行的。</p>
 <p>vxbInitPhase=2时：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">STATUS <span style="color:#a6e22e">vxbDevInitInternal</span> (<span style="color:#66d9ef">void</span>)
-    {
-    vxbInitPhase <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
-    pVxbSpinLockTake <span style="color:#f92672">=</span> spinLockIsrTake;
-    pVxbSpinLockGive <span style="color:#f92672">=</span> spinLockIsrGive;
-    vxbLockInit(<span style="color:#f92672">&amp;</span>vxbGlobalListsLock);
-    vxbLockInit(<span style="color:#f92672">&amp;</span>vxbBusListLock);
-<span style="color:#75715e">#ifdef VXB_PERFORM_SANITY_CHECKS
-</span><span style="color:#75715e"></span>    vxbLockInit(<span style="color:#f92672">&amp;</span>vxbLostDevListLock);
-<span style="color:#75715e">#endif </span><span style="color:#75715e">/* VXB_PERFORM_SANITY_CHECKS */</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>    vxbLockInit(<span style="color:#f92672">&amp;</span>vxbDevStructListLock);
- 
-    <span style="color:#75715e">/* execute init phase 2 for all devices */</span>
-    vxbDevIterate(vxbDevInit2Helper, NULL, VXB_ITERATE_INSTANCES);
-    <span style="color:#66d9ef">return</span>(OK);
-    }
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">
-LOCAL STATUS <span style="color:#a6e22e">vxbDevInit2Helper</span>
-    (
-    <span style="color:#66d9ef">struct</span> vxbDev <span style="color:#f92672">*</span> pInst,
-    <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span> pArg
-    )
-    {
-    <span style="color:#66d9ef">if</span> ( pInst<span style="color:#f92672">-&gt;</span>pDriver <span style="color:#f92672">==</span> NULL )
-        <span style="color:#66d9ef">return</span>(OK);
-    <span style="color:#66d9ef">if</span> ( pInst<span style="color:#f92672">-&gt;</span>pDriver<span style="color:#f92672">-&gt;</span>pDrvBusFuncs <span style="color:#f92672">==</span> NULL )
-        <span style="color:#66d9ef">return</span>(ERROR);
-    <span style="color:#66d9ef">if</span> (pInst<span style="color:#f92672">-&gt;</span>flags <span style="color:#f92672">&amp;</span> VXB_INST_INIT2_DONE)
-        <span style="color:#66d9ef">return</span> (ERROR);
-    <span style="color:#66d9ef">if</span> ( pInst<span style="color:#f92672">-&gt;</span>pDriver<span style="color:#f92672">-&gt;</span>pDrvBusFuncs<span style="color:#f92672">-&gt;</span>devInstanceInit2 <span style="color:#f92672">==</span> NULL )
-        <span style="color:#66d9ef">return</span>(OK);
-    (<span style="color:#f92672">*</span>pInst<span style="color:#f92672">-&gt;</span>pDriver<span style="color:#f92672">-&gt;</span>pDrvBusFuncs<span style="color:#f92672">-&gt;</span>devInstanceInit2)(pInst);
-    pInst<span style="color:#f92672">-&gt;</span>flags <span style="color:#f92672">|=</span> VXB_INST_INIT2_DONE;
-    <span style="color:#66d9ef">return</span>(OK);
-    }
-
-</code></pre></div><p>此时是对总线plb上所有的设备进行初始化操作，也就是会对那些没有初始化的也进行初始化。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>STATUS <span style="color:#a6e22e">vxbDevInitInternal</span> (<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>    vxbInitPhase <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>    pVxbSpinLockTake <span style="color:#f92672">=</span> spinLockIsrTake;
+</span></span><span style="display:flex;"><span>    pVxbSpinLockGive <span style="color:#f92672">=</span> spinLockIsrGive;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">vxbLockInit</span>(<span style="color:#f92672">&amp;</span>vxbGlobalListsLock);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">vxbLockInit</span>(<span style="color:#f92672">&amp;</span>vxbBusListLock);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#ifdef VXB_PERFORM_SANITY_CHECKS
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">vxbLockInit</span>(<span style="color:#f92672">&amp;</span>vxbLostDevListLock);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif </span><span style="color:#75715e">/* VXB_PERFORM_SANITY_CHECKS */</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">vxbLockInit</span>(<span style="color:#f92672">&amp;</span>vxbDevStructListLock);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/* execute init phase 2 for all devices */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">vxbDevIterate</span>(vxbDevInit2Helper, NULL, VXB_ITERATE_INSTANCES);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span>(OK);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>LOCAL STATUS <span style="color:#a6e22e">vxbDevInit2Helper</span>
+</span></span><span style="display:flex;"><span>    (
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> vxbDev <span style="color:#f92672">*</span> pInst,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span> pArg
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ( pInst<span style="color:#f92672">-&gt;</span>pDriver <span style="color:#f92672">==</span> NULL )
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>(OK);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ( pInst<span style="color:#f92672">-&gt;</span>pDriver<span style="color:#f92672">-&gt;</span>pDrvBusFuncs <span style="color:#f92672">==</span> NULL )
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>(ERROR);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (pInst<span style="color:#f92672">-&gt;</span>flags <span style="color:#f92672">&amp;</span> VXB_INST_INIT2_DONE)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> (ERROR);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ( pInst<span style="color:#f92672">-&gt;</span>pDriver<span style="color:#f92672">-&gt;</span>pDrvBusFuncs<span style="color:#f92672">-&gt;</span>devInstanceInit2 <span style="color:#f92672">==</span> NULL )
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>(OK);
+</span></span><span style="display:flex;"><span>    (<span style="color:#f92672">*</span>pInst<span style="color:#f92672">-&gt;</span>pDriver<span style="color:#f92672">-&gt;</span>pDrvBusFuncs<span style="color:#f92672">-&gt;</span>devInstanceInit2)(pInst);
+</span></span><span style="display:flex;"><span>    pInst<span style="color:#f92672">-&gt;</span>flags <span style="color:#f92672">|=</span> VXB_INST_INIT2_DONE;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span>(OK);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>此时是对总线plb上所有的设备进行初始化操作，也就是会对那些没有初始化的也进行初始化。</p>
 <p>vxbInitPhase=3时：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">STATUS <span style="color:#a6e22e">vxbDevConnectInternal</span> (<span style="color:#66d9ef">void</span>)
-    {
-    vxbInitPhase <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;
-    vxbDevIterate(vxbDevConnectHelper, NULL, VXB_ITERATE_INSTANCES);
- 
-    <span style="color:#66d9ef">if</span> (_func_vxbUserHookDevInit <span style="color:#f92672">!=</span> NULL)
-	(<span style="color:#f92672">*</span>_func_vxbUserHookDevInit)();
- 
-    <span style="color:#66d9ef">return</span>(OK);
-    }																			
- 
- 
-LOCAL STATUS <span style="color:#a6e22e">vxbDevConnectHelper</span>
-    (
-    <span style="color:#66d9ef">struct</span> vxbDev <span style="color:#f92672">*</span> pInst,  <span style="color:#75715e">/* device information */</span>
-    <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span> pArg
-    )
-    {
-    <span style="color:#66d9ef">if</span> ( pInst<span style="color:#f92672">-&gt;</span>pDriver <span style="color:#f92672">==</span> NULL )
-        <span style="color:#66d9ef">return</span>(OK);
-    <span style="color:#66d9ef">if</span> ( pInst<span style="color:#f92672">-&gt;</span>pDriver<span style="color:#f92672">-&gt;</span>pDrvBusFuncs <span style="color:#f92672">==</span> NULL )
-        <span style="color:#66d9ef">return</span>(ERROR);
-    <span style="color:#66d9ef">if</span> (pInst<span style="color:#f92672">-&gt;</span>flags <span style="color:#f92672">&amp;</span> VXB_INST_CONNECT_DONE)
-        <span style="color:#66d9ef">return</span> (ERROR);
-    <span style="color:#66d9ef">if</span> ( pInst<span style="color:#f92672">-&gt;</span>pDriver<span style="color:#f92672">-&gt;</span>pDrvBusFuncs<span style="color:#f92672">-&gt;</span>devInstanceConnect <span style="color:#f92672">==</span> NULL )
-        <span style="color:#66d9ef">return</span>(OK);
-    (<span style="color:#f92672">*</span>pInst<span style="color:#f92672">-&gt;</span>pDriver<span style="color:#f92672">-&gt;</span>pDrvBusFuncs<span style="color:#f92672">-&gt;</span>devInstanceConnect)(pInst);
-    pInst<span style="color:#f92672">-&gt;</span>flags <span style="color:#f92672">|=</span> VXB_INST_CONNECT_DONE;
-    <span style="color:#66d9ef">return</span>(OK);
-    }
-</code></pre></div><p>第三阶段也是对所有的设备进行的。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>STATUS <span style="color:#a6e22e">vxbDevConnectInternal</span> (<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>    vxbInitPhase <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">vxbDevIterate</span>(vxbDevConnectHelper, NULL, VXB_ITERATE_INSTANCES);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (_func_vxbUserHookDevInit <span style="color:#f92672">!=</span> NULL)
+</span></span><span style="display:flex;"><span>	(<span style="color:#f92672">*</span>_func_vxbUserHookDevInit)();
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span>(OK);
+</span></span><span style="display:flex;"><span>    }																			
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>LOCAL STATUS <span style="color:#a6e22e">vxbDevConnectHelper</span>
+</span></span><span style="display:flex;"><span>    (
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> vxbDev <span style="color:#f92672">*</span> pInst,  <span style="color:#75715e">/* device information */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span> pArg
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ( pInst<span style="color:#f92672">-&gt;</span>pDriver <span style="color:#f92672">==</span> NULL )
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>(OK);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ( pInst<span style="color:#f92672">-&gt;</span>pDriver<span style="color:#f92672">-&gt;</span>pDrvBusFuncs <span style="color:#f92672">==</span> NULL )
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>(ERROR);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (pInst<span style="color:#f92672">-&gt;</span>flags <span style="color:#f92672">&amp;</span> VXB_INST_CONNECT_DONE)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> (ERROR);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ( pInst<span style="color:#f92672">-&gt;</span>pDriver<span style="color:#f92672">-&gt;</span>pDrvBusFuncs<span style="color:#f92672">-&gt;</span>devInstanceConnect <span style="color:#f92672">==</span> NULL )
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>(OK);
+</span></span><span style="display:flex;"><span>    (<span style="color:#f92672">*</span>pInst<span style="color:#f92672">-&gt;</span>pDriver<span style="color:#f92672">-&gt;</span>pDrvBusFuncs<span style="color:#f92672">-&gt;</span>devInstanceConnect)(pInst);
+</span></span><span style="display:flex;"><span>    pInst<span style="color:#f92672">-&gt;</span>flags <span style="color:#f92672">|=</span> VXB_INST_CONNECT_DONE;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span>(OK);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>第三阶段也是对所有的设备进行的。</p>
 <p>这样经过三个阶段的初始化之后，所有的设备都进行了初始化。vxbus也就初始化完成了。</p>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1543398821442998"
      crossorigin="anonymous"></script>
@@ -943,7 +937,7 @@ LOCAL STATUS <span style="color:#a6e22e">vxbDevConnectHelper</span>
   
   <script type="text/javascript" src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js" defer></script>
 
-<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
+<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com/","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
 
 
 
@@ -951,7 +945,7 @@ LOCAL STATUS <span style="color:#a6e22e">vxbDevConnectHelper</span>
 
 
 
-<script type="text/javascript" src="/js/main.min.7e59cf1a98d842830d8a6f149f78fbbcf9e795b7a9eb76feb34b48c9bf1554d7.js" defer></script>
+<script type="text/javascript" src="/js/main.min.8bc1e2a2ac040735a2a32d113d257bd75c45142b9842ad7526f7de5e3d3a9298.js" defer></script>
 
 
 

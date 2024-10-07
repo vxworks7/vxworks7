@@ -4,7 +4,7 @@
 <head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)" />
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.135.0">
 <link rel="shortcut icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
@@ -32,6 +32,7 @@
 <meta property="article:modified_time" content="2023-04-15 06:03:55 -0400 -0400" />
 
 
+
   
   <link type="text/css" rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.2/css/all.min.css" />
   
@@ -39,11 +40,6 @@
 
 
 <link rel="stylesheet" href="/css/main.min.7d561ec9984cf0cb727fc88e14a92134576c99ccb9ce2f31b5b5541ab4ced328.css">
-  <style type="text/css">
-    .post-footer, .flinks-list-footer hr:after {
-      content: "~ 我可是有底线的哟 ~";
-    }
-  </style>
   <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"vxworks-7-driver-design-method-based-on-device-tree.html","permalink":"https://www.vxworks7.com/post/bsp/vxworks-7-driver-design-method-based-on-device-tree.html","title":"VxWorks 7.0基于设备树驱动程序编写方法"}</script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
@@ -116,7 +112,7 @@
     </li>
     <li class="menu-item menu-item-archives">
       <a href="/archives/" class="hvr-icon-pulse " rel="section"><i class="fa fa-archive hvr-icon"></i>归档
-        <span class="badge">95</span>
+        <span class="badge">94</span>
       </a>
     </li>
     <li class="menu-item menu-item-commonweal">
@@ -197,7 +193,7 @@
   <nav class="site-state">
     <div class="site-state-item site-state-posts">
       <a href="/archives/">
-        <span class="site-state-item-count">95</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -209,7 +205,7 @@
     </div>
     <div class="site-state-item site-state-tags">
       <a href="/tags/">
-        <span class="site-state-item-count">133</span>
+        <span class="site-state-item-count">131</span>
         <span class="site-state-item-name">标签</span>
       </a>
     </div>
@@ -275,11 +271,11 @@
       </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-font"></i>总字数：</div>
-      <div class="item-count" id="wordsCount" data-count="28953"></div>
+      <div class="item-count" id="wordsCount" data-count="28814"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-mug-hot"></i>阅读约：</div>
-      <div class="item-count" id="readTimes" data-times="193"></div>
+      <div class="item-count" id="readTimes" data-times="192"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
@@ -394,90 +390,90 @@
       
   <p>本身讲述了VxWorks 7.0基于设备树驱动程序编写方法</p>
 <h2 id="创建vxbus函数方法表必须包括probe和attach函数">创建vxbus函数方法表，必须包括probe和attach函数</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">LOCAL VXB_DRV_METHOD vxbxMethodList[] <span style="color:#f92672">=</span>
-    {
-        {VXB_DEVMETHOD_CALL(vxbDevProbe), vxbxProbe},
-        {VXB_DEVMETHOD_CALL(vxbDevAttach), vxbxAttach},
-        {<span style="color:#ae81ff">0</span>, NULL}};
-    }
-</code></pre></div><h2 id="创建vxb_drv结构在选项里必须是vxb_busid_fdt类表示是设备树">创建VXB_DRV结构，在选项里必须是VXB_BUSID_FDT类，表示是设备树。</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">VXB_DRV vxbxDrv <span style="color:#f92672">=</span>
-    {
-        {NULL},
-        <span style="color:#e6db74">&#34;drvname&#34;</span>,                <span style="color:#75715e">/* Name */</span>
-        <span style="color:#e6db74">&#34;FDT vxBus driver&#34;</span>, <span style="color:#75715e">/* Description */</span>
-        VXB_BUSID_FDT,          <span style="color:#75715e">/* Class */</span>
-        <span style="color:#ae81ff">0</span>,                      <span style="color:#75715e">/* Flags */</span>
-        <span style="color:#ae81ff">0</span>,                      <span style="color:#75715e">/* Reference count */</span>
-        vxbMCP251xMethodList,   <span style="color:#75715e">/* Method table */</span>
-};
-VXB_DRV_DEF(vxbxDrv )
-</code></pre></div><h2 id="创建vxb_fdt_dev_match_entry-匹配结构属性名称为expexpdrvname对应设备树">创建VXB_FDT_DEV_MATCH_ENTRY 匹配结构，属性名称为&quot;exp,expdrvname&quot;,对应设备树</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"> device<span style="color:#960050;background-color:#1e0010">@</span><span style="color:#ae81ff">520000</span>
-            {
-            compatible <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;exp,expdrvname&#34;</span>;
-            };
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">LOCAL <span style="color:#66d9ef">const</span> VXB_FDT_DEV_MATCH_ENTRY vxbxMatch[] <span style="color:#f92672">=</span>
-    {
-        {
-            <span style="color:#e6db74">&#34;exp,expdrvname&#34;</span>, <span style="color:#75715e">/* compatible */</span>
-            (<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>)NULL,
-        },
-        {} <span style="color:#75715e">/* Empty terminated list */</span>
-};
-</code></pre></div><h2 id="编写vxbxprobe函数">编写vxbxProbe函数</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">LOCAL STATUS <span style="color:#a6e22e">vxbxProbe</span>(VXB_DEV_ID pDev)
-{
- 
-    <span style="color:#66d9ef">return</span> vxbFdtDevMatch(pDev, vxbxMatch, NULL);
-}
-</code></pre></div><h2 id="编写vxbxattach-函数">编写vxbxAttach 函数</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">LOCAL STATUS <span style="color:#a6e22e">vxbxAttach</span>(VXB_DEV_ID pInst)
-{
-<span style="color:#75715e">//申请驱动数据结构内存
-</span><span style="color:#75715e"></span>  FD_DEV <span style="color:#f92672">*</span>pDev <span style="color:#f92672">=</span> NULL;
-pDev <span style="color:#f92672">=</span> (FD_DEV <span style="color:#f92672">*</span>)vxbMemAlloc(<span style="color:#66d9ef">sizeof</span>(FD_DEV ));
-<span style="color:#75715e">//装在驱动 
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (ERROR <span style="color:#f92672">==</span> vxbxIosDrvNum)
-    {
-        vxbxIosDrvNum <span style="color:#f92672">=</span> iosDrvInstall(
-            (DRV_CREATE_PTR)NULL,
-            (DRV_REMOVE_PTR)NULL,
-            (DRV_OPEN_PTR)vxbxIosOpen,
-            (DRV_CLOSE_PTR)vxbxIosClose,
-            (DRV_READ_PTR)NULL,
-            (DRV_WRITE_PTR)NULL,
-            (DRV_IOCTL_PTR)NULL);
-        <span style="color:#66d9ef">if</span> (ERROR <span style="color:#f92672">==</span> vxbxIosDrvNum )
-        {
-       
-            (<span style="color:#66d9ef">void</span>)vxbMemFree(pDev);
-            <span style="color:#66d9ef">return</span> ERROR;
-        }
-    }
-<span style="color:#75715e">//获取设备树相关参数
-</span><span style="color:#75715e"></span>vxbGpioGetByFdtIndex
-<span style="color:#75715e">//设置相关参数
-</span><span style="color:#75715e"></span> 
-    pDev<span style="color:#f92672">-&gt;</span>pDev<span style="color:#f92672">=</span> pInst;
-    vxbDevSoftcSet (pInst, (<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>)pDev);
-   <span style="color:#75715e">// 
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> OK;
-}
-</code></pre></div><h2 id="新建mk文件">新建mk文件</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">OBJS_ARM <span style="color:#f92672">+=</span> drv.o
-</code></pre></div><h2 id="新建cdf文件">新建cdf文件</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">Component   DRV_FDT_DRVNAME {
-    NAME        new vxBus driver
-    SYNOPSIS    new vxBus driver
-    MODULES     drv.o
-    LINK_SYMS   vxbxDrv 
-    _CHILDREN   FOLDER_DRIVERS_OTHER
-    REQUIRES    INCLUDE_VXBUS           \
-                INCLUDE_VXBUS_RTC_LIB   \
-                DRV_BUS_FDT_ROOT
-}
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>LOCAL VXB_DRV_METHOD vxbxMethodList[] <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        {<span style="color:#a6e22e">VXB_DEVMETHOD_CALL</span>(vxbDevProbe), vxbxProbe},
+</span></span><span style="display:flex;"><span>        {<span style="color:#a6e22e">VXB_DEVMETHOD_CALL</span>(vxbDevAttach), vxbxAttach},
+</span></span><span style="display:flex;"><span>        {<span style="color:#ae81ff">0</span>, NULL}};
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><h2 id="创建vxb_drv结构在选项里必须是vxb_busid_fdt类表示是设备树">创建VXB_DRV结构，在选项里必须是VXB_BUSID_FDT类，表示是设备树。</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>VXB_DRV vxbxDrv <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        {NULL},
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;drvname&#34;</span>,                <span style="color:#75715e">/* Name */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;FDT vxBus driver&#34;</span>, <span style="color:#75715e">/* Description */</span>
+</span></span><span style="display:flex;"><span>        VXB_BUSID_FDT,          <span style="color:#75715e">/* Class */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">0</span>,                      <span style="color:#75715e">/* Flags */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">0</span>,                      <span style="color:#75715e">/* Reference count */</span>
+</span></span><span style="display:flex;"><span>        vxbMCP251xMethodList,   <span style="color:#75715e">/* Method table */</span>
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">VXB_DRV_DEF</span>(vxbxDrv )
+</span></span></code></pre></div><h2 id="创建vxb_fdt_dev_match_entry-匹配结构属性名称为expexpdrvname对应设备树">创建VXB_FDT_DEV_MATCH_ENTRY 匹配结构，属性名称为&quot;exp,expdrvname&quot;,对应设备树</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span> device<span style="color:#960050;background-color:#1e0010">@</span><span style="color:#ae81ff">520000</span>
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>            compatible <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;exp,expdrvname&#34;</span>;
+</span></span><span style="display:flex;"><span>            };
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>LOCAL <span style="color:#66d9ef">const</span> VXB_FDT_DEV_MATCH_ENTRY vxbxMatch[] <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;exp,expdrvname&#34;</span>, <span style="color:#75715e">/* compatible */</span>
+</span></span><span style="display:flex;"><span>            (<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>)NULL,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {} <span style="color:#75715e">/* Empty terminated list */</span>
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h2 id="编写vxbxprobe函数">编写vxbxProbe函数</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>LOCAL STATUS <span style="color:#a6e22e">vxbxProbe</span>(VXB_DEV_ID pDev)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">vxbFdtDevMatch</span>(pDev, vxbxMatch, NULL);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="编写vxbxattach-函数">编写vxbxAttach 函数</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>LOCAL STATUS <span style="color:#a6e22e">vxbxAttach</span>(VXB_DEV_ID pInst)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//申请驱动数据结构内存
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  FD_DEV <span style="color:#f92672">*</span>pDev <span style="color:#f92672">=</span> NULL;
+</span></span><span style="display:flex;"><span>pDev <span style="color:#f92672">=</span> (FD_DEV <span style="color:#f92672">*</span>)<span style="color:#a6e22e">vxbMemAlloc</span>(<span style="color:#66d9ef">sizeof</span>(FD_DEV ));
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//装在驱动 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (ERROR <span style="color:#f92672">==</span> vxbxIosDrvNum)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        vxbxIosDrvNum <span style="color:#f92672">=</span> <span style="color:#a6e22e">iosDrvInstall</span>(
+</span></span><span style="display:flex;"><span>            (DRV_CREATE_PTR)NULL,
+</span></span><span style="display:flex;"><span>            (DRV_REMOVE_PTR)NULL,
+</span></span><span style="display:flex;"><span>            (DRV_OPEN_PTR)vxbxIosOpen,
+</span></span><span style="display:flex;"><span>            (DRV_CLOSE_PTR)vxbxIosClose,
+</span></span><span style="display:flex;"><span>            (DRV_READ_PTR)NULL,
+</span></span><span style="display:flex;"><span>            (DRV_WRITE_PTR)NULL,
+</span></span><span style="display:flex;"><span>            (DRV_IOCTL_PTR)NULL);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (ERROR <span style="color:#f92672">==</span> vxbxIosDrvNum )
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>       
+</span></span><span style="display:flex;"><span>            (<span style="color:#66d9ef">void</span>)<span style="color:#a6e22e">vxbMemFree</span>(pDev);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> ERROR;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//获取设备树相关参数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>vxbGpioGetByFdtIndex
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//设置相关参数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span>    pDev<span style="color:#f92672">-&gt;</span>pDev<span style="color:#f92672">=</span> pInst;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">vxbDevSoftcSet</span> (pInst, (<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>)pDev);
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">// 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> OK;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="新建mk文件">新建mk文件</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>OBJS_ARM <span style="color:#f92672">+=</span> drv.o
+</span></span></code></pre></div><h2 id="新建cdf文件">新建cdf文件</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>Component   DRV_FDT_DRVNAME {
+</span></span><span style="display:flex;"><span>    NAME        new vxBus driver
+</span></span><span style="display:flex;"><span>    SYNOPSIS    new vxBus driver
+</span></span><span style="display:flex;"><span>    MODULES     drv.o
+</span></span><span style="display:flex;"><span>    LINK_SYMS   vxbxDrv 
+</span></span><span style="display:flex;"><span>    _CHILDREN   FOLDER_DRIVERS_OTHER
+</span></span><span style="display:flex;"><span>    REQUIRES    INCLUDE_VXBUS           \
+</span></span><span style="display:flex;"><span>                INCLUDE_VXBUS_RTC_LIB   \
+</span></span><span style="display:flex;"><span>                DRV_BUS_FDT_ROOT
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1543398821442998"
      crossorigin="anonymous"></script>
 
@@ -627,7 +623,7 @@ pDev <span style="color:#f92672">=</span> (FD_DEV <span style="color:#f92672">*<
   
   <script type="text/javascript" src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js" defer></script>
 
-<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
+<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com/","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
 
 
 
@@ -635,7 +631,7 @@ pDev <span style="color:#f92672">=</span> (FD_DEV <span style="color:#f92672">*<
 
 
 
-<script type="text/javascript" src="/js/main.min.7e59cf1a98d842830d8a6f149f78fbbcf9e795b7a9eb76feb34b48c9bf1554d7.js" defer></script>
+<script type="text/javascript" src="/js/main.min.8bc1e2a2ac040735a2a32d113d257bd75c45142b9842ad7526f7de5e3d3a9298.js" defer></script>
 
 
 

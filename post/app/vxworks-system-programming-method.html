@@ -4,7 +4,7 @@
 <head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)" />
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.135.0">
 <link rel="shortcut icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
@@ -32,6 +32,7 @@
 <meta property="article:modified_time" content="2022-12-26 11:22:08 -0500 -0500" />
 
 
+
   
   <link type="text/css" rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.2/css/all.min.css" />
   
@@ -39,11 +40,6 @@
 
 
 <link rel="stylesheet" href="/css/main.min.7d561ec9984cf0cb727fc88e14a92134576c99ccb9ce2f31b5b5541ab4ced328.css">
-  <style type="text/css">
-    .post-footer, .flinks-list-footer hr:after {
-      content: "~ 我可是有底线的哟 ~";
-    }
-  </style>
   <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"vxworks-system-programming-method.html","permalink":"https://www.vxworks7.com/post/app/vxworks-system-programming-method.html","title":"VxWorks系统编程方法"}</script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
@@ -116,7 +112,7 @@
     </li>
     <li class="menu-item menu-item-archives">
       <a href="/archives/" class="hvr-icon-pulse " rel="section"><i class="fa fa-archive hvr-icon"></i>归档
-        <span class="badge">95</span>
+        <span class="badge">94</span>
       </a>
     </li>
     <li class="menu-item menu-item-commonweal">
@@ -192,7 +188,7 @@
   <nav class="site-state">
     <div class="site-state-item site-state-posts">
       <a href="/archives/">
-        <span class="site-state-item-count">95</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -204,7 +200,7 @@
     </div>
     <div class="site-state-item site-state-tags">
       <a href="/tags/">
-        <span class="site-state-item-count">133</span>
+        <span class="site-state-item-count">131</span>
         <span class="site-state-item-name">标签</span>
       </a>
     </div>
@@ -270,11 +266,11 @@
       </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-font"></i>总字数：</div>
-      <div class="item-count" id="wordsCount" data-count="28953"></div>
+      <div class="item-count" id="wordsCount" data-count="28814"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-mug-hot"></i>阅读约：</div>
-      <div class="item-count" id="readTimes" data-times="193"></div>
+      <div class="item-count" id="readTimes" data-times="192"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
@@ -400,28 +396,28 @@
 <p>上下文切换（Context Switching）: 多任务系统中，上下文切换是指CPU的控制权由运行任务转移到另外一个就绪任务时所发生的事件，当前运行任务转为就绪（或者挂起、删除）状态，另一个被选定的就绪任务成为当前任务。上下文切换包括保存当前任务的运行环境，恢复将要运行任务的运行环境。上下文的内容依赖于具体的CPU.</p>
 <p>轮转调度(Round-Robin Scheduling):使所有相同优先级,状态为ready的任务公平分享CPU(分配一定的时间间隔,使每个任务流享有CPU). 系统由256个优先级,从0到255,0为最高,255为最低。 任务在被创建时设定了优先级.也可用taskPrioritySet() 来改变任务优先级.</p>
 <p>任务的主要状态: READY,PEND,DELAY,SUSPEND…</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">ready--------&gt;pended -----------semTake<span style="color:#f92672">()</span>/msgQReceive<span style="color:#f92672">()</span>-其他任务 
-ready--------&gt;delayed-----------taskDelay<span style="color:#f92672">()</span>
-ready--------&gt;suspended---------taskSuspend<span style="color:#f92672">()</span>
-pended-------&gt;ready-------------semaGive<span style="color:#f92672">()</span>/msgQSend<span style="color:#f92672">()</span>-其他任务 
-pended-------&gt;suspended---------taskSuspend<span style="color:#f92672">()</span>
-delayed------&gt;ready-------------expired delay 
-delayed------&gt;suspended---------taskSuspend<span style="color:#f92672">()</span>
-suspended----&gt;ready-------------taskResume<span style="color:#f92672">()</span>/taskActivate<span style="color:#f92672">()</span> 
-suspended----&gt;pended------------taskResume<span style="color:#f92672">()</span> 
-suspended----&gt;delayed-----------taskResume<span style="color:#f92672">()</span>
-</code></pre></div><p>轮转调度 (Round-Robin): 轮转调度可以扩充到优先抢占方式中,当多个任务优先级相同的情况下,轮转调度算法使任务按平等的时间片运行于CPU,共享CPU.避免一个任务长时间占用CPU,而导致其他任务不能运行.可以用 kernelTimeSlice() 来定义时间长度. taskLock()和 taskUnlock()用来取消优先抢占方式 和恢复优先抢占方式.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ready--------&gt;pended -----------semTake<span style="color:#f92672">()</span>/msgQReceive<span style="color:#f92672">()</span>-其他任务 
+</span></span><span style="display:flex;"><span>ready--------&gt;delayed-----------taskDelay<span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>ready--------&gt;suspended---------taskSuspend<span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>pended-------&gt;ready-------------semaGive<span style="color:#f92672">()</span>/msgQSend<span style="color:#f92672">()</span>-其他任务 
+</span></span><span style="display:flex;"><span>pended-------&gt;suspended---------taskSuspend<span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>delayed------&gt;ready-------------expired delay 
+</span></span><span style="display:flex;"><span>delayed------&gt;suspended---------taskSuspend<span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>suspended----&gt;ready-------------taskResume<span style="color:#f92672">()</span>/taskActivate<span style="color:#f92672">()</span> 
+</span></span><span style="display:flex;"><span>suspended----&gt;pended------------taskResume<span style="color:#f92672">()</span> 
+</span></span><span style="display:flex;"><span>suspended----&gt;delayed-----------taskResume<span style="color:#f92672">()</span>
+</span></span></code></pre></div><p>轮转调度 (Round-Robin): 轮转调度可以扩充到优先抢占方式中,当多个任务优先级相同的情况下,轮转调度算法使任务按平等的时间片运行于CPU,共享CPU.避免一个任务长时间占用CPU,而导致其他任务不能运行.可以用 kernelTimeSlice() 来定义时间长度. taskLock()和 taskUnlock()用来取消优先抢占方式 和恢复优先抢占方式.</p>
 <p>注意: 一个任务可以调用taskDelete()删除另一个任务,但是如果一个当前正在运行的任务被删除后,该任务的内存没有释放,而其他任务不知道,依然在等待,结果导致系统stop.用 taskSafe()和 taskUnsafe() 来保证正在运行的任务不被删除.</p>
 <p>用法如下:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-cpp" data-lang="cpp">taskSafe (); 
-semTake (semId, WAIT_FOREVER); 
-<span style="color:#75715e">/* Block until semaphore **ailable */</span> 
-. .　. .　critical region . 
-semGive (semId);
-semGive (semId); 
-<span style="color:#75715e">/* Release semaphore */</span> 
-taskUnsafe (); 
-</code></pre></div><h2 id="任务间的同步和进程间协调">任务间的同步和进程间协调</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>taskSafe (); 
+</span></span><span style="display:flex;"><span>semTake (semId, WAIT_FOREVER); 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* Block until semaphore **ailable */</span> 
+</span></span><span style="display:flex;"><span>. .　. .　critical region . 
+</span></span><span style="display:flex;"><span>semGive (semId);
+</span></span><span style="display:flex;"><span>semGive (semId); 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* Release semaphore */</span> 
+</span></span><span style="display:flex;"><span>taskUnsafe (); 
+</span></span></code></pre></div><h2 id="任务间的同步和进程间协调">任务间的同步和进程间协调</h2>
 <p>信号量作为任务间同步和互斥的机制。在 wind 核中有几种类型的信号量，它们分别针对不同的应用需求：二进制信号量、计数信号量、互斥信号量和 POSIX 信号量。所有的这些信号量是快速和高效的，它们除了被应用在开发设计过程中外，还被广泛地应用在VxWorks 高层应用系统中。对于进程间通信，wind 核也提供了诸如消息队列、管道、套接字和信号等机制。</p>
 <p>任务间的同步和进程间协调的几种方式:</p>
 <ul>
@@ -437,62 +433,62 @@ taskUnsafe ();
 <ol>
 <li>关闭中断的方法(intLock): 能解决任务和中断ISR之间产生的互斥.</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-cpp" data-lang="cpp">funcA () 
-{ 
-    <span style="color:#66d9ef">int</span> lock <span style="color:#f92672">=</span> intLock(); 
-    . . critical region that cannot be interrupted . 
-    intUnlock (lock); 
-} 
-</code></pre></div><p>但在实时系统中采取这个办法会影响系统对外部中断及时响应和处理的能力.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>funcA () 
+</span></span><span style="display:flex;"><span>{ 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> lock <span style="color:#f92672">=</span> intLock(); 
+</span></span><span style="display:flex;"><span>    . . critical region that cannot be interrupted . 
+</span></span><span style="display:flex;"><span>    intUnlock (lock); 
+</span></span><span style="display:flex;"><span>} 
+</span></span></code></pre></div><p>但在实时系统中采取这个办法会影响系统对外部中断及时响应和处理的能力.</p>
 <ol start="2">
 <li>关闭系统优先级(taskLock): 关闭系统优先级,这样在当前任务执行时,除了中断外,不会有其他优先级高的任务来抢占CPU,影响当前程序运行.</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-cpp" data-lang="cpp">funcA () 
-{ 
-    taskLock (); 
-    . . critical region that cannot be interrupted . 
-    taskUnlock (); 
-} 
-</code></pre></div><p>这种方法阻止了高优先级的任务抢先运行,在实时系统中也是不适合的,除非关闭优先级的时间特别短.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>funcA () 
+</span></span><span style="display:flex;"><span>{ 
+</span></span><span style="display:flex;"><span>    taskLock (); 
+</span></span><span style="display:flex;"><span>    . . critical region that cannot be interrupted . 
+</span></span><span style="display:flex;"><span>    taskUnlock (); 
+</span></span><span style="display:flex;"><span>} 
+</span></span></code></pre></div><p>这种方法阻止了高优先级的任务抢先运行,在实时系统中也是不适合的,除非关闭优先级的时间特别短.</p>
 <ol start="3">
 <li>信号量(Semaphore): 信号量是解决互斥和同步协调进程最好的方法</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-cpp" data-lang="cpp">SEM_ID semMutex; 
-semMutex <span style="color:#f92672">=</span> semBCreate (SEM_Q_PRIORITY, SEM_FULL); 
-......... 
-semTake (semMutex, WAIT_FOREVER); 
-. . critical region, only accessible by a single task at a time . 
-semGive (semMutex); 
-semBCreat(SEM_Q_FIFO,SEM_EMPTY), SEM_EMPTY <span style="color:#960050;background-color:#1e0010">指明用于任务间同步</span>. 
-
-<span style="color:#75715e">/* includes */</span> 
-<span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;vxWorks.h&#34; </span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;semLib.h&#34; </span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>SEM_ID syncSem; 
-<span style="color:#75715e">/* ID of sync semaphore */</span> 
-init ( <span style="color:#66d9ef">int</span> someIntNum ) 
-{ <span style="color:#75715e">/* connect interrupt service routine */</span> 
-       intConnect (INUM_TO_IVEC (someIntNum), eventInterruptSvcRout, <span style="color:#ae81ff">0</span>); 
-       <span style="color:#75715e">/* create semaphore */</span> 
-       syncSem <span style="color:#f92672">=</span> semBCreate (SEM_Q_FIFO, SEM_EMPTY); 
-       <span style="color:#75715e">/* spawn task used for synchronization. */</span> 
-       taskSpawn (<span style="color:#e6db74">&#34;sample&#34;</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">20000</span>, task1, <span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>); 
-} 
-task1 (<span style="color:#66d9ef">void</span>) 
-{ ... 
-       semTake (syncSem, WAIT_FOREVER); 
-       <span style="color:#75715e">/* wait for event to occur */</span> 
-       printf (<span style="color:#e6db74">&#34;task 1 got the semaphore</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>); 
-       ... 
-       <span style="color:#75715e">/* process event */</span> 
-} 
-eventInterruptSvcRout (<span style="color:#66d9ef">void</span>) 
-{ ... 
-       semGive (syncSem); 
-       <span style="color:#75715e">/* let task 1 process event */</span> 
-       ... 
-} 
-</code></pre></div><p>函数介绍:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>SEM_ID semMutex; 
+</span></span><span style="display:flex;"><span>semMutex <span style="color:#f92672">=</span> semBCreate (SEM_Q_PRIORITY, SEM_FULL); 
+</span></span><span style="display:flex;"><span>......... 
+</span></span><span style="display:flex;"><span>semTake (semMutex, WAIT_FOREVER); 
+</span></span><span style="display:flex;"><span>. . critical region, only accessible by a single task at a time . 
+</span></span><span style="display:flex;"><span>semGive (semMutex); 
+</span></span><span style="display:flex;"><span>semBCreat(SEM_Q_FIFO,SEM_EMPTY), SEM_EMPTY <span style="color:#960050;background-color:#1e0010">指明用于任务间同步</span>. 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* includes */</span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;vxWorks.h&#34;</span><span style="color:#75715e"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;semLib.h&#34;</span><span style="color:#75715e"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>SEM_ID syncSem; 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* ID of sync semaphore */</span> 
+</span></span><span style="display:flex;"><span>init ( <span style="color:#66d9ef">int</span> someIntNum ) 
+</span></span><span style="display:flex;"><span>{ <span style="color:#75715e">/* connect interrupt service routine */</span> 
+</span></span><span style="display:flex;"><span>       intConnect (INUM_TO_IVEC (someIntNum), eventInterruptSvcRout, <span style="color:#ae81ff">0</span>); 
+</span></span><span style="display:flex;"><span>       <span style="color:#75715e">/* create semaphore */</span> 
+</span></span><span style="display:flex;"><span>       syncSem <span style="color:#f92672">=</span> semBCreate (SEM_Q_FIFO, SEM_EMPTY); 
+</span></span><span style="display:flex;"><span>       <span style="color:#75715e">/* spawn task used for synchronization. */</span> 
+</span></span><span style="display:flex;"><span>       taskSpawn (<span style="color:#e6db74">&#34;sample&#34;</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">20000</span>, task1, <span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>); 
+</span></span><span style="display:flex;"><span>} 
+</span></span><span style="display:flex;"><span>task1 (<span style="color:#66d9ef">void</span>) 
+</span></span><span style="display:flex;"><span>{ ... 
+</span></span><span style="display:flex;"><span>       semTake (syncSem, WAIT_FOREVER); 
+</span></span><span style="display:flex;"><span>       <span style="color:#75715e">/* wait for event to occur */</span> 
+</span></span><span style="display:flex;"><span>       printf (<span style="color:#e6db74">&#34;task 1 got the semaphore</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>); 
+</span></span><span style="display:flex;"><span>       ... 
+</span></span><span style="display:flex;"><span>       <span style="color:#75715e">/* process event */</span> 
+</span></span><span style="display:flex;"><span>} 
+</span></span><span style="display:flex;"><span>eventInterruptSvcRout (<span style="color:#66d9ef">void</span>) 
+</span></span><span style="display:flex;"><span>{ ... 
+</span></span><span style="display:flex;"><span>       semGive (syncSem); 
+</span></span><span style="display:flex;"><span>       <span style="color:#75715e">/* let task 1 process event */</span> 
+</span></span><span style="display:flex;"><span>       ... 
+</span></span><span style="display:flex;"><span>} 
+</span></span></code></pre></div><p>函数介绍:</p>
 <p>semTake(semID,time out)&mdash;&mdash;&ndash;有Semaphore空闲,就Take, 如果没有,由time out 定,超时则向下执行</p>
 <ol start="4">
 <li>
@@ -651,7 +647,7 @@ eventInterruptSvcRout (<span style="color:#66d9ef">void</span>)
   
   <script type="text/javascript" src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js" defer></script>
 
-<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
+<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com/","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
 
 
 
@@ -659,7 +655,7 @@ eventInterruptSvcRout (<span style="color:#66d9ef">void</span>)
 
 
 
-<script type="text/javascript" src="/js/main.min.7e59cf1a98d842830d8a6f149f78fbbcf9e795b7a9eb76feb34b48c9bf1554d7.js" defer></script>
+<script type="text/javascript" src="/js/main.min.8bc1e2a2ac040735a2a32d113d257bd75c45142b9842ad7526f7de5e3d3a9298.js" defer></script>
 
 
 

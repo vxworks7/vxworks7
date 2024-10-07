@@ -4,21 +4,16 @@
     <title>PowerPC on VxWorks 7</title>
     <link>https://www.vxworks7.com/tags/powerpc/</link>
     <description>Recent content in PowerPC on VxWorks 7</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 24 Dec 2022 03:13:31 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/powerpc/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 24 Dec 2022 03:13:31 -0500</lastBuildDate>
+    <atom:link href="https://www.vxworks7.com/tags/powerpc/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>T1042/T2080 VxWorks7 开发笔记</title>
       <link>https://www.vxworks7.com/post/bsp/vxworks-7-for-t1042-t2080-how-to.html</link>
       <pubDate>Sat, 24 Dec 2022 03:13:31 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/vxworks-7-for-t1042-t2080-how-to.html</guid>
-      <description>&lt;p&gt;
-&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks 7&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    VxWorks 7
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt;是WindRiver推出的新一代版本，相比较VxWorks 6.9特别是驱动部分有很大的改变，VxWorks 7和Linux很像，有设备树的概念，所以从Linux移植驱动到VxWorks 7会方便很多。&lt;/p&gt;</description>
+      <description>&lt;p&gt;&#xA;&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks 7&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    VxWorks 7&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt;是WindRiver推出的新一代版本，相比较VxWorks 6.9特别是驱动部分有很大的改变，VxWorks 7和Linux很像，有设备树的概念，所以从Linux移植驱动到VxWorks 7会方便很多。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

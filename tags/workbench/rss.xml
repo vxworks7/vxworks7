@@ -4,35 +4,30 @@
     <title>Workbench on VxWorks 7</title>
     <link>https://www.vxworks7.com/tags/workbench/</link>
     <description>Recent content in Workbench on VxWorks 7</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 03 Jan 2023 08:27:58 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/workbench/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 03 Jan 2023 08:27:58 -0500</lastBuildDate>
+    <atom:link href="https://www.vxworks7.com/tags/workbench/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>VxWorks开发环境Workbench与Tornado介绍</title>
       <link>https://www.vxworks7.com/post/bsp/introduction-of-workbench-and-tornado-for-vxworks.html</link>
       <pubDate>Tue, 03 Jan 2023 08:27:58 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/introduction-of-workbench-and-tornado-for-vxworks.html</guid>
       <description>&lt;p&gt;Workbench无疑是当前VxWorks软件开发领域中功能非常强大的一个集成开发环境&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks Workbench开发环境快速介绍</title>
       <link>https://www.vxworks7.com/post/app/a-quick-intro-to-vxworks-workbench-development-environment.html</link>
       <pubDate>Sun, 01 Jan 2023 23:35:44 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/app/a-quick-intro-to-vxworks-workbench-development-environment.html</guid>
       <description>&lt;p&gt;本文介绍了VxWorks Workbench开发环境相关的快速教程&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks环境搭建与学习</title>
       <link>https://www.vxworks7.com/post/bsp/how-to-setup-vxworks-development-environment.html</link>
       <pubDate>Sat, 31 Dec 2022 09:55:36 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/how-to-setup-vxworks-development-environment.html</guid>
       <description>&lt;p&gt;本文讲述了如何搭建VxWorks开发环境，对于学习VxWorks的网友来说是一篇比较好的入门文档。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

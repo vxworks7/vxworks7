@@ -1,70 +1,54 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>linux on VxWorks 7</title>
+    <title>Linux on VxWorks 7</title>
     <link>https://www.vxworks7.com/tags/linux/</link>
-    <description>Recent content in linux on VxWorks 7</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Linux on VxWorks 7</description>
+    <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 30 Mar 2024 09:35:16 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/linux/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 30 Mar 2024 09:35:16 +0800</lastBuildDate>
+    <atom:link href="https://www.vxworks7.com/tags/linux/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>生产环境中使用的Ubuntu哪个版本比较稳定</title>
       <link>https://www.vxworks7.com/post/linux/which-version-of-ubuntu-is-more-stable-in-production-environment.html</link>
       <pubDate>Sat, 30 Mar 2024 09:35:16 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/post/linux/which-version-of-ubuntu-is-more-stable-in-production-environment.html</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://www.kontronn.com/imgs/post/Ubuntu-LTS.png&#34; alt=&#34;Ubuntu LTS&#34;&gt;&lt;/p&gt;
-&lt;p&gt;
-&lt;a href=&#34;https://www.gaitpu.com/category/data-center/server&#34; title=&#34;服务器操作系统&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    服务器操作系统
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt;的稳定性直接关系到企业业务的连续性和数据的安全性。Ubuntu作为一款开源且广泛应用的Linux发行版，其不同版本在性能、安全性和稳定性方面均有所差异。那么，在生产环境中，究竟哪个版本的Ubuntu表现最为稳定呢？本文将结合实际应用和社区反馈，为您深入分析并得出结论。&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;img src=&#34;https://www.kontronn.com/imgs/post/Ubuntu-LTS.png&#34; alt=&#34;Ubuntu LTS&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&#xA;&lt;a href=&#34;https://www.gaitpu.com/category/data-center/server&#34; title=&#34;服务器操作系统&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    服务器操作系统&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt;的稳定性直接关系到企业业务的连续性和数据的安全性。Ubuntu作为一款开源且广泛应用的Linux发行版，其不同版本在性能、安全性和稳定性方面均有所差异。那么，在生产环境中，究竟哪个版本的Ubuntu表现最为稳定呢？本文将结合实际应用和社区反馈，为您深入分析并得出结论。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>风河持续保持边缘操作系统平台排名第一</title>
       <link>https://www.vxworks7.com/post/news/wind-river-maintains-no-1-edge-operating-system-platform-ranking.html</link>
       <pubDate>Wed, 13 Dec 2023 21:59:53 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/post/news/wind-river-maintains-no-1-edge-operating-system-platform-ranking.html</guid>
       <description>&lt;p&gt;全球领先的关键任务智能系统软件提供商风河公司,持续保持其在嵌入式实时操作系统（RTOS）市场和商用嵌入式Linux市场的领先地位，最新发布的VDC Research研究报告对此做出了认定。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Wind River风河系统公司的发展历史</title>
       <link>https://www.vxworks7.com/post/news/wind-river-systems-development-history.html</link>
       <pubDate>Sun, 07 May 2023 06:32:29 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/post/news/wind-river-systems-development-history.html</guid>
       <description>&lt;p&gt;风河系统公司由Jerry Fiddler和Dave Wilner共同创立，1981年Fiddler离开美国劳伦斯伯克利国家实验室，从事控制系统的软件编写工作，但他想在“计算机音乐合成”方面创业，于是他投资了一家致力于实时处理方面的咨询公司。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Linux编程之经典多级时间轮定时器</title>
       <link>https://www.vxworks7.com/post/linux/linux-programming-multiple-time-wheel-timer.html</link>
       <pubDate>Fri, 04 Nov 2022 19:52:03 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/post/linux/linux-programming-multiple-time-wheel-timer.html</guid>
       <description>&lt;p&gt;mmap用于把文件映射到内存空间中，简单说mmap就是把一个文件的内容在内存里面做一个映像。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Linux mmap内存映射详解</title>
       <link>https://www.vxworks7.com/post/linux/linux-mmap-explanation.html</link>
       <pubDate>Fri, 04 Nov 2022 17:52:03 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/post/linux/linux-mmap-explanation.html</guid>
       <description>&lt;p&gt;mmap用于把文件映射到内存空间中，简单说mmap就是把一个文件的内容在内存里面做一个映像。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>几道简单的Linux驱动相关面试题</title>
       <link>https://www.vxworks7.com/post/linux/linux-device-driver-questions-and-answers.html</link>
       <pubDate>Fri, 04 Nov 2022 11:52:03 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/post/linux/linux-device-driver-questions-and-answers.html</guid>
       <description>&lt;p&gt;今天给大家分享几道Linux设备驱动相关的面试题，希望能对需要的网友一些帮助！&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

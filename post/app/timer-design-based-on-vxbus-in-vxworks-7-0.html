@@ -4,7 +4,7 @@
 <head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)" />
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.135.0">
 <link rel="shortcut icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
@@ -32,6 +32,7 @@
 <meta property="article:modified_time" content="2022-12-23 11:24:58 -0500 -0500" />
 
 
+
   
   <link type="text/css" rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.2/css/all.min.css" />
   
@@ -39,11 +40,6 @@
 
 
 <link rel="stylesheet" href="/css/main.min.7d561ec9984cf0cb727fc88e14a92134576c99ccb9ce2f31b5b5541ab4ced328.css">
-  <style type="text/css">
-    .post-footer, .flinks-list-footer hr:after {
-      content: "~ 我可是有底线的哟 ~";
-    }
-  </style>
   <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"timer-design-based-on-vxbus-in-vxworks-7-0.html","permalink":"https://www.vxworks7.com/post/app/timer-design-based-on-vxbus-in-vxworks-7-0.html","title":"VxWorks 7.0下基于VxBus的定时器子系统"}</script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
@@ -116,7 +112,7 @@
     </li>
     <li class="menu-item menu-item-archives">
       <a href="/archives/" class="hvr-icon-pulse " rel="section"><i class="fa fa-archive hvr-icon"></i>归档
-        <span class="badge">95</span>
+        <span class="badge">94</span>
       </a>
     </li>
     <li class="menu-item menu-item-commonweal">
@@ -187,7 +183,7 @@
   <nav class="site-state">
     <div class="site-state-item site-state-posts">
       <a href="/archives/">
-        <span class="site-state-item-count">95</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -199,7 +195,7 @@
     </div>
     <div class="site-state-item site-state-tags">
       <a href="/tags/">
-        <span class="site-state-item-count">133</span>
+        <span class="site-state-item-count">131</span>
         <span class="site-state-item-name">标签</span>
       </a>
     </div>
@@ -265,11 +261,11 @@
       </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-font"></i>总字数：</div>
-      <div class="item-count" id="wordsCount" data-count="28953"></div>
+      <div class="item-count" id="wordsCount" data-count="28814"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-mug-hot"></i>阅读约：</div>
-      <div class="item-count" id="readTimes" data-times="193"></div>
+      <div class="item-count" id="readTimes" data-times="192"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
@@ -351,7 +347,7 @@
   <span class="post-meta-item-icon">
     <i class="far fa-file-word"></i>
   </span>
-  <span class="post-meta-item-text">字数：</span><span>308</span>
+  <span class="post-meta-item-text">字数：</span><span>309</span>
 </span>
     
 <span class="post-meta-item" title="阅读">
@@ -386,128 +382,128 @@
 <p>开发平台为zynq7Z020,该处理器由三个全局的定时器，分别是globaltimer，ttc_0，ttc_1，其中全局定时器用作系统的脉搏，是整个操作系统的ticks定时器，其可通过内核配置完成，具体如下：</p>
 <p><img src="http://www.vxworks.net/images/vxworks/vxworks-70-vxbus-timer.png" alt="VxWorks 7.0 vxbus Timer"></p>
 <p>而ttc_0会作为系统的AUX clock在初始化的时候完成匹配，系统使用SPY命令时启用定时器，所以，如果要使用TTC0作为应用，要考虑spy调试对其影响，TTC_1可以作为用户自定义定时器使用，挂接用户中断服务例程。其设备树配置如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">globaltimer: globaltimer<span style="color:#960050;background-color:#1e0010">@</span>f8f00200
-            {
-            compatible <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;arm,cortex-a9-gtc&#34;</span>;
-            reg <span style="color:#f92672">=</span> ;
-            clock<span style="color:#f92672">-</span>frequency <span style="color:#f92672">=</span> ;
-            interrupts <span style="color:#f92672">=</span> ;
-            interrupt<span style="color:#f92672">-</span>parent <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;&amp;</span>intc<span style="color:#f92672">&gt;</span>;
-            }; 
-ttc_0: ps7<span style="color:#f92672">-</span>ttc<span style="color:#960050;background-color:#1e0010">@</span>f8001000
-            {
-            compatible <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;xlnx,zynq7k-ttc&#34;</span>;
-            reg <span style="color:#f92672">=</span> ;
-            clock<span style="color:#f92672">-</span>frequency <span style="color:#f92672">=</span> ;
-            interrupt<span style="color:#f92672">-</span>parent <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;&amp;</span>intc<span style="color:#f92672">&gt;</span>;
-            interrupts <span style="color:#f92672">=</span> ;
-            };
- 
-        ttc_1: ps7<span style="color:#f92672">-</span>ttc<span style="color:#960050;background-color:#1e0010">@</span>f8002000
-            {
-            compatible <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;xlnx,zynq7k-ttc&#34;</span>;
-            reg <span style="color:#f92672">=</span> ;
-            clock<span style="color:#f92672">-</span>frequency <span style="color:#f92672">=</span> ;
-            interrupt<span style="color:#f92672">-</span>parent <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;&amp;</span>intc<span style="color:#f92672">&gt;</span>;
-            interrupts <span style="color:#f92672">=</span> ;
-            };
-</code></pre></div><p>系统在对vxbus子系统初始化时调用每个驱动的fdtZynqTimerAttach函数，在这个函数中对定时器进行初始化相关操作，同时挂接几个重要的回调函数</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">    pTimerFunc<span style="color:#f92672">-&gt;</span>timerAllocate    <span style="color:#f92672">=</span> zynqTimerAllocate;
-    pTimerFunc<span style="color:#f92672">-&gt;</span>timerRelease     <span style="color:#f92672">=</span> zynqTimerRelease;
-    pTimerFunc<span style="color:#f92672">-&gt;</span>timerRolloverGet <span style="color:#f92672">=</span> zynqTimerRolloverGet;
-    pTimerFunc<span style="color:#f92672">-&gt;</span>timerCountGet    <span style="color:#f92672">=</span> zynqTimerCountGet;
-    pTimerFunc<span style="color:#f92672">-&gt;</span>timerDisable     <span style="color:#f92672">=</span> zynqTimerDisable;
-    pTimerFunc<span style="color:#f92672">-&gt;</span>timerEnable      <span style="color:#f92672">=</span> zynqTimerEnable;
-    pTimerFunc<span style="color:#f92672">-&gt;</span>timerISRSet      <span style="color:#f92672">=</span> zynqTimerISRSet;
-</code></pre></div><p>最后调用 vxbTimerRegister (pTimerFunc);将定时器注册到定时器子系统，可以通过vxbTimerShow查看，针对此开发驱动，需要做一下工作：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>globaltimer: globaltimer<span style="color:#960050;background-color:#1e0010">@</span>f8f00200
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>            compatible <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;arm,cortex-a9-gtc&#34;</span>;
+</span></span><span style="display:flex;"><span>            reg <span style="color:#f92672">=</span> ;
+</span></span><span style="display:flex;"><span>            clock<span style="color:#f92672">-</span>frequency <span style="color:#f92672">=</span> ;
+</span></span><span style="display:flex;"><span>            interrupts <span style="color:#f92672">=</span> ;
+</span></span><span style="display:flex;"><span>            interrupt<span style="color:#f92672">-</span>parent <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;&amp;</span>intc<span style="color:#f92672">&gt;</span>;
+</span></span><span style="display:flex;"><span>            }; 
+</span></span><span style="display:flex;"><span>ttc_0: ps7<span style="color:#f92672">-</span>ttc<span style="color:#960050;background-color:#1e0010">@</span>f8001000
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>            compatible <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;xlnx,zynq7k-ttc&#34;</span>;
+</span></span><span style="display:flex;"><span>            reg <span style="color:#f92672">=</span> ;
+</span></span><span style="display:flex;"><span>            clock<span style="color:#f92672">-</span>frequency <span style="color:#f92672">=</span> ;
+</span></span><span style="display:flex;"><span>            interrupt<span style="color:#f92672">-</span>parent <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;&amp;</span>intc<span style="color:#f92672">&gt;</span>;
+</span></span><span style="display:flex;"><span>            interrupts <span style="color:#f92672">=</span> ;
+</span></span><span style="display:flex;"><span>            };
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>        ttc_1: ps7<span style="color:#f92672">-</span>ttc<span style="color:#960050;background-color:#1e0010">@</span>f8002000
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>            compatible <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;xlnx,zynq7k-ttc&#34;</span>;
+</span></span><span style="display:flex;"><span>            reg <span style="color:#f92672">=</span> ;
+</span></span><span style="display:flex;"><span>            clock<span style="color:#f92672">-</span>frequency <span style="color:#f92672">=</span> ;
+</span></span><span style="display:flex;"><span>            interrupt<span style="color:#f92672">-</span>parent <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;&amp;</span>intc<span style="color:#f92672">&gt;</span>;
+</span></span><span style="display:flex;"><span>            interrupts <span style="color:#f92672">=</span> ;
+</span></span><span style="display:flex;"><span>            };
+</span></span></code></pre></div><p>系统在对vxbus子系统初始化时调用每个驱动的fdtZynqTimerAttach函数，在这个函数中对定时器进行初始化相关操作，同时挂接几个重要的回调函数</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>    pTimerFunc<span style="color:#f92672">-&gt;</span>timerAllocate    <span style="color:#f92672">=</span> zynqTimerAllocate;
+</span></span><span style="display:flex;"><span>    pTimerFunc<span style="color:#f92672">-&gt;</span>timerRelease     <span style="color:#f92672">=</span> zynqTimerRelease;
+</span></span><span style="display:flex;"><span>    pTimerFunc<span style="color:#f92672">-&gt;</span>timerRolloverGet <span style="color:#f92672">=</span> zynqTimerRolloverGet;
+</span></span><span style="display:flex;"><span>    pTimerFunc<span style="color:#f92672">-&gt;</span>timerCountGet    <span style="color:#f92672">=</span> zynqTimerCountGet;
+</span></span><span style="display:flex;"><span>    pTimerFunc<span style="color:#f92672">-&gt;</span>timerDisable     <span style="color:#f92672">=</span> zynqTimerDisable;
+</span></span><span style="display:flex;"><span>    pTimerFunc<span style="color:#f92672">-&gt;</span>timerEnable      <span style="color:#f92672">=</span> zynqTimerEnable;
+</span></span><span style="display:flex;"><span>    pTimerFunc<span style="color:#f92672">-&gt;</span>timerISRSet      <span style="color:#f92672">=</span> zynqTimerISRSet;
+</span></span></code></pre></div><p>最后调用 vxbTimerRegister (pTimerFunc);将定时器注册到定时器子系统，可以通过vxbTimerShow查看，针对此开发驱动，需要做一下工作：</p>
 <p>第一：在定时器子系统中查找一个没有使用的，而且最适合自己的定时器使用，返回定时器的句柄。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">LOCAL <span style="color:#66d9ef">struct</span> vxbTimerFunctionality <span style="color:#f92672">*</span> <span style="color:#a6e22e">usrTimerInit</span>(<span style="color:#66d9ef">int</span> timerNo)
-{
-	<span style="color:#66d9ef">struct</span> vxbTimerFunctionality <span style="color:#f92672">*</span>pTimer <span style="color:#f92672">=</span> NULL;
-	
-	<span style="color:#66d9ef">if</span>(timerNo <span style="color:#f92672">&gt;=</span> TTC_TIMER_SUM)
-		<span style="color:#66d9ef">return</span> NULL;
-	
-	pTimer <span style="color:#f92672">=</span> vxbTimerEval(usrTimer[timerNo].timerEvalFunc);
-	<span style="color:#75715e">//printf(&#34;timer( point = %08x %s:%d)\n&#34;,pTimer,pTimer-&gt;timerName,pTimer-&gt;timerNo);
-</span><span style="color:#75715e"></span>	<span style="color:#75715e">//pTimer1 = TIMERFUNC_TO_TIMERDATA (pTimer);
-</span><span style="color:#75715e"></span>	<span style="color:#75715e">//printf(&#34;pTimer1 = %08x allocated = %d\n&#34;,pTimer1,pTimer1-&gt;timerFunc.allocated);
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span>(pTimer <span style="color:#f92672">==</span> NULL)
-		<span style="color:#66d9ef">return</span> NULL;
-	
-	pTimer<span style="color:#f92672">-&gt;</span>timerRelease(pTimer);
-	<span style="color:#75715e">//printf(&#34;ptimer = %08x\n&#34;,pTimer);
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> ((pTimer<span style="color:#f92672">-&gt;</span>timerAllocate(pTimer,pTimer<span style="color:#f92672">-&gt;</span>features <span style="color:#f92672">&amp;</span> VXB_TIMER_AUTO_RELOAD)) <span style="color:#f92672">!=</span> OK)
-	{
-		printf(<span style="color:#e6db74">&#34;####callocate timer failed</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>);
-		<span style="color:#66d9ef">return</span> NULL;
-	}
- 
-	<span style="color:#66d9ef">return</span> pTimer;
-}
-</code></pre></div><p>第二：根据找到的句柄，初始化定时器，挂接中断服务例程</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">LOCAL STATUS <span style="color:#a6e22e">usrTimerIntConnect</span>(<span style="color:#66d9ef">struct</span> vxbTimerFunctionality <span style="color:#f92672">*</span>pTimer,FUNCPTR routine,_Vx_usr_arg_t arg)
-{
-	 ZYNQ_TIMER <span style="color:#f92672">*</span>         pTimer1;
-	<span style="color:#75715e">//printf(&#34;pTimer3 = %08x \n&#34;,pTimer);
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> (pTimer <span style="color:#f92672">==</span> NULL)
-		<span style="color:#66d9ef">return</span> ERROR;
-	<span style="color:#75715e">//pTimer1 = TIMERFUNC_TO_TIMERDATA (pTimer);
-</span><span style="color:#75715e"></span>	<span style="color:#75715e">//printf(&#34;pTimer2 = %08x allocated = %d\n&#34;,pTimer1,pTimer1-&gt;timerFunc.allocated);
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> (pTimer<span style="color:#f92672">-&gt;</span>timerISRSet (pTimer, (<span style="color:#66d9ef">void</span>(<span style="color:#f92672">*</span>)(_Vx_usr_arg_t))routine,arg) <span style="color:#f92672">!=</span> OK)
-		<span style="color:#66d9ef">return</span> ERROR;
-	
-	<span style="color:#66d9ef">return</span> (OK);
- 
-}
-</code></pre></div><p>第三：设置定时器的中断周期</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">LOCAL STATUS <span style="color:#a6e22e">usrTimerClkRateSet</span>(<span style="color:#66d9ef">struct</span> vxbTimerFunctionality <span style="color:#f92672">*</span>pTimer,<span style="color:#66d9ef">int</span> ticksPerSecond)
-{
-	<span style="color:#66d9ef">if</span> (pTimer <span style="color:#f92672">==</span> NULL)
-		<span style="color:#66d9ef">return</span> ERROR;
- 
-	<span style="color:#66d9ef">if</span> ( ((UINT)ticksPerSecond <span style="color:#f92672">&lt;</span> usrTtc0MinFreq) <span style="color:#f92672">||</span> ((UINT)ticksPerSecond <span style="color:#f92672">&gt;</span> usrTtc0MaxFreq) )
-		<span style="color:#66d9ef">return</span> (ERROR);
- 
-	<span style="color:#66d9ef">if</span> (pTimer<span style="color:#f92672">-&gt;</span>ticksPerSecond <span style="color:#f92672">!=</span> (UINT)ticksPerSecond)
-	{
-		pTimer<span style="color:#f92672">-&gt;</span>ticksPerSecond <span style="color:#f92672">=</span> ticksPerSecond;
-		usrTimerDisable (pTimer);
-		usrTimerEnable (pTimer);
-	}
-	<span style="color:#66d9ef">return</span> (OK);
-}
-</code></pre></div><p>第四：使能定时器中断</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">LOCAL <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">usrTimerEnable</span>(<span style="color:#66d9ef">struct</span> vxbTimerFunctionality <span style="color:#f92672">*</span>pTimer)
-{
-<span style="color:#75715e">#ifndef	_WRS_CONFIG_SMP
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> key;
-<span style="color:#75715e">#endif	</span><span style="color:#75715e">/* !_WRS_CONFIG_SMP */</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span> 
-    <span style="color:#75715e">/* check if timer is available */</span>
-    <span style="color:#66d9ef">if</span> (pTimer <span style="color:#f92672">==</span> NULL)
-        <span style="color:#66d9ef">return</span>;
-<span style="color:#75715e">#ifndef	_WRS_CONFIG_SMP
-</span><span style="color:#75715e"></span>	key <span style="color:#f92672">=</span> intCpuLock ();
-<span style="color:#75715e">#endif	</span><span style="color:#75715e">/* !_WRS_CONFIG_SMP */</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>vxbSmpClkRuning)
-	{
-		<span style="color:#66d9ef">if</span> (pTimer<span style="color:#f92672">-&gt;</span>timerEnable (pTimer,(pTimer<span style="color:#f92672">-&gt;</span>clkFrequency <span style="color:#f92672">/</span>pTimer<span style="color:#f92672">-&gt;</span>ticksPerSecond)) <span style="color:#f92672">!=</span> OK)
-		{
-		<span style="color:#75715e">#ifndef	_WRS_CONFIG_SMP
-</span><span style="color:#75715e"></span>			intCpuUnlock (key);
-		<span style="color:#75715e">#endif	</span><span style="color:#75715e">/* !_WRS_CONFIG_SMP */</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>			<span style="color:#66d9ef">return</span>;
-		}
-		vxbSmpClkRuning <span style="color:#f92672">=</span> TRUE;
-	}
- 
- 
-<span style="color:#75715e">#ifndef	_WRS_CONFIG_SMP
-</span><span style="color:#75715e"></span>	intCpuUnlock (key);
-<span style="color:#75715e">#endif	</span><span style="color:#75715e">/* !_WRS_CONFIG_SMP */</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>}
-</code></pre></div><p>通过以上四步可以实现定时器的初始化及使用。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>LOCAL <span style="color:#66d9ef">struct</span> vxbTimerFunctionality <span style="color:#f92672">*</span> <span style="color:#a6e22e">usrTimerInit</span>(<span style="color:#66d9ef">int</span> timerNo)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">struct</span> vxbTimerFunctionality <span style="color:#f92672">*</span>pTimer <span style="color:#f92672">=</span> NULL;
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span>(timerNo <span style="color:#f92672">&gt;=</span> TTC_TIMER_SUM)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> NULL;
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	pTimer <span style="color:#f92672">=</span> <span style="color:#a6e22e">vxbTimerEval</span>(usrTimer[timerNo].timerEvalFunc);
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">//printf(&#34;timer( point = %08x %s:%d)\n&#34;,pTimer,pTimer-&gt;timerName,pTimer-&gt;timerNo);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">//pTimer1 = TIMERFUNC_TO_TIMERDATA (pTimer);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">//printf(&#34;pTimer1 = %08x allocated = %d\n&#34;,pTimer1,pTimer1-&gt;timerFunc.allocated);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span>(pTimer <span style="color:#f92672">==</span> NULL)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> NULL;
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	pTimer<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">timerRelease</span>(pTimer);
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">//printf(&#34;ptimer = %08x\n&#34;,pTimer);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> ((pTimer<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">timerAllocate</span>(pTimer,pTimer<span style="color:#f92672">-&gt;</span>features <span style="color:#f92672">&amp;</span> VXB_TIMER_AUTO_RELOAD)) <span style="color:#f92672">!=</span> OK)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;####callocate timer failed</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>);
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> NULL;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> pTimer;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>第二：根据找到的句柄，初始化定时器，挂接中断服务例程</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>LOCAL STATUS <span style="color:#a6e22e">usrTimerIntConnect</span>(<span style="color:#66d9ef">struct</span> vxbTimerFunctionality <span style="color:#f92672">*</span>pTimer,FUNCPTR routine,_Vx_usr_arg_t arg)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	 ZYNQ_TIMER <span style="color:#f92672">*</span>         pTimer1;
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">//printf(&#34;pTimer3 = %08x \n&#34;,pTimer);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> (pTimer <span style="color:#f92672">==</span> NULL)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> ERROR;
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">//pTimer1 = TIMERFUNC_TO_TIMERDATA (pTimer);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">//printf(&#34;pTimer2 = %08x allocated = %d\n&#34;,pTimer1,pTimer1-&gt;timerFunc.allocated);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> (pTimer<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">timerISRSet</span> (pTimer, (<span style="color:#66d9ef">void</span>(<span style="color:#f92672">*</span>)(_Vx_usr_arg_t))routine,arg) <span style="color:#f92672">!=</span> OK)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> ERROR;
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> (OK);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>第三：设置定时器的中断周期</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>LOCAL STATUS <span style="color:#a6e22e">usrTimerClkRateSet</span>(<span style="color:#66d9ef">struct</span> vxbTimerFunctionality <span style="color:#f92672">*</span>pTimer,<span style="color:#66d9ef">int</span> ticksPerSecond)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (pTimer <span style="color:#f92672">==</span> NULL)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> ERROR;
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> ( ((UINT)ticksPerSecond <span style="color:#f92672">&lt;</span> usrTtc0MinFreq) <span style="color:#f92672">||</span> ((UINT)ticksPerSecond <span style="color:#f92672">&gt;</span> usrTtc0MaxFreq) )
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> (ERROR);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (pTimer<span style="color:#f92672">-&gt;</span>ticksPerSecond <span style="color:#f92672">!=</span> (UINT)ticksPerSecond)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		pTimer<span style="color:#f92672">-&gt;</span>ticksPerSecond <span style="color:#f92672">=</span> ticksPerSecond;
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">usrTimerDisable</span> (pTimer);
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">usrTimerEnable</span> (pTimer);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> (OK);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>第四：使能定时器中断</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>LOCAL <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">usrTimerEnable</span>(<span style="color:#66d9ef">struct</span> vxbTimerFunctionality <span style="color:#f92672">*</span>pTimer)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#ifndef	_WRS_CONFIG_SMP
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> key;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif	</span><span style="color:#75715e">/* !_WRS_CONFIG_SMP */</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/* check if timer is available */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (pTimer <span style="color:#f92672">==</span> NULL)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#ifndef	_WRS_CONFIG_SMP
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	key <span style="color:#f92672">=</span> <span style="color:#a6e22e">intCpuLock</span> ();
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif	</span><span style="color:#75715e">/* !_WRS_CONFIG_SMP */</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>vxbSmpClkRuning)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (pTimer<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">timerEnable</span> (pTimer,(pTimer<span style="color:#f92672">-&gt;</span>clkFrequency <span style="color:#f92672">/</span>pTimer<span style="color:#f92672">-&gt;</span>ticksPerSecond)) <span style="color:#f92672">!=</span> OK)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">#ifndef	_WRS_CONFIG_SMP
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">intCpuUnlock</span> (key);
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">#endif	</span><span style="color:#75715e">/* !_WRS_CONFIG_SMP */</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		vxbSmpClkRuning <span style="color:#f92672">=</span> TRUE;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#ifndef	_WRS_CONFIG_SMP
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">intCpuUnlock</span> (key);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif	</span><span style="color:#75715e">/* !_WRS_CONFIG_SMP */</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>通过以上四步可以实现定时器的初始化及使用。</p>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1543398821442998"
      crossorigin="anonymous"></script>
 
@@ -654,7 +650,7 @@ ttc_0: ps7<span style="color:#f92672">-</span>ttc<span style="color:#960050;back
   
   <script type="text/javascript" src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js" defer></script>
 
-<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
+<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com/","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
 
 
 
@@ -662,7 +658,7 @@ ttc_0: ps7<span style="color:#f92672">-</span>ttc<span style="color:#960050;back
 
 
 
-<script type="text/javascript" src="/js/main.min.7e59cf1a98d842830d8a6f149f78fbbcf9e795b7a9eb76feb34b48c9bf1554d7.js" defer></script>
+<script type="text/javascript" src="/js/main.min.8bc1e2a2ac040735a2a32d113d257bd75c45142b9842ad7526f7de5e3d3a9298.js" defer></script>
 
 
 

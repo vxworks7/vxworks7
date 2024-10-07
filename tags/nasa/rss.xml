@@ -4,17 +4,16 @@
     <title>NASA on VxWorks 7</title>
     <link>https://www.vxworks7.com/tags/nasa/</link>
     <description>Recent content in NASA on VxWorks 7</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 18 Dec 2022 05:21:48 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/nasa/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 18 Dec 2022 05:21:48 -0500</lastBuildDate>
+    <atom:link href="https://www.vxworks7.com/tags/nasa/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>开启重返月球之旅</title>
       <link>https://www.vxworks7.com/post/news/our-journey-back-to-the-moon.html</link>
       <pubDate>Sun, 18 Dec 2022 05:21:48 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/news/our-journey-back-to-the-moon.html</guid>
       <description>&lt;p&gt;风河公司祝贺NASA（美国宇航局）成功推进 Artemis I 工程，由此开启了新的返回月球之旅。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

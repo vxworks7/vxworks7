@@ -4,31 +4,23 @@
     <title>VxWorks 6.8 on VxWorks 7</title>
     <link>https://www.vxworks7.com/tags/vxworks-6.8/</link>
     <description>Recent content in VxWorks 6.8 on VxWorks 7</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 21 Dec 2022 08:50:10 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/vxworks-6.8/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 21 Dec 2022 08:50:10 -0500</lastBuildDate>
+    <atom:link href="https://www.vxworks7.com/tags/vxworks-6.8/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>实测VxWorks响应PCIe中断的最小时间间隔</title>
       <link>https://www.vxworks7.com/post/app/mininum-time-for-vxworks-response-pcie-interrupt.html</link>
       <pubDate>Wed, 21 Dec 2022 08:50:10 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/app/mininum-time-for-vxworks-response-pcie-interrupt.html</guid>
       <description>&lt;p&gt;中断是外部事件通知操作系统的最常用手段。中断处理机制是计算机多任务环境运行的基础，是系统实时性的保证;VxWorks是美国Wind River公司于1983年设计开发的一种嵌入式实时操作系统。内核wind在任务调度、中断处理及网络处理等方面与其它嵌入式实时操作系统相比具有一定的优势。特别是其提供的微秒级的中断处理为VxWorks在嵌入式实时操作系统领域的旗舰地位奠定了基础。本文通过带有PCIe接口的FPGA开发板，在VxWorks6.8版本的操作系统环境下，实测一下VxWorks操作系统中断处理的最小时间间隔是否是传说中的微秒级。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks 6.8下基于QT的串口编程</title>
       <link>https://www.vxworks7.com/post/vxworks/vxworks-6.8-qt-uart-programming.html</link>
       <pubDate>Fri, 07 Oct 2022 05:35:25 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/post/vxworks/vxworks-6.8-qt-uart-programming.html</guid>
-      <description>&lt;p&gt;文章简要记录了&lt;code&gt;VxWorks 6.8&lt;/code&gt;下基于&lt;code&gt;Qt&lt;/code&gt;实现的&lt;code&gt;串口&lt;/code&gt;编程。&lt;/p&gt;
-&lt;p&gt;相关的&lt;code&gt;VxWorks&lt;/code&gt; 和 &lt;code&gt;串口&lt;/code&gt;，请参阅 
-&lt;a href=&#34;https://vxworks.net/app/22-serial-programming-for-vxworks&#34; title=&#34;VxWorks下的串口测试程序设计和源码&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    VxWorks下的串口测试程序设计和源码
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt;。&lt;/p&gt;</description>
+      <description>&lt;p&gt;文章简要记录了&lt;code&gt;VxWorks 6.8&lt;/code&gt;下基于&lt;code&gt;Qt&lt;/code&gt;实现的&lt;code&gt;串口&lt;/code&gt;编程。&lt;/p&gt;&#xA;&lt;p&gt;相关的&lt;code&gt;VxWorks&lt;/code&gt; 和 &lt;code&gt;串口&lt;/code&gt;，请参阅 &#xA;&lt;a href=&#34;https://vxworks.net/app/22-serial-programming-for-vxworks&#34; title=&#34;VxWorks下的串口测试程序设计和源码&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    VxWorks下的串口测试程序设计和源码&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt;。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

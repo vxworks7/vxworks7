@@ -4,505 +4,338 @@
     <title>VxWorks on VxWorks 7</title>
     <link>https://www.vxworks7.com/tags/vxworks/</link>
     <description>Recent content in VxWorks on VxWorks 7</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 15 Sep 2024 23:54:35 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/vxworks/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 Sep 2024 23:54:35 +0800</lastBuildDate>
+    <atom:link href="https://www.vxworks7.com/tags/vxworks/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>欢迎加入 VxWorks 俱乐部！</title>
       <link>https://www.vxworks7.com/post/welcome-to-vxworks-club/</link>
       <pubDate>Mon, 02 May 2022 15:59:41 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/post/welcome-to-vxworks-club/</guid>
-      <description>欢迎来到 北南南北 文档站点！ 相关文章来源于 VxWorks 俱乐部  ，也可能发布于 AI 嵌入式开发  ，专注于技术分享和交流。
-免责声明 所有资源均来自网络，版权归原作者，如有侵权，请联系删除！
-欢迎投稿  欢迎广大网友投稿 欢迎加入网友微信群  </description>
+      <description>&lt;p&gt;欢迎来到 &lt;code&gt;北南南北&lt;/code&gt; 文档站点！ 相关文章来源于 &#xA;&lt;a href=&#34;https://www.vxworks.net/&#34; title=&#34;VxWorks 俱乐部&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    VxWorks 俱乐部&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt;，也可能发布于&#xA;&lt;a href=&#34;https://www.gaitpu.com/&#34; title=&#34;AI 嵌入式开发&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    AI 嵌入式开发&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt;，专注于技术分享和交流。&lt;/p&gt;&#xA;&lt;h2 id=&#34;免责声明&#34;&gt;免责声明&lt;/h2&gt;&#xA;&lt;p&gt;所有资源均来自网络，版权归原作者，如有侵权，请联系删除！&lt;/p&gt;&#xA;&lt;h2 id=&#34;欢迎投稿&#34;&gt;欢迎投稿&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;欢迎广大网友投稿&lt;/li&gt;&#xA;&lt;li&gt;欢迎加入网友微信群&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks免费书籍下载</title>
       <link>https://www.vxworks7.com/post/vxworks/vxworks-books.html</link>
       <pubDate>Sun, 15 Sep 2024 23:54:35 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/post/vxworks/vxworks-books.html</guid>
       <description>&lt;p&gt;网络资源，免费下载，仅供学习使用!&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>支持电信业发挥AI潜能，迎接Open RAN革命</title>
       <link>https://www.vxworks7.com/post/news/windriver-supports-telecom-industry-to-realize-the-potential-of-AI.html</link>
       <pubDate>Sat, 03 Aug 2024 18:02:03 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/post/news/windriver-supports-telecom-industry-to-realize-the-potential-of-AI.html</guid>
       <description>&lt;p&gt;电信业持续发展，而且正处于一个关键时刻，这是因为获得了Open RAN和人工智能(AI)的双重动力。这两项革命性的技术正在重塑电信基础设施的基础架构。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>基于VxWorks 系统的航电激励器设计与实现</title>
       <link>https://www.vxworks7.com/post/vxworks/design-and-implementation-of-avionics-exciter-based-on-vxworks-system.html</link>
       <pubDate>Fri, 26 Apr 2024 23:10:04 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/post/vxworks/design-and-implementation-of-avionics-exciter-based-on-vxworks-system.html</guid>
-      <description>&lt;p&gt;航电激励器在民用飞机航电系统半物理仿真平台中起着至关重要的作用。在航电系统开发过程中，航电激励器向航电仿真设备提供的激励数据是进行航电系统仿真验证的基础，所以在航电激励数据的获取和处理中，航电激励器的设计与实现是极其重要的一个环节。该文基于
-&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    VxWorks
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt; 系统设计一款航电激励器，对航电激励器进行总体设计，从激励数据获取模块、激励数据转换模块等方面进行研究，完成软件设计以及硬件平台搭建。通过对设计的航电激励器进行仿真验证，实现飞机模拟飞行数据的获取以及航电系统中
-&lt;a href=&#34;https://www.vxworks6.com&#34; title=&#34;ARINC429&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    ARINC429
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt; 总线数据和AFDX 总线数据的相互转换，使得激励数据在传输过程中具有良好的实时性。&lt;/p&gt;</description>
+      <description>&lt;p&gt;航电激励器在民用飞机航电系统半物理仿真平台中起着至关重要的作用。在航电系统开发过程中，航电激励器向航电仿真设备提供的激励数据是进行航电系统仿真验证的基础，所以在航电激励数据的获取和处理中，航电激励器的设计与实现是极其重要的一个环节。该文基于&#xA;&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    VxWorks&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt; 系统设计一款航电激励器，对航电激励器进行总体设计，从激励数据获取模块、激励数据转换模块等方面进行研究，完成软件设计以及硬件平台搭建。通过对设计的航电激励器进行仿真验证，实现飞机模拟飞行数据的获取以及航电系统中&#xA;&lt;a href=&#34;https://www.vxworks6.com&#34; title=&#34;ARINC429&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    ARINC429&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt; 总线数据和AFDX 总线数据的相互转换，使得激励数据在传输过程中具有良好的实时性。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>20 Vxworks Interview Questions and Answers</title>
       <link>https://www.vxworks7.com/post/vxworks/20-vxworks-interview-questions-and-answers.html</link>
       <pubDate>Sun, 21 Apr 2024 11:43:54 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/post/vxworks/20-vxworks-interview-questions-and-answers.html</guid>
       <description>&lt;p&gt;Prepare for the types of questions you are likely to be asked when interviewing for a position where VxWorks will be used.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>一种对无符号VxWorks固件系统的符号恢复方法研究</title>
       <link>https://www.vxworks7.com/post/bsp/research-on-a-symbol-recovery-method-for-unsigned-VxWorks-firmware-system.html</link>
       <pubDate>Thu, 21 Dec 2023 16:08:39 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/research-on-a-symbol-recovery-method-for-unsigned-VxWorks-firmware-system.html</guid>
-      <description>&lt;p&gt;在前面两篇关于
-&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    VxWorks
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt;设备固件的提取和VxWorks系统加载地址分析的文章之后，我们对VxWorks函数符号的恢复方法进行了研究，找到了一种对无符号VxWorks固件系统的符号恢复方法。&lt;/p&gt;</description>
+      <description>&lt;p&gt;在前面两篇关于&#xA;&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    VxWorks&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt;设备固件的提取和VxWorks系统加载地址分析的文章之后，我们对VxWorks函数符号的恢复方法进行了研究，找到了一种对无符号VxWorks固件系统的符号恢复方法。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>基于T20A80处理器的VxWorks7.0操作系统研究与适配</title>
       <link>https://www.vxworks7.com/post/bsp/research-and-adaptive-of-vxworks7-0-based-on-t2080-processor.html</link>
       <pubDate>Tue, 19 Dec 2023 15:19:34 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/research-and-adaptive-of-vxworks7-0-based-on-t2080-processor.html</guid>
-      <description>&lt;p&gt;为满足机载系统中雷达处理单元等设备高实时、 高性能的需求，本文使用 T2080 处理器研制了一款通用处理卡，并基于该卡研究并完成了 
-&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks7.0&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    VxWorks7.0
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt; 操作系统的 BSP 开发及操作系统适配工作。&lt;/p&gt;</description>
+      <description>&lt;p&gt;为满足机载系统中雷达处理单元等设备高实时、 高性能的需求，本文使用 T2080 处理器研制了一款通用处理卡，并基于该卡研究并完成了 &#xA;&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks7.0&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    VxWorks7.0&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt; 操作系统的 BSP 开发及操作系统适配工作。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks环境下双冗余以太网卡技术在底层驱动中的实现</title>
       <link>https://www.vxworks7.com/post/vxworks/implementation-of-redundant-network-in-vxworks.html</link>
       <pubDate>Sun, 17 Dec 2023 19:50:49 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/post/vxworks/implementation-of-redundant-network-in-vxworks.html</guid>
       <description>&lt;p&gt;本文讲解了VxWorks环境下双冗余以太网卡技术在底层驱动中的实现。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>「VxWorks」のコンテナエンジンにおけるデプロイと管理のセキュリティを強化</title>
       <link>https://www.vxworks7.com/post/news/enhanced-deployment-and-management-security-for-VxWorks-container-engine.html</link>
       <pubDate>Sun, 17 Dec 2023 17:49:17 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/post/news/enhanced-deployment-and-management-security-for-VxWorks-container-engine.html</guid>
       <description>&lt;p&gt;Wind River Systems（Wind River）は2023年11月15日（現地時間）、RTOS（リアルタイムオペレーティングシステム）のコンテナエンジンがSigstoreのCosignをサポートしたと発表した。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>风河持续保持边缘操作系统平台排名第一</title>
       <link>https://www.vxworks7.com/post/news/wind-river-maintains-no-1-edge-operating-system-platform-ranking.html</link>
       <pubDate>Wed, 13 Dec 2023 21:59:53 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/post/news/wind-river-maintains-no-1-edge-operating-system-platform-ranking.html</guid>
       <description>&lt;p&gt;全球领先的关键任务智能系统软件提供商风河公司,持续保持其在嵌入式实时操作系统（RTOS）市场和商用嵌入式Linux市场的领先地位，最新发布的VDC Research研究报告对此做出了认定。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>20个常见的VxWorks面试题和答案</title>
       <link>https://www.vxworks7.com/post/app/20-common-vxworks-interview-questions-and-answers.html</link>
       <pubDate>Tue, 12 Dec 2023 23:22:17 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/post/app/20-common-vxworks-interview-questions-and-answers.html</guid>
-      <description>&lt;p&gt;准备你在面试会使用
-&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    VxWorks
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt;的职位时会被问到的问题类型。&lt;/p&gt;</description>
+      <description>&lt;p&gt;准备你在面试会使用&#xA;&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    VxWorks&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt;的职位时会被问到的问题类型。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>使用RTOS时需要注意的几点内容</title>
       <link>https://www.vxworks7.com/post/vxworks/several-things-to-note-when-using-RTOS.html</link>
       <pubDate>Sat, 02 Dec 2023 22:45:59 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/post/vxworks/several-things-to-note-when-using-RTOS.html</guid>
-      <description>&lt;p&gt;对许多嵌入式项目来说，系统设计师都倾向于选择实时操作系统(
-&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;RTOS&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    RTOS
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt;)。但RTOS总是必要的吗?&lt;/p&gt;</description>
+      <description>&lt;p&gt;对许多嵌入式项目来说，系统设计师都倾向于选择实时操作系统(&#xA;&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;RTOS&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    RTOS&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt;)。但RTOS总是必要的吗?&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>TP-LINK WDR 7660 VxWorks系统分析</title>
       <link>https://www.vxworks7.com/post/app/tp-link-WDR-7660-VxWorks-system-analysis.html</link>
       <pubDate>Sat, 08 Jul 2023 13:00:54 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/post/app/tp-link-WDR-7660-VxWorks-system-analysis.html</guid>
       <description>&lt;p&gt;本文介绍了TP-LINK WDR 7660 VxWorks系统的逆向分析，并给出了获取VxWorks系统加载基址和利用符号表修复函数名的方法。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>为什么有些应用非VxWorks不可</title>
       <link>https://www.vxworks7.com/post/vxworks/the-necessity-of-using-vxworks-for-some-application.html</link>
       <pubDate>Sat, 08 Jul 2023 10:47:20 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/post/vxworks/the-necessity-of-using-vxworks-for-some-application.html</guid>
       <description>&lt;p&gt;实时操作系统（RTOS）是专用于对时间精确度敏感的操作系统。典型的情况是，这种应用需要从传感器收集数据、做出分析并对关键性设备进行控制，例如飞机、列车、手术刀。这类控制必须精准，不容许出现丝毫差错。这与通用操作系统（General Purpose Operating Systems, GPOS形成对比。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks技术资料免费下载</title>
       <link>https://www.vxworks7.com/post/vxworks/free-vxworks-technical-resouce.html</link>
       <pubDate>Fri, 23 Jun 2023 11:46:30 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/post/vxworks/free-vxworks-technical-resouce.html</guid>
       <description>&lt;p&gt;VxWorks技术资料免费下载，资源来源网络，版权归原作者所有！&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks任务编程中常见异常分析</title>
       <link>https://www.vxworks7.com/post/vxworks/analysis-of-common-exception-in-vxworks-task-programming.html</link>
       <pubDate>Sun, 18 Jun 2023 07:15:37 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/post/vxworks/analysis-of-common-exception-in-vxworks-task-programming.html</guid>
       <description>&lt;p&gt;在任务运行过程中,会出现一些异常的情况,导致任务不能正常运行或者对操作系统造成影响。一般来说,这些异常是由程序的逻辑错误造成的,防止这些异常情况的出现和出现后进行补救就有格外重要的意义。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Wind River风河系统公司的发展历史</title>
       <link>https://www.vxworks7.com/post/news/wind-river-systems-development-history.html</link>
       <pubDate>Sun, 07 May 2023 06:32:29 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/post/news/wind-river-systems-development-history.html</guid>
       <description>&lt;p&gt;风河系统公司由Jerry Fiddler和Dave Wilner共同创立，1981年Fiddler离开美国劳伦斯伯克利国家实验室，从事控制系统的软件编写工作，但他想在“计算机音乐合成”方面创业，于是他投资了一家致力于实时处理方面的咨询公司。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks实时操作系统的特点</title>
       <link>https://www.vxworks7.com/post/vxworks/feature-of-vxworks.html</link>
       <pubDate>Wed, 03 May 2023 09:57:17 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/post/vxworks/feature-of-vxworks.html</guid>
-      <description>&lt;p&gt;
-&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    VxWorks
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt;是美国风河系统（WindRiver）公司于1983年设计开发的一种嵌入式实时操作系统（RTOS），是嵌入式开发环境的关键组成部分。&lt;/p&gt;</description>
+      <description>&lt;p&gt;&#xA;&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    VxWorks&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt;是美国风河系统（WindRiver）公司于1983年设计开发的一种嵌入式实时操作系统（RTOS），是嵌入式开发环境的关键组成部分。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>XaaS为制造业注入无限动力</title>
       <link>https://www.vxworks7.com/post/news/the-power-of-xaas-in-manufacturing.html</link>
       <pubDate>Fri, 31 Mar 2023 21:27:45 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/post/news/the-power-of-xaas-in-manufacturing.html</guid>
       <description>&lt;p&gt;工业设备，如土方机械或制造机器人，不再仅仅是具备大肌肉力量或机械能力。如今，嵌入软件驱动的传感器让这些机器在智能边缘运行，使它们成为数字信息流中的重要环节。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>ITTIA DB 支持 VxWorks 和 Wind River Linux</title>
       <link>https://www.vxworks7.com/post/news/ittia-db-supports-vxworks-and-wind-river-linux.html</link>
       <pubDate>Tue, 28 Mar 2023 21:27:45 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/post/news/ittia-db-supports-vxworks-and-wind-river-linux.html</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://www.vxworks7.com/imgs/post/ITTIA_DB_Support_Wind_River_Platforms.png&#34; alt=&#34;ITTIA DB support VxWorks and Wind River Linux&#34;&gt;
-ITTIA 宣布立即推出适用于 
-&lt;a href=&#34;https://www.vxworks6.com&#34; title=&#34;VxWorks RTOS&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    VxWorks RTOS
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt; 和 Wind River Linux 操作系统的 ITTIA DB 软件。&lt;/p&gt;
-&lt;p&gt;ITTIA DB 是一种嵌入式高性能数据库，它将时间序列与实时数据处理集成在一起，其中占用空间少的事务和分析查询均在嵌入式设备上本地执行。 新软件和风河软件共同为嵌入式系统应用程序开发人员提供了一个出色的边缘计算平台。&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;img src=&#34;https://www.vxworks7.com/imgs/post/ITTIA_DB_Support_Wind_River_Platforms.png&#34; alt=&#34;ITTIA DB support VxWorks and Wind River Linux&#34;&gt;&#xA;ITTIA 宣布立即推出适用于 &#xA;&lt;a href=&#34;https://www.vxworks6.com&#34; title=&#34;VxWorks RTOS&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    VxWorks RTOS&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt; 和 Wind River Linux 操作系统的 ITTIA DB 软件。&lt;/p&gt;&#xA;&lt;p&gt;ITTIA DB 是一种嵌入式高性能数据库，它将时间序列与实时数据处理集成在一起，其中占用空间少的事务和分析查询均在嵌入式设备上本地执行。 新软件和风河软件共同为嵌入式系统应用程序开发人员提供了一个出色的边缘计算平台。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>选择实时操作系统(RTOS)的要点详解</title>
       <link>https://www.vxworks7.com/post/news/how-to-select-real-time-operating-system.html</link>
       <pubDate>Sun, 26 Mar 2023 10:39:45 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/post/news/how-to-select-real-time-operating-system.html</guid>
-      <description>&lt;p&gt;对许多嵌入式项目来说，系统设计师都倾向于选择实时操作系统(&lt;code&gt;RTOS&lt;/code&gt;)。但
-&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;RTOS&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    RTOS
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt;总是必要的吗?答案是取决于具体的应用，因此了解我们要达到什么目标是决定RTOS是必要的还是花瓶的关键。&lt;/p&gt;</description>
+      <description>&lt;p&gt;对许多嵌入式项目来说，系统设计师都倾向于选择实时操作系统(&lt;code&gt;RTOS&lt;/code&gt;)。但&#xA;&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;RTOS&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    RTOS&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt;总是必要的吗?答案是取决于具体的应用，因此了解我们要达到什么目标是决定RTOS是必要的还是花瓶的关键。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>如何在命令行下编译VxWorks 5.5项目</title>
       <link>https://www.vxworks7.com/post/bsp/how-to-compile-vxworks-5.5-project-from-command-line.html</link>
       <pubDate>Sat, 25 Mar 2023 22:40:08 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/how-to-compile-vxworks-5.5-project-from-command-line.html</guid>
       <description>&lt;p&gt;如何从命令行来编译VxWorks 5.5/Tornado2.2的项目？本文将告诉你答案&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks开发环境Workbench与Tornado介绍</title>
       <link>https://www.vxworks7.com/post/bsp/introduction-of-workbench-and-tornado-for-vxworks.html</link>
       <pubDate>Tue, 03 Jan 2023 08:27:58 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/introduction-of-workbench-and-tornado-for-vxworks.html</guid>
       <description>&lt;p&gt;Workbench无疑是当前VxWorks软件开发领域中功能非常强大的一个集成开发环境&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks Workbench开发环境快速介绍</title>
       <link>https://www.vxworks7.com/post/app/a-quick-intro-to-vxworks-workbench-development-environment.html</link>
       <pubDate>Sun, 01 Jan 2023 23:35:44 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/app/a-quick-intro-to-vxworks-workbench-development-environment.html</guid>
       <description>&lt;p&gt;本文介绍了VxWorks Workbench开发环境相关的快速教程&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks环境搭建与学习</title>
       <link>https://www.vxworks7.com/post/bsp/how-to-setup-vxworks-development-environment.html</link>
       <pubDate>Sat, 31 Dec 2022 09:55:36 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/how-to-setup-vxworks-development-environment.html</guid>
       <description>&lt;p&gt;本文讲述了如何搭建VxWorks开发环境，对于学习VxWorks的网友来说是一篇比较好的入门文档。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks操作系统下的USB摄像头驱动总结</title>
       <link>https://www.vxworks7.com/post/bsp/vxworks-device-driver-for-usb-camera.html</link>
       <pubDate>Sat, 31 Dec 2022 01:26:47 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/vxworks-device-driver-for-usb-camera.html</guid>
       <description>&lt;p&gt;本文分享了VxWorks下USB摄像头驱动总结&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks6.6下基于VxBus的以太网驱动开发</title>
       <link>https://www.vxworks7.com/post/bsp/network-device-driver-design-based-on-vxbus.html</link>
       <pubDate>Thu, 29 Dec 2022 07:32:24 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/network-device-driver-design-based-on-vxbus.html</guid>
       <description>&lt;p&gt;最近更换mpc8313的phy芯片，由原来的lxt972Phy更换为DP83849I，在此记录下本人在驱动开发过程中的点滴记录，以备日后查询。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks下多任务调试</title>
       <link>https://www.vxworks7.com/post/app/vxworks-multiple-tasks-debug.html</link>
       <pubDate>Wed, 28 Dec 2022 10:48:17 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/app/vxworks-multiple-tasks-debug.html</guid>
       <description>&lt;p&gt;在任务运行过程中,会出现一些异常的情况,导致任务不能正常运行或者对操作系统造成影响。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks系统编程方法</title>
       <link>https://www.vxworks7.com/post/app/vxworks-system-programming-method.html</link>
       <pubDate>Mon, 26 Dec 2022 11:22:08 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/app/vxworks-system-programming-method.html</guid>
       <description>&lt;p&gt;实时系统主要包括：多任务调度（采用优先级抢占方式），任务间的同步和进程间通信机制.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>嵌入式操作系统VxWorks简介</title>
       <link>https://www.vxworks7.com/post/bsp/embedded-os-vxworks-introduction.html</link>
       <pubDate>Mon, 26 Dec 2022 10:23:56 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/embedded-os-vxworks-introduction.html</guid>
-      <description>&lt;p&gt;
-&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    VxWorks
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt;操作系统是美国WindRiver公司于1983年设计开发的一种嵌入式实时操作系统（RTOS），是嵌入式开发环境的关键组成部分。&lt;/p&gt;</description>
+      <description>&lt;p&gt;&#xA;&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    VxWorks&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt;操作系统是美国WindRiver公司于1983年设计开发的一种嵌入式实时操作系统（RTOS），是嵌入式开发环境的关键组成部分。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxBus设备驱动模型</title>
       <link>https://www.vxworks7.com/post/bsp/vxbus-device-driver-model-in-vxworks.html</link>
       <pubDate>Sun, 25 Dec 2022 00:10:11 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/vxbus-device-driver-model-in-vxworks.html</guid>
       <description>&lt;p&gt;VxBus是指在VxWorks中用于支持设备驱动的特有的架构，这种架构包含对minimal BSP的支持。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks下Telnet客户端的C语言实现代码</title>
       <link>https://www.vxworks7.com/post/app/c-code-to-implement-telnet-client-in-vxworks.html</link>
       <pubDate>Sat, 24 Dec 2022 11:35:19 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/app/c-code-to-implement-telnet-client-in-vxworks.html</guid>
       <description>&lt;p&gt;本文主要分享了VxWorks系统下实现telnet client客户端的C语言代码&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>PCI总线在VxWorks中的实现</title>
       <link>https://www.vxworks7.com/post/bsp/pci-bus-implementation-in-vxworks.html</link>
       <pubDate>Sat, 24 Dec 2022 04:04:08 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/pci-bus-implementation-in-vxworks.html</guid>
       <description>&lt;p&gt;在最近发布的BSP中，风河公司基本上都提供了对PCI BUS的支持，本文主要探讨PCI BUS在VxWorks系统中的实现。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>WindRiver WindML 5.3显示图片程序</title>
       <link>https://www.vxworks7.com/post/app/how-to-display-photos-with-windml-5.3.html</link>
       <pubDate>Thu, 22 Dec 2022 10:30:12 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/app/how-to-display-photos-with-windml-5.3.html</guid>
-      <description>&lt;p&gt;WindRiver的
-&lt;a href=&#34;https://www.vxworks.net/windml&#34; title=&#34;WindML5.3&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    WindML5.3
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt;里默认已经支持JPG和PNG的图片格式了&lt;/p&gt;</description>
+      <description>&lt;p&gt;WindRiver的&#xA;&lt;a href=&#34;https://www.vxworks.net/windml&#34; title=&#34;WindML5.3&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    WindML5.3&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt;里默认已经支持JPG和PNG的图片格式了&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>实测VxWorks响应PCIe中断的最小时间间隔</title>
       <link>https://www.vxworks7.com/post/app/mininum-time-for-vxworks-response-pcie-interrupt.html</link>
       <pubDate>Wed, 21 Dec 2022 08:50:10 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/app/mininum-time-for-vxworks-response-pcie-interrupt.html</guid>
       <description>&lt;p&gt;中断是外部事件通知操作系统的最常用手段。中断处理机制是计算机多任务环境运行的基础，是系统实时性的保证;VxWorks是美国Wind River公司于1983年设计开发的一种嵌入式实时操作系统。内核wind在任务调度、中断处理及网络处理等方面与其它嵌入式实时操作系统相比具有一定的优势。特别是其提供的微秒级的中断处理为VxWorks在嵌入式实时操作系统领域的旗舰地位奠定了基础。本文通过带有PCIe接口的FPGA开发板，在VxWorks6.8版本的操作系统环境下，实测一下VxWorks操作系统中断处理的最小时间间隔是否是传说中的微秒级。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>航空电子设备与智能边缘</title>
       <link>https://www.vxworks7.com/post/news/avionics-and-intelligent-edge.html</link>
       <pubDate>Wed, 21 Dec 2022 08:34:59 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/news/avionics-and-intelligent-edge.html</guid>
       <description>&lt;p&gt;在最近的AFCEA Lexington-Concord New Horizons会议上，美国空军首席信息Lauren Knausenberger强调，美国空军的下一代机载平台需要采用特斯拉那样的方式，结合感知、自动自主操作和边缘云。她明确表示：“这是一个持续工作的网络。”那么，在航空航天和国防行业，我们应该如何实现航空电子系统数字化转型，使它像云原生的智能边缘平台一样运行呢？未来的理想状况将会是怎样的呢？&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>如何在VxWorks 7下集成Python</title>
       <link>https://www.vxworks7.com/post/app/how-to-integrate-python-into-vxworks-7.html</link>
       <pubDate>Tue, 20 Dec 2022 23:54:53 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/app/how-to-integrate-python-into-vxworks-7.html</guid>
       <description>&lt;p&gt;VxWorks是由Wind River提供的实时操作系统，而Python是由Python Software Foundation管理的开源解释型编程语言和运行时解释器。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks配置多网口</title>
       <link>https://www.vxworks7.com/post/bsp/vxworks-config-multi-network-adapter.html</link>
       <pubDate>Tue, 20 Dec 2022 09:12:25 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/vxworks-config-multi-network-adapter.html</guid>
       <description>&lt;p&gt;本文提供在系统运行中对网口进行配置的方法。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks固件分析</title>
       <link>https://www.vxworks7.com/post/bsp/vxworks-firmware-analysis.html</link>
       <pubDate>Tue, 20 Dec 2022 08:45:34 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/vxworks-firmware-analysis.html</guid>
       <description>&lt;p&gt;VxWorks 操作系统是美国WindRiver公司于1983年设计开发的一种嵌入式实时操作系统（RTOS），是嵌入式开发环境的关键组成部分。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks系统中vxbus机制总结</title>
       <link>https://www.vxworks7.com/post/bsp/vxworks-vxbus-mechanism.html</link>
       <pubDate>Mon, 19 Dec 2022 09:33:53 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/vxworks-vxbus-mechanism.html</guid>
-      <description>&lt;p&gt;先介绍一下
-&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    VxWorks
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt;的设备以及驱动的表示方法，以及总的关系：设备和驱动根本都抽象成一个结构体，设备结构体中包含了设备名字、ID号、功能函数指针等必备的信息，驱动结构体包含了初始化函数、名字、ID等信息。总的如图看一下重要的几个结构体的关系：&lt;/p&gt;</description>
+      <description>&lt;p&gt;先介绍一下&#xA;&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    VxWorks&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt;的设备以及驱动的表示方法，以及总的关系：设备和驱动根本都抽象成一个结构体，设备结构体中包含了设备名字、ID号、功能函数指针等必备的信息，驱动结构体包含了初始化函数、名字、ID等信息。总的如图看一下重要的几个结构体的关系：&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks内核解读-1</title>
       <link>https://www.vxworks7.com/post/bsp/vxworks-wind-kernel-analysis-1.html</link>
       <pubDate>Sun, 18 Dec 2022 08:23:25 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/vxworks-wind-kernel-analysis-1.html</guid>
       <description>&lt;p&gt;本文首先从实时内核的定义出发，对实时操作系统进行了介绍，并对实时操作系统的特点进行了说明，接着从内核的功能和结构角度介绍了整体式内核，层次式内核，以及微内核。最后对具有微内核特性的VxWorks Wind内核进行了介绍。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>开启重返月球之旅</title>
       <link>https://www.vxworks7.com/post/news/our-journey-back-to-the-moon.html</link>
       <pubDate>Sun, 18 Dec 2022 05:21:48 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/news/our-journey-back-to-the-moon.html</guid>
       <description>&lt;p&gt;风河公司祝贺NASA（美国宇航局）成功推进 Artemis I 工程，由此开启了新的返回月球之旅。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks的环形缓冲区设计</title>
       <link>https://www.vxworks7.com/post/bsp/ring-buffer-design-in-vxworks.html</link>
       <pubDate>Sat, 17 Dec 2022 22:47:20 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/ring-buffer-design-in-vxworks.html</guid>
       <description>&lt;p&gt;VxWorks环形缓冲模块主要定义在rngLib.c和rngLib.h中，对于数据结构比较了解的小伙伴应该知道，环形缓冲实际就是一个双向循环队列。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks 6.8下基于QT的串口编程</title>
       <link>https://www.vxworks7.com/post/vxworks/vxworks-6.8-qt-uart-programming.html</link>
       <pubDate>Fri, 07 Oct 2022 05:35:25 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/post/vxworks/vxworks-6.8-qt-uart-programming.html</guid>
-      <description>&lt;p&gt;文章简要记录了&lt;code&gt;VxWorks 6.8&lt;/code&gt;下基于&lt;code&gt;Qt&lt;/code&gt;实现的&lt;code&gt;串口&lt;/code&gt;编程。&lt;/p&gt;
-&lt;p&gt;相关的&lt;code&gt;VxWorks&lt;/code&gt; 和 &lt;code&gt;串口&lt;/code&gt;，请参阅 
-&lt;a href=&#34;https://vxworks.net/app/22-serial-programming-for-vxworks&#34; title=&#34;VxWorks下的串口测试程序设计和源码&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    VxWorks下的串口测试程序设计和源码
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt;。&lt;/p&gt;</description>
+      <description>&lt;p&gt;文章简要记录了&lt;code&gt;VxWorks 6.8&lt;/code&gt;下基于&lt;code&gt;Qt&lt;/code&gt;实现的&lt;code&gt;串口&lt;/code&gt;编程。&lt;/p&gt;&#xA;&lt;p&gt;相关的&lt;code&gt;VxWorks&lt;/code&gt; 和 &lt;code&gt;串口&lt;/code&gt;，请参阅 &#xA;&lt;a href=&#34;https://vxworks.net/app/22-serial-programming-for-vxworks&#34; title=&#34;VxWorks下的串口测试程序设计和源码&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    VxWorks下的串口测试程序设计和源码&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt;。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks操作系统下的串口读写程序</title>
       <link>https://www.vxworks7.com/post/vxworks/vxworks-uart-read-write-programming.html</link>
       <pubDate>Thu, 06 Oct 2022 05:35:25 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/post/vxworks/vxworks-uart-read-write-programming.html</guid>
-      <description>&lt;p&gt;关于传统的串口编程，在各大操作系统下的流程基本是一致的，只是针对不同的操作系统，函数接口可能有所差异而已，下面讲述VxWorks操作系统下对于串口读写的编程步骤和代码&lt;/p&gt;
-&lt;p&gt;相关的&lt;code&gt;VxWorks&lt;/code&gt; 和 &lt;code&gt;串口&lt;/code&gt;，请参阅 
-&lt;a href=&#34;https://vxworks.net/app/22-serial-programming-for-vxworks&#34; title=&#34;VxWorks下的串口测试程序设计和源码&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    VxWorks下的串口测试程序设计和源码
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt;。&lt;/p&gt;</description>
+      <description>&lt;p&gt;关于传统的串口编程，在各大操作系统下的流程基本是一致的，只是针对不同的操作系统，函数接口可能有所差异而已，下面讲述VxWorks操作系统下对于串口读写的编程步骤和代码&lt;/p&gt;&#xA;&lt;p&gt;相关的&lt;code&gt;VxWorks&lt;/code&gt; 和 &lt;code&gt;串口&lt;/code&gt;，请参阅 &#xA;&lt;a href=&#34;https://vxworks.net/app/22-serial-programming-for-vxworks&#34; title=&#34;VxWorks下的串口测试程序设计和源码&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    VxWorks下的串口测试程序设计和源码&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt;。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>针对VxWorks的QT 5.15.10发布了</title>
       <link>https://www.vxworks7.com/post/vxworks/qt-5-15-10-for-vxworks-released.html</link>
       <pubDate>Thu, 06 Oct 2022 05:35:25 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/post/vxworks/qt-5-15-10-for-vxworks-released.html</guid>
-      <description>&lt;p&gt;Qt是一个多平台的C++图形用户界面应用程序框架。它提供给应用程序开发者建立艺术级的图形用户界面所需的所用功能。Qt是完全面向对象的编程，所以具有易扩展和组件编程的优势。&lt;/p&gt;
-&lt;p&gt;相关的&lt;code&gt;VxWorks&lt;/code&gt; 和 &lt;code&gt;QT&lt;/code&gt;的文章，请参阅 
-&lt;a href=&#34;https://www.vxworks.net/windml/10-qt-installation-and-execution-under-vxworks-6-8&#34; title=&#34;VxWorks 6.8操作系统下QT的安装设置和运行方法&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    VxWorks 6.8操作系统下QT的安装设置和运行方法
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt;。&lt;/p&gt;</description>
+      <description>&lt;p&gt;Qt是一个多平台的C++图形用户界面应用程序框架。它提供给应用程序开发者建立艺术级的图形用户界面所需的所用功能。Qt是完全面向对象的编程，所以具有易扩展和组件编程的优势。&lt;/p&gt;&#xA;&lt;p&gt;相关的&lt;code&gt;VxWorks&lt;/code&gt; 和 &lt;code&gt;QT&lt;/code&gt;的文章，请参阅 &#xA;&lt;a href=&#34;https://www.vxworks.net/windml/10-qt-installation-and-execution-under-vxworks-6-8&#34; title=&#34;VxWorks 6.8操作系统下QT的安装设置和运行方法&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    VxWorks 6.8操作系统下QT的安装设置和运行方法&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt;。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks实时性能探究</title>
       <link>https://www.vxworks7.com/post/vxworks/vxworks-real-time-feature-explore.html</link>
       <pubDate>Thu, 02 Jun 2022 11:52:03 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/post/vxworks/vxworks-real-time-feature-explore.html</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;VxWorks&lt;/code&gt;操作系统是一款硬实时操作系统，一直听闻其实时性能非常优秀，但是一直没有一个直观地概念。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;笔者最近在使用
-&lt;a href=&#34;https://www.vxworks.net/&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    VxWorks
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt;, 由大名鼎鼎的风河（WindRiver）开发。本篇文章就是将VxWorks操作系统和市面上几种其他实时操作系统的实时性能进行对比。&lt;/p&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;code&gt;VxWorks&lt;/code&gt;操作系统是一款硬实时操作系统，一直听闻其实时性能非常优秀，但是一直没有一个直观地概念。&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;笔者最近在使用&#xA;&lt;a href=&#34;https://www.vxworks.net/&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    VxWorks&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt;, 由大名鼎鼎的风河（WindRiver）开发。本篇文章就是将VxWorks操作系统和市面上几种其他实时操作系统的实时性能进行对比。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

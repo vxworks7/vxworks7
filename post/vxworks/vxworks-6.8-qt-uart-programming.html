@@ -4,7 +4,7 @@
 <head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)" />
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.135.0">
 <link rel="shortcut icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
@@ -32,6 +32,7 @@
 <meta property="article:modified_time" content="2022-10-07 05:35:25 -0400 -0400" />
 
 
+
   
   <link type="text/css" rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.2/css/all.min.css" />
   
@@ -39,11 +40,6 @@
 
 
 <link rel="stylesheet" href="/css/main.min.7d561ec9984cf0cb727fc88e14a92134576c99ccb9ce2f31b5b5541ab4ced328.css">
-  <style type="text/css">
-    .post-footer, .flinks-list-footer hr:after {
-      content: "~ 我可是有底线的哟 ~";
-    }
-  </style>
   <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"vxworks-6.8-qt-uart-programming.html","permalink":"https://www.vxworks7.com/post/vxworks/vxworks-6.8-qt-uart-programming.html","title":"VxWorks 6.8下基于QT的串口编程"}</script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
@@ -116,7 +112,7 @@
     </li>
     <li class="menu-item menu-item-archives">
       <a href="/archives/" class="hvr-icon-pulse " rel="section"><i class="fa fa-archive hvr-icon"></i>归档
-        <span class="badge">95</span>
+        <span class="badge">94</span>
       </a>
     </li>
     <li class="menu-item menu-item-commonweal">
@@ -208,7 +204,7 @@
   <nav class="site-state">
     <div class="site-state-item site-state-posts">
       <a href="/archives/">
-        <span class="site-state-item-count">95</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -220,7 +216,7 @@
     </div>
     <div class="site-state-item site-state-tags">
       <a href="/tags/">
-        <span class="site-state-item-count">133</span>
+        <span class="site-state-item-count">131</span>
         <span class="site-state-item-name">标签</span>
       </a>
     </div>
@@ -286,11 +282,11 @@
       </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-font"></i>总字数：</div>
-      <div class="item-count" id="wordsCount" data-count="28953"></div>
+      <div class="item-count" id="wordsCount" data-count="28814"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-mug-hot"></i>阅读约：</div>
-      <div class="item-count" id="readTimes" data-times="193"></div>
+      <div class="item-count" id="readTimes" data-times="192"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
@@ -372,7 +368,7 @@
   <span class="post-meta-item-icon">
     <i class="far fa-file-word"></i>
   </span>
-  <span class="post-meta-item-text">字数：</span><span>445</span>
+  <span class="post-meta-item-text">字数：</span><span>461</span>
 </span>
     
 <span class="post-meta-item" title="阅读">
@@ -421,209 +417,209 @@
 <p>一般情况下，设备和电脑的连接通讯，需用到RS232串口线直连线；而设备和设备的连接通讯，就会用到RS232串口线的交叉线。用户在选择的时候，应根据两个设备之间连接的实际情况，选择不同接法的RS232串口线。</p>
 <h2 id="代码实例">代码实例</h2>
 <h3 id="vxworks串口所需要包含的头文件">VxWorks串口所需要包含的头文件</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;vxWorks.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stdIo.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;ioLib.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;sysLib.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;string.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;taskLib.h&#34;</span><span style="color:#75715e">
-</span></code></pre></div><h3 id="vxworks串口配置函数">VxWorks串口配置函数</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">ioctl(m_SeriPort,SIO_HW_OPTS_SET, CLOCAL <span style="color:#f92672">|</span> CS8 <span style="color:#f92672">|</span> PARODD <span style="color:#f92672">|</span> PARENB);	<span style="color:#75715e">//8位数据位|1位停止位|偶效验
-</span><span style="color:#75715e"></span>ioctl(m_SeriPort,FIOBAUDRATE,<span style="color:#ae81ff">9600</span>);					<span style="color:#75715e">//波特率9600
-</span><span style="color:#75715e"></span>ioctl(m_SeriPort,FIOSETOPTIONS,OPT_RAW);				<span style="color:#75715e">//设置串口raw模式                         
-</span><span style="color:#75715e"></span>ioctl(m_SeriPort,FIOFLUSH,<span style="color:#ae81ff">0</span>);						<span style="color:#75715e">//清空输入输出的缓冲区
-</span></code></pre></div><h3 id="open函数">open函数</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#75715e">#define SERI_NAME &#34;/tyCo/0&#34;
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> m_SeriPort <span style="color:#f92672">=</span> open(SERI_NAME ,O_RDWR,<span style="color:#ae81ff">0</span>);  
-<span style="color:#66d9ef">int</span> m_SeriPort <span style="color:#f92672">=</span> open(SERI_NAME ,O_WRONLY,<span style="color:#ae81ff">0</span>);  
-</code></pre></div><h3 id="write函数">write函数</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> sendData;
-<span style="color:#66d9ef">int</span> writeCom <span style="color:#f92672">=</span> write(m_SeriPort, sendData,strlen(sendData));
-</code></pre></div><h3 id="read函数">read函数</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#66d9ef">char</span> data;
-<span style="color:#66d9ef">int</span> readCom <span style="color:#f92672">=</span> read(m_SeriPort,<span style="color:#f92672">&amp;</span>data,<span style="color:#ae81ff">1</span>);
-</code></pre></div><h3 id="seri_demo_qt_vx">Seri_Demo_Qt_Vx</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#ifndef THREAD_H
-</span><span style="color:#75715e">#define THREAD_H
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;QThread&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;QDebug&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;vxWorks.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stdIo.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;ioLib.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;sysLib.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;string.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;taskLib.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Thread</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> QThread
-{
-    Q_OBJECT
-<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-    <span style="color:#66d9ef">explicit</span> Thread(QObject <span style="color:#f92672">*</span>parent <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>);
-    <span style="color:#f92672">~</span>Thread();
-    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>();    												<span style="color:#75715e">//重写run函数                                             
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-    <span style="color:#66d9ef">bool</span> openSeri(QString comPort,<span style="color:#66d9ef">int</span> baudRate);                <span style="color:#75715e">//打开串口
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">closeSeri</span>();                                           <span style="color:#75715e">//关闭串口
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">writeSeri</span>(<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> sendData);                             <span style="color:#75715e">//发送数据
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setFlag</span>(<span style="color:#66d9ef">bool</span> flag <span style="color:#f92672">=</span> true);                             <span style="color:#75715e">//线程数据标志位
-</span><span style="color:#75715e"></span>signals:
-	<span style="color:#66d9ef">void</span> RecvData(<span style="color:#66d9ef">char</span> data);
-<span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
-    <span style="color:#66d9ef">bool</span> seriStop;      <span style="color:#75715e">//读取数据标志位  true读取数据  false退出循环
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> m_SeriPort;     <span style="color:#75715e">//串口文件描述符
-</span><span style="color:#75715e"></span>    QString m_SeriName; <span style="color:#75715e">//串口名
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> m_baud;         <span style="color:#75715e">//波特率
-</span><span style="color:#75715e"></span>};
-<span style="color:#75715e">#endif </span><span style="color:#75715e">//THREAD_H
-</span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;thread.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-Thread<span style="color:#f92672">::</span>Thread(QObject <span style="color:#f92672">*</span>parent) <span style="color:#f92672">:</span> QThread(parent)
-{
-}
-
-Thread<span style="color:#f92672">::~</span>Thread()
-{
-}
-
-<span style="color:#66d9ef">void</span> Thread<span style="color:#f92672">::</span>run()
-{
-	sysClkRateSet(<span style="color:#ae81ff">1000</span>);
-	<span style="color:#66d9ef">char</span> rData;
-	<span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">1</span>)
-	{
-		<span style="color:#66d9ef">int</span> readCom <span style="color:#f92672">=</span> read(m_SeriPort,<span style="color:#f92672">&amp;</span>rData,<span style="color:#ae81ff">1</span>);
-		<span style="color:#66d9ef">if</span>(readCom <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>)
-		{
-			printf(<span style="color:#e6db74">&#34;%c</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,rData);
-			emit <span style="color:#a6e22e">RecvData</span>(rData);
-			<span style="color:#66d9ef">if</span>(seriStop <span style="color:#f92672">==</span> false)
-			{
-				qDebug()<span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;isStop == false break&#34;</span>;
-				<span style="color:#66d9ef">break</span>;
-			}
-		}
-		<span style="color:#66d9ef">else</span>
-		{
-			taskDelay(<span style="color:#ae81ff">10</span>);
-		}
-	}
-}
-
-<span style="color:#66d9ef">bool</span> Thread<span style="color:#f92672">::</span>openSeri(QString comPort, <span style="color:#66d9ef">int</span> baudRate)
-{
-	<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_SeriName <span style="color:#f92672">=</span> comPort;
-	<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_baud <span style="color:#f92672">=</span> baudRate;
-	qDebug()<span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Thread::openSeri&#34;</span> <span style="color:#f92672">&lt;&lt;</span> comPort.toUtf8().data() <span style="color:#f92672">&lt;&lt;</span> baudRate;
-	m_SeriPort <span style="color:#f92672">=</span> open(comPort.toUtf8().data(),O_RDWR,<span style="color:#ae81ff">0</span>);               
-	<span style="color:#66d9ef">if</span>(m_SeriPort <span style="color:#f92672">==</span> ERROR)
-	{
-		qDebug()<span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;open :&#34;</span> <span style="color:#f92672">&lt;&lt;</span> comPort.toUtf8().data() <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; = &#34;</span> <span style="color:#f92672">&lt;&lt;</span>m_SeriPort <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;failed !&#34;</span>;
-		<span style="color:#66d9ef">return</span> false;
-	}
-	ioctl(m_SeriPort,SIO_HW_OPTS_SET, CLOCAL <span style="color:#f92672">|</span> CS8 <span style="color:#f92672">|</span> PARODD <span style="color:#f92672">|</span> PARENB);  
-	ioctl(m_SeriPort,FIOBAUDRATE,baudRate);                             
-	ioctl(m_SeriPort,FIOSETOPTIONS,OPT_RAW);                           
-	ioctl(m_SeriPort,FIOFLUSH,<span style="color:#ae81ff">0</span>);
-	qDebug()<span style="color:#f92672">&lt;&lt;</span>  <span style="color:#e6db74">&#34;open :&#34;</span> <span style="color:#f92672">&lt;&lt;</span> comPort.toUtf8().data() <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; = &#34;</span> <span style="color:#f92672">&lt;&lt;</span> m_SeriPort <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;succeeded !&#34;</span>;
-	<span style="color:#66d9ef">return</span> true;
-}
-
-<span style="color:#66d9ef">void</span> Thread<span style="color:#f92672">::</span>closeSeri()
-{
-	<span style="color:#66d9ef">if</span>(seriStop <span style="color:#f92672">==</span> false)
-	{
-		qDebug()<span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Thread::closeSeri&#34;</span>;
-		close(m_SeriPort);
-	}
-}
-
-<span style="color:#66d9ef">void</span> Thread<span style="color:#f92672">::</span>writeSeri(<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> sendData)
-{
-	<span style="color:#66d9ef">if</span>(m_SeriPort <span style="color:#f92672">==</span> ERROR)                                             
-	{
-		openSeri(m_SeriName,m_baud);
-	}
-	<span style="color:#66d9ef">int</span> writeCom <span style="color:#f92672">=</span> write(m_SeriPort, sendData,strlen(sendData));       
-	qDebug()<span style="color:#f92672">&lt;&lt;</span> sendData <span style="color:#f92672">&lt;&lt;</span> writeCom;
-}
-
-<span style="color:#66d9ef">void</span> Thread<span style="color:#f92672">::</span>setFlag(<span style="color:#66d9ef">bool</span> flag)
-{
-	<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>seriStop <span style="color:#f92672">=</span> flag;   
-	qDebug()<span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Thread::setFlag&#34;</span> <span style="color:#f92672">&lt;&lt;</span> flag;
-}
-</code></pre></div><h3 id="testseri_demo_qt_vx_demo">TestSeri_Demo_Qt_Vx_Demo</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#ifndef SERI_H
-</span><span style="color:#75715e">#define SERI_H
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;QObject&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;QDebug&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;thread.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Seri</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> QObject
-{
-    Q_OBJECT
-<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-    <span style="color:#66d9ef">explicit</span> Seri(QObject <span style="color:#f92672">*</span>parent <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>);
-    <span style="color:#f92672">~</span>Seri();
-<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-    <span style="color:#75715e">/*	open_Seri	打开串口
-</span><span style="color:#75715e">     * 	comName		串口名
-</span><span style="color:#75715e">     * 	comBaud		串口波特率
-</span><span style="color:#75715e">     *	return 		成功 true 失败 false
-</span><span style="color:#75715e">     */</span>
-    <span style="color:#66d9ef">bool</span> open_Seri(QString comName,<span style="color:#66d9ef">int</span> comBaud);
-    <span style="color:#75715e">/* 	write_Seri	发送数据
-</span><span style="color:#75715e">     * 	comData		发送数据内容
-</span><span style="color:#75715e">     */</span>
-    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">write_Seri</span>(QByteArray comData);
-    <span style="color:#75715e">/*	
-</span><span style="color:#75715e">     * 	close_Seri	关闭串口
-</span><span style="color:#75715e">     */</span>  
-     <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">close_Seri</span>();           
-signals:
-	send_Seri(<span style="color:#66d9ef">char</span> data);
-<span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
-    Thread<span style="color:#f92672">*</span> m_pThread;
-
-};
-<span style="color:#75715e">#endif </span><span style="color:#75715e">// SERI_H
-</span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;Seri.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-Seri<span style="color:#f92672">::</span>Seri(QObject <span style="color:#f92672">*</span>parent) <span style="color:#f92672">:</span> QObject(parent)
-{
-	m_pThread <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Thread;
-}
-Seri<span style="color:#f92672">::~</span>Seri()
-{
-	<span style="color:#66d9ef">if</span>(m_pThread){
-		<span style="color:#66d9ef">delete</span> m_pThread;
-		m_pThread<span style="color:#f92672">=</span>NULL;
-	}
-}
-<span style="color:#66d9ef">bool</span> Seri<span style="color:#f92672">::</span>open_Seri(QString comName,<span style="color:#66d9ef">int</span> comBaud)
-{
-	<span style="color:#66d9ef">if</span>(m_pThread<span style="color:#f92672">-&gt;</span>openSeri(comName,comBaud))<span style="color:#75715e">//如果打开成功
-</span><span style="color:#75715e"></span>	{
-		m_pThread<span style="color:#f92672">-&gt;</span>setFlag(true);
-		m_pThread<span style="color:#f92672">-&gt;</span>start();
-	}
-	<span style="color:#66d9ef">return</span> false;
-}
-<span style="color:#66d9ef">void</span> Seri<span style="color:#f92672">::</span>write_Seri(QByteArray comData)
-{
-	m_pThread<span style="color:#f92672">-&gt;</span>writeSeri(comData.data());
-}
-<span style="color:#66d9ef">void</span> Seri<span style="color:#f92672">::</span>close_Seri()
-{
-	<span style="color:#66d9ef">if</span>(m_pThread<span style="color:#f92672">-&gt;</span>isRunning())<span style="color:#75715e">//如果线程还在运行 --&gt; 退出循环接收数据 --&gt; 关闭串口 --&gt; 退出线程 --&gt; 回收线程
-</span><span style="color:#75715e"></span>	{
-		m_pThread<span style="color:#f92672">-&gt;</span>setFlag(false);
-		m_pThread<span style="color:#f92672">-&gt;</span>closeSeri();
-		m_pThread<span style="color:#f92672">-&gt;</span>quit();
-		m_pThread<span style="color:#f92672">-&gt;</span>wait();
-	}
-}
-</code></pre></div><h3 id="程序代码说明">程序代码说明：</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;vxWorks.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stdIo.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;ioLib.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;sysLib.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;string.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;taskLib.h&#34;</span><span style="color:#75715e">
+</span></span></span></code></pre></div><h3 id="vxworks串口配置函数">VxWorks串口配置函数</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#a6e22e">ioctl</span>(m_SeriPort,SIO_HW_OPTS_SET, CLOCAL <span style="color:#f92672">|</span> CS8 <span style="color:#f92672">|</span> PARODD <span style="color:#f92672">|</span> PARENB);	<span style="color:#75715e">//8位数据位|1位停止位|偶效验
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">ioctl</span>(m_SeriPort,FIOBAUDRATE,<span style="color:#ae81ff">9600</span>);					<span style="color:#75715e">//波特率9600
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">ioctl</span>(m_SeriPort,FIOSETOPTIONS,OPT_RAW);				<span style="color:#75715e">//设置串口raw模式                         
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">ioctl</span>(m_SeriPort,FIOFLUSH,<span style="color:#ae81ff">0</span>);						<span style="color:#75715e">//清空输入输出的缓冲区
+</span></span></span></code></pre></div><h3 id="open函数">open函数</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#define SERI_NAME &#34;/tyCo/0&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> m_SeriPort <span style="color:#f92672">=</span> <span style="color:#a6e22e">open</span>(SERI_NAME ,O_RDWR,<span style="color:#ae81ff">0</span>);  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> m_SeriPort <span style="color:#f92672">=</span> <span style="color:#a6e22e">open</span>(SERI_NAME ,O_WRONLY,<span style="color:#ae81ff">0</span>);  
+</span></span></code></pre></div><h3 id="write函数">write函数</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> sendData;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> writeCom <span style="color:#f92672">=</span> <span style="color:#a6e22e">write</span>(m_SeriPort, sendData,<span style="color:#a6e22e">strlen</span>(sendData));
+</span></span></code></pre></div><h3 id="read函数">read函数</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">char</span> data;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> readCom <span style="color:#f92672">=</span> <span style="color:#a6e22e">read</span>(m_SeriPort,<span style="color:#f92672">&amp;</span>data,<span style="color:#ae81ff">1</span>);
+</span></span></code></pre></div><h3 id="seri_demo_qt_vx">Seri_Demo_Qt_Vx</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#ifndef THREAD_H
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define THREAD_H
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;QThread&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;QDebug&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;vxWorks.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stdIo.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;ioLib.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;sysLib.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;string.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;taskLib.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Thread</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> QThread
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    Q_OBJECT
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">explicit</span> Thread(QObject <span style="color:#f92672">*</span>parent <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">~</span>Thread();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>();    												<span style="color:#75715e">//重写run函数                                             
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> openSeri(QString comPort,<span style="color:#66d9ef">int</span> baudRate);                <span style="color:#75715e">//打开串口
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">closeSeri</span>();                                           <span style="color:#75715e">//关闭串口
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">writeSeri</span>(<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> sendData);                             <span style="color:#75715e">//发送数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setFlag</span>(<span style="color:#66d9ef">bool</span> flag <span style="color:#f92672">=</span> true);                             <span style="color:#75715e">//线程数据标志位
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>signals:
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> RecvData(<span style="color:#66d9ef">char</span> data);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> seriStop;      <span style="color:#75715e">//读取数据标志位  true读取数据  false退出循环
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> m_SeriPort;     <span style="color:#75715e">//串口文件描述符
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    QString m_SeriName; <span style="color:#75715e">//串口名
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> m_baud;         <span style="color:#75715e">//波特率
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>};
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif </span><span style="color:#75715e">//THREAD_H
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;thread.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>Thread<span style="color:#f92672">::</span>Thread(QObject <span style="color:#f92672">*</span>parent) <span style="color:#f92672">:</span> QThread(parent)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Thread<span style="color:#f92672">::~</span>Thread()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> Thread<span style="color:#f92672">::</span>run()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	sysClkRateSet(<span style="color:#ae81ff">1000</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> rData;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> readCom <span style="color:#f92672">=</span> read(m_SeriPort,<span style="color:#f92672">&amp;</span>rData,<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span>(readCom <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			printf(<span style="color:#e6db74">&#34;%c</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,rData);
+</span></span><span style="display:flex;"><span>			emit <span style="color:#a6e22e">RecvData</span>(rData);
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span>(seriStop <span style="color:#f92672">==</span> false)
+</span></span><span style="display:flex;"><span>			{
+</span></span><span style="display:flex;"><span>				qDebug()<span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;isStop == false break&#34;</span>;
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			taskDelay(<span style="color:#ae81ff">10</span>);
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> Thread<span style="color:#f92672">::</span>openSeri(QString comPort, <span style="color:#66d9ef">int</span> baudRate)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_SeriName <span style="color:#f92672">=</span> comPort;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_baud <span style="color:#f92672">=</span> baudRate;
+</span></span><span style="display:flex;"><span>	qDebug()<span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Thread::openSeri&#34;</span> <span style="color:#f92672">&lt;&lt;</span> comPort.toUtf8().data() <span style="color:#f92672">&lt;&lt;</span> baudRate;
+</span></span><span style="display:flex;"><span>	m_SeriPort <span style="color:#f92672">=</span> open(comPort.toUtf8().data(),O_RDWR,<span style="color:#ae81ff">0</span>);               
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span>(m_SeriPort <span style="color:#f92672">==</span> ERROR)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		qDebug()<span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;open :&#34;</span> <span style="color:#f92672">&lt;&lt;</span> comPort.toUtf8().data() <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; = &#34;</span> <span style="color:#f92672">&lt;&lt;</span>m_SeriPort <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;failed !&#34;</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> false;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	ioctl(m_SeriPort,SIO_HW_OPTS_SET, CLOCAL <span style="color:#f92672">|</span> CS8 <span style="color:#f92672">|</span> PARODD <span style="color:#f92672">|</span> PARENB);  
+</span></span><span style="display:flex;"><span>	ioctl(m_SeriPort,FIOBAUDRATE,baudRate);                             
+</span></span><span style="display:flex;"><span>	ioctl(m_SeriPort,FIOSETOPTIONS,OPT_RAW);                           
+</span></span><span style="display:flex;"><span>	ioctl(m_SeriPort,FIOFLUSH,<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>	qDebug()<span style="color:#f92672">&lt;&lt;</span>  <span style="color:#e6db74">&#34;open :&#34;</span> <span style="color:#f92672">&lt;&lt;</span> comPort.toUtf8().data() <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; = &#34;</span> <span style="color:#f92672">&lt;&lt;</span> m_SeriPort <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;succeeded !&#34;</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> true;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> Thread<span style="color:#f92672">::</span>closeSeri()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span>(seriStop <span style="color:#f92672">==</span> false)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		qDebug()<span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Thread::closeSeri&#34;</span>;
+</span></span><span style="display:flex;"><span>		close(m_SeriPort);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> Thread<span style="color:#f92672">::</span>writeSeri(<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> sendData)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span>(m_SeriPort <span style="color:#f92672">==</span> ERROR)                                             
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		openSeri(m_SeriName,m_baud);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> writeCom <span style="color:#f92672">=</span> write(m_SeriPort, sendData,strlen(sendData));       
+</span></span><span style="display:flex;"><span>	qDebug()<span style="color:#f92672">&lt;&lt;</span> sendData <span style="color:#f92672">&lt;&lt;</span> writeCom;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> Thread<span style="color:#f92672">::</span>setFlag(<span style="color:#66d9ef">bool</span> flag)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>seriStop <span style="color:#f92672">=</span> flag;   
+</span></span><span style="display:flex;"><span>	qDebug()<span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Thread::setFlag&#34;</span> <span style="color:#f92672">&lt;&lt;</span> flag;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="testseri_demo_qt_vx_demo">TestSeri_Demo_Qt_Vx_Demo</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#ifndef SERI_H
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define SERI_H
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;QObject&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;QDebug&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;thread.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Seri</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> QObject
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    Q_OBJECT
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">explicit</span> Seri(QObject <span style="color:#f92672">*</span>parent <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">~</span>Seri();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/*	open_Seri	打开串口
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 	comName		串口名
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 	comBaud		串口波特率
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     *	return 		成功 true 失败 false
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> open_Seri(QString comName,<span style="color:#66d9ef">int</span> comBaud);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/* 	write_Seri	发送数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 	comData		发送数据内容
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">write_Seri</span>(QByteArray comData);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/*	
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 	close_Seri	关闭串口
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>  
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">close_Seri</span>();           
+</span></span><span style="display:flex;"><span>signals:
+</span></span><span style="display:flex;"><span>	send_Seri(<span style="color:#66d9ef">char</span> data);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    Thread<span style="color:#f92672">*</span> m_pThread;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif </span><span style="color:#75715e">// SERI_H
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;Seri.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>Seri<span style="color:#f92672">::</span>Seri(QObject <span style="color:#f92672">*</span>parent) <span style="color:#f92672">:</span> QObject(parent)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	m_pThread <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Thread;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>Seri<span style="color:#f92672">::~</span>Seri()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span>(m_pThread){
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">delete</span> m_pThread;
+</span></span><span style="display:flex;"><span>		m_pThread<span style="color:#f92672">=</span>NULL;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> Seri<span style="color:#f92672">::</span>open_Seri(QString comName,<span style="color:#66d9ef">int</span> comBaud)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span>(m_pThread<span style="color:#f92672">-&gt;</span>openSeri(comName,comBaud))<span style="color:#75715e">//如果打开成功
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	{
+</span></span><span style="display:flex;"><span>		m_pThread<span style="color:#f92672">-&gt;</span>setFlag(true);
+</span></span><span style="display:flex;"><span>		m_pThread<span style="color:#f92672">-&gt;</span>start();
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> false;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> Seri<span style="color:#f92672">::</span>write_Seri(QByteArray comData)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	m_pThread<span style="color:#f92672">-&gt;</span>writeSeri(comData.data());
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> Seri<span style="color:#f92672">::</span>close_Seri()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span>(m_pThread<span style="color:#f92672">-&gt;</span>isRunning())<span style="color:#75715e">//如果线程还在运行 --&gt; 退出循环接收数据 --&gt; 关闭串口 --&gt; 退出线程 --&gt; 回收线程
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	{
+</span></span><span style="display:flex;"><span>		m_pThread<span style="color:#f92672">-&gt;</span>setFlag(false);
+</span></span><span style="display:flex;"><span>		m_pThread<span style="color:#f92672">-&gt;</span>closeSeri();
+</span></span><span style="display:flex;"><span>		m_pThread<span style="color:#f92672">-&gt;</span>quit();
+</span></span><span style="display:flex;"><span>		m_pThread<span style="color:#f92672">-&gt;</span>wait();
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="程序代码说明">程序代码说明：</h3>
 <ul>
 <li>thread类为配置串口类</li>
 <li>seri类为外部使用类</li>
@@ -787,7 +783,7 @@ Seri<span style="color:#f92672">::~</span>Seri()
   
   <script type="text/javascript" src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js" defer></script>
 
-<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
+<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com/","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
 
 
 
@@ -795,7 +791,7 @@ Seri<span style="color:#f92672">::~</span>Seri()
 
 
 
-<script type="text/javascript" src="/js/main.min.7e59cf1a98d842830d8a6f149f78fbbcf9e795b7a9eb76feb34b48c9bf1554d7.js" defer></script>
+<script type="text/javascript" src="/js/main.min.8bc1e2a2ac040735a2a32d113d257bd75c45142b9842ad7526f7de5e3d3a9298.js" defer></script>
 
 
 

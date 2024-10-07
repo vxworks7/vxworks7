@@ -4,7 +4,7 @@
 <head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)" />
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.135.0">
 <link rel="shortcut icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
@@ -32,6 +32,7 @@
 <meta property="article:modified_time" content="2022-12-22 10:29:12 -0500 -0500" />
 
 
+
   
   <link type="text/css" rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.2/css/all.min.css" />
   
@@ -39,11 +40,6 @@
 
 
 <link rel="stylesheet" href="/css/main.min.7d561ec9984cf0cb727fc88e14a92134576c99ccb9ce2f31b5b5541ab4ced328.css">
-  <style type="text/css">
-    .post-footer, .flinks-list-footer hr:after {
-      content: "~ 我可是有底线的哟 ~";
-    }
-  </style>
   <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"u-boot-on-vxworks-7.html","permalink":"https://www.vxworks7.com/post/bsp/u-boot-on-vxworks-7.html","title":"U-boot和VxWorks 7的集成"}</script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
@@ -116,7 +112,7 @@
     </li>
     <li class="menu-item menu-item-archives">
       <a href="/archives/" class="hvr-icon-pulse " rel="section"><i class="fa fa-archive hvr-icon"></i>归档
-        <span class="badge">95</span>
+        <span class="badge">94</span>
       </a>
     </li>
     <li class="menu-item menu-item-commonweal">
@@ -202,7 +198,7 @@
   <nav class="site-state">
     <div class="site-state-item site-state-posts">
       <a href="/archives/">
-        <span class="site-state-item-count">95</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -214,7 +210,7 @@
     </div>
     <div class="site-state-item site-state-tags">
       <a href="/tags/">
-        <span class="site-state-item-count">133</span>
+        <span class="site-state-item-count">131</span>
         <span class="site-state-item-name">标签</span>
       </a>
     </div>
@@ -280,11 +276,11 @@
       </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-font"></i>总字数：</div>
-      <div class="item-count" id="wordsCount" data-count="28953"></div>
+      <div class="item-count" id="wordsCount" data-count="28814"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-mug-hot"></i>阅读约：</div>
-      <div class="item-count" id="readTimes" data-times="193"></div>
+      <div class="item-count" id="readTimes" data-times="192"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
@@ -426,135 +422,135 @@
 <p>一个支持U-Boot的VxWorks镜像文件需要编译(将把U-Boot的头加入到VxWorks二进制中)</p>
 <p>从Workbench或者命令行来编译uVxWorks的目标文件。</p>
 <p>打开一个DOS命令行，配置编译环境，然后编译工程项目。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">cd &lt;WIND_HOME&gt;              // your installation directory
-wrenv -p vxworks-7
-cd &lt;YOUR_VIP&gt;               // your VxWorks Image Project
-vxprj vip build uVxWorks
-</code></pre></div><p>这将创建两个文件，用tftp被U-Boot加载到内存：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd &lt;WIND_HOME&gt;              // your installation directory
+</span></span><span style="display:flex;"><span>wrenv -p vxworks-7
+</span></span><span style="display:flex;"><span>cd &lt;YOUR_VIP&gt;               // your VxWorks Image Project
+</span></span><span style="display:flex;"><span>vxprj vip build uVxWorks
+</span></span></code></pre></div><p>这将创建两个文件，用tftp被U-Boot加载到内存：</p>
 <table>
-<thead>
-<tr>
-<th>文件名</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>uVxWorks</td>
-<td>VxWorks image with U-Boot header</td>
-</tr>
-<tr>
-<td>[yourboard].dtb</td>
-<td>the device tree binary</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">文件名</th>
+          <th style="text-align: left">描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">uVxWorks</td>
+          <td style="text-align: left">VxWorks image with U-Boot header</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">[yourboard].dtb</td>
+          <td style="text-align: left">the device tree binary</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="为vxworks配置u-boot">为VxWorks配置U-Boot</h2>
 <p>U-Boot需要设置一些环境变量来加载VxWorks，针对VxWorks的启动参数(bootline)：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash"><span style="color:#f92672">=</span>&gt; setenv bootargs memac<span style="color:#f92672">(</span>2,0<span style="color:#f92672">)</span>host:vxWorks h<span style="color:#f92672">=</span>192.168.1.101 e<span style="color:#f92672">=</span>192.168.1.50:ffffff00 
-        g<span style="color:#f92672">=</span>192.168.1.254 u<span style="color:#f92672">=</span>vxworks pw<span style="color:#f92672">=</span>gaitpu f<span style="color:#f92672">=</span>0x0
-
-<span style="color:#f92672">=</span>&gt; saveenv
-
-<span style="color:#f92672">=</span>&gt; printenv bootargs
-   bootargs<span style="color:#f92672">=</span>memac<span style="color:#f92672">(</span>2,0<span style="color:#f92672">)</span>host:vxWorks h<span style="color:#f92672">=</span>192.168.1.101 e<span style="color:#f92672">=</span>192.168.1.50:ffffff00
-        g<span style="color:#f92672">=</span>192.168.1.254 u<span style="color:#f92672">=</span>vxworks pw<span style="color:#f92672">=</span>gaitpu f<span style="color:#f92672">=</span>0x0
-</code></pre></div><p>还有你可以随意给网络设备改变MAC地址：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">setenv ethaddr 00:00:13:3a:ad:00
-setenv eth1add 00:00:13:3a:ad:01
-setenv eth1add 00:00:13:3a:ad:02
-setenv eth1add 00:00:13:3a:ad:03
-saveenv
-</code></pre></div><h2 id="加载和执行vxworks镜像文件">加载和执行VxWorks镜像文件</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">=</span>&gt; setenv bootargs memac<span style="color:#f92672">(</span>2,0<span style="color:#f92672">)</span>host:vxWorks h<span style="color:#f92672">=</span>192.168.1.101 e<span style="color:#f92672">=</span>192.168.1.50:ffffff00 
+</span></span><span style="display:flex;"><span>        g<span style="color:#f92672">=</span>192.168.1.254 u<span style="color:#f92672">=</span>vxworks pw<span style="color:#f92672">=</span>gaitpu f<span style="color:#f92672">=</span>0x0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">=</span>&gt; saveenv
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">=</span>&gt; printenv bootargs
+</span></span><span style="display:flex;"><span>   bootargs<span style="color:#f92672">=</span>memac<span style="color:#f92672">(</span>2,0<span style="color:#f92672">)</span>host:vxWorks h<span style="color:#f92672">=</span>192.168.1.101 e<span style="color:#f92672">=</span>192.168.1.50:ffffff00
+</span></span><span style="display:flex;"><span>        g<span style="color:#f92672">=</span>192.168.1.254 u<span style="color:#f92672">=</span>vxworks pw<span style="color:#f92672">=</span>gaitpu f<span style="color:#f92672">=</span>0x0
+</span></span></code></pre></div><p>还有你可以随意给网络设备改变MAC地址：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>setenv ethaddr 00:00:13:3a:ad:00
+</span></span><span style="display:flex;"><span>setenv eth1add 00:00:13:3a:ad:01
+</span></span><span style="display:flex;"><span>setenv eth1add 00:00:13:3a:ad:02
+</span></span><span style="display:flex;"><span>setenv eth1add 00:00:13:3a:ad:03
+</span></span><span style="display:flex;"><span>saveenv
+</span></span></code></pre></div><h2 id="加载和执行vxworks镜像文件">加载和执行VxWorks镜像文件</h2>
 <p>配置一个tftp服务器来加载VxWorks镜像文件和DTB文件。</p>
 <p>你可以从下面下载一个非常好的Windows TFTP服务器：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-fallback" data-lang="fallback">http://tftpd32.jounin.net/ 
-</code></pre></div><h3 id="加载vxworks镜像文件">加载VxWorks镜像文件</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash"><span style="color:#f92672">=</span>&gt; tftp 0x100000 uVxWorks
-Using FM1@DTSEC3 device
-TFTP from server 192.168.1.101; our IP address is 192.168.1.50
-Filename <span style="color:#e6db74">&#39;uVxWorks&#39;</span>.
-Load address: 0x100000
-Loading: <span style="color:#75715e">#################################################################</span>
-         <span style="color:#75715e">#################################################################</span>
-         <span style="color:#75715e">#################################################################</span>
-
-         1.5 MiB/s
-<span style="color:#66d9ef">done</span>
-Bytes transferred <span style="color:#f92672">=</span> <span style="color:#ae81ff">2861632</span> <span style="color:#f92672">(</span>2baa40 hex<span style="color:#f92672">)</span>
-</code></pre></div><h3 id="加载dtb-blob">加载dtb blob</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash"><span style="color:#f92672">=</span>&gt; tftp 0xe00000 t4240qds.dtb
-Using FM1@DTSEC3 device
-TFTP from server 192.168.1.101; our IP address is 192.168.1.50
-Filename <span style="color:#e6db74">&#39;t4240qds.dtb&#39;</span>.
-Load address: 0xe00000
-Loading: <span style="color:#75715e">##</span>
-         1.4 MiB/s
-</code></pre></div><h3 id="启动vxworks镜像文件">启动VxWorks镜像文件</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash"><span style="color:#f92672">=</span>&gt; bootm 0x100000 - 0xe00000
-WARNING: adjusting available memory to <span style="color:#ae81ff">30000000</span>
-<span style="color:#75715e">## Booting kernel from Legacy Image at 00100000 ...</span>
-   Image Name:   vxWorks
-   Image Type:   PowerPC VxWorks Kernel Image <span style="color:#f92672">(</span>uncompressed<span style="color:#f92672">)</span>
-   Data Size:    <span style="color:#ae81ff">2861568</span> Bytes <span style="color:#f92672">=</span> 2.7 MiB
-</code></pre></div><h3 id="创建u-boot命令">创建U-boot命令</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>http://tftpd32.jounin.net/ 
+</span></span></code></pre></div><h3 id="加载vxworks镜像文件">加载VxWorks镜像文件</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">=</span>&gt; tftp 0x100000 uVxWorks
+</span></span><span style="display:flex;"><span>Using FM1@DTSEC3 device
+</span></span><span style="display:flex;"><span>TFTP from server 192.168.1.101; our IP address is 192.168.1.50
+</span></span><span style="display:flex;"><span>Filename <span style="color:#e6db74">&#39;uVxWorks&#39;</span>.
+</span></span><span style="display:flex;"><span>Load address: 0x100000
+</span></span><span style="display:flex;"><span>Loading: <span style="color:#75715e">#################################################################</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#75715e">#################################################################</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#75715e">#################################################################</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>         1.5 MiB/s
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>Bytes transferred <span style="color:#f92672">=</span> <span style="color:#ae81ff">2861632</span> <span style="color:#f92672">(</span>2baa40 hex<span style="color:#f92672">)</span>
+</span></span></code></pre></div><h3 id="加载dtb-blob">加载dtb blob</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">=</span>&gt; tftp 0xe00000 t4240qds.dtb
+</span></span><span style="display:flex;"><span>Using FM1@DTSEC3 device
+</span></span><span style="display:flex;"><span>TFTP from server 192.168.1.101; our IP address is 192.168.1.50
+</span></span><span style="display:flex;"><span>Filename <span style="color:#e6db74">&#39;t4240qds.dtb&#39;</span>.
+</span></span><span style="display:flex;"><span>Load address: 0xe00000
+</span></span><span style="display:flex;"><span>Loading: <span style="color:#75715e">##</span>
+</span></span><span style="display:flex;"><span>         1.4 MiB/s
+</span></span></code></pre></div><h3 id="启动vxworks镜像文件">启动VxWorks镜像文件</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">=</span>&gt; bootm 0x100000 - 0xe00000
+</span></span><span style="display:flex;"><span>WARNING: adjusting available memory to <span style="color:#ae81ff">30000000</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Booting kernel from Legacy Image at 00100000 ...</span>
+</span></span><span style="display:flex;"><span>   Image Name:   vxWorks
+</span></span><span style="display:flex;"><span>   Image Type:   PowerPC VxWorks Kernel Image <span style="color:#f92672">(</span>uncompressed<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>   Data Size:    <span style="color:#ae81ff">2861568</span> Bytes <span style="color:#f92672">=</span> 2.7 MiB
+</span></span></code></pre></div><h3 id="创建u-boot命令">创建U-boot命令</h3>
 <p>用下面的步骤创建一个新的U-Boot命令</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">setenv vxboot <span style="color:#e6db74">&#39;tftp 0x100000 uVxWorks; tftp 0xe00000 t4240qds.dtb; bootm 0x100000 - 0xe00000&#39;</span>
-saveenv
-</code></pre></div><p>运行这个命令：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">run vxboot
-</code></pre></div><h2 id="配置u-boot来传递mac地址">配置U-Boot来传递MAC地址</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>setenv vxboot <span style="color:#e6db74">&#39;tftp 0x100000 uVxWorks; tftp 0xe00000 t4240qds.dtb; bootm 0x100000 - 0xe00000&#39;</span>
+</span></span><span style="display:flex;"><span>saveenv
+</span></span></code></pre></div><p>运行这个命令：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>run vxboot
+</span></span></code></pre></div><h2 id="配置u-boot来传递mac地址">配置U-Boot来传递MAC地址</h2>
 <p>这对于硬件开发者来说是至关重要的，MAC地址通常是在工厂里面分配的，会被VxWorks镜像文件使用。否则每一块板子出厂前都需要编译和加载一个独立的VxWorks，这绝对是一个梦魇般的情况。</p>
 <p>幸运地我们找到了一个方法，因为我们使用一个独立的dtb文件，而不是将dtb文件编译到VxWorks里面，U-Boot会用网络环境变量中的MAC地址覆盖dts文件中的MAC地址。</p>
 <p>不仅仅U-Boot可以覆盖本地的MAC地址，如果你在U-Boot环境变量中存储额外的网络地址变量并在你的设备树中为网络接口添加别名的话，U-Boot可以通过设备树将这些MAC地址传递给VxWorks。所以理论上所有网络设备的MAC地址都可以被覆盖。</p>
 <p>比如针对一块T4240的PowerPC板子：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#75715e">/*
-</span><span style="color:#75715e"> * U-boot only fixes up MAC Adrress (ethernet0 - n) if  
-</span><span style="color:#75715e"> * environment variable is set.
-</span><span style="color:#75715e"> * aliases simplyfies the path to the property i.e  by using a 
-</span><span style="color:#75715e"> * label &lt;&amp;enet0&gt; to assign a path to a particular node
-</span><span style="color:#75715e"> */</span>
-
-aliases{
-     ethernet0 <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>enet0; 
-     ethernet1 <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>enet1;
-     ethernet2 <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>enet2;
-     ethernet3 <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>enet3;
-};
-
-....
-
-    fman0: fman<span style="color:#960050;background-color:#1e0010">@</span><span style="color:#ae81ff">400000</span> {
-          <span style="color:#75715e">#address-cells = ;
-</span><span style="color:#75715e"></span>            <span style="color:#75715e">#size-cells = ;
-</span><span style="color:#75715e"></span>            cell<span style="color:#f92672">-</span>index <span style="color:#f92672">=</span> ;
-            compatible <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;fsl,fman&#34;</span>;
-            ranges <span style="color:#f92672">=</span> ;
-            reg <span style="color:#f92672">=</span> ;
-            interrupts <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span>
-                    <span style="color:#ae81ff">96</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span>
-                    <span style="color:#ae81ff">16</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">&gt;</span>;
-
-        clocks <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;&amp;</span>hwac1<span style="color:#f92672">&gt;</span>;
-        clock<span style="color:#f92672">-</span>names <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;fman0-clk&#34;</span>;
-
-        <span style="color:#75715e">/* FDT dummyMdio driver : memac0*/</span>
-        enet0: ethernet<span style="color:#960050;background-color:#1e0010">@</span>e0000 {
-                 compatible <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;fsl,fman-memac&#34;</span>;
-                 reg <span style="color:#f92672">=</span> ;
-                 phy<span style="color:#f92672">-</span>handle <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;&amp;</span>dummy_phy0<span style="color:#f92672">&gt;</span>;
-                 phy<span style="color:#f92672">-</span>connection<span style="color:#f92672">-</span>type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;sgmii&#34;</span>;
-                 cell<span style="color:#f92672">-</span>index <span style="color:#f92672">=</span> ;
-                 local<span style="color:#f92672">-</span>mac<span style="color:#f92672">-</span>address <span style="color:#f92672">=</span> [ <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">04</span> <span style="color:#ae81ff">9F</span> <span style="color:#ae81ff">03</span> <span style="color:#ae81ff">0</span>A <span style="color:#ae81ff">5</span>C ];
-                };
-
-        <span style="color:#75715e">/* FDT dummyMdio driver : memac1*/</span>
-        enet1: ethernet<span style="color:#960050;background-color:#1e0010">@</span>e2000 {
-                ....
-                };
-        ....
-        };
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * U-boot only fixes up MAC Adrress (ethernet0 - n) if  
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * environment variable is set.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * aliases simplyfies the path to the property i.e  by using a 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * label &lt;&amp;enet0&gt; to assign a path to a particular node
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>aliases{
+</span></span><span style="display:flex;"><span>     ethernet0 <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>enet0; 
+</span></span><span style="display:flex;"><span>     ethernet1 <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>enet1;
+</span></span><span style="display:flex;"><span>     ethernet2 <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>enet2;
+</span></span><span style="display:flex;"><span>     ethernet3 <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>enet3;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>....
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    fman0: fman<span style="color:#960050;background-color:#1e0010">@</span><span style="color:#ae81ff">400000</span> {
+</span></span><span style="display:flex;"><span>          <span style="color:#75715e">#address-cells = ;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#75715e">#size-cells = ;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            cell<span style="color:#f92672">-</span>index <span style="color:#f92672">=</span> ;
+</span></span><span style="display:flex;"><span>            compatible <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;fsl,fman&#34;</span>;
+</span></span><span style="display:flex;"><span>            ranges <span style="color:#f92672">=</span> ;
+</span></span><span style="display:flex;"><span>            reg <span style="color:#f92672">=</span> ;
+</span></span><span style="display:flex;"><span>            interrupts <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#ae81ff">96</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#ae81ff">16</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">&gt;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        clocks <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;&amp;</span>hwac1<span style="color:#f92672">&gt;</span>;
+</span></span><span style="display:flex;"><span>        clock<span style="color:#f92672">-</span>names <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;fman0-clk&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/* FDT dummyMdio driver : memac0*/</span>
+</span></span><span style="display:flex;"><span>        enet0: ethernet<span style="color:#960050;background-color:#1e0010">@</span>e0000 {
+</span></span><span style="display:flex;"><span>                 compatible <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;fsl,fman-memac&#34;</span>;
+</span></span><span style="display:flex;"><span>                 reg <span style="color:#f92672">=</span> ;
+</span></span><span style="display:flex;"><span>                 phy<span style="color:#f92672">-</span>handle <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;&amp;</span>dummy_phy0<span style="color:#f92672">&gt;</span>;
+</span></span><span style="display:flex;"><span>                 phy<span style="color:#f92672">-</span>connection<span style="color:#f92672">-</span>type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;sgmii&#34;</span>;
+</span></span><span style="display:flex;"><span>                 cell<span style="color:#f92672">-</span>index <span style="color:#f92672">=</span> ;
+</span></span><span style="display:flex;"><span>                 local<span style="color:#f92672">-</span>mac<span style="color:#f92672">-</span>address <span style="color:#f92672">=</span> [ <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">04</span> <span style="color:#ae81ff">9F</span> <span style="color:#ae81ff">03</span> <span style="color:#ae81ff">0</span>A <span style="color:#ae81ff">5</span>C ];
+</span></span><span style="display:flex;"><span>                };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/* FDT dummyMdio driver : memac1*/</span>
+</span></span><span style="display:flex;"><span>        enet1: ethernet<span style="color:#960050;background-color:#1e0010">@</span>e2000 {
+</span></span><span style="display:flex;"><span>                ....
+</span></span><span style="display:flex;"><span>                };
+</span></span><span style="display:flex;"><span>        ....
+</span></span><span style="display:flex;"><span>        };
+</span></span></code></pre></div>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1543398821442998"
      crossorigin="anonymous"></script>
 
@@ -701,7 +697,7 @@ aliases{
   
   <script type="text/javascript" src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js" defer></script>
 
-<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
+<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com/","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
 
 
 
@@ -709,7 +705,7 @@ aliases{
 
 
 
-<script type="text/javascript" src="/js/main.min.7e59cf1a98d842830d8a6f149f78fbbcf9e795b7a9eb76feb34b48c9bf1554d7.js" defer></script>
+<script type="text/javascript" src="/js/main.min.8bc1e2a2ac040735a2a32d113d257bd75c45142b9842ad7526f7de5e3d3a9298.js" defer></script>
 
 
 

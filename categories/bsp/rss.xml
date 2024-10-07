@@ -4,259 +4,170 @@
     <title>BSP on VxWorks 7</title>
     <link>https://www.vxworks7.com/categories/bsp/</link>
     <description>Recent content in BSP on VxWorks 7</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 21 Dec 2023 16:08:39 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/categories/bsp/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 21 Dec 2023 16:08:39 +0800</lastBuildDate>
+    <atom:link href="https://www.vxworks7.com/categories/bsp/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>一种对无符号VxWorks固件系统的符号恢复方法研究</title>
       <link>https://www.vxworks7.com/post/bsp/research-on-a-symbol-recovery-method-for-unsigned-VxWorks-firmware-system.html</link>
       <pubDate>Thu, 21 Dec 2023 16:08:39 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/research-on-a-symbol-recovery-method-for-unsigned-VxWorks-firmware-system.html</guid>
-      <description>&lt;p&gt;在前面两篇关于
-&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    VxWorks
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt;设备固件的提取和VxWorks系统加载地址分析的文章之后，我们对VxWorks函数符号的恢复方法进行了研究，找到了一种对无符号VxWorks固件系统的符号恢复方法。&lt;/p&gt;</description>
+      <description>&lt;p&gt;在前面两篇关于&#xA;&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    VxWorks&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt;设备固件的提取和VxWorks系统加载地址分析的文章之后，我们对VxWorks函数符号的恢复方法进行了研究，找到了一种对无符号VxWorks固件系统的符号恢复方法。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>基于T20A80处理器的VxWorks7.0操作系统研究与适配</title>
       <link>https://www.vxworks7.com/post/bsp/research-and-adaptive-of-vxworks7-0-based-on-t2080-processor.html</link>
       <pubDate>Tue, 19 Dec 2023 15:19:34 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/research-and-adaptive-of-vxworks7-0-based-on-t2080-processor.html</guid>
-      <description>&lt;p&gt;为满足机载系统中雷达处理单元等设备高实时、 高性能的需求，本文使用 T2080 处理器研制了一款通用处理卡，并基于该卡研究并完成了 
-&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks7.0&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    VxWorks7.0
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt; 操作系统的 BSP 开发及操作系统适配工作。&lt;/p&gt;</description>
+      <description>&lt;p&gt;为满足机载系统中雷达处理单元等设备高实时、 高性能的需求，本文使用 T2080 处理器研制了一款通用处理卡，并基于该卡研究并完成了 &#xA;&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks7.0&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    VxWorks7.0&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt; 操作系统的 BSP 开发及操作系统适配工作。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>适用于QEMU(IA)的VxWorks 7 SDK</title>
       <link>https://www.vxworks7.com/post/bsp/qemu-ia-vxworks-7-sdk.html</link>
       <pubDate>Sat, 09 Sep 2023 12:04:22 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/qemu-ia-vxworks-7-sdk.html</guid>
       <description>&lt;p&gt;本指南可帮助您开始并运行针对VxWorks的平台而开发的应用程序。 您可以使用它来创建新应用程序，或者只是探索 VxWorks 功能。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>使用VxWorks 7内核 shell 来访问设备的寄存器</title>
       <link>https://www.vxworks7.com/post/bsp/vxworks-7-memory-management.html</link>
       <pubDate>Sat, 22 Apr 2023 12:31:25 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/vxworks-7-memory-management.html</guid>
-      <description>&lt;p&gt;在这篇博文中，我将解释如何使用 
-&lt;a href=&#34;https://www.vxworks7.com&#34; title=&#34;VxWorks 7&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    VxWorks 7
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt; 内核控制台(shell)读写硬件设备中的寄存器。对于任何一个开发设备驱动程序或其他直接与内存映射设备进行交付的代码的人来说，这是一个非常有用的功能。&lt;/p&gt;</description>
+      <description>&lt;p&gt;在这篇博文中，我将解释如何使用 &#xA;&lt;a href=&#34;https://www.vxworks7.com&#34; title=&#34;VxWorks 7&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    VxWorks 7&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt; 内核控制台(shell)读写硬件设备中的寄存器。对于任何一个开发设备驱动程序或其他直接与内存映射设备进行交付的代码的人来说，这是一个非常有用的功能。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks 7.0基于设备树驱动程序编写方法</title>
       <link>https://www.vxworks7.com/post/bsp/vxworks-7-driver-design-method-based-on-device-tree.html</link>
       <pubDate>Sat, 15 Apr 2023 06:03:55 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/vxworks-7-driver-design-method-based-on-device-tree.html</guid>
       <description>&lt;p&gt;本身讲述了VxWorks 7.0基于设备树驱动程序编写方法&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>如何在命令行下编译VxWorks 5.5项目</title>
       <link>https://www.vxworks7.com/post/bsp/how-to-compile-vxworks-5.5-project-from-command-line.html</link>
       <pubDate>Sat, 25 Mar 2023 22:40:08 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/how-to-compile-vxworks-5.5-project-from-command-line.html</guid>
       <description>&lt;p&gt;如何从命令行来编译VxWorks 5.5/Tornado2.2的项目？本文将告诉你答案&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks开发环境Workbench与Tornado介绍</title>
       <link>https://www.vxworks7.com/post/bsp/introduction-of-workbench-and-tornado-for-vxworks.html</link>
       <pubDate>Tue, 03 Jan 2023 08:27:58 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/introduction-of-workbench-and-tornado-for-vxworks.html</guid>
       <description>&lt;p&gt;Workbench无疑是当前VxWorks软件开发领域中功能非常强大的一个集成开发环境&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks环境搭建与学习</title>
       <link>https://www.vxworks7.com/post/bsp/how-to-setup-vxworks-development-environment.html</link>
       <pubDate>Sat, 31 Dec 2022 09:55:36 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/how-to-setup-vxworks-development-environment.html</guid>
       <description>&lt;p&gt;本文讲述了如何搭建VxWorks开发环境，对于学习VxWorks的网友来说是一篇比较好的入门文档。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks操作系统下的USB摄像头驱动总结</title>
       <link>https://www.vxworks7.com/post/bsp/vxworks-device-driver-for-usb-camera.html</link>
       <pubDate>Sat, 31 Dec 2022 01:26:47 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/vxworks-device-driver-for-usb-camera.html</guid>
       <description>&lt;p&gt;本文分享了VxWorks下USB摄像头驱动总结&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks6.6下基于VxBus的以太网驱动开发</title>
       <link>https://www.vxworks7.com/post/bsp/network-device-driver-design-based-on-vxbus.html</link>
       <pubDate>Thu, 29 Dec 2022 07:32:24 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/network-device-driver-design-based-on-vxbus.html</guid>
       <description>&lt;p&gt;最近更换mpc8313的phy芯片，由原来的lxt972Phy更换为DP83849I，在此记录下本人在驱动开发过程中的点滴记录，以备日后查询。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>嵌入式操作系统VxWorks简介</title>
       <link>https://www.vxworks7.com/post/bsp/embedded-os-vxworks-introduction.html</link>
       <pubDate>Mon, 26 Dec 2022 10:23:56 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/embedded-os-vxworks-introduction.html</guid>
-      <description>&lt;p&gt;
-&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    VxWorks
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt;操作系统是美国WindRiver公司于1983年设计开发的一种嵌入式实时操作系统（RTOS），是嵌入式开发环境的关键组成部分。&lt;/p&gt;</description>
+      <description>&lt;p&gt;&#xA;&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    VxWorks&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt;操作系统是美国WindRiver公司于1983年设计开发的一种嵌入式实时操作系统（RTOS），是嵌入式开发环境的关键组成部分。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxBus设备驱动模型</title>
       <link>https://www.vxworks7.com/post/bsp/vxbus-device-driver-model-in-vxworks.html</link>
       <pubDate>Sun, 25 Dec 2022 00:10:11 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/vxbus-device-driver-model-in-vxworks.html</guid>
       <description>&lt;p&gt;VxBus是指在VxWorks中用于支持设备驱动的特有的架构，这种架构包含对minimal BSP的支持。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>PCI总线在VxWorks中的实现</title>
       <link>https://www.vxworks7.com/post/bsp/pci-bus-implementation-in-vxworks.html</link>
       <pubDate>Sat, 24 Dec 2022 04:04:08 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/pci-bus-implementation-in-vxworks.html</guid>
       <description>&lt;p&gt;在最近发布的BSP中，风河公司基本上都提供了对PCI BUS的支持，本文主要探讨PCI BUS在VxWorks系统中的实现。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>T1042/T2080 VxWorks7 开发笔记</title>
       <link>https://www.vxworks7.com/post/bsp/vxworks-7-for-t1042-t2080-how-to.html</link>
       <pubDate>Sat, 24 Dec 2022 03:13:31 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/vxworks-7-for-t1042-t2080-how-to.html</guid>
-      <description>&lt;p&gt;
-&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks 7&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    VxWorks 7
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt;是WindRiver推出的新一代版本，相比较VxWorks 6.9特别是驱动部分有很大的改变，VxWorks 7和Linux很像，有设备树的概念，所以从Linux移植驱动到VxWorks 7会方便很多。&lt;/p&gt;</description>
+      <description>&lt;p&gt;&#xA;&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks 7&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    VxWorks 7&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt;是WindRiver推出的新一代版本，相比较VxWorks 6.9特别是驱动部分有很大的改变，VxWorks 7和Linux很像，有设备树的概念，所以从Linux移植驱动到VxWorks 7会方便很多。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>IMX6Q 运行 VxWorks 7.0 系统</title>
       <link>https://www.vxworks7.com/post/bsp/vxworks-7.0-on-IMX6Q.html</link>
       <pubDate>Fri, 23 Dec 2022 22:24:27 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/vxworks-7.0-on-IMX6Q.html</guid>
       <description>&lt;p&gt;本文简要概述了如何在IMX6Q上从uboot下载并启动VxWorks 7.0的过程。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>U-boot和VxWorks 7的集成</title>
       <link>https://www.vxworks7.com/post/bsp/u-boot-on-vxworks-7.html</link>
       <pubDate>Thu, 22 Dec 2022 10:29:12 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/u-boot-on-vxworks-7.html</guid>
-      <description>&lt;p&gt;
-&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    VxWorks
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt;是美国风河公司制作的一个实时操作系统，
-&lt;a href=&#34;https://www.vxworks.net/bsp/834-u-boot-and-vxworks-7-integration&#34; title=&#34;U-Boot&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    U-Boot
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt;是一个广为人知的通用启动加载器，它是嵌入式系统加电后运行的最早的代码。U-Boot通常被用于嵌入式系统，比如PowerPC或者ARM设备，这些设备上没有X86的BIOS。&lt;/p&gt;</description>
+      <description>&lt;p&gt;&#xA;&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    VxWorks&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt;是美国风河公司制作的一个实时操作系统，&#xA;&lt;a href=&#34;https://www.vxworks.net/bsp/834-u-boot-and-vxworks-7-integration&#34; title=&#34;U-Boot&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    U-Boot&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt;是一个广为人知的通用启动加载器，它是嵌入式系统加电后运行的最早的代码。U-Boot通常被用于嵌入式系统，比如PowerPC或者ARM设备，这些设备上没有X86的BIOS。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks 7.0下SD卡驱动流程及文件系统格式化</title>
       <link>https://www.vxworks7.com/post/bsp/SD-card-device-driver-in-vxworks-7.0.html</link>
       <pubDate>Wed, 21 Dec 2022 09:34:04 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/SD-card-device-driver-in-vxworks-7.0.html</guid>
-      <description>&lt;p&gt;今天和大家谈谈
-&lt;a href=&#34;https://vxworks.net/bsp/935-sd-card-driver-initialization-file-system-format-in-vxworks-7-0&#34; title=&#34;VxWorks 7.0下SD卡&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    VxWorks 7.0下SD卡
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt;的
-&lt;a href=&#34;https://www.vxbus.com&#34; title=&#34;vxbus&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    vxbus
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt;挂接，及文件系统格式化流程，
-&lt;a href=&#34;http://www.vxworks7.com&#34; title=&#34;VxWorks 7&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    VxWorks 7
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt;的vxbus是基于设备树的，首先必须增加设备树节点，如下：&lt;/p&gt;</description>
+      <description>&lt;p&gt;今天和大家谈谈&#xA;&lt;a href=&#34;https://vxworks.net/bsp/935-sd-card-driver-initialization-file-system-format-in-vxworks-7-0&#34; title=&#34;VxWorks 7.0下SD卡&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    VxWorks 7.0下SD卡&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt;的&#xA;&lt;a href=&#34;https://www.vxbus.com&#34; title=&#34;vxbus&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    vxbus&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt;挂接，及文件系统格式化流程，&#xA;&lt;a href=&#34;http://www.vxworks7.com&#34; title=&#34;VxWorks 7&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    VxWorks 7&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt;的vxbus是基于设备树的，首先必须增加设备树节点，如下：&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks配置多网口</title>
       <link>https://www.vxworks7.com/post/bsp/vxworks-config-multi-network-adapter.html</link>
       <pubDate>Tue, 20 Dec 2022 09:12:25 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/vxworks-config-multi-network-adapter.html</guid>
       <description>&lt;p&gt;本文提供在系统运行中对网口进行配置的方法。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks固件分析</title>
       <link>https://www.vxworks7.com/post/bsp/vxworks-firmware-analysis.html</link>
       <pubDate>Tue, 20 Dec 2022 08:45:34 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/vxworks-firmware-analysis.html</guid>
       <description>&lt;p&gt;VxWorks 操作系统是美国WindRiver公司于1983年设计开发的一种嵌入式实时操作系统（RTOS），是嵌入式开发环境的关键组成部分。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks系统中vxbus机制总结</title>
       <link>https://www.vxworks7.com/post/bsp/vxworks-vxbus-mechanism.html</link>
       <pubDate>Mon, 19 Dec 2022 09:33:53 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/vxworks-vxbus-mechanism.html</guid>
-      <description>&lt;p&gt;先介绍一下
-&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    VxWorks
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt;的设备以及驱动的表示方法，以及总的关系：设备和驱动根本都抽象成一个结构体，设备结构体中包含了设备名字、ID号、功能函数指针等必备的信息，驱动结构体包含了初始化函数、名字、ID等信息。总的如图看一下重要的几个结构体的关系：&lt;/p&gt;</description>
+      <description>&lt;p&gt;先介绍一下&#xA;&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    VxWorks&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt;的设备以及驱动的表示方法，以及总的关系：设备和驱动根本都抽象成一个结构体，设备结构体中包含了设备名字、ID号、功能函数指针等必备的信息，驱动结构体包含了初始化函数、名字、ID等信息。总的如图看一下重要的几个结构体的关系：&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks内核解读-1</title>
       <link>https://www.vxworks7.com/post/bsp/vxworks-wind-kernel-analysis-1.html</link>
       <pubDate>Sun, 18 Dec 2022 08:23:25 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/vxworks-wind-kernel-analysis-1.html</guid>
       <description>&lt;p&gt;本文首先从实时内核的定义出发，对实时操作系统进行了介绍，并对实时操作系统的特点进行了说明，接着从内核的功能和结构角度介绍了整体式内核，层次式内核，以及微内核。最后对具有微内核特性的VxWorks Wind内核进行了介绍。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks的环形缓冲区设计</title>
       <link>https://www.vxworks7.com/post/bsp/ring-buffer-design-in-vxworks.html</link>
       <pubDate>Sat, 17 Dec 2022 22:47:20 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/ring-buffer-design-in-vxworks.html</guid>
       <description>&lt;p&gt;VxWorks环形缓冲模块主要定义在rngLib.c和rngLib.h中，对于数据结构比较了解的小伙伴应该知道，环形缓冲实际就是一个双向循环队列。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VxWorks 7的启动顺序</title>
       <link>https://www.vxworks7.com/post/bsp/vxworks-7-boot-sequence.html</link>
       <pubDate>Tue, 06 Dec 2022 05:35:25 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/post/bsp/vxworks-7-boot-sequence.html</guid>
       <description>&lt;p&gt;之前遍历过使用WorkBench的VIP编译的VxWorks6.9镜像文件VxWorks，今天以32位SMP模式下的Intel处理器为例，看看VxWorks 7的VxWorks执行顺序。通过对比可以看到，VxWorks 6.9和VxWorks 7的执行顺序基本一致&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

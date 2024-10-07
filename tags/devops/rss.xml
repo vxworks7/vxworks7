@@ -4,17 +4,16 @@
     <title>DevOps on VxWorks 7</title>
     <link>https://www.vxworks7.com/tags/devops/</link>
     <description>Recent content in DevOps on VxWorks 7</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 06 Apr 2023 09:35:42 -0400</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/devops/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 06 Apr 2023 09:35:42 -0400</lastBuildDate>
+    <atom:link href="https://www.vxworks7.com/tags/devops/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>DevOps与模拟仿真如何帮您解决硬件问题</title>
       <link>https://www.vxworks7.com/post/news/use-DevOps-and-simulation-to-resolve-hardware-issues.html</link>
       <pubDate>Thu, 06 Apr 2023 09:35:42 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/post/news/use-DevOps-and-simulation-to-resolve-hardware-issues.html</guid>
       <description>&lt;p&gt;如果您是从事智能边缘开发，那么您的硬件就会成为关键问题。好消息则是模拟仿真工具可以解决这些问题。这篇博文将探讨硬件可能造成问题的四种方式，以及模拟仿真工具如何帮您解决问题。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

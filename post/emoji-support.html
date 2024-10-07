@@ -4,7 +4,7 @@
 <head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)" />
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.135.0">
 <link rel="shortcut icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
@@ -32,6 +32,7 @@
 <meta property="article:modified_time" content="2021-06-04 19:46:45 &#43;0800 CST" />
 
 
+
   
   <link type="text/css" rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.2/css/all.min.css" />
   
@@ -39,11 +40,6 @@
 
 
 <link rel="stylesheet" href="/css/main.min.7d561ec9984cf0cb727fc88e14a92134576c99ccb9ce2f31b5b5541ab4ced328.css">
-  <style type="text/css">
-    .post-footer, .flinks-list-footer hr:after {
-      content: "~ 我可是有底线的哟 ~";
-    }
-  </style>
   <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"emoji-support.html","permalink":"https://www.vxworks7.com/post/emoji-support.html","title":"支持 Emoji 表情"}</script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
@@ -116,7 +112,7 @@
     </li>
     <li class="menu-item menu-item-archives">
       <a href="/archives/" class="hvr-icon-pulse " rel="section"><i class="fa fa-archive hvr-icon"></i>归档
-        <span class="badge">95</span>
+        <span class="badge">94</span>
       </a>
     </li>
     <li class="menu-item menu-item-commonweal">
@@ -198,7 +194,7 @@
   <nav class="site-state">
     <div class="site-state-item site-state-posts">
       <a href="/archives/">
-        <span class="site-state-item-count">95</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -210,7 +206,7 @@
     </div>
     <div class="site-state-item site-state-tags">
       <a href="/tags/">
-        <span class="site-state-item-count">133</span>
+        <span class="site-state-item-count">131</span>
         <span class="site-state-item-name">标签</span>
       </a>
     </div>
@@ -276,11 +272,11 @@
       </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-font"></i>总字数：</div>
-      <div class="item-count" id="wordsCount" data-count="28953"></div>
+      <div class="item-count" id="wordsCount" data-count="28814"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-mug-hot"></i>阅读约：</div>
-      <div class="item-count" id="readTimes" data-times="193"></div>
+      <div class="item-count" id="readTimes" data-times="192"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
@@ -395,7 +391,7 @@
       
   <p>Emoji 可以通过多种方式在 Hugo 项目中启用。</p>
 <p>
-<a href="https://gohugo.io/functions/emojify/" title="&lt;code&gt;emojify&lt;/code&gt;" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+<a href="https://gohugo.io/functions/emojify/" title="emojify" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
     <code>emojify</code>
     <i class="fa fa-external-link-alt"></i>
 </a> 方法可以直接在模板中调用, 或者使用
@@ -410,887 +406,887 @@
 </a>中设置 <code>enableEmoji</code> 为 <code>true</code>，
 然后你就可以直接在文章中输入 emoji 的代码。</p>
 <p>它们以<strong>冒号</strong>开头和结尾，并且包含 emoji 的 <strong>代码</strong>：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-markdown" data-lang="markdown">去露营啦! {:}tent: 很快就回来.
-
-真开心! {:}joy:
-</code></pre></div><p>呈现的输出效果如下:</p>
-<p>去露营啦! ⛺ 很快就回来。</p>
-<p>真开心! 😂</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>去露营啦! {:}tent: 很快就回来.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>真开心! {:}joy:
+</span></span></code></pre></div><p>呈现的输出效果如下:</p>
+<p>去露营啦! &#x26fa; 很快就回来。</p>
+<p>真开心! &#x1f602;</p>
 <p>以下<strong>符号清单</strong>是 emoji 代码的非常有用的参考。</p>
 <h2 id="表情与情感">表情与情感</h2>
 <h3 id="笑脸表情">笑脸表情</h3>
 <table>
-<thead>
-<tr>
-<th style="text-align:center">图标</th>
-<th>代码</th>
-<th style="text-align:center">图标</th>
-<th>代码</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">😀</td>
-<td><code>grinning</code></td>
-<td style="text-align:center">😃</td>
-<td><code>smiley</code></td>
-</tr>
-<tr>
-<td style="text-align:center">😄</td>
-<td><code>smile</code></td>
-<td style="text-align:center">😁</td>
-<td><code>grin</code></td>
-</tr>
-<tr>
-<td style="text-align:center">😆</td>
-<td><code>laughing</code> <br /> <code>satisfied</code></td>
-<td style="text-align:center">😅</td>
-<td><code>sweat_smile</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🤣</td>
-<td><code>rofl</code></td>
-<td style="text-align:center">😂</td>
-<td><code>joy</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🙂</td>
-<td><code>slightly_smiling_face</code></td>
-<td style="text-align:center">🙃</td>
-<td><code>upside_down_face</code></td>
-</tr>
-<tr>
-<td style="text-align:center">😉</td>
-<td><code>wink</code></td>
-<td style="text-align:center">😊</td>
-<td><code>blush</code></td>
-</tr>
-<tr>
-<td style="text-align:center">😇</td>
-<td><code>innocent</code></td>
-<td style="text-align:center"></td>
-<td></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: center">图标</th>
+          <th style="text-align: left">代码</th>
+          <th style="text-align: center">图标</th>
+          <th style="text-align: left">代码</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">&#x1f600;</td>
+          <td style="text-align: left"><code>grinning</code></td>
+          <td style="text-align: center">&#x1f603;</td>
+          <td style="text-align: left"><code>smiley</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f604;</td>
+          <td style="text-align: left"><code>smile</code></td>
+          <td style="text-align: center">&#x1f601;</td>
+          <td style="text-align: left"><code>grin</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f606;</td>
+          <td style="text-align: left"><code>laughing</code> <br /> <code>satisfied</code></td>
+          <td style="text-align: center">&#x1f605;</td>
+          <td style="text-align: left"><code>sweat_smile</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f923;</td>
+          <td style="text-align: left"><code>rofl</code></td>
+          <td style="text-align: center">&#x1f602;</td>
+          <td style="text-align: left"><code>joy</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f642;</td>
+          <td style="text-align: left"><code>slightly_smiling_face</code></td>
+          <td style="text-align: center">&#x1f643;</td>
+          <td style="text-align: left"><code>upside_down_face</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f609;</td>
+          <td style="text-align: left"><code>wink</code></td>
+          <td style="text-align: center">&#x1f60a;</td>
+          <td style="text-align: left"><code>blush</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f607;</td>
+          <td style="text-align: left"><code>innocent</code></td>
+          <td style="text-align: center"></td>
+          <td style="text-align: left"></td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="爱意表情">爱意表情</h3>
 <table>
-<thead>
-<tr>
-<th style="text-align:center">图标</th>
-<th>代码</th>
-<th style="text-align:center">图标</th>
-<th>代码</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">😍</td>
-<td><code>heart_eyes</code></td>
-<td style="text-align:center">😘</td>
-<td><code>kissing_heart</code></td>
-</tr>
-<tr>
-<td style="text-align:center">😗</td>
-<td><code>kissing</code></td>
-<td style="text-align:center">☺️</td>
-<td><code>relaxed</code></td>
-</tr>
-<tr>
-<td style="text-align:center">😚</td>
-<td><code>kissing_closed_eyes</code></td>
-<td style="text-align:center">😙</td>
-<td><code>kissing_smiling_eyes</code></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: center">图标</th>
+          <th style="text-align: left">代码</th>
+          <th style="text-align: center">图标</th>
+          <th style="text-align: left">代码</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">&#x1f60d;</td>
+          <td style="text-align: left"><code>heart_eyes</code></td>
+          <td style="text-align: center">&#x1f618;</td>
+          <td style="text-align: left"><code>kissing_heart</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f617;</td>
+          <td style="text-align: left"><code>kissing</code></td>
+          <td style="text-align: center">&#x263a;&#xfe0f;</td>
+          <td style="text-align: left"><code>relaxed</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f61a;</td>
+          <td style="text-align: left"><code>kissing_closed_eyes</code></td>
+          <td style="text-align: center">&#x1f619;</td>
+          <td style="text-align: left"><code>kissing_smiling_eyes</code></td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="吐舌头表情">吐舌头表情</h3>
 <table>
-<thead>
-<tr>
-<th style="text-align:center">图标</th>
-<th>代码</th>
-<th style="text-align:center">图标</th>
-<th>代码</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">😋</td>
-<td><code>yum</code></td>
-<td style="text-align:center">😛</td>
-<td><code>stuck_out_tongue</code></td>
-</tr>
-<tr>
-<td style="text-align:center">😜</td>
-<td><code>stuck_out_tongue_winking_eye</code></td>
-<td style="text-align:center">😝</td>
-<td><code>stuck_out_tongue_closed_eyes</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🤑</td>
-<td><code>money_mouth_face</code></td>
-<td style="text-align:center"></td>
-<td></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: center">图标</th>
+          <th style="text-align: left">代码</th>
+          <th style="text-align: center">图标</th>
+          <th style="text-align: left">代码</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">&#x1f60b;</td>
+          <td style="text-align: left"><code>yum</code></td>
+          <td style="text-align: center">&#x1f61b;</td>
+          <td style="text-align: left"><code>stuck_out_tongue</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f61c;</td>
+          <td style="text-align: left"><code>stuck_out_tongue_winking_eye</code></td>
+          <td style="text-align: center">&#x1f61d;</td>
+          <td style="text-align: left"><code>stuck_out_tongue_closed_eyes</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f911;</td>
+          <td style="text-align: left"><code>money_mouth_face</code></td>
+          <td style="text-align: center"></td>
+          <td style="text-align: left"></td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="国家和地区旗帜">国家和地区旗帜</h3>
 <table>
-<thead>
-<tr>
-<th style="text-align:center">图标</th>
-<th>代码</th>
-<th style="text-align:center">图标</th>
-<th>代码</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">🇦🇩</td>
-<td><code>andorra</code></td>
-<td style="text-align:center">🇦🇪</td>
-<td><code>united_arab_emirates</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇦🇫</td>
-<td><code>afghanistan</code></td>
-<td style="text-align:center">🇦🇬</td>
-<td><code>antigua_barbuda</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇦🇮</td>
-<td><code>anguilla</code></td>
-<td style="text-align:center">🇦🇱</td>
-<td><code>albania</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇦🇲</td>
-<td><code>armenia</code></td>
-<td style="text-align:center">🇦🇴</td>
-<td><code>angola</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇦🇶</td>
-<td><code>antarctica</code></td>
-<td style="text-align:center">🇦🇷</td>
-<td><code>argentina</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇦🇸</td>
-<td><code>american_samoa</code></td>
-<td style="text-align:center">🇦🇹</td>
-<td><code>austria</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇦🇺</td>
-<td><code>australia</code></td>
-<td style="text-align:center">🇦🇼</td>
-<td><code>aruba</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇦🇽</td>
-<td><code>aland_islands</code></td>
-<td style="text-align:center">🇦🇿</td>
-<td><code>azerbaijan</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇧🇦</td>
-<td><code>bosnia_herzegovina</code></td>
-<td style="text-align:center">🇧🇧</td>
-<td><code>barbados</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇧🇩</td>
-<td><code>bangladesh</code></td>
-<td style="text-align:center">🇧🇪</td>
-<td><code>belgium</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇧🇫</td>
-<td><code>burkina_faso</code></td>
-<td style="text-align:center">🇧🇬</td>
-<td><code>bulgaria</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇧🇭</td>
-<td><code>bahrain</code></td>
-<td style="text-align:center">🇧🇮</td>
-<td><code>burundi</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇧🇯</td>
-<td><code>benin</code></td>
-<td style="text-align:center">🇧🇱</td>
-<td><code>st_barthelemy</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇧🇲</td>
-<td><code>bermuda</code></td>
-<td style="text-align:center">🇧🇳</td>
-<td><code>brunei</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇧🇴</td>
-<td><code>bolivia</code></td>
-<td style="text-align:center">🇧🇶</td>
-<td><code>caribbean_netherlands</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇧🇷</td>
-<td><code>brazil</code></td>
-<td style="text-align:center">🇧🇸</td>
-<td><code>bahamas</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇧🇹</td>
-<td><code>bhutan</code></td>
-<td style="text-align:center">🇧🇼</td>
-<td><code>botswana</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇧🇾</td>
-<td><code>belarus</code></td>
-<td style="text-align:center">🇧🇿</td>
-<td><code>belize</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇨🇦</td>
-<td><code>canada</code></td>
-<td style="text-align:center">🇨🇨</td>
-<td><code>cocos_islands</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇨🇩</td>
-<td><code>congo_kinshasa</code></td>
-<td style="text-align:center">🇨🇫</td>
-<td><code>central_african_republic</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇨🇬</td>
-<td><code>congo_brazzaville</code></td>
-<td style="text-align:center">🇨🇭</td>
-<td><code>switzerland</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇨🇮</td>
-<td><code>cote_divoire</code></td>
-<td style="text-align:center">🇨🇰</td>
-<td><code>cook_islands</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇨🇱</td>
-<td><code>chile</code></td>
-<td style="text-align:center">🇨🇲</td>
-<td><code>cameroon</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇨🇳</td>
-<td><code>cn</code></td>
-<td style="text-align:center">🇨🇴</td>
-<td><code>colombia</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇨🇷</td>
-<td><code>costa_rica</code></td>
-<td style="text-align:center">🇨🇺</td>
-<td><code>cuba</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇨🇻</td>
-<td><code>cape_verde</code></td>
-<td style="text-align:center">🇨🇼</td>
-<td><code>curacao</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇨🇽</td>
-<td><code>christmas_island</code></td>
-<td style="text-align:center">🇨🇾</td>
-<td><code>cyprus</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇨🇿</td>
-<td><code>czech_republic</code></td>
-<td style="text-align:center">🇩🇪</td>
-<td><code>de</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇩🇯</td>
-<td><code>djibouti</code></td>
-<td style="text-align:center">🇩🇰</td>
-<td><code>denmark</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇩🇲</td>
-<td><code>dominica</code></td>
-<td style="text-align:center">🇩🇴</td>
-<td><code>dominican_republic</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇩🇿</td>
-<td><code>algeria</code></td>
-<td style="text-align:center">🇪🇨</td>
-<td><code>ecuador</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇪🇪</td>
-<td><code>estonia</code></td>
-<td style="text-align:center">🇪🇬</td>
-<td><code>egypt</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇪🇭</td>
-<td><code>western_sahara</code></td>
-<td style="text-align:center">🇪🇷</td>
-<td><code>eritrea</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇪🇸</td>
-<td><code>es</code></td>
-<td style="text-align:center">🇪🇹</td>
-<td><code>ethiopia</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇪🇺</td>
-<td><code>eu</code> <br /> <code>european_union</code></td>
-<td style="text-align:center">🇫🇮</td>
-<td><code>finland</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇫🇯</td>
-<td><code>fiji</code></td>
-<td style="text-align:center">🇫🇰</td>
-<td><code>falkland_islands</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇫🇲</td>
-<td><code>micronesia</code></td>
-<td style="text-align:center">🇫🇴</td>
-<td><code>faroe_islands</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇫🇷</td>
-<td><code>fr</code></td>
-<td style="text-align:center">🇬🇦</td>
-<td><code>gabon</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇬🇧</td>
-<td><code>gb</code> <br /> <code>uk</code></td>
-<td style="text-align:center">🇬🇩</td>
-<td><code>grenada</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇬🇪</td>
-<td><code>georgia</code></td>
-<td style="text-align:center">🇬🇫</td>
-<td><code>french_guiana</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇬🇬</td>
-<td><code>guernsey</code></td>
-<td style="text-align:center">🇬🇭</td>
-<td><code>ghana</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇬🇮</td>
-<td><code>gibraltar</code></td>
-<td style="text-align:center">🇬🇱</td>
-<td><code>greenland</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇬🇲</td>
-<td><code>gambia</code></td>
-<td style="text-align:center">🇬🇳</td>
-<td><code>guinea</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇬🇵</td>
-<td><code>guadeloupe</code></td>
-<td style="text-align:center">🇬🇶</td>
-<td><code>equatorial_guinea</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇬🇷</td>
-<td><code>greece</code></td>
-<td style="text-align:center">🇬🇸</td>
-<td><code>south_georgia_south_sandwich_islands</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇬🇹</td>
-<td><code>guatemala</code></td>
-<td style="text-align:center">🇬🇺</td>
-<td><code>guam</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇬🇼</td>
-<td><code>guinea_bissau</code></td>
-<td style="text-align:center">🇬🇾</td>
-<td><code>guyana</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇭🇰</td>
-<td><code>hong_kong</code></td>
-<td style="text-align:center">🇭🇳</td>
-<td><code>honduras</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇭🇷</td>
-<td><code>croatia</code></td>
-<td style="text-align:center">🇭🇹</td>
-<td><code>haiti</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇭🇺</td>
-<td><code>hungary</code></td>
-<td style="text-align:center">🇮🇨</td>
-<td><code>canary_islands</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇮🇩</td>
-<td><code>indonesia</code></td>
-<td style="text-align:center">🇮🇪</td>
-<td><code>ireland</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇮🇱</td>
-<td><code>israel</code></td>
-<td style="text-align:center">🇮🇲</td>
-<td><code>isle_of_man</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇮🇳</td>
-<td><code>india</code></td>
-<td style="text-align:center">🇮🇴</td>
-<td><code>british_indian_ocean_territory</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇮🇶</td>
-<td><code>iraq</code></td>
-<td style="text-align:center">🇮🇷</td>
-<td><code>iran</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇮🇸</td>
-<td><code>iceland</code></td>
-<td style="text-align:center">🇮🇹</td>
-<td><code>it</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇯🇪</td>
-<td><code>jersey</code></td>
-<td style="text-align:center">🇯🇲</td>
-<td><code>jamaica</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇯🇴</td>
-<td><code>jordan</code></td>
-<td style="text-align:center">🇯🇵</td>
-<td><code>jp</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇰🇪</td>
-<td><code>kenya</code></td>
-<td style="text-align:center">🇰🇬</td>
-<td><code>kyrgyzstan</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇰🇭</td>
-<td><code>cambodia</code></td>
-<td style="text-align:center">🇰🇮</td>
-<td><code>kiribati</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇰🇲</td>
-<td><code>comoros</code></td>
-<td style="text-align:center">🇰🇳</td>
-<td><code>st_kitts_nevis</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇰🇵</td>
-<td><code>north_korea</code></td>
-<td style="text-align:center">🇰🇷</td>
-<td><code>kr</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇰🇼</td>
-<td><code>kuwait</code></td>
-<td style="text-align:center">🇰🇾</td>
-<td><code>cayman_islands</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇰🇿</td>
-<td><code>kazakhstan</code></td>
-<td style="text-align:center">🇱🇦</td>
-<td><code>laos</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇱🇧</td>
-<td><code>lebanon</code></td>
-<td style="text-align:center">🇱🇨</td>
-<td><code>st_lucia</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇱🇮</td>
-<td><code>liechtenstein</code></td>
-<td style="text-align:center">🇱🇰</td>
-<td><code>sri_lanka</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇱🇷</td>
-<td><code>liberia</code></td>
-<td style="text-align:center">🇱🇸</td>
-<td><code>lesotho</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇱🇹</td>
-<td><code>lithuania</code></td>
-<td style="text-align:center">🇱🇺</td>
-<td><code>luxembourg</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇱🇻</td>
-<td><code>latvia</code></td>
-<td style="text-align:center">🇱🇾</td>
-<td><code>libya</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇲🇦</td>
-<td><code>morocco</code></td>
-<td style="text-align:center">🇲🇨</td>
-<td><code>monaco</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇲🇩</td>
-<td><code>moldova</code></td>
-<td style="text-align:center">🇲🇪</td>
-<td><code>montenegro</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇲🇬</td>
-<td><code>madagascar</code></td>
-<td style="text-align:center">🇲🇭</td>
-<td><code>marshall_islands</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇲🇰</td>
-<td><code>macedonia</code></td>
-<td style="text-align:center">🇲🇱</td>
-<td><code>mali</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇲🇲</td>
-<td><code>myanmar</code></td>
-<td style="text-align:center">🇲🇳</td>
-<td><code>mongolia</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇲🇴</td>
-<td><code>macau</code></td>
-<td style="text-align:center">🇲🇵</td>
-<td><code>northern_mariana_islands</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇲🇶</td>
-<td><code>martinique</code></td>
-<td style="text-align:center">🇲🇷</td>
-<td><code>mauritania</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇲🇸</td>
-<td><code>montserrat</code></td>
-<td style="text-align:center">🇲🇹</td>
-<td><code>malta</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇲🇺</td>
-<td><code>mauritius</code></td>
-<td style="text-align:center">🇲🇻</td>
-<td><code>maldives</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇲🇼</td>
-<td><code>malawi</code></td>
-<td style="text-align:center">🇲🇽</td>
-<td><code>mexico</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇲🇾</td>
-<td><code>malaysia</code></td>
-<td style="text-align:center">🇲🇿</td>
-<td><code>mozambique</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇳🇦</td>
-<td><code>namibia</code></td>
-<td style="text-align:center">🇳🇨</td>
-<td><code>new_caledonia</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇳🇪</td>
-<td><code>niger</code></td>
-<td style="text-align:center">🇳🇫</td>
-<td><code>norfolk_island</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇳🇬</td>
-<td><code>nigeria</code></td>
-<td style="text-align:center">🇳🇮</td>
-<td><code>nicaragua</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇳🇱</td>
-<td><code>netherlands</code></td>
-<td style="text-align:center">🇳🇴</td>
-<td><code>norway</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇳🇵</td>
-<td><code>nepal</code></td>
-<td style="text-align:center">🇳🇷</td>
-<td><code>nauru</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇳🇺</td>
-<td><code>niue</code></td>
-<td style="text-align:center">🇳🇿</td>
-<td><code>new_zealand</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇴🇲</td>
-<td><code>oman</code></td>
-<td style="text-align:center">🇵🇦</td>
-<td><code>panama</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇵🇪</td>
-<td><code>peru</code></td>
-<td style="text-align:center">🇵🇫</td>
-<td><code>french_polynesia</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇵🇬</td>
-<td><code>papua_new_guinea</code></td>
-<td style="text-align:center">🇵🇭</td>
-<td><code>philippines</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇵🇰</td>
-<td><code>pakistan</code></td>
-<td style="text-align:center">🇵🇱</td>
-<td><code>poland</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇵🇲</td>
-<td><code>st_pierre_miquelon</code></td>
-<td style="text-align:center">🇵🇳</td>
-<td><code>pitcairn_islands</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇵🇷</td>
-<td><code>puerto_rico</code></td>
-<td style="text-align:center">🇵🇸</td>
-<td><code>palestinian_territories</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇵🇹</td>
-<td><code>portugal</code></td>
-<td style="text-align:center">🇵🇼</td>
-<td><code>palau</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇵🇾</td>
-<td><code>paraguay</code></td>
-<td style="text-align:center">🇶🇦</td>
-<td><code>qatar</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇷🇪</td>
-<td><code>reunion</code></td>
-<td style="text-align:center">🇷🇴</td>
-<td><code>romania</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇷🇸</td>
-<td><code>serbia</code></td>
-<td style="text-align:center">🇷🇺</td>
-<td><code>ru</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇷🇼</td>
-<td><code>rwanda</code></td>
-<td style="text-align:center">🇸🇦</td>
-<td><code>saudi_arabia</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇸🇧</td>
-<td><code>solomon_islands</code></td>
-<td style="text-align:center">🇸🇨</td>
-<td><code>seychelles</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇸🇩</td>
-<td><code>sudan</code></td>
-<td style="text-align:center">🇸🇪</td>
-<td><code>sweden</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇸🇬</td>
-<td><code>singapore</code></td>
-<td style="text-align:center">🇸🇭</td>
-<td><code>st_helena</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇸🇮</td>
-<td><code>slovenia</code></td>
-<td style="text-align:center">🇸🇰</td>
-<td><code>slovakia</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇸🇱</td>
-<td><code>sierra_leone</code></td>
-<td style="text-align:center">🇸🇲</td>
-<td><code>san_marino</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇸🇳</td>
-<td><code>senegal</code></td>
-<td style="text-align:center">🇸🇴</td>
-<td><code>somalia</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇸🇷</td>
-<td><code>suriname</code></td>
-<td style="text-align:center">🇸🇸</td>
-<td><code>south_sudan</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇸🇹</td>
-<td><code>sao_tome_principe</code></td>
-<td style="text-align:center">🇸🇻</td>
-<td><code>el_salvador</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇸🇽</td>
-<td><code>sint_maarten</code></td>
-<td style="text-align:center">🇸🇾</td>
-<td><code>syria</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇸🇿</td>
-<td><code>swaziland</code></td>
-<td style="text-align:center">🇹🇨</td>
-<td><code>turks_caicos_islands</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇹🇩</td>
-<td><code>chad</code></td>
-<td style="text-align:center">🇹🇫</td>
-<td><code>french_southern_territories</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇹🇬</td>
-<td><code>togo</code></td>
-<td style="text-align:center">🇹🇭</td>
-<td><code>thailand</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇹🇯</td>
-<td><code>tajikistan</code></td>
-<td style="text-align:center">🇹🇰</td>
-<td><code>tokelau</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇹🇱</td>
-<td><code>timor_leste</code></td>
-<td style="text-align:center">🇹🇲</td>
-<td><code>turkmenistan</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇹🇳</td>
-<td><code>tunisia</code></td>
-<td style="text-align:center">🇹🇴</td>
-<td><code>tonga</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇹🇷</td>
-<td><code>tr</code></td>
-<td style="text-align:center">🇹🇹</td>
-<td><code>trinidad_tobago</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇹🇻</td>
-<td><code>tuvalu</code></td>
-<td style="text-align:center">🇹🇼</td>
-<td><code>taiwan</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇹🇿</td>
-<td><code>tanzania</code></td>
-<td style="text-align:center">🇺🇦</td>
-<td><code>ukraine</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇺🇬</td>
-<td><code>uganda</code></td>
-<td style="text-align:center">🇺🇸</td>
-<td><code>us</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇺🇾</td>
-<td><code>uruguay</code></td>
-<td style="text-align:center">🇺🇿</td>
-<td><code>uzbekistan</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇻🇦</td>
-<td><code>vatican_city</code></td>
-<td style="text-align:center">🇻🇨</td>
-<td><code>st_vincent_grenadines</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇻🇪</td>
-<td><code>venezuela</code></td>
-<td style="text-align:center">🇻🇬</td>
-<td><code>british_virgin_islands</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇻🇮</td>
-<td><code>us_virgin_islands</code></td>
-<td style="text-align:center">🇻🇳</td>
-<td><code>vietnam</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇻🇺</td>
-<td><code>vanuatu</code></td>
-<td style="text-align:center">🇼🇫</td>
-<td><code>wallis_futuna</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇼🇸</td>
-<td><code>samoa</code></td>
-<td style="text-align:center">🇽🇰</td>
-<td><code>kosovo</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇾🇪</td>
-<td><code>yemen</code></td>
-<td style="text-align:center">🇾🇹</td>
-<td><code>mayotte</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇿🇦</td>
-<td><code>south_africa</code></td>
-<td style="text-align:center">🇿🇲</td>
-<td><code>zambia</code></td>
-</tr>
-<tr>
-<td style="text-align:center">🇿🇼</td>
-<td><code>zimbabwe</code></td>
-<td style="text-align:center"></td>
-<td></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: center">图标</th>
+          <th style="text-align: left">代码</th>
+          <th style="text-align: center">图标</th>
+          <th style="text-align: left">代码</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">&#x1f1e6;&#x1f1e9;</td>
+          <td style="text-align: left"><code>andorra</code></td>
+          <td style="text-align: center">&#x1f1e6;&#x1f1ea;</td>
+          <td style="text-align: left"><code>united_arab_emirates</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1e6;&#x1f1eb;</td>
+          <td style="text-align: left"><code>afghanistan</code></td>
+          <td style="text-align: center">&#x1f1e6;&#x1f1ec;</td>
+          <td style="text-align: left"><code>antigua_barbuda</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1e6;&#x1f1ee;</td>
+          <td style="text-align: left"><code>anguilla</code></td>
+          <td style="text-align: center">&#x1f1e6;&#x1f1f1;</td>
+          <td style="text-align: left"><code>albania</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1e6;&#x1f1f2;</td>
+          <td style="text-align: left"><code>armenia</code></td>
+          <td style="text-align: center">&#x1f1e6;&#x1f1f4;</td>
+          <td style="text-align: left"><code>angola</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1e6;&#x1f1f6;</td>
+          <td style="text-align: left"><code>antarctica</code></td>
+          <td style="text-align: center">&#x1f1e6;&#x1f1f7;</td>
+          <td style="text-align: left"><code>argentina</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1e6;&#x1f1f8;</td>
+          <td style="text-align: left"><code>american_samoa</code></td>
+          <td style="text-align: center">&#x1f1e6;&#x1f1f9;</td>
+          <td style="text-align: left"><code>austria</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1e6;&#x1f1fa;</td>
+          <td style="text-align: left"><code>australia</code></td>
+          <td style="text-align: center">&#x1f1e6;&#x1f1fc;</td>
+          <td style="text-align: left"><code>aruba</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1e6;&#x1f1fd;</td>
+          <td style="text-align: left"><code>aland_islands</code></td>
+          <td style="text-align: center">&#x1f1e6;&#x1f1ff;</td>
+          <td style="text-align: left"><code>azerbaijan</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1e7;&#x1f1e6;</td>
+          <td style="text-align: left"><code>bosnia_herzegovina</code></td>
+          <td style="text-align: center">&#x1f1e7;&#x1f1e7;</td>
+          <td style="text-align: left"><code>barbados</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1e7;&#x1f1e9;</td>
+          <td style="text-align: left"><code>bangladesh</code></td>
+          <td style="text-align: center">&#x1f1e7;&#x1f1ea;</td>
+          <td style="text-align: left"><code>belgium</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1e7;&#x1f1eb;</td>
+          <td style="text-align: left"><code>burkina_faso</code></td>
+          <td style="text-align: center">&#x1f1e7;&#x1f1ec;</td>
+          <td style="text-align: left"><code>bulgaria</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1e7;&#x1f1ed;</td>
+          <td style="text-align: left"><code>bahrain</code></td>
+          <td style="text-align: center">&#x1f1e7;&#x1f1ee;</td>
+          <td style="text-align: left"><code>burundi</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1e7;&#x1f1ef;</td>
+          <td style="text-align: left"><code>benin</code></td>
+          <td style="text-align: center">&#x1f1e7;&#x1f1f1;</td>
+          <td style="text-align: left"><code>st_barthelemy</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1e7;&#x1f1f2;</td>
+          <td style="text-align: left"><code>bermuda</code></td>
+          <td style="text-align: center">&#x1f1e7;&#x1f1f3;</td>
+          <td style="text-align: left"><code>brunei</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1e7;&#x1f1f4;</td>
+          <td style="text-align: left"><code>bolivia</code></td>
+          <td style="text-align: center">&#x1f1e7;&#x1f1f6;</td>
+          <td style="text-align: left"><code>caribbean_netherlands</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1e7;&#x1f1f7;</td>
+          <td style="text-align: left"><code>brazil</code></td>
+          <td style="text-align: center">&#x1f1e7;&#x1f1f8;</td>
+          <td style="text-align: left"><code>bahamas</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1e7;&#x1f1f9;</td>
+          <td style="text-align: left"><code>bhutan</code></td>
+          <td style="text-align: center">&#x1f1e7;&#x1f1fc;</td>
+          <td style="text-align: left"><code>botswana</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1e7;&#x1f1fe;</td>
+          <td style="text-align: left"><code>belarus</code></td>
+          <td style="text-align: center">&#x1f1e7;&#x1f1ff;</td>
+          <td style="text-align: left"><code>belize</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1e8;&#x1f1e6;</td>
+          <td style="text-align: left"><code>canada</code></td>
+          <td style="text-align: center">&#x1f1e8;&#x1f1e8;</td>
+          <td style="text-align: left"><code>cocos_islands</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1e8;&#x1f1e9;</td>
+          <td style="text-align: left"><code>congo_kinshasa</code></td>
+          <td style="text-align: center">&#x1f1e8;&#x1f1eb;</td>
+          <td style="text-align: left"><code>central_african_republic</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1e8;&#x1f1ec;</td>
+          <td style="text-align: left"><code>congo_brazzaville</code></td>
+          <td style="text-align: center">&#x1f1e8;&#x1f1ed;</td>
+          <td style="text-align: left"><code>switzerland</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1e8;&#x1f1ee;</td>
+          <td style="text-align: left"><code>cote_divoire</code></td>
+          <td style="text-align: center">&#x1f1e8;&#x1f1f0;</td>
+          <td style="text-align: left"><code>cook_islands</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1e8;&#x1f1f1;</td>
+          <td style="text-align: left"><code>chile</code></td>
+          <td style="text-align: center">&#x1f1e8;&#x1f1f2;</td>
+          <td style="text-align: left"><code>cameroon</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1e8;&#x1f1f3;</td>
+          <td style="text-align: left"><code>cn</code></td>
+          <td style="text-align: center">&#x1f1e8;&#x1f1f4;</td>
+          <td style="text-align: left"><code>colombia</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1e8;&#x1f1f7;</td>
+          <td style="text-align: left"><code>costa_rica</code></td>
+          <td style="text-align: center">&#x1f1e8;&#x1f1fa;</td>
+          <td style="text-align: left"><code>cuba</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1e8;&#x1f1fb;</td>
+          <td style="text-align: left"><code>cape_verde</code></td>
+          <td style="text-align: center">&#x1f1e8;&#x1f1fc;</td>
+          <td style="text-align: left"><code>curacao</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1e8;&#x1f1fd;</td>
+          <td style="text-align: left"><code>christmas_island</code></td>
+          <td style="text-align: center">&#x1f1e8;&#x1f1fe;</td>
+          <td style="text-align: left"><code>cyprus</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1e8;&#x1f1ff;</td>
+          <td style="text-align: left"><code>czech_republic</code></td>
+          <td style="text-align: center">&#x1f1e9;&#x1f1ea;</td>
+          <td style="text-align: left"><code>de</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1e9;&#x1f1ef;</td>
+          <td style="text-align: left"><code>djibouti</code></td>
+          <td style="text-align: center">&#x1f1e9;&#x1f1f0;</td>
+          <td style="text-align: left"><code>denmark</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1e9;&#x1f1f2;</td>
+          <td style="text-align: left"><code>dominica</code></td>
+          <td style="text-align: center">&#x1f1e9;&#x1f1f4;</td>
+          <td style="text-align: left"><code>dominican_republic</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1e9;&#x1f1ff;</td>
+          <td style="text-align: left"><code>algeria</code></td>
+          <td style="text-align: center">&#x1f1ea;&#x1f1e8;</td>
+          <td style="text-align: left"><code>ecuador</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1ea;&#x1f1ea;</td>
+          <td style="text-align: left"><code>estonia</code></td>
+          <td style="text-align: center">&#x1f1ea;&#x1f1ec;</td>
+          <td style="text-align: left"><code>egypt</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1ea;&#x1f1ed;</td>
+          <td style="text-align: left"><code>western_sahara</code></td>
+          <td style="text-align: center">&#x1f1ea;&#x1f1f7;</td>
+          <td style="text-align: left"><code>eritrea</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1ea;&#x1f1f8;</td>
+          <td style="text-align: left"><code>es</code></td>
+          <td style="text-align: center">&#x1f1ea;&#x1f1f9;</td>
+          <td style="text-align: left"><code>ethiopia</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1ea;&#x1f1fa;</td>
+          <td style="text-align: left"><code>eu</code> <br /> <code>european_union</code></td>
+          <td style="text-align: center">&#x1f1eb;&#x1f1ee;</td>
+          <td style="text-align: left"><code>finland</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1eb;&#x1f1ef;</td>
+          <td style="text-align: left"><code>fiji</code></td>
+          <td style="text-align: center">&#x1f1eb;&#x1f1f0;</td>
+          <td style="text-align: left"><code>falkland_islands</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1eb;&#x1f1f2;</td>
+          <td style="text-align: left"><code>micronesia</code></td>
+          <td style="text-align: center">&#x1f1eb;&#x1f1f4;</td>
+          <td style="text-align: left"><code>faroe_islands</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1eb;&#x1f1f7;</td>
+          <td style="text-align: left"><code>fr</code></td>
+          <td style="text-align: center">&#x1f1ec;&#x1f1e6;</td>
+          <td style="text-align: left"><code>gabon</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1ec;&#x1f1e7;</td>
+          <td style="text-align: left"><code>gb</code> <br /> <code>uk</code></td>
+          <td style="text-align: center">&#x1f1ec;&#x1f1e9;</td>
+          <td style="text-align: left"><code>grenada</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1ec;&#x1f1ea;</td>
+          <td style="text-align: left"><code>georgia</code></td>
+          <td style="text-align: center">&#x1f1ec;&#x1f1eb;</td>
+          <td style="text-align: left"><code>french_guiana</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1ec;&#x1f1ec;</td>
+          <td style="text-align: left"><code>guernsey</code></td>
+          <td style="text-align: center">&#x1f1ec;&#x1f1ed;</td>
+          <td style="text-align: left"><code>ghana</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1ec;&#x1f1ee;</td>
+          <td style="text-align: left"><code>gibraltar</code></td>
+          <td style="text-align: center">&#x1f1ec;&#x1f1f1;</td>
+          <td style="text-align: left"><code>greenland</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1ec;&#x1f1f2;</td>
+          <td style="text-align: left"><code>gambia</code></td>
+          <td style="text-align: center">&#x1f1ec;&#x1f1f3;</td>
+          <td style="text-align: left"><code>guinea</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1ec;&#x1f1f5;</td>
+          <td style="text-align: left"><code>guadeloupe</code></td>
+          <td style="text-align: center">&#x1f1ec;&#x1f1f6;</td>
+          <td style="text-align: left"><code>equatorial_guinea</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1ec;&#x1f1f7;</td>
+          <td style="text-align: left"><code>greece</code></td>
+          <td style="text-align: center">&#x1f1ec;&#x1f1f8;</td>
+          <td style="text-align: left"><code>south_georgia_south_sandwich_islands</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1ec;&#x1f1f9;</td>
+          <td style="text-align: left"><code>guatemala</code></td>
+          <td style="text-align: center">&#x1f1ec;&#x1f1fa;</td>
+          <td style="text-align: left"><code>guam</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1ec;&#x1f1fc;</td>
+          <td style="text-align: left"><code>guinea_bissau</code></td>
+          <td style="text-align: center">&#x1f1ec;&#x1f1fe;</td>
+          <td style="text-align: left"><code>guyana</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1ed;&#x1f1f0;</td>
+          <td style="text-align: left"><code>hong_kong</code></td>
+          <td style="text-align: center">&#x1f1ed;&#x1f1f3;</td>
+          <td style="text-align: left"><code>honduras</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1ed;&#x1f1f7;</td>
+          <td style="text-align: left"><code>croatia</code></td>
+          <td style="text-align: center">&#x1f1ed;&#x1f1f9;</td>
+          <td style="text-align: left"><code>haiti</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1ed;&#x1f1fa;</td>
+          <td style="text-align: left"><code>hungary</code></td>
+          <td style="text-align: center">&#x1f1ee;&#x1f1e8;</td>
+          <td style="text-align: left"><code>canary_islands</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1ee;&#x1f1e9;</td>
+          <td style="text-align: left"><code>indonesia</code></td>
+          <td style="text-align: center">&#x1f1ee;&#x1f1ea;</td>
+          <td style="text-align: left"><code>ireland</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1ee;&#x1f1f1;</td>
+          <td style="text-align: left"><code>israel</code></td>
+          <td style="text-align: center">&#x1f1ee;&#x1f1f2;</td>
+          <td style="text-align: left"><code>isle_of_man</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1ee;&#x1f1f3;</td>
+          <td style="text-align: left"><code>india</code></td>
+          <td style="text-align: center">&#x1f1ee;&#x1f1f4;</td>
+          <td style="text-align: left"><code>british_indian_ocean_territory</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1ee;&#x1f1f6;</td>
+          <td style="text-align: left"><code>iraq</code></td>
+          <td style="text-align: center">&#x1f1ee;&#x1f1f7;</td>
+          <td style="text-align: left"><code>iran</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1ee;&#x1f1f8;</td>
+          <td style="text-align: left"><code>iceland</code></td>
+          <td style="text-align: center">&#x1f1ee;&#x1f1f9;</td>
+          <td style="text-align: left"><code>it</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1ef;&#x1f1ea;</td>
+          <td style="text-align: left"><code>jersey</code></td>
+          <td style="text-align: center">&#x1f1ef;&#x1f1f2;</td>
+          <td style="text-align: left"><code>jamaica</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1ef;&#x1f1f4;</td>
+          <td style="text-align: left"><code>jordan</code></td>
+          <td style="text-align: center">&#x1f1ef;&#x1f1f5;</td>
+          <td style="text-align: left"><code>jp</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f0;&#x1f1ea;</td>
+          <td style="text-align: left"><code>kenya</code></td>
+          <td style="text-align: center">&#x1f1f0;&#x1f1ec;</td>
+          <td style="text-align: left"><code>kyrgyzstan</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f0;&#x1f1ed;</td>
+          <td style="text-align: left"><code>cambodia</code></td>
+          <td style="text-align: center">&#x1f1f0;&#x1f1ee;</td>
+          <td style="text-align: left"><code>kiribati</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f0;&#x1f1f2;</td>
+          <td style="text-align: left"><code>comoros</code></td>
+          <td style="text-align: center">&#x1f1f0;&#x1f1f3;</td>
+          <td style="text-align: left"><code>st_kitts_nevis</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f0;&#x1f1f5;</td>
+          <td style="text-align: left"><code>north_korea</code></td>
+          <td style="text-align: center">&#x1f1f0;&#x1f1f7;</td>
+          <td style="text-align: left"><code>kr</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f0;&#x1f1fc;</td>
+          <td style="text-align: left"><code>kuwait</code></td>
+          <td style="text-align: center">&#x1f1f0;&#x1f1fe;</td>
+          <td style="text-align: left"><code>cayman_islands</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f0;&#x1f1ff;</td>
+          <td style="text-align: left"><code>kazakhstan</code></td>
+          <td style="text-align: center">&#x1f1f1;&#x1f1e6;</td>
+          <td style="text-align: left"><code>laos</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f1;&#x1f1e7;</td>
+          <td style="text-align: left"><code>lebanon</code></td>
+          <td style="text-align: center">&#x1f1f1;&#x1f1e8;</td>
+          <td style="text-align: left"><code>st_lucia</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f1;&#x1f1ee;</td>
+          <td style="text-align: left"><code>liechtenstein</code></td>
+          <td style="text-align: center">&#x1f1f1;&#x1f1f0;</td>
+          <td style="text-align: left"><code>sri_lanka</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f1;&#x1f1f7;</td>
+          <td style="text-align: left"><code>liberia</code></td>
+          <td style="text-align: center">&#x1f1f1;&#x1f1f8;</td>
+          <td style="text-align: left"><code>lesotho</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f1;&#x1f1f9;</td>
+          <td style="text-align: left"><code>lithuania</code></td>
+          <td style="text-align: center">&#x1f1f1;&#x1f1fa;</td>
+          <td style="text-align: left"><code>luxembourg</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f1;&#x1f1fb;</td>
+          <td style="text-align: left"><code>latvia</code></td>
+          <td style="text-align: center">&#x1f1f1;&#x1f1fe;</td>
+          <td style="text-align: left"><code>libya</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f2;&#x1f1e6;</td>
+          <td style="text-align: left"><code>morocco</code></td>
+          <td style="text-align: center">&#x1f1f2;&#x1f1e8;</td>
+          <td style="text-align: left"><code>monaco</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f2;&#x1f1e9;</td>
+          <td style="text-align: left"><code>moldova</code></td>
+          <td style="text-align: center">&#x1f1f2;&#x1f1ea;</td>
+          <td style="text-align: left"><code>montenegro</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f2;&#x1f1ec;</td>
+          <td style="text-align: left"><code>madagascar</code></td>
+          <td style="text-align: center">&#x1f1f2;&#x1f1ed;</td>
+          <td style="text-align: left"><code>marshall_islands</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f2;&#x1f1f0;</td>
+          <td style="text-align: left"><code>macedonia</code></td>
+          <td style="text-align: center">&#x1f1f2;&#x1f1f1;</td>
+          <td style="text-align: left"><code>mali</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f2;&#x1f1f2;</td>
+          <td style="text-align: left"><code>myanmar</code></td>
+          <td style="text-align: center">&#x1f1f2;&#x1f1f3;</td>
+          <td style="text-align: left"><code>mongolia</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f2;&#x1f1f4;</td>
+          <td style="text-align: left"><code>macau</code></td>
+          <td style="text-align: center">&#x1f1f2;&#x1f1f5;</td>
+          <td style="text-align: left"><code>northern_mariana_islands</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f2;&#x1f1f6;</td>
+          <td style="text-align: left"><code>martinique</code></td>
+          <td style="text-align: center">&#x1f1f2;&#x1f1f7;</td>
+          <td style="text-align: left"><code>mauritania</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f2;&#x1f1f8;</td>
+          <td style="text-align: left"><code>montserrat</code></td>
+          <td style="text-align: center">&#x1f1f2;&#x1f1f9;</td>
+          <td style="text-align: left"><code>malta</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f2;&#x1f1fa;</td>
+          <td style="text-align: left"><code>mauritius</code></td>
+          <td style="text-align: center">&#x1f1f2;&#x1f1fb;</td>
+          <td style="text-align: left"><code>maldives</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f2;&#x1f1fc;</td>
+          <td style="text-align: left"><code>malawi</code></td>
+          <td style="text-align: center">&#x1f1f2;&#x1f1fd;</td>
+          <td style="text-align: left"><code>mexico</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f2;&#x1f1fe;</td>
+          <td style="text-align: left"><code>malaysia</code></td>
+          <td style="text-align: center">&#x1f1f2;&#x1f1ff;</td>
+          <td style="text-align: left"><code>mozambique</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f3;&#x1f1e6;</td>
+          <td style="text-align: left"><code>namibia</code></td>
+          <td style="text-align: center">&#x1f1f3;&#x1f1e8;</td>
+          <td style="text-align: left"><code>new_caledonia</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f3;&#x1f1ea;</td>
+          <td style="text-align: left"><code>niger</code></td>
+          <td style="text-align: center">&#x1f1f3;&#x1f1eb;</td>
+          <td style="text-align: left"><code>norfolk_island</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f3;&#x1f1ec;</td>
+          <td style="text-align: left"><code>nigeria</code></td>
+          <td style="text-align: center">&#x1f1f3;&#x1f1ee;</td>
+          <td style="text-align: left"><code>nicaragua</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f3;&#x1f1f1;</td>
+          <td style="text-align: left"><code>netherlands</code></td>
+          <td style="text-align: center">&#x1f1f3;&#x1f1f4;</td>
+          <td style="text-align: left"><code>norway</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f3;&#x1f1f5;</td>
+          <td style="text-align: left"><code>nepal</code></td>
+          <td style="text-align: center">&#x1f1f3;&#x1f1f7;</td>
+          <td style="text-align: left"><code>nauru</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f3;&#x1f1fa;</td>
+          <td style="text-align: left"><code>niue</code></td>
+          <td style="text-align: center">&#x1f1f3;&#x1f1ff;</td>
+          <td style="text-align: left"><code>new_zealand</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f4;&#x1f1f2;</td>
+          <td style="text-align: left"><code>oman</code></td>
+          <td style="text-align: center">&#x1f1f5;&#x1f1e6;</td>
+          <td style="text-align: left"><code>panama</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f5;&#x1f1ea;</td>
+          <td style="text-align: left"><code>peru</code></td>
+          <td style="text-align: center">&#x1f1f5;&#x1f1eb;</td>
+          <td style="text-align: left"><code>french_polynesia</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f5;&#x1f1ec;</td>
+          <td style="text-align: left"><code>papua_new_guinea</code></td>
+          <td style="text-align: center">&#x1f1f5;&#x1f1ed;</td>
+          <td style="text-align: left"><code>philippines</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f5;&#x1f1f0;</td>
+          <td style="text-align: left"><code>pakistan</code></td>
+          <td style="text-align: center">&#x1f1f5;&#x1f1f1;</td>
+          <td style="text-align: left"><code>poland</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f5;&#x1f1f2;</td>
+          <td style="text-align: left"><code>st_pierre_miquelon</code></td>
+          <td style="text-align: center">&#x1f1f5;&#x1f1f3;</td>
+          <td style="text-align: left"><code>pitcairn_islands</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f5;&#x1f1f7;</td>
+          <td style="text-align: left"><code>puerto_rico</code></td>
+          <td style="text-align: center">&#x1f1f5;&#x1f1f8;</td>
+          <td style="text-align: left"><code>palestinian_territories</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f5;&#x1f1f9;</td>
+          <td style="text-align: left"><code>portugal</code></td>
+          <td style="text-align: center">&#x1f1f5;&#x1f1fc;</td>
+          <td style="text-align: left"><code>palau</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f5;&#x1f1fe;</td>
+          <td style="text-align: left"><code>paraguay</code></td>
+          <td style="text-align: center">&#x1f1f6;&#x1f1e6;</td>
+          <td style="text-align: left"><code>qatar</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f7;&#x1f1ea;</td>
+          <td style="text-align: left"><code>reunion</code></td>
+          <td style="text-align: center">&#x1f1f7;&#x1f1f4;</td>
+          <td style="text-align: left"><code>romania</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f7;&#x1f1f8;</td>
+          <td style="text-align: left"><code>serbia</code></td>
+          <td style="text-align: center">&#x1f1f7;&#x1f1fa;</td>
+          <td style="text-align: left"><code>ru</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f7;&#x1f1fc;</td>
+          <td style="text-align: left"><code>rwanda</code></td>
+          <td style="text-align: center">&#x1f1f8;&#x1f1e6;</td>
+          <td style="text-align: left"><code>saudi_arabia</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f8;&#x1f1e7;</td>
+          <td style="text-align: left"><code>solomon_islands</code></td>
+          <td style="text-align: center">&#x1f1f8;&#x1f1e8;</td>
+          <td style="text-align: left"><code>seychelles</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f8;&#x1f1e9;</td>
+          <td style="text-align: left"><code>sudan</code></td>
+          <td style="text-align: center">&#x1f1f8;&#x1f1ea;</td>
+          <td style="text-align: left"><code>sweden</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f8;&#x1f1ec;</td>
+          <td style="text-align: left"><code>singapore</code></td>
+          <td style="text-align: center">&#x1f1f8;&#x1f1ed;</td>
+          <td style="text-align: left"><code>st_helena</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f8;&#x1f1ee;</td>
+          <td style="text-align: left"><code>slovenia</code></td>
+          <td style="text-align: center">&#x1f1f8;&#x1f1f0;</td>
+          <td style="text-align: left"><code>slovakia</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f8;&#x1f1f1;</td>
+          <td style="text-align: left"><code>sierra_leone</code></td>
+          <td style="text-align: center">&#x1f1f8;&#x1f1f2;</td>
+          <td style="text-align: left"><code>san_marino</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f8;&#x1f1f3;</td>
+          <td style="text-align: left"><code>senegal</code></td>
+          <td style="text-align: center">&#x1f1f8;&#x1f1f4;</td>
+          <td style="text-align: left"><code>somalia</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f8;&#x1f1f7;</td>
+          <td style="text-align: left"><code>suriname</code></td>
+          <td style="text-align: center">&#x1f1f8;&#x1f1f8;</td>
+          <td style="text-align: left"><code>south_sudan</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f8;&#x1f1f9;</td>
+          <td style="text-align: left"><code>sao_tome_principe</code></td>
+          <td style="text-align: center">&#x1f1f8;&#x1f1fb;</td>
+          <td style="text-align: left"><code>el_salvador</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f8;&#x1f1fd;</td>
+          <td style="text-align: left"><code>sint_maarten</code></td>
+          <td style="text-align: center">&#x1f1f8;&#x1f1fe;</td>
+          <td style="text-align: left"><code>syria</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f8;&#x1f1ff;</td>
+          <td style="text-align: left"><code>swaziland</code></td>
+          <td style="text-align: center">&#x1f1f9;&#x1f1e8;</td>
+          <td style="text-align: left"><code>turks_caicos_islands</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f9;&#x1f1e9;</td>
+          <td style="text-align: left"><code>chad</code></td>
+          <td style="text-align: center">&#x1f1f9;&#x1f1eb;</td>
+          <td style="text-align: left"><code>french_southern_territories</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f9;&#x1f1ec;</td>
+          <td style="text-align: left"><code>togo</code></td>
+          <td style="text-align: center">&#x1f1f9;&#x1f1ed;</td>
+          <td style="text-align: left"><code>thailand</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f9;&#x1f1ef;</td>
+          <td style="text-align: left"><code>tajikistan</code></td>
+          <td style="text-align: center">&#x1f1f9;&#x1f1f0;</td>
+          <td style="text-align: left"><code>tokelau</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f9;&#x1f1f1;</td>
+          <td style="text-align: left"><code>timor_leste</code></td>
+          <td style="text-align: center">&#x1f1f9;&#x1f1f2;</td>
+          <td style="text-align: left"><code>turkmenistan</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f9;&#x1f1f3;</td>
+          <td style="text-align: left"><code>tunisia</code></td>
+          <td style="text-align: center">&#x1f1f9;&#x1f1f4;</td>
+          <td style="text-align: left"><code>tonga</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f9;&#x1f1f7;</td>
+          <td style="text-align: left"><code>tr</code></td>
+          <td style="text-align: center">&#x1f1f9;&#x1f1f9;</td>
+          <td style="text-align: left"><code>trinidad_tobago</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f9;&#x1f1fb;</td>
+          <td style="text-align: left"><code>tuvalu</code></td>
+          <td style="text-align: center">&#x1f1f9;&#x1f1fc;</td>
+          <td style="text-align: left"><code>taiwan</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1f9;&#x1f1ff;</td>
+          <td style="text-align: left"><code>tanzania</code></td>
+          <td style="text-align: center">&#x1f1fa;&#x1f1e6;</td>
+          <td style="text-align: left"><code>ukraine</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1fa;&#x1f1ec;</td>
+          <td style="text-align: left"><code>uganda</code></td>
+          <td style="text-align: center">&#x1f1fa;&#x1f1f8;</td>
+          <td style="text-align: left"><code>us</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1fa;&#x1f1fe;</td>
+          <td style="text-align: left"><code>uruguay</code></td>
+          <td style="text-align: center">&#x1f1fa;&#x1f1ff;</td>
+          <td style="text-align: left"><code>uzbekistan</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1fb;&#x1f1e6;</td>
+          <td style="text-align: left"><code>vatican_city</code></td>
+          <td style="text-align: center">&#x1f1fb;&#x1f1e8;</td>
+          <td style="text-align: left"><code>st_vincent_grenadines</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1fb;&#x1f1ea;</td>
+          <td style="text-align: left"><code>venezuela</code></td>
+          <td style="text-align: center">&#x1f1fb;&#x1f1ec;</td>
+          <td style="text-align: left"><code>british_virgin_islands</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1fb;&#x1f1ee;</td>
+          <td style="text-align: left"><code>us_virgin_islands</code></td>
+          <td style="text-align: center">&#x1f1fb;&#x1f1f3;</td>
+          <td style="text-align: left"><code>vietnam</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1fb;&#x1f1fa;</td>
+          <td style="text-align: left"><code>vanuatu</code></td>
+          <td style="text-align: center">&#x1f1fc;&#x1f1eb;</td>
+          <td style="text-align: left"><code>wallis_futuna</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1fc;&#x1f1f8;</td>
+          <td style="text-align: left"><code>samoa</code></td>
+          <td style="text-align: center">&#x1f1fd;&#x1f1f0;</td>
+          <td style="text-align: left"><code>kosovo</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1fe;&#x1f1ea;</td>
+          <td style="text-align: left"><code>yemen</code></td>
+          <td style="text-align: center">&#x1f1fe;&#x1f1f9;</td>
+          <td style="text-align: left"><code>mayotte</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1ff;&#x1f1e6;</td>
+          <td style="text-align: left"><code>south_africa</code></td>
+          <td style="text-align: center">&#x1f1ff;&#x1f1f2;</td>
+          <td style="text-align: left"><code>zambia</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&#x1f1ff;&#x1f1fc;</td>
+          <td style="text-align: left"><code>zimbabwe</code></td>
+          <td style="text-align: center"></td>
+          <td style="text-align: left"></td>
+      </tr>
+  </tbody>
 </table>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1543398821442998"
      crossorigin="anonymous"></script>
@@ -1376,8 +1372,8 @@
 </div>
 <div class="post-nav">
   <div class="post-nav-next post-nav-item">
-    <a href="/post/syntax-highlighting.html" rel="next" title="Hugo 内置的 Chroma 语法高亮">
-      <i class="fa fa-chevron-left"></i> Hugo 内置的 Chroma 语法高亮
+    <a href="/post/table-of-content.html" rel="next" title="文章目录导航">
+      <i class="fa fa-chevron-left"></i> 文章目录导航
     </a>
   </div>
   <div class="post-nav-prev post-nav-item">
@@ -1438,7 +1434,7 @@
   
   <script type="text/javascript" src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js" defer></script>
 
-<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
+<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com/","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
 
 
 
@@ -1446,7 +1442,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.7e59cf1a98d842830d8a6f149f78fbbcf9e795b7a9eb76feb34b48c9bf1554d7.js" defer></script>
+<script type="text/javascript" src="/js/main.min.8bc1e2a2ac040735a2a32d113d257bd75c45142b9842ad7526f7de5e3d3a9298.js" defer></script>
 
 
 

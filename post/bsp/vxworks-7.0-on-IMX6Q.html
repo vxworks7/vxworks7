@@ -4,7 +4,7 @@
 <head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)" />
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.135.0">
 <link rel="shortcut icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
@@ -32,6 +32,7 @@
 <meta property="article:modified_time" content="2022-12-23 22:24:27 -0500 -0500" />
 
 
+
   
   <link type="text/css" rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.2/css/all.min.css" />
   
@@ -39,11 +40,6 @@
 
 
 <link rel="stylesheet" href="/css/main.min.7d561ec9984cf0cb727fc88e14a92134576c99ccb9ce2f31b5b5541ab4ced328.css">
-  <style type="text/css">
-    .post-footer, .flinks-list-footer hr:after {
-      content: "~ 我可是有底线的哟 ~";
-    }
-  </style>
   <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"vxworks-7.0-on-IMX6Q.html","permalink":"https://www.vxworks7.com/post/bsp/vxworks-7.0-on-IMX6Q.html","title":"IMX6Q 运行 VxWorks 7.0 系统"}</script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
@@ -116,7 +112,7 @@
     </li>
     <li class="menu-item menu-item-archives">
       <a href="/archives/" class="hvr-icon-pulse " rel="section"><i class="fa fa-archive hvr-icon"></i>归档
-        <span class="badge">95</span>
+        <span class="badge">94</span>
       </a>
     </li>
     <li class="menu-item menu-item-commonweal">
@@ -187,7 +183,7 @@
   <nav class="site-state">
     <div class="site-state-item site-state-posts">
       <a href="/archives/">
-        <span class="site-state-item-count">95</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -199,7 +195,7 @@
     </div>
     <div class="site-state-item site-state-tags">
       <a href="/tags/">
-        <span class="site-state-item-count">133</span>
+        <span class="site-state-item-count">131</span>
         <span class="site-state-item-name">标签</span>
       </a>
     </div>
@@ -265,11 +261,11 @@
       </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-font"></i>总字数：</div>
-      <div class="item-count" id="wordsCount" data-count="28953"></div>
+      <div class="item-count" id="wordsCount" data-count="28814"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-mug-hot"></i>阅读约：</div>
-      <div class="item-count" id="readTimes" data-times="193"></div>
+      <div class="item-count" id="readTimes" data-times="192"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
@@ -384,298 +380,296 @@
       
   <p>本文简要概述了如何在IMX6Q上从uboot下载并启动VxWorks 7.0的过程。</p>
 <p><img src="https://www.vxworks.net/images/vxworks/IMX6Q-Board.png" alt="IMX6Q CRB"></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">U-Boot 2015.04 <span style="color:#f92672">(</span>Jan <span style="color:#ae81ff">01</span> <span style="color:#ae81ff">2017</span> - 22:35:22<span style="color:#f92672">)</span>
-
-CPU:   Freescale i.MX6Q rev1.5 at <span style="color:#ae81ff">792</span> MHz
-CPU:   Temperature <span style="color:#ae81ff">51</span> C
-Reset cause: POR
-Board: LYS-IMX6Q
-I2C:   ready
-DRAM:  <span style="color:#ae81ff">1</span> GiB
-MMC:   FSL_SDHC: 0, FSL_SDHC: 1, FSL_SDHC: <span style="color:#ae81ff">2</span>
-No panel detected: default to Hannstar-XGA
-Display: Hannstar-XGA <span style="color:#f92672">(</span>1024x768<span style="color:#f92672">)</span>
-In:    serial
-Out:   serial
-Err:   serial
-switch to partitions <span style="color:#75715e">#0, OK</span>
-mmc2<span style="color:#f92672">(</span>part 0<span style="color:#f92672">)</span> is current device
-Net:   FEC <span style="color:#f92672">[</span>PRIME<span style="color:#f92672">]</span>
-Normal Boot
-Hit any key to stop autoboot:  0 
-<span style="color:#f92672">=</span>&gt; 
-<span style="color:#f92672">=</span>&gt; 
-<span style="color:#f92672">=</span>&gt; tftp <span style="color:#ae81ff">10100000</span> vxworks.bin
-Using FEC device
-TFTP from server 192.168.0.106; our IP address is 192.168.0.3
-Filename <span style="color:#e6db74">&#39;vxworks.bin&#39;</span>.
-Load address: 0x10100000
-Loading: T <span style="color:#75715e">#################################################################</span>
-         <span style="color:#75715e">#################################################################</span>
-         <span style="color:#75715e">#################################################################</span>
-         <span style="color:#75715e">#################################################################</span>
-         <span style="color:#75715e">#################################################################</span>
-         <span style="color:#75715e">#################################################################</span>
-         <span style="color:#75715e">#################################################################</span>
-         <span style="color:#75715e">#</span>
-         617.2 KiB/s
-<span style="color:#66d9ef">done</span>
-Bytes transferred <span style="color:#f92672">=</span> <span style="color:#ae81ff">6679780</span> <span style="color:#f92672">(</span>65ece4 hex<span style="color:#f92672">)</span>
-<span style="color:#f92672">=</span>&gt; go <span style="color:#ae81ff">10100000</span>
-<span style="color:#75715e">## Starting application at 0x10100000 ...</span>
-Target Name: vxTarget 
- 
- _________            _________
- <span style="color:#ae81ff">\7</span>7777777<span style="color:#ae81ff">\ </span>         /77777777/
-  <span style="color:#ae81ff">\7</span>7777777<span style="color:#ae81ff">\ </span>       /77777777/
-   <span style="color:#ae81ff">\7</span>7777777<span style="color:#ae81ff">\ </span>     /77777777/
-    <span style="color:#ae81ff">\7</span>7777777<span style="color:#ae81ff">\ </span>   /77777777/
-     <span style="color:#ae81ff">\7</span>7777777<span style="color:#ae81ff">\ </span>  <span style="color:#ae81ff">\7</span>777777/
-      <span style="color:#ae81ff">\7</span>7777777<span style="color:#ae81ff">\ </span>  <span style="color:#ae81ff">\7</span>7777/              VxWorks <span style="color:#ae81ff">7</span>
-       <span style="color:#ae81ff">\7</span>7777777<span style="color:#ae81ff">\ </span>  <span style="color:#ae81ff">\7</span>77/
-        <span style="color:#ae81ff">\7</span>7777777<span style="color:#ae81ff">\ </span>  <span style="color:#ae81ff">\7</span>/     Core Kernel version: 1.2.0.1
-         <span style="color:#ae81ff">\7</span>7777777<span style="color:#ae81ff">\ </span>  -      Build date: May <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">2018</span> 23:37:28
-          <span style="color:#ae81ff">\7</span>7777777<span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>           <span style="color:#ae81ff">\7</span>777777/         Copyright Wind River Systems, Inc.
-            <span style="color:#ae81ff">\7</span>7777/   -                 1984-2018
-             <span style="color:#ae81ff">\7</span>77/   /7<span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>              <span style="color:#ae81ff">\7</span>/   /777<span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>               -   -------
-
-
-                   Board: LYS-IMX6Q i.MX6Q Processor - ARMv7
-          OS Memory Size: 2048MB
-        ED&amp;R Policy Mode: Deployed
-  Application Mode Agent: Not started
-         Stop Mode Agent: Not started
-
-
-
-
- Adding <span style="color:#ae81ff">14023</span> symbols <span style="color:#66d9ef">for</span> standalone.
-
-
--&gt; 
--&gt; devs
-drv name                
-  <span style="color:#ae81ff">0</span> /null               
-  <span style="color:#ae81ff">1</span> /tyCo/0             
-  <span style="color:#ae81ff">1</span> /tyCo/1             
-  <span style="color:#ae81ff">1</span> /tyCo/2             
-  <span style="color:#ae81ff">1</span> /tyCo/3             
-  <span style="color:#ae81ff">2</span> /vxbus              
-  <span style="color:#ae81ff">9</span> /input/event        
- <span style="color:#ae81ff">12</span> host:               
- <span style="color:#ae81ff">13</span> /dev/fb0            
- <span style="color:#ae81ff">14</span> /dev/galcore        
- <span style="color:#ae81ff">10</span> /audio/0            
-value <span style="color:#f92672">=</span> 25 <span style="color:#f92672">=</span> 0x19
--&gt; 
--&gt; Instantiating /sd1:2 as rawFs,  device <span style="color:#f92672">=</span> 0x30001
-
-
--&gt; Instantiating /mmc2:2 as rawFs,  device <span style="color:#f92672">=</span> 0xa0001
-
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">-&gt; 
--&gt; devs
-drv name                
-  <span style="color:#ae81ff">0</span> /null               
-  <span style="color:#ae81ff">1</span> /tyCo/0             
-  <span style="color:#ae81ff">1</span> /tyCo/1             
-  <span style="color:#ae81ff">1</span> /tyCo/2             
-  <span style="color:#ae81ff">1</span> /tyCo/3             
-  <span style="color:#ae81ff">2</span> /vxbus              
-  <span style="color:#ae81ff">9</span> /input/event        
- <span style="color:#ae81ff">12</span> host:               
- <span style="color:#ae81ff">13</span> /dev/fb0            
- <span style="color:#ae81ff">14</span> /dev/galcore        
- <span style="color:#ae81ff">10</span> /audio/0            
-  <span style="color:#ae81ff">4</span> /sd1:1              
-  <span style="color:#ae81ff">5</span> /sd1:2              
-  <span style="color:#ae81ff">4</span> /sd0:1              
-  <span style="color:#ae81ff">4</span> /mmc2:1             
-  <span style="color:#ae81ff">5</span> /mmc2:2             
-value <span style="color:#f92672">=</span> 25 <span style="color:#f92672">=</span> 0x19
--&gt; 
--&gt; 
--&gt; cd <span style="color:#e6db74">&#34;/sd0:1&#34;</span>
-value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
--&gt; 
--&gt; ll
-drwxrwxrwx  <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span>       <span style="color:#ae81ff">0</span>                 <span style="color:#ae81ff">4096</span> Mar  <span style="color:#ae81ff">8</span>  <span style="color:#ae81ff">2018</span> System Volume Information/
--rwxrwxrwx  <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span>       <span style="color:#ae81ff">0</span>             <span style="color:#ae81ff">12514633</span> Nov <span style="color:#ae81ff">26</span>  <span style="color:#ae81ff">2012</span> RAMDISK.GZ 
--rwxrwxrwx  <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span>       <span style="color:#ae81ff">0</span>             <span style="color:#ae81ff">14811136</span> Nov <span style="color:#ae81ff">26</span>  <span style="color:#ae81ff">2012</span> UBI.IMG 
--rwxrwxrwx  <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span>       <span style="color:#ae81ff">0</span>               <span style="color:#ae81ff">234896</span> Dec  <span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">2012</span> U-BOOT.IMG 
--rwxrwxrwx  <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span>       <span style="color:#ae81ff">0</span>              <span style="color:#ae81ff">3245384</span> Dec <span style="color:#ae81ff">27</span>  <span style="color:#ae81ff">2012</span> uImage 
--rwxrwxrwx  <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span>       <span style="color:#ae81ff">0</span>                <span style="color:#ae81ff">36079</span> Dec  <span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">2012</span> MLO 
-value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
--&gt; 
--&gt; 
--&gt; 
--&gt; ipAttach 0,<span style="color:#e6db74">&#34;gei&#34;</span>
-value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
--&gt; 
--&gt; ifconfig 
-lo0     Link type:Local loopback
-        inet 127.0.0.1  mask 255.255.255.255
-        inet6 unicast fe80::1%lo0  prefixlen <span style="color:#ae81ff">64</span>  automatic
-        inet6 unicast ::1  prefixlen <span style="color:#ae81ff">128</span>
-        UP RUNNING LOOPBACK MULTICAST NOARP ALLMULTI 
-        MTU:1500  metric:1  VR:0  ifindex:1
-        RX packets:0 mcast:0 errors:0 dropped:0
-        TX packets:0 mcast:0 errors:0
-        collisions:0 unsupported proto:0
-        RX bytes:0  TX bytes:0
-
-
-enet0   Link type:Ethernet  HWaddr 00:04:9f:b1:b2:b3
-        capabilities: VLAN_MTU 
-        inet 192.168.0.3  mask 255.255.255.0  broadcast 192.168.0.255
-        inet6 unicast fe80::204:9fff:feb1:b2b3%enet0  prefixlen <span style="color:#ae81ff">64</span>  automatic
-        UP RUNNING SIMPLEX BROADCAST MULTICAST 
-        MTU:1500  metric:1  VR:0  ifindex:2
-        RX packets:353 mcast:0 errors:0 dropped:4
-        TX packets:30 mcast:5 errors:0
-        collisions:0 unsupported proto:0
-        RX bytes:21366 <span style="color:#f92672">(</span><span style="color:#ae81ff">21</span> k<span style="color:#f92672">)</span>  TX bytes:1920
-
-
-gei0    Link type:Ethernet  HWaddr 00:1b:21:75:26:d7
-        capabilities: TXCSUM TX6CSUM VLAN_MTU VLAN_TXHWTAG VLAN_RXHWTAG 
-        SIMPLEX BROADCAST MULTICAST 
-        MTU:1500  metric:1  VR:0  ifindex:3
-        RX packets:0 mcast:0 errors:0 dropped:0
-        TX packets:0 mcast:0 errors:0
-        collisions:0 unsupported proto:0
-        RX bytes:0  TX bytes:0
-
-
-value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
--&gt; 
--&gt; ifconfig <span style="color:#e6db74">&#34;gei0 192.168.0.230 up&#34;</span>
-value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
--&gt; 
--&gt; ifconfig      
-lo0     Link type:Local loopback
-        inet 127.0.0.1  mask 255.255.255.255
-        inet6 unicast fe80::1%lo0  prefixlen <span style="color:#ae81ff">64</span>  automatic
-        inet6 unicast ::1  prefixlen <span style="color:#ae81ff">128</span>
-        UP RUNNING LOOPBACK MULTICAST NOARP ALLMULTI 
-        MTU:1500  metric:1  VR:0  ifindex:1
-        RX packets:0 mcast:0 errors:0 dropped:0
-        TX packets:0 mcast:0 errors:0
-        collisions:0 unsupported proto:0
-        RX bytes:0  TX bytes:0
-
-
-enet0   Link type:Ethernet  HWaddr 00:04:9f:b1:b2:b3
-        capabilities: VLAN_MTU 
-        inet 192.168.0.3  mask 255.255.255.0  broadcast 192.168.0.255
-        inet6 unicast fe80::204:9fff:feb1:b2b3%enet0  prefixlen <span style="color:#ae81ff">64</span>  automatic
-        UP RUNNING SIMPLEX BROADCAST MULTICAST 
-        MTU:1500  metric:1  VR:0  ifindex:2
-        RX packets:376 mcast:0 errors:0 dropped:4
-        TX packets:31 mcast:5 errors:0
-        collisions:0 unsupported proto:0
-        RX bytes:22746 <span style="color:#f92672">(</span><span style="color:#ae81ff">22</span> k<span style="color:#f92672">)</span>  TX bytes:1980
-
-
-gei0    Link type:Ethernet  HWaddr 00:1b:21:75:26:d7
-        capabilities: TXCSUM TX6CSUM VLAN_MTU VLAN_TXHWTAG VLAN_RXHWTAG 
-        inet 192.168.0.230  mask 255.255.255.0  broadcast 192.168.0.255
-        inet6 unicast fe80::21b:21ff:fe75:26d7%gei0  prefixlen <span style="color:#ae81ff">64</span>  tentative  automatic
-        UP RUNNING SIMPLEX BROADCAST MULTICAST 
-        MTU:1500  metric:1  VR:0  ifindex:3
-        RX packets:0 mcast:0 errors:0 dropped:0
-        TX packets:3 mcast:2 errors:0
-        collisions:0 unsupported proto:0
-        RX bytes:0  TX bytes:210
-
-
-value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
--&gt; 
--&gt; ifconfig <span style="color:#e6db74">&#34;enet0 down&#34;</span>
-value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
--&gt; 
--&gt; ifconfig
-lo0     Link type:Local loopback
-        inet 127.0.0.1  mask 255.255.255.255
-        inet6 unicast fe80::1%lo0  prefixlen <span style="color:#ae81ff">64</span>  automatic
-        inet6 unicast ::1  prefixlen <span style="color:#ae81ff">128</span>
-        UP RUNNING LOOPBACK MULTICAST NOARP ALLMULTI 
-        MTU:1500  metric:1  VR:0  ifindex:1
-        RX packets:0 mcast:0 errors:0 dropped:0
-        TX packets:0 mcast:0 errors:0
-        collisions:0 unsupported proto:0
-        RX bytes:0  TX bytes:0
-
-
-enet0   Link type:Ethernet  HWaddr 00:04:9f:b1:b2:b3
-        capabilities: VLAN_MTU 
-        inet 192.168.0.3  mask 255.255.255.0  broadcast 192.168.0.255
-        SIMPLEX BROADCAST MULTICAST 
-        MTU:1500  metric:1  VR:0  ifindex:2
-        RX packets:411 mcast:0 errors:0 dropped:25
-        TX packets:34 mcast:7 errors:0
-        collisions:0 unsupported proto:0
-        RX bytes:24868 <span style="color:#f92672">(</span><span style="color:#ae81ff">24</span> k<span style="color:#f92672">)</span>  TX bytes:2220
-
-
-gei0    Link type:Ethernet  HWaddr 00:1b:21:75:26:d7
-        capabilities: TXCSUM TX6CSUM VLAN_MTU VLAN_TXHWTAG VLAN_RXHWTAG 
-        inet 192.168.0.230  mask 255.255.255.0  broadcast 192.168.0.255
-        inet6 unicast fe80::21b:21ff:fe75:26d7%gei0  prefixlen <span style="color:#ae81ff">64</span>  tentative  automatic
-        UP SIMPLEX BROADCAST MULTICAST 
-        MTU:1500  metric:1  VR:0  ifindex:3
-        RX packets:0 mcast:0 errors:0 dropped:0
-        TX packets:12 mcast:11 errors:0
-        collisions:0 unsupported proto:0
-        RX bytes:0  TX bytes:900
-
-
-value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
--&gt; 
--&gt; 
--&gt; ifconfig
-lo0     Link type:Local loopback
-        inet 127.0.0.1  mask 255.255.255.255
-        inet6 unicast fe80::1%lo0  prefixlen <span style="color:#ae81ff">64</span>  automatic
-        inet6 unicast ::1  prefixlen <span style="color:#ae81ff">128</span>
-        UP RUNNING LOOPBACK MULTICAST NOARP ALLMULTI 
-        MTU:1500  metric:1  VR:0  ifindex:1
-        RX packets:0 mcast:0 errors:0 dropped:0
-        TX packets:0 mcast:0 errors:0
-        collisions:0 unsupported proto:0
-        RX bytes:0  TX bytes:0
-
-
-enet0   Link type:Ethernet  HWaddr 00:04:9f:b1:b2:b3
-        capabilities: VLAN_MTU 
-        inet 192.168.0.3  mask 255.255.255.0  broadcast 192.168.0.255
-        SIMPLEX BROADCAST MULTICAST 
-        MTU:1500  metric:1  VR:0  ifindex:2
-        RX packets:536 mcast:0 errors:0 dropped:150
-        TX packets:34 mcast:7 errors:0
-        collisions:0 unsupported proto:0
-        RX bytes:32412 <span style="color:#f92672">(</span><span style="color:#ae81ff">32</span> k<span style="color:#f92672">)</span>  TX bytes:2220
-
-
-gei0    Link type:Ethernet  HWaddr 00:1b:21:75:26:d7
-        capabilities: TXCSUM TX6CSUM VLAN_MTU VLAN_TXHWTAG VLAN_RXHWTAG 
-        inet 192.168.0.230  mask 255.255.255.0  broadcast 192.168.0.255
-        inet6 unicast fe80::21b:21ff:fe75:26d7%gei0  prefixlen <span style="color:#ae81ff">64</span>  automatic
-        UP RUNNING SIMPLEX BROADCAST MULTICAST 
-        MTU:1500  metric:1  VR:0  ifindex:3
-        RX packets:68 mcast:1 errors:0 dropped:61
-        TX packets:81 mcast:71 errors:0
-        collisions:0 unsupported proto:0
-        RX bytes:7687  TX bytes:6360
-
-
-value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
--&gt; 
-
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>U-Boot 2015.04 <span style="color:#f92672">(</span>Jan <span style="color:#ae81ff">01</span> <span style="color:#ae81ff">2017</span> - 22:35:22<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>CPU:   Freescale i.MX6Q rev1.5 at <span style="color:#ae81ff">792</span> MHz
+</span></span><span style="display:flex;"><span>CPU:   Temperature <span style="color:#ae81ff">51</span> C
+</span></span><span style="display:flex;"><span>Reset cause: POR
+</span></span><span style="display:flex;"><span>Board: LYS-IMX6Q
+</span></span><span style="display:flex;"><span>I2C:   ready
+</span></span><span style="display:flex;"><span>DRAM:  <span style="color:#ae81ff">1</span> GiB
+</span></span><span style="display:flex;"><span>MMC:   FSL_SDHC: 0, FSL_SDHC: 1, FSL_SDHC: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>No panel detected: default to Hannstar-XGA
+</span></span><span style="display:flex;"><span>Display: Hannstar-XGA <span style="color:#f92672">(</span>1024x768<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>In:    serial
+</span></span><span style="display:flex;"><span>Out:   serial
+</span></span><span style="display:flex;"><span>Err:   serial
+</span></span><span style="display:flex;"><span>switch to partitions <span style="color:#75715e">#0, OK</span>
+</span></span><span style="display:flex;"><span>mmc2<span style="color:#f92672">(</span>part 0<span style="color:#f92672">)</span> is current device
+</span></span><span style="display:flex;"><span>Net:   FEC <span style="color:#f92672">[</span>PRIME<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>Normal Boot
+</span></span><span style="display:flex;"><span>Hit any key to stop autoboot:  0 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">=</span>&gt; 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">=</span>&gt; 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">=</span>&gt; tftp <span style="color:#ae81ff">10100000</span> vxworks.bin
+</span></span><span style="display:flex;"><span>Using FEC device
+</span></span><span style="display:flex;"><span>TFTP from server 192.168.0.106; our IP address is 192.168.0.3
+</span></span><span style="display:flex;"><span>Filename <span style="color:#e6db74">&#39;vxworks.bin&#39;</span>.
+</span></span><span style="display:flex;"><span>Load address: 0x10100000
+</span></span><span style="display:flex;"><span>Loading: T <span style="color:#75715e">#################################################################</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#75715e">#################################################################</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#75715e">#################################################################</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#75715e">#################################################################</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#75715e">#################################################################</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#75715e">#################################################################</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#75715e">#################################################################</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span>         617.2 KiB/s
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>Bytes transferred <span style="color:#f92672">=</span> <span style="color:#ae81ff">6679780</span> <span style="color:#f92672">(</span>65ece4 hex<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">=</span>&gt; go <span style="color:#ae81ff">10100000</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Starting application at 0x10100000 ...</span>
+</span></span><span style="display:flex;"><span>Target Name: vxTarget 
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span> _________            _________
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">\7</span>7777777<span style="color:#ae81ff">\ </span>         /77777777/
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">\7</span>7777777<span style="color:#ae81ff">\ </span>       /77777777/
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">\7</span>7777777<span style="color:#ae81ff">\ </span>     /77777777/
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">\7</span>7777777<span style="color:#ae81ff">\ </span>   /77777777/
+</span></span><span style="display:flex;"><span>     <span style="color:#ae81ff">\7</span>7777777<span style="color:#ae81ff">\ </span>  <span style="color:#ae81ff">\7</span>777777/
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">\7</span>7777777<span style="color:#ae81ff">\ </span>  <span style="color:#ae81ff">\7</span>7777/              VxWorks <span style="color:#ae81ff">7</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#ae81ff">\7</span>7777777<span style="color:#ae81ff">\ </span>  <span style="color:#ae81ff">\7</span>77/
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">\7</span>7777777<span style="color:#ae81ff">\ </span>  <span style="color:#ae81ff">\7</span>/     Core Kernel version: 1.2.0.1
+</span></span><span style="display:flex;"><span>         <span style="color:#ae81ff">\7</span>7777777<span style="color:#ae81ff">\ </span>  -      Build date: May <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">2018</span> 23:37:28
+</span></span><span style="display:flex;"><span>          <span style="color:#ae81ff">\7</span>7777777<span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>           <span style="color:#ae81ff">\7</span>777777/         Copyright Wind River Systems, Inc.
+</span></span><span style="display:flex;"><span>            <span style="color:#ae81ff">\7</span>7777/   -                 1984-2018
+</span></span><span style="display:flex;"><span>             <span style="color:#ae81ff">\7</span>77/   /7<span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>              <span style="color:#ae81ff">\7</span>/   /777<span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>               -   -------
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                   Board: LYS-IMX6Q i.MX6Q Processor - ARMv7
+</span></span><span style="display:flex;"><span>          OS Memory Size: 2048MB
+</span></span><span style="display:flex;"><span>        ED&amp;R Policy Mode: Deployed
+</span></span><span style="display:flex;"><span>  Application Mode Agent: Not started
+</span></span><span style="display:flex;"><span>         Stop Mode Agent: Not started
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> Adding <span style="color:#ae81ff">14023</span> symbols <span style="color:#66d9ef">for</span> standalone.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>-&gt; 
+</span></span><span style="display:flex;"><span>-&gt; devs
+</span></span><span style="display:flex;"><span>drv name                
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">0</span> /null               
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">1</span> /tyCo/0             
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">1</span> /tyCo/1             
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">1</span> /tyCo/2             
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">1</span> /tyCo/3             
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">2</span> /vxbus              
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">9</span> /input/event        
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">12</span> host:               
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">13</span> /dev/fb0            
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">14</span> /dev/galcore        
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">10</span> /audio/0            
+</span></span><span style="display:flex;"><span>value <span style="color:#f92672">=</span> 25 <span style="color:#f92672">=</span> 0x19
+</span></span><span style="display:flex;"><span>-&gt; 
+</span></span><span style="display:flex;"><span>-&gt; Instantiating /sd1:2 as rawFs,  device <span style="color:#f92672">=</span> 0x30001
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>-&gt; Instantiating /mmc2:2 as rawFs,  device <span style="color:#f92672">=</span> 0xa0001
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>-&gt; 
+</span></span><span style="display:flex;"><span>-&gt; devs
+</span></span><span style="display:flex;"><span>drv name                
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">0</span> /null               
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">1</span> /tyCo/0             
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">1</span> /tyCo/1             
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">1</span> /tyCo/2             
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">1</span> /tyCo/3             
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">2</span> /vxbus              
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">9</span> /input/event        
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">12</span> host:               
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">13</span> /dev/fb0            
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">14</span> /dev/galcore        
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">10</span> /audio/0            
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">4</span> /sd1:1              
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">5</span> /sd1:2              
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">4</span> /sd0:1              
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">4</span> /mmc2:1             
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">5</span> /mmc2:2             
+</span></span><span style="display:flex;"><span>value <span style="color:#f92672">=</span> 25 <span style="color:#f92672">=</span> 0x19
+</span></span><span style="display:flex;"><span>-&gt; 
+</span></span><span style="display:flex;"><span>-&gt; 
+</span></span><span style="display:flex;"><span>-&gt; cd <span style="color:#e6db74">&#34;/sd0:1&#34;</span>
+</span></span><span style="display:flex;"><span>value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
+</span></span><span style="display:flex;"><span>-&gt; 
+</span></span><span style="display:flex;"><span>-&gt; ll
+</span></span><span style="display:flex;"><span>drwxrwxrwx  <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span>       <span style="color:#ae81ff">0</span>                 <span style="color:#ae81ff">4096</span> Mar  <span style="color:#ae81ff">8</span>  <span style="color:#ae81ff">2018</span> System Volume Information/
+</span></span><span style="display:flex;"><span>-rwxrwxrwx  <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span>       <span style="color:#ae81ff">0</span>             <span style="color:#ae81ff">12514633</span> Nov <span style="color:#ae81ff">26</span>  <span style="color:#ae81ff">2012</span> RAMDISK.GZ 
+</span></span><span style="display:flex;"><span>-rwxrwxrwx  <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span>       <span style="color:#ae81ff">0</span>             <span style="color:#ae81ff">14811136</span> Nov <span style="color:#ae81ff">26</span>  <span style="color:#ae81ff">2012</span> UBI.IMG 
+</span></span><span style="display:flex;"><span>-rwxrwxrwx  <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span>       <span style="color:#ae81ff">0</span>               <span style="color:#ae81ff">234896</span> Dec  <span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">2012</span> U-BOOT.IMG 
+</span></span><span style="display:flex;"><span>-rwxrwxrwx  <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span>       <span style="color:#ae81ff">0</span>              <span style="color:#ae81ff">3245384</span> Dec <span style="color:#ae81ff">27</span>  <span style="color:#ae81ff">2012</span> uImage 
+</span></span><span style="display:flex;"><span>-rwxrwxrwx  <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span>       <span style="color:#ae81ff">0</span>                <span style="color:#ae81ff">36079</span> Dec  <span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">2012</span> MLO 
+</span></span><span style="display:flex;"><span>value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
+</span></span><span style="display:flex;"><span>-&gt; 
+</span></span><span style="display:flex;"><span>-&gt; 
+</span></span><span style="display:flex;"><span>-&gt; 
+</span></span><span style="display:flex;"><span>-&gt; ipAttach 0,<span style="color:#e6db74">&#34;gei&#34;</span>
+</span></span><span style="display:flex;"><span>value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
+</span></span><span style="display:flex;"><span>-&gt; 
+</span></span><span style="display:flex;"><span>-&gt; ifconfig 
+</span></span><span style="display:flex;"><span>lo0     Link type:Local loopback
+</span></span><span style="display:flex;"><span>        inet 127.0.0.1  mask 255.255.255.255
+</span></span><span style="display:flex;"><span>        inet6 unicast fe80::1%lo0  prefixlen <span style="color:#ae81ff">64</span>  automatic
+</span></span><span style="display:flex;"><span>        inet6 unicast ::1  prefixlen <span style="color:#ae81ff">128</span>
+</span></span><span style="display:flex;"><span>        UP RUNNING LOOPBACK MULTICAST NOARP ALLMULTI 
+</span></span><span style="display:flex;"><span>        MTU:1500  metric:1  VR:0  ifindex:1
+</span></span><span style="display:flex;"><span>        RX packets:0 mcast:0 errors:0 dropped:0
+</span></span><span style="display:flex;"><span>        TX packets:0 mcast:0 errors:0
+</span></span><span style="display:flex;"><span>        collisions:0 unsupported proto:0
+</span></span><span style="display:flex;"><span>        RX bytes:0  TX bytes:0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>enet0   Link type:Ethernet  HWaddr 00:04:9f:b1:b2:b3
+</span></span><span style="display:flex;"><span>        capabilities: VLAN_MTU 
+</span></span><span style="display:flex;"><span>        inet 192.168.0.3  mask 255.255.255.0  broadcast 192.168.0.255
+</span></span><span style="display:flex;"><span>        inet6 unicast fe80::204:9fff:feb1:b2b3%enet0  prefixlen <span style="color:#ae81ff">64</span>  automatic
+</span></span><span style="display:flex;"><span>        UP RUNNING SIMPLEX BROADCAST MULTICAST 
+</span></span><span style="display:flex;"><span>        MTU:1500  metric:1  VR:0  ifindex:2
+</span></span><span style="display:flex;"><span>        RX packets:353 mcast:0 errors:0 dropped:4
+</span></span><span style="display:flex;"><span>        TX packets:30 mcast:5 errors:0
+</span></span><span style="display:flex;"><span>        collisions:0 unsupported proto:0
+</span></span><span style="display:flex;"><span>        RX bytes:21366 <span style="color:#f92672">(</span><span style="color:#ae81ff">21</span> k<span style="color:#f92672">)</span>  TX bytes:1920
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>gei0    Link type:Ethernet  HWaddr 00:1b:21:75:26:d7
+</span></span><span style="display:flex;"><span>        capabilities: TXCSUM TX6CSUM VLAN_MTU VLAN_TXHWTAG VLAN_RXHWTAG 
+</span></span><span style="display:flex;"><span>        SIMPLEX BROADCAST MULTICAST 
+</span></span><span style="display:flex;"><span>        MTU:1500  metric:1  VR:0  ifindex:3
+</span></span><span style="display:flex;"><span>        RX packets:0 mcast:0 errors:0 dropped:0
+</span></span><span style="display:flex;"><span>        TX packets:0 mcast:0 errors:0
+</span></span><span style="display:flex;"><span>        collisions:0 unsupported proto:0
+</span></span><span style="display:flex;"><span>        RX bytes:0  TX bytes:0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
+</span></span><span style="display:flex;"><span>-&gt; 
+</span></span><span style="display:flex;"><span>-&gt; ifconfig <span style="color:#e6db74">&#34;gei0 192.168.0.230 up&#34;</span>
+</span></span><span style="display:flex;"><span>value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
+</span></span><span style="display:flex;"><span>-&gt; 
+</span></span><span style="display:flex;"><span>-&gt; ifconfig      
+</span></span><span style="display:flex;"><span>lo0     Link type:Local loopback
+</span></span><span style="display:flex;"><span>        inet 127.0.0.1  mask 255.255.255.255
+</span></span><span style="display:flex;"><span>        inet6 unicast fe80::1%lo0  prefixlen <span style="color:#ae81ff">64</span>  automatic
+</span></span><span style="display:flex;"><span>        inet6 unicast ::1  prefixlen <span style="color:#ae81ff">128</span>
+</span></span><span style="display:flex;"><span>        UP RUNNING LOOPBACK MULTICAST NOARP ALLMULTI 
+</span></span><span style="display:flex;"><span>        MTU:1500  metric:1  VR:0  ifindex:1
+</span></span><span style="display:flex;"><span>        RX packets:0 mcast:0 errors:0 dropped:0
+</span></span><span style="display:flex;"><span>        TX packets:0 mcast:0 errors:0
+</span></span><span style="display:flex;"><span>        collisions:0 unsupported proto:0
+</span></span><span style="display:flex;"><span>        RX bytes:0  TX bytes:0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>enet0   Link type:Ethernet  HWaddr 00:04:9f:b1:b2:b3
+</span></span><span style="display:flex;"><span>        capabilities: VLAN_MTU 
+</span></span><span style="display:flex;"><span>        inet 192.168.0.3  mask 255.255.255.0  broadcast 192.168.0.255
+</span></span><span style="display:flex;"><span>        inet6 unicast fe80::204:9fff:feb1:b2b3%enet0  prefixlen <span style="color:#ae81ff">64</span>  automatic
+</span></span><span style="display:flex;"><span>        UP RUNNING SIMPLEX BROADCAST MULTICAST 
+</span></span><span style="display:flex;"><span>        MTU:1500  metric:1  VR:0  ifindex:2
+</span></span><span style="display:flex;"><span>        RX packets:376 mcast:0 errors:0 dropped:4
+</span></span><span style="display:flex;"><span>        TX packets:31 mcast:5 errors:0
+</span></span><span style="display:flex;"><span>        collisions:0 unsupported proto:0
+</span></span><span style="display:flex;"><span>        RX bytes:22746 <span style="color:#f92672">(</span><span style="color:#ae81ff">22</span> k<span style="color:#f92672">)</span>  TX bytes:1980
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>gei0    Link type:Ethernet  HWaddr 00:1b:21:75:26:d7
+</span></span><span style="display:flex;"><span>        capabilities: TXCSUM TX6CSUM VLAN_MTU VLAN_TXHWTAG VLAN_RXHWTAG 
+</span></span><span style="display:flex;"><span>        inet 192.168.0.230  mask 255.255.255.0  broadcast 192.168.0.255
+</span></span><span style="display:flex;"><span>        inet6 unicast fe80::21b:21ff:fe75:26d7%gei0  prefixlen <span style="color:#ae81ff">64</span>  tentative  automatic
+</span></span><span style="display:flex;"><span>        UP RUNNING SIMPLEX BROADCAST MULTICAST 
+</span></span><span style="display:flex;"><span>        MTU:1500  metric:1  VR:0  ifindex:3
+</span></span><span style="display:flex;"><span>        RX packets:0 mcast:0 errors:0 dropped:0
+</span></span><span style="display:flex;"><span>        TX packets:3 mcast:2 errors:0
+</span></span><span style="display:flex;"><span>        collisions:0 unsupported proto:0
+</span></span><span style="display:flex;"><span>        RX bytes:0  TX bytes:210
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
+</span></span><span style="display:flex;"><span>-&gt; 
+</span></span><span style="display:flex;"><span>-&gt; ifconfig <span style="color:#e6db74">&#34;enet0 down&#34;</span>
+</span></span><span style="display:flex;"><span>value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
+</span></span><span style="display:flex;"><span>-&gt; 
+</span></span><span style="display:flex;"><span>-&gt; ifconfig
+</span></span><span style="display:flex;"><span>lo0     Link type:Local loopback
+</span></span><span style="display:flex;"><span>        inet 127.0.0.1  mask 255.255.255.255
+</span></span><span style="display:flex;"><span>        inet6 unicast fe80::1%lo0  prefixlen <span style="color:#ae81ff">64</span>  automatic
+</span></span><span style="display:flex;"><span>        inet6 unicast ::1  prefixlen <span style="color:#ae81ff">128</span>
+</span></span><span style="display:flex;"><span>        UP RUNNING LOOPBACK MULTICAST NOARP ALLMULTI 
+</span></span><span style="display:flex;"><span>        MTU:1500  metric:1  VR:0  ifindex:1
+</span></span><span style="display:flex;"><span>        RX packets:0 mcast:0 errors:0 dropped:0
+</span></span><span style="display:flex;"><span>        TX packets:0 mcast:0 errors:0
+</span></span><span style="display:flex;"><span>        collisions:0 unsupported proto:0
+</span></span><span style="display:flex;"><span>        RX bytes:0  TX bytes:0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>enet0   Link type:Ethernet  HWaddr 00:04:9f:b1:b2:b3
+</span></span><span style="display:flex;"><span>        capabilities: VLAN_MTU 
+</span></span><span style="display:flex;"><span>        inet 192.168.0.3  mask 255.255.255.0  broadcast 192.168.0.255
+</span></span><span style="display:flex;"><span>        SIMPLEX BROADCAST MULTICAST 
+</span></span><span style="display:flex;"><span>        MTU:1500  metric:1  VR:0  ifindex:2
+</span></span><span style="display:flex;"><span>        RX packets:411 mcast:0 errors:0 dropped:25
+</span></span><span style="display:flex;"><span>        TX packets:34 mcast:7 errors:0
+</span></span><span style="display:flex;"><span>        collisions:0 unsupported proto:0
+</span></span><span style="display:flex;"><span>        RX bytes:24868 <span style="color:#f92672">(</span><span style="color:#ae81ff">24</span> k<span style="color:#f92672">)</span>  TX bytes:2220
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>gei0    Link type:Ethernet  HWaddr 00:1b:21:75:26:d7
+</span></span><span style="display:flex;"><span>        capabilities: TXCSUM TX6CSUM VLAN_MTU VLAN_TXHWTAG VLAN_RXHWTAG 
+</span></span><span style="display:flex;"><span>        inet 192.168.0.230  mask 255.255.255.0  broadcast 192.168.0.255
+</span></span><span style="display:flex;"><span>        inet6 unicast fe80::21b:21ff:fe75:26d7%gei0  prefixlen <span style="color:#ae81ff">64</span>  tentative  automatic
+</span></span><span style="display:flex;"><span>        UP SIMPLEX BROADCAST MULTICAST 
+</span></span><span style="display:flex;"><span>        MTU:1500  metric:1  VR:0  ifindex:3
+</span></span><span style="display:flex;"><span>        RX packets:0 mcast:0 errors:0 dropped:0
+</span></span><span style="display:flex;"><span>        TX packets:12 mcast:11 errors:0
+</span></span><span style="display:flex;"><span>        collisions:0 unsupported proto:0
+</span></span><span style="display:flex;"><span>        RX bytes:0  TX bytes:900
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
+</span></span><span style="display:flex;"><span>-&gt; 
+</span></span><span style="display:flex;"><span>-&gt; 
+</span></span><span style="display:flex;"><span>-&gt; ifconfig
+</span></span><span style="display:flex;"><span>lo0     Link type:Local loopback
+</span></span><span style="display:flex;"><span>        inet 127.0.0.1  mask 255.255.255.255
+</span></span><span style="display:flex;"><span>        inet6 unicast fe80::1%lo0  prefixlen <span style="color:#ae81ff">64</span>  automatic
+</span></span><span style="display:flex;"><span>        inet6 unicast ::1  prefixlen <span style="color:#ae81ff">128</span>
+</span></span><span style="display:flex;"><span>        UP RUNNING LOOPBACK MULTICAST NOARP ALLMULTI 
+</span></span><span style="display:flex;"><span>        MTU:1500  metric:1  VR:0  ifindex:1
+</span></span><span style="display:flex;"><span>        RX packets:0 mcast:0 errors:0 dropped:0
+</span></span><span style="display:flex;"><span>        TX packets:0 mcast:0 errors:0
+</span></span><span style="display:flex;"><span>        collisions:0 unsupported proto:0
+</span></span><span style="display:flex;"><span>        RX bytes:0  TX bytes:0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>enet0   Link type:Ethernet  HWaddr 00:04:9f:b1:b2:b3
+</span></span><span style="display:flex;"><span>        capabilities: VLAN_MTU 
+</span></span><span style="display:flex;"><span>        inet 192.168.0.3  mask 255.255.255.0  broadcast 192.168.0.255
+</span></span><span style="display:flex;"><span>        SIMPLEX BROADCAST MULTICAST 
+</span></span><span style="display:flex;"><span>        MTU:1500  metric:1  VR:0  ifindex:2
+</span></span><span style="display:flex;"><span>        RX packets:536 mcast:0 errors:0 dropped:150
+</span></span><span style="display:flex;"><span>        TX packets:34 mcast:7 errors:0
+</span></span><span style="display:flex;"><span>        collisions:0 unsupported proto:0
+</span></span><span style="display:flex;"><span>        RX bytes:32412 <span style="color:#f92672">(</span><span style="color:#ae81ff">32</span> k<span style="color:#f92672">)</span>  TX bytes:2220
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>gei0    Link type:Ethernet  HWaddr 00:1b:21:75:26:d7
+</span></span><span style="display:flex;"><span>        capabilities: TXCSUM TX6CSUM VLAN_MTU VLAN_TXHWTAG VLAN_RXHWTAG 
+</span></span><span style="display:flex;"><span>        inet 192.168.0.230  mask 255.255.255.0  broadcast 192.168.0.255
+</span></span><span style="display:flex;"><span>        inet6 unicast fe80::21b:21ff:fe75:26d7%gei0  prefixlen <span style="color:#ae81ff">64</span>  automatic
+</span></span><span style="display:flex;"><span>        UP RUNNING SIMPLEX BROADCAST MULTICAST 
+</span></span><span style="display:flex;"><span>        MTU:1500  metric:1  VR:0  ifindex:3
+</span></span><span style="display:flex;"><span>        RX packets:68 mcast:1 errors:0 dropped:61
+</span></span><span style="display:flex;"><span>        TX packets:81 mcast:71 errors:0
+</span></span><span style="display:flex;"><span>        collisions:0 unsupported proto:0
+</span></span><span style="display:flex;"><span>        RX bytes:7687  TX bytes:6360
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
+</span></span><span style="display:flex;"><span>-&gt; 
+</span></span></code></pre></div>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1543398821442998"
      crossorigin="anonymous"></script>
 
@@ -822,7 +816,7 @@ value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span
   
   <script type="text/javascript" src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js" defer></script>
 
-<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
+<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com/","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
 
 
 
@@ -830,7 +824,7 @@ value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span
 
 
 
-<script type="text/javascript" src="/js/main.min.7e59cf1a98d842830d8a6f149f78fbbcf9e795b7a9eb76feb34b48c9bf1554d7.js" defer></script>
+<script type="text/javascript" src="/js/main.min.8bc1e2a2ac040735a2a32d113d257bd75c45142b9842ad7526f7de5e3d3a9298.js" defer></script>
 
 
 

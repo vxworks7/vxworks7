@@ -4,7 +4,7 @@
 <head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)" />
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.135.0">
 <link rel="shortcut icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
@@ -32,6 +32,7 @@
 <meta property="article:modified_time" content="2022-12-20 23:54:53 -0500 -0500" />
 
 
+
   
   <link type="text/css" rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.2/css/all.min.css" />
   
@@ -39,11 +40,6 @@
 
 
 <link rel="stylesheet" href="/css/main.min.7d561ec9984cf0cb727fc88e14a92134576c99ccb9ce2f31b5b5541ab4ced328.css">
-  <style type="text/css">
-    .post-footer, .flinks-list-footer hr:after {
-      content: "~ 我可是有底线的哟 ~";
-    }
-  </style>
   <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"how-to-integrate-python-into-vxworks-7.html","permalink":"https://www.vxworks7.com/post/app/how-to-integrate-python-into-vxworks-7.html","title":"如何在VxWorks 7下集成Python"}</script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
@@ -116,7 +112,7 @@
     </li>
     <li class="menu-item menu-item-archives">
       <a href="/archives/" class="hvr-icon-pulse " rel="section"><i class="fa fa-archive hvr-icon"></i>归档
-        <span class="badge">95</span>
+        <span class="badge">94</span>
       </a>
     </li>
     <li class="menu-item menu-item-commonweal">
@@ -207,7 +203,7 @@
   <nav class="site-state">
     <div class="site-state-item site-state-posts">
       <a href="/archives/">
-        <span class="site-state-item-count">95</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -219,7 +215,7 @@
     </div>
     <div class="site-state-item site-state-tags">
       <a href="/tags/">
-        <span class="site-state-item-count">133</span>
+        <span class="site-state-item-count">131</span>
         <span class="site-state-item-name">标签</span>
       </a>
     </div>
@@ -285,11 +281,11 @@
       </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-font"></i>总字数：</div>
-      <div class="item-count" id="wordsCount" data-count="28953"></div>
+      <div class="item-count" id="wordsCount" data-count="28814"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-mug-hot"></i>阅读约：</div>
-      <div class="item-count" id="readTimes" data-times="193"></div>
+      <div class="item-count" id="readTimes" data-times="192"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
@@ -417,30 +413,30 @@
 </ul>
 <h2 id="创建编译vxworks-source-buildvsb项目">创建/编译VxWorks Source Build(VSB)项目</h2>
 <p>打开DOS shell，配置编译环境，然后编译项目。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">cd <span style="color:#e6db74">&#34;WIND_HOME&#34;</span>              // your installation directory
-wrenv -p vxworks-7
-cd          // your workspace
-vxprj vsb create python_vsb -bsp itl_generic -smp -force -S
-cd python_vsb               // your workspace
-vxprj vsb add PYTHON        // add the python layer to the VSB
-make -j <span style="color:#ae81ff">32</span>                  // build the VSB
-</code></pre></div><p>VxWorks源代码编译(VSB)编译完成后，检查其是否包含Python运行时环境，验证以下目录是否存在：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-fallback" data-lang="fallback">&#34;YOUR_WORKSPACE&#34;/python_vsb/usr/3pp/deploy
-</code></pre></div><h2 id="创建编译基本vxworks-image-projectvip">创建/编译基本VxWorks Image Project(VIP)</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd <span style="color:#e6db74">&#34;WIND_HOME&#34;</span>              // your installation directory
+</span></span><span style="display:flex;"><span>wrenv -p vxworks-7
+</span></span><span style="display:flex;"><span>cd          // your workspace
+</span></span><span style="display:flex;"><span>vxprj vsb create python_vsb -bsp itl_generic -smp -force -S
+</span></span><span style="display:flex;"><span>cd python_vsb               // your workspace
+</span></span><span style="display:flex;"><span>vxprj vsb add PYTHON        // add the python layer to the VSB
+</span></span><span style="display:flex;"><span>make -j <span style="color:#ae81ff">32</span>                  // build the VSB
+</span></span></code></pre></div><p>VxWorks源代码编译(VSB)编译完成后，检查其是否包含Python运行时环境，验证以下目录是否存在：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&#34;YOUR_WORKSPACE&#34;/python_vsb/usr/3pp/deploy
+</span></span></code></pre></div><h2 id="创建编译基本vxworks-image-projectvip">创建/编译基本VxWorks Image Project(VIP)</h2>
 <p>像下面一样创建基本的VxWorks镜像工程</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">cd ..
-vxprj create -smp itl_generic python_vip -profile PROFILE_INTEL_GENERIC -vsb python_vsb
-cd python_vip
-vxprj vip component add INCLUDE_MULTI_STAGE_WARM_REBOOT
-vxprj vip bundle add BUNDLE_STANDALONE_SHELL
-vxprj parameter set DOSFS_COMPAT_NT TRUE
-vxprj build
-</code></pre></div><p>Note: 现在你还没有将Python解释器加进VIP</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd ..
+</span></span><span style="display:flex;"><span>vxprj create -smp itl_generic python_vip -profile PROFILE_INTEL_GENERIC -vsb python_vsb
+</span></span><span style="display:flex;"><span>cd python_vip
+</span></span><span style="display:flex;"><span>vxprj vip component add INCLUDE_MULTI_STAGE_WARM_REBOOT
+</span></span><span style="display:flex;"><span>vxprj vip bundle add BUNDLE_STANDALONE_SHELL
+</span></span><span style="display:flex;"><span>vxprj parameter set DOSFS_COMPAT_NT TRUE
+</span></span><span style="display:flex;"><span>vxprj build
+</span></span></code></pre></div><p>Note: 现在你还没有将Python解释器加进VIP</p>
 <h2 id="在目标机上启动vxworks">在目标机上启动VxWorks</h2>
 <h3 id="部署uefi的加载器以及vxworks内核镜像">部署uEFI的加载器以及VxWorks内核镜像</h3>
 <p>有关如何在USB闪存驱动器上编译和部署UEFI引导加载程序以及VxWorks镜像文件的说明，请参考itl_generic BSP的readme文件。在下面的路径找到此自述文件：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-fallback" data-lang="fallback">&#34;WIND_HOME&#34;/vxworks-7/pkgs_v2/os/board/intel/itl_generic-a.b.c.d/itl_generic_readme.md
-</code></pre></div><p>根据下述的指令来部署uEFI启动加载器和VxWorks内核镜像后，你可以从USB闪存驱动器上找到如下文件:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&#34;WIND_HOME&#34;/vxworks-7/pkgs_v2/os/board/intel/itl_generic-a.b.c.d/itl_generic_readme.md
+</span></span></code></pre></div><p>根据下述的指令来部署uEFI启动加载器和VxWorks内核镜像后，你可以从USB闪存驱动器上找到如下文件:</p>
 <ul>
 <li>EFI</li>
 <li>BOOT</li>
@@ -452,68 +448,68 @@ vxprj build
 <p>配置目标机的BIOS来从USB闪存驱动器启动该目标机，把该USB闪存驱动器接到目标机上。</p>
 <h3 id="启动目标机">启动目标机</h3>
 <p>给目标机上电，目标启动后，你将看到VxWorks的内核shell的提示符。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">-&gt;
-</code></pre></div><h2 id="找到vxworks-usb闪存驱动器的设备名称">找到VxWorks Usb闪存驱动器的设备名称</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>-&gt;
+</span></span></code></pre></div><h2 id="找到vxworks-usb闪存驱动器的设备名称">找到VxWorks Usb闪存驱动器的设备名称</h2>
 <p>在VxWorks内核shell上执行以下命令找出Usb闪存驱动器的设备名称。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">-&gt; devs
-drv refs name
-  <span style="color:#ae81ff">1</span> <span style="color:#f92672">[</span> 3<span style="color:#f92672">]</span> /
-  <span style="color:#ae81ff">7</span> <span style="color:#f92672">[</span> 3<span style="color:#f92672">]</span> /bd0a
-  <span style="color:#ae81ff">5</span> <span style="color:#f92672">[</span> 3<span style="color:#f92672">]</span> /pcConsole/0
-  <span style="color:#ae81ff">3</span> <span style="color:#f92672">[</span> 3<span style="color:#f92672">]</span> /ttyS0
-value <span style="color:#f92672">=</span> 2 <span style="color:#f92672">=</span> 0x2
-
--&gt; cd <span style="color:#e6db74">&#34;/bd0a&#34;</span>
-value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
--&gt; ls
-EFI
-value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
-</code></pre></div><p>在这个实例中，设备名称为/bd0a，记下目标机上的USB设备名称。关闭目标机，然后将USB闪存驱动器接回到工作站。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>-&gt; devs
+</span></span><span style="display:flex;"><span>drv refs name
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">1</span> <span style="color:#f92672">[</span> 3<span style="color:#f92672">]</span> /
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">7</span> <span style="color:#f92672">[</span> 3<span style="color:#f92672">]</span> /bd0a
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">5</span> <span style="color:#f92672">[</span> 3<span style="color:#f92672">]</span> /pcConsole/0
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">3</span> <span style="color:#f92672">[</span> 3<span style="color:#f92672">]</span> /ttyS0
+</span></span><span style="display:flex;"><span>value <span style="color:#f92672">=</span> 2 <span style="color:#f92672">=</span> 0x2
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>-&gt; cd <span style="color:#e6db74">&#34;/bd0a&#34;</span>
+</span></span><span style="display:flex;"><span>value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
+</span></span><span style="display:flex;"><span>-&gt; ls
+</span></span><span style="display:flex;"><span>EFI
+</span></span><span style="display:flex;"><span>value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
+</span></span></code></pre></div><p>在这个实例中，设备名称为/bd0a，记下目标机上的USB设备名称。关闭目标机，然后将USB闪存驱动器接回到工作站。</p>
 <h2 id="将python运行时环境复制到usb闪存驱动器">将Python运行时环境复制到Usb闪存驱动器</h2>
 <p>拷贝 “YOUR_WORKSPACE”/python_vsb/usr/3pp/deploy 到USB闪存驱动器的根目录。</p>
 <h2 id="更新基本的vip以包含python运行时环境">更新基本的VIP以包含Python运行时环境</h2>
 <p>返回VIP的目录，并将Python运行时环境配置进VIP。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">cd <span style="color:#e6db74">&#34;YOUR_WORKSPACE&#34;</span><span style="color:#ae81ff">\\</span>profile_vip
-vxprj component add INCLUDE_PYTHON_SUPPORT
-vxprj component add INCLUDE_FILESYSTEM_SYMLINK_CONFIG
-vxprj parameter setstring FILESYSTEM_SYMLINK_CONFIG_STR
-    def<span style="color:#f92672">=</span>/bd0a/deploy;/bin<span style="color:#f92672">=</span>def/bin;/usr<span style="color:#f92672">=</span>def/usr;/etc<span style="color:#f92672">=</span>def/etc;/lib<span style="color:#f92672">=</span>def/lib;<span style="color:#e6db74">&#34;
-</span><span style="color:#e6db74">vxprj build
-</span></code></pre></div><h2 id="将更新的vxworks镜像文件部署到usb闪存驱动器">将更新的VxWorks镜像文件部署到Usb闪存驱动器</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd <span style="color:#e6db74">&#34;YOUR_WORKSPACE&#34;</span><span style="color:#ae81ff">\\</span>profile_vip
+</span></span><span style="display:flex;"><span>vxprj component add INCLUDE_PYTHON_SUPPORT
+</span></span><span style="display:flex;"><span>vxprj component add INCLUDE_FILESYSTEM_SYMLINK_CONFIG
+</span></span><span style="display:flex;"><span>vxprj parameter setstring FILESYSTEM_SYMLINK_CONFIG_STR
+</span></span><span style="display:flex;"><span>    def<span style="color:#f92672">=</span>/bd0a/deploy;/bin<span style="color:#f92672">=</span>def/bin;/usr<span style="color:#f92672">=</span>def/usr;/etc<span style="color:#f92672">=</span>def/etc;/lib<span style="color:#f92672">=</span>def/lib;<span style="color:#e6db74">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">vxprj build
+</span></span></span></code></pre></div><h2 id="将更新的vxworks镜像文件部署到usb闪存驱动器">将更新的VxWorks镜像文件部署到Usb闪存驱动器</h2>
 <p>拷贝 “YOUR_WORKSPACE”/profile_vip/default/vxWorks到USB闪存驱动器，并改名为EFI/BOOT/bootapp.sys</p>
 <h2 id="在usb闪存驱动器的根目录中创建一个hello-world-python示例">在USB闪存驱动器的根目录中创建一个Hello World Python示例</h2>
 <p>打开文本编辑器，并在USB闪存驱动器的根目录下创建一个名为helloworld.py的文件。文件必须包含如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># helloworld.py</span>
-import os
-import sys
-print<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Hello World!&#34;</span><span style="color:#f92672">)</span>
-</code></pre></div><h2 id="在目标上运行hello-world-python示例程序">在目标上运行Hello World Python示例程序</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># helloworld.py</span>
+</span></span><span style="display:flex;"><span>import os
+</span></span><span style="display:flex;"><span>import sys
+</span></span><span style="display:flex;"><span>print<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Hello World!&#34;</span><span style="color:#f92672">)</span>
+</span></span></code></pre></div><h2 id="在目标上运行hello-world-python示例程序">在目标上运行Hello World Python示例程序</h2>
 <p>将USB闪存驱动器接回到目标机，然后将目标机引导到VxWorks的内核shell，在USB闪存驱动器根目录下找到helloworld.py文件，在shell上输入命令并运行此Python程序。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">-&gt; cd <span style="color:#e6db74">&#34;/bd0a&#34;</span>
-value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
--&gt; ls
-EFI
-helloworld.py
-value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
--&gt; cmd
-<span style="color:#f92672">[</span>vxWorks *<span style="color:#f92672">]</span><span style="color:#75715e"># python3 helloworld.py</span>
-Launching process <span style="color:#e6db74">&#39;python3&#39;</span> ...
-Process <span style="color:#e6db74">&#39;python3&#39;</span> <span style="color:#f92672">(</span>process Id <span style="color:#f92672">=</span> 0x809aa340<span style="color:#f92672">)</span> launched.
-Hello World!
-<span style="color:#f92672">[</span>vxWorks *<span style="color:#f92672">]</span><span style="color:#75715e">#</span>
-</code></pre></div><p>注意：由于Python是一种解释型的语言，因此你还可以从VxWorks的内核shell上以交互的方式构建python程序。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>vxWorks *<span style="color:#f92672">]</span><span style="color:#75715e"># python3</span>
-Launching process <span style="color:#e6db74">&#39;python3&#39;</span> ...
-Process <span style="color:#e6db74">&#39;python3&#39;</span> <span style="color:#f92672">(</span>process ID <span style="color:#f92672">=</span> 0x809aa340<span style="color:#f92672">)</span> launched.
-Python 3.8.0 <span style="color:#f92672">(</span>default, Apr <span style="color:#ae81ff">27</span> 2020, 17:49:25<span style="color:#f92672">)</span>
-<span style="color:#f92672">[</span>Clang 9.0.1.1 <span style="color:#f92672">(</span>ssh://diabuild@stash.wrs.com:7999/llvm/clang.git 67f1ee998a3a1d on vxWorks
-Type <span style="color:#e6db74">&#34;help&#34;</span>, <span style="color:#e6db74">&#34;copyright&#34;</span>, <span style="color:#e6db74">&#34;credits&#34;</span> or <span style="color:#e6db74">&#34;license&#34;</span> <span style="color:#66d9ef">for</span> more information.
-&gt;&gt;&gt; import os
-&gt;&gt;&gt; import sys
-&gt;&gt;&gt; print<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Hello World!&#34;</span><span style="color:#f92672">)</span>
-Hello World!
-&gt;&gt;&gt;
-</code></pre></div><p>引用
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>-&gt; cd <span style="color:#e6db74">&#34;/bd0a&#34;</span>
+</span></span><span style="display:flex;"><span>value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
+</span></span><span style="display:flex;"><span>-&gt; ls
+</span></span><span style="display:flex;"><span>EFI
+</span></span><span style="display:flex;"><span>helloworld.py
+</span></span><span style="display:flex;"><span>value <span style="color:#f92672">=</span> 0 <span style="color:#f92672">=</span> 0x0
+</span></span><span style="display:flex;"><span>-&gt; cmd
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>vxWorks *<span style="color:#f92672">]</span><span style="color:#75715e"># python3 helloworld.py</span>
+</span></span><span style="display:flex;"><span>Launching process <span style="color:#e6db74">&#39;python3&#39;</span> ...
+</span></span><span style="display:flex;"><span>Process <span style="color:#e6db74">&#39;python3&#39;</span> <span style="color:#f92672">(</span>process Id <span style="color:#f92672">=</span> 0x809aa340<span style="color:#f92672">)</span> launched.
+</span></span><span style="display:flex;"><span>Hello World!
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>vxWorks *<span style="color:#f92672">]</span><span style="color:#75715e">#</span>
+</span></span></code></pre></div><p>注意：由于Python是一种解释型的语言，因此你还可以从VxWorks的内核shell上以交互的方式构建python程序。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>vxWorks *<span style="color:#f92672">]</span><span style="color:#75715e"># python3</span>
+</span></span><span style="display:flex;"><span>Launching process <span style="color:#e6db74">&#39;python3&#39;</span> ...
+</span></span><span style="display:flex;"><span>Process <span style="color:#e6db74">&#39;python3&#39;</span> <span style="color:#f92672">(</span>process ID <span style="color:#f92672">=</span> 0x809aa340<span style="color:#f92672">)</span> launched.
+</span></span><span style="display:flex;"><span>Python 3.8.0 <span style="color:#f92672">(</span>default, Apr <span style="color:#ae81ff">27</span> 2020, 17:49:25<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>Clang 9.0.1.1 <span style="color:#f92672">(</span>ssh://diabuild@stash.wrs.com:7999/llvm/clang.git 67f1ee998a3a1d on vxWorks
+</span></span><span style="display:flex;"><span>Type <span style="color:#e6db74">&#34;help&#34;</span>, <span style="color:#e6db74">&#34;copyright&#34;</span>, <span style="color:#e6db74">&#34;credits&#34;</span> or <span style="color:#e6db74">&#34;license&#34;</span> <span style="color:#66d9ef">for</span> more information.
+</span></span><span style="display:flex;"><span>&gt;&gt;&gt; import os
+</span></span><span style="display:flex;"><span>&gt;&gt;&gt; import sys
+</span></span><span style="display:flex;"><span>&gt;&gt;&gt; print<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Hello World!&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Hello World!
+</span></span><span style="display:flex;"><span>&gt;&gt;&gt;
+</span></span></code></pre></div><p>引用
 VxWorks 7 是新一代的嵌入式实时操作系统，全新的架构设计，灵活化的组件配置，高可靠性与安全性，丰富的第三方软件包，极大的方便用户的开发和使用。本文对VxWorks7 的功能做个简要的记录。</p>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1543398821442998"
      crossorigin="anonymous"></script>
@@ -661,7 +657,7 @@ VxWorks 7 是新一代的嵌入式实时操作系统，全新的架构设计，�
   
   <script type="text/javascript" src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js" defer></script>
 
-<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
+<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com/","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
 
 
 
@@ -669,7 +665,7 @@ VxWorks 7 是新一代的嵌入式实时操作系统，全新的架构设计，�
 
 
 
-<script type="text/javascript" src="/js/main.min.7e59cf1a98d842830d8a6f149f78fbbcf9e795b7a9eb76feb34b48c9bf1554d7.js" defer></script>
+<script type="text/javascript" src="/js/main.min.8bc1e2a2ac040735a2a32d113d257bd75c45142b9842ad7526f7de5e3d3a9298.js" defer></script>
 
 
 

@@ -4,7 +4,7 @@
 <head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)" />
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.135.0">
 <link rel="shortcut icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
@@ -32,6 +32,7 @@
 <meta property="article:modified_time" content="2023-09-09 12:04:22 &#43;0800 CST" />
 
 
+
   
   <link type="text/css" rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.2/css/all.min.css" />
   
@@ -39,11 +40,6 @@
 
 
 <link rel="stylesheet" href="/css/main.min.7d561ec9984cf0cb727fc88e14a92134576c99ccb9ce2f31b5b5541ab4ced328.css">
-  <style type="text/css">
-    .post-footer, .flinks-list-footer hr:after {
-      content: "~ 我可是有底线的哟 ~";
-    }
-  </style>
   <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"qemu-ia-vxworks-7-sdk.html","permalink":"https://www.vxworks7.com/post/bsp/qemu-ia-vxworks-7-sdk.html","title":"适用于QEMU(IA)的VxWorks 7 SDK"}</script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
@@ -116,7 +112,7 @@
     </li>
     <li class="menu-item menu-item-archives">
       <a href="/archives/" class="hvr-icon-pulse " rel="section"><i class="fa fa-archive hvr-icon"></i>归档
-        <span class="badge">95</span>
+        <span class="badge">94</span>
       </a>
     </li>
     <li class="menu-item menu-item-commonweal">
@@ -202,7 +198,7 @@
   <nav class="site-state">
     <div class="site-state-item site-state-posts">
       <a href="/archives/">
-        <span class="site-state-item-count">95</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -214,7 +210,7 @@
     </div>
     <div class="site-state-item site-state-tags">
       <a href="/tags/">
-        <span class="site-state-item-count">133</span>
+        <span class="site-state-item-count">131</span>
         <span class="site-state-item-name">标签</span>
       </a>
     </div>
@@ -280,11 +276,11 @@
       </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-font"></i>总字数：</div>
-      <div class="item-count" id="wordsCount" data-count="28953"></div>
+      <div class="item-count" id="wordsCount" data-count="28814"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-mug-hot"></i>阅读约：</div>
-      <div class="item-count" id="readTimes" data-times="193"></div>
+      <div class="item-count" id="readTimes" data-times="192"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
@@ -425,24 +421,24 @@
 <p>在开发主机上安装 FTP 服务器将使应用程序部署更容易，并允许您从 VxWorks 目标访问主机文件系统。</p>
 <p>为了适应 SDK 中包含的 VxWorks 内核映像的不同运行时配置，您可能有兴趣使用基于 pyftpdlib 的 FTP 服务器选项。</p>
 <p>安装 pyftpdlib：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">$ sudo apt install python3-pip
-$ sudo pip install pyftpdlib
-</code></pre></div><p><img src="https://www.vxworks.net/images/bsp/vxworks-7-qemu-ia-2.png" alt="VxWorks 7 QEMU"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo apt install python3-pip
+</span></span><span style="display:flex;"><span>$ sudo pip install pyftpdlib
+</span></span></code></pre></div><p><img src="https://www.vxworks.net/images/bsp/vxworks-7-qemu-ia-2.png" alt="VxWorks 7 QEMU"></p>
 <p><img src="https://www.vxworks.net/images/bsp/vxworks-7-qemu-ia-3.png" alt="VxWorks 7 QEMU"></p>
 <p>使用用户名“target”和密码“vxtarget”以及当前用户的主目录作为FTP Server的根目录，在端口 21 上启动本地 FTP 服务器，可以按如下方式完成。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">$ sudo python3 -m pyftpdlib -p <span style="color:#ae81ff">21</span> -u target -P vxTarget -i 127.0.0.1 -d $HOME
-</code></pre></div><p><img src="https://www.vxworks.net/images/bsp/vxworks-7-qemu-ia-4.png" alt="VxWorks 7 QEMU"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo python3 -m pyftpdlib -p <span style="color:#ae81ff">21</span> -u target -P vxTarget -i 127.0.0.1 -d $HOME
+</span></span></code></pre></div><p><img src="https://www.vxworks.net/images/bsp/vxworks-7-qemu-ia-4.png" alt="VxWorks 7 QEMU"></p>
 <p>运行VxWorks内核和使用SDK创建的应用程序需要安装QEMU</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">$ sudo apt install qemu-system-x86
-</code></pre></div><p><img src="https://www.vxworks.net/images/bsp/vxworks-7-qemu-ia-5.png" alt="VxWorks 7 QEMU"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo apt install qemu-system-x86
+</span></span></code></pre></div><p><img src="https://www.vxworks.net/images/bsp/vxworks-7-qemu-ia-5.png" alt="VxWorks 7 QEMU"></p>
 <h2 id="在-qemuia-上启动-vxworks">在 QEMU(IA) 上启动 VxWorks</h2>
 <p>QEMU 可用于运行 SDK 中包含的 VxWorks 内核并部署 VxWorks 应用程序。</p>
 <p>首先打开 Linux 终端窗口并转到解压的 VxWorks SDK 的位置。 以下命令可用于在 QEMU 中启动 VxWorks guest 虚拟机。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">$ qemu-system-x86_64 -m 512M -kernel vxsdk/bsps/itl_generic_3_0_0_3/vxWorks <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>-net nic -net user,hostfwd<span style="color:#f92672">=</span>tcp::1534-:1534,hostfwd<span style="color:#f92672">=</span>tcp::2345-:2345 <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>-display none -serial stdio -monitor none <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>-append <span style="color:#e6db74">&#34;bootline:fs(0,0)host:vxWorks h=192.168.1.20 e=192.168.1.15 u=target pw=vxTarget o=gei0&#34;</span> 
-</code></pre></div><p>将用户 (u) 和密码 (pw) 参数的值自定义为与开发主机上的有效 FTP 用户匹配的值将允许您从 QEMU 中运行的 VxWorks 实例访问主机文件系统。 VxWorks 实例将有权访问 FTP 服务器的根目录。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ qemu-system-x86_64 -m 512M -kernel vxsdk/bsps/itl_generic_3_0_0_3/vxWorks <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-net nic -net user,hostfwd<span style="color:#f92672">=</span>tcp::1534-:1534,hostfwd<span style="color:#f92672">=</span>tcp::2345-:2345 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-display none -serial stdio -monitor none <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-append <span style="color:#e6db74">&#34;bootline:fs(0,0)host:vxWorks h=192.168.1.20 e=192.168.1.15 u=target pw=vxTarget o=gei0&#34;</span> 
+</span></span></code></pre></div><p>将用户 (u) 和密码 (pw) 参数的值自定义为与开发主机上的有效 FTP 用户匹配的值将允许您从 QEMU 中运行的 VxWorks 实例访问主机文件系统。 VxWorks 实例将有权访问 FTP 服务器的根目录。</p>
 <p><img src="https://www.vxworks.net/images/bsp/vxworks-7-qemu-ia-6.png" alt="VxWorks 7 QEMU"></p>
 <p>原文连接: 
 <a href="https://www.vxworks.net/bsp/1081-qemu-ia-vxworks-7-sdk" title="适用于QEMU(IA)的VxWorks 7 SDK" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
@@ -595,7 +591,7 @@ $ sudo pip install pyftpdlib
   
   <script type="text/javascript" src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js" defer></script>
 
-<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
+<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com/","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
 
 
 
@@ -603,7 +599,7 @@ $ sudo pip install pyftpdlib
 
 
 
-<script type="text/javascript" src="/js/main.min.7e59cf1a98d842830d8a6f149f78fbbcf9e795b7a9eb76feb34b48c9bf1554d7.js" defer></script>
+<script type="text/javascript" src="/js/main.min.8bc1e2a2ac040735a2a32d113d257bd75c45142b9842ad7526f7de5e3d3a9298.js" defer></script>
 
 
 

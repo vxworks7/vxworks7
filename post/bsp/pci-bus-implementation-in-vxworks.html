@@ -4,7 +4,7 @@
 <head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)" />
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.135.0">
 <link rel="shortcut icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
@@ -32,6 +32,7 @@
 <meta property="article:modified_time" content="2022-12-24 04:04:08 -0500 -0500" />
 
 
+
   
   <link type="text/css" rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.2/css/all.min.css" />
   
@@ -39,11 +40,6 @@
 
 
 <link rel="stylesheet" href="/css/main.min.7d561ec9984cf0cb727fc88e14a92134576c99ccb9ce2f31b5b5541ab4ced328.css">
-  <style type="text/css">
-    .post-footer, .flinks-list-footer hr:after {
-      content: "~ 我可是有底线的哟 ~";
-    }
-  </style>
   <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"pci-bus-implementation-in-vxworks.html","permalink":"https://www.vxworks7.com/post/bsp/pci-bus-implementation-in-vxworks.html","title":"PCI总线在VxWorks中的实现"}</script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
@@ -116,7 +112,7 @@
     </li>
     <li class="menu-item menu-item-archives">
       <a href="/archives/" class="hvr-icon-pulse " rel="section"><i class="fa fa-archive hvr-icon"></i>归档
-        <span class="badge">95</span>
+        <span class="badge">94</span>
       </a>
     </li>
     <li class="menu-item menu-item-commonweal">
@@ -207,7 +203,7 @@
   <nav class="site-state">
     <div class="site-state-item site-state-posts">
       <a href="/archives/">
-        <span class="site-state-item-count">95</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -219,7 +215,7 @@
     </div>
     <div class="site-state-item site-state-tags">
       <a href="/tags/">
-        <span class="site-state-item-count">133</span>
+        <span class="site-state-item-count">131</span>
         <span class="site-state-item-name">标签</span>
       </a>
     </div>
@@ -285,11 +281,11 @@
       </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-font"></i>总字数：</div>
-      <div class="item-count" id="wordsCount" data-count="28953"></div>
+      <div class="item-count" id="wordsCount" data-count="28814"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-mug-hot"></i>阅读约：</div>
-      <div class="item-count" id="readTimes" data-times="193"></div>
+      <div class="item-count" id="readTimes" data-times="192"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
@@ -411,20 +407,20 @@
 <p>pciIntLib.c提供一些routine来挂接多个ISR到一个中断LINE上，该库通过挂接一个特殊的ISR，该ISR会遍历一个中断链表，所有共用同一个中断的ISRs都被放在这个链表中。pciIntConnect()用于将设备的ISR挂接到中断链表上，而pciIntDisConnect()用于删除中断链表上的一个ISR。</p>
 <p>例子：</p>
 <div class="note info ">
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">pciInitConnect(Vector, ISR1, PARAM1);
-pciInitConnect(Vector, ISR2, PARAM2);
-pciInitConnect(Vector, ISR3, PARAM3);
-</code></pre></div>
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#a6e22e">pciInitConnect</span>(Vector, ISR1, PARAM1);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">pciInitConnect</span>(Vector, ISR2, PARAM2);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">pciInitConnect</span>(Vector, ISR3, PARAM3);
+</span></span></code></pre></div>
 </div>
 <p>上面3个语句把ISR1，ISR2,和ISR3分别挂接到中断向量为Vector的链表intList里面，那么当中断发生时，会执行下面一个函数：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sISR</span>(<span style="color:#66d9ef">void</span>)
-{
-       <span style="color:#66d9ef">while</span>(intList<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">!=</span>NULL)
-        {
-                (<span style="color:#f92672">*</span>intList<span style="color:#f92672">-&gt;</span>INT_ISR)(PARAM);<span style="color:#75715e">/*分别调用ISR1，ISR2，ISR3，没写很具体，只是个大概理解*/</span>
-        }
-}
-</code></pre></div><h2 id="vxworks中的pci-配置策略">VxWorks中的PCI 配置策略</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sISR</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">while</span>(intList<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">!=</span>NULL)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>                (<span style="color:#f92672">*</span>intList<span style="color:#f92672">-&gt;</span>INT_ISR)(PARAM);<span style="color:#75715e">/*分别调用ISR1，ISR2，ISR3，没写很具体，只是个大概理解*/</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="vxworks中的pci-配置策略">VxWorks中的PCI 配置策略</h2>
 <p>在BSP中，必须定义宏INCLUDE_PCI来支持PCI BUS，宏PCI_CFG_TYPE必须定义为一下几种类型：</p>
 <h3 id="静态配置pci_cfg_force">静态配置：PCI_CFG_FORCE</h3>
 <p>这种方式要求程序员必须手动通过数据表、配置宏或者其他方法来配置每个PCI设备，PCI设备的基地址和使用的中断号必须事先知道。</p>
@@ -447,60 +443,60 @@ pciInitConnect(Vector, ISR3, PARAM3);
 <h3 id="pci-master-access-windows">PCI Master Access Windows</h3>
 <p>第一个为host side的地址，采用宏PCI_XXX_LOCAL来定义，第二个为remote side 的地址，采用宏PCI_XXX_BUS来定义，第三个为描述内存大小的宏，采用PCI_XXX_SIZE来定义。可以通过设定PCI_XXX_SIZE宏为0来禁止相关的映射。</p>
 <p>针对普通的Host-Bridge，从内存映射的角度看，有三种常用的映射方式：第一种为把本地内存访问映射为PCI IO访问，第二种把本地的内存访问映射为PCI MEMIO访问，这种方式是不可以prefectchable的，第三种是把本地的内存访问映射为PCI MEM 访问，这种方式可以prefectchable。由于主桥没有完整的详细规范，因此映射方式还不止这些，也有使用PCI-IACK signaling这种映射方式的。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">The following is a typical excerpt from config.h in a typical PCI capable BSP:
-<span style="color:#75715e">/* Master window allows CPU to access PCI I/O addresses */</span>
-<span style="color:#75715e">#define PCI_MSTR_IO_LOCAL 0xC0000000
-</span><span style="color:#75715e">#define PCI_MSTR_IO_BUS 0x00000000
-</span><span style="color:#75715e">#define PCI_MSTR_IO_SIZE 0x00010000
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">/* Master window allows CPU to access PCI Memory addresses (prefetch) */</span>
-<span style="color:#75715e">#define PCI_MSTR_MEM_LOCAL 0x80000000
-</span><span style="color:#75715e">#define PCI_MSTR_MEM_BUS 0x00000000
-</span><span style="color:#75715e">#define PCI_MSTR_MEM_SIZE 0x01000000
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">/* Master window allows CPU to access PCI Memory (non-prefetch) */</span>
-<span style="color:#75715e">#define PCI_MSTR_MEMIO_LOCAL 0x82000000
-</span><span style="color:#75715e">#define PCI_MSTR_MEMIO_BUS 0x00000000
-</span><span style="color:#75715e">#define PCI_MSTR_MEMIO_SIZE 0x01000000
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">/* Master window allows CPU to generate PCI_IACK cycles */</span>
-<span style="color:#75715e">#define PCI_MSTR_IACK_LOCAL 0x8e000000
-</span><span style="color:#75715e">#define PCI_MSTR_IACK_BUS 0x0e000000
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">#define PCI_MSTR_IACK_SIZE 0x100
-</span></code></pre></div><p>PCI中有三种地址空间：IO空间，配置空间，MEM空间。MEM和MEMIO并不是不同的地址空间，而是不同的总线操作，MEMIO是单纯的寄存器读写，而MEM访问会被翻译成该操作的CACHE类型，CACHE类型指明内存是否提前读取，写数据时是否采用CACHE的“write and invalidate”操作，其实这些都是考虑到CACHE数据完整性的问题。PCI规范并没有详细说明主桥如何把MEM访问映射为PCI总线事务，这是和特定主桥硬件相关的，需要参考主桥的相关手册。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>The following is a typical excerpt from config.h in a typical PCI capable BSP:
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* Master window allows CPU to access PCI I/O addresses */</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define PCI_MSTR_IO_LOCAL 0xC0000000
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define PCI_MSTR_IO_BUS 0x00000000
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define PCI_MSTR_IO_SIZE 0x00010000
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* Master window allows CPU to access PCI Memory addresses (prefetch) */</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define PCI_MSTR_MEM_LOCAL 0x80000000
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define PCI_MSTR_MEM_BUS 0x00000000
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define PCI_MSTR_MEM_SIZE 0x01000000
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* Master window allows CPU to access PCI Memory (non-prefetch) */</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define PCI_MSTR_MEMIO_LOCAL 0x82000000
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define PCI_MSTR_MEMIO_BUS 0x00000000
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define PCI_MSTR_MEMIO_SIZE 0x01000000
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* Master window allows CPU to generate PCI_IACK cycles */</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define PCI_MSTR_IACK_LOCAL 0x8e000000
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define PCI_MSTR_IACK_BUS 0x0e000000
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define PCI_MSTR_IACK_SIZE 0x100
+</span></span></span></code></pre></div><p>PCI中有三种地址空间：IO空间，配置空间，MEM空间。MEM和MEMIO并不是不同的地址空间，而是不同的总线操作，MEMIO是单纯的寄存器读写，而MEM访问会被翻译成该操作的CACHE类型，CACHE类型指明内存是否提前读取，写数据时是否采用CACHE的“write and invalidate”操作，其实这些都是考虑到CACHE数据完整性的问题。PCI规范并没有详细说明主桥如何把MEM访问映射为PCI总线事务，这是和特定主桥硬件相关的，需要参考主桥的相关手册。</p>
 <p>为了访问特定的PCI内存位置，CPU必须该内存位置映射到本地的哪一个地址了，CPU操作都是使用本地地址，而不是设备的PCI地址。把PCI地址转换为本地地址的公式如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">Local Addr <span style="color:#f92672">=</span> PCI addr <span style="color:#f92672">+</span> (PCI_MSTR_XXX_LOCAL <span style="color:#f92672">-</span> PCI_MSTR_XXX_BUS)
-</code></pre></div><p>For example:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#75715e">#define PCI_MEM2LOCAL(x) \
-</span><span style="color:#75715e">((int)(x) + PCI_MSTR_MEM_LOCAL - PCI_MSTR_MEM_BUS)
-</span><span style="color:#75715e">#define PCI_MEMIO2LOCAL(x) \
-</span><span style="color:#75715e">((int)(x) + PCI_MSTR_MEMIO_LOCAL - PCI_MSTR_MEMIO_BUS)
-</span><span style="color:#75715e">#define PCI_IO2LOCAL(x) \
-</span><span style="color:#75715e">((int)(x) + PCI_MSTR_IO_LOCAL - PCI_MSTR_IO_BUS)
-</span></code></pre></div><h3 id="pci-slave-window">PCI Slave Window</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>Local Addr <span style="color:#f92672">=</span> PCI addr <span style="color:#f92672">+</span> (PCI_MSTR_XXX_LOCAL <span style="color:#f92672">-</span> PCI_MSTR_XXX_BUS)
+</span></span></code></pre></div><p>For example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#define PCI_MEM2LOCAL(x) \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">((int)(x) + PCI_MSTR_MEM_LOCAL - PCI_MSTR_MEM_BUS)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define PCI_MEMIO2LOCAL(x) \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">((int)(x) + PCI_MSTR_MEMIO_LOCAL - PCI_MSTR_MEMIO_BUS)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define PCI_IO2LOCAL(x) \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">((int)(x) + PCI_MSTR_IO_LOCAL - PCI_MSTR_IO_BUS)
+</span></span></span></code></pre></div><h3 id="pci-slave-window">PCI Slave Window</h3>
 <p>上面描述的都是主设备侧的映射方式，使用这些映射方式的主控器都是CPU，Slave Window是被总线上其他设备发起总线事务的目标设备，Slave Window千差万别，但是几乎所有的设备都有至少一种Slave Window来使本地地址对其他PCI设备例如DMA总线主控器或者CPU是可访问的。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#75715e">/*
-</span><span style="color:#75715e">* Slave window that makes local memory visible to PCI
-</span><span style="color:#75715e">* devices
-</span><span style="color:#75715e">*/</span>
-PCI_SLV_MEM_LOCAL <span style="color:#75715e">/* Local address of window */</span>
-PCI_SLV_MEM_BUS <span style="color:#75715e">/* PCI Bus address of window */</span>
-PCI_SLV_MEM_SIZE <span style="color:#75715e">/* window size,0 means disabled */</span>
-<span style="color:#75715e">/*
-</span><span style="color:#75715e">* For X86 it is possible to have a slave window mapping
-</span><span style="color:#75715e">* PCI IO to Local IO
-</span><span style="color:#75715e">*/</span>
-
-PCI_SLV_IO_LOCAL <span style="color:#75715e">/* Local address of window */</span>
-PCI_SLV_IO_BUS <span style="color:#75715e">/* PCI Bus address of window */</span>
-PCI_SLV_IO_SIZE <span style="color:#75715e">/* window size,0 means disabled */</span>
-</code></pre></div><p>对于X86机器，Slave Window将会把PCI IO事务映射为本地总线的IO请求。为了传递一个内存地址给Remote端设备，本地地址必须被翻译为相应的PCI地址，计算本地地址翻译为PCI地址的公式如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* Slave window that makes local memory visible to PCI
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* devices
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*/</span>
+</span></span><span style="display:flex;"><span>PCI_SLV_MEM_LOCAL <span style="color:#75715e">/* Local address of window */</span>
+</span></span><span style="display:flex;"><span>PCI_SLV_MEM_BUS <span style="color:#75715e">/* PCI Bus address of window */</span>
+</span></span><span style="display:flex;"><span>PCI_SLV_MEM_SIZE <span style="color:#75715e">/* window size,0 means disabled */</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* For X86 it is possible to have a slave window mapping
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* PCI IO to Local IO
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*/</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>PCI_SLV_IO_LOCAL <span style="color:#75715e">/* Local address of window */</span>
+</span></span><span style="display:flex;"><span>PCI_SLV_IO_BUS <span style="color:#75715e">/* PCI Bus address of window */</span>
+</span></span><span style="display:flex;"><span>PCI_SLV_IO_SIZE <span style="color:#75715e">/* window size,0 means disabled */</span>
+</span></span></code></pre></div><p>对于X86机器，Slave Window将会把PCI IO事务映射为本地总线的IO请求。为了传递一个内存地址给Remote端设备，本地地址必须被翻译为相应的PCI地址，计算本地地址翻译为PCI地址的公式如下：</p>
 <p>PCI addr = Local Addr + (PCI_SLV_XXX_BUS - PCI_SLV_XXX_LOCAL)</p>
 <p>例如：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#75715e">#define LOCAL2PCI_MEM(x) \
-</span><span style="color:#75715e">((x) + PCI_SLV_MEM_BUS - PCI_SLV_MEM_LOCAL)
-</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#define LOCAL2PCI_MEM(x) \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">((x) + PCI_SLV_MEM_BUS - PCI_SLV_MEM_LOCAL)
+</span></span></span></code></pre></div>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1543398821442998"
      crossorigin="anonymous"></script>
 
@@ -647,7 +643,7 @@ PCI_SLV_IO_SIZE <span style="color:#75715e">/* window size,0 means disabled */</
   
   <script type="text/javascript" src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js" defer></script>
 
-<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
+<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com/","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
 
 
 
@@ -655,7 +651,7 @@ PCI_SLV_IO_SIZE <span style="color:#75715e">/* window size,0 means disabled */</
 
 
 
-<script type="text/javascript" src="/js/main.min.7e59cf1a98d842830d8a6f149f78fbbcf9e795b7a9eb76feb34b48c9bf1554d7.js" defer></script>
+<script type="text/javascript" src="/js/main.min.8bc1e2a2ac040735a2a32d113d257bd75c45142b9842ad7526f7de5e3d3a9298.js" defer></script>
 
 
 

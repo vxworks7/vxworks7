@@ -4,7 +4,7 @@
 <head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)" />
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.135.0">
 <link rel="shortcut icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
@@ -32,6 +32,7 @@
 <meta property="article:modified_time" content="2022-11-04 16:43:23 &#43;0800 CST" />
 
 
+
   
   <link type="text/css" rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.2/css/all.min.css" />
   
@@ -39,11 +40,6 @@
 
 
 <link rel="stylesheet" href="/css/main.min.7d561ec9984cf0cb727fc88e14a92134576c99ccb9ce2f31b5b5541ab4ced328.css">
-  <style type="text/css">
-    .post-footer, .flinks-list-footer hr:after {
-      content: "~ 我可是有底线的哟 ~";
-    }
-  </style>
   <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"linux-device-driver-questions-and-answers.html","permalink":"https://www.vxworks7.com/post/linux/linux-device-driver-questions-and-answers.html","title":"几道简单的Linux驱动相关面试题"}</script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
@@ -116,7 +112,7 @@
     </li>
     <li class="menu-item menu-item-archives">
       <a href="/archives/" class="hvr-icon-pulse " rel="section"><i class="fa fa-archive hvr-icon"></i>归档
-        <span class="badge">95</span>
+        <span class="badge">94</span>
       </a>
     </li>
     <li class="menu-item menu-item-commonweal">
@@ -236,7 +232,7 @@
   <nav class="site-state">
     <div class="site-state-item site-state-posts">
       <a href="/archives/">
-        <span class="site-state-item-count">95</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -248,7 +244,7 @@
     </div>
     <div class="site-state-item site-state-tags">
       <a href="/tags/">
-        <span class="site-state-item-count">133</span>
+        <span class="site-state-item-count">131</span>
         <span class="site-state-item-name">标签</span>
       </a>
     </div>
@@ -314,11 +310,11 @@
       </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-font"></i>总字数：</div>
-      <div class="item-count" id="wordsCount" data-count="28953"></div>
+      <div class="item-count" id="wordsCount" data-count="28814"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-mug-hot"></i>阅读约：</div>
-      <div class="item-count" id="readTimes" data-times="193"></div>
+      <div class="item-count" id="readTimes" data-times="192"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
@@ -483,42 +479,42 @@
 <p>异常源分类</p>
 <p>要进入异常模式，一定要有异常源，ARM规定有7种异常源：</p>
 <table>
-<thead>
-<tr>
-<th>异常源</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Reset</td>
-<td>上电时执行</td>
-</tr>
-<tr>
-<td>Undef</td>
-<td>当流水线中的某个非法指令到达执行状态时执行</td>
-</tr>
-<tr>
-<td>SWI</td>
-<td>当一个软中断指令被执行完的时候执行</td>
-</tr>
-<tr>
-<td>Prefetch</td>
-<td>当一个指令被从内存中预取时，由于某种原因而失败，如果它能到达执行状态这个异常才会产生</td>
-</tr>
-<tr>
-<td>Data</td>
-<td>如果一个预取指令试图存取一个非法的内存单元，这时异常产生</td>
-</tr>
-<tr>
-<td>IRQ</td>
-<td>通常的中断</td>
-</tr>
-<tr>
-<td>FIQ</td>
-<td>快速中断</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">异常源</th>
+          <th style="text-align: left">描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Reset</td>
+          <td style="text-align: left">上电时执行</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Undef</td>
+          <td style="text-align: left">当流水线中的某个非法指令到达执行状态时执行</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">SWI</td>
+          <td style="text-align: left">当一个软中断指令被执行完的时候执行</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Prefetch</td>
+          <td style="text-align: left">当一个指令被从内存中预取时，由于某种原因而失败，如果它能到达执行状态这个异常才会产生</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Data</td>
+          <td style="text-align: left">如果一个预取指令试图存取一个非法的内存单元，这时异常产生</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">IRQ</td>
+          <td style="text-align: left">通常的中断</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">FIQ</td>
+          <td style="text-align: left">快速中断</td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="请简述什么是中断中断发生后cpu做了哪些操作">请简述什么是中断？中断发生后，CPU做了哪些操作</h3>
 <p>中断：是指CPU在执行程序的过程中，出现了某些突发事件时CPU必须暂停执行当前的程序，转去处理突发事件，处理完毕后CPU又返回源程序被中断的位置并继续执行。</p>
@@ -538,8 +534,8 @@
 <li>跳入异常向量表：强制设置PC的值为相应异常向量地址，跳转到异常处理程序中。</li>
 </ul>
 <h2 id="什么是gpio">什么是GPIO？</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-fallback" data-lang="fallback">general purpose input/output  
-</code></pre></div><p>GPIO是相对于芯片本身而言的，如某个管脚是芯片的GPIO脚，则该脚可作为输入或输出高或低电平使用，当然某个脚具有复用的功能，即可做GPIO也可做其他用途。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>general purpose input/output  
+</span></span></code></pre></div><p>GPIO是相对于芯片本身而言的，如某个管脚是芯片的GPIO脚，则该脚可作为输入或输出高或低电平使用，当然某个脚具有复用的功能，即可做GPIO也可做其他用途。</p>
 <p>也就是说你可以把这些引脚拿来用作任何一般用途的输入输出，例如用一根引脚连到led的一极来控制它的亮灭，也可以用一根（一些）引脚连到一个传感器上以获得该传感器的状态，这给cpu提供了一个方便的控制周边设备的途经。如果没有足够多的gpio管脚，在控制一些外围设备时就会力有不逮，这时可采取的方案是使用CPLD来帮助管理。</p>
 <h2 id="iic引脚名称及功能">IIC引脚名称及功能？</h2>
 <ul>
@@ -566,33 +562,33 @@
 <p>查看驱动模块中打印信息应该使用什么命令？如何查看内核中已有的字符设备的信息？如何查看正在使用的有哪些中断号？</p>
 </blockquote>
 <h3 id="查看驱动模块中打印信息的命令">查看驱动模块中打印信息的命令：</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash"> dmesg
-</code></pre></div><h3 id="查看加载模块信息可以用">查看加载模块信息可以用</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">lsmod
-</code></pre></div><h3 id="已经分配的字符设备块设备号信息可以查看下面文件">已经分配的字符设备块设备号信息可以查看下面文件</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">cat /proc/devices
-</code></pre></div><h3 id="内核会为每一个驱动模块建立一个文件夹如下">内核会为每一个驱动模块建立一个文件夹，如下：</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">ls /sys/module/
-</code></pre></div><h3 id="显示当前使用的中断号">显示当前使用的中断号</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">cat /proc/interrupts
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> dmesg
+</span></span></code></pre></div><h3 id="查看加载模块信息可以用">查看加载模块信息可以用</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>lsmod
+</span></span></code></pre></div><h3 id="已经分配的字符设备块设备号信息可以查看下面文件">已经分配的字符设备块设备号信息可以查看下面文件</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat /proc/devices
+</span></span></code></pre></div><h3 id="内核会为每一个驱动模块建立一个文件夹如下">内核会为每一个驱动模块建立一个文件夹，如下：</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ls /sys/module/
+</span></span></code></pre></div><h3 id="显示当前使用的中断号">显示当前使用的中断号</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat /proc/interrupts
+</span></span></code></pre></div><blockquote>
 <p>如何手动创建字符设备？并简述主设备号和次设备号的用途。</p>
 </blockquote>
 <p>创建字符设备命令如下:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">mknod chartest c <span style="color:#ae81ff">4</span> 64，
-
-mknod : 创建设备节点
-chartest ：设备节点名字
-c ： 字符设备，
-<span style="color:#ae81ff">4</span> ： 主设备号
-64： 次设备号
-</code></pre></div><p>主设备号：主设备号标识设备对应的驱动程序。虽然现代的linux内核允许多个驱动程序共享主设备号，但我们看待的大多数设备仍然按照“一个主设备对应一个驱动程序”的原则组织。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mknod chartest c <span style="color:#ae81ff">4</span> 64，
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mknod : 创建设备节点
+</span></span><span style="display:flex;"><span>chartest ：设备节点名字
+</span></span><span style="display:flex;"><span>c ： 字符设备，
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">4</span> ： 主设备号
+</span></span><span style="display:flex;"><span>64： 次设备号
+</span></span></code></pre></div><p>主设备号：主设备号标识设备对应的驱动程序。虽然现代的linux内核允许多个驱动程序共享主设备号，但我们看待的大多数设备仍然按照“一个主设备对应一个驱动程序”的原则组织。</p>
 <p>次设备号：次设备号由内核使用，用于正确确定设备文件所指的设备。依赖于驱动程序的编写方式，我们可以通过次设备号获得一个指向内核设备的直接指针，也可将此设备号当作设备本地数组的索引。</p>
 <p>比如：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-fallback" data-lang="fallback">硬件平台可能又4个串口，他们驱动非常类似，区别仅仅是个字对应的SFR基地址不同，
-那么我们可以让着几个串口共用同一个串口设备驱动
-通过次设备号来区别具体是哪一个串口
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>硬件平台可能又4个串口，他们驱动非常类似，区别仅仅是个字对应的SFR基地址不同，
+</span></span><span style="display:flex;"><span>那么我们可以让着几个串口共用同一个串口设备驱动
+</span></span><span style="display:flex;"><span>通过次设备号来区别具体是哪一个串口
+</span></span></code></pre></div><blockquote>
 <p>内核中使用共享资源时，为了使之满足互斥条件，通常有哪些方法？</p>
 </blockquote>
 <p>原子操作，自旋锁，信号量，互斥锁</p>
@@ -746,7 +742,7 @@ c ： 字符设备，
   
   <script type="text/javascript" src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js" defer></script>
 
-<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
+<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com/","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
 
 
 
@@ -754,7 +750,7 @@ c ： 字符设备，
 
 
 
-<script type="text/javascript" src="/js/main.min.7e59cf1a98d842830d8a6f149f78fbbcf9e795b7a9eb76feb34b48c9bf1554d7.js" defer></script>
+<script type="text/javascript" src="/js/main.min.8bc1e2a2ac040735a2a32d113d257bd75c45142b9842ad7526f7de5e3d3a9298.js" defer></script>
 
 
 

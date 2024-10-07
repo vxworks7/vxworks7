@@ -102,12 +102,12 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/categories/linux/</loc>
+    <loc>https://www.vxworks7.com/tags/linux/</loc>
     <lastmod>2024-03-30T09:35:16+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/tags/linux/</loc>
+    <loc>https://www.vxworks7.com/categories/linux/</loc>
     <lastmod>2024-03-30T09:35:16+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -207,17 +207,17 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>https://www.vxworks7.com/post/news/enhanced-deployment-and-management-security-for-VxWorks-container-engine.html</loc>
+    <lastmod>2023-12-17T17:49:17+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://www.vxworks7.com/tags/cosign/</loc>
     <lastmod>2023-12-17T17:49:17+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.vxworks7.com/tags/oci/</loc>
-    <lastmod>2023-12-17T17:49:17+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/post/news/enhanced-deployment-and-management-security-for-VxWorks-container-engine.html</loc>
     <lastmod>2023-12-17T17:49:17+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -237,12 +237,12 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/categories/fpga/</loc>
+    <loc>https://www.vxworks7.com/tags/fpga/</loc>
     <lastmod>2023-12-15T17:00:17+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/tags/fpga/</loc>
+    <loc>https://www.vxworks7.com/categories/fpga/</loc>
     <lastmod>2023-12-15T17:00:17+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -1027,12 +1027,12 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/tags/%E4%B8%B2%E5%8F%A3/</loc>
+    <loc>https://www.vxworks7.com/tags/%E7%BC%96%E7%A8%8B/</loc>
     <lastmod>2022-10-07T05:35:25-04:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/tags/%E7%BC%96%E7%A8%8B/</loc>
+    <loc>https://www.vxworks7.com/tags/%E4%B8%B2%E5%8F%A3/</loc>
     <lastmod>2022-10-07T05:35:25-04:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -1087,12 +1087,12 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/tags/%E6%97%B6%E5%BA%8F%E5%9B%BE/</loc>
+    <loc>https://www.vxworks7.com/tags/%E6%B5%81%E7%A8%8B%E5%9B%BE/</loc>
     <lastmod>2021-09-18T20:58:13+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/tags/%E6%B5%81%E7%A8%8B%E5%9B%BE/</loc>
+    <loc>https://www.vxworks7.com/tags/%E6%97%B6%E5%BA%8F%E5%9B%BE/</loc>
     <lastmod>2021-09-18T20:58:13+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -1122,12 +1122,12 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/tags/%E4%B8%AA%E6%80%A7%E5%8C%96/</loc>
+    <loc>https://www.vxworks7.com/tags/%E5%B8%83%E5%B1%80/</loc>
     <lastmod>2021-09-10T21:02:32+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/tags/%E5%B8%83%E5%B1%80/</loc>
+    <loc>https://www.vxworks7.com/tags/%E4%B8%AA%E6%80%A7%E5%8C%96/</loc>
     <lastmod>2021-09-10T21:02:32+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -1147,12 +1147,12 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/post/shortcodes.html</loc>
+    <loc>https://www.vxworks7.com/tags/%E8%AF%AD%E6%B3%95/</loc>
     <lastmod>2021-08-06T14:41:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/tags/%E8%AF%AD%E6%B3%95/</loc>
+    <loc>https://www.vxworks7.com/post/shortcodes.html</loc>
     <lastmod>2021-08-06T14:41:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -1167,28 +1167,13 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/post/table-of-content.html</loc>
-    <lastmod>2021-06-08T21:12:52+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>https://www.vxworks7.com/tags/%E7%9B%AE%E5%BD%95/</loc>
     <lastmod>2021-06-08T21:12:52+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/tags/chroma/</loc>
-    <lastmod>2021-06-07T19:09:52+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/post/syntax-highlighting.html</loc>
-    <lastmod>2021-06-07T19:09:52+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.vxworks7.com/tags/%E9%AB%98%E4%BA%AE/</loc>
-    <lastmod>2021-06-07T19:09:52+08:00</lastmod>
+    <loc>https://www.vxworks7.com/post/table-of-content.html</loc>
+    <lastmod>2021-06-08T21:12:52+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -1197,12 +1182,12 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/post/emoji-support.html</loc>
+    <loc>https://www.vxworks7.com/tags/%E8%A1%A8%E6%83%85/</loc>
     <lastmod>2021-06-04T19:46:45+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.vxworks7.com/tags/%E8%A1%A8%E6%83%85/</loc>
+    <loc>https://www.vxworks7.com/post/emoji-support.html</loc>
     <lastmod>2021-06-04T19:46:45+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

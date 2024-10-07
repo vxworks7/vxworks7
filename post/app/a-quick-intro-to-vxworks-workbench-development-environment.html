@@ -4,7 +4,7 @@
 <head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)" />
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.135.0">
 <link rel="shortcut icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
@@ -32,6 +32,7 @@
 <meta property="article:modified_time" content="2023-01-01 23:35:44 -0500 -0500" />
 
 
+
   
   <link type="text/css" rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.2/css/all.min.css" />
   
@@ -39,11 +40,6 @@
 
 
 <link rel="stylesheet" href="/css/main.min.7d561ec9984cf0cb727fc88e14a92134576c99ccb9ce2f31b5b5541ab4ced328.css">
-  <style type="text/css">
-    .post-footer, .flinks-list-footer hr:after {
-      content: "~ 我可是有底线的哟 ~";
-    }
-  </style>
   <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"a-quick-intro-to-vxworks-workbench-development-environment.html","permalink":"https://www.vxworks7.com/post/app/a-quick-intro-to-vxworks-workbench-development-environment.html","title":"VxWorks Workbench开发环境快速介绍"}</script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
@@ -116,7 +112,7 @@
     </li>
     <li class="menu-item menu-item-archives">
       <a href="/archives/" class="hvr-icon-pulse " rel="section"><i class="fa fa-archive hvr-icon"></i>归档
-        <span class="badge">95</span>
+        <span class="badge">94</span>
       </a>
     </li>
     <li class="menu-item menu-item-commonweal">
@@ -203,7 +199,7 @@
   <nav class="site-state">
     <div class="site-state-item site-state-posts">
       <a href="/archives/">
-        <span class="site-state-item-count">95</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -215,7 +211,7 @@
     </div>
     <div class="site-state-item site-state-tags">
       <a href="/tags/">
-        <span class="site-state-item-count">133</span>
+        <span class="site-state-item-count">131</span>
         <span class="site-state-item-name">标签</span>
       </a>
     </div>
@@ -281,11 +277,11 @@
       </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-font"></i>总字数：</div>
-      <div class="item-count" id="wordsCount" data-count="28953"></div>
+      <div class="item-count" id="wordsCount" data-count="28814"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-mug-hot"></i>阅读约：</div>
-      <div class="item-count" id="readTimes" data-times="193"></div>
+      <div class="item-count" id="readTimes" data-times="192"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
@@ -367,7 +363,7 @@
   <span class="post-meta-item-icon">
     <i class="far fa-file-word"></i>
   </span>
-  <span class="post-meta-item-text">字数：</span><span>243</span>
+  <span class="post-meta-item-text">字数：</span><span>245</span>
 </span>
     
 <span class="post-meta-item" title="阅读">
@@ -413,45 +409,45 @@
 <p><img src="https://www.vxworks.net/images/vxworks/quick-intro-to-WRS-workbench-4-workbench-newprj.png" alt="WRS Workspace How To"></p>
 <h3 id="示例代码">示例代码</h3>
 <p>用下面的代码代换dkm.c中的代码。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;taskLib.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;kernelLib.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">int</span> task_run[] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">450</span>, <span style="color:#ae81ff">200</span>};
-<span style="color:#66d9ef">int</span> task_stop[] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">25</span>, <span style="color:#ae81ff">30</span>};
-
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">task</span>(<span style="color:#66d9ef">int</span> n)
-{
-        <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">int</span> x;
-
-        printf(<span style="color:#e6db74">&#34;Task %i has been started</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, n);
-
-        <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
-        {
-                printf(<span style="color:#e6db74">&#34;task %d: running</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, n);
-                x <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000000</span> <span style="color:#f92672">*</span> task_run[n];
-                <span style="color:#66d9ef">while</span> (x <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) x<span style="color:#f92672">--</span>;
-                printf(<span style="color:#e6db74">&#34;task %d: delayed</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, n);
-                taskDelay(task_stop[n]);
-        }
-}
-
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">CreateTasks</span>(<span style="color:#66d9ef">void</span>)
-{
-        TASK_ID id1, id2, id3;
-
-        <span style="color:#75715e">/*  kernelTimeSlice(1); */</span>
-
-        cpuset_t affinity;
-        CPUSET_ZERO(affinity);
-        CPUSET_SET(affinity, <span style="color:#ae81ff">0</span>);
-        taskCpuAffinitySet(taskIdSelf(), affinity);
-
-        id1 <span style="color:#f92672">=</span> taskSpawn(<span style="color:#e6db74">&#34;Task0&#34;</span>, <span style="color:#ae81ff">210</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4096</span>, (FUNCPTR) task, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
-        id2 <span style="color:#f92672">=</span> taskSpawn(<span style="color:#e6db74">&#34;Task1&#34;</span>, <span style="color:#ae81ff">210</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4096</span>, (FUNCPTR) task, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
-        id3 <span style="color:#f92672">=</span> taskSpawn(<span style="color:#e6db74">&#34;Task2&#34;</span>, <span style="color:#ae81ff">210</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4096</span>, (FUNCPTR) task, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
-}
-</code></pre></div><h2 id="编译应用程序">编译应用程序</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;taskLib.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;kernelLib.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> task_run[] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">450</span>, <span style="color:#ae81ff">200</span>};
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> task_stop[] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">25</span>, <span style="color:#ae81ff">30</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">task</span>(<span style="color:#66d9ef">int</span> n)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">int</span> x;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Task %i has been started</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, n);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;task %d: running</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, n);
+</span></span><span style="display:flex;"><span>                x <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000000</span> <span style="color:#f92672">*</span> task_run[n];
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">while</span> (x <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) x<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;task %d: delayed</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, n);
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">taskDelay</span>(task_stop[n]);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">CreateTasks</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>        TASK_ID id1, id2, id3;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/*  kernelTimeSlice(1); */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">cpuset_t</span> affinity;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">CPUSET_ZERO</span>(affinity);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">CPUSET_SET</span>(affinity, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">taskCpuAffinitySet</span>(<span style="color:#a6e22e">taskIdSelf</span>(), affinity);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        id1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">taskSpawn</span>(<span style="color:#e6db74">&#34;Task0&#34;</span>, <span style="color:#ae81ff">210</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4096</span>, (FUNCPTR) task, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>        id2 <span style="color:#f92672">=</span> <span style="color:#a6e22e">taskSpawn</span>(<span style="color:#e6db74">&#34;Task1&#34;</span>, <span style="color:#ae81ff">210</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4096</span>, (FUNCPTR) task, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>        id3 <span style="color:#f92672">=</span> <span style="color:#a6e22e">taskSpawn</span>(<span style="color:#e6db74">&#34;Task2&#34;</span>, <span style="color:#ae81ff">210</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4096</span>, (FUNCPTR) task, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="编译应用程序">编译应用程序</h2>
 <p>就像很多现代IDE一样，通过一个单一的点击动作就可实现编译和运行一个应用程序，但是，理解这个场景背后究竟发生什么也是非常有帮助的。我们将会看看运行一个VxWorks应用程序所需要的每一个步骤，然后我们将会展示如何通过一个点击动作来实现。</p>
 <p>编译一个项目，右键点击测试项目名称并选择Build（或者按Ctrl + B，或者按Ctrl +  P）。</p>
 <p><img src="https://www.vxworks.net/images/vxworks/quick-intro-to-WRS-workbench-5-build-prj1.png" alt="WRS Workspace How To"></p>
@@ -667,7 +663,7 @@
   
   <script type="text/javascript" src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js" defer></script>
 
-<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
+<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com/","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
 
 
 
@@ -675,7 +671,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.7e59cf1a98d842830d8a6f149f78fbbcf9e795b7a9eb76feb34b48c9bf1554d7.js" defer></script>
+<script type="text/javascript" src="/js/main.min.8bc1e2a2ac040735a2a32d113d257bd75c45142b9842ad7526f7de5e3d3a9298.js" defer></script>
 
 
 

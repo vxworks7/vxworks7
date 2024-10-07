@@ -4,7 +4,7 @@
 <head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)" />
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.135.0">
 <link rel="shortcut icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
@@ -32,6 +32,7 @@
 <meta property="article:modified_time" content="2022-12-26 10:23:56 -0500 -0500" />
 
 
+
   
   <link type="text/css" rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.2/css/all.min.css" />
   
@@ -39,11 +40,6 @@
 
 
 <link rel="stylesheet" href="/css/main.min.7d561ec9984cf0cb727fc88e14a92134576c99ccb9ce2f31b5b5541ab4ced328.css">
-  <style type="text/css">
-    .post-footer, .flinks-list-footer hr:after {
-      content: "~ 我可是有底线的哟 ~";
-    }
-  </style>
   <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"embedded-os-vxworks-introduction.html","permalink":"https://www.vxworks7.com/post/bsp/embedded-os-vxworks-introduction.html","title":"嵌入式操作系统VxWorks简介"}</script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
@@ -116,7 +112,7 @@
     </li>
     <li class="menu-item menu-item-archives">
       <a href="/archives/" class="hvr-icon-pulse " rel="section"><i class="fa fa-archive hvr-icon"></i>归档
-        <span class="badge">95</span>
+        <span class="badge">94</span>
       </a>
     </li>
     <li class="menu-item menu-item-commonweal">
@@ -253,7 +249,7 @@
   <nav class="site-state">
     <div class="site-state-item site-state-posts">
       <a href="/archives/">
-        <span class="site-state-item-count">95</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -265,7 +261,7 @@
     </div>
     <div class="site-state-item site-state-tags">
       <a href="/tags/">
-        <span class="site-state-item-count">133</span>
+        <span class="site-state-item-count">131</span>
         <span class="site-state-item-name">标签</span>
       </a>
     </div>
@@ -331,11 +327,11 @@
       </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-font"></i>总字数：</div>
-      <div class="item-count" id="wordsCount" data-count="28953"></div>
+      <div class="item-count" id="wordsCount" data-count="28814"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-mug-hot"></i>阅读约：</div>
-      <div class="item-count" id="readTimes" data-times="193"></div>
+      <div class="item-count" id="readTimes" data-times="192"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
@@ -507,17 +503,17 @@
 </ul>
 <p>当系统函数对某一任务进行操作时，任务从一种状态迁移到另一状态。处于任一状态的任务都可被删除。</p>
 <p>状态迁移调用</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">就绪态 ----&gt; 悬置态semTake<span style="color:#f92672">()</span>/msgQReceive<span style="color:#f92672">()</span> 
-就绪态 ----&gt; 延迟态taskDelay<span style="color:#f92672">()</span> 
-就绪态 ----&gt; 休眠态taskSuspend<span style="color:#f92672">()</span> 
-悬置态 ----&gt; 就绪态semGive<span style="color:#f92672">()</span>/msgQSend<span style="color:#f92672">()</span> 
-悬置态 ----&gt; 休眠态taskSuspend<span style="color:#f92672">()</span> 
-延迟态 ----&gt; 就绪态expireddelay 
-延迟态 ----&gt; 休眠态taskSuspend<span style="color:#f92672">()</span> 
-休眠态 ----&gt; 就绪态taskResume<span style="color:#f92672">()</span>/taskActivate<span style="color:#f92672">()</span> 
-休眠态 ----&gt; 悬置态taskResume<span style="color:#f92672">()</span> 
-休眠态 ----&gt; 延迟态taskResume<span style="color:#f92672">()</span> 
-</code></pre></div><h3 id="调度控制">调度控制</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>就绪态 ----&gt; 悬置态semTake<span style="color:#f92672">()</span>/msgQReceive<span style="color:#f92672">()</span> 
+</span></span><span style="display:flex;"><span>就绪态 ----&gt; 延迟态taskDelay<span style="color:#f92672">()</span> 
+</span></span><span style="display:flex;"><span>就绪态 ----&gt; 休眠态taskSuspend<span style="color:#f92672">()</span> 
+</span></span><span style="display:flex;"><span>悬置态 ----&gt; 就绪态semGive<span style="color:#f92672">()</span>/msgQSend<span style="color:#f92672">()</span> 
+</span></span><span style="display:flex;"><span>悬置态 ----&gt; 休眠态taskSuspend<span style="color:#f92672">()</span> 
+</span></span><span style="display:flex;"><span>延迟态 ----&gt; 就绪态expireddelay 
+</span></span><span style="display:flex;"><span>延迟态 ----&gt; 休眠态taskSuspend<span style="color:#f92672">()</span> 
+</span></span><span style="display:flex;"><span>休眠态 ----&gt; 就绪态taskResume<span style="color:#f92672">()</span>/taskActivate<span style="color:#f92672">()</span> 
+</span></span><span style="display:flex;"><span>休眠态 ----&gt; 悬置态taskResume<span style="color:#f92672">()</span> 
+</span></span><span style="display:flex;"><span>休眠态 ----&gt; 延迟态taskResume<span style="color:#f92672">()</span> 
+</span></span></code></pre></div><h3 id="调度控制">调度控制</h3>
 <p>多任务需要一个调度算法分配CPU给就绪的任务。在VxWorks中默认的调度算法是基于优先级的抢占调度，但应用程序也可以选择使用时间片轮转调度。</p>
 <ul>
 <li>
@@ -588,8 +584,8 @@
 <p>优先级逆转/优先级继承： 优先级逆转发生在一个高优先级的任务被强制等待一段不确定的时间以便一个较低优先级的任务完成执行。考虑下面的假设：</p>
 </li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-fallback" data-lang="fallback">T1，T2和T3分别是高、中、低优先级的任务。T3通过拥有信号量而获得相关的资源。当T1抢占T3，为竞争使用该资源而请求相同的信号量的时候，它被阻塞。如果我们假设T1仅被阻塞到T3使用完该资源为止，情况并不是很糟。毕竟资源是不可被抢占的。然而，低优先级的任务并不能避免被中优先级的任务抢占，一个抢占的任务如T2将阻止T3完成对资源的操作。这种情况可能会持续阻塞T1等待一段不可确定的时间。这种情况成为优先级逆转，因为尽管系统是基于优先级的调度，但却使一个高优先级的任务等待一个低优先级的任务完成执行。
-</code></pre></div><p>互斥信号量有一个选项允许实现优先级继承的算法。优先级继承通过在T1被阻塞期间提升T3的优先级到T1解决了优先级逆转引起的问题。这防止了T3，间接地防止T1，被T2抢占。通俗地说，优先级继承协议使一个拥有资源的任务以等待该资源的任务中优先级最高的任务的优先级执行。当执行完成，任务释放该资源并返回到它正常的或标准的优先级。因此，继承优先级的任务避免了被任何中间优先级的任务抢占。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>T1，T2和T3分别是高、中、低优先级的任务。T3通过拥有信号量而获得相关的资源。当T1抢占T3，为竞争使用该资源而请求相同的信号量的时候，它被阻塞。如果我们假设T1仅被阻塞到T3使用完该资源为止，情况并不是很糟。毕竟资源是不可被抢占的。然而，低优先级的任务并不能避免被中优先级的任务抢占，一个抢占的任务如T2将阻止T3完成对资源的操作。这种情况可能会持续阻塞T1等待一段不可确定的时间。这种情况成为优先级逆转，因为尽管系统是基于优先级的调度，但却使一个高优先级的任务等待一个低优先级的任务完成执行。
+</span></span></code></pre></div><p>互斥信号量有一个选项允许实现优先级继承的算法。优先级继承通过在T1被阻塞期间提升T3的优先级到T1解决了优先级逆转引起的问题。这防止了T3，间接地防止T1，被T2抢占。通俗地说，优先级继承协议使一个拥有资源的任务以等待该资源的任务中优先级最高的任务的优先级执行。当执行完成，任务释放该资源并返回到它正常的或标准的优先级。因此，继承优先级的任务避免了被任何中间优先级的任务抢占。</p>
 <h3 id="同步">同步</h3>
 <p>信号量另一种通常的用法是用于任务间的同步机制。在这种情况下，信号量代表一个任务所等待的条件或事件。最初，信号量是在清零态。一个任务或中断通过置位该信号量来指示一个事件的发生。等待该信号量的任务将被阻塞直到事件发生、该信号量被置位。一旦被解阻塞，任务就执行恰当的事件处理程序。信号量在任务同步中的应用对于将中断服务程序从冗长的事件处理中解放出来以缩短中断响应时间是很有用的。</p>
 <h3 id="消息队列">消息队列</h3>
@@ -857,7 +853,7 @@ VxWorks提供了一组管理信号量的函数接口供开发者使用，包括�
   
   <script type="text/javascript" src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js" defer></script>
 
-<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
+<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com/","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
 
 
 
@@ -865,7 +861,7 @@ VxWorks提供了一组管理信号量的函数接口供开发者使用，包括�
 
 
 
-<script type="text/javascript" src="/js/main.min.7e59cf1a98d842830d8a6f149f78fbbcf9e795b7a9eb76feb34b48c9bf1554d7.js" defer></script>
+<script type="text/javascript" src="/js/main.min.8bc1e2a2ac040735a2a32d113d257bd75c45142b9842ad7526f7de5e3d3a9298.js" defer></script>
 
 
 

@@ -4,82 +4,51 @@
     <title>RTOS on VxWorks 7</title>
     <link>https://www.vxworks7.com/tags/rtos/</link>
     <description>Recent content in RTOS on VxWorks 7</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 03 Aug 2024 18:02:03 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rtos/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 03 Aug 2024 18:02:03 +0800</lastBuildDate>
+    <atom:link href="https://www.vxworks7.com/tags/rtos/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>支持电信业发挥AI潜能，迎接Open RAN革命</title>
       <link>https://www.vxworks7.com/post/news/windriver-supports-telecom-industry-to-realize-the-potential-of-AI.html</link>
       <pubDate>Sat, 03 Aug 2024 18:02:03 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/post/news/windriver-supports-telecom-industry-to-realize-the-potential-of-AI.html</guid>
       <description>&lt;p&gt;电信业持续发展，而且正处于一个关键时刻，这是因为获得了Open RAN和人工智能(AI)的双重动力。这两项革命性的技术正在重塑电信基础设施的基础架构。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>基于VxWorks 系统的航电激励器设计与实现</title>
       <link>https://www.vxworks7.com/post/vxworks/design-and-implementation-of-avionics-exciter-based-on-vxworks-system.html</link>
       <pubDate>Fri, 26 Apr 2024 23:10:04 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/post/vxworks/design-and-implementation-of-avionics-exciter-based-on-vxworks-system.html</guid>
-      <description>&lt;p&gt;航电激励器在民用飞机航电系统半物理仿真平台中起着至关重要的作用。在航电系统开发过程中，航电激励器向航电仿真设备提供的激励数据是进行航电系统仿真验证的基础，所以在航电激励数据的获取和处理中，航电激励器的设计与实现是极其重要的一个环节。该文基于
-&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    VxWorks
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt; 系统设计一款航电激励器，对航电激励器进行总体设计，从激励数据获取模块、激励数据转换模块等方面进行研究，完成软件设计以及硬件平台搭建。通过对设计的航电激励器进行仿真验证，实现飞机模拟飞行数据的获取以及航电系统中
-&lt;a href=&#34;https://www.vxworks6.com&#34; title=&#34;ARINC429&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    ARINC429
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt; 总线数据和AFDX 总线数据的相互转换，使得激励数据在传输过程中具有良好的实时性。&lt;/p&gt;</description>
+      <description>&lt;p&gt;航电激励器在民用飞机航电系统半物理仿真平台中起着至关重要的作用。在航电系统开发过程中，航电激励器向航电仿真设备提供的激励数据是进行航电系统仿真验证的基础，所以在航电激励数据的获取和处理中，航电激励器的设计与实现是极其重要的一个环节。该文基于&#xA;&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;VxWorks&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    VxWorks&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt; 系统设计一款航电激励器，对航电激励器进行总体设计，从激励数据获取模块、激励数据转换模块等方面进行研究，完成软件设计以及硬件平台搭建。通过对设计的航电激励器进行仿真验证，实现飞机模拟飞行数据的获取以及航电系统中&#xA;&lt;a href=&#34;https://www.vxworks6.com&#34; title=&#34;ARINC429&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    ARINC429&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt; 总线数据和AFDX 总线数据的相互转换，使得激励数据在传输过程中具有良好的实时性。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>微软开源实时操作系统 ThreadX</title>
       <link>https://www.vxworks7.com/post/news/microsoft-open-source-the-rtos-ThreadX.html</link>
       <pubDate>Sun, 03 Dec 2023 09:34:18 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/post/news/microsoft-open-source-the-rtos-ThreadX.html</guid>
-      <description>&lt;p&gt;微软宣布将 ThreadX 
-&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;RTOS&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    RTOS
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt; 开源,遵守 MIT 开源许可证，并将其捐赠给 Eclipse 基金会，改名为 Eclipse ThreadX （简称 ThreadX）。&lt;/p&gt;</description>
+      <description>&lt;p&gt;微软宣布将 ThreadX &#xA;&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;RTOS&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    RTOS&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt; 开源,遵守 MIT 开源许可证，并将其捐赠给 Eclipse 基金会，改名为 Eclipse ThreadX （简称 ThreadX）。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>使用RTOS时需要注意的几点内容</title>
       <link>https://www.vxworks7.com/post/vxworks/several-things-to-note-when-using-RTOS.html</link>
       <pubDate>Sat, 02 Dec 2023 22:45:59 +0800</pubDate>
-      
       <guid>https://www.vxworks7.com/post/vxworks/several-things-to-note-when-using-RTOS.html</guid>
-      <description>&lt;p&gt;对许多嵌入式项目来说，系统设计师都倾向于选择实时操作系统(
-&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;RTOS&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    RTOS
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt;)。但RTOS总是必要的吗?&lt;/p&gt;</description>
+      <description>&lt;p&gt;对许多嵌入式项目来说，系统设计师都倾向于选择实时操作系统(&#xA;&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;RTOS&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    RTOS&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt;)。但RTOS总是必要的吗?&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>为什么有些应用非VxWorks不可</title>
       <link>https://www.vxworks7.com/post/vxworks/the-necessity-of-using-vxworks-for-some-application.html</link>
       <pubDate>Sat, 08 Jul 2023 10:47:20 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/post/vxworks/the-necessity-of-using-vxworks-for-some-application.html</guid>
       <description>&lt;p&gt;实时操作系统（RTOS）是专用于对时间精确度敏感的操作系统。典型的情况是，这种应用需要从传感器收集数据、做出分析并对关键性设备进行控制，例如飞机、列车、手术刀。这类控制必须精准，不容许出现丝毫差错。这与通用操作系统（General Purpose Operating Systems, GPOS形成对比。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>选择实时操作系统(RTOS)的要点详解</title>
       <link>https://www.vxworks7.com/post/news/how-to-select-real-time-operating-system.html</link>
       <pubDate>Sun, 26 Mar 2023 10:39:45 -0400</pubDate>
-      
       <guid>https://www.vxworks7.com/post/news/how-to-select-real-time-operating-system.html</guid>
-      <description>&lt;p&gt;对许多嵌入式项目来说，系统设计师都倾向于选择实时操作系统(&lt;code&gt;RTOS&lt;/code&gt;)。但
-&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;RTOS&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
-    RTOS
-    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
-&lt;/a&gt;总是必要的吗?答案是取决于具体的应用，因此了解我们要达到什么目标是决定RTOS是必要的还是花瓶的关键。&lt;/p&gt;</description>
+      <description>&lt;p&gt;对许多嵌入式项目来说，系统设计师都倾向于选择实时操作系统(&lt;code&gt;RTOS&lt;/code&gt;)。但&#xA;&lt;a href=&#34;https://www.vxworks.net&#34; title=&#34;RTOS&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;&#xA;    RTOS&#xA;    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;&#xA;&lt;/a&gt;总是必要的吗?答案是取决于具体的应用，因此了解我们要达到什么目标是决定RTOS是必要的还是花瓶的关键。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

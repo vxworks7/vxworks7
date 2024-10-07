@@ -4,7 +4,7 @@
 <head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)" />
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.135.0">
 <link rel="shortcut icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
@@ -32,6 +32,7 @@
 <meta property="article:modified_time" content="2023-01-03 08:27:58 -0500 -0500" />
 
 
+
   
   <link type="text/css" rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.2/css/all.min.css" />
   
@@ -39,11 +40,6 @@
 
 
 <link rel="stylesheet" href="/css/main.min.7d561ec9984cf0cb727fc88e14a92134576c99ccb9ce2f31b5b5541ab4ced328.css">
-  <style type="text/css">
-    .post-footer, .flinks-list-footer hr:after {
-      content: "~ 我可是有底线的哟 ~";
-    }
-  </style>
   <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"introduction-of-workbench-and-tornado-for-vxworks.html","permalink":"https://www.vxworks7.com/post/bsp/introduction-of-workbench-and-tornado-for-vxworks.html","title":"VxWorks开发环境Workbench与Tornado介绍"}</script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
@@ -116,7 +112,7 @@
     </li>
     <li class="menu-item menu-item-archives">
       <a href="/archives/" class="hvr-icon-pulse " rel="section"><i class="fa fa-archive hvr-icon"></i>归档
-        <span class="badge">95</span>
+        <span class="badge">94</span>
       </a>
     </li>
     <li class="menu-item menu-item-commonweal">
@@ -207,7 +203,7 @@
   <nav class="site-state">
     <div class="site-state-item site-state-posts">
       <a href="/archives/">
-        <span class="site-state-item-count">95</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -219,7 +215,7 @@
     </div>
     <div class="site-state-item site-state-tags">
       <a href="/tags/">
-        <span class="site-state-item-count">133</span>
+        <span class="site-state-item-count">131</span>
         <span class="site-state-item-name">标签</span>
       </a>
     </div>
@@ -285,11 +281,11 @@
       </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-font"></i>总字数：</div>
-      <div class="item-count" id="wordsCount" data-count="28953"></div>
+      <div class="item-count" id="wordsCount" data-count="28814"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-mug-hot"></i>阅读约：</div>
-      <div class="item-count" id="readTimes" data-times="193"></div>
+      <div class="item-count" id="readTimes" data-times="192"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
@@ -467,70 +463,70 @@
 </div>
 <h2 id="workbench的当前应用状况">Workbench的当前应用状况</h2>
 <table>
-<thead>
-<tr>
-<th>项目</th>
-<th>Tornado</th>
-<th>Workbench</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>工程管理</td>
-<td>基本的工程管理功能，对分级的工程支持有限，并需要手工修改makefile等，比较麻烦</td>
-<td>支持任意工程的分级控制，采用简单的“拖拉”方式就可完成工程项目的分级构造，非常方便</td>
-</tr>
-<tr>
-<td>工程项目</td>
-<td>支持可下载的工程项目和客户化的VxWorks工程项目</td>
-<td>增加了对系统引导工程项目、实时进程工程项目、文件系统工程项目、用户定制工程项目等的支持</td>
-</tr>
-<tr>
-<td>编辑器</td>
-<td>功能比较简单，只能完成一般的编辑功能</td>
-<td>具有语法分析功能，可以进行语法着色显示、符号定义查找、符号补全、函数参数提示等功能，具有强大的符号查找和浏览能力</td>
-</tr>
-<tr>
-<td>断点设置</td>
-<td>支持任务级断点和全局断点</td>
-<td>增加支持对处理器硬件断点等的支持，并且对各种断点还提供多种控制手段</td>
-</tr>
-<tr>
-<td>仿真环境</td>
-<td>基本的VxWorks仿真环境，可以操作主机系统中的文件和网络访问</td>
-<td>增强了仿真环境中的复杂组网功能，提供了调用主机系统API的能力，并可模拟中断信号的产生</td>
-</tr>
-<tr>
-<td>目标连接</td>
-<td>支持网络、串口等连接方式</td>
-<td>增加了对硬件仿真器的连接</td>
-</tr>
-<tr>
-<td>下载的代码量</td>
-<td>下载的目标代码一般在10MByte之内，超过10MByte会出现下载速度慢，系统不稳定的问题</td>
-<td>设计能力为可下载750MByte的目标代码，充分满足开发和调试需要</td>
-</tr>
-<tr>
-<td>目标操作系统</td>
-<td>只支持VxWorks操作系统</td>
-<td>增加了对Linux操作系统的支持，并且还可以扩展到其它目标操作系统</td>
-</tr>
-<tr>
-<td>目标系统数目</td>
-<td>单一的目标系统，同一个开发环境中同时只能建立一个连接，调试一种类型的单板</td>
-<td>可以同时进行多目标板、多CPU体系结构的调试</td>
-</tr>
-<tr>
-<td>多任务调试</td>
-<td>不支持，每次只能挂接一个任务，或者进行系统级调试</td>
-<td>支持，同时可挂接目标系统的多个任务或进程进行调试</td>
-</tr>
-<tr>
-<td>第三方工具</td>
-<td>结构比较封闭，集成第三方工具比较困难</td>
-<td>采用Eclipse的开放架构，第三方工具容易集成，且资源丰富</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">项目</th>
+          <th style="text-align: left">Tornado</th>
+          <th style="text-align: left">Workbench</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">工程管理</td>
+          <td style="text-align: left">基本的工程管理功能，对分级的工程支持有限，并需要手工修改makefile等，比较麻烦</td>
+          <td style="text-align: left">支持任意工程的分级控制，采用简单的“拖拉”方式就可完成工程项目的分级构造，非常方便</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">工程项目</td>
+          <td style="text-align: left">支持可下载的工程项目和客户化的VxWorks工程项目</td>
+          <td style="text-align: left">增加了对系统引导工程项目、实时进程工程项目、文件系统工程项目、用户定制工程项目等的支持</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">编辑器</td>
+          <td style="text-align: left">功能比较简单，只能完成一般的编辑功能</td>
+          <td style="text-align: left">具有语法分析功能，可以进行语法着色显示、符号定义查找、符号补全、函数参数提示等功能，具有强大的符号查找和浏览能力</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">断点设置</td>
+          <td style="text-align: left">支持任务级断点和全局断点</td>
+          <td style="text-align: left">增加支持对处理器硬件断点等的支持，并且对各种断点还提供多种控制手段</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">仿真环境</td>
+          <td style="text-align: left">基本的VxWorks仿真环境，可以操作主机系统中的文件和网络访问</td>
+          <td style="text-align: left">增强了仿真环境中的复杂组网功能，提供了调用主机系统API的能力，并可模拟中断信号的产生</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">目标连接</td>
+          <td style="text-align: left">支持网络、串口等连接方式</td>
+          <td style="text-align: left">增加了对硬件仿真器的连接</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">下载的代码量</td>
+          <td style="text-align: left">下载的目标代码一般在10MByte之内，超过10MByte会出现下载速度慢，系统不稳定的问题</td>
+          <td style="text-align: left">设计能力为可下载750MByte的目标代码，充分满足开发和调试需要</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">目标操作系统</td>
+          <td style="text-align: left">只支持VxWorks操作系统</td>
+          <td style="text-align: left">增加了对Linux操作系统的支持，并且还可以扩展到其它目标操作系统</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">目标系统数目</td>
+          <td style="text-align: left">单一的目标系统，同一个开发环境中同时只能建立一个连接，调试一种类型的单板</td>
+          <td style="text-align: left">可以同时进行多目标板、多CPU体系结构的调试</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">多任务调试</td>
+          <td style="text-align: left">不支持，每次只能挂接一个任务，或者进行系统级调试</td>
+          <td style="text-align: left">支持，同时可挂接目标系统的多个任务或进程进行调试</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">第三方工具</td>
+          <td style="text-align: left">结构比较封闭，集成第三方工具比较困难</td>
+          <td style="text-align: left">采用Eclipse的开放架构，第三方工具容易集成，且资源丰富</td>
+      </tr>
+  </tbody>
 </table>
 <p>如上所述，Workbench无疑是当前嵌入式软件开发领域中功能非常强大的一个集成开发环境，它最适合应用于复杂系统的开发或多个开发团队的合作开发，比如一个复杂的系统需要用到多种CPU或多种目标操作系统，或者应用软件本身非常复杂，具有多个任务，并且相互之间关联紧密，或者多个项目组之间需要进行协同开发和软件模块共享，或者企业涉及到了从硬件开发，到软件开发，再到生产测试的全过程。在这些情况下，考虑使用Workbench平台则非常合适，因为这样不仅能快速有效地进行系统开发，并且能够有效地进行项目的组织和管理，最终从整体上降低企业的成本。</p>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1543398821442998"
@@ -682,7 +678,7 @@
   
   <script type="text/javascript" src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js" defer></script>
 
-<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
+<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com/","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
 
 
 
@@ -690,7 +686,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.7e59cf1a98d842830d8a6f149f78fbbcf9e795b7a9eb76feb34b48c9bf1554d7.js" defer></script>
+<script type="text/javascript" src="/js/main.min.8bc1e2a2ac040735a2a32d113d257bd75c45142b9842ad7526f7de5e3d3a9298.js" defer></script>
 
 
 

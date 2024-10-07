@@ -4,7 +4,7 @@
 <head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)" />
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.135.0">
 <link rel="shortcut icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
@@ -32,6 +32,7 @@
 <meta property="article:modified_time" content="2022-11-04 18:43:23 &#43;0800 CST" />
 
 
+
   
   <link type="text/css" rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.2/css/all.min.css" />
   
@@ -39,11 +40,6 @@
 
 
 <link rel="stylesheet" href="/css/main.min.7d561ec9984cf0cb727fc88e14a92134576c99ccb9ce2f31b5b5541ab4ced328.css">
-  <style type="text/css">
-    .post-footer, .flinks-list-footer hr:after {
-      content: "~ 我可是有底线的哟 ~";
-    }
-  </style>
   <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"linux-mmap-explanation.html","permalink":"https://www.vxworks7.com/post/linux/linux-mmap-explanation.html","title":"Linux mmap内存映射详解"}</script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
@@ -116,7 +112,7 @@
     </li>
     <li class="menu-item menu-item-archives">
       <a href="/archives/" class="hvr-icon-pulse " rel="section"><i class="fa fa-archive hvr-icon"></i>归档
-        <span class="badge">95</span>
+        <span class="badge">94</span>
       </a>
     </li>
     <li class="menu-item menu-item-commonweal">
@@ -195,7 +191,7 @@
   <nav class="site-state">
     <div class="site-state-item site-state-posts">
       <a href="/archives/">
-        <span class="site-state-item-count">95</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -207,7 +203,7 @@
     </div>
     <div class="site-state-item site-state-tags">
       <a href="/tags/">
-        <span class="site-state-item-count">133</span>
+        <span class="site-state-item-count">131</span>
         <span class="site-state-item-name">标签</span>
       </a>
     </div>
@@ -273,11 +269,11 @@
       </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-font"></i>总字数：</div>
-      <div class="item-count" id="wordsCount" data-count="28953"></div>
+      <div class="item-count" id="wordsCount" data-count="28814"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-mug-hot"></i>阅读约：</div>
-      <div class="item-count" id="readTimes" data-times="193"></div>
+      <div class="item-count" id="readTimes" data-times="192"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
@@ -367,7 +363,7 @@
   <span class="post-meta-item-icon">
     <i class="far fa-file-word"></i>
   </span>
-  <span class="post-meta-item-text">字数：</span><span>302</span>
+  <span class="post-meta-item-text">字数：</span><span>310</span>
 </span>
     
 <span class="post-meta-item" title="阅读">
@@ -474,76 +470,76 @@ vm_next      指向链表的下一个区域结构。
 <p>注意：修改过的脏页面并不会立即更新回文件中，而是有一段时间的延迟，可以调用msync()来强制同步, 这样所写的内容就能立即保存到文件里了。</p>
 <h2 id="mmap-示例代码">mmap 示例代码</h2>
 <p>mmap (内存映射)函数的作用是建立一段可以被两个或更多个程序读写的内存。一个程序对它所做出的修改可以被其他程序看见。这要通过使用带有特殊权限集的虚拟内存段来实现。对这类虚拟内存段的读写会使操作系统去读写磁盘文件中与之对应的部分。mmap 函数创建一个指向一段内存区域的指针，该内存区域与可以通过一个打开的文件描述符访问的文件的内容相关联。mmap 函数原型如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;sys/mman.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">mmap</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>addr, size_t length, <span style="color:#66d9ef">int</span> prot, <span style="color:#66d9ef">int</span> flags, <span style="color:#66d9ef">int</span> fd, off_t offset);
-</code></pre></div><p>可以通过传递 off 参数来改变共享内存段访问的文件中数据的起始偏移值。打开的文件描述符由 fildes 参数给出。可以访问的数据量(即内存段的长度)由 len 参数设置。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;sys/mman.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">mmap</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>addr, <span style="color:#66d9ef">size_t</span> length, <span style="color:#66d9ef">int</span> prot, <span style="color:#66d9ef">int</span> flags, <span style="color:#66d9ef">int</span> fd, <span style="color:#66d9ef">off_t</span> offset);
+</span></span></code></pre></div><p>可以通过传递 off 参数来改变共享内存段访问的文件中数据的起始偏移值。打开的文件描述符由 fildes 参数给出。可以访问的数据量(即内存段的长度)由 len 参数设置。</p>
 <p>可以通过 addr 参数来请求使用某个特定的内存地址。如果它的取值是零，结果指针就将自动分配。这是推荐的做法，否则会降低程序的可移植性，因为不同系统上的可用地址范围是不一样的。</p>
 <p>prot 参数用于设置内存段的访问权限。它是下列常数值的按位或的结果：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c">PROT_READ       <span style="color:#960050;background-color:#1e0010">内存段可读。</span>
-PROT_WRITE      <span style="color:#960050;background-color:#1e0010">内存段可写。</span>
-PROT_EXEC       <span style="color:#960050;background-color:#1e0010">内存段可执行。</span>
-PROT_NONE       <span style="color:#960050;background-color:#1e0010">内存段不能被访问。</span>
-</code></pre></div><p>flags 参数控制程序对该内存段的改变所造成的影响：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>PROT_READ       <span style="color:#960050;background-color:#1e0010">内存段可读。</span>
+</span></span><span style="display:flex;"><span>PROT_WRITE      <span style="color:#960050;background-color:#1e0010">内存段可写。</span>
+</span></span><span style="display:flex;"><span>PROT_EXEC       <span style="color:#960050;background-color:#1e0010">内存段可执行。</span>
+</span></span><span style="display:flex;"><span>PROT_NONE       <span style="color:#960050;background-color:#1e0010">内存段不能被访问。</span>
+</span></span></code></pre></div><p>flags 参数控制程序对该内存段的改变所造成的影响：</p>
 <p><img src="https://www.vxworks.net/images/kad8/mmap-3.jpg" alt="MMAP"></p>
 <p><strong>msync 函数</strong>的作用是：把在该内存段的某个部分或整段中的修改写回到被映射的文件中(或者从被映射文件里读出)。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;sys/mman.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">msync</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>addr, size_t len, <span style="color:#66d9ef">int</span> flags);
-</code></pre></div><p>内存段需要修改的部分由作为参数传递过来的起始地址 addr 和长度 len 确定。flags 参数控制着执行修改的具体方式，可以使用的选项如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-markdown" data-lang="markdown">MS_ASYNC                    采用异步写方式
-MS_SYNC                     采用同步写方式
-MS_INVALIDATE               从文件中读回数据
-</code></pre></div><p><strong>munmap 函数</strong>的作用是释放内存段：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;sys/mman.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">munmap</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>addr, size_t length);
-</code></pre></div><p>示例代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;sys/mman.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">msync</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>addr, <span style="color:#66d9ef">size_t</span> len, <span style="color:#66d9ef">int</span> flags);
+</span></span></code></pre></div><p>内存段需要修改的部分由作为参数传递过来的起始地址 addr 和长度 len 确定。flags 参数控制着执行修改的具体方式，可以使用的选项如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>MS_ASYNC                    采用异步写方式
+</span></span><span style="display:flex;"><span>MS_SYNC                     采用同步写方式
+</span></span><span style="display:flex;"><span>MS_INVALIDATE               从文件中读回数据
+</span></span></code></pre></div><p><strong>munmap 函数</strong>的作用是释放内存段：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;sys/mman.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">munmap</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>addr, <span style="color:#66d9ef">size_t</span> length);
+</span></span></code></pre></div><p>示例代码：</p>
 <p>(1) 定义一个 RECORD 数据结构，然后创建出 NRECORDS 每个记录，每个记录中保存着它们各自的编号。然后把这些记录都追加到文件 records.dat 里去。</p>
 <p>(2) 接着，把第 43 记录中的整数值由 43 修改为 143，并把它写入第 43 条记录中的字符串。</p>
 <p>(3) 把这些记录映射到内存中，然后访问第 43 条记录，把它的整数值修改为 243 (同时更新该记录中的字符串)，使用的还是内存映射的方法。</p>
 <p>可以将上述 (2) (3) 分别编写程序验证结果。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;unistd.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;sys/mman.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;fcntl.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span>{
- <span style="color:#66d9ef">int</span> integer;
- <span style="color:#66d9ef">char</span> string[<span style="color:#ae81ff">24</span>];
-}RECORD;
-<span style="color:#75715e">#define NRECORDS (100)
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
-{
-	RECORD record, <span style="color:#f92672">*</span>mapped;
- <span style="color:#66d9ef">int</span> i, f;
-	FILE <span style="color:#f92672">*</span>fp;
-	fp <span style="color:#f92672">=</span> fopen(<span style="color:#e6db74">&#34;records.dat&#34;</span>, <span style="color:#e6db74">&#34;w+&#34;</span>);
- <span style="color:#66d9ef">for</span>( i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> NRECORDS; i<span style="color:#f92672">++</span>)
-	{
-		record.integer <span style="color:#f92672">=</span> i;
- sprintf(record.string, <span style="color:#e6db74">&#34;[RECORD-%d]&#34;</span>, i);
- fwrite(<span style="color:#f92672">&amp;</span>record, <span style="color:#66d9ef">sizeof</span>(record), <span style="color:#ae81ff">1</span>, fp);
-		}
- fclose(fp);
-	fp <span style="color:#f92672">=</span> fopen(<span style="color:#e6db74">&#34;records.dat&#34;</span>, <span style="color:#e6db74">&#34;r+&#34;</span>);
- fseek(fp, <span style="color:#ae81ff">43</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">sizeof</span>(record), SEEK_SET);
- fread(<span style="color:#f92672">&amp;</span>record, <span style="color:#66d9ef">sizeof</span>(record), <span style="color:#ae81ff">1</span>, fp);
-	record.integer <span style="color:#f92672">=</span> <span style="color:#ae81ff">143</span>;
- sprintf(record.string, <span style="color:#e6db74">&#34;[RECORD-%d]&#34;</span>, record.integer);
- fseek(fp, <span style="color:#ae81ff">43</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">sizeof</span>(record), SEEK_SET);
- fwrite(<span style="color:#f92672">&amp;</span>record, <span style="color:#66d9ef">sizeof</span>(record), <span style="color:#ae81ff">1</span>, fp);
- fclose(fp);
-	f <span style="color:#f92672">=</span> open(<span style="color:#e6db74">&#34;records.dat&#34;</span>, O_RDWR);
-	mapped <span style="color:#f92672">=</span> (RECORD<span style="color:#f92672">*</span>)mmap(<span style="color:#ae81ff">0</span>, NRECORDS <span style="color:#f92672">*</span> <span style="color:#66d9ef">sizeof</span>(record), 
-	                        PROT_READ <span style="color:#f92672">|</span> PROT_WRITE, MAP_SHARED, f, <span style="color:#ae81ff">0</span>);
- printf(<span style="color:#e6db74">&#34;f:[%d]</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, f);
- <span style="color:#75715e">//open是系统调用，返回文件描述符。fopen是库函数，返回指针。
-</span><span style="color:#75715e"></span>	mapped[<span style="color:#ae81ff">43</span>].integer <span style="color:#f92672">=</span> <span style="color:#ae81ff">243</span>;
- sprintf(mapped[<span style="color:#ae81ff">43</span>].string, <span style="color:#e6db74">&#34;[RECORD-%d]&#34;</span>, mapped[<span style="color:#ae81ff">43</span>].integer);
- msync((<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>) mapped, NRECORDS <span style="color:#f92672">*</span> <span style="color:#66d9ef">sizeof</span>(record), MS_ASYNC);
- munmap((<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>)mapped, NRECORDS <span style="color:#f92672">*</span> <span style="color:#66d9ef">sizeof</span>(record));
- close(f);
- <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;	
-}
-</code></pre></div><h2 id="mmap-和常规文件操作的区别">mmap 和常规文件操作的区别</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;unistd.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;sys/mman.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;fcntl.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span>{
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">int</span> integer;
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">char</span> string[<span style="color:#ae81ff">24</span>];
+</span></span><span style="display:flex;"><span>}RECORD;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define NRECORDS (100)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	RECORD record, <span style="color:#f92672">*</span>mapped;
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">int</span> i, f;
+</span></span><span style="display:flex;"><span>	FILE <span style="color:#f92672">*</span>fp;
+</span></span><span style="display:flex;"><span>	fp <span style="color:#f92672">=</span> <span style="color:#a6e22e">fopen</span>(<span style="color:#e6db74">&#34;records.dat&#34;</span>, <span style="color:#e6db74">&#34;w+&#34;</span>);
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">for</span>( i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> NRECORDS; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		record.integer <span style="color:#f92672">=</span> i;
+</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">sprintf</span>(record.string, <span style="color:#e6db74">&#34;[RECORD-%d]&#34;</span>, i);
+</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">fwrite</span>(<span style="color:#f92672">&amp;</span>record, <span style="color:#66d9ef">sizeof</span>(record), <span style="color:#ae81ff">1</span>, fp);
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">fclose</span>(fp);
+</span></span><span style="display:flex;"><span>	fp <span style="color:#f92672">=</span> <span style="color:#a6e22e">fopen</span>(<span style="color:#e6db74">&#34;records.dat&#34;</span>, <span style="color:#e6db74">&#34;r+&#34;</span>);
+</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">fseek</span>(fp, <span style="color:#ae81ff">43</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">sizeof</span>(record), SEEK_SET);
+</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">fread</span>(<span style="color:#f92672">&amp;</span>record, <span style="color:#66d9ef">sizeof</span>(record), <span style="color:#ae81ff">1</span>, fp);
+</span></span><span style="display:flex;"><span>	record.integer <span style="color:#f92672">=</span> <span style="color:#ae81ff">143</span>;
+</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">sprintf</span>(record.string, <span style="color:#e6db74">&#34;[RECORD-%d]&#34;</span>, record.integer);
+</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">fseek</span>(fp, <span style="color:#ae81ff">43</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">sizeof</span>(record), SEEK_SET);
+</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">fwrite</span>(<span style="color:#f92672">&amp;</span>record, <span style="color:#66d9ef">sizeof</span>(record), <span style="color:#ae81ff">1</span>, fp);
+</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">fclose</span>(fp);
+</span></span><span style="display:flex;"><span>	f <span style="color:#f92672">=</span> <span style="color:#a6e22e">open</span>(<span style="color:#e6db74">&#34;records.dat&#34;</span>, O_RDWR);
+</span></span><span style="display:flex;"><span>	mapped <span style="color:#f92672">=</span> (RECORD<span style="color:#f92672">*</span>)<span style="color:#a6e22e">mmap</span>(<span style="color:#ae81ff">0</span>, NRECORDS <span style="color:#f92672">*</span> <span style="color:#66d9ef">sizeof</span>(record), 
+</span></span><span style="display:flex;"><span>	                        PROT_READ <span style="color:#f92672">|</span> PROT_WRITE, MAP_SHARED, f, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;f:[%d]</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, f);
+</span></span><span style="display:flex;"><span> <span style="color:#75715e">//open是系统调用，返回文件描述符。fopen是库函数，返回指针。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	mapped[<span style="color:#ae81ff">43</span>].integer <span style="color:#f92672">=</span> <span style="color:#ae81ff">243</span>;
+</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">sprintf</span>(mapped[<span style="color:#ae81ff">43</span>].string, <span style="color:#e6db74">&#34;[RECORD-%d]&#34;</span>, mapped[<span style="color:#ae81ff">43</span>].integer);
+</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">msync</span>((<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>) mapped, NRECORDS <span style="color:#f92672">*</span> <span style="color:#66d9ef">sizeof</span>(record), MS_ASYNC);
+</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">munmap</span>((<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>)mapped, NRECORDS <span style="color:#f92672">*</span> <span style="color:#66d9ef">sizeof</span>(record));
+</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">close</span>(f);
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;	
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="mmap-和常规文件操作的区别">mmap 和常规文件操作的区别</h2>
 <p>使用系统调用，函数的调用过程：</p>
 <ol>
 <li>
@@ -736,7 +732,7 @@ MS_INVALIDATE               从文件中读回数据
   
   <script type="text/javascript" src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js" defer></script>
 
-<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
+<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com/","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
 
 
 
@@ -744,7 +740,7 @@ MS_INVALIDATE               从文件中读回数据
 
 
 
-<script type="text/javascript" src="/js/main.min.7e59cf1a98d842830d8a6f149f78fbbcf9e795b7a9eb76feb34b48c9bf1554d7.js" defer></script>
+<script type="text/javascript" src="/js/main.min.8bc1e2a2ac040735a2a32d113d257bd75c45142b9842ad7526f7de5e3d3a9298.js" defer></script>
 
 
 

@@ -4,7 +4,7 @@
 <head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)" />
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.135.0">
 <link rel="shortcut icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
@@ -32,6 +32,7 @@
 <meta property="article:modified_time" content="2022-12-28 10:48:17 -0500 -0500" />
 
 
+
   
   <link type="text/css" rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.2/css/all.min.css" />
   
@@ -39,11 +40,6 @@
 
 
 <link rel="stylesheet" href="/css/main.min.7d561ec9984cf0cb727fc88e14a92134576c99ccb9ce2f31b5b5541ab4ced328.css">
-  <style type="text/css">
-    .post-footer, .flinks-list-footer hr:after {
-      content: "~ 我可是有底线的哟 ~";
-    }
-  </style>
   <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"vxworks-multiple-tasks-debug.html","permalink":"https://www.vxworks7.com/post/app/vxworks-multiple-tasks-debug.html","title":"VxWorks下多任务调试"}</script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
@@ -116,7 +112,7 @@
     </li>
     <li class="menu-item menu-item-archives">
       <a href="/archives/" class="hvr-icon-pulse " rel="section"><i class="fa fa-archive hvr-icon"></i>归档
-        <span class="badge">95</span>
+        <span class="badge">94</span>
       </a>
     </li>
     <li class="menu-item menu-item-commonweal">
@@ -196,7 +192,7 @@
   <nav class="site-state">
     <div class="site-state-item site-state-posts">
       <a href="/archives/">
-        <span class="site-state-item-count">95</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -208,7 +204,7 @@
     </div>
     <div class="site-state-item site-state-tags">
       <a href="/tags/">
-        <span class="site-state-item-count">133</span>
+        <span class="site-state-item-count">131</span>
         <span class="site-state-item-name">标签</span>
       </a>
     </div>
@@ -274,11 +270,11 @@
       </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-font"></i>总字数：</div>
-      <div class="item-count" id="wordsCount" data-count="28953"></div>
+      <div class="item-count" id="wordsCount" data-count="28814"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-mug-hot"></i>阅读约：</div>
-      <div class="item-count" id="readTimes" data-times="193"></div>
+      <div class="item-count" id="readTimes" data-times="192"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
@@ -410,84 +406,84 @@
 <h1 id="任务调试模式下的多任务调试">任务调试模式下的多任务调试</h1>
 <p>在任务调试模式下，在一个集成环境中，在一个任务中调试，在另一个任务中设置断点，设置的断点不起作用。这是因为一个调试器只能处理一个TCB（任务控制块），每个任务都有一个TCB，因此一个调试器只能调试一个任务，要调试几个任务就要启动几个调试器。一个集成环境只能启动一个调试器，所以要调试几个任务就要启动几个集成环境。另外，需要在被调试的任务的待调试的第一条语句前加入taskSuspend(0)语句，挂起该任务，否则任务就可能会在调试前被执行。
 下面是多任务调试的测试用例的源代码</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">/* VxWorks includes */</span> 
-<span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;vxWorks.h&#34; </span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;taskLib.h&#34; </span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stdio.h&#34; </span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;msgQLib.h&#34; </span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> g_lTaskATid; 
-<span style="color:#66d9ef">int</span> g_lTaskBTid; 
-MSG_Q_ID g_MsgQ1id; 
-MSG_Q_ID g_MsgQ2id; 
-
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">MultiTaskTestTaskA</span>(<span style="color:#66d9ef">void</span>)  
-{ 
-       <span style="color:#66d9ef">char</span> cMsgToTaskB[<span style="color:#ae81ff">100</span>]; 
-    <span style="color:#66d9ef">char</span> cMsgFromTaskB[<span style="color:#ae81ff">100</span>]; 
-
-    sprintf(cMsgToTaskB,<span style="color:#e6db74">&#34;To TaskB </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>); 
-    printf(<span style="color:#e6db74">&#34; Hello from MultiTaskTestTaskA </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>); 
-    <span style="color:#75715e">/*start point of debugging for  MultiTaskTestTaskA*/</span> 
-    taskSuspend(<span style="color:#ae81ff">0</span>);      
-    <span style="color:#66d9ef">for</span>(;;) 
-    {     
-        printf(<span style="color:#e6db74">&#34; Hello from MultiTaskTestTaskA </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>); 
-        <span style="color:#75715e">/*Send message to MultiTaskTestTaskB*/</span>              
-       msgQSend(g_MsgQ1id,cMsgToTaskB,<span style="color:#66d9ef">sizeof</span>(cMsgToTaskB),WAIT_FOREVER,MSG_PRI_NORMAL); 
-        <span style="color:#75715e">/*Receive message from MultiTaskTestTaskB*/</span> 
-        msgQReceive(g_MsgQ2id,cMsgFromTaskB,<span style="color:#ae81ff">100</span>,WAIT_FOREVER); 
-        printf(<span style="color:#e6db74">&#34;%s&#34;</span>,cMsgFromTaskB); 
-    } 
-} 
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">MultiTaskTestTaskB</span>(<span style="color:#66d9ef">void</span>)   
-{ 
-    <span style="color:#66d9ef">char</span> cMsgToTaskA[<span style="color:#ae81ff">100</span>]; 
-    <span style="color:#66d9ef">char</span> cMsgFromTaskA[<span style="color:#ae81ff">100</span>]; 
-    sprintf(cMsgToTaskA,<span style="color:#e6db74">&#34;To TaskA </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>); 
-    printf(<span style="color:#e6db74">&#34; Hello from MultiTaskTestTaskB </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>); 
-    <span style="color:#75715e">/*start point of debugging for  MultiTaskTestTaskA*/</span> 
-    taskSuspend(<span style="color:#ae81ff">0</span>); 
-    <span style="color:#66d9ef">for</span>(;;) 
-    { 
-        printf(<span style="color:#e6db74">&#34; Hello from MultiTaskTestTaskB </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);          
-        <span style="color:#75715e">/*Send message to MultiTaskTestTaskA*/</span> 
-       msgQSend(g_MsgQ2id,cMsgToTaskA,<span style="color:#66d9ef">sizeof</span>(cMsgToTaskA),WAIT_FOREVER,MSG_PRI_NORMAL); 
-        <span style="color:#75715e">/*Receive message from MultiTaskTestTaskA*/</span> 
-        msgQReceive(g_MsgQ1id,cMsgFromTaskA,<span style="color:#ae81ff">100</span>,WAIT_FOREVER); 
-        printf(<span style="color:#e6db74">&#34;%s&#34;</span>,cMsgFromTaskA); 
-    } 
-} 
-<span style="color:#75715e">/*This function spawns MultiTaskTestTaskA and MultiTaskTestTaskB , creates g_MsgQ1id and g_MsgQ2id ,  is entry for debugging.*/</span> 
-<span style="color:#66d9ef">void</span>  <span style="color:#a6e22e">MultiTaskTestInit</span>(<span style="color:#66d9ef">void</span>) 
-{ 
-    printf(<span style="color:#e6db74">&#34; Hello from MultiTaskTestInit </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>); 
-    g_MsgQ1id<span style="color:#f92672">=</span>msgQCreate(<span style="color:#ae81ff">20</span>,<span style="color:#ae81ff">100</span>,MSG_Q_FIFO); 
-    <span style="color:#66d9ef">if</span>(g_MsgQ1id<span style="color:#f92672">==</span>NULL) 
-    { 
-        printf(<span style="color:#e6db74">&#34; ERROR: create g_MsgQ1 error </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>); 
-    } 
-    g_MsgQ2id<span style="color:#f92672">=</span>msgQCreate(<span style="color:#ae81ff">20</span>,<span style="color:#ae81ff">100</span>,MSG_Q_FIFO); 
-    <span style="color:#66d9ef">if</span>(g_MsgQ1id<span style="color:#f92672">==</span>NULL) 
-    { 
-        printf(<span style="color:#e6db74">&#34; ERROR: create g_MsgQ2 error </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>); 
-    } 
-    printf(<span style="color:#e6db74">&#34; Spawning a new task called MultiTaskTestTaskA </span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">&#34;</span>); 
-    g_lTaskATid <span style="color:#f92672">=</span> taskSpawn(<span style="color:#e6db74">&#34;MultiTaskTestTaskA&#34;</span>,<span style="color:#ae81ff">100</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">10000</span>,(FUNCPTR)MultiTaskTestTaskA, <span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>); 
-    <span style="color:#66d9ef">if</span>(g_lTaskATid <span style="color:#f92672">==</span> ERROR) 
-    {  
-        printf(<span style="color:#e6db74">&#34; ERROR: task did not spawn </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>); 
-        exit(<span style="color:#ae81ff">1</span>); 
-    } 
-    printf(<span style="color:#e6db74">&#34; Spawning a new task called MultiTaskTestTaskB</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>); 
-    g_lTaskBTid <span style="color:#f92672">=</span> taskSpawn(<span style="color:#e6db74">&#34;MultiTaskTestTaskB&#34;</span>, <span style="color:#ae81ff">100</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">10000</span>,(FUNCPTR)MultiTaskTestTaskB, <span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>); 
-   <span style="color:#66d9ef">if</span>(g_lTaskBTid <span style="color:#f92672">==</span> ERROR) 
-    {  
-        printf(<span style="color:#e6db74">&#34; ERROR: task did not spawn </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>); 
-        exit(<span style="color:#ae81ff">1</span>); 
-    }   
-  exit(<span style="color:#ae81ff">0</span>); 
-} 
-</code></pre></div><p>多任务调试步骤：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">/* VxWorks includes */</span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;vxWorks.h&#34;</span><span style="color:#75715e"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;taskLib.h&#34;</span><span style="color:#75715e"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stdio.h&#34;</span><span style="color:#75715e"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;msgQLib.h&#34;</span><span style="color:#75715e"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> g_lTaskATid; 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> g_lTaskBTid; 
+</span></span><span style="display:flex;"><span>MSG_Q_ID g_MsgQ1id; 
+</span></span><span style="display:flex;"><span>MSG_Q_ID g_MsgQ2id; 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">MultiTaskTestTaskA</span>(<span style="color:#66d9ef">void</span>)  
+</span></span><span style="display:flex;"><span>{ 
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">char</span> cMsgToTaskB[<span style="color:#ae81ff">100</span>]; 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> cMsgFromTaskB[<span style="color:#ae81ff">100</span>]; 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    sprintf(cMsgToTaskB,<span style="color:#e6db74">&#34;To TaskB </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>); 
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34; Hello from MultiTaskTestTaskA </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>); 
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/*start point of debugging for  MultiTaskTestTaskA*/</span> 
+</span></span><span style="display:flex;"><span>    taskSuspend(<span style="color:#ae81ff">0</span>);      
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(;;) 
+</span></span><span style="display:flex;"><span>    {     
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34; Hello from MultiTaskTestTaskA </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>); 
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/*Send message to MultiTaskTestTaskB*/</span>              
+</span></span><span style="display:flex;"><span>       msgQSend(g_MsgQ1id,cMsgToTaskB,<span style="color:#66d9ef">sizeof</span>(cMsgToTaskB),WAIT_FOREVER,MSG_PRI_NORMAL); 
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/*Receive message from MultiTaskTestTaskB*/</span> 
+</span></span><span style="display:flex;"><span>        msgQReceive(g_MsgQ2id,cMsgFromTaskB,<span style="color:#ae81ff">100</span>,WAIT_FOREVER); 
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34;%s&#34;</span>,cMsgFromTaskB); 
+</span></span><span style="display:flex;"><span>    } 
+</span></span><span style="display:flex;"><span>} 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">MultiTaskTestTaskB</span>(<span style="color:#66d9ef">void</span>)   
+</span></span><span style="display:flex;"><span>{ 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> cMsgToTaskA[<span style="color:#ae81ff">100</span>]; 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> cMsgFromTaskA[<span style="color:#ae81ff">100</span>]; 
+</span></span><span style="display:flex;"><span>    sprintf(cMsgToTaskA,<span style="color:#e6db74">&#34;To TaskA </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>); 
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34; Hello from MultiTaskTestTaskB </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>); 
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/*start point of debugging for  MultiTaskTestTaskA*/</span> 
+</span></span><span style="display:flex;"><span>    taskSuspend(<span style="color:#ae81ff">0</span>); 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(;;) 
+</span></span><span style="display:flex;"><span>    { 
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34; Hello from MultiTaskTestTaskB </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);          
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/*Send message to MultiTaskTestTaskA*/</span> 
+</span></span><span style="display:flex;"><span>       msgQSend(g_MsgQ2id,cMsgToTaskA,<span style="color:#66d9ef">sizeof</span>(cMsgToTaskA),WAIT_FOREVER,MSG_PRI_NORMAL); 
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/*Receive message from MultiTaskTestTaskA*/</span> 
+</span></span><span style="display:flex;"><span>        msgQReceive(g_MsgQ1id,cMsgFromTaskA,<span style="color:#ae81ff">100</span>,WAIT_FOREVER); 
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34;%s&#34;</span>,cMsgFromTaskA); 
+</span></span><span style="display:flex;"><span>    } 
+</span></span><span style="display:flex;"><span>} 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/*This function spawns MultiTaskTestTaskA and MultiTaskTestTaskB , creates g_MsgQ1id and g_MsgQ2id ,  is entry for debugging.*/</span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span>  <span style="color:#a6e22e">MultiTaskTestInit</span>(<span style="color:#66d9ef">void</span>) 
+</span></span><span style="display:flex;"><span>{ 
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34; Hello from MultiTaskTestInit </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>); 
+</span></span><span style="display:flex;"><span>    g_MsgQ1id<span style="color:#f92672">=</span>msgQCreate(<span style="color:#ae81ff">20</span>,<span style="color:#ae81ff">100</span>,MSG_Q_FIFO); 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(g_MsgQ1id<span style="color:#f92672">==</span>NULL) 
+</span></span><span style="display:flex;"><span>    { 
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34; ERROR: create g_MsgQ1 error </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>); 
+</span></span><span style="display:flex;"><span>    } 
+</span></span><span style="display:flex;"><span>    g_MsgQ2id<span style="color:#f92672">=</span>msgQCreate(<span style="color:#ae81ff">20</span>,<span style="color:#ae81ff">100</span>,MSG_Q_FIFO); 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(g_MsgQ1id<span style="color:#f92672">==</span>NULL) 
+</span></span><span style="display:flex;"><span>    { 
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34; ERROR: create g_MsgQ2 error </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>); 
+</span></span><span style="display:flex;"><span>    } 
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34; Spawning a new task called MultiTaskTestTaskA </span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">&#34;</span>); 
+</span></span><span style="display:flex;"><span>    g_lTaskATid <span style="color:#f92672">=</span> taskSpawn(<span style="color:#e6db74">&#34;MultiTaskTestTaskA&#34;</span>,<span style="color:#ae81ff">100</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">10000</span>,(FUNCPTR)MultiTaskTestTaskA, <span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>); 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(g_lTaskATid <span style="color:#f92672">==</span> ERROR) 
+</span></span><span style="display:flex;"><span>    {  
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34; ERROR: task did not spawn </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>); 
+</span></span><span style="display:flex;"><span>        exit(<span style="color:#ae81ff">1</span>); 
+</span></span><span style="display:flex;"><span>    } 
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34; Spawning a new task called MultiTaskTestTaskB</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>); 
+</span></span><span style="display:flex;"><span>    g_lTaskBTid <span style="color:#f92672">=</span> taskSpawn(<span style="color:#e6db74">&#34;MultiTaskTestTaskB&#34;</span>, <span style="color:#ae81ff">100</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">10000</span>,(FUNCPTR)MultiTaskTestTaskB, <span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>); 
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">if</span>(g_lTaskBTid <span style="color:#f92672">==</span> ERROR) 
+</span></span><span style="display:flex;"><span>    {  
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34; ERROR: task did not spawn </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>); 
+</span></span><span style="display:flex;"><span>        exit(<span style="color:#ae81ff">1</span>); 
+</span></span><span style="display:flex;"><span>    }   
+</span></span><span style="display:flex;"><span>  exit(<span style="color:#ae81ff">0</span>); 
+</span></span><span style="display:flex;"><span>} 
+</span></span></code></pre></div><p>多任务调试步骤：</p>
 <ul>
 <li>用-g选项编译源代码产生目标文件</li>
 <li>下载产生的目标文件</li>
@@ -510,10 +506,10 @@ MSG_Q_ID g_MsgQ2id;
 <p>Tornado1.0集成环境下，在系统模式下进行程序调试，主机与目标机之间必须使用串口通信。Tornado2.0集成环境提供了通过网口进行系统模式调试的功能。</p>
 <p>系统缺省使用网口通信，如果需要使用串口通信，需要修改文件C: \ Tornado \ target \ config<br>
 } all \ configAll.h的一些宏定义，修改为：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#75715e">#define WDB_COMM_TYPE        WDB_COMM_SERIAL   /使用串口通信/ 
-</span><span style="color:#75715e">#define WDB_TTY_CHANNEL    0                                         /使用第一个串口/ 
-</span><span style="color:#75715e">#define WDB_TTY_BAUD          38400                                 /波特率：38400bps/
-</span></code></pre></div><h1 id="重新编译链接vxworks">重新编译链接vxWorks。</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#define WDB_COMM_TYPE        WDB_COMM_SERIAL   /使用串口通信/ 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define WDB_TTY_CHANNEL    0                                         /使用第一个串口/ 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define WDB_TTY_BAUD          38400                                 /波特率：38400bps/
+</span></span></span></code></pre></div><h1 id="重新编译链接vxworks">重新编译链接vxWorks。</h1>
 <p>在启动目标服务器时，要选择串口通信，并进行相应配置。</p>
 <p>系统调试模式下多任务的调试：
 调试使用的源代码与任务调试模式中使用的代码相同。但是，需要去掉为了能够在任务调试模式下进行多任务调试的MultiTaskTestTaskA和MultiTaskTestTaskB中的语句taskSuspend(0);</p>
@@ -694,7 +690,7 @@ MSG_Q_ID g_MsgQ2id;
   
   <script type="text/javascript" src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js" defer></script>
 
-<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
+<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com/","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
 
 
 
@@ -702,7 +698,7 @@ MSG_Q_ID g_MsgQ2id;
 
 
 
-<script type="text/javascript" src="/js/main.min.7e59cf1a98d842830d8a6f149f78fbbcf9e795b7a9eb76feb34b48c9bf1554d7.js" defer></script>
+<script type="text/javascript" src="/js/main.min.8bc1e2a2ac040735a2a32d113d257bd75c45142b9842ad7526f7de5e3d3a9298.js" defer></script>
 
 
 

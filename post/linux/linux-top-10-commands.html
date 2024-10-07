@@ -4,7 +4,7 @@
 <head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)" />
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.135.0">
 <link rel="shortcut icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
@@ -32,6 +32,7 @@
 <meta property="article:modified_time" content="2023-12-21 19:53:48 &#43;0800 CST" />
 
 
+
   
   <link type="text/css" rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.2/css/all.min.css" />
   
@@ -39,11 +40,6 @@
 
 
 <link rel="stylesheet" href="/css/main.min.7d561ec9984cf0cb727fc88e14a92134576c99ccb9ce2f31b5b5541ab4ced328.css">
-  <style type="text/css">
-    .post-footer, .flinks-list-footer hr:after {
-      content: "~ 我可是有底线的哟 ~";
-    }
-  </style>
   <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"linux-top-10-commands.html","permalink":"https://www.vxworks7.com/post/linux/linux-top-10-commands.html","title":"Linux常用命令TOP 10超详细汇总"}</script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
@@ -116,7 +112,7 @@
     </li>
     <li class="menu-item menu-item-archives">
       <a href="/archives/" class="hvr-icon-pulse " rel="section"><i class="fa fa-archive hvr-icon"></i>归档
-        <span class="badge">95</span>
+        <span class="badge">94</span>
       </a>
     </li>
     <li class="menu-item menu-item-commonweal">
@@ -200,7 +196,7 @@
   <nav class="site-state">
     <div class="site-state-item site-state-posts">
       <a href="/archives/">
-        <span class="site-state-item-count">95</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -212,7 +208,7 @@
     </div>
     <div class="site-state-item site-state-tags">
       <a href="/tags/">
-        <span class="site-state-item-count">133</span>
+        <span class="site-state-item-count">131</span>
         <span class="site-state-item-name">标签</span>
       </a>
     </div>
@@ -278,11 +274,11 @@
       </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-font"></i>总字数：</div>
-      <div class="item-count" id="wordsCount" data-count="28953"></div>
+      <div class="item-count" id="wordsCount" data-count="28814"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-mug-hot"></i>阅读约：</div>
-      <div class="item-count" id="readTimes" data-times="193"></div>
+      <div class="item-count" id="readTimes" data-times="192"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
@@ -413,39 +409,39 @@
 <p>第一个功能就是可以一次显示整个文件，表示就是：cat filename;</p>
 <p>第二个功能是可以合并文件，和dos下面的type命令比较相似，表示就是：cat file1 file2 &gt; file;</p>
 <p>第三个功能是可以从键盘创建一个文件，表示就是：cat &gt; filename.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">语法格式：cat <span style="color:#f92672">[</span>参数<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>文件<span style="color:#f92672">]</span>
-</code></pre></div><h2 id="cp命令">cp命令:</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>语法格式：cat <span style="color:#f92672">[</span>参数<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>文件<span style="color:#f92672">]</span>
+</span></span></code></pre></div><h2 id="cp命令">cp命令:</h2>
 <p>cp是copy的缩写，主要用于复制文件或目录，可以合并文件复制，即多个文件复制到一个文件或目录下。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">语法格式：cp <span style="color:#f92672">[</span>参数<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>文件<span style="color:#f92672">]</span>
-</code></pre></div><p>举例一个简单的语法，即复制文件转移至不同的文件夹：# cp [options&hellip; .] source(s) destination</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>语法格式：cp <span style="color:#f92672">[</span>参数<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>文件<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p>举例一个简单的语法，即复制文件转移至不同的文件夹：# cp [options&hellip; .] source(s) destination</p>
 <h2 id="mkdir命令">mkdir命令:</h2>
 <p>mkdir是make directories的缩写，它主要是用来创建目录的，可以创建一个或多个目录。但是它只会创建不存在的目录，如果文件名已经有就不会再创建，所以我们在创建目录时要检查一下，确保要创建的文件的名字是新的。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">语法格式:mkdir <span style="color:#f92672">[</span>参数<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>目录<span style="color:#f92672">]</span>
-</code></pre></div><p>比如在某个目录下，要创建名为 A 的子目录：[root@vxbus~]# mkdir A</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>语法格式:mkdir <span style="color:#f92672">[</span>参数<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>目录<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p>比如在某个目录下，要创建名为 A 的子目录：[root@vxbus~]# mkdir A</p>
 <h2 id="echo命令">echo命令:</h2>
 <p>是Linux比较常用的命令之一，主要用于字符串的输出，另外它可以用来提示用户，即在屏幕或显示器上输出一段字符串。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">语法格式：echo <span style="color:#f92672">[</span>参数<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>字符串<span style="color:#f92672">]</span>
-</code></pre></div><p>举个例子，输出一段字符串的写法：[root@vxbus~] echo “LinuxCool.com” LinuxCool.com</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>语法格式：echo <span style="color:#f92672">[</span>参数<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>字符串<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p>举个例子，输出一段字符串的写法：[root@vxbus~] echo “LinuxCool.com” LinuxCool.com</p>
 <h2 id="mv命令">mv命令：</h2>
 <p>mv是move的缩写，大家都知道move的意思是移动，那在这里意思差不多，是移动文件或对文件进行改名。mv命令是文件管理类的命令，使用频率比较高。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">语法格式：mv <span style="color:#f92672">[</span>参数<span style="color:#f92672">]</span>
-</code></pre></div><p>如果要将文件A移动到目录B中就可以这样表示：[root@vxbus~]# mv A / B</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>语法格式：mv <span style="color:#f92672">[</span>参数<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p>如果要将文件A移动到目录B中就可以这样表示：[root@vxbus~]# mv A / B</p>
 <h2 id="rm命令">rm命令:</h2>
 <p>rm是remove 的缩写，是常用的用于删除的命令，可以用来删除整个目录，也可以只删除某个目录下的某一个文件或多个文件，看个人需求来定。但是操作时要看好了再下手哦，要不然可能会出现误删的情况。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">它的语法格式是：rm <span style="color:#f92672">[</span>参数<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>文件<span style="color:#f92672">]</span>
-</code></pre></div><p>举个例子，如果要删除某个目录下所有文件，可以如下写：[root@vxbus~]# rm -rf*</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>它的语法格式是：rm <span style="color:#f92672">[</span>参数<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>文件<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p>举个例子，如果要删除某个目录下所有文件，可以如下写：[root@vxbus~]# rm -rf*</p>
 <h2 id="df命令">df命令:</h2>
 <p>df是Disk Free的缩写，是有关磁盘空间的命令，可以查看我们的磁盘空间已经使用了多少，磁盘分区使用情况等。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">语法格式为：df <span style="color:#f92672">[</span>参数<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>指定文件<span style="color:#f92672">]</span>。
-</code></pre></div><p>例如，如果想要查看某个文件系统磁盘空间的使用情况，可以用 $ df来表示。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>语法格式为：df <span style="color:#f92672">[</span>参数<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>指定文件<span style="color:#f92672">]</span>。
+</span></span></code></pre></div><p>例如，如果想要查看某个文件系统磁盘空间的使用情况，可以用 $ df来表示。</p>
 <h2 id="find命令">find命令：</h2>
 <p>也是很常用的一个命令，并且功能强大，不加参数的话可用于查找目前所在路径的文件和目录，加参数的话，不同的参数会有不同的功能，并且支持正则。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">语法格式为：find <span style="color:#f92672">[</span>参数<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>路径<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>查找和搜索范围<span style="color:#f92672">]</span>。
-</code></pre></div><p>举个使用例子，当使用-name参数查看/usr目录下面所有的.txt结尾的配置文件时，可以这样表示：[root@vxbus~find /usr-name ”*.txt</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>语法格式为：find <span style="color:#f92672">[</span>参数<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>路径<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>查找和搜索范围<span style="color:#f92672">]</span>。
+</span></span></code></pre></div><p>举个使用例子，当使用-name参数查看/usr目录下面所有的.txt结尾的配置文件时，可以这样表示：[root@vxbus~find /usr-name ”*.txt</p>
 <h2 id="rpm命令">rpm命令:</h2>
 <p>rpm是Red-Hat Package Manager的缩写，是管理软件包常用的命令。它具有安装、卸载、升级、查询和验证等五种基本的功能，如果想要安装、卸载或者管理软件等都可以用此命令。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">它的语法格式为：rpm <span style="color:#f92672">[</span>参数<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>软件包<span style="color:#f92672">]</span>。
-</code></pre></div><p>想要直接安装软件包的话就输入[root@vxbus ~]#rpm -ivh packge.rpm</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>它的语法格式为：rpm <span style="color:#f92672">[</span>参数<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>软件包<span style="color:#f92672">]</span>。
+</span></span></code></pre></div><p>想要直接安装软件包的话就输入[root@vxbus ~]#rpm -ivh packge.rpm</p>
 <p>以上就是10种使用比较多的命令。</p>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1543398821442998"
      crossorigin="anonymous"></script>
@@ -590,7 +586,7 @@
   
   <script type="text/javascript" src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js" defer></script>
 
-<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
+<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com/","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
 
 
 
@@ -598,7 +594,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.7e59cf1a98d842830d8a6f149f78fbbcf9e795b7a9eb76feb34b48c9bf1554d7.js" defer></script>
+<script type="text/javascript" src="/js/main.min.8bc1e2a2ac040735a2a32d113d257bd75c45142b9842ad7526f7de5e3d3a9298.js" defer></script>
 
 
 

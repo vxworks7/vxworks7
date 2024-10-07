@@ -4,17 +4,16 @@
     <title>VxWorks 6 on VxWorks 7</title>
     <link>https://www.vxworks7.com/tags/vxworks-6/</link>
     <description>Recent content in VxWorks 6 on VxWorks 7</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 19 Dec 2022 10:47:56 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/vxworks-6/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 19 Dec 2022 10:47:56 -0500</lastBuildDate>
+    <atom:link href="https://www.vxworks7.com/tags/vxworks-6/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>风河推VxWorks 7 到底与VxWorks 6.x的区别在哪里</title>
       <link>https://www.vxworks7.com/post/news/difference-between-vxworks-6-and-vxworks7.html</link>
       <pubDate>Mon, 19 Dec 2022 10:47:56 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/news/difference-between-vxworks-6-and-vxworks7.html</guid>
       <description>&lt;p&gt;随着计算机技术的迅速发展和芯片制造工艺的不断进步，嵌入式微处理器的应用日益广泛。从波音飞机到移动终端，都有嵌入式微处理器的存在。在嵌入式微处理器的应用开发中，嵌入式实时操作系统(RTOS)是核心软件。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

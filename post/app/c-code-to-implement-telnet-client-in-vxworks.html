@@ -4,7 +4,7 @@
 <head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)" />
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.135.0">
 <link rel="shortcut icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
@@ -32,6 +32,7 @@
 <meta property="article:modified_time" content="2022-12-24 11:35:19 -0500 -0500" />
 
 
+
   
   <link type="text/css" rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.2/css/all.min.css" />
   
@@ -39,11 +40,6 @@
 
 
 <link rel="stylesheet" href="/css/main.min.7d561ec9984cf0cb727fc88e14a92134576c99ccb9ce2f31b5b5541ab4ced328.css">
-  <style type="text/css">
-    .post-footer, .flinks-list-footer hr:after {
-      content: "~ 我可是有底线的哟 ~";
-    }
-  </style>
   <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"c-code-to-implement-telnet-client-in-vxworks.html","permalink":"https://www.vxworks7.com/post/app/c-code-to-implement-telnet-client-in-vxworks.html","title":"VxWorks下Telnet客户端的C语言实现代码"}</script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
@@ -116,7 +112,7 @@
     </li>
     <li class="menu-item menu-item-archives">
       <a href="/archives/" class="hvr-icon-pulse " rel="section"><i class="fa fa-archive hvr-icon"></i>归档
-        <span class="badge">95</span>
+        <span class="badge">94</span>
       </a>
     </li>
     <li class="menu-item menu-item-commonweal">
@@ -194,7 +190,7 @@
   <nav class="site-state">
     <div class="site-state-item site-state-posts">
       <a href="/archives/">
-        <span class="site-state-item-count">95</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -206,7 +202,7 @@
     </div>
     <div class="site-state-item site-state-tags">
       <a href="/tags/">
-        <span class="site-state-item-count">133</span>
+        <span class="site-state-item-count">131</span>
         <span class="site-state-item-name">标签</span>
       </a>
     </div>
@@ -272,11 +268,11 @@
       </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-font"></i>总字数：</div>
-      <div class="item-count" id="wordsCount" data-count="28953"></div>
+      <div class="item-count" id="wordsCount" data-count="28814"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-mug-hot"></i>阅读约：</div>
-      <div class="item-count" id="readTimes" data-times="193"></div>
+      <div class="item-count" id="readTimes" data-times="192"></div>
     </div>
     <div class="siteinfo-item">
       <div class="item-name"><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
@@ -358,7 +354,7 @@
   <span class="post-meta-item-icon">
     <i class="far fa-file-word"></i>
   </span>
-  <span class="post-meta-item-text">字数：</span><span>1062</span>
+  <span class="post-meta-item-text">字数：</span><span>1070</span>
 </span>
     
 <span class="post-meta-item" title="阅读">
@@ -366,7 +362,7 @@
     <i class="far fa-clock"></i>
   </span>
   <span class="post-meta-item-text">阅读：&asymp;</span>
-  <span>5分钟</span>
+  <span>6分钟</span>
 </span>
 
     
@@ -413,436 +409,436 @@
     VxWorks下telnet client实现代码
     <i class="fa fa-external-link-alt"></i>
 </a></h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;string.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stdio.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;vxWorks.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;sockLib.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">//#include &#34;telnetLib.h&#34;
-</span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;inetLib.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stdioLib.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;strLib.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;hostLib.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;ioLib.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">// telnet server 地址及端口
-</span><span style="color:#75715e"></span><span style="color:#75715e">#define TELNET_SERVER_NAME &#34;172.18.101.193&#34;
-</span><span style="color:#75715e">#define TELNET_SERVER_PORT 23
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">// telnet NVT扩展选项协商，常用命令定义，命令与数值的对应关系
-</span><span style="color:#75715e"></span><span style="color:#75715e">#define DO &#39;\xFD&#39;
-</span><span style="color:#75715e">#define WONT &#39;\xFC&#39;
-</span><span style="color:#75715e">#define WILL &#39;\xFB&#39;
-</span><span style="color:#75715e">#define DONT &#39;\xFE&#39;
-</span><span style="color:#75715e">#define IAC &#39;\xFF&#39;
-</span><span style="color:#75715e">#define SB &#39;\xFA&#39;
-</span><span style="color:#75715e">#define SE &#39;\xF0&#39;
-</span><span style="color:#75715e">#define CMD_WINDOW_SIZE 31
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">// 定义缓冲buffer长度，最大message长度，字符串最大长度
-</span><span style="color:#75715e"></span><span style="color:#75715e">#define BUFFER_SIZE 20480
-</span><span style="color:#75715e">#define MAX_MSG_LENGTH 20480
-</span><span style="color:#75715e">#define STRING_MAX_SIZE 20480
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">// 全局变量
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> go_string[STRING_MAX_SIZE];
-<span style="color:#66d9ef">char</span> dealed_string[STRING_MAX_SIZE];
-<span style="color:#66d9ef">char</span> back_string[STRING_MAX_SIZE];
-
-<span style="color:#75715e">// TCP client 主动连接：输入TCP服务端地址和端口，返回client_socket
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">tcp_client_conn</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>server_name, <span style="color:#66d9ef">int</span> port)
-{
-    <span style="color:#66d9ef">struct</span> sockaddr_in server_addr;
-    <span style="color:#66d9ef">int</span> client_socket;
-
-    <span style="color:#75715e">/*创建套接字*/</span>
-    client_socket <span style="color:#f92672">=</span> socket(AF_INET, SOCK_STREAM, <span style="color:#ae81ff">0</span>);
-    <span style="color:#66d9ef">if</span> (client_socket <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
-    {
-        printf(<span style="color:#e6db74">&#34;Create Socket Failed! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-        <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-    }
-
-    <span style="color:#75715e">// 填充server地址信息
-</span><span style="color:#75715e"></span>    bzero((<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>server_addr, <span style="color:#66d9ef">sizeof</span>(server_addr));
-    server_addr.sin_family <span style="color:#f92672">=</span> AF_INET;
-    <span style="color:#66d9ef">if</span> (((server_addr.sin_addr.s_addr <span style="color:#f92672">=</span> inet_addr(server_name)) <span style="color:#f92672">==</span> ERROR) <span style="color:#f92672">&amp;&amp;</span>
-        ((server_addr.sin_addr.s_addr <span style="color:#f92672">=</span> hostGetByName(server_name)) <span style="color:#f92672">==</span> ERROR))
-    {
-        printf(<span style="color:#e6db74">&#34;Get Server Address Error! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-        <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-    }
-    server_addr.sin_port <span style="color:#f92672">=</span> htons(port);
-    server_addr.sin_len <span style="color:#f92672">=</span> <span style="color:#66d9ef">sizeof</span>(server_addr);
-
-    <span style="color:#75715e">/* connect to server */</span>
-    <span style="color:#66d9ef">if</span> (connect(client_socket, (<span style="color:#66d9ef">struct</span> sockaddr <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>server_addr, <span style="color:#66d9ef">sizeof</span>(server_addr)) <span style="color:#f92672">==</span> ERROR)
-    {
-        printf(<span style="color:#e6db74">&#34;Connet to Server Error! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-        <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-    }
-
-    <span style="color:#66d9ef">return</span> client_socket;
-}
-
-<span style="color:#75715e">// 连接telnet server，自动协商过程
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">negotiate</span>(<span style="color:#66d9ef">int</span> client_socket)
-{
-    <span style="color:#66d9ef">char</span> buffer[BUFFER_SIZE];
-    <span style="color:#66d9ef">int</span> count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
-    {
-        bzero(buffer, BUFFER_SIZE);
-        <span style="color:#75715e">// 读一个字节
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (recv(client_socket, buffer, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
-        {
-            printf(<span style="color:#e6db74">&#34;Receive Data Failed! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-            <span style="color:#66d9ef">return</span>;
-        }
-
-        <span style="color:#66d9ef">if</span> (buffer[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> IAC)
-        {
-            <span style="color:#75715e">// read 2 more bytes
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (recv(client_socket, buffer <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
-            {
-                printf(<span style="color:#e6db74">&#34;Receive Data Failed! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-                <span style="color:#66d9ef">return</span>;
-            }
-            <span style="color:#75715e">// TAC协商窗口大小
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (buffer[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> DO <span style="color:#f92672">&amp;&amp;</span> buffer[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">==</span> CMD_WINDOW_SIZE)
-            {
-                <span style="color:#66d9ef">char</span> tmp1[<span style="color:#ae81ff">10</span>] <span style="color:#f92672">=</span> {IAC, WILL, CMD_WINDOW_SIZE};
-                <span style="color:#66d9ef">if</span> (send(client_socket, tmp1, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
-                {
-                    printf(<span style="color:#e6db74">&#34;Send Data Failed! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-                    <span style="color:#66d9ef">return</span>;
-                }
-
-                <span style="color:#66d9ef">char</span> tmp2[<span style="color:#ae81ff">10</span>] <span style="color:#f92672">=</span> {IAC, SB, CMD_WINDOW_SIZE, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">80</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">24</span>, IAC, SE};
-                <span style="color:#66d9ef">if</span> (send(client_socket, tmp2, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
-                {
-                    printf(<span style="color:#e6db74">&#34;Send Data Failed! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-                    <span style="color:#66d9ef">return</span>;
-                }
-
-                <span style="color:#66d9ef">continue</span>;
-            }
-
-            <span style="color:#75715e">// 处理一个IAC协商命令
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">int</span> i;
-            <span style="color:#66d9ef">for</span> (i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>; i<span style="color:#f92672">++</span>)
-            {
-                <span style="color:#66d9ef">if</span> (buffer[i] <span style="color:#f92672">==</span> DO)
-                {
-                    buffer[i] <span style="color:#f92672">=</span> WONT;
-                }
-                <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (buffer[i] <span style="color:#f92672">==</span> WILL)
-                {
-                    buffer[i] <span style="color:#f92672">=</span> DO;
-                }
-            }
-
-            <span style="color:#66d9ef">if</span> (send(client_socket, buffer, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
-            {
-                printf(<span style="color:#e6db74">&#34;Send Data Failed! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-                <span style="color:#66d9ef">return</span>;
-            }
-        }
-
-        <span style="color:#75715e">//结束循环条件，IAC协商结束
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (buffer[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;\n&#39;</span>)
-        {
-            count <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
-        }
-        <span style="color:#66d9ef">if</span> (count <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>)
-        {
-            <span style="color:#66d9ef">break</span>;
-        }
-    }
-}
-
-<span style="color:#75715e">// TCP client 接收服务端返回的数据
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">tcp_client_receive_data</span>(<span style="color:#66d9ef">int</span> client_socket)
-{
-    <span style="color:#66d9ef">char</span> receive_buffer[BUFFER_SIZE];
-    <span style="color:#66d9ef">int</span> length;
-
-    <span style="color:#75715e">// 接受服务器返回的状态信息
-</span><span style="color:#75715e"></span>    bzero(receive_buffer, BUFFER_SIZE);
-    <span style="color:#66d9ef">if</span> ((length <span style="color:#f92672">=</span> recv(client_socket, receive_buffer, MAX_MSG_LENGTH, <span style="color:#ae81ff">0</span>)) <span style="color:#f92672">==</span> ERROR)
-    {
-        printf(<span style="color:#e6db74">&#34;Client Recieve Data Failed! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-        <span style="color:#66d9ef">return</span>;
-    }
-
-    bzero(back_string, STRING_MAX_SIZE);
-    strncpy(back_string, receive_buffer, (strlen(receive_buffer) <span style="color:#f92672">&gt;</span> STRING_MAX_SIZE <span style="color:#f92672">?</span> STRING_MAX_SIZE : strlen(receive_buffer)));
-
-    printf(<span style="color:#e6db74">&#34;receive data from equipment: %s </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, back_string);
-}
-
-<span style="color:#75715e">// TCP client 发送处理后的数据到目标TCP
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">tcp_client_send_data</span>(<span style="color:#66d9ef">int</span> client_socket)
-{
-    <span style="color:#66d9ef">char</span> send_buffer[BUFFER_SIZE];
-
-    <span style="color:#75715e">/* send request to server */</span>
-    bzero(send_buffer, BUFFER_SIZE);
-    strncpy(send_buffer, dealed_string, strlen(dealed_string));
-    <span style="color:#75715e">// buffer发送长度+1，目的带上&#39;\0&#39;结束符，strlen()函数读取到&#39;\0&#39;结束
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> ret <span style="color:#f92672">=</span> send(client_socket, send_buffer, (strlen(send_buffer) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>), <span style="color:#ae81ff">0</span>);
-    <span style="color:#66d9ef">if</span> (ret <span style="color:#f92672">==</span> ERROR)
-    {
-        printf(<span style="color:#e6db74">&#34;Send Data to Server Error! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-        <span style="color:#66d9ef">return</span>;
-    }
-
-    printf(<span style="color:#e6db74">&#34;send data to equipment: %s </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, send_buffer);
-}
-
-<span style="color:#75715e">// telnet操作，命令数据处理
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">telnet_deal_data</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>go_string, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>dealed_string)
-{
-    bzero(dealed_string, STRING_MAX_SIZE);
-    strncpy(dealed_string, go_string, (strlen(go_string) <span style="color:#f92672">&gt;</span> STRING_MAX_SIZE <span style="color:#f92672">?</span> STRING_MAX_SIZE : strlen(go_string)));
-    <span style="color:#75715e">// 命令结尾增加\n
-</span><span style="color:#75715e"></span>    dealed_string[strlen(dealed_string)] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;\n&#39;</span>;
-}
-
-<span style="color:#75715e">// telnet登录，输入用户名，接收password
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">telnet_login_receive_password</span>(<span style="color:#66d9ef">int</span> telnet_socket)
-{
-    <span style="color:#75715e">// recv当次接收的数据长度
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> filled <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#75715e">// recv接收的全部数据的长度
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> length <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">char</span> buffer[BUFFER_SIZE];
-    bzero(buffer, BUFFER_SIZE);
-
-    <span style="color:#75715e">// telnet登录：输入用户名后，接收全部返回数据
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// 网络环境不同，执行情况不同，全部数据有可能一次接收到，也有可能两次才能全部接收到
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
-    {
-        <span style="color:#66d9ef">if</span> ((filled <span style="color:#f92672">=</span> recv(telnet_socket, buffer <span style="color:#f92672">+</span> length, MAX_MSG_LENGTH, <span style="color:#ae81ff">0</span>)) <span style="color:#f92672">==</span> ERROR)
-        {
-            printf(<span style="color:#e6db74">&#34;Accept Data Failed! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-            <span style="color:#66d9ef">return</span>;
-        }
-        length <span style="color:#f92672">+=</span> filled;
-        <span style="color:#75715e">// 判断是否全部接收完返回数据
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">// 接收完全部数据，结束循环，即结束接收数据
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (buffer[length <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">?</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">:</span> length <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;:&#39;</span>)
-        {
-            <span style="color:#66d9ef">break</span>;
-        }
-    }
-
-    bzero(back_string, STRING_MAX_SIZE);
-    strncpy(back_string, buffer, (strlen(buffer) <span style="color:#f92672">&gt;</span> STRING_MAX_SIZE <span style="color:#f92672">?</span> STRING_MAX_SIZE : strlen(buffer)));
-
-    printf(<span style="color:#e6db74">&#34;receive data from equipment: %s </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, buffer);
-}
-
-<span style="color:#75715e">// telnet 登录成功，接收telnet server返回数据
-</span><span style="color:#75715e">// 环境不同，执行情况也会不同，全部数据可能一次接收完，也可能两次接收完，或者三次接收完
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">telnet_login_whether_success_receive_data</span>(<span style="color:#66d9ef">int</span> telnet_socket)
-{
-    <span style="color:#75715e">// 登录成功接收三次数据，telnet server连续三次send
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// recv单次接收字节流长度filled
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> filled <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#75715e">// recv接收的全部数据的长度length
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> length <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#75715e">// telnet server 是否登录成功
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> whether;
-    <span style="color:#66d9ef">char</span> buffer[BUFFER_SIZE];
-    bzero(buffer, BUFFER_SIZE);
-
-    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
-    {
-        <span style="color:#66d9ef">if</span> ((filled <span style="color:#f92672">=</span> recv(telnet_socket, buffer <span style="color:#f92672">+</span> length, MAX_MSG_LENGTH, <span style="color:#ae81ff">0</span>)) <span style="color:#f92672">==</span> ERROR)
-        {
-            printf(<span style="color:#e6db74">&#34;Accept Data Failed! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-            <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-        }
-        length <span style="color:#f92672">+=</span> filled;
-        <span style="color:#75715e">// 判断是否全部接收完返回数据
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">// 数据结尾部分：[xxxx@localhost ~]$
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (buffer[length <span style="color:#f92672">-</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">?</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">:</span> length <span style="color:#f92672">-</span> <span style="color:#ae81ff">3</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;]&#39;</span>)
-        {
-            <span style="color:#75715e">// 接收完全部数据，结束接收
-</span><span style="color:#75715e"></span>            <span style="color:#75715e">// 收到登录成功的全部数据，whether=1
-</span><span style="color:#75715e"></span>            whether <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-            <span style="color:#66d9ef">break</span>;
-        }
-        <span style="color:#66d9ef">if</span> (buffer[length <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">?</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">:</span> length <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;:&#39;</span>)
-        {
-            <span style="color:#75715e">// 接收完全部数据，结束接收
-</span><span style="color:#75715e"></span>            <span style="color:#75715e">// 收到登录失败的全部数据，whether=0
-</span><span style="color:#75715e"></span>            whether <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-            <span style="color:#66d9ef">break</span>;
-        }
-        <span style="color:#75715e">// 只接收最后一次send的全部数据
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">// bzero(buffer, BUFFER_SIZE);
-</span><span style="color:#75715e"></span>    }
-
-    bzero(back_string, STRING_MAX_SIZE);
-    strncpy(back_string, buffer, (strlen(buffer) <span style="color:#f92672">&gt;</span> STRING_MAX_SIZE <span style="color:#f92672">?</span> STRING_MAX_SIZE : strlen(buffer)));
-
-    printf(<span style="color:#e6db74">&#34;receive data from equipment: %s </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, buffer);
-
-    <span style="color:#66d9ef">return</span> whether;
-}
-
-<span style="color:#75715e">// telnet发送命令到telnet server，命令结尾必须带&#39;\n&#39;
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">send_cmd</span>(<span style="color:#66d9ef">int</span> telnet_socket, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>cmd)
-{
-    <span style="color:#66d9ef">char</span> buffer[BUFFER_SIZE];
-    bzero(buffer, BUFFER_SIZE);
-    strncpy(buffer, cmd, (strlen(cmd) <span style="color:#f92672">&gt;</span> BUFFER_SIZE <span style="color:#f92672">?</span> BUFFER_SIZE : strlen(cmd)));
-
-    <span style="color:#66d9ef">if</span> (send(telnet_socket, buffer, (strlen(buffer) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>), <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
-    {
-        printf(<span style="color:#e6db74">&#34;Send cmd Failed! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-        <span style="color:#66d9ef">return</span>;
-    }
-}
-
-<span style="color:#75715e">// telnet login 登录到server
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">telnet_login</span>(<span style="color:#66d9ef">int</span> telnet_socket)
-{
-    <span style="color:#75715e">// 是否登录成功，用户名和密码是否正确
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> whether;
-
-    <span style="color:#75715e">// localhost login:
-</span><span style="color:#75715e"></span>    tcp_client_receive_data(telnet_socket);
-
-    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
-    {
-        <span style="color:#75715e">// 控制端的用户名
-</span><span style="color:#75715e"></span>        strcpy(go_string, <span style="color:#e6db74">&#34;username&#34;</span>);
-        telnet_deal_data(go_string, dealed_string);
-        tcp_client_send_data(telnet_socket);
-        <span style="color:#75715e">// calos@Password:
-</span><span style="color:#75715e"></span>        telnet_login_receive_password(telnet_socket);
-        <span style="color:#75715e">// 控制端的密码
-</span><span style="color:#75715e"></span>        strcpy(go_string, <span style="color:#e6db74">&#34;password&#34;</span>);
-        telnet_deal_data(go_string, dealed_string);
-        tcp_client_send_data(telnet_socket);
-
-        <span style="color:#75715e">// 判断是否登录成功
-</span><span style="color:#75715e"></span>        whether <span style="color:#f92672">=</span> telnet_login_whether_success_receive_data(telnet_socket);
-        <span style="color:#66d9ef">if</span> (whether)
-        {
-            <span style="color:#75715e">// 登录成功 [xxxx@localhost ~]$
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">break</span>;
-        }
-
-        <span style="color:#75715e">// 登录失败，继续登录
-</span><span style="color:#75715e"></span>    }
-}
-
-<span style="color:#75715e">// telnet返回数据处理，telnet server有时候一次返回全部数据，有时候两次甚至多次返回全部数据
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">telnet_receive_data_add_deal</span>(<span style="color:#66d9ef">int</span> telnet_socket)
-{
-    <span style="color:#66d9ef">char</span> receive_buffer[BUFFER_SIZE];
-    <span style="color:#75715e">// 做数据处理的temp_buffer
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">char</span> temp_buffer[BUFFER_SIZE];
-    <span style="color:#75715e">// 第一次出现某字符的位置location=&amp;receive_buffer+字符的偏移地址
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>location;
-    <span style="color:#75715e">// 第一次出现某字符的偏移地址
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> location_number;
-    <span style="color:#75715e">// 当次recv数据的长度
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> filled <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#75715e">// recv全部数据的长度
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> length <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-
-    <span style="color:#75715e">// 循环接收全部的返回数据
-</span><span style="color:#75715e"></span>    bzero(receive_buffer, BUFFER_SIZE);
-    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
-    {
-        <span style="color:#75715e">// 接受telnet server返回数据
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> ((filled <span style="color:#f92672">=</span> recv(telnet_socket, receive_buffer <span style="color:#f92672">+</span> length, MAX_MSG_LENGTH, <span style="color:#ae81ff">0</span>)) <span style="color:#f92672">==</span> ERROR)
-        {
-            printf(<span style="color:#e6db74">&#34;Client Recieve Data Failed! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-            <span style="color:#66d9ef">return</span>;
-        }
-        length <span style="color:#f92672">+=</span> filled;
-        <span style="color:#75715e">// 判断telnet server返回数据是否全部收到
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (receive_buffer[length <span style="color:#f92672">-</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">?</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">:</span> length <span style="color:#f92672">-</span> <span style="color:#ae81ff">3</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;]&#39;</span>)
-        {
-            <span style="color:#66d9ef">break</span>;
-        }
-    }
-
-    <span style="color:#75715e">// 只取第二次返回数据，针对一次性接收完数据的，需要去除第一次send的数据
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// 第一次send的数据：xxxx\r\n
-</span><span style="color:#75715e"></span>
-    location <span style="color:#f92672">=</span> strchr(receive_buffer, <span style="color:#e6db74">&#39;\n&#39;</span>);
-    <span style="color:#75715e">// 计算偏移地址
-</span><span style="color:#75715e"></span>    location_number <span style="color:#f92672">=</span> location <span style="color:#f92672">-</span> receive_buffer <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
-    bzero(temp_buffer, BUFFER_SIZE);
-    strncpy(temp_buffer, receive_buffer <span style="color:#f92672">+</span> location_number, BUFFER_SIZE);
-
-    bzero(receive_buffer, BUFFER_SIZE);
-    strncpy(receive_buffer, temp_buffer, BUFFER_SIZE);
-
-    bzero(back_string, STRING_MAX_SIZE);
-    strncpy(back_string, receive_buffer, (strlen(receive_buffer) <span style="color:#f92672">&gt;</span> STRING_MAX_SIZE <span style="color:#f92672">?</span> STRING_MAX_SIZE : strlen(receive_buffer)));
-
-    printf(<span style="color:#e6db74">&#34;receive data from equipment: %s </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, back_string);
-}
-
-<span style="color:#75715e">// 当前设备操作结束条件：控制端输入END，结束当前设备操作
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">finish_equipment_operation</span>(<span style="color:#66d9ef">int</span> sock)
-{
-    <span style="color:#66d9ef">char</span> buffer[BUFFER_SIZE];
-    bzero(buffer, BUFFER_SIZE);
-    strncpy(buffer, go_string, (strlen(go_string) <span style="color:#f92672">&gt;</span> BUFFER_SIZE <span style="color:#f92672">?</span> BUFFER_SIZE : strlen(go_string)));
-
-    <span style="color:#66d9ef">if</span> (strcmp(buffer, <span style="color:#e6db74">&#34;END&#34;</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
-    {
-        close(sock);
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-    }
-    <span style="color:#66d9ef">else</span>
-    {
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-    }
-}
-
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
-{
-    <span style="color:#66d9ef">int</span> telnet_socket <span style="color:#f92672">=</span> tcp_client_conn(TELNET_SERVER_NAME, TELNET_SERVER_PORT);
-    <span style="color:#66d9ef">if</span> (telnet_socket <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
-    {
-        <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-    }
-    <span style="color:#75715e">// telnet 自动协商
-</span><span style="color:#75715e"></span>    negotiate(telnet_socket);
-    <span style="color:#75715e">// 登录
-</span><span style="color:#75715e"></span>    telnet_login(telnet_socket);
-
-    <span style="color:#75715e">//命令回显
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
-    {
-        <span style="color:#75715e">// 输入需要执行的命令到go_string
-</span><span style="color:#75715e"></span>        strcpy(go_string, <span style="color:#e6db74">&#34;ll&#34;</span>);
-        telnet_deal_data(go_string, dealed_string);
-        send_cmd(telnet_socket, dealed_string);
-        telnet_receive_data_add_deal(telnet_socket);
-
-        <span style="color:#75715e">// 设备操作结束条件
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (finish_equipment_operation(telnet_socket))
-        {
-            <span style="color:#66d9ef">break</span>;
-        }
-    }
-
-    <span style="color:#75715e">// 异常退出，关闭socket
-</span><span style="color:#75715e"></span>    close(telnet_socket);
-
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;string.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stdio.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;vxWorks.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;sockLib.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">//#include &#34;telnetLib.h&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;inetLib.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stdioLib.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;strLib.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;hostLib.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;ioLib.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// telnet server 地址及端口
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define TELNET_SERVER_NAME &#34;172.18.101.193&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define TELNET_SERVER_PORT 23
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// telnet NVT扩展选项协商，常用命令定义，命令与数值的对应关系
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define DO &#39;\xFD&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define WONT &#39;\xFC&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define WILL &#39;\xFB&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define DONT &#39;\xFE&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define IAC &#39;\xFF&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define SB &#39;\xFA&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define SE &#39;\xF0&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define CMD_WINDOW_SIZE 31
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 定义缓冲buffer长度，最大message长度，字符串最大长度
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define BUFFER_SIZE 20480
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define MAX_MSG_LENGTH 20480
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define STRING_MAX_SIZE 20480
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 全局变量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> go_string[STRING_MAX_SIZE];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">char</span> dealed_string[STRING_MAX_SIZE];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">char</span> back_string[STRING_MAX_SIZE];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// TCP client 主动连接：输入TCP服务端地址和端口，返回client_socket
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">tcp_client_conn</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>server_name, <span style="color:#66d9ef">int</span> port)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> sockaddr_in server_addr;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> client_socket;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/*创建套接字*/</span>
+</span></span><span style="display:flex;"><span>    client_socket <span style="color:#f92672">=</span> <span style="color:#a6e22e">socket</span>(AF_INET, SOCK_STREAM, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (client_socket <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Create Socket Failed! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 填充server地址信息
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">bzero</span>((<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>server_addr, <span style="color:#66d9ef">sizeof</span>(server_addr));
+</span></span><span style="display:flex;"><span>    server_addr.sin_family <span style="color:#f92672">=</span> AF_INET;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (((server_addr.sin_addr.s_addr <span style="color:#f92672">=</span> <span style="color:#a6e22e">inet_addr</span>(server_name)) <span style="color:#f92672">==</span> ERROR) <span style="color:#f92672">&amp;&amp;</span>
+</span></span><span style="display:flex;"><span>        ((server_addr.sin_addr.s_addr <span style="color:#f92672">=</span> <span style="color:#a6e22e">hostGetByName</span>(server_name)) <span style="color:#f92672">==</span> ERROR))
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Get Server Address Error! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    server_addr.sin_port <span style="color:#f92672">=</span> <span style="color:#a6e22e">htons</span>(port);
+</span></span><span style="display:flex;"><span>    server_addr.sin_len <span style="color:#f92672">=</span> <span style="color:#66d9ef">sizeof</span>(server_addr);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/* connect to server */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">connect</span>(client_socket, (<span style="color:#66d9ef">struct</span> sockaddr <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>server_addr, <span style="color:#66d9ef">sizeof</span>(server_addr)) <span style="color:#f92672">==</span> ERROR)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Connet to Server Error! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> client_socket;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 连接telnet server，自动协商过程
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">negotiate</span>(<span style="color:#66d9ef">int</span> client_socket)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> buffer[BUFFER_SIZE];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">bzero</span>(buffer, BUFFER_SIZE);
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 读一个字节
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">recv</span>(client_socket, buffer, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Receive Data Failed! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (buffer[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> IAC)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// read 2 more bytes
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">recv</span>(client_socket, buffer <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Receive Data Failed! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// TAC协商窗口大小
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (buffer[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> DO <span style="color:#f92672">&amp;&amp;</span> buffer[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">==</span> CMD_WINDOW_SIZE)
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">char</span> tmp1[<span style="color:#ae81ff">10</span>] <span style="color:#f92672">=</span> {IAC, WILL, CMD_WINDOW_SIZE};
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">send</span>(client_socket, tmp1, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Send Data Failed! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">char</span> tmp2[<span style="color:#ae81ff">10</span>] <span style="color:#f92672">=</span> {IAC, SB, CMD_WINDOW_SIZE, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">80</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">24</span>, IAC, SE};
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">send</span>(client_socket, tmp2, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Send Data Failed! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 处理一个IAC协商命令
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">int</span> i;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> (i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (buffer[i] <span style="color:#f92672">==</span> DO)
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    buffer[i] <span style="color:#f92672">=</span> WONT;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (buffer[i] <span style="color:#f92672">==</span> WILL)
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    buffer[i] <span style="color:#f92672">=</span> DO;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">send</span>(client_socket, buffer, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Send Data Failed! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//结束循环条件，IAC协商结束
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (buffer[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;\n&#39;</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            count <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (count <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// TCP client 接收服务端返回的数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">tcp_client_receive_data</span>(<span style="color:#66d9ef">int</span> client_socket)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> receive_buffer[BUFFER_SIZE];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> length;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 接受服务器返回的状态信息
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">bzero</span>(receive_buffer, BUFFER_SIZE);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ((length <span style="color:#f92672">=</span> <span style="color:#a6e22e">recv</span>(client_socket, receive_buffer, MAX_MSG_LENGTH, <span style="color:#ae81ff">0</span>)) <span style="color:#f92672">==</span> ERROR)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Client Recieve Data Failed! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">bzero</span>(back_string, STRING_MAX_SIZE);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">strncpy</span>(back_string, receive_buffer, (<span style="color:#a6e22e">strlen</span>(receive_buffer) <span style="color:#f92672">&gt;</span> STRING_MAX_SIZE <span style="color:#f92672">?</span> STRING_MAX_SIZE : <span style="color:#a6e22e">strlen</span>(receive_buffer)));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;receive data from equipment: %s </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, back_string);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// TCP client 发送处理后的数据到目标TCP
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">tcp_client_send_data</span>(<span style="color:#66d9ef">int</span> client_socket)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> send_buffer[BUFFER_SIZE];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/* send request to server */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">bzero</span>(send_buffer, BUFFER_SIZE);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">strncpy</span>(send_buffer, dealed_string, <span style="color:#a6e22e">strlen</span>(dealed_string));
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// buffer发送长度+1，目的带上&#39;\0&#39;结束符，strlen()函数读取到&#39;\0&#39;结束
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> ret <span style="color:#f92672">=</span> <span style="color:#a6e22e">send</span>(client_socket, send_buffer, (<span style="color:#a6e22e">strlen</span>(send_buffer) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>), <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (ret <span style="color:#f92672">==</span> ERROR)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Send Data to Server Error! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;send data to equipment: %s </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, send_buffer);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// telnet操作，命令数据处理
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">telnet_deal_data</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>go_string, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>dealed_string)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">bzero</span>(dealed_string, STRING_MAX_SIZE);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">strncpy</span>(dealed_string, go_string, (<span style="color:#a6e22e">strlen</span>(go_string) <span style="color:#f92672">&gt;</span> STRING_MAX_SIZE <span style="color:#f92672">?</span> STRING_MAX_SIZE : <span style="color:#a6e22e">strlen</span>(go_string)));
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 命令结尾增加\n
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    dealed_string[<span style="color:#a6e22e">strlen</span>(dealed_string)] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;\n&#39;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// telnet登录，输入用户名，接收password
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">telnet_login_receive_password</span>(<span style="color:#66d9ef">int</span> telnet_socket)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// recv当次接收的数据长度
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> filled <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// recv接收的全部数据的长度
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> length <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> buffer[BUFFER_SIZE];
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">bzero</span>(buffer, BUFFER_SIZE);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// telnet登录：输入用户名后，接收全部返回数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// 网络环境不同，执行情况不同，全部数据有可能一次接收到，也有可能两次才能全部接收到
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ((filled <span style="color:#f92672">=</span> <span style="color:#a6e22e">recv</span>(telnet_socket, buffer <span style="color:#f92672">+</span> length, MAX_MSG_LENGTH, <span style="color:#ae81ff">0</span>)) <span style="color:#f92672">==</span> ERROR)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Accept Data Failed! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        length <span style="color:#f92672">+=</span> filled;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 判断是否全部接收完返回数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// 接收完全部数据，结束循环，即结束接收数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (buffer[length <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">?</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">:</span> length <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;:&#39;</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">bzero</span>(back_string, STRING_MAX_SIZE);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">strncpy</span>(back_string, buffer, (<span style="color:#a6e22e">strlen</span>(buffer) <span style="color:#f92672">&gt;</span> STRING_MAX_SIZE <span style="color:#f92672">?</span> STRING_MAX_SIZE : <span style="color:#a6e22e">strlen</span>(buffer)));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;receive data from equipment: %s </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, buffer);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// telnet 登录成功，接收telnet server返回数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 环境不同，执行情况也会不同，全部数据可能一次接收完，也可能两次接收完，或者三次接收完
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">telnet_login_whether_success_receive_data</span>(<span style="color:#66d9ef">int</span> telnet_socket)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 登录成功接收三次数据，telnet server连续三次send
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// recv单次接收字节流长度filled
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> filled <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// recv接收的全部数据的长度length
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> length <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// telnet server 是否登录成功
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> whether;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> buffer[BUFFER_SIZE];
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">bzero</span>(buffer, BUFFER_SIZE);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ((filled <span style="color:#f92672">=</span> <span style="color:#a6e22e">recv</span>(telnet_socket, buffer <span style="color:#f92672">+</span> length, MAX_MSG_LENGTH, <span style="color:#ae81ff">0</span>)) <span style="color:#f92672">==</span> ERROR)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Accept Data Failed! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        length <span style="color:#f92672">+=</span> filled;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 判断是否全部接收完返回数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// 数据结尾部分：[xxxx@localhost ~]$
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (buffer[length <span style="color:#f92672">-</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">?</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">:</span> length <span style="color:#f92672">-</span> <span style="color:#ae81ff">3</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;]&#39;</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 接收完全部数据，结束接收
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#75715e">// 收到登录成功的全部数据，whether=1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            whether <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (buffer[length <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">?</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">:</span> length <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;:&#39;</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 接收完全部数据，结束接收
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#75715e">// 收到登录失败的全部数据，whether=0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            whether <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 只接收最后一次send的全部数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// bzero(buffer, BUFFER_SIZE);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">bzero</span>(back_string, STRING_MAX_SIZE);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">strncpy</span>(back_string, buffer, (<span style="color:#a6e22e">strlen</span>(buffer) <span style="color:#f92672">&gt;</span> STRING_MAX_SIZE <span style="color:#f92672">?</span> STRING_MAX_SIZE : <span style="color:#a6e22e">strlen</span>(buffer)));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;receive data from equipment: %s </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, buffer);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> whether;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// telnet发送命令到telnet server，命令结尾必须带&#39;\n&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">send_cmd</span>(<span style="color:#66d9ef">int</span> telnet_socket, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>cmd)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> buffer[BUFFER_SIZE];
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">bzero</span>(buffer, BUFFER_SIZE);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">strncpy</span>(buffer, cmd, (<span style="color:#a6e22e">strlen</span>(cmd) <span style="color:#f92672">&gt;</span> BUFFER_SIZE <span style="color:#f92672">?</span> BUFFER_SIZE : <span style="color:#a6e22e">strlen</span>(cmd)));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">send</span>(telnet_socket, buffer, (<span style="color:#a6e22e">strlen</span>(buffer) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>), <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Send cmd Failed! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// telnet login 登录到server
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">telnet_login</span>(<span style="color:#66d9ef">int</span> telnet_socket)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 是否登录成功，用户名和密码是否正确
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> whether;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// localhost login:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">tcp_client_receive_data</span>(telnet_socket);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 控制端的用户名
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">strcpy</span>(go_string, <span style="color:#e6db74">&#34;username&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">telnet_deal_data</span>(go_string, dealed_string);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">tcp_client_send_data</span>(telnet_socket);
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// calos@Password:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">telnet_login_receive_password</span>(telnet_socket);
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 控制端的密码
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">strcpy</span>(go_string, <span style="color:#e6db74">&#34;password&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">telnet_deal_data</span>(go_string, dealed_string);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">tcp_client_send_data</span>(telnet_socket);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 判断是否登录成功
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        whether <span style="color:#f92672">=</span> <span style="color:#a6e22e">telnet_login_whether_success_receive_data</span>(telnet_socket);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (whether)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 登录成功 [xxxx@localhost ~]$
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 登录失败，继续登录
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// telnet返回数据处理，telnet server有时候一次返回全部数据，有时候两次甚至多次返回全部数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">telnet_receive_data_add_deal</span>(<span style="color:#66d9ef">int</span> telnet_socket)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> receive_buffer[BUFFER_SIZE];
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 做数据处理的temp_buffer
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">char</span> temp_buffer[BUFFER_SIZE];
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 第一次出现某字符的位置location=&amp;receive_buffer+字符的偏移地址
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>location;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 第一次出现某字符的偏移地址
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> location_number;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 当次recv数据的长度
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> filled <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// recv全部数据的长度
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> length <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 循环接收全部的返回数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">bzero</span>(receive_buffer, BUFFER_SIZE);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 接受telnet server返回数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> ((filled <span style="color:#f92672">=</span> <span style="color:#a6e22e">recv</span>(telnet_socket, receive_buffer <span style="color:#f92672">+</span> length, MAX_MSG_LENGTH, <span style="color:#ae81ff">0</span>)) <span style="color:#f92672">==</span> ERROR)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Client Recieve Data Failed! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        length <span style="color:#f92672">+=</span> filled;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 判断telnet server返回数据是否全部收到
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (receive_buffer[length <span style="color:#f92672">-</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">?</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">:</span> length <span style="color:#f92672">-</span> <span style="color:#ae81ff">3</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;]&#39;</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 只取第二次返回数据，针对一次性接收完数据的，需要去除第一次send的数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// 第一次send的数据：xxxx\r\n
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    location <span style="color:#f92672">=</span> <span style="color:#a6e22e">strchr</span>(receive_buffer, <span style="color:#e6db74">&#39;\n&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 计算偏移地址
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    location_number <span style="color:#f92672">=</span> location <span style="color:#f92672">-</span> receive_buffer <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">bzero</span>(temp_buffer, BUFFER_SIZE);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">strncpy</span>(temp_buffer, receive_buffer <span style="color:#f92672">+</span> location_number, BUFFER_SIZE);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">bzero</span>(receive_buffer, BUFFER_SIZE);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">strncpy</span>(receive_buffer, temp_buffer, BUFFER_SIZE);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">bzero</span>(back_string, STRING_MAX_SIZE);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">strncpy</span>(back_string, receive_buffer, (<span style="color:#a6e22e">strlen</span>(receive_buffer) <span style="color:#f92672">&gt;</span> STRING_MAX_SIZE <span style="color:#f92672">?</span> STRING_MAX_SIZE : <span style="color:#a6e22e">strlen</span>(receive_buffer)));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;receive data from equipment: %s </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, back_string);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 当前设备操作结束条件：控制端输入END，结束当前设备操作
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">finish_equipment_operation</span>(<span style="color:#66d9ef">int</span> sock)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> buffer[BUFFER_SIZE];
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">bzero</span>(buffer, BUFFER_SIZE);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">strncpy</span>(buffer, go_string, (<span style="color:#a6e22e">strlen</span>(go_string) <span style="color:#f92672">&gt;</span> BUFFER_SIZE <span style="color:#f92672">?</span> BUFFER_SIZE : <span style="color:#a6e22e">strlen</span>(go_string)));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">strcmp</span>(buffer, <span style="color:#e6db74">&#34;END&#34;</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">close</span>(sock);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> telnet_socket <span style="color:#f92672">=</span> <span style="color:#a6e22e">tcp_client_conn</span>(TELNET_SERVER_NAME, TELNET_SERVER_PORT);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (telnet_socket <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// telnet 自动协商
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">negotiate</span>(telnet_socket);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 登录
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">telnet_login</span>(telnet_socket);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//命令回显
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 输入需要执行的命令到go_string
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">strcpy</span>(go_string, <span style="color:#e6db74">&#34;ll&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">telnet_deal_data</span>(go_string, dealed_string);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">send_cmd</span>(telnet_socket, dealed_string);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">telnet_receive_data_add_deal</span>(telnet_socket);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 设备操作结束条件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">finish_equipment_operation</span>(telnet_socket))
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 异常退出，关闭socket
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">close</span>(telnet_socket);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1543398821442998"
      crossorigin="anonymous"></script>
 
@@ -989,7 +985,7 @@
   
   <script type="text/javascript" src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js" defer></script>
 
-<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
+<script class="next-config" data-name="main" type="application/json">{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://www.vxworks7.com/","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"unpkg","router":"https://unpkg.com"},"version":"4.3.1","waline":{"cfg":{"emoji":false,"imguploader":false,"pageview":"#waline-pageview-count","placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.11.3"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.11.3"}}}</script>
 
 
 
@@ -997,7 +993,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.7e59cf1a98d842830d8a6f149f78fbbcf9e795b7a9eb76feb34b48c9bf1554d7.js" defer></script>
+<script type="text/javascript" src="/js/main.min.8bc1e2a2ac040735a2a32d113d257bd75c45142b9842ad7526f7de5e3d3a9298.js" defer></script>
 
 
 

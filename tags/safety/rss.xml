@@ -4,17 +4,16 @@
     <title>Safety on VxWorks 7</title>
     <link>https://www.vxworks7.com/tags/safety/</link>
     <description>Recent content in Safety on VxWorks 7</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 24 Dec 2022 23:59:53 -0500</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/safety/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 24 Dec 2022 23:59:53 -0500</lastBuildDate>
+    <atom:link href="https://www.vxworks7.com/tags/safety/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>确保可靠性、功能安全性和信息安全性 发展电动垂直起降飞行汽车</title>
       <link>https://www.vxworks7.com/post/news/vxworks-support-development-of-electric-vertical-take-off-and-landing-flying-cars.html</link>
       <pubDate>Sat, 24 Dec 2022 23:59:53 -0500</pubDate>
-      
       <guid>https://www.vxworks7.com/post/news/vxworks-support-development-of-electric-vertical-take-off-and-landing-flying-cars.html</guid>
       <description>&lt;p&gt;从莱特兄弟首次从基蒂霍克（Kitty Hawk）的沙滩首次成功试飞，到超音速喷气机和高超音速飞行汽车，航空工业稳步发展，创新的步伐前赴后继、波澜壮阔。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>
