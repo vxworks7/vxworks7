@@ -4,7 +4,13 @@
 
   <url>
     <loc>https://www.vxworks7.com/app/</loc>
-    <lastmod>2024-10-20T15:14:36+08:00</lastmod>
+    <lastmod>2024-10-20T17:02:57+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.vxworks7.com/app/vxworks-7-app-auto-boot-method/</loc>
+    <lastmod>2024-10-20T17:02:57+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VSB on VxWorks 7 the Leading RTOS</title>
+    <link>https://www.vxworks7.com/tags/vsb/</link>
+    <description>Recent content in VSB on VxWorks 7 the Leading RTOS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2024 </copyright>
+    <lastBuildDate>Sun, 20 Oct 2024 17:02:57 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/vsb/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VxWorks 7自启动应用程序的四种方法</title>
+      <link>https://www.vxworks7.com/app/vxworks-7-app-auto-boot-method/</link>
+      <pubDate>Sun, 20 Oct 2024 17:02:57 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/app/vxworks-7-app-auto-boot-method/</guid>
+      <description>&lt;p&gt;本文介绍了VxWorks 7系统下自启动应用程序的四种方法&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>
