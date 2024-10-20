@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Apps on Kontronn Asia Design Center</title>
+    <title>Apps on VxWorks 7 The Leading RTOS</title>
     <link>https://www.vxworks7.com/app/</link>
-    <description>Recent content in Apps on Kontronn Asia Design Center</description>
+    <description>Recent content in Apps on VxWorks 7 The Leading RTOS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2024 </copyright>
@@ -30,7 +30,7 @@
     
 &lt;/h2&gt;
 &lt;p&gt;本文设计的航电激励器由软件和硬件两部分构成。软件部分主要包括激励数据获取模块和数据转换模块。其中，激励数据获取模块通过以太网接收飞机模拟飞行过程中的飞行数据，这些数据包括飞机的位置、姿态、通信导航系统的工作频率等参数。航电激励器数据转换模块主要实现AFDX 总线数据、ARINC429 总线数据的编解码，完成ARINC429 总线数据与AFDX 总线数据相互转化，并向各航电仿真组件传输激励数据。AFDX 数据总线协议见文献[4]，ARINC429 总线协议见文献[5]。硬件部分主要完成VxWorks 系统在MPC8270 上的移植，建立硬件开发平台。航电激励器总体设计如图1所示。&lt;/p&gt;</description>
-      
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/app/design-and-implementation-of-avionics-exciter-based-on-vxworks-system/featured-vxworks-653.png" />
     </item>
     
   </channel>
