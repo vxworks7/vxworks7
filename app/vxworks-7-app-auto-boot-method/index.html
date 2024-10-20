@@ -96,7 +96,7 @@
     "name": "VxWorks 7自启动应用程序的四种方法",
     "headline": "VxWorks 7自启动应用程序的四种方法",
     "description": "Vxworks 7 App Auto Boot Method",
-    "abstract": "\u003cp\u003e本文介绍了VxWorks 7系统下自启动应用程序的四种方法\u003c\/p\u003e",
+    "abstract": "\u003cp\u003e本文介绍了VxWorks 7系统下自启动应用程序的四种方法。\u003c\/p\u003e\n\u003cp\u003e在开始之前我们先来了解一下一些vxworks的一些基础知识。\u003c\/p\u003e\n\n\n\u003ch2 class=\u0022relative group\u0022\u003eVxWorks工程 \n    \u003cdiv id=\u0022vxworks%E5%B7%A5%E7%A8%8B\u0022 class=\u0022anchor\u0022\u003e\u003c\/div\u003e\n    \n    \u003cspan\n        class=\u0022absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100\u0022\u003e\n        \u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022\n            style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#vxworks%E5%B7%A5%E7%A8%8B\u0022 aria-label=\u0022锚点\u0022\u003e#\u003c\/a\u003e\n    \u003c\/span\u003e        \n    \n\u003c\/h2\u003e\n\u003cp\u003eVxWorks 7 可以创建以下几种典型的工程：\u003c\/p\u003e",
     "inLanguage": "zh-cn",
     "url" : "https:\/\/www.vxworks7.com\/app\/vxworks-7-app-auto-boot-method\/",
     "author" : {
@@ -112,7 +112,7 @@
     "keywords": ["VxWorks","VSB","VIP"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "1377"
+    "wordCount": "1437"
   }]
   </script>
 
@@ -540,20 +540,11 @@
     class="min-w-[220px] py-2 border-dotted ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#背景介绍">背景介绍</a>
-      <ul>
-        <li><a href="#vxworks工程">VxWorks工程</a></li>
-        <li><a href="#vxworks-shell">VxWorks shell</a></li>
-      </ul>
-    </li>
+    <li><a href="#vxworks工程">VxWorks工程</a></li>
+    <li><a href="#vxworks-shell">VxWorks shell</a></li>
     <li><a href="#内核应用程序dkm自启动">内核应用程序(DKM)自启动</a>
       <ul>
-        <li><a href="#需求来源">需求来源</a>
-          <ul>
-            <li><a href="#step-1">step 1</a></li>
-            <li><a href="#step-2">step 2</a></li>
-          </ul>
-        </li>
+        <li><a href="#需求来源">需求来源</a></li>
         <li><a href="#方案1失败">方案1(失败)</a></li>
         <li><a href="#方案2成功">方案2(成功)</a></li>
       </ul>
@@ -579,20 +570,11 @@
     class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#背景介绍">背景介绍</a>
-      <ul>
-        <li><a href="#vxworks工程">VxWorks工程</a></li>
-        <li><a href="#vxworks-shell">VxWorks shell</a></li>
-      </ul>
-    </li>
+    <li><a href="#vxworks工程">VxWorks工程</a></li>
+    <li><a href="#vxworks-shell">VxWorks shell</a></li>
     <li><a href="#内核应用程序dkm自启动">内核应用程序(DKM)自启动</a>
       <ul>
-        <li><a href="#需求来源">需求来源</a>
-          <ul>
-            <li><a href="#step-1">step 1</a></li>
-            <li><a href="#step-2">step 2</a></li>
-          </ul>
-        </li>
+        <li><a href="#需求来源">需求来源</a></li>
         <li><a href="#方案1失败">方案1(失败)</a></li>
         <li><a href="#方案2成功">方案2(成功)</a></li>
       </ul>
@@ -716,23 +698,11 @@
 
 
         <div class="article-content max-w-prose mb-20">
-          <p>本文介绍了VxWorks 7系统下自启动应用程序的四种方法</p>
-
-
-<h2 class="relative group">背景介绍 
-    <div id="%E8%83%8C%E6%99%AF%E4%BB%8B%E7%BB%8D" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E8%83%8C%E6%99%AF%E4%BB%8B%E7%BB%8D" aria-label="锚点">#</a>
-    </span>        
-    
-</h2>
+          <p>本文介绍了VxWorks 7系统下自启动应用程序的四种方法。</p>
 <p>在开始之前我们先来了解一下一些vxworks的一些基础知识。</p>
 
 
-<h3 class="relative group">VxWorks工程 
+<h2 class="relative group">VxWorks工程 
     <div id="vxworks%E5%B7%A5%E7%A8%8B" class="anchor"></div>
     
     <span
@@ -741,7 +711,7 @@
             style="text-decoration-line: none !important;" href="#vxworks%E5%B7%A5%E7%A8%8B" aria-label="锚点">#</a>
     </span>        
     
-</h3>
+</h2>
 <p>VxWorks 7 可以创建以下几种典型的工程：</p>
 <table>
   <thead>
@@ -755,28 +725,34 @@
       <tr>
           <td>VSB (VxWorks Source Build)</td>
           <td>.a</td>
-          <td>基于某个特定的bsp，根据支持的cpu架构，把vxworks内核源码编译成静态库。注意这里这是只是把内核源码编译成库，供后续创建的VIP工程使用，并不会产生任何的映像文件。内核公共代码预先编译成库，也可以加速用户VIP工程的编译速度。另外也说明，如果你修改了内核代码，你需要重新编译VSB工程才会生效。</td>
+          <td>Check below VSB</td>
       </tr>
       <tr>
           <td>VIP</td>
           <td>(VxWorks Image Project)</td>
-          <td>vxworks	用户自定义的vxworks映像工程。把用户选择的各种内核组件(使用CDF文件描述)，根据vxworks的启动顺序编译链接起来，得到常用的vxworks映像。各种内核组件在VSB工程中已经预先编译好，供VIP工程挑选使用。</td>
+          <td>Check below VIP</td>
       </tr>
       <tr>
           <td>DKM (Downloadable Kernel Module)</td>
           <td>.out</td>
-          <td>VxWorks内核态应用程序。可加载的内核模块，类似如linux下的ko文件。对于跑在内核态的用户代码，即可以添加到VIP工程中，也可以使用DKM工程独立成内核模块。在vxworks启动完成后，使用&quot;ld &lt; xxx.out&quot;的命令来动态加载。</td>
+          <td>Check below DKM</td>
       </tr>
       <tr>
           <td>RTP(Real-Time Process)</td>
           <td>.vxe</td>
-          <td>VxWorks用户态应用程序。跑在用户态的用户代码，使用RTP工程编译成.vxe文件。在vxworks启动完成后，使用“rtp exec xxx.vxe”命令来执行。</td>
+          <td>Check below RTP</td>
       </tr>
   </tbody>
 </table>
+<ul>
+<li>VSB: 基于某个特定的bsp，根据支持的cpu架构，把vxworks内核源码编译成静态库。注意这里这是只是把内核源码编译成库，供后续创建的VIP工程使用，并不会产生任何的映像文件。内核公共代码预先编译成库，也可以加速用户VIP工程的编译速度。另外也说明，如果你修改了内核代码，你需要重新编译VSB工程才会生效。</li>
+<li>VIP: VxWorks 用户自定义的VxWorks映像工程。把用户选择的各种内核组件(使用CDF文件描述)，根据vxworks的启动顺序编译链接起来，得到常用的vxworks映像。各种内核组件在VSB工程中已经预先编译好，供VIP工程挑选使用。</li>
+<li>DKM: VxWorks内核态应用程序。可加载的内核模块，类似如linux下的ko文件。对于跑在内核态的用户代码，即可以添加到VIP工程中，也可以使用DKM工程独立成内核模块。在vxworks启动完成后，使用&quot;ld &lt; xxx.out&quot;的命令来动态加载。</li>
+<li>RTP: VxWorks用户态应用程序。跑在用户态的用户代码，使用RTP工程编译成.vxe文件。在vxworks启动完成后，使用“rtp exec xxx.vxe”命令来执行。</li>
+</ul>
 
 
-<h3 class="relative group">VxWorks shell 
+<h2 class="relative group">VxWorks shell 
     <div id="vxworks-shell" class="anchor"></div>
     
     <span
@@ -785,34 +761,15 @@
             style="text-decoration-line: none !important;" href="#vxworks-shell" aria-label="锚点">#</a>
     </span>        
     
-</h3>
+</h2>
 <p>VxWorks拥有自己的命令行交互工具kernel shell，比较特殊的是shell有两种模式分别支持两种解析器：C Interpreter和Command Interpreter。</p>
-<table>
-  <thead>
-      <tr>
-          <th>Mode</th>
-          <th>提示符</th>
-          <th>模式切换</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>C Interpreter</td>
-          <td>-&gt;</td>
-          <td>使用“cmd”命令切换到Command Interpreter模式</td>
-          <td>C Interpreter设计的目的是用来监控、调试内核代码。它最大的特点是可以直接调用函数名来执行，非常方便调试。</td>
-      </tr>
-      <tr>
-          <td>Command Interpreter</td>
-          <td>#</td>
-          <td>使用“C”命令切换到C Interpreter模式</td>
-          <td>Command Interpreter设计的目的是用来启动、监控、调试用户态的RTP应用程序。它提供了很多专门的调试命令，类似于linux shell。</td>
-      </tr>
-  </tbody>
-</table>
+<p>|           Mode            |           提示符          |           模式切换            |           Description         |
+| &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;  | &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; | &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;- |&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash; &mdash;&mdash; |
+| C Interpreter             | -&gt;                       | 使用“cmd”命令切换到Command Interpreter模式 | C Interpreter设计的目的是用来监控、调试内核代码。它最大的特点是可以直接调用函数名来执行，非常方便调试。|
+| Command Interpreter       | #                        | 使用“C”命令切换到C Interpreter模式         | Command Interpreter设计的目的是用来启动、监控、调试用户态的RTP应用程序。它提供了很多专门的调试命令，类似于linux shell。   |</p>
 <blockquote>
-详细描述可以参考文档：“installDir\docs\vxworks-7-1.0.8.6\Core\vxworks_7_programmers_guide.pdf”。
+详细描述可以参考文档：</br>
+“installDir\docs\vxworks-7-1.0.8.6\Core\vxworks_7_programmers_guide.pdf”
 </blockquote>
 
 
@@ -838,21 +795,9 @@
     </span>        
     
 </h3>
-<p>用户有两个内核应用程序，已经使用DKM工程编译成了.out文件：pruss_eth.out、s24_DriveRotationCiA402.out。在shell的C Interpreter模式下可以动态加载和运行：</p>
-
-
-<h4 class="relative group">step 1 
-    <div id="step-1" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#step-1" aria-label="锚点">#</a>
-    </span>        
-    
-</h4>
-<p>手工加载pruss_eth.out，并调用prussStart()函数进行运行：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">-&gt; ld&lt;/mmc1:1/pruss_eth.out
+<p>用户有两个内核应用程序，已经使用DKM工程编译成了<code>.out</code>文件：<code>pruss_eth.out</code>，<code>s24_DriveRotationCiA402.out</code>，在shell的C Interpreter模式下可以动态加载和运行：</p>
+<p>step 1: 手工加载<code>pruss_eth.out</code>，并调用<code>prussStart()</code>函数进行运行：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">-&gt; ld &lt; /mmc1:1/pruss_eth.out
 </span></span><span class="line"><span class="cl"><span class="nv">value</span> <span class="o">=</span> <span class="nv">541560848</span> <span class="o">=</span> 0x20479010
 </span></span><span class="line"><span class="cl">-&gt; prussStart
 </span></span><span class="line"><span class="cl">init PRUSS2: physical memory 4B280000-4B2BFFFF
@@ -862,20 +807,8 @@
 </span></span><span class="line"><span class="cl">PRUSS2: start PRU0
 </span></span><span class="line"><span class="cl">PRUSS2: start PRU1
 </span></span><span class="line"><span class="cl"><span class="nv">value</span> <span class="o">=</span> <span class="nv">0</span> <span class="o">=</span> 0x0
-</span></span></code></pre></div>
-
-<h4 class="relative group">step 2 
-    <div id="step-2" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#step-2" aria-label="锚点">#</a>
-    </span>        
-    
-</h4>
-<p>手工加载s24_DriveRotationCiA402.out，并调用main()函数进行运行：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">-&gt; ld&lt;/mmc1:1/s24_DriveRotationCiA402.out
+</span></span></code></pre></div><p>step 2: 手工加载<code>s24_DriveRotationCiA402.out</code>，并调用<code>main()</code>函数进行运行：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">-&gt; ld &lt; /mmc1:1/s24_DriveRotationCiA402.out
 </span></span><span class="line"><span class="cl">Warning: module 0x20479874 holds reference to undefined symbol EcatMasterServerStop.
 </span></span><span class="line"><span class="cl">Warning: module 0x20479874 holds reference to undefined symbol EcatMasterServerCreate.
 </span></span><span class="line"><span class="cl">Warning: module 0x20479874 holds reference to undefined symbol MasterStartPIClientProcessor.
@@ -912,28 +845,26 @@
     </span>        
     
 </h3>
-<p>VxWorks支持使用INCLUDE_RTP_APPL_INIT_BOOTLINE组件来配置系统启动时自动运行C Interpreter格式的脚本，我们尝试使用此方法来实现系统启动时自加载DKM并运行。</p>
+<p>VxWorks支持使用<code>INCLUDE_RTP_APPL_INIT_BOOTLINE</code>组件来配置系统启动时自动运行<code>C Interpreter</code>格式的脚本，我们尝试使用此方法来实现系统启动时自加载DKM并运行。</p>
 <ol>
-<li>
-<p>首先我们在VIP工程的配置选项中，使能INCLUDE_RTP_APPL_INIT_BOOTLINE选项：
-
+<li>首先我们在VIP工程的配置选项中，使能<code>INCLUDE_RTP_APPL_INIT_BOOTLINE</code>选项：</li>
+</ol>
+<p>
   <figure>
     <img class="my-0 rounded-md" loading="lazy" src="https://www.vxworks.net/images/vxworks/vxworks-boot-method-1.png" alt="VxWorks Boot Method" />
     
   </figure>
 </p>
-</li>
-<li>
-<p>VIP工程的SCRIPT_DEFAULT选项设置为我们需要运行的脚本“/mmc1:1/autorun_c.sh”：
-
+<ol start="2">
+<li>VIP工程的SCRIPT_DEFAULT选项设置为我们需要运行的脚本“/mmc1:1/autorun_c.sh”：</li>
+</ol>
+<p>
   <figure>
     <img class="my-0 rounded-md" loading="lazy" src="https://www.vxworks.net/images/vxworks/vxworks-boot-method-2.png" alt="VxWorks Boot Method" />
     
   </figure>
 </p>
-</li>
-</ol>
-<p><strong>SCRIPT_DEFAULT</strong>主要的作用是设置default bootline中的startup script选项。vxworks在INCLUDE_RTP_APPL_INIT_BOOTLINE使能的情况下，会在启动阶段执行bootline中startup script选项描述的C脚本：</p>
+<p>** SCRIPT_DEFAULT **主要的作用是设置default bootline中的startup script选项。VxWorks在<code>INCLUDE_RTP_APPL_INIT_BOOTLINE</code>使能的情况下，会在启动阶段执行bootline中<code>startup script</code>选项描述的C脚本：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="nf">usrRoot</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nf">usrToolsInit</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nf">usrShellInit</span><span class="p">()</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl"> 
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">usrShellInit</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
@@ -951,19 +882,19 @@
 </span></span><span class="line"><span class="cl">    <span class="nf">usrStartupScript</span> <span class="p">(</span><span class="nf">startupScriptFieldSplit</span> <span class="p">(</span><span class="n">sysBootParams</span><span class="p">.</span><span class="n">startupScript</span><span class="p">));</span> <span class="cm">/* Including this component results in the execution of a kernel shell script at VxWorks startup. */</span>
 </span></span><span class="line"><span class="cl">    <span class="nf">usrShell</span> <span class="p">();</span>                        <span class="cm">/* This component includes the target-resident kernel shell, which is spawned as a task. Any function that is invoked from the kernel shell, rather than spawned, runs in the shell&#39;s context. The task name for a shell on the console is &#34;tShell0&#34;. The kernel shell is re-entrant, and more than one shell task can run at a time (hence the number suffix). In addition, if a user logs in remotely (using rlogin or telnet) to a VxWorks target, the name reflects that fact as well. For example, &#34;tShellRem1&#34;. The &#34;tShell&#34; basename is configurable, see the VxWorks 7 Kernel Shell User&#39;s Guide. */</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span></code></pre></div><p>如果使用vxworks自带的bootloader，可以在<code>boot cmd</code>命令行中配置bootline的startup script选项:</p>
+</span></span></code></pre></div><p>如果使用VxWorks自带的bootloader，可以在<code>boot cmd</code>命令行中配置bootline的startup script选项:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">startup script <span class="o">(</span>s<span class="o">)</span> : /mmc1:1/autorun_c.sh
-</span></span></code></pre></div><p>但是我们目前方案的bootloader使用的是uboot，所有我们只需配置好默认bootline中的startup script选项。</p>
+</span></span></code></pre></div><p>但是我们目前方案的<code>bootloader</code>使用的是<code>uboot</code>，所以我们只需配置好默认bootline中的startup script选项。</p>
 <ol start="3">
 <li>autorun_c.sh脚本中的内容非常简单，就是我们手工执行时需要键入的4条指令：</li>
 </ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ld&lt;/mmc1:1/pruss_eth.out
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ld &lt; /mmc1:1/pruss_eth.out
 </span></span><span class="line"><span class="cl">prussStart
-</span></span><span class="line"><span class="cl">ld&lt;/mmc1:1/s24_DriveRotationCiA402.out
+</span></span><span class="line"><span class="cl">ld &lt; /mmc1:1/s24_DriveRotationCiA402.out
 </span></span><span class="line"><span class="cl">main
 </span></span></code></pre></div><ol start="4">
 <li>运行结果：
-实际的运行结果，发现vxworks启动后，卡住几分钟才能执行到autorun_c.sh脚本：</li>
+实际的运行结果，发现VxWorks启动后，卡住几分钟才能执行到autorun_c.sh脚本：</li>
 </ol>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> 
 </span></span><span class="line"><span class="cl"> Adding <span class="m">11197</span> symbols <span class="k">for</span> standalone.   // vxworks启动完成
@@ -974,7 +905,7 @@
 </span></span><span class="line"><span class="cl">Waiting <span class="k">for</span> device to mount             // autorun_c.sh脚本才得到执行
 </span></span><span class="line"><span class="cl">Executing startup script <span class="s1">&#39;/mmc1:1/autorun_c.sh&#39;</span>...
 </span></span><span class="line"><span class="cl"> 
-</span></span><span class="line"><span class="cl">ld&lt;/mmc1:1/pruss_eth.out
+</span></span><span class="line"><span class="cl">ld &lt; /mmc1:1/pruss_eth.out
 </span></span><span class="line"><span class="cl"><span class="nv">value</span> <span class="o">=</span> <span class="nv">541474832</span> <span class="o">=</span> 0x20464010
 </span></span><span class="line"><span class="cl">prussStart
 </span></span><span class="line"><span class="cl">init PRUSS2: physical memory 4B280000-4B2BFFFF
@@ -986,7 +917,7 @@
 <li>初步分析卡住的原因：</li>
 </ul>
 <p>在“usrRoot() -&gt; usrToolsInit() -&gt; usrShellInit()-&gt;usrStartupScript()”这个时间点执行“/mmc1:1/autorun_c.sh”脚本时，“/mmc1:1/”设备并没有mount好，usrStartupScript()函数中重试机制在不停的重新尝试执行，但是这个重试机制又会阻止“/mmc1:1/”的mount进程，所以会卡死很久。</p>
-<p>因为没有深入研究vxworks的初始化流程，我们先尝试使用别的方法，后续有时间可以研究卡住问题的解决方案。</p>
+<p>因为没有深入研究VxWorks的初始化流程，我们先尝试使用别的方法，后续有时间可以研究卡住问题的解决方案。</p>
 
 
 <h3 class="relative group">方案2(成功) 
@@ -1035,14 +966,14 @@
 </span></span></code></pre></div><ol start="3">
 <li>运行结果：</li>
 </ol>
-<p>vxworks启动后，没有卡住的现象，autorun_c.sh脚本能迅速得到执行：</p>
+<p>VxWorks启动后，没有卡住的现象，autorun_c.sh脚本能迅速得到执行：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> Adding <span class="m">11197</span> symbols <span class="k">for</span> standalone.
 </span></span><span class="line"><span class="cl"> 
 </span></span><span class="line"><span class="cl">Waiting <span class="k">for</span> device to mount
 </span></span><span class="line"><span class="cl">.-&gt;
 </span></span><span class="line"><span class="cl">Executing startup script <span class="s1">&#39;/mmc1:1/autorun_c.sh&#39;</span>...
 </span></span><span class="line"><span class="cl"> 
-</span></span><span class="line"><span class="cl">ld&lt;/mmc1:1/pruss_eth.out
+</span></span><span class="line"><span class="cl">ld &lt; /mmc1:1/pruss_eth.out
 </span></span><span class="line"><span class="cl"><span class="nv">value</span> <span class="o">=</span> <span class="nv">541536272</span> <span class="o">=</span> 0x20473010
 </span></span><span class="line"><span class="cl">prussStart
 </span></span><span class="line"><span class="cl">init PRUSS2: physical memory 4B280000-4B2BFFFF
@@ -1052,7 +983,7 @@
 </span></span><span class="line"><span class="cl">PRUSS2: start PRU0
 </span></span><span class="line"><span class="cl">PRUSS2: start PRU1
 </span></span><span class="line"><span class="cl"><span class="nv">value</span> <span class="o">=</span> <span class="nv">0</span> <span class="o">=</span> 0x0
-</span></span><span class="line"><span class="cl">ld&lt;/mmc1:1/s24_DriveRotationCiA402.out
+</span></span><span class="line"><span class="cl">ld &lt; /mmc1:1/s24_DriveRotationCiA402.out
 </span></span><span class="line"><span class="cl">Warning: module 0x204735b8 holds reference to undefined symbol EcatMasterServerStop.
 </span></span><span class="line"><span class="cl">Warning: module 0x204735b8 holds reference to undefined symbol EcatMasterServerCreate.
 </span></span><span class="line"><span class="cl">Warning: module 0x204735b8 holds reference to undefined symbol MasterStartPIClientProcessor.
@@ -1066,7 +997,7 @@
 </span></span><span class="line"><span class="cl"> 
 </span></span><span class="line"><span class="cl">-&gt;
 </span></span></code></pre></div><p>但细心的同学会发现autorun_c.sh脚本中的4条指令只执行了3条，最后一条&quot;main&quot;指令并没有得到执行，但是在shell下手工键入又可以得到执行，这是为什么呢？</p>
-<p>首先怀疑&quot;main&quot;这个符号和其他人重名，造成调用失败。但是查找符号表后，发现并没有重名情况：</p>
+<p>首先怀疑<code>main</code>这个符号和其他人重名，造成调用失败。但是查找符号表后，发现并没有重名情况：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">-&gt;
 </span></span><span class="line"><span class="cl">-&gt; cmd
 </span></span><span class="line"><span class="cl"><span class="o">[</span>vxWorks *<span class="o">]</span><span class="c1">#</span>
@@ -1081,7 +1012,7 @@
 </span></span><span class="line"><span class="cl">ipftps_main               0x001374a8 text
 </span></span><span class="line"><span class="cl">__dataset__driver_tiClkDomainDrv 0x004ddaa4 data
 </span></span><span class="line"><span class="cl"><span class="o">[</span>vxWorks *<span class="o">]</span><span class="c1"># </span>
-</span></span></code></pre></div><p>进一步分析运行log发现一个情况：同样是加载.out文件，“ld&lt;/mmc1:1/pruss_eth.out”的返回值0x20473010其实是pruss_eth.out加载后的MODULE ID，但是&quot;ld&lt;/mmc1:1/s24_DriveRotationCiA402.out&quot;的返回值却为0:</p>
+</span></span></code></pre></div><p>进一步分析运行log发现一个情况：同样是加载.out文件，“ld &lt; /mmc1:1/pruss_eth.out”的返回值0x20473010其实是pruss_eth.out 加载后的MODULE ID，但是&quot;ld &lt; /mmc1:1/s24_DriveRotationCiA402.out&quot;的返回值却为0:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">-&gt; cmd
 </span></span><span class="line"><span class="cl"><span class="o">[</span>vxWorks *<span class="o">]</span><span class="c1"># module</span>
 </span></span><span class="line"><span class="cl"> 
@@ -1089,8 +1020,8 @@
 </span></span><span class="line"><span class="cl">--------------- ---------- ---------- ---------- ---------- ----------
 </span></span><span class="line"><span class="cl">pruss_eth.out   0x20473010          <span class="m">1</span> 0x00b59010 0x00b5b0e4 NO SEGMENT
 </span></span><span class="line"><span class="cl">s24_DriveRotati 0x20473874          <span class="m">2</span> 0x00b5c010 0x00cade18 0x00cb4064
-</span></span></code></pre></div><p>于是怀疑&quot;ld&lt;/mmc1:1/s24_DriveRotationCiA402.out&quot;的加载过程出错，autorun_c.sh脚本执行中断，造成了随后的&quot;main&quot;命令没有得到运行。
-在&quot;ld&lt;/mmc1:1/s24_DriveRotationCiA402.out&quot;我们可以看到有几个人符号没有得到解析的告警，虽然module还是加载上了还能手工执行，但是这个出错可能会中断脚本的运行：</p>
+</span></span></code></pre></div><p>于是怀疑&quot;ld &lt; /mmc1:1/s24_DriveRotationCiA402.out&quot;的加载过程出错，autorun_c.sh脚本执行中断，造成了随后的&quot;main&quot;命令没有得到运行。
+在&quot;ld &lt; /mmc1:1/s24_DriveRotationCiA402.out&quot;我们可以看到有几个人符号没有得到解析的告警，虽然module还是加载上了还能手工执行，但是这个出错可能会中断脚本的运行：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">...
 </span></span><span class="line"><span class="cl">Warning: module 0x204735b8 holds reference to undefined symbol EcatMasterServerStart.
 </span></span><span class="line"><span class="cl">Warning: module 0x204735b8 holds reference to undefined symbol EcatMasterServerDelete.
@@ -1221,22 +1152,24 @@
     
 </h3>
 <ol>
-<li>首先在vxsim的VIP工程中的配置选项中，使能INCLUDE_RTP_APPL_INIT_STRING选项：
-
+<li>首先在vxsim的VIP工程中的配置选项中，使能INCLUDE_RTP_APPL_INIT_STRING选项：</li>
+</ol>
+<p>
   <figure>
     <img class="my-0 rounded-md" loading="lazy" src="https://www.vxworks.net/images/vxworks/vxworks-boot-method-3.png" alt="VxWorks Boot Method" />
     
   </figure>
-</li>
-<li>配置其中的RTP_APPL_INIT_STRING参数：
-
+</p>
+<ol start="2">
+<li>配置其中的RTP_APPL_INIT_STRING参数：</li>
+</ol>
+<p>
   <figure>
     <img class="my-0 rounded-md" loading="lazy" src="https://www.vxworks.net/images/vxworks/vxworks-boot-method-4.png" alt="VxWorks Boot Method" />
     
   </figure>
-
-RTP_APPL_INIT_STRING参数的具体内容为：</li>
-</ol>
+</p>
+<p>RTP_APPL_INIT_STRING参数的具体内容为：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="s2">&#34;#host:D:/pwl_workspace/TestSimRtp.vxe&#34;</span>
 </span></span></code></pre></div><blockquote>
 这个字符串的详细语法可以参考"installDir\docs\vxworks-7-1.0.8.6\Core\vxworks_7_programmers_guide.pdf"中的"Application Startup String Syntax"小节。
@@ -1269,34 +1202,36 @@ RTP_APPL_INIT_STRING参数的具体内容为：</li>
 </h3>
 <p>VxWorks支持使用<code>INCLUDE_RTP_APPL_INIT_BOOTLINE</code>组件来配置系统启动时自动运行C Interpreter格式的脚本，我们尝试使用此方法来实现系统启动时自动运行RTP程序。</p>
 <ol>
-<li>
-<p>首先我们在vxsim VIP工程的配置选项中，使能INCLUDE_RTP_APPL_INIT_BOOTLINE选项：
-
+<li>首先我们在vxsim VIP工程的配置选项中，使能INCLUDE_RTP_APPL_INIT_BOOTLINE选项：</li>
+</ol>
+<p>
   <figure>
     <img class="my-0 rounded-md" loading="lazy" src="https://www.vxworks.net/images/vxworks/vxworks-boot-method-5.png" alt="VxWorks Boot Method" />
     
   </figure>
 </p>
-</li>
-<li>
-<p>vxsim VIP工程的SCRIPT_DEFAULT选项设置：
-
+<ol start="2">
+<li>vxsim VIP工程的SCRIPT_DEFAULT选项设置：</li>
+</ol>
+<p>
   <figure>
     <img class="my-0 rounded-md" loading="lazy" src="https://www.vxworks.net/images/vxworks/vxworks-boot-method-6.png" alt="VxWorks Boot Method" />
     
   </figure>
 </p>
-</li>
-</ol>
 <p>startup script具体的配置如下：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="s2">&#34;host:D:/pwl_workspace/autorun_c.sh#host:D:/pwl_workspace/TestSimRtp.vxe&#34;</span>
 </span></span></code></pre></div><p>需要注意的是startup script中可以配置两种不同的自启动方式，上述的参数可以分成两部分：</p>
-<p>(1) “host:D:/pwl_workspace/autorun_c.sh”这部分配置的是vxworks在启动阶段执行一个C Interpreter格式的脚本。autorun_c.sh脚本的具体内容如下：</p>
+<ul>
+<li>“host:D:/pwl_workspace/autorun_c.sh”这部分配置的是vxworks在启动阶段执行一个C Interpreter格式的脚本。autorun_c.sh脚本的具体内容如下：</li>
+</ul>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">rtpSp <span class="s2">&#34;host:D:/pwl_workspace/TestSimRtp.vxe&#34;</span>
 </span></span></code></pre></div><blockquote>
 需要特别注意的是，这里调用的是C Interpreter格式的脚本，后面的RTP_APPL_INIT_CMD_SHELL_SCRIPT方式调用的是Command Interpreter格式的脚本。
 </blockquote>
-<p>(2)&quot;#host:D:/pwl_workspace/TestSimRtp.vxe&quot;这部分配置的语法和INCLUDE_RTP_APPL_INIT_STRING选项一样。</p>
+<ul>
+<li>&ldquo;#host:D:/pwl_workspace/TestSimRtp.vxe&quot;这部分配置的语法和INCLUDE_RTP_APPL_INIT_STRING选项一样。</li>
+</ul>
 <p>上述参数分别运行了一次TestSimRtp.vxe，所以TestSimRtp.vxe会被运行两次。</p>
 <ol start="3">
 <li>启动vxworks simulator，查看运行结果，成功自动运行两次：</li>
@@ -1390,27 +1325,27 @@ RTP_APPL_INIT_STRING参数的具体内容为：</li>
 </li>
 <li>在INCLUDE_RTP_APPL_USER选项被使能以后，vxworks启动时会调用usrRtpAppInit.c文件中的usrRtpAppInit()函数。我们可以在此函数中加入自己的rtp启动代码：</li>
 </ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">void usrRtpAppInit <span class="o">(</span>void<span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="o">{</span>
-</span></span><span class="line"><span class="cl">    /* TODO - add your own application launch code here */
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">usrRtpAppInit</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* TODO - add your own application launch code here */</span>
 </span></span><span class="line"><span class="cl"> 
-</span></span><span class="line"><span class="cl">    /* <span class="o">(</span>1<span class="o">)</span> 使用代码调用rtpSpawn<span class="o">()</span>函数来运行TestSimRtp.vxe文件 */
-</span></span><span class="line"><span class="cl">	char * <span class="nv">vxeName</span> <span class="o">=</span> <span class="s2">&#34;host:D:/pwl_workspace/TestSimRtp.vxe&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	char * argv<span class="o">[</span>5<span class="o">]</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	RTP_ID <span class="nv">rtpId</span> <span class="o">=</span> NULL<span class="p">;</span>
-</span></span><span class="line"><span class="cl">	/* <span class="nb">set</span> the application<span class="err">&#39;</span>s arguments */
-</span></span><span class="line"><span class="cl">	argv<span class="o">[</span>0<span class="o">]</span> <span class="o">=</span> vxeName<span class="p">;</span>
-</span></span><span class="line"><span class="cl">	argv<span class="o">[</span>1<span class="o">]</span> <span class="o">=</span> NULL<span class="p">;</span>
-</span></span><span class="line"><span class="cl">	argv<span class="o">[</span>2<span class="o">]</span> <span class="o">=</span> NULL<span class="p">;</span>
-</span></span><span class="line"><span class="cl">	argv<span class="o">[</span>3<span class="o">]</span> <span class="o">=</span> NULL<span class="p">;</span>
-</span></span><span class="line"><span class="cl">	argv<span class="o">[</span>4<span class="o">]</span> <span class="o">=</span> NULL<span class="p">;</span>
-</span></span><span class="line"><span class="cl">	/* Spawn the RTP. No environment variables are passed */
-</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="o">((</span><span class="nv">rtpId</span> <span class="o">=</span> rtpSpawn <span class="o">(</span>vxeName, argv, NULL, 220, 0x10000, 0, 0<span class="o">))</span> <span class="o">==</span> NULL<span class="o">)</span>
-</span></span><span class="line"><span class="cl">	<span class="o">{</span>
-</span></span><span class="line"><span class="cl">		<span class="nb">printf</span> <span class="o">(</span><span class="s2">&#34;Impossible to start %s application &#34;</span>, vxeName<span class="o">)</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* (1) 使用代码调用rtpSpawn()函数来运行TestSimRtp.vxe文件 */</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="o">*</span> <span class="n">vxeName</span> <span class="o">=</span> <span class="s">&#34;host:D:/pwl_workspace/TestSimRtp.vxe&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="n">RTP_ID</span> <span class="n">rtpId</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="cm">/* set the application&#39;s arguments */</span>
+</span></span><span class="line"><span class="cl">	<span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">vxeName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">argv</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="cm">/* Spawn the RTP. No environment variables are passed */</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">((</span><span class="n">rtpId</span> <span class="o">=</span> <span class="nf">rtpSpawn</span> <span class="p">(</span><span class="n">vxeName</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mh">0x10000</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">printf</span> <span class="p">(</span><span class="s">&#34;Impossible to start %s application &#34;</span><span class="p">,</span> <span class="n">vxeName</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
 </span></span><span class="line"><span class="cl"> 
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><ol start="3">
 <li>启动vxworks simulator，查看运行结果，成功自动运行：</li>
 </ol>
