@@ -882,19 +882,39 @@
 <li>首先我们在VIP工程的配置选项中，使能<code>INCLUDE_RTP_APPL_INIT_BOOTLINE</code>选项：</li>
 </ol>
 <p>
-  <figure>
-    <img class="my-0 rounded-md" loading="lazy" src="https://www.vxworks.net/images/vxworks/vxworks-boot-method-1.png" alt="VxWorks Boot Method" />
-    
-  </figure>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-1_hu13740133476620911476.png 330w,
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-1_hu10525142125133843258.png 660w,
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-1_hu12361627888998274832.png 1024w,
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-1_hu10336121864545311626.png 2x"
+        src="/app/vxworks-7-app-auto-boot-method/vxworks-boot-method-1_hu10525142125133843258.png"
+        alt="VxWorks Boot Method"
+      />
+      
+    </figure>
 </p>
 <ol start="2">
 <li>VIP工程的SCRIPT_DEFAULT选项设置为我们需要运行的脚本“/mmc1:1/autorun_c.sh”：</li>
 </ol>
 <p>
-  <figure>
-    <img class="my-0 rounded-md" loading="lazy" src="https://www.vxworks.net/images/vxworks/vxworks-boot-method-2.png" alt="VxWorks Boot Method" />
-    
-  </figure>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-2_hu5481485443955100329.png 330w,
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-2_hu13339427879494923873.png 660w,
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-2_hu7674363972231677032.png 1024w,
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-2_hu14491549944041383557.png 2x"
+        src="/app/vxworks-7-app-auto-boot-method/vxworks-boot-method-2_hu13339427879494923873.png"
+        alt="VxWorks Boot Method"
+      />
+      
+    </figure>
 </p>
 <p>** SCRIPT_DEFAULT **主要的作用是设置default bootline中的startup script选项。VxWorks在<code>INCLUDE_RTP_APPL_INIT_BOOTLINE</code>使能的情况下，会在启动阶段执行bootline中<code>startup script</code>选项描述的C脚本：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="nf">usrRoot</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nf">usrToolsInit</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nf">usrShellInit</span><span class="p">()</span><span class="o">:</span>
@@ -1044,7 +1064,7 @@
 </span></span><span class="line"><span class="cl">ipftps_main               0x001374a8 text
 </span></span><span class="line"><span class="cl">__dataset__driver_tiClkDomainDrv 0x004ddaa4 data
 </span></span><span class="line"><span class="cl"><span class="o">[</span>vxWorks *<span class="o">]</span><span class="c1"># </span>
-</span></span></code></pre></div><p>进一步分析运行log发现一个情况：同样是加载.out文件，“ld &lt; /mmc1:1/pruss_eth.out”的返回值0x20473010其实是pruss_eth.out 加载后的MODULE ID，但是&quot;ld &lt; /mmc1:1/s24_DriveRotationCiA402.out&quot;的返回值却为0:</p>
+</span></span></code></pre></div><p>进一步分析运行log发现一个情况：同样是加载.out文件，<code>ld &lt; /mmc1:1/pruss_eth.out</code>的返回值<code>0x20473010</code>其实是<code>pruss_eth.out</code> 加载后的<code>MODULE ID</code>，但是<code>ld &lt; /mmc1:1/s24_DriveRotationCiA402.out</code>的返回值却为0:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">-&gt; cmd
 </span></span><span class="line"><span class="cl"><span class="o">[</span>vxWorks *<span class="o">]</span><span class="c1"># module</span>
 </span></span><span class="line"><span class="cl"> 
@@ -1052,8 +1072,8 @@
 </span></span><span class="line"><span class="cl">--------------- ---------- ---------- ---------- ---------- ----------
 </span></span><span class="line"><span class="cl">pruss_eth.out   0x20473010          <span class="m">1</span> 0x00b59010 0x00b5b0e4 NO SEGMENT
 </span></span><span class="line"><span class="cl">s24_DriveRotati 0x20473874          <span class="m">2</span> 0x00b5c010 0x00cade18 0x00cb4064
-</span></span></code></pre></div><p>于是怀疑&quot;ld &lt; /mmc1:1/s24_DriveRotationCiA402.out&quot;的加载过程出错，autorun_c.sh脚本执行中断，造成了随后的&quot;main&quot;命令没有得到运行。
-在&quot;ld &lt; /mmc1:1/s24_DriveRotationCiA402.out&quot;我们可以看到有几个人符号没有得到解析的告警，虽然module还是加载上了还能手工执行，但是这个出错可能会中断脚本的运行：</p>
+</span></span></code></pre></div><p>于是怀疑<code>ld &lt; /mmc1:1/s24_DriveRotationCiA402.out</code>的加载过程出错，<code>autorun_c.sh</code>脚本执行中断，造成了随后的<code>main</code>命令没有得到运行。
+在<code>ld &lt; /mmc1:1/s24_DriveRotationCiA402.out</code>我们可以看到有几个人符号没有得到解析的告警，虽然module还是加载上了还能手工执行，但是这个出错可能会中断脚本的运行：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">...
 </span></span><span class="line"><span class="cl">Warning: module 0x204735b8 holds reference to undefined symbol EcatMasterServerStart.
 </span></span><span class="line"><span class="cl">Warning: module 0x204735b8 holds reference to undefined symbol EcatMasterServerDelete.
@@ -1062,7 +1082,7 @@
 <ol start="4">
 <li>没有符号解析错误的.out，运行结果：</li>
 </ol>
-<p>用户编译了一份没有符号解析错误的newmaster.out，来替换之前出错的s24_DriveRotationCiA402.out。autorun_c.sh脚本中的4条指令能够完美的得到执行：</p>
+<p>用户编译了一份没有符号解析错误的<code>newmaster.out</code>，来替换之前出错的<code>s24_DriveRotationCiA402.out</code>，autorun_c.sh脚本中的4条指令能够完美的得到执行：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> Adding <span class="m">11197</span> symbols <span class="k">for</span> standalone.
 </span></span><span class="line"><span class="cl"> 
 </span></span><span class="line"><span class="cl">Waiting <span class="k">for</span> device to mount
@@ -1187,19 +1207,39 @@
 <li>首先在vxsim的VIP工程中的配置选项中，使能INCLUDE_RTP_APPL_INIT_STRING选项：</li>
 </ol>
 <p>
-  <figure>
-    <img class="my-0 rounded-md" loading="lazy" src="https://www.vxworks.net/images/vxworks/vxworks-boot-method-3.png" alt="VxWorks Boot Method" />
-    
-  </figure>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-3_hu13708428089827868582.png 330w,
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-3_hu17811040720282192687.png 660w,
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-3_hu13559330608037611760.png 1024w,
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-3_hu5696599248662426886.png 2x"
+        src="/app/vxworks-7-app-auto-boot-method/vxworks-boot-method-3_hu17811040720282192687.png"
+        alt="VxWorks Boot Method"
+      />
+      
+    </figure>
 </p>
 <ol start="2">
 <li>配置其中的RTP_APPL_INIT_STRING参数：</li>
 </ol>
 <p>
-  <figure>
-    <img class="my-0 rounded-md" loading="lazy" src="https://www.vxworks.net/images/vxworks/vxworks-boot-method-4.png" alt="VxWorks Boot Method" />
-    
-  </figure>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-4_hu16237511802405814487.png 330w,
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-4_hu11742910230133118633.png 660w,
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-4_hu12946009243798045286.png 1024w,
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-4_hu13868619881872041252.png 2x"
+        src="/app/vxworks-7-app-auto-boot-method/vxworks-boot-method-4_hu11742910230133118633.png"
+        alt="VxWorks Boot Method"
+      />
+      
+    </figure>
 </p>
 <p>RTP_APPL_INIT_STRING参数的具体内容为：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="s2">&#34;#host:D:/pwl_workspace/TestSimRtp.vxe&#34;</span>
@@ -1238,25 +1278,45 @@
 <li>首先我们在vxsim VIP工程的配置选项中，使能INCLUDE_RTP_APPL_INIT_BOOTLINE选项：</li>
 </ol>
 <p>
-  <figure>
-    <img class="my-0 rounded-md" loading="lazy" src="https://www.vxworks.net/images/vxworks/vxworks-boot-method-5.png" alt="VxWorks Boot Method" />
-    
-  </figure>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-5_hu18164233778700356862.png 330w,
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-5_hu1997181914905623397.png 660w,
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-5_hu14702722951250003599.png 1024w,
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-5_hu11713970151944527295.png 2x"
+        src="/app/vxworks-7-app-auto-boot-method/vxworks-boot-method-5_hu1997181914905623397.png"
+        alt="VxWorks Boot Method"
+      />
+      
+    </figure>
 </p>
 <ol start="2">
 <li>vxsim VIP工程的SCRIPT_DEFAULT选项设置：</li>
 </ol>
 <p>
-  <figure>
-    <img class="my-0 rounded-md" loading="lazy" src="https://www.vxworks.net/images/vxworks/vxworks-boot-method-6.png" alt="VxWorks Boot Method" />
-    
-  </figure>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-6_hu6338186647729697793.png 330w,
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-6_hu10076776165226848059.png 660w,
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-6_hu14699019668857995000.png 1024w,
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-6_hu7230792487391205667.png 2x"
+        src="/app/vxworks-7-app-auto-boot-method/vxworks-boot-method-6_hu10076776165226848059.png"
+        alt="VxWorks Boot Method"
+      />
+      
+    </figure>
 </p>
 <p>startup script具体的配置如下：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="s2">&#34;host:D:/pwl_workspace/autorun_c.sh#host:D:/pwl_workspace/TestSimRtp.vxe&#34;</span>
 </span></span></code></pre></div><p>需要注意的是startup script中可以配置两种不同的自启动方式，上述的参数可以分成两部分：</p>
 <ul>
-<li>“host:D:/pwl_workspace/autorun_c.sh”这部分配置的是vxworks在启动阶段执行一个C Interpreter格式的脚本。autorun_c.sh脚本的具体内容如下：</li>
+<li>“host:D:/pwl_workspace/autorun_c.sh”这部分配置的是VxWorks在启动阶段执行一个<code>C Interpreter</code>格式的脚本。autorun_c.sh脚本的具体内容如下：</li>
 </ul>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">rtpSp <span class="s2">&#34;host:D:/pwl_workspace/TestSimRtp.vxe&#34;</span>
 </span></span></code></pre></div><blockquote>
@@ -1265,7 +1325,7 @@
 <ul>
 <li>&ldquo;#host:D:/pwl_workspace/TestSimRtp.vxe&quot;这部分配置的语法和<code>INCLUDE_RTP_APPL_INIT_STRING</code>选项一样。</li>
 </ul>
-<p>上述参数分别运行了一次TestSimRtp.vxe，所以TestSimRtp.vxe会被运行两次。</p>
+<p>上述参数分别运行了一次<code>TestSimRtp.vxe</code>，所以<code>TestSimRtp.vxe</code>会被运行两次。</p>
 <ol start="3">
 <li>启动vxworks simulator，查看运行结果，成功自动运行两次：</li>
 </ol>
@@ -1310,10 +1370,20 @@
 <li>首先我们在vxsim VIP工程的配置选项中，使能INCLUDE_RTP_APPL_INIT_CMD_SHELL_SCRIPT选项，并配置其中的RTP_APPL_CMD_SCRIPT_FILE参数：</li>
 </ol>
 <p>
-  <figure>
-    <img class="my-0 rounded-md" loading="lazy" src="https://www.vxworks.net/images/vxworks/vxworks-boot-method-7.png" alt="VxWorks Boot Method" />
-    
-  </figure>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-7_hu3109324944846898846.png 330w,
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-7_hu2280842897679320152.png 660w,
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-7_hu391640520172627891.png 1024w,
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-7_hu11717821679653385815.png 2x"
+        src="/app/vxworks-7-app-auto-boot-method/vxworks-boot-method-7_hu2280842897679320152.png"
+        alt="VxWorks Boot Method"
+      />
+      
+    </figure>
 </p>
 <p>参数的具体内容为：&ldquo;host:D:/pwl_workspace/autorun_cmd.sh&rdquo;
 系统启动时自动运行配置的Command Interpreter格式的脚本autorun_cmd.sh,autorun_cmd.sh脚本的具体内容为：</p>
@@ -1352,10 +1422,20 @@
 <li>首先我们在vxsim VIP工程的配置选项中，使能INCLUDE_RTP_APPL_USER选项：</li>
 </ol>
 <p>
-  <figure>
-    <img class="my-0 rounded-md" loading="lazy" src="https://www.vxworks.net/images/vxworks/vxworks-boot-method-8.png" alt="VxWorks Boot Method" />
-    
-  </figure>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-8_hu816849632792833545.png 330w,
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-8_hu8729711994457750402.png 660w,
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-8_hu14995753983524510197.png 1024w,
+        /app/vxworks-7-app-auto-boot-method/vxworks-boot-method-8_hu18360012222526037710.png 2x"
+        src="/app/vxworks-7-app-auto-boot-method/vxworks-boot-method-8_hu8729711994457750402.png"
+        alt="VxWorks Boot Method"
+      />
+      
+    </figure>
 </p>
 <ol start="2">
 <li>在INCLUDE_RTP_APPL_USER选项被使能以后，vxworks启动时会调用usrRtpAppInit.c文件中的usrRtpAppInit()函数。我们可以在此函数中加入自己的rtp启动代码：</li>
