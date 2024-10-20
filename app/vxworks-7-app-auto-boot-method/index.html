@@ -112,7 +112,7 @@
     "keywords": ["VxWorks","VSB","VIP"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "1420"
+    "wordCount": "1415"
   }]
   </script>
 
@@ -718,37 +718,48 @@
       <tr>
           <th>Project Type</th>
           <th>Output</th>
-          <th>Description</th>
       </tr>
   </thead>
   <tbody>
       <tr>
           <td>VSB (VxWorks Source Build)</td>
           <td>.a</td>
-          <td>Check below VSB</td>
       </tr>
       <tr>
           <td>VIP</td>
           <td>(VxWorks Image Project)</td>
-          <td>Check below VIP</td>
       </tr>
       <tr>
           <td>DKM (Downloadable Kernel Module)</td>
           <td>.out</td>
-          <td>Check below DKM</td>
       </tr>
       <tr>
           <td>RTP(Real-Time Process)</td>
           <td>.vxe</td>
-          <td>Check below RTP</td>
       </tr>
   </tbody>
 </table>
 <ul>
-<li>VSB: 基于某个特定的bsp，根据支持的cpu架构，把vxworks内核源码编译成静态库。注意这里这是只是把内核源码编译成库，供后续创建的VIP工程使用，并不会产生任何的映像文件。内核公共代码预先编译成库，也可以加速用户VIP工程的编译速度。另外也说明，如果你修改了内核代码，你需要重新编译VSB工程才会生效。</li>
-<li>VIP: VxWorks 用户自定义的VxWorks映像工程。把用户选择的各种内核组件(使用CDF文件描述)，根据vxworks的启动顺序编译链接起来，得到常用的vxworks映像。各种内核组件在VSB工程中已经预先编译好，供VIP工程挑选使用。</li>
-<li>DKM: VxWorks内核态应用程序。可加载的内核模块，类似如linux下的ko文件。对于跑在内核态的用户代码，即可以添加到VIP工程中，也可以使用DKM工程独立成内核模块。在vxworks启动完成后，使用&quot;ld &lt; xxx.out&quot;的命令来动态加载。</li>
-<li>RTP: VxWorks用户态应用程序。跑在用户态的用户代码，使用RTP工程编译成.vxe文件。在vxworks启动完成后，使用“rtp exec xxx.vxe”命令来执行。</li>
+<li>VSB: 基于某个特定的bsp，根据支持的cpu架构，把vxworks内核源码编译成静态库。
+<ul>
+<li>注意这里这是只是把内核源码编译成库，供后续创建的VIP工程使用，并不会产生任何的映像文件。</li>
+<li>内核公共代码预先编译成库，也可以加速用户VIP工程的编译速度。另外也说明，如果你修改了内核代码，你需要重新编译VSB工程才会生效。</li>
+</ul></li>
+<li>VIP: VxWorks 用户自定义的VxWorks映像工程。
+<ul>
+<li>把用户选择的各种内核组件(使用CDF文件描述)，根据vxworks的启动顺序编译链接起来，得到常用的VxWorks映像。</li>
+<li>各种内核组件在VSB工程中已经预先编译好，供VIP工程挑选使用。</li>
+</ul></li>
+<li>DKM: VxWorks内核态应用程序。可加载的内核模块，类似如linux下的ko文件。
+<ul>
+<li>对于跑在内核态的用户代码，即可以添加到VIP工程中，也可以使用DKM工程独立成内核模块。</li>
+<li>在VxWorks启动完成后，使用`ld < xxx.out`的命令来动态加载。</li>
+</ul></li>
+<li>RTP: VxWorks用户态应用程序。
+<ul>
+<li>跑在用户态的用户代码，使用RTP工程编译成.vxe文件。</li>
+<li>在vxworks启动完成后，使用“rtp exec xxx.vxe”命令来执行。</li>
+</ul></li>
 </ul>
 
 
@@ -769,7 +780,6 @@
           <th>Mode</th>
           <th>提示符</th>
           <th>模式切换</th>
-          <th>Description</th>
       </tr>
   </thead>
   <tbody>
@@ -777,19 +787,17 @@
           <td>C Interpreter</td>
           <td><code>-&gt;</code></td>
           <td>使用“cmd”命令切换到Command Interpreter模式</td>
-          <td>Check below</td>
       </tr>
       <tr>
           <td>Command Interpreter</td>
           <td><code>#</code></td>
           <td>使用“C”命令切换到C Interpreter模式</td>
-          <td>Check below</td>
       </tr>
   </tbody>
 </table>
 <ul>
-<li>C Interpreter 设计的目的是用来监控、调试内核代码。它最大的特点是可以直接调用函数名来执行，非常方便调试。</li>
-<li>Command Interpreter 设计的目的是用来启动、监控、调试用户态的RTP应用程序。它提供了很多专门的调试命令，类似于linux shell。</li>
+<li>C Interpreter 设计的目的是用来监控、调试内核代码。它最大的特点是可以直接调用函数名来执行，非常方便调试</li>
+<li>Command Interpreter 设计的目的是用来启动、监控、调试用户态的RTP应用程序。它提供了很多专门的调试命令，类似于linux shell</li>
 </ul>
 <blockquote>
 详细描述可以参考文档：</br>
@@ -1062,7 +1070,7 @@
 </span></span><span class="line"><span class="cl"> 
 </span></span><span class="line"><span class="cl">Executing startup script <span class="s1">&#39;/mmc1:1/autorun_c.sh&#39;</span>...
 </span></span><span class="line"><span class="cl"> 
-</span></span><span class="line"><span class="cl">ld&lt;/mmc1:1/pruss_eth.out
+</span></span><span class="line"><span class="cl">ld &lt; /mmc1:1/pruss_eth.out
 </span></span><span class="line"><span class="cl"><span class="nv">value</span> <span class="o">=</span> <span class="nv">541560848</span> <span class="o">=</span> 0x20479010
 </span></span><span class="line"><span class="cl">prussStart
 </span></span><span class="line"><span class="cl">init PRUSS2: physical memory 4B280000-4B2BFFFF
@@ -1072,7 +1080,7 @@
 </span></span><span class="line"><span class="cl">PRUSS2: start PRU0
 </span></span><span class="line"><span class="cl">PRUSS2: start PRU1
 </span></span><span class="line"><span class="cl"><span class="nv">value</span> <span class="o">=</span> <span class="nv">0</span> <span class="o">=</span> 0x0
-</span></span><span class="line"><span class="cl">ld&lt;/mmc1:1/newmaster.out
+</span></span><span class="line"><span class="cl">ld &lt; /mmc1:1/newmaster.out
 </span></span><span class="line"><span class="cl"><span class="nv">value</span> <span class="o">=</span> <span class="nv">541562996</span> <span class="o">=</span> <span class="nv">0x20479874</span> <span class="o">=</span> <span class="s1">&#39;t&#39;</span>
 </span></span><span class="line"><span class="cl">main
 </span></span><span class="line"><span class="cl"> 
@@ -1196,7 +1204,8 @@
 <p>RTP_APPL_INIT_STRING参数的具体内容为：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="s2">&#34;#host:D:/pwl_workspace/TestSimRtp.vxe&#34;</span>
 </span></span></code></pre></div><blockquote>
-这个字符串的详细语法可以参考"installDir\docs\vxworks-7-1.0.8.6\Core\vxworks_7_programmers_guide.pdf"中的"Application Startup String Syntax"小节。
+这个字符串的详细语法可以参考</br>
+"installDir\docs\vxworks-7-1.0.8.6\Core\vxworks_7_programmers_guide.pdf"中的"Application Startup String Syntax"小节。
 </blockquote>
 <ol start="3">
 <li>启动vxworks simulator，查看运行结果，成功自动运行：</li>
@@ -1251,10 +1260,10 @@
 </ul>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">rtpSp <span class="s2">&#34;host:D:/pwl_workspace/TestSimRtp.vxe&#34;</span>
 </span></span></code></pre></div><blockquote>
-需要特别注意的是，这里调用的是C Interpreter格式的脚本，后面的RTP_APPL_INIT_CMD_SHELL_SCRIPT方式调用的是Command Interpreter格式的脚本。
+需要特别注意的是，这里调用的是C Interpreter格式的脚本，后面的`RTP_APPL_INIT_CMD_SHELL_SCRIPT`方式调用的是Command Interpreter格式的脚本。
 </blockquote>
 <ul>
-<li>&ldquo;#host:D:/pwl_workspace/TestSimRtp.vxe&quot;这部分配置的语法和INCLUDE_RTP_APPL_INIT_STRING选项一样。</li>
+<li>&ldquo;#host:D:/pwl_workspace/TestSimRtp.vxe&quot;这部分配置的语法和<code>INCLUDE_RTP_APPL_INIT_STRING</code>选项一样。</li>
 </ul>
 <p>上述参数分别运行了一次TestSimRtp.vxe，所以TestSimRtp.vxe会被运行两次。</p>
 <ol start="3">
@@ -1298,14 +1307,14 @@
     
 </h3>
 <ol>
-<li>首先我们在vxsim VIP工程的配置选项中，使能INCLUDE_RTP_APPL_INIT_CMD_SHELL_SCRIPT选项，并配置其中的RTP_APPL_CMD_SCRIPT_FILE参数：
-
+<li>首先我们在vxsim VIP工程的配置选项中，使能INCLUDE_RTP_APPL_INIT_CMD_SHELL_SCRIPT选项，并配置其中的RTP_APPL_CMD_SCRIPT_FILE参数：</li>
+</ol>
+<p>
   <figure>
     <img class="my-0 rounded-md" loading="lazy" src="https://www.vxworks.net/images/vxworks/vxworks-boot-method-7.png" alt="VxWorks Boot Method" />
     
   </figure>
-</li>
-</ol>
+</p>
 <p>参数的具体内容为：&ldquo;host:D:/pwl_workspace/autorun_cmd.sh&rdquo;
 系统启动时自动运行配置的Command Interpreter格式的脚本autorun_cmd.sh,autorun_cmd.sh脚本的具体内容为：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">rtp <span class="nb">exec</span> host:D:/pwl_workspace/TestSimRtp.vxe
@@ -1340,13 +1349,15 @@
     
 </h3>
 <ol>
-<li>首先我们在vxsim VIP工程的配置选项中，使能INCLUDE_RTP_APPL_USER选项：
-
+<li>首先我们在vxsim VIP工程的配置选项中，使能INCLUDE_RTP_APPL_USER选项：</li>
+</ol>
+<p>
   <figure>
     <img class="my-0 rounded-md" loading="lazy" src="https://www.vxworks.net/images/vxworks/vxworks-boot-method-8.png" alt="VxWorks Boot Method" />
     
   </figure>
-</li>
+</p>
+<ol start="2">
 <li>在INCLUDE_RTP_APPL_USER选项被使能以后，vxworks启动时会调用usrRtpAppInit.c文件中的usrRtpAppInit()函数。我们可以在此函数中加入自己的rtp启动代码：</li>
 </ol>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">usrRtpAppInit</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
@@ -1357,13 +1368,15 @@
 </span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="o">*</span> <span class="n">vxeName</span> <span class="o">=</span> <span class="s">&#34;host:D:/pwl_workspace/TestSimRtp.vxe&#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">	<span class="n">RTP_ID</span> <span class="n">rtpId</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">	<span class="cm">/* set the application&#39;s arguments */</span>
 </span></span><span class="line"><span class="cl">	<span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">vxeName</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">	<span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">	<span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">	<span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">	<span class="n">argv</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="cm">/* Spawn the RTP. No environment variables are passed */</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">    <span class="cm">/* Spawn the RTP. No environment variables are passed */</span>
 </span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">((</span><span class="n">rtpId</span> <span class="o">=</span> <span class="nf">rtpSpawn</span> <span class="p">(</span><span class="n">vxeName</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mh">0x10000</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">	<span class="p">{</span>
 </span></span><span class="line"><span class="cl">		<span class="nf">printf</span> <span class="p">(</span><span class="s">&#34;Impossible to start %s application &#34;</span><span class="p">,</span> <span class="n">vxeName</span><span class="p">);</span>
