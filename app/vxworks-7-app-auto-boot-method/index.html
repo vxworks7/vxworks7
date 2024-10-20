@@ -112,7 +112,7 @@
     "keywords": ["VxWorks","VSB","VIP"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "1437"
+    "wordCount": "1420"
   }]
   </script>
 
@@ -763,10 +763,34 @@
     
 </h2>
 <p>VxWorks拥有自己的命令行交互工具kernel shell，比较特殊的是shell有两种模式分别支持两种解析器：C Interpreter和Command Interpreter。</p>
-<p>|           Mode            |           提示符          |           模式切换            |           Description         |
-| &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;  | &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; | &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;- |&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash; &mdash;&mdash; |
-| C Interpreter             | -&gt;                       | 使用“cmd”命令切换到Command Interpreter模式 | C Interpreter设计的目的是用来监控、调试内核代码。它最大的特点是可以直接调用函数名来执行，非常方便调试。|
-| Command Interpreter       | #                        | 使用“C”命令切换到C Interpreter模式         | Command Interpreter设计的目的是用来启动、监控、调试用户态的RTP应用程序。它提供了很多专门的调试命令，类似于linux shell。   |</p>
+<table>
+  <thead>
+      <tr>
+          <th>Mode</th>
+          <th>提示符</th>
+          <th>模式切换</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>C Interpreter</td>
+          <td><code>-&gt;</code></td>
+          <td>使用“cmd”命令切换到Command Interpreter模式</td>
+          <td>Check below</td>
+      </tr>
+      <tr>
+          <td>Command Interpreter</td>
+          <td><code>#</code></td>
+          <td>使用“C”命令切换到C Interpreter模式</td>
+          <td>Check below</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li>C Interpreter 设计的目的是用来监控、调试内核代码。它最大的特点是可以直接调用函数名来执行，非常方便调试。</li>
+<li>Command Interpreter 设计的目的是用来启动、监控、调试用户态的RTP应用程序。它提供了很多专门的调试命令，类似于linux shell。</li>
+</ul>
 <blockquote>
 详细描述可以参考文档：</br>
 “installDir\docs\vxworks-7-1.0.8.6\Core\vxworks_7_programmers_guide.pdf”
