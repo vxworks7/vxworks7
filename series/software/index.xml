@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Software on Kontronn Asia Design Center</title>
+    <link>https://www.vxworks7.com/series/software/</link>
+    <description>Recent content in Software on Kontronn Asia Design Center</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2024 </copyright>
+    <lastBuildDate>Sat, 19 Oct 2024 21:29:35 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/series/software/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>一张图解释 8 种流行网络协议</title>
+      <link>https://www.vxworks7.com/software/8-popular-network-protocols/</link>
+      <pubDate>Sat, 19 Oct 2024 21:29:35 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/software/8-popular-network-protocols/</guid>
+      <description>&lt;p&gt;
+    &lt;figure&gt;
+      &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; src=&#34;./8-Popular-Network-Protocols.gif&#34; alt=&#34;8 Popular Network Protocols&#34; /&gt;
+      
+    &lt;/figure&gt;
+&lt;/p&gt;
+
+
+&lt;h2 class=&#34;relative group&#34;&gt;HTTP 
+    &lt;div id=&#34;http&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#http&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;blockquote&gt;超文本传输协议&lt;/blockquote&gt;
+&lt;p&gt;超文本传输协议（Hypertext Transfer Protocol，HTTP）是一个简单的请求-响应协议，它通常运行在TCP之上。它指定了客户端可能发送给服务器什么样的消息以及得到什么样的响应。请求和响应消息的头以ASCII形式给出；而消息内容则具有一个类似MIME的格式。这个简单模型是早期Web成功的有功之臣，因为它使开发和部署非常地直截了当。&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/software/8-popular-network-protocols/featured-8-popular-network-protocols.jpg" />
+    </item>
+    
+    <item>
+      <title>如何释放Windows 的C 盘空间</title>
+      <link>https://www.vxworks7.com/software/free-up-space-on-c-drive-in-windows/</link>
+      <pubDate>Sat, 19 Oct 2024 21:05:47 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/software/free-up-space-on-c-drive-in-windows/</guid>
+      <description>&lt;p&gt;是不是经常看到“C盘空间不足”的烦人提示？C盘满了，不仅会影响系统的运行速度，还可能导致更新失败或软件崩溃。其实，只需要几步简单设置，就能大大减少C盘的压力，让你的电脑快起来！下面就分享如何让系统不再占用C盘空间，轻松释放宝贵C盘空间！&lt;/p&gt;
+
+
+&lt;h2 class=&#34;relative group&#34;&gt;转移用户文件夹到其他分区 
+    &lt;div id=&#34;%E8%BD%AC%E7%A7%BB%E7%94%A8%E6%88%B7%E6%96%87%E4%BB%B6%E5%A4%B9%E5%88%B0%E5%85%B6%E4%BB%96%E5%88%86%E5%8C%BA&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#%E8%BD%AC%E7%A7%BB%E7%94%A8%E6%88%B7%E6%96%87%E4%BB%B6%E5%A4%B9%E5%88%B0%E5%85%B6%E4%BB%96%E5%88%86%E5%8C%BA&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;C盘不仅安装系统，许多用户文件（如桌面、文档、下载等）也都默认保存在这里，久而久之占用大量空间。解决办法很简单，直接把这些文件夹挪到D盘或其他分区就好。&lt;/p&gt;
+
+
+&lt;h3 class=&#34;relative group&#34;&gt;操作步骤： 
+    &lt;div id=&#34;%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;在桌面上找到“文档”或“下载”文件夹，右键选择“属性”。&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/software/free-up-space-on-c-drive-in-windows/featured-Free-up-space-on-C-Drive-in-Windows.png" />
+    </item>
+    
+    <item>
+      <title>20 个非常有用的Windows 11快捷键</title>
+      <link>https://www.vxworks7.com/software/20-very-useful-windows-11-shortcuts/</link>
+      <pubDate>Sat, 19 Oct 2024 20:19:44 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/software/20-very-useful-windows-11-shortcuts/</guid>
+      <description>&lt;p&gt;本文介绍20个能够大大提升Windows 11操作效率的快捷键，掌握这些快捷键能让你的工作和学习事半功倍！&lt;/p&gt;
+
+
+&lt;h2 class=&#34;relative group&#34;&gt;启动文件资源管理器 
+    &lt;div id=&#34;%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E5%99%A8&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E5%99%A8&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Windows键 + E&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果你像我一样，经常使用文件资源管理器。使用键盘快捷键，只需按&lt;code&gt;Windows键 + E&lt;/code&gt;，就可以在你需要时随时启动一个新的文件资源管理器窗口。&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/software/20-very-useful-windows-11-shortcuts/featured-windows-11-shortcuts-1.png" />
+    </item>
+    
+    <item>
+      <title>GitUI: Git 在终端下的UI</title>
+      <link>https://www.vxworks7.com/software/gitui-terminal-ui-for-git/</link>
+      <pubDate>Sat, 19 Oct 2024 10:03:14 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/software/gitui-terminal-ui-for-git/</guid>
+      <description>&lt;p&gt;在软件开发的世界中，版本控制是不可或缺的一部分。Git，作为最流行的版本控制系统之一，已经深入到每个开发者的日常工作中。&lt;/p&gt;
+&lt;p&gt;尽管 Git 命令行工具功能强大，但有时候，我们也需要一个更直观、更易用的用户界面来提高效率。&lt;/p&gt;
+&lt;p&gt;今天，我们将探索一个名为 gitui 的项目，它旨在为 Git 用户提供一个快速、直观且完全在终端内操作的界面。&lt;/p&gt;
+
+
+&lt;h2 class=&#34;relative group&#34;&gt;gitui：不仅仅是一个界面 
+    &lt;div id=&#34;gitui%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E4%B8%80%E4%B8%AA%E7%95%8C%E9%9D%A2&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#gitui%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E4%B8%80%E4%B8%AA%E7%95%8C%E9%9D%A2&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;gitui 是一个用 Rust 语言编写的终端界面程序，专为 Git 设计。它不仅仅是一个简单的图形界面，而是一个全面的工具，旨在提供以下特性：&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/software/gitui-terminal-ui-for-git/featured-GitGUI-Git-Terminal-UI.png" />
+    </item>
+    
+    <item>
+      <title>在 Linux 系统上安装免费杀毒软件</title>
+      <link>https://www.vxworks7.com/software/installing-free-antivirus-software-on-linux/</link>
+      <pubDate>Fri, 18 Oct 2024 21:57:06 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/software/installing-free-antivirus-software-on-linux/</guid>
+      <description>&lt;p&gt;虽然 Linux 系统因其安全性和稳健性而被广泛使用，但安装杀毒软件依然是明智的，尤其是在与 Windows 系统共享文件或经常下载未知文件时。&lt;/p&gt;
+&lt;p&gt;本文主要介绍如何在 Linux 系统上安装免费的杀毒软件。&lt;/p&gt;
+
+
+&lt;h2 class=&#34;relative group&#34;&gt;选择合适的免费杀毒软件 
+    &lt;div id=&#34;%E9%80%89%E6%8B%A9%E5%90%88%E9%80%82%E7%9A%84%E5%85%8D%E8%B4%B9%E6%9D%80%E6%AF%92%E8%BD%AF%E4%BB%B6&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#%E9%80%89%E6%8B%A9%E5%90%88%E9%80%82%E7%9A%84%E5%85%8D%E8%B4%B9%E6%9D%80%E6%AF%92%E8%BD%AF%E4%BB%B6&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;Linux 上流行的免费杀毒软件：&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/software/installing-free-antivirus-software-on-linux/featured-antivirus-linux.png" />
+    </item>
+    
+  </channel>
+</rss>

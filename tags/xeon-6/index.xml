@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Xeon 6 on Kontronn Asia Design Center</title>
+    <link>https://www.vxworks7.com/tags/xeon-6/</link>
+    <description>Recent content in Xeon 6 on Kontronn Asia Design Center</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2024 </copyright>
+    <lastBuildDate>Wed, 16 Oct 2024 21:45:29 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/xeon-6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AMD五代EPYC对决Intel六代至强</title>
+      <link>https://www.vxworks7.com/hardware/amd-fifth-gen-epyc-vs-intel-sixth-gen-xeon/</link>
+      <pubDate>Wed, 16 Oct 2024 21:45:29 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/hardware/amd-fifth-gen-epyc-vs-intel-sixth-gen-xeon/</guid>
+      <description>&lt;p&gt;AMD、Intel之间的服务器与数据中心处理器大战硝烟再起，战况空前！&lt;/p&gt;
+&lt;p&gt;Intel正在陆续发布全新设计的第六代至强6系列，AMD则祭出了同样全新的第五代EPYC 9005系列，可谓针尖对麦芒。&lt;/p&gt;
+&lt;p&gt;
+    &lt;figure&gt;
+      &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; src=&#34;./amd-epyc-vs-intel-xeon-1.png&#34; alt=&#34;AMD fifth Gen epyc vs Intel Sixth Gen Xeon&#34; /&gt;
+      
+    &lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+    &lt;figure&gt;
+      &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; src=&#34;./amd-epyc-vs-intel-xeon-2.png&#34; alt=&#34;AMD fifth Gen epyc vs Intel Sixth Gen Xeon&#34; /&gt;
+      
+    &lt;/figure&gt;
+&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/hardware/amd-fifth-gen-epyc-vs-intel-sixth-gen-xeon/featured-epyc-vs-xeon.jpg" />
+    </item>
+    
+  </channel>
+</rss>

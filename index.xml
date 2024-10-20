@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VxWorks Overview on Kontronn Asia Design Center</title>
+    <link>https://www.vxworks7.com/</link>
+    <description>Recent content in VxWorks Overview on Kontronn Asia Design Center</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2024 </copyright>
+    <lastBuildDate>Fri, 04 Oct 2024 21:23:23 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>基于VxWorks 系统的航电激励器设计与实现</title>
+      <link>https://www.vxworks7.com/app/design-and-implementation-of-avionics-exciter-based-on-vxworks-system/</link>
+      <pubDate>Sun, 20 Oct 2024 15:14:36 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/app/design-and-implementation-of-avionics-exciter-based-on-vxworks-system/</guid>
+      <description>&lt;p&gt;航电激励器在民用飞机航电系统半物理仿真平台中起着至关重要的作用。在航电系统开发过程中，航电激励器向航电仿真设备提供的激励数据是进行航电系统仿真验证的基础，所以在航电激励数据的获取和处理中，航电激励器的设计与实现是极其重要的一个环节。该文基于&lt;a href=&#34;https://www.vxworks6.com&#34; target=&#34;_blank&#34;&gt;VxWorks&lt;/a&gt; 系统设计一款航电激励器，对航电激励器进行总体设计，从激励数据获取模块、激励数据转换模块等方面进行研究，完成软件设计以及硬件平台搭建。通过对设计的航电激励器进行仿真验证，实现飞机模拟飞行数据的获取以及航电系统中&lt;a href=&#34;https://www.vxworks.net&#34; target=&#34;_blank&#34;&gt;ARINC429&lt;/a&gt; 总线数据和AFDX 总线数据的相互转换，使得激励数据在传输过程中具有良好的实时性。&lt;/p&gt;
+&lt;p&gt;航空电子系统是指飞机上所有电子系统的总和，其仿真验证在航电系统的设计与研发过程中起着重要的作用，对航电系统进行仿真验证，可以有效地降低航电系统集成过程中存在的风险和成本，缩短开发周期。在进行各种仿真验证时，需要航电激励器向仿真组件提供激励信号，所以航电激励器提供的激励信号的准确性和稳定性将对仿真验证的结果产生直接影响。&lt;/p&gt;
+&lt;p&gt;目前，航电激励器主要是基于Windows 系统开发的，在数据传输的实时性、可靠性等方面略显不足，并且在向仿真组件提供激励信号时，常出现数据的延时、丢包等问题。VxWorks 系统采用优先级抢占和轮转调度的任务调度机制，具有良好的实时性。基于VxWorks系统开发的航电激励器可以很好地解决Windows 系统下开发的航电激励器所存在的不足。因此本文设计一款基于VxWorks 系统的航电激励器，能够为航电系统提供具有实时性、可靠性的激励信号。&lt;/p&gt;
+
+
+&lt;h2 class=&#34;relative group&#34;&gt;航电激励器总体设计 
+    &lt;div id=&#34;%E8%88%AA%E7%94%B5%E6%BF%80%E5%8A%B1%E5%99%A8%E6%80%BB%E4%BD%93%E8%AE%BE%E8%AE%A1&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#%E8%88%AA%E7%94%B5%E6%BF%80%E5%8A%B1%E5%99%A8%E6%80%BB%E4%BD%93%E8%AE%BE%E8%AE%A1&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;本文设计的航电激励器由软件和硬件两部分构成。软件部分主要包括激励数据获取模块和数据转换模块。其中，激励数据获取模块通过以太网接收飞机模拟飞行过程中的飞行数据，这些数据包括飞机的位置、姿态、通信导航系统的工作频率等参数。航电激励器数据转换模块主要实现AFDX 总线数据、ARINC429 总线数据的编解码，完成ARINC429 总线数据与AFDX 总线数据相互转化，并向各航电仿真组件传输激励数据。AFDX 数据总线协议见文献[4]，ARINC429 总线协议见文献[5]。硬件部分主要完成VxWorks 系统在MPC8270 上的移植，建立硬件开发平台。航电激励器总体设计如图1所示。&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>用FFmpeg高效下载m3u8视频</title>
+      <link>https://www.vxworks7.com/software/download-m3u8-videos-efficiently-with-ffmpeg/</link>
+      <pubDate>Sun, 20 Oct 2024 09:18:28 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/software/download-m3u8-videos-efficiently-with-ffmpeg/</guid>
+      <description>&lt;p&gt;随着互联网技术的飞速发展，越来越多的人选择在线观看视频。无论是直播还是点播，流畅的视频体验离不开背后的技术支持。其中，m3u8文件是一个非常重要的概念。本文将帮助你了解m3u8文件是什么，以及如何使用FFmpeg下载这些视频。&lt;/p&gt;
+
+
+&lt;h2 class=&#34;relative group&#34;&gt;m3u8文件概述 
+    &lt;div id=&#34;m3u8%E6%96%87%E4%BB%B6%E6%A6%82%E8%BF%B0&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#m3u8%E6%96%87%E4%BB%B6%E6%A6%82%E8%BF%B0&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;m3u8文件是一种文本文件，主要用于支持HLS（HTTP Live Streaming）协议。简单来说，HLS是一种流媒体传输协议，可以让用户在不同的设备上流畅地观看视频。m3u8文件就像一个目录，记录了视频的不同片段在哪里，浏览器或播放器通过读取这个目录来逐步加载视频。&lt;/p&gt;
+&lt;p&gt;m3u8文件通常包含以下几个部分：&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/software/download-m3u8-videos-efficiently-with-ffmpeg/featured-FFmpeg-m3u8.jpg" />
+    </item>
+    
+    <item>
+      <title>微星发布了一块史上最昂贵主板</title>
+      <link>https://www.vxworks7.com/hardware/msi-releases-the-most-expensiv-motherboard-ever/</link>
+      <pubDate>Sun, 20 Oct 2024 00:06:38 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/hardware/msi-releases-the-most-expensiv-motherboard-ever/</guid>
+      <description>&lt;p&gt;MSI近日在其官方YouTube频道进行了超过两小时的直播，正式公布了旗舰级主板MEG Z890 GODLIKE的售价。这款顶级主板在美国市场的售价为1,264美元，欧洲市场的售价则高达1,379.99欧元，成为MSI迄今为止最昂贵的主板产品。&lt;/p&gt;
+&lt;p&gt;相比前代产品MEG Z790 GODLIKE的1,200美元定价，新款Z890 GODLIKE的价格进一步提升，打破了之前的记录。在北美市场，Z890 GODLIKE的售价已超过1,250美元，若将官方价格转换为欧盟地区的含税价格，甚至达到1,510美元。MSI的GODLIKE系列一直是其主板产品线中的旗舰，专为追求极致性能的发烧友和超频玩家设计。&lt;/p&gt;
+&lt;p&gt;
+    &lt;figure&gt;
+      &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; src=&#34;./MSI-MEG-Z890-GODLIKE-2.png&#34; alt=&#34;MSI Release MEG Z790 GODLIKE&#34; /&gt;
+      
+    &lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;MEG Z890 GODLIKE采用了适用于Intel Arrow Lake CPU的LGA 1851插槽，支持Intel Core Ultra系列处理器（第2代）。主板配备了30相电源VRM和110A SPS，拥有10层PCB设计和服务器级材料，搭配密集的散热器，确保在高负载下仍能保持稳定的性能和被动散热效果。&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/hardware/msi-releases-the-most-expensiv-motherboard-ever/featured-MSI-MEG-Z890-GODLIKE-1.png" />
+    </item>
+    
+    <item>
+      <title>GDB调试多线程案例分析</title>
+      <link>https://www.vxworks7.com/software/gdb-debugging-multi-threads-case-analysis/</link>
+      <pubDate>Sat, 19 Oct 2024 22:46:58 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/software/gdb-debugging-multi-threads-case-analysis/</guid>
+      <description>&lt;p&gt;在软件开发的复杂世界里，高效的调试工具是解决问题的关键利器。今天，我们将深入探讨强大的调试工具 —— GDB（GNU Debugger）。GDB 为开发者提供了一种深入程序内部运行机制、查找错误和优化性能的有效途径。让我们一同开启 GDB 的调试之旅，解锁代码中的奥秘。&lt;/p&gt;
+
+
+&lt;h2 class=&#34;relative group&#34;&gt;GDB调试工具 
+    &lt;div id=&#34;gdb%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#gdb%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;GDB（GNU Debugger）是强大的调试工具，在软件开发过程中起着至关重要的作用。它可以帮助开发者快速定位和解决程序中的问题。&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/software/gdb-debugging-multi-threads-case-analysis/featured-DBG-GNU-Debugger.png" />
+    </item>
+    
+    <item>
+      <title>一张图解释 8 种流行网络协议</title>
+      <link>https://www.vxworks7.com/software/8-popular-network-protocols/</link>
+      <pubDate>Sat, 19 Oct 2024 21:29:35 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/software/8-popular-network-protocols/</guid>
+      <description>&lt;p&gt;
+    &lt;figure&gt;
+      &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; src=&#34;./8-Popular-Network-Protocols.gif&#34; alt=&#34;8 Popular Network Protocols&#34; /&gt;
+      
+    &lt;/figure&gt;
+&lt;/p&gt;
+
+
+&lt;h2 class=&#34;relative group&#34;&gt;HTTP 
+    &lt;div id=&#34;http&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#http&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;blockquote&gt;超文本传输协议&lt;/blockquote&gt;
+&lt;p&gt;超文本传输协议（Hypertext Transfer Protocol，HTTP）是一个简单的请求-响应协议，它通常运行在TCP之上。它指定了客户端可能发送给服务器什么样的消息以及得到什么样的响应。请求和响应消息的头以ASCII形式给出；而消息内容则具有一个类似MIME的格式。这个简单模型是早期Web成功的有功之臣，因为它使开发和部署非常地直截了当。&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/software/8-popular-network-protocols/featured-8-popular-network-protocols.jpg" />
+    </item>
+    
+    <item>
+      <title>如何释放Windows 的C 盘空间</title>
+      <link>https://www.vxworks7.com/software/free-up-space-on-c-drive-in-windows/</link>
+      <pubDate>Sat, 19 Oct 2024 21:05:47 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/software/free-up-space-on-c-drive-in-windows/</guid>
+      <description>&lt;p&gt;是不是经常看到“C盘空间不足”的烦人提示？C盘满了，不仅会影响系统的运行速度，还可能导致更新失败或软件崩溃。其实，只需要几步简单设置，就能大大减少C盘的压力，让你的电脑快起来！下面就分享如何让系统不再占用C盘空间，轻松释放宝贵C盘空间！&lt;/p&gt;
+
+
+&lt;h2 class=&#34;relative group&#34;&gt;转移用户文件夹到其他分区 
+    &lt;div id=&#34;%E8%BD%AC%E7%A7%BB%E7%94%A8%E6%88%B7%E6%96%87%E4%BB%B6%E5%A4%B9%E5%88%B0%E5%85%B6%E4%BB%96%E5%88%86%E5%8C%BA&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#%E8%BD%AC%E7%A7%BB%E7%94%A8%E6%88%B7%E6%96%87%E4%BB%B6%E5%A4%B9%E5%88%B0%E5%85%B6%E4%BB%96%E5%88%86%E5%8C%BA&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;C盘不仅安装系统，许多用户文件（如桌面、文档、下载等）也都默认保存在这里，久而久之占用大量空间。解决办法很简单，直接把这些文件夹挪到D盘或其他分区就好。&lt;/p&gt;
+
+
+&lt;h3 class=&#34;relative group&#34;&gt;操作步骤： 
+    &lt;div id=&#34;%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;在桌面上找到“文档”或“下载”文件夹，右键选择“属性”。&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/software/free-up-space-on-c-drive-in-windows/featured-Free-up-space-on-C-Drive-in-Windows.png" />
+    </item>
+    
+    <item>
+      <title>20 个非常有用的Windows 11快捷键</title>
+      <link>https://www.vxworks7.com/software/20-very-useful-windows-11-shortcuts/</link>
+      <pubDate>Sat, 19 Oct 2024 20:19:44 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/software/20-very-useful-windows-11-shortcuts/</guid>
+      <description>&lt;p&gt;本文介绍20个能够大大提升Windows 11操作效率的快捷键，掌握这些快捷键能让你的工作和学习事半功倍！&lt;/p&gt;
+
+
+&lt;h2 class=&#34;relative group&#34;&gt;启动文件资源管理器 
+    &lt;div id=&#34;%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E5%99%A8&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E5%99%A8&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Windows键 + E&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果你像我一样，经常使用文件资源管理器。使用键盘快捷键，只需按&lt;code&gt;Windows键 + E&lt;/code&gt;，就可以在你需要时随时启动一个新的文件资源管理器窗口。&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/software/20-very-useful-windows-11-shortcuts/featured-windows-11-shortcuts-1.png" />
+    </item>
+    
+    <item>
+      <title>GitUI: Git 在终端下的UI</title>
+      <link>https://www.vxworks7.com/software/gitui-terminal-ui-for-git/</link>
+      <pubDate>Sat, 19 Oct 2024 10:03:14 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/software/gitui-terminal-ui-for-git/</guid>
+      <description>&lt;p&gt;在软件开发的世界中，版本控制是不可或缺的一部分。Git，作为最流行的版本控制系统之一，已经深入到每个开发者的日常工作中。&lt;/p&gt;
+&lt;p&gt;尽管 Git 命令行工具功能强大，但有时候，我们也需要一个更直观、更易用的用户界面来提高效率。&lt;/p&gt;
+&lt;p&gt;今天，我们将探索一个名为 gitui 的项目，它旨在为 Git 用户提供一个快速、直观且完全在终端内操作的界面。&lt;/p&gt;
+
+
+&lt;h2 class=&#34;relative group&#34;&gt;gitui：不仅仅是一个界面 
+    &lt;div id=&#34;gitui%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E4%B8%80%E4%B8%AA%E7%95%8C%E9%9D%A2&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#gitui%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E4%B8%80%E4%B8%AA%E7%95%8C%E9%9D%A2&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;gitui 是一个用 Rust 语言编写的终端界面程序，专为 Git 设计。它不仅仅是一个简单的图形界面，而是一个全面的工具，旨在提供以下特性：&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/software/gitui-terminal-ui-for-git/featured-GitGUI-Git-Terminal-UI.png" />
+    </item>
+    
+    <item>
+      <title>在 Linux 系统上安装免费杀毒软件</title>
+      <link>https://www.vxworks7.com/software/installing-free-antivirus-software-on-linux/</link>
+      <pubDate>Fri, 18 Oct 2024 21:57:06 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/software/installing-free-antivirus-software-on-linux/</guid>
+      <description>&lt;p&gt;虽然 Linux 系统因其安全性和稳健性而被广泛使用，但安装杀毒软件依然是明智的，尤其是在与 Windows 系统共享文件或经常下载未知文件时。&lt;/p&gt;
+&lt;p&gt;本文主要介绍如何在 Linux 系统上安装免费的杀毒软件。&lt;/p&gt;
+
+
+&lt;h2 class=&#34;relative group&#34;&gt;选择合适的免费杀毒软件 
+    &lt;div id=&#34;%E9%80%89%E6%8B%A9%E5%90%88%E9%80%82%E7%9A%84%E5%85%8D%E8%B4%B9%E6%9D%80%E6%AF%92%E8%BD%AF%E4%BB%B6&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#%E9%80%89%E6%8B%A9%E5%90%88%E9%80%82%E7%9A%84%E5%85%8D%E8%B4%B9%E6%9D%80%E6%AF%92%E8%BD%AF%E4%BB%B6&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;Linux 上流行的免费杀毒软件：&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/software/installing-free-antivirus-software-on-linux/featured-antivirus-linux.png" />
+    </item>
+    
+    <item>
+      <title>GDDR 与 HBM 内存之间的区别</title>
+      <link>https://www.vxworks7.com/hardware/difference-between-gddr-memory-vs-hbm-memory/</link>
+      <pubDate>Thu, 17 Oct 2024 23:58:16 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/hardware/difference-between-gddr-memory-vs-hbm-memory/</guid>
+      <description>&lt;h2 class=&#34;relative group&#34;&gt;什么是GDDR内存？ 
+    &lt;div id=&#34;%E4%BB%80%E4%B9%88%E6%98%AFgddr%E5%86%85%E5%AD%98&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#%E4%BB%80%E4%B9%88%E6%98%AFgddr%E5%86%85%E5%AD%98&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;GDDR代表Graphics Double Data Rate ，是一种专门为显卡设计的内存。GDDR内存与大多数计算机使用的DDR内存相似，但它针对显卡的使用进行了优化。GDDR内存通常比DDR内存带宽更高，这意味着它可以一次传输更多数据。&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/hardware/difference-between-gddr-memory-vs-hbm-memory/featured-GDDR-vs-HBM-Memory.png" />
+    </item>
+    
+    <item>
+      <title>AMD Instinct MI300X 架构亮相 Hot Chips 2024</title>
+      <link>https://www.vxworks7.com/hardware/amd-instinct-mi300x-architecture-at-hot-chips-2024/</link>
+      <pubDate>Thu, 17 Oct 2024 00:00:36 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/hardware/amd-instinct-mi300x-architecture-at-hot-chips-2024/</guid>
+      <description>&lt;p&gt;AMD经常详细介绍已经发布了一段时间的产品。在Hot Chips 2024上，AMD详细介绍了Instinct MI300X。我们知道MI325X很快就会发布。尽管如此，这仍然是NVIDIA GPU之外唯一一个在AI行业每年销售达到数十亿美元的GPU。AMD上周刚刚收购了生产Microsoft Azure MI300X平台的ZT系统公司。&lt;/p&gt;
+
+
+&lt;h1 class=&#34;relative group&#34;&gt;Hot Chips 2024上展示的AMD Instinct MI300X架构 
+    &lt;div id=&#34;hot-chips-2024%E4%B8%8A%E5%B1%95%E7%A4%BA%E7%9A%84amd-instinct-mi300x%E6%9E%B6%E6%9E%84&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#hot-chips-2024%E4%B8%8A%E5%B1%95%E7%A4%BA%E7%9A%84amd-instinct-mi300x%E6%9E%B6%E6%9E%84&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h1&gt;
+&lt;p&gt;AMD 的幻灯片看起来很不错，因此让大家阅读它们，并在讲解过程中添加一些色彩。&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/hardware/amd-instinct-mi300x-architecture-at-hot-chips-2024/featured-AMD-Instinct-MI300X.png" />
+    </item>
+    
+    <item>
+      <title>AMD五代EPYC对决Intel六代至强</title>
+      <link>https://www.vxworks7.com/hardware/amd-fifth-gen-epyc-vs-intel-sixth-gen-xeon/</link>
+      <pubDate>Wed, 16 Oct 2024 21:45:29 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/hardware/amd-fifth-gen-epyc-vs-intel-sixth-gen-xeon/</guid>
+      <description>&lt;p&gt;AMD、Intel之间的服务器与数据中心处理器大战硝烟再起，战况空前！&lt;/p&gt;
+&lt;p&gt;Intel正在陆续发布全新设计的第六代至强6系列，AMD则祭出了同样全新的第五代EPYC 9005系列，可谓针尖对麦芒。&lt;/p&gt;
+&lt;p&gt;
+    &lt;figure&gt;
+      &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; src=&#34;./amd-epyc-vs-intel-xeon-1.png&#34; alt=&#34;AMD fifth Gen epyc vs Intel Sixth Gen Xeon&#34; /&gt;
+      
+    &lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+    &lt;figure&gt;
+      &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; src=&#34;./amd-epyc-vs-intel-xeon-2.png&#34; alt=&#34;AMD fifth Gen epyc vs Intel Sixth Gen Xeon&#34; /&gt;
+      
+    &lt;/figure&gt;
+&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/hardware/amd-fifth-gen-epyc-vs-intel-sixth-gen-xeon/featured-epyc-vs-xeon.jpg" />
+    </item>
+    
+    <item>
+      <title>英特尔 和 AMD 宣布合作，共同成立生态小组</title>
+      <link>https://www.vxworks7.com/hardware/intel-and-amd-launch-x86-ecosystem-advisory-group/</link>
+      <pubDate>Wed, 16 Oct 2024 20:58:40 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/hardware/intel-and-amd-launch-x86-ecosystem-advisory-group/</guid>
+      <description>&lt;p&gt;英特尔与AMD一直是业界两大强劲的竞争对手，然而，近日这两家公司却罕见地携手合作，共同宣布成立一个新的x86咨询小组，旨在确保未来x86指令集架构（ISA）的统一和兼容性。这一举措在2024年OCP峰会上正式公布，引起了广泛关注。该小组的成员包括博通、Meta、Oracle、微软、戴尔、HPE、联想、谷歌、红帽等。&lt;/p&gt;
+&lt;p&gt;
+    &lt;figure&gt;
+      &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; src=&#34;./x86-ecosystem-advisory-group.png&#34; alt=&#34;Intel and AMD Launch x86 Ecosystem Advisory Group&#34; /&gt;
+      
+    &lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;x86指令集架构自诞生以来已有46年历史，已成为个人电脑和数据中心通用计算的最普遍标准。英特尔和AMD作为仅有的两家大批量生产新处理器的主要x86架构授权商，形成了双头垄断的格局。然而，随着x86生态系统在消费者和数据中心市场面临来自Arm和RISC-V的巨大压力，两家公司意识到加强合作、减少定制ISA实现带来的问题至关重要。&lt;/p&gt;
+&lt;p&gt;当前消费科技巨头苹果、移动芯片设计商高通以及云计算巨头如AWS、微软和谷歌等都在为PC和云市场设计自己的基于Arm的CPU。此外，另一家移动芯片设计商联发科已公开表示计划为Windows PC推出基于Arm的CPU，并正在与Nvidia合作。这进一步加剧了英特尔和AMD的压力。在过去一年中，这两家公司都推出了自己的高核心密度和高效率处理器。AMD去年推出了其EPYC“Bergamo”芯片，英特尔最近推出了其Xeon 6 E核心芯片。&lt;/p&gt;
+&lt;p&gt;在联合声明中，英特尔和AMD表示，该小组将专注于寻找扩展x86生态系统的新方法，实现跨平台兼容性，简化软件开发，并为开发者提供一个平台来识别架构需求和功能。英特尔首席执行官帕特·基辛格表示：“我们正面临x86架构和生态系统几十年来最重大的转变之一，需要达到新的定制化、兼容性和可扩展性水平，以满足当前和未来的客户需求。”&lt;/p&gt;
+&lt;p&gt;AMD董事长兼首席执行官苏姿丰在声明中表示：“成立x86生态系统咨询小组将确保x86架构继续发展成为开发人员和客户的首选计算平台。”&lt;/p&gt;
+&lt;p&gt;新组织打算对 x86 ISA 的一些新增和修改进行标准化，其中包括几项已经在进行的简化工作。修改和协作领域尚未确定，但有很多明确的候选方案可以进行讨论。&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/hardware/intel-and-amd-launch-x86-ecosystem-advisory-group/featured-x86-ecosystem-advisory-group.jpg" />
+    </item>
+    
+    <item>
+      <title>AMD Zen5 EPYC首测</title>
+      <link>https://www.vxworks7.com/hardware/amd-zen5-epyc-first-test-result-review/</link>
+      <pubDate>Tue, 15 Oct 2024 23:51:58 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/hardware/amd-zen5-epyc-first-test-result-review/</guid>
+      <description>&lt;p&gt;Intel前脚刚发布至强6 6000系列，AMD就带来了Zen 5/5c架构的五代EPYC 9005系列，彼此针锋相对，后者显然更胜一筹。&lt;/p&gt;
+&lt;p&gt;Phoronix提前测试了多颗EPYC 9005的样品，结果自然不出所料，丝毫不对手任何情面。&lt;/p&gt;
+&lt;p&gt;测试的新SKU一共三颗，分别是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;EPYC 9965：
+&lt;ul&gt;
+&lt;li&gt;Zen 5c顶级旗舰，192核心384线程，384MB三级缓存，2.25-3.7GHz频率，500W热设计功耗。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;EPYC 9575F：
+&lt;ul&gt;
+&lt;li&gt;最高频率型号之一，Zen 5，64核心128线程，256MB三级缓存，3.3-5.0GHz频率，400W热设计功耗。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;EPYC 9755：
+&lt;ul&gt;
+&lt;li&gt;Zen 5顶级旗舰，128核心256线程，512MB三级缓存，2.7-4.1GHz频率，500W热设计功耗。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+    &lt;figure&gt;
+      &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; src=&#34;./AMD-EPYC-9005-SKU-1.png&#34; alt=&#34;AMD EPYC 9005 SKU&#34; /&gt;
+      
+    &lt;/figure&gt;
+&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/hardware/amd-zen5-epyc-first-test-result-review/featured-AMD-EPYC-9005-SKU-0.png" />
+    </item>
+    
+    <item>
+      <title>Intel正式发布Gaudi 3 AI加速器</title>
+      <link>https://www.vxworks7.com/hardware/intel-gaudi-3-ai-accelerator/</link>
+      <pubDate>Tue, 15 Oct 2024 23:11:15 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/hardware/intel-gaudi-3-ai-accelerator/</guid>
+      <description>&lt;p&gt;早在4月份，Intel就宣布了新一代AI加速器Gaudi 3，现在它终于发布了，详细的规格参数也已出炉，竞争对手直指NVIDIA H100 GPU加速器，当然后者的Blackwell系列也要上量了。&lt;/p&gt;
+&lt;p&gt;数据显示，预计到2030年，全球半导体市场规模将达1万亿美元，AI是主要推动力，不过在2023年，只有10％的企业能够成功将其AIGC项目产品化。&lt;/p&gt;
+&lt;p&gt;Intel现有的Gaudi 2诞生于2022年5月，并于2023年7月正式引入中国，拥有极高的深度学习性能、效率，以及极高的性价比。&lt;/p&gt;
+&lt;p&gt;它采用台积电7nm工艺制造，集成24个可编程的Tenor张量核心(TPC)、48MB SRAM缓存、21个10万兆内部互连以太网接口(ROCEv2 RDMA)、96GB HBM2E高带宽内存(总带宽2.4TB/s)、多媒体引擎等，支持PCIe 4.0 x16，最高功耗800W，可满足大规模语言模型、生成式AI模型的强算力需求。&lt;/p&gt;
+&lt;p&gt;
+    &lt;figure&gt;
+      &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; src=&#34;./Intel-Gaudi-3-AI-Accelerator-2.png&#34; alt=&#34;Intel Gaudi 3 AI Accelerator&#34; /&gt;
+      
+    &lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Gaudi 3的规格提升幅度堪称跨越式的，制造工艺从台积电7nm来到台积电5nm，MME(矩阵乘法引擎)从2个增加到8个，虽然每个MME内部的TPC(张量处理核心)从12个减少到8个，但是总数从24个大幅增加到了64个，另外媒体解码器差从8个增至14个。&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/hardware/intel-gaudi-3-ai-accelerator/featured-Intel-Gaudi-3-AI-Accelerator-1.png" />
+    </item>
+    
+    <item>
+      <title>台积电要用5nm先进封装HBM4内存芯片</title>
+      <link>https://www.vxworks7.com/hardware/tsmc-readies-hbm4-base-dies-at-12nm-and-5nm/</link>
+      <pubDate>Sun, 13 Oct 2024 15:04:11 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/hardware/tsmc-readies-hbm4-base-dies-at-12nm-and-5nm/</guid>
+      <description>&lt;p&gt;台积电HBM4内存的推出将带来多项重大变革，其中最引人注目的就是其内存接口的大幅扩展。第四代内存技术接口从1024位扩展到2048位，这标志着HBM4内存的设计和生产将面临新的挑战，为了适应这一变化，芯片制造商必须采用更新、更高级的封装技术。&lt;/p&gt;
+&lt;p&gt;在2024年的欧洲技术研讨会上，台积电透露了其为HBM4制造的base die一些细节，这些芯片将采用逻辑工艺制造，台积电计划利用其N12和N5工艺的改进版本来生产这些芯片。这将使台积电在HBM4的生产领域占据优势，因为现有的内存制造设施均无法做到经济高效地生产这种先进逻辑芯片。&lt;/p&gt;
+&lt;p&gt;对于HBM4的首批产品封装，台积电将采用N12FFC+和N5两种不同的制造工艺。尽管这两种工艺都是为了将HBM4E内存与新一代的AI和高性能计算处理器相结合，但它们在连接AI和高性能计算应用的高性能处理器的内存方面发挥着不同的作用。&lt;/p&gt;
+&lt;p&gt;台积电的设计和技术平台高级总监透露：“公司正与美光、三星和SK海力士等主要&lt;a href=&#34;https://www.kad8.com/hardware/difference-between-gddr-memory-vs-hbm-memory/&#34; target=&#34;_blank&#34;&gt;HBM&lt;/a&gt;内存供应商合作，利用先进的工艺节点推进HBM4内存技术的全面整合。N12FFC+工艺的基础芯片在成本效益上具有优势，能够满足HBM的性能需求，而N5工艺的基础芯片则能在保持HBM4速度的同时，提供更复杂的逻辑功能并大幅降低能耗。&lt;/p&gt;
+&lt;p&gt;
+    &lt;figure&gt;
+      &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; src=&#34;./TSMC-Logic-for-HBM4-Base-Die.png&#34; alt=&#34;TSMC Logic for HBM4 Base Die&#34; /&gt;
+      
+    &lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;台积电的N12FFC+工艺（12纳米FinFET Compact Plus，虽然归类于12纳米技术，但技术基础源自其成熟的16纳米FinFET生产线）生产的基础芯片，将用于在系统级芯片（SoCs）旁的硅中介层上安装HBM4内存堆栈。台积电相信，其12FFC+工艺非常适合实现HBM4的性能，使内存制造商能够构建12-Hi（48GB）和16-Hi（64GB）堆栈，每个堆栈的带宽超过2TB/秒。&lt;/p&gt;
+&lt;p&gt;台积电高级总监提到：“我们也在为HBM4优化CoWoS-L和CoWoS-R技术，CoWoS-L和CoWoS-R技术都采用超过八层的布线设计以确保HBM4超过2000个的互连和信号完整性。”&lt;/p&gt;
+&lt;p&gt;使用N12FFC+工艺的HBM4基础芯片对于采用台积电CoWoS-L或CoWoS-R先进封装技术构建系统级封装（SiPs）至关重要，这些技术提供的中介层面积可达8倍光罩尺寸，足以容纳多达12个HBM4内存堆栈。据报道，HBM4能够以 14mA的电流实现6GT/s的数据传输速率。&lt;/p&gt;
+&lt;p&gt;台积电还与Cadence、Synopsys和Ansys等EDA公司合作，确保HBM4通道的信号完整性、IR/EM和热准确性。&lt;/p&gt;
+&lt;p&gt;与此同时，内存制造商还可以选择使用台积电的N5工艺来生产HBM4 base die。N5工艺制造的基础芯片将集成更多逻辑功能，减少功耗并提供更高的性能。最重要的是，这种先进的工艺技术将实现非常小的互连间距，约为6到9微米，这将使N5基础芯片能够与直接键合技术结合使用，允许HBM4直接3D堆叠在逻辑芯片上从而大幅提升内存性能，这将为不断追求更高内存带宽的AI和HPC芯片带来巨大的提升。&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/hardware/tsmc-readies-hbm4-base-dies-at-12nm-and-5nm/featured-hbm-schematics.jpg" />
+    </item>
+    
+  </channel>
+</rss>

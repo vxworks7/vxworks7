@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ecosystem on Kontronn Asia Design Center</title>
+    <link>https://www.vxworks7.com/tags/ecosystem/</link>
+    <description>Recent content in Ecosystem on Kontronn Asia Design Center</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2024 </copyright>
+    <lastBuildDate>Wed, 16 Oct 2024 20:58:40 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/ecosystem/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>英特尔 和 AMD 宣布合作，共同成立生态小组</title>
+      <link>https://www.vxworks7.com/hardware/intel-and-amd-launch-x86-ecosystem-advisory-group/</link>
+      <pubDate>Wed, 16 Oct 2024 20:58:40 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/hardware/intel-and-amd-launch-x86-ecosystem-advisory-group/</guid>
+      <description>&lt;p&gt;英特尔与AMD一直是业界两大强劲的竞争对手，然而，近日这两家公司却罕见地携手合作，共同宣布成立一个新的x86咨询小组，旨在确保未来x86指令集架构（ISA）的统一和兼容性。这一举措在2024年OCP峰会上正式公布，引起了广泛关注。该小组的成员包括博通、Meta、Oracle、微软、戴尔、HPE、联想、谷歌、红帽等。&lt;/p&gt;
+&lt;p&gt;
+    &lt;figure&gt;
+      &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; src=&#34;./x86-ecosystem-advisory-group.png&#34; alt=&#34;Intel and AMD Launch x86 Ecosystem Advisory Group&#34; /&gt;
+      
+    &lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;x86指令集架构自诞生以来已有46年历史，已成为个人电脑和数据中心通用计算的最普遍标准。英特尔和AMD作为仅有的两家大批量生产新处理器的主要x86架构授权商，形成了双头垄断的格局。然而，随着x86生态系统在消费者和数据中心市场面临来自Arm和RISC-V的巨大压力，两家公司意识到加强合作、减少定制ISA实现带来的问题至关重要。&lt;/p&gt;
+&lt;p&gt;当前消费科技巨头苹果、移动芯片设计商高通以及云计算巨头如AWS、微软和谷歌等都在为PC和云市场设计自己的基于Arm的CPU。此外，另一家移动芯片设计商联发科已公开表示计划为Windows PC推出基于Arm的CPU，并正在与Nvidia合作。这进一步加剧了英特尔和AMD的压力。在过去一年中，这两家公司都推出了自己的高核心密度和高效率处理器。AMD去年推出了其EPYC“Bergamo”芯片，英特尔最近推出了其Xeon 6 E核心芯片。&lt;/p&gt;
+&lt;p&gt;在联合声明中，英特尔和AMD表示，该小组将专注于寻找扩展x86生态系统的新方法，实现跨平台兼容性，简化软件开发，并为开发者提供一个平台来识别架构需求和功能。英特尔首席执行官帕特·基辛格表示：“我们正面临x86架构和生态系统几十年来最重大的转变之一，需要达到新的定制化、兼容性和可扩展性水平，以满足当前和未来的客户需求。”&lt;/p&gt;
+&lt;p&gt;AMD董事长兼首席执行官苏姿丰在声明中表示：“成立x86生态系统咨询小组将确保x86架构继续发展成为开发人员和客户的首选计算平台。”&lt;/p&gt;
+&lt;p&gt;新组织打算对 x86 ISA 的一些新增和修改进行标准化，其中包括几项已经在进行的简化工作。修改和协作领域尚未确定，但有很多明确的候选方案可以进行讨论。&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/hardware/intel-and-amd-launch-x86-ecosystem-advisory-group/featured-x86-ecosystem-advisory-group.jpg" />
+    </item>
+    
+  </channel>
+</rss>

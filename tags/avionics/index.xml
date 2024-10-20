@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Avionics on Kontronn Asia Design Center</title>
+    <link>https://www.vxworks7.com/tags/avionics/</link>
+    <description>Recent content in Avionics on Kontronn Asia Design Center</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2024 </copyright>
+    <lastBuildDate>Sun, 20 Oct 2024 15:14:36 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/avionics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>基于VxWorks 系统的航电激励器设计与实现</title>
+      <link>https://www.vxworks7.com/app/design-and-implementation-of-avionics-exciter-based-on-vxworks-system/</link>
+      <pubDate>Sun, 20 Oct 2024 15:14:36 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/app/design-and-implementation-of-avionics-exciter-based-on-vxworks-system/</guid>
+      <description>&lt;p&gt;航电激励器在民用飞机航电系统半物理仿真平台中起着至关重要的作用。在航电系统开发过程中，航电激励器向航电仿真设备提供的激励数据是进行航电系统仿真验证的基础，所以在航电激励数据的获取和处理中，航电激励器的设计与实现是极其重要的一个环节。该文基于&lt;a href=&#34;https://www.vxworks6.com&#34; target=&#34;_blank&#34;&gt;VxWorks&lt;/a&gt; 系统设计一款航电激励器，对航电激励器进行总体设计，从激励数据获取模块、激励数据转换模块等方面进行研究，完成软件设计以及硬件平台搭建。通过对设计的航电激励器进行仿真验证，实现飞机模拟飞行数据的获取以及航电系统中&lt;a href=&#34;https://www.vxworks.net&#34; target=&#34;_blank&#34;&gt;ARINC429&lt;/a&gt; 总线数据和AFDX 总线数据的相互转换，使得激励数据在传输过程中具有良好的实时性。&lt;/p&gt;
+&lt;p&gt;航空电子系统是指飞机上所有电子系统的总和，其仿真验证在航电系统的设计与研发过程中起着重要的作用，对航电系统进行仿真验证，可以有效地降低航电系统集成过程中存在的风险和成本，缩短开发周期。在进行各种仿真验证时，需要航电激励器向仿真组件提供激励信号，所以航电激励器提供的激励信号的准确性和稳定性将对仿真验证的结果产生直接影响。&lt;/p&gt;
+&lt;p&gt;目前，航电激励器主要是基于Windows 系统开发的，在数据传输的实时性、可靠性等方面略显不足，并且在向仿真组件提供激励信号时，常出现数据的延时、丢包等问题。VxWorks 系统采用优先级抢占和轮转调度的任务调度机制，具有良好的实时性。基于VxWorks系统开发的航电激励器可以很好地解决Windows 系统下开发的航电激励器所存在的不足。因此本文设计一款基于VxWorks 系统的航电激励器，能够为航电系统提供具有实时性、可靠性的激励信号。&lt;/p&gt;
+
+
+&lt;h2 class=&#34;relative group&#34;&gt;航电激励器总体设计 
+    &lt;div id=&#34;%E8%88%AA%E7%94%B5%E6%BF%80%E5%8A%B1%E5%99%A8%E6%80%BB%E4%BD%93%E8%AE%BE%E8%AE%A1&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#%E8%88%AA%E7%94%B5%E6%BF%80%E5%8A%B1%E5%99%A8%E6%80%BB%E4%BD%93%E8%AE%BE%E8%AE%A1&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;本文设计的航电激励器由软件和硬件两部分构成。软件部分主要包括激励数据获取模块和数据转换模块。其中，激励数据获取模块通过以太网接收飞机模拟飞行过程中的飞行数据，这些数据包括飞机的位置、姿态、通信导航系统的工作频率等参数。航电激励器数据转换模块主要实现AFDX 总线数据、ARINC429 总线数据的编解码，完成ARINC429 总线数据与AFDX 总线数据相互转化，并向各航电仿真组件传输激励数据。AFDX 数据总线协议见文献[4]，ARINC429 总线协议见文献[5]。硬件部分主要完成VxWorks 系统在MPC8270 上的移植，建立硬件开发平台。航电激励器总体设计如图1所示。&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

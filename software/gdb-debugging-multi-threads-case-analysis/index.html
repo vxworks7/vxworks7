@@ -1,0 +1,1815 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
+  data-auto-appearance="false"><head>
+  <meta charset="utf-8" />
+  
+  <meta http-equiv="content-language" content="zh-cn" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <title>GDB调试多线程案例分析 &middot; Kontronn Asia Design Center</title>
+  <meta name="title" content="GDB调试多线程案例分析 &middot; Kontronn Asia Design Center" />
+  
+  <meta name="description" content="Gdb Debugging Multi Threads Case Analysis" />
+  <meta name="keywords" content="GDB, Multi threads, " />
+  
+  
+  <link rel="canonical" href="https://www.vxworks7.com/software/gdb-debugging-multi-threads-case-analysis/" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.67eb0befb1fb57e6528684f3a2ff6e0606a82100504705b66488d54a9f3fda9c2605c9bf3b70163208427288637a7b4d1a168384c1115e417458eae6b44b329c.css"
+    integrity="sha512-Z&#43;sL77H7V&#43;ZShoTzov9uBgaoIQBQRwW2ZIjVSp8/2pwmBcm/O3AWMghCcohjentNGhaDhMERXkF0WOrmtEsynA==" />
+  
+  
+  <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
+    integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj&#43;e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.efbf3b6b987689fffaf2d7b73173d2690c0279a04d444b0537a77d7f4ff6e6d493445400cb0cf56bc0f0f123e19f15394e63cae34e67f069bd013dd5c73df56e.js"
+    integrity="sha512-7787a5h2if/68te3MXPSaQwCeaBNREsFN6d9f0/25tSTRFQAywz1a8Dw8SPhnxU5TmPK405n8Gm9AT3Vxz31bg==" data-copy="" data-copied=""></script>
+  
+  
+  
+  <script src="/lib/zoom/zoom.min.37d2094687372da3f7343a221a470f6b8806f7891aa46a5a03966af7f0ebd38b9fe536cb154e6ad28f006d184b294525a7c4054b6bbb4be62d8b453b42db99bd.js" integrity="sha512-N9IJRoc3LaP3NDoiGkcPa4gG94kapGpaA5Zq9/Dr04uf5TbLFU5q0o8AbRhLKUUlp8QFS2u7S&#43;Yti0U7QtuZvQ=="></script>
+  
+  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="https://www.vxworks7.com/software/gdb-debugging-multi-threads-case-analysis/">
+  <meta property="og:site_name" content="Kontronn Asia Design Center">
+  <meta property="og:title" content="GDB调试多线程案例分析">
+  <meta property="og:description" content="Gdb Debugging Multi Threads Case Analysis">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="software">
+    <meta property="article:published_time" content="2024-10-19T22:46:58+08:00">
+    <meta property="article:modified_time" content="2024-10-19T22:46:58+08:00">
+    <meta property="article:tag" content="GDB">
+    <meta property="article:tag" content="Multi Threads">
+    <meta property="og:image" content="https://www.vxworks7.com/software/gdb-debugging-multi-threads-case-analysis/featured-DBG-GNU-Debugger.png">
+
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.vxworks7.com/software/gdb-debugging-multi-threads-case-analysis/featured-DBG-GNU-Debugger.png">
+  <meta name="twitter:title" content="GDB调试多线程案例分析">
+  <meta name="twitter:description" content="Gdb Debugging Multi Threads Case Analysis">
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Softwares",
+    "name": "GDB调试多线程案例分析",
+    "headline": "GDB调试多线程案例分析",
+    "description": "Gdb Debugging Multi Threads Case Analysis",
+    "abstract": "\u003cp\u003e在软件开发的复杂世界里，高效的调试工具是解决问题的关键利器。今天，我们将深入探讨强大的调试工具 —— GDB（GNU Debugger）。GDB 为开发者提供了一种深入程序内部运行机制、查找错误和优化性能的有效途径。让我们一同开启 GDB 的调试之旅，解锁代码中的奥秘。\u003c\/p\u003e\n\n\n\u003ch2 class=\u0022relative group\u0022\u003eGDB调试工具 \n    \u003cdiv id=\u0022gdb%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7\u0022 class=\u0022anchor\u0022\u003e\u003c\/div\u003e\n    \n    \u003cspan\n        class=\u0022absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100\u0022\u003e\n        \u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022\n            style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#gdb%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7\u0022 aria-label=\u0022锚点\u0022\u003e#\u003c\/a\u003e\n    \u003c\/span\u003e        \n    \n\u003c\/h2\u003e\n\u003cp\u003eGDB（GNU Debugger）是强大的调试工具，在软件开发过程中起着至关重要的作用。它可以帮助开发者快速定位和解决程序中的问题。\u003c\/p\u003e",
+    "inLanguage": "zh-cn",
+    "url" : "https:\/\/www.vxworks7.com\/software\/gdb-debugging-multi-threads-case-analysis\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2024",
+    "dateCreated": "2024-10-19T22:46:58\u002b08:00",
+    "datePublished": "2024-10-19T22:46:58\u002b08:00",
+    
+    "dateModified": "2024-10-19T22:46:58\u002b08:00",
+    
+    "keywords": ["GDB","Multi threads"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "787"
+  }]
+  </script>
+
+
+  
+  
+  
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.b0dca576e87d7eaa5850ae4e61759c065786cdb6489d68fcc82240539eebd5da522bdb4fda085ffd245808c8fe2acb2516408eb774ef26b5f6015fc6737c0ea8.js" integrity="sha512-sNylduh9fqpYUK5OYXWcBleGzbZInWj8yCJAU57r1dpSK9tP2ghf/SRYCMj&#43;KsslFkCOt3TvJrX2AV/Gc3wOqA=="></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  <meta name="theme-color"/>
+  
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1543398821442998"
+  crossorigin="anonymous"></script>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7CPMBSEV45"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-7CPMBSEV45');
+  </script>
+</head>
+<body
+  class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32 scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600">
+  <div id="the-top" class="absolute flex self-center">
+    <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+      href="#main-content"><span
+        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>跳过正文</a>
+  </div>
+  
+  
+  <div class="min-h-[148px]"></div>
+<div class="fixed inset-x-0 pl-[24px] pr-[24px]" style="z-index:100">
+  <div id="menu-blur" class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl shadow-2xl"></div>
+  <div class="relative max-w-[64rem] ml-auto mr-auto">
+    <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px"
+    class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3">
+    
+    
+    
+    <div>
+        <a href="/" class="flex">
+            <span class="sr-only">Kontronn Asia Design Center</span>
+
+            
+            <img src="/img/Kad8_logo.png" width="105" height="105"
+                class="logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom" alt="Kontronn Asia Design Center" />
+            
+
+        </a>
+    </div>
+    
+    <div class="flex flex-1 items-center justify-between">
+        <nav class="flex space-x-3">
+
+            
+            <a href="/" class="text-base font-medium text-gray-500 hover:text-gray-900">Kontronn Asia Design Center</a>
+            
+
+        </nav>
+        <nav class="hidden md:flex items-center space-x-5 md:ml-12 h-12">
+
+            
+            
+            
+  <a href=""  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        板级支持包
+    </p>
+</a>
+
+
+
+            
+            
+  <a href="/app/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        应用程序
+    </p>
+</a>
+
+
+
+            
+            
+
+            
+
+
+            
+            <button id="search-button" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+
+            
+            
+
+        </nav>
+        <div class="flex md:hidden items-center space-x-5 md:ml-12 h-12">
+
+            <span></span>
+
+            
+
+
+            
+            <button id="search-button-mobile" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+            
+            
+
+        </div>
+    </div>
+    <div class="-my-2 -mr-2 md:hidden">
+
+        <label id="menu-button" class="block">
+            
+            <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+                
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+
+  </span>
+
+
+            </div>
+            <div id="menu-wrapper" style="padding-top:5px;"
+                class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50">
+                <ul
+                    class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl">
+
+                    <li id="menu-close-button">
+                        <span
+                            class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+</span>
+                    </li>
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href=""  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            板级支持包
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/app/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            应用程序
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                </ul>
+                
+                
+
+            </div>
+        </label>
+    </div>
+</div>
+
+
+
+
+<script>
+    (function () {
+        var $mainmenu = $('.main-menu');
+        var path = window.location.pathname;
+        $mainmenu.find('a[href="' + path + '"]').each(function (i, e) {
+            $(e).children('p').addClass('active');
+        });
+    })();
+</script>
+
+
+  </div>
+</div>
+<script>
+  window.addEventListener('scroll', function (e) {
+    var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    var background_blur = document.getElementById('menu-blur');
+    background_blur.style.opacity = (scroll / 300);
+  });
+</script>
+
+  
+  <div class="relative flex flex-col grow">
+    <main id="main-content" class="grow">
+      
+
+
+<article>
+  
+
+  <header id="single_header" class="mt-5 max-w-prose">
+    
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+      GDB调试多线程案例分析
+    </h1>
+    <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+      
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-10-19T22:46:58&#43;08:00">2024-10-19</time>
+  
+
+  
+  
+</div>
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/gdb/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    GDB
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/multi-threads/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Multi Threads
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+    </div>
+
+    
+    
+    
+    
+    
+
+    
+
+    
+      
+      
+        
+        
+<div class="flex author">
+  
+  <div class="place-self-center">
+    
+    
+    <div class="text-2xl sm:text-lg">
+</div>
+  </div>
+</div>
+
+      
+
+      
+
+      
+      <div class="mb-5"></div>
+      
+
+    
+
+  </header>
+  
+  <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+    
+     <div
+      class="order-first lg:ml-auto px-0 lg:order-last ltr:lg:pl-8 rtl:lg:pr-8">
+      <div class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky lg:top-[140px]">
+
+         <details open id="TOCView"
+  class="toc-right mt-0 overflow-y-scroll overscroll-contain scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600 rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    目录
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#gdb调试工具">GDB调试工具</a></li>
+    <li><a href="#gdb调试技巧">GDB调试技巧</a></li>
+    <li><a href="#gdb调试方法">GDB调试方法</a></li>
+    <li><a href="#gdb使用其他要点">GDB使用其他要点</a>
+      <ul>
+        <li><a href="#调试参数列表">调试参数列表</a></li>
+        <li><a href="#查看内存单元值">查看内存单元值</a></li>
+        <li><a href="#查看源程序">查看源程序</a></li>
+        <li><a href="#栈帧相关">栈帧相关</a></li>
+      </ul>
+    </li>
+    <li><a href="#gdb多线程调试">GDB多线程调试</a>
+      <ul>
+        <li><a href="#gdb-多线程调试基础">GDB 多线程调试基础</a></li>
+        <li><a href="#多线程调试案例分析">多线程调试案例分析</a></li>
+        <li><a href="#多线程调试技巧">多线程调试技巧</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    目录
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#gdb调试工具">GDB调试工具</a></li>
+    <li><a href="#gdb调试技巧">GDB调试技巧</a></li>
+    <li><a href="#gdb调试方法">GDB调试方法</a></li>
+    <li><a href="#gdb使用其他要点">GDB使用其他要点</a>
+      <ul>
+        <li><a href="#调试参数列表">调试参数列表</a></li>
+        <li><a href="#查看内存单元值">查看内存单元值</a></li>
+        <li><a href="#查看源程序">查看源程序</a></li>
+        <li><a href="#栈帧相关">栈帧相关</a></li>
+      </ul>
+    </li>
+    <li><a href="#gdb多线程调试">GDB多线程调试</a>
+      <ul>
+        <li><a href="#gdb-多线程调试基础">GDB 多线程调试基础</a></li>
+        <li><a href="#多线程调试案例分析">多线程调试案例分析</a></li>
+        <li><a href="#多线程调试技巧">多线程调试技巧</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+<script>
+
+  var margin = 200;
+  var marginError = 50;
+
+  (function () {
+    var $window = $(window);
+    var $toc = $('#TOCView');
+    var tocHeight = $toc.height();
+
+    function onResize() {
+      var windowAndMarginHeight = $window.height() - margin;
+      if(tocHeight >= windowAndMarginHeight) {
+        $toc.css("overflow-y", "scroll")
+        $toc.css("max-height", (windowAndMarginHeight + marginError) + "px")
+      } else {
+        $toc.css("overflow-y", "hidden")
+        $toc.css("max-height", "9999999px")
+      }
+    }
+
+    $window.on('resize', onResize);
+    $(document).ready(onResize);
+  })();
+
+
+
+  (function () {
+    var $toc = $('#TableOfContents');
+    if ($toc.length > 0) {
+      var $window = $(window);
+
+      function onScroll() {
+        var currentScroll = $window.scrollTop();
+        var h = $('.anchor');
+        var id = "";
+        h.each(function (i, e) {
+          e = $(e);
+          if (e.offset().top - $(window).height()/3 <= currentScroll) {
+            id = decodeURIComponent(e.attr('id'));
+          }
+        });
+        var active = $toc.find('a.active');      
+        if (active.length == 1 && active.eq(0).attr('href') == '#' + id) return true;
+
+        active.each(function (i, e) {
+           
+            $(e).removeClass('active').siblings('ul').hide();
+          
+        });
+        $toc.find('a[href="#' + id + '"]').addClass('active')
+        $toc.find('a[href="#' + id + '"]').parentsUntil('#TableOfContents').each(function (i, e) {
+          $(e).children('a').parents('ul').show();          
+        });
+      }
+
+      $window.on('scroll', onScroll);
+      $(document).ready(function () {
+         
+          $toc.find('a').parent('li').find('ul').hide();
+        
+        onScroll();
+      });
+    }
+  })();
+
+
+</script>
+   </div>
+      </div>
+      
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+        
+
+
+        <div class="article-content max-w-prose mb-20">
+          <p>在软件开发的复杂世界里，高效的调试工具是解决问题的关键利器。今天，我们将深入探讨强大的调试工具 —— GDB（GNU Debugger）。GDB 为开发者提供了一种深入程序内部运行机制、查找错误和优化性能的有效途径。让我们一同开启 GDB 的调试之旅，解锁代码中的奥秘。</p>
+
+
+<h2 class="relative group">GDB调试工具 
+    <div id="gdb%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#gdb%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>GDB（GNU Debugger）是强大的调试工具，在软件开发过程中起着至关重要的作用。它可以帮助开发者快速定位和解决程序中的问题。</p>
+<p>GDB做以下4 件主要的事情来帮助您捕获程序中的bug：</p>
+<ul>
+<li>在程序启动之前指定一些可以影响程序行为的变量或条件</li>
+<li>在某个指定的地方或条件下暂停程序</li>
+<li>在程序停止时检查已经发生了什么</li>
+<li>在程序执行过程中修改程序中的变量或条件，这样就可以体验修复一个 bug 的成果，并继续了解其他 bug</li>
+</ul>
+<p>启动 GDB 主要有以下两种方法：</p>
+<ol>
+<li>直接启动</li>
+</ol>
+<ul>
+<li>gdb：单独输入此命令启动 GDB，启动后需借助file或者exec-file命令指定要调试的程序</li>
+<li>gdb test.out：如果有一个名为test.out的可执行文件，可以直接使用这个命令启动 GDB 并加载该程序进行调试</li>
+<li>gdb test.out core：当程序发生错误并生成core文件时，可以使用这个命令启动 GDB，以便对错误进行分析</li>
+</ul>
+<ol start="2">
+<li>动态链接：<code>gdb test.out pid</code>，这种方式可以将 GDB 链接到一个正在运行中的进程中去，其中pid就是进程号，可以使用ps aux命令查看对应程序的进程号。</li>
+</ol>
+<p>要准备调试的程序，首先需要用<code>gcc</code>的<code>-g</code>参数生成可执行文件。这样才能在可执行文件中加入源代码信息以便调试，但这并不是将源文件嵌入到可执行文件中，所以调试时必须保证 GDB 能找到源文件。例如，编译程序时可以使用<code>gcc -g main.c -o test.out</code>这样的命令来生成带有调试信息的可执行文件。</p>
+
+
+<h2 class="relative group">GDB调试技巧 
+    <div id="gdb%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#gdb%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<ol>
+<li>条件断点</li>
+</ol>
+<p>条件断点在调试过程中非常实用。设置条件断点可以利用<code>break if</code>命令，例如<code>(gdb)break 666 if testsize==100123123</code>。条件断点的优势在于可以在特定条件满足时才使程序停止，这对于排查异常情况非常有帮助。比如在一个循环中，当某个变量达到特定值时才中断程序，这样可以更精准地定位问题。</p>
+<ol start="2">
+<li>断点命令</li>
+</ol>
+<p>断点命令不仅可以让程序在特定位置停止，还可以编写对到达断点响应的脚本，实现更复杂的调试功能。例如，可以在断点处设置一些打印变量值、检查特定条件等操作，以更好地了解程序的运行状态。</p>
+<ol start="3">
+<li>转储二进制内存</li>
+</ol>
+<p>GDB 提供了多种方式查看内存。内置支持的x命令可以查看内存地址中的值，其语法为<code>x/&lt;n/f/u&gt; &lt;addr&gt;</code>，其中<code>n</code>是显示内存的长度，<code>f</code>表示显示的格式，<code>u</code>表示从当前地址往后请求的字节数。例如<code>(gdb) x/16xw 0x7FFFFFFFE0F8</code>可以以十六进制、四字节为单位显示从地址<code>0x7FFFFFFFE0F8</code>开始的 16 个单位的内存内容。此外，也可以使用自定义的<code>hexdump</code>命令来查看内存，更加灵活地控制输出格式。</p>
+<ol start="4">
+<li>行内反汇编</li>
+</ol>
+<p>使用<code>disassemble/s</code>命令可以查看与函数源代码对应的指令，这有助于了解程序在 <code>CPU</code> 指令级别上的情况。例如，<code>disas main</code>可以显示<code>main</code>函数对应的汇编代码。通过查看汇编代码，可以更深入地理解程序的执行过程，对于分析性能问题、理解底层实现等非常有帮助。</p>
+<ol start="5">
+<li>反向调试</li>
+</ol>
+<p>反向调试是 GDB 的一个强大功能。它可以让程序实现上一步上一步的操作，即反向运行。反向调试在一些情况下非常有用，比如调试过程中不小心多执行了一次命令，或者想再次查看刚刚程序执行的过程。反向调试不适用 IO 操作，并且需要 <code>GDB7.0</code> 以上的版本。相关指令有<code>rc</code>或<code>reverse-continue</code>反向运行程序，直到碰到一个能使程序中断的事件；rs或reverse-step反向运行程序到上一次被执行的源代码行等。通过查看寄存器值等方式，可以深入了解程序在反向运行过程中的状态变化。</p>
+
+
+<h2 class="relative group">GDB调试方法 
+    <div id="gdb%E8%B0%83%E8%AF%95%E6%96%B9%E6%B3%95" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#gdb%E8%B0%83%E8%AF%95%E6%96%B9%E6%B3%95" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<ol>
+<li>编译及启动调试</li>
+</ol>
+<p>在编译代码时，加上 <code>-g</code> 选项是非常重要的，这可以确保在可执行文件中包含调试信息，以便在使用 GDB 进行调试时能够获取更多的程序内部状态信息。例如，使用 <code>gcc -g main.c -o main.out</code> 这样的命令编译代码，生成的 <code>main.out</code> 可执行文件就可以被 GDB 有效地调试。</p>
+<p>启动调试代码有多种方式。可以直接使用 <code>gdb main.out</code> 来启动调试一个可执行文件，然后在 GDB 环境中使用 <code>run</code> 命令来运行程序。如果程序在启动时需要命令行参数，可以在进入 GDB 后使用 <code>run arg1 arg2...</code> 的方式来提供参数并启动调试。</p>
+<p>另外，还可以调试正在运行的程序。</p>
+<ul>
+<li>首先找到程序的进程号，可以使用 <code>ps aux | grep program_name</code> 或 <code>pidof program_name</code> 来获取进程号。</li>
+<li>然后使用 <code>gdb attach pid</code> 或者 <code>gdb -p pid</code> 命令将 GDB 附加到正在运行的程序上进行调试。</li>
+</ul>
+<ol start="2">
+<li>调试命令</li>
+</ol>
+<p>GDB 有许多强大的调试命令。比如 <code>list</code> 命令可以显示源代码：</p>
+<ul>
+<li><code>list</code> 会打印当前行后面的代码</li>
+<li><code>list -</code> 显示当前行前面的代码</li>
+<li><code>list lineNumber</code> 打印出行第 lineNumber 行前后的代码</li>
+<li><code>list FunctionName</code> 打印出行函数 FunctionName 前后的代码</li>
+</ul>
+<p><code>break</code> 命令用于设置断点，可以在指定的行号或函数处设置断点:</p>
+<ul>
+<li><code>break &lt;function&gt;</code> 在进入指定函数时停止运行</li>
+<li><code>break &lt;lineNumber&gt;</code> 在指定代码行打断点</li>
+<li><code>break filename:lineNumber</code> 在指定文件的特定行设置断点</li>
+<li><code>break filename:function</code> 在指定文件的函数入口处设置断点</li>
+</ul>
+<p>还可以设置条件断点，如 <code>break... if &lt;condition&gt;</code>，当条件成立时程序停止运行。</p>
+<p><code>next</code> 命令执行下一条语句，如果该语句为函数调用，不会进入函数内部执行。</p>
+<p><code>step</code> 命令执行下一条语句，如果该语句为函数调用，则进入函数执行其中的第一条语句。</p>
+<p><code>continue</code> 命令继续程序的运行，直到遇到下一个断点。</p>
+<p><code>print</code> 和 <code>display</code> 命令用于打印变量 / 表达式的值，print 只输出一次，display 跟踪查看某个变量，每次停下来都显示它的值。可以以不同格式打印变量，如 <code>p /f variable</code>，其中 <code>f</code> 可以是 x（十六进制格式）、d（十进制格式）、u（十六进制格式显示无符号整型）等。</p>
+<p><code>watch</code> 命令在程序运行过程中监视变量值的变化，如果有变化，马上停止程序运行，如 <code>watch variable</code> 当变量 variable 有变化时，停止程序运行，还有 rwatch 和 awatch 分别在变量被读取和被读或被写时停止程序运行。</p>
+<ol start="3">
+<li>调试段错误</li>
+</ol>
+<p>调试段错误的一种快捷方法是生成 core 文件并使用 GDB 加载分析。首先，可以使用 <code>ulimit -c unlimited</code> 命令将 core 文件生成设置为不限制大小。这样，当程序发生段错误时，会生成 core 文件。</p>
+<p>然后，使用 GDB 加载这个 core 文件进行调试。可以使用 <code>gdb program core</code> 的方式，其中 <code>program</code> 是可执行程序名称，core 是生成的 core 文件。在 GDB 中，可以使用 <code>backtrace</code> 命令查看函数调用栈，找到出错的位置。还可以使用 <code>frame</code> 命令查看特定栈帧的信息，使用 <code>print</code> 命令打印变量的值，以确定问题所在。例如，如果在调试过程中发现某个变量的值为空指针，可能是内存分配失败导致的，可以进一步检查相关的内存分配代码。</p>
+
+
+<h2 class="relative group">GDB使用其他要点 
+    <div id="gdb%E4%BD%BF%E7%94%A8%E5%85%B6%E4%BB%96%E8%A6%81%E7%82%B9" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#gdb%E4%BD%BF%E7%94%A8%E5%85%B6%E4%BB%96%E8%A6%81%E7%82%B9" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+
+
+<h3 class="relative group">调试参数列表 
+    <div id="%E8%B0%83%E8%AF%95%E5%8F%82%E6%95%B0%E5%88%97%E8%A1%A8" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E8%B0%83%E8%AF%95%E5%8F%82%E6%95%B0%E5%88%97%E8%A1%A8" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>GDB 拥有丰富的调试参数，以下是一些常见的命令及其用途：</p>
+<p>启动程序：使用 <code>gdb [可执行文件名]</code> 启动 GDB 并加载要被调试的可执行文件。例如 <code>gdb test.out</code>。还可以使用 <code>gdb file [可执行文件名]</code> 的方式启动，如 <code>gdb file test.out</code>。另外，若要调试正在运行的程序，可以使用 <code>gdb attach [进程号]</code> 或 <code>gdb -p [进程号]</code>。</p>
+<ol>
+<li>设置断点：</li>
+</ol>
+<ul>
+<li>break [行号]：在指定行设置断点，如 break 10。</li>
+<li>break [函数名]：在函数入口处设置断点，如 break main。</li>
+<li>break [文件名:行号]：在指定文件的特定行设置断点，如 break test.c:20。</li>
+<li>break&hellip; if [条件]：设置条件断点，当条件成立时程序停止运行，如 break 666 if testsize==100123123。</li>
+<li>info breakpoints：显示当前程序的断点设置情况。</li>
+<li>delete breakpoints [断点号]：删除指定断点，不指定断点号则删除所有断点。</li>
+<li>disable [断点号]：暂停指定断点。</li>
+<li>enable [断点号]：开启指定断点。</li>
+<li>clear [行号]：清除指定行的断点。</li>
+</ul>
+<ol start="2">
+<li>单步执行：</li>
+</ol>
+<ul>
+<li>next（简写为 n）：逐过程调试，执行下一行，当遇到函数调用时，会一次性执行完该函数，不进入函数体内部。</li>
+<li>step（简写为 s）：单步调试，执行下一行，当遇到函数调用时，会进入函数体内部。</li>
+<li>continue（简写为 c）：继续执行程序，直到下一个断点处或程序结束。</li>
+<li>until：当厌倦在一个循环体内单步跟踪时，这个命令可以运行程序直到退出循环体。until+行号：运行至某行，可用于跳出循环。</li>
+<li>finish：运行程序，直到当前函数完成返回，并打印函数返回时的堆栈地址和返回值及参数值等信息。</li>
+<li>call [函数(参数)]：调用程序中可见的函数，并传递参数，如 call gdb_test(55)。</li>
+</ul>
+<ol start="3">
+<li>查看信息：</li>
+</ol>
+<ul>
+<li>info registers：显示所有寄存器的内容，可查看特定寄存器，如 info registers rbp 显示 rbp 寄存器的值，info registers rsp 显示 rsp 寄存器的值。</li>
+<li>info stack：显示堆栈信息。</li>
+<li>info args：显示当前函数的参数列表。</li>
+<li>info locals：显示当前函数的局部变量列表。</li>
+<li>info function：查询函数。</li>
+<li>info breakpoints：显示当前程序的断点设置情况。</li>
+<li>info watchpoints：列出当前所设置的所有观察点。</li>
+<li>info line [行号/函数名/文件名:行号/文件名:函数名]：查看源代码在内存中的地址。</li>
+</ul>
+
+
+<h3 class="relative group">查看内存单元值 
+    <div id="%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E5%8D%95%E5%85%83%E5%80%BC" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E5%8D%95%E5%85%83%E5%80%BC" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>在 GDB 中，可以使用 <code>examine</code> 命令（简写是 x）来查看内存地址中的值。其格式为 <code>x/&lt;n/f/u&gt; &lt;addr&gt;</code>，其中：n是一个正整数，表示显示内存的长度，从当前地址向后显示几个地址的内容。例如 <code>x/16xb 0x7FFFFFFFE0F8</code> 表示以单字节为单位显示从地址 0x7FFFFFFFE0F8 开始的 16 个字节的内容。</p>
+<p><b>f表示显示的格式，可取如下值：</b></p>
+<ul>
+<li>x：按十六进制格式显示变量。</li>
+<li>d：按十进制格式显示变量。</li>
+<li>u：按十进制格式显示无符号整型。</li>
+<li>o：按八进制格式显示变量。</li>
+<li>t：按二进制格式显示变量。</li>
+<li>a：按十六进制格式显示变量。</li>
+<li>i：指令地址格式。</li>
+<li>c：按字符格式显示变量。</li>
+<li>f：按浮点数格式显示变量。</li>
+</ul>
+<p><b>u表示一个地址单元的长度，可用以下字符代替：</b></p>
+<ul>
+<li>b表示单字节。</li>
+<li>h表示双字节。</li>
+<li>w表示四字节。</li>
+<li>g表示八字节。</li>
+</ul>
+
+
+<h3 class="relative group">查看源程序 
+    <div id="%E6%9F%A5%E7%9C%8B%E6%BA%90%E7%A8%8B%E5%BA%8F" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%9F%A5%E7%9C%8B%E6%BA%90%E7%A8%8B%E5%BA%8F" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>在 GDB 中，可以使用 list（简写为 l）命令查看源程序，有以下几种方式：</p>
+<ul>
+<li>list：显示当前行后面的源程序，默认每次显示 10 行，按回车键继续看余下的。</li>
+<li>list [行号]：将显示当前文件以 “行号” 为中心的前后 10 行代码，如 list 12。</li>
+<li>list [函数名]：将显示 “函数名” 所在函数的源代码。</li>
+</ul>
+
+
+<h3 class="relative group">栈帧相关 
+    <div id="%E6%A0%88%E5%B8%A7%E7%9B%B8%E5%85%B3" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%A0%88%E5%B8%A7%E7%9B%B8%E5%85%B3" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>GDB 中有一些与栈帧相关的命令：</p>
+<ul>
+<li>info frame：打印当前栈帧的详细信息，包括当前函数、参数和局部变量等。例如：(gdb) info frame会显示诸如 Stack level 0, frame at [地址]: pc = [程序计数器值] in [函数名] ([文件名]:[行号]); saved pc [保存的程序计数器值]等信息。</li>
+<li>up和down：在栈帧之间上下移动。up命令将切换到上一个栈帧，而down命令将切换到下一个栈帧。</li>
+<li>info locals：显示当前函数的局部变量列表，帮助开发者了解当前栈帧中的局部变量情况。</li>
+</ul>
+
+
+<h2 class="relative group">GDB多线程调试 
+    <div id="gdb%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%B0%83%E8%AF%95" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#gdb%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%B0%83%E8%AF%95" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+
+
+<h3 class="relative group">GDB 多线程调试基础 
+    <div id="gdb-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%B0%83%E8%AF%95%E5%9F%BA%E7%A1%80" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#gdb-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%B0%83%E8%AF%95%E5%9F%BA%E7%A1%80" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<ol>
+<li>基本命令介绍</li>
+</ol>
+<p>在 GDB 多线程调试中，有许多常用命令。例如设置断点可以使用 (gdb) break function_name，通过这个命令可以在特定的函数处设置断点，当程序执行到该函数时会暂停。删除断点则可以使用 (gdb) delete breakpoints。查看线程信息可以使用 (gdb) info threads，这个命令会列出所有可调试的线程信息，包括 GDB 分配的线程 ID、系统级的线程标识符以及线程的栈信息等。切换线程可以使用 (gdb) thread thread_id，通过指定线程 ID 可以快速切换到对应的线程进行调试。此外，设置监视点可以使用 (gdb) watch variable_name，用于观察某个变量的值是否有变化，一旦变化程序会立即暂停。删除监视点则是 (gdb) delete watchpoints。</p>
+<ol start="2">
+<li>编译多线程程序</li>
+</ol>
+<p>在进行多线程调试之前，我们需要先编译多线程程序。通常，我们可以使用 gcc 编译器来编译多线程程序。例如，对于以下多线程程序代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;pthread.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define NUM_THREADS 5
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">void</span> <span class="o">*</span> <span class="nf">thread_func</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="n">thread_id</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="n">tid</span> <span class="o">=</span> <span class="p">(</span><span class="kt">long</span><span class="p">)</span><span class="n">thread_id</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Hello World! It&#39;s me, thread #%ld!&#34;</span><span class="p">,</span> <span class="n">tid</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">pthread_exit</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">pthread_t</span> <span class="n">threads</span><span class="p">[</span><span class="n">NUM_THREADS</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">rc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="n">t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">t</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="n">NUM_THREADS</span><span class="p">;</span> <span class="n">t</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;In main: creating thread %ld&#34;</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rc</span> <span class="o">=</span> <span class="nf">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">threads</span><span class="p">[</span><span class="n">t</span><span class="p">],</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">thread_func</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">t</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">rc</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;ERROR; return code from pthread_create() is %d&#34;</span><span class="p">,</span> <span class="n">rc</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">pthread_exit</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>我们可以将上述代码保存至一个名为 multithread.c 的文件中，并使用以下命令进行编译：$ gcc -g -pthread -o multithread multithread.c。其中，-g 选项用于在可执行文件中加入调试信息，这样在使用 GDB 进行调试时可以获取更多的程序信息；-pthread 选项则用于引入多线程库，确保程序能够正确地使用多线程功能。</p>
+
+
+<h3 class="relative group">多线程调试案例分析 
+    <div id="%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%B0%83%E8%AF%95%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%B0%83%E8%AF%95%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<ol>
+<li>简单多线程程序调试</li>
+</ol>
+<p>假设我们有一个如下的简单多线程程序：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;pthread.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="o">*</span><span class="nf">printNumbers</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Thread: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">pthread_t</span> <span class="n">thread1</span><span class="p">,</span> <span class="n">thread2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">thread1</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">printNumbers</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">thread2</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">printNumbers</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">pthread_join</span><span class="p">(</span><span class="n">thread1</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">pthread_join</span><span class="p">(</span><span class="n">thread2</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>我们可以使用以下步骤进行 GDB 调试：</p>
+<ul>
+<li>首先，编译程序：<code>$ gcc -g -pthread -o simple_thread simple_thread.c</code></li>
+<li>然后启动 <code>GDB：$ gdb simple_thread</code></li>
+<li>在 main 函数处设置断点：<code>(gdb) break main</code></li>
+<li>运行程序：<code>(gdb) run</code>，程序会停在 main 函数的断点处。</li>
+<li>接着，我们可以使用 <code>(gdb) info threads</code> 查看当前的线程信息。可以看到有两个线程正在运行，一个是主线程，一个是其中一个子线程。</li>
+<li>使用 <code>(gdb) thread thread_id</code> 切换到子线程，然后进行单步执行操作，如 <code>(gdb) next</code>，可以观察到子线程的执行过程。</li>
+</ul>
+<ol start="2">
+<li>复杂多线程程序调试</li>
+</ol>
+<p>对于更复杂的多线程程序，比如多个线程之间存在交互和同步问题的程序，调试会更加具有挑战性。</p>
+<p>例如，有一个多线程程序，多个线程同时对一个共享资源进行读写操作，可能会出现竞争条件和数据不一致的问题。</p>
+<p>在这种情况下，我们可以使用 GDB 的以下技巧来处理：</p>
+<ul>
+<li>使用 <code>(gdb) break function_name</code> 在关键的同步函数处设置断点，如互斥锁的加锁和解锁函数。</li>
+<li>通过 <code>(gdb) info threads</code> 随时查看线程状态，确定哪个线程正在持有共享资源，哪个线程在等待资源。</li>
+<li>使用 <code>(gdb) thread apply all bt</code> 查看所有线程的调用堆栈，以了解每个线程的执行路径和当前状态。</li>
+<li>设置条件断点，例如 <code>(gdb) break function_name if condition</code>，当特定条件满足时才触发断点，以便在复杂的交互场景中更精确地定位问题。</li>
+</ul>
+<p>例如，假设我们有一个多线程的银行账户管理程序，多个线程同时进行存款和取款操作，我们可以在存款和取款函数处设置断点，并根据账户余额等条件设置条件断点，以便在出现异常情况时能够快速定位问题所在。</p>
+
+
+<h3 class="relative group">多线程调试技巧 
+    <div id="%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<ol>
+<li>线程锁定与并发控制</li>
+</ol>
+<p>在 GDB 中，可以使用 set scheduler-locking 命令来控制线程的执行顺序和并发程度。这个命令有三个值，分别是 on、step 和 off。</p>
+<ul>
+<li><code>set scheduler-locking on</code>：可以用来锁定当前线程，只观察这个线程的运行情况，锁定这个线程时，其他线程处于暂停状态。在当前线程执行 next、step、until、finish、return 命令时，其他线程是不会运行的。需要注意的是，在使用这个选项时要确认当前线程是否是我们期望锁定的线程，如果不是，则可以使用 thread + 线程编号 切换到我们需要的线程，再调用 set scheduler-locking on 锁定。</li>
+<li><code>set scheduler-locking step</code>：也用来锁定当前线程，当且仅当使用 <code>next</code> 或 <code>step</code> 命令做单步调试时会锁定当前线程，如果使用 until、finish、return 等线程内的调试命令（它们不是单步控制命令），则其他线程还是有机会运行的。与 on 选项的值相比，step 选项的值为单步调试提供了更加精细化的控制，因为在某些场景下，我们希望单步调试时其他线程不要对所属的当前线程的变量值造成影响。</li>
+<li><code>set scheduler-locking off</code>：用于释放锁定当前线程。</li>
+</ul>
+<p>我们还可以使用 <code>show scheduler-locking</code> 命令来显示线程的 scheduler-locking 状态。</p>
+<ol start="2">
+<li>命令组合与高效调试</li>
+</ol>
+<p>一些常用的 GDB 命令组合可以提高多线程调试的效率。例如：</p>
+<ul>
+<li>info threads + thread thread_id + bt：先使用 <code>info threads</code> 查看当前进程的所有线程信息，然后使用 <code>thread thread_id</code> 切换到特定线程，再使用 <code>bt</code> 查看该线程的函数调用堆栈，以便分析该线程的执行逻辑。</li>
+<li>break function_name + condition + run + next/step：先使用 <code>break function_name if condition</code> 在特定函数处设置条件断点，然后使用 <code>run</code> 运行程序，当条件满足时程序会停在断点处，接着使用 <code>next</code> 或 <code>step</code> 进行单步调试。</li>
+<li>thread apply all command：可以让所有被调试线程执行特定的 GDB 命令，例如 <code>thread apply all bt</code> 可以查看所有线程的调用堆栈。</li>
+</ul>
+<ol start="3">
+<li>常见问题与解决方案</li>
+</ol>
+<p>在多线程调试过程中，可能会遇到以下常见问题：</p>
+<p>线程死锁：如果程序出现死锁，可以使用 GDB 的以下步骤进行分析。</p>
+<p>首先，使用 gdb 启动程序，然后在程序死锁处按 <code>ctrl+c</code> 暂停程序。接着，使用 <code>info threads</code> 查看当前节点上线程状态，使用 <code>thread thread_id</code> 切换线程，使用 <code>bt</code> 查看线程堆栈，并查处死锁位置。多切换几个线程，全面分析死锁的原因。一般来说，首先检查使用频率最高的锁在所有函数出口上是否已解锁。如果是第一轮出现死锁，则可检查锁配对和可能的程序出口上是否进行了开锁。如果多轮运行后出现，且基本确认函数出口均解锁，则需要判断是否是内存越界，可以使用工具 <code>valgrind</code> 进行内存越界诊断。</p>
+<p>无法确定当前调试的线程：可以使用 <code>info threads</code> 命令查看当前可调试的所有线程，每个线程会有一个 GDB 为其分配的 ID，前面有 * 的是当前调试的线程。也可以使用 <code>thread thread_id</code> 切换到特定线程进行确认。</p>
+<p>多线程程序调试效率低下：可以使用前面提到的命令组合和线程锁定功能，有针对性地调试特定线程或在特定条件下进行调试，提高调试效率。同时，可以将程序中的线程数量减少至 1 进行调试，观察是否正确，然后逐步增加线程数量，调试线程的同步是否正确。</p>
+
+          
+          
+          
+        </div>
+        
+        
+
+        
+        
+  
+  <section class="flex flex-row flex-wrap justify-center pt-4 text-xl">
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.vxworks7.com/software/gdb-debugging-multi-threads-case-analysis/&amp;title=GDB%e8%b0%83%e8%af%95%e5%a4%9a%e7%ba%bf%e7%a8%8b%e6%a1%88%e4%be%8b%e5%88%86%e6%9e%90"
+      title="分享到 LinkedIn"
+      aria-label="分享到 LinkedIn"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://twitter.com/intent/tweet/?url=https://www.vxworks7.com/software/gdb-debugging-multi-threads-case-analysis/&amp;text=GDB%e8%b0%83%e8%af%95%e5%a4%9a%e7%ba%bf%e7%a8%8b%e6%a1%88%e4%be%8b%e5%88%86%e6%9e%90"
+      title="分享到 Twitter"
+      aria-label="分享到 Twitter"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://bsky.app/intent/compose?text=GDB%e8%b0%83%e8%af%95%e5%a4%9a%e7%ba%bf%e7%a8%8b%e6%a1%88%e4%be%8b%e5%88%86%e6%9e%90&#43;https://www.vxworks7.com/software/gdb-debugging-multi-threads-case-analysis/"
+      title=""
+      aria-label=""
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256,232.562c-21.183,-41.196 -78.868,-117.97 -132.503,-155.834c-51.378,-36.272 -70.978,-29.987 -83.828,-24.181c-14.872,6.72 -17.577,29.554 -17.577,42.988c0,13.433 7.365,110.138 12.169,126.281c15.873,53.336 72.376,71.358 124.413,65.574c2.66,-0.395 5.357,-0.759 8.089,-1.097c-2.68,0.429 -5.379,0.796 -8.089,1.097c-76.259,11.294 -143.984,39.085 -55.158,137.972c97.708,101.165 133.908,-21.692 152.484,-83.983c18.576,62.291 39.972,180.718 150.734,83.983c83.174,-83.983 22.851,-126.674 -53.408,-137.969c-2.71,-0.302 -5.409,-0.667 -8.089,-1.096c2.732,0.337 5.429,0.702 8.089,1.096c52.037,5.785 108.54,-12.239 124.413,-65.574c4.804,-16.142 12.169,-112.847 12.169,-126.281c-0,-13.434 -2.705,-36.267 -17.577,-42.988c-12.85,-5.806 -32.45,-12.09 -83.829,24.181c-53.634,37.864 -111.319,114.635 -132.502,155.831Z"/></svg>
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://s2f.kytta.dev/?text=GDB%e8%b0%83%e8%af%95%e5%a4%9a%e7%ba%bf%e7%a8%8b%e6%a1%88%e4%be%8b%e5%88%86%e6%9e%90%20https://www.vxworks7.com/software/gdb-debugging-multi-threads-case-analysis/"
+      title=""
+      aria-label=""
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M433 179.11c0-97.2-63.71-125.7-63.71-125.7-62.52-28.7-228.56-28.4-290.48 0 0 0-63.72 28.5-63.72 125.7 0 115.7-6.6 259.4 105.63 289.1 40.51 10.7 75.32 13 103.33 11.4 50.81-2.8 79.32-18.1 79.32-18.1l-1.7-36.9s-36.31 11.4-77.12 10.1c-40.41-1.4-83-4.4-89.63-54a102.54 102.54 0 0 1-.9-13.9c85.63 20.9 158.65 9.1 178.75 6.7 56.12-6.7 105-41.3 111.23-72.9 9.8-49.8 9-121.5 9-121.5zm-75.12 125.2h-46.63v-114.2c0-49.7-64-51.6-64 6.9v62.5h-46.33V197c0-58.5-64-56.6-64-6.9v114.2H90.19c0-122.1-5.2-147.9 18.41-175 25.9-28.9 79.82-30.8 103.83 6.1l11.6 19.5 11.6-19.5c24.11-37.1 78.12-34.8 103.83-6.1 23.71 27.3 18.4 53 18.4 175z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://reddit.com/submit/?url=https://www.vxworks7.com/software/gdb-debugging-multi-threads-case-analysis/&amp;resubmit=true&amp;title=GDB%e8%b0%83%e8%af%95%e5%a4%9a%e7%ba%bf%e7%a8%8b%e6%a1%88%e4%be%8b%e5%88%86%e6%9e%90"
+      title="提交到 Reddit"
+      aria-label="提交到 Reddit"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M201.5 305.5c-13.8 0-24.9-11.1-24.9-24.6 0-13.8 11.1-24.9 24.9-24.9 13.6 0 24.6 11.1 24.6 24.9 0 13.6-11.1 24.6-24.6 24.6zM504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-132.3-41.2c-9.4 0-17.7 3.9-23.8 10-22.4-15.5-52.6-25.5-86.1-26.6l17.4-78.3 55.4 12.5c0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.3 24.9-24.9s-11.1-24.9-24.9-24.9c-9.7 0-18 5.8-22.1 13.8l-61.2-13.6c-3-.8-6.1 1.4-6.9 4.4l-19.1 86.4c-33.2 1.4-63.1 11.3-85.5 26.8-6.1-6.4-14.7-10.2-24.1-10.2-34.9 0-46.3 46.9-14.4 62.8-1.1 5-1.7 10.2-1.7 15.5 0 52.6 59.2 95.2 132 95.2 73.1 0 132.3-42.6 132.3-95.2 0-5.3-.6-10.8-1.9-15.8 31.3-16 19.8-62.5-14.9-62.5zM302.8 331c-18.2 18.2-76.1 17.9-93.6 0-2.2-2.2-6.1-2.2-8.3 0-2.5 2.5-2.5 6.4 0 8.6 22.8 22.8 87.3 22.8 110.2 0 2.5-2.2 2.5-6.1 0-8.6-2.2-2.2-6.1-2.2-8.3 0zm7.7-75c-13.6 0-24.6 11.1-24.6 24.9 0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.1 24.9-24.6 0-13.8-11-24.9-24.9-24.9z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.vxworks7.com/software/gdb-debugging-multi-threads-case-analysis/&amp;description=GDB%e8%b0%83%e8%af%95%e5%a4%9a%e7%ba%bf%e7%a8%8b%e6%a1%88%e4%be%8b%e5%88%86%e6%9e%90"
+      title="钉到 Pinterest"
+      aria-label="钉到 Pinterest"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M496 256c0 137-111 248-248 248-25.6 0-50.2-3.9-73.4-11.1 10.1-16.5 25.2-43.5 30.8-65 3-11.6 15.4-59 15.4-59 8.1 15.4 31.7 28.5 56.8 28.5 74.8 0 128.7-68.8 128.7-154.3 0-81.9-66.9-143.2-152.9-143.2-107 0-163.9 71.8-163.9 150.1 0 36.4 19.4 81.7 50.3 96.1 4.7 2.2 7.2 1.2 8.3-3.3.8-3.4 5-20.3 6.9-28.1.6-2.5.3-4.7-1.7-7.1-10.1-12.5-18.3-35.3-18.3-56.6 0-54.7 41.4-107.6 112-107.6 60.9 0 103.6 41.5 103.6 100.9 0 67.1-33.9 113.6-78 113.6-24.3 0-42.6-20.1-36.7-44.8 7-29.5 20.5-61.3 20.5-82.6 0-19-10.2-34.9-31.4-34.9-24.9 0-44.9 25.7-44.9 60.2 0 22 7.4 36.8 7.4 36.8s-24.5 103.8-29 123.2c-5 21.4-3 51.6-.9 71.2C65.4 450.9 0 361.1 0 256 0 119 111 8 248 8s248 111 248 248z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://www.facebook.com/sharer/sharer.php?u=https://www.vxworks7.com/software/gdb-debugging-multi-threads-case-analysis/&amp;quote=GDB%e8%b0%83%e8%af%95%e5%a4%9a%e7%ba%bf%e7%a8%8b%e6%a1%88%e4%be%8b%e5%88%86%e6%9e%90"
+      title="分享到 Facebook"
+      aria-label="分享到 Facebook"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="mailto:?body=https://www.vxworks7.com/software/gdb-debugging-multi-threads-case-analysis/&amp;subject=GDB%e8%b0%83%e8%af%95%e5%a4%9a%e7%ba%bf%e7%a8%8b%e6%a1%88%e4%be%8b%e5%88%86%e6%9e%90"
+      title="通过电子邮件发送"
+      aria-label="通过电子邮件发送"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://api.whatsapp.com/send?text=https://www.vxworks7.com/software/gdb-debugging-multi-threads-case-analysis/&amp;resubmit=true&amp;title=GDB%e8%b0%83%e8%af%95%e5%a4%9a%e7%ba%bf%e7%a8%8b%e6%a1%88%e4%be%8b%e5%88%86%e6%9e%90"
+      title=""
+      aria-label=""
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://t.me/share/url?url=https://www.vxworks7.com/software/gdb-debugging-multi-threads-case-analysis/&amp;resubmit=true&amp;title=GDB%e8%b0%83%e8%af%95%e5%a4%9a%e7%ba%bf%e7%a8%8b%e6%a1%88%e4%be%8b%e5%88%86%e6%9e%90"
+      title=""
+      aria-label=""
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M248,8C111.033,8,0,119.033,0,256S111.033,504,248,504,496,392.967,496,256,384.967,8,248,8ZM362.952,176.66c-3.732,39.215-19.881,134.378-28.1,178.3-3.476,18.584-10.322,24.816-16.948,25.425-14.4,1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25,5.342-39.5,3.652-3.793,67.107-61.51,68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608,69.142-14.845,10.194-26.894,9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7,18.45-13.7,108.446-47.248,144.628-62.3c68.872-28.647,83.183-33.623,92.511-33.789,2.052-.034,6.639.474,9.61,2.885a10.452,10.452,0,0,1,3.53,6.716A43.765,43.765,0,0,1,362.952,176.66Z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+  </section>
+
+
+        
+
+
+<h2 class="mt-8 text-2xl font-extrabold mb-10">相关文章</h2>
+<section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+  
+  
+
+  <a href="/software/8-popular-network-protocols/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/software/8-popular-network-protocols/featured-8-popular-network-protocols_hu13449704986014538882.jpg);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/software/8-popular-network-protocols/">一张图解释 8 种流行网络协议</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-10-19T21:29:35&#43;08:00">2024-10-19</time>
+  
+
+  
+  
+</div>
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/https/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    HTTPS
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/tcp/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    TCP
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/network/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Network
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+
+  
+  
+
+  <a href="/software/free-up-space-on-c-drive-in-windows/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/software/free-up-space-on-c-drive-in-windows/featured-Free-up-space-on-C-Drive-in-Windows_hu15628609964812092826.png);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/software/free-up-space-on-c-drive-in-windows/">如何释放Windows 的C 盘空间</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-10-19T21:05:47&#43;08:00">2024-10-19</time>
+  
+
+  
+  
+</div>
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/windows-11/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Windows 11
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/space/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Space
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+
+  
+  
+
+  <a href="/software/20-very-useful-windows-11-shortcuts/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/software/20-very-useful-windows-11-shortcuts/featured-windows-11-shortcuts-1_hu16062845434471537038.png);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/software/20-very-useful-windows-11-shortcuts/">20 个非常有用的Windows 11快捷键</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-10-19T20:19:44&#43;08:00">2024-10-19</time>
+  
+
+  
+  
+</div>
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/windows-11/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Windows 11
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/shortcut/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Shortcut
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+
+  
+</section>
+
+  
+      </div>
+     
+      
+      
+        
+        
+          
+          
+        
+      <script>
+        var oid = "views_software\/gdb-debugging-multi-threads-case-analysis\/index.md"
+        var oid_likes = "likes_software\/gdb-debugging-multi-threads-case-analysis\/index.md"
+      </script>
+      
+      
+      <script type="text/javascript" src="/js/page.min.0860cf4e04fa2d72cc33ddba263083464d48f67de06114529043cb4623319efed4f484fd7f1730df5abea0e2da6f3538855634081d02f2d6e920b956f063e823.js" integrity="sha512-CGDPTgT6LXLMM926JjCDRk1I9n3gYRRSkEPLRiMxnv7U9IT9fxcw31q&#43;oOLabzU4hVY0CB0C8tbpILlW8GPoIw=="></script>
+      
+  
+    </section>
+  <footer class="pt-8 max-w-prose print:hidden">
+
+    
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="flex group mr-3" href="/software/8-popular-network-protocols/">
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >一张图解释 8 种流行网络协议</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2024-10-19T21:29:35&#43;08:00">2024-10-19</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="flex text-right group ml-3" href="/software/download-m3u8-videos-efficiently-with-ffmpeg/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >用FFmpeg高效下载m3u8视频</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2024-10-20T09:18:28&#43;08:00">2024-10-20</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+    
+  </footer>
+</article>
+
+      <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+  <a href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="返回顶部" title="返回顶部">
+    &uarr;
+  </a>
+</div>
+    </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+  
+  <div class="flex items-center justify-between">
+
+    
+    
+    <p class="text-sm text-neutral-500 dark:text-neutral-400">
+      &copy;
+      2024
+      
+    </p>
+    
+
+    
+    
+    <p class="text-xs text-neutral-500 dark:text-neutral-400">
+      
+      
+      由 <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://www.vxworks.net/" target="_blank" rel="noopener noreferrer">VxWorks</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://www.gaitpu.com/" target="_blank" rel="noopener noreferrer">AI</a> 强力驱动
+    </p>
+    
+
+  </div>
+  <script>
+    
+    mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+      margin: 24,
+      background: 'rgba(0,0,0,0.5)',
+      scrollOffset: 0,
+    })
+    
+  </script>
+  
+  
+  <script type="text/javascript" src="/js/process.min.ee03488f19c93c2efb199e2e3014ea5f3cb2ce7d45154adb3399a158cac27ca52831db249ede5bb602700ef87eb02434139de0858af1818ab0fb4182472204a4.js" integrity="sha512-7gNIjxnJPC77GZ4uMBTqXzyyzn1FFUrbM5mhWMrCfKUoMdsknt5btgJwDvh&#43;sCQ0E53ghYrxgYqw&#43;0GCRyIEpA=="></script>
+  
+  
+</footer>
+<div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="https://www.vxworks7.com/"
+  style="z-index:500"
+>
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="搜索"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="关闭 (Esc)"
+      >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+  </div>
+</body>
+
+</html>

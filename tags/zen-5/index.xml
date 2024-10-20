@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Zen 5 on Kontronn Asia Design Center</title>
+    <link>https://www.vxworks7.com/tags/zen-5/</link>
+    <description>Recent content in Zen 5 on Kontronn Asia Design Center</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2024 </copyright>
+    <lastBuildDate>Wed, 16 Oct 2024 21:45:29 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/zen-5/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AMD五代EPYC对决Intel六代至强</title>
+      <link>https://www.vxworks7.com/hardware/amd-fifth-gen-epyc-vs-intel-sixth-gen-xeon/</link>
+      <pubDate>Wed, 16 Oct 2024 21:45:29 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/hardware/amd-fifth-gen-epyc-vs-intel-sixth-gen-xeon/</guid>
+      <description>&lt;p&gt;AMD、Intel之间的服务器与数据中心处理器大战硝烟再起，战况空前！&lt;/p&gt;
+&lt;p&gt;Intel正在陆续发布全新设计的第六代至强6系列，AMD则祭出了同样全新的第五代EPYC 9005系列，可谓针尖对麦芒。&lt;/p&gt;
+&lt;p&gt;
+    &lt;figure&gt;
+      &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; src=&#34;./amd-epyc-vs-intel-xeon-1.png&#34; alt=&#34;AMD fifth Gen epyc vs Intel Sixth Gen Xeon&#34; /&gt;
+      
+    &lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+    &lt;figure&gt;
+      &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; src=&#34;./amd-epyc-vs-intel-xeon-2.png&#34; alt=&#34;AMD fifth Gen epyc vs Intel Sixth Gen Xeon&#34; /&gt;
+      
+    &lt;/figure&gt;
+&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/hardware/amd-fifth-gen-epyc-vs-intel-sixth-gen-xeon/featured-epyc-vs-xeon.jpg" />
+    </item>
+    
+    <item>
+      <title>AMD Zen5 EPYC首测</title>
+      <link>https://www.vxworks7.com/hardware/amd-zen5-epyc-first-test-result-review/</link>
+      <pubDate>Tue, 15 Oct 2024 23:51:58 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/hardware/amd-zen5-epyc-first-test-result-review/</guid>
+      <description>&lt;p&gt;Intel前脚刚发布至强6 6000系列，AMD就带来了Zen 5/5c架构的五代EPYC 9005系列，彼此针锋相对，后者显然更胜一筹。&lt;/p&gt;
+&lt;p&gt;Phoronix提前测试了多颗EPYC 9005的样品，结果自然不出所料，丝毫不对手任何情面。&lt;/p&gt;
+&lt;p&gt;测试的新SKU一共三颗，分别是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;EPYC 9965：
+&lt;ul&gt;
+&lt;li&gt;Zen 5c顶级旗舰，192核心384线程，384MB三级缓存，2.25-3.7GHz频率，500W热设计功耗。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;EPYC 9575F：
+&lt;ul&gt;
+&lt;li&gt;最高频率型号之一，Zen 5，64核心128线程，256MB三级缓存，3.3-5.0GHz频率，400W热设计功耗。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;EPYC 9755：
+&lt;ul&gt;
+&lt;li&gt;Zen 5顶级旗舰，128核心256线程，512MB三级缓存，2.7-4.1GHz频率，500W热设计功耗。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+    &lt;figure&gt;
+      &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; src=&#34;./AMD-EPYC-9005-SKU-1.png&#34; alt=&#34;AMD EPYC 9005 SKU&#34; /&gt;
+      
+    &lt;/figure&gt;
+&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/hardware/amd-zen5-epyc-first-test-result-review/featured-AMD-EPYC-9005-SKU-0.png" />
+    </item>
+    
+  </channel>
+</rss>
