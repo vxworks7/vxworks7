@@ -112,7 +112,7 @@
     "keywords": ["VxWorks","VSB","VIP"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "1415"
+    "wordCount": "1423"
   }]
   </script>
 
@@ -921,18 +921,29 @@
 </span></span><span class="line"><span class="cl"> 
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">usrShellInit</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">shellLibInit</span> <span class="p">();</span>                    <span class="cm">/* This component includes the shell core files. */</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">shellHistLibInit</span> <span class="p">();</span>                <span class="cm">/* This component provides the histSave() and histLoad() functions for the C interpreter. */</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">dbgLibInit</span> <span class="p">(</span><span class="n">DEBUG_STACK_TRACE_BUF_SIZE</span><span class="p">);</span> <span class="cm">/* This component includes the primary interactive functions for VxWorks. The following facilities are provided: task breakpoints, task single-stepping, symbolic disassembly, symbolic task stack tracing. */</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">vxdbgRtpLibInit</span> <span class="p">();</span>                 <span class="cm">/* This component includes the process debugging library. */</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">ledModeRegister</span> <span class="p">(</span><span class="n">emacsLedLibInit</span><span class="p">);</span>  <span class="cm">/* This component provides an editing mode similar to the Emacs editor. */</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">shellLibInit</span> <span class="p">();</span>                        <span class="cm">/* This component includes the shell core files. */</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">shellHistLibInit</span> <span class="p">();</span>                    <span class="cm">/* This component provides the histSave() and histLoad() functions for the C interpreter. */</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">dbgLibInit</span> <span class="p">(</span><span class="n">DEBUG_STACK_TRACE_BUF_SIZE</span><span class="p">);</span><span class="cm">/* This component includes the primary interactive functions for VxWorks.
+</span></span></span><span class="line"><span class="cl"><span class="cm">                                             * The following facilities are provided: task breakpoints, task single-stepping,
+</span></span></span><span class="line"><span class="cl"><span class="cm">                                             * symbolic disassembly, symbolic task stack tracing. */</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">vxdbgRtpLibInit</span> <span class="p">();</span>                     <span class="cm">/* This component includes the process debugging library. */</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">ledModeRegister</span> <span class="p">(</span><span class="n">emacsLedLibInit</span><span class="p">);</span>      <span class="cm">/* This component provides an editing mode similar to the Emacs editor. */</span>
 </span></span><span class="line"><span class="cl">    <span class="nf">shellInterpRegister</span> <span class="p">(</span><span class="n">shellInterpCInit</span><span class="p">);</span> <span class="cm">/* This component provides the C interpreter for the kernel shell. */</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">shellInterpRegister</span> <span class="p">(</span><span class="n">shellInterpCmdInit</span><span class="p">);</span> <span class="cm">/* This component provides the command interpreter for the kernel shell. */</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">usrShellCmdInit</span> <span class="p">();</span>                 <span class="cm">/* The kernel shell commands initialization sequence */</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">shellInterpRegister</span> <span class="p">(</span><span class="n">shellInterpCmdInit</span><span class="p">);</span>   <span class="cm">/* This component provides the command interpreter for the kernel shell. */</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">usrShellCmdInit</span> <span class="p">();</span>                     <span class="cm">/* The kernel shell commands initialization sequence */</span>
 </span></span><span class="line"><span class="cl"> 
 </span></span><span class="line"><span class="cl">	<span class="cm">/* (1) 从bootline参数的startupScript选项中解析出脚本名，并执行 */</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">usrStartupScript</span> <span class="p">(</span><span class="nf">startupScriptFieldSplit</span> <span class="p">(</span><span class="n">sysBootParams</span><span class="p">.</span><span class="n">startupScript</span><span class="p">));</span> <span class="cm">/* Including this component results in the execution of a kernel shell script at VxWorks startup. */</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">usrShell</span> <span class="p">();</span>                        <span class="cm">/* This component includes the target-resident kernel shell, which is spawned as a task. Any function that is invoked from the kernel shell, rather than spawned, runs in the shell&#39;s context. The task name for a shell on the console is &#34;tShell0&#34;. The kernel shell is re-entrant, and more than one shell task can run at a time (hence the number suffix). In addition, if a user logs in remotely (using rlogin or telnet) to a VxWorks target, the name reflects that fact as well. For example, &#34;tShellRem1&#34;. The &#34;tShell&#34; basename is configurable, see the VxWorks 7 Kernel Shell User&#39;s Guide. */</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">usrStartupScript</span> <span class="p">(</span><span class="nf">startupScriptFieldSplit</span> <span class="p">(</span><span class="n">sysBootParams</span><span class="p">.</span><span class="n">startupScript</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">                                            <span class="cm">/* Including this component results in the execution of a kernel shell script at VxWorks startup. */</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">usrShell</span> <span class="p">();</span>    <span class="cm">/* This component includes the target-resident kernel shell,
+</span></span></span><span class="line"><span class="cl"><span class="cm">                     * which is spawned as a task. Any function that is invoked from the kernel shell,
+</span></span></span><span class="line"><span class="cl"><span class="cm">                     * rather than spawned, runs in the shell&#39;s context.
+</span></span></span><span class="line"><span class="cl"><span class="cm">                     * The task name for a shell on the console is &#34;tShell0&#34;.
+</span></span></span><span class="line"><span class="cl"><span class="cm">                     * The kernel shell is re-entrant, and more than one shell task can run at a time (hence the number suffix).
+</span></span></span><span class="line"><span class="cl"><span class="cm">                     * In addition, if a user logs in remotely (using rlogin or telnet) to a VxWorks target,
+</span></span></span><span class="line"><span class="cl"><span class="cm">                     * the name reflects that fact as well. For example, &#34;tShellRem1&#34;.
+</span></span></span><span class="line"><span class="cl"><span class="cm">                     * The &#34;tShell&#34; basename is configurable, see the VxWorks 7 Kernel Shell User&#39;s Guide.
+</span></span></span><span class="line"><span class="cl"><span class="cm">                     */</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span></code></pre></div><p>如果使用VxWorks自带的bootloader，可以在<code>boot cmd</code>命令行中配置bootline的startup script选项:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">startup script <span class="o">(</span>s<span class="o">)</span> : /mmc1:1/autorun_c.sh
