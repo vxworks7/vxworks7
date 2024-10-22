@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bsps on VxWorks 7 the Leading RTOS</title>
+    <link>https://www.vxworks7.com/bsp/</link>
+    <description>Recent content in Bsps on VxWorks 7 the Leading RTOS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2024 </copyright>
+    <lastBuildDate>Tue, 22 Oct 2024 13:22:03 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/bsp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Embedded Os Vxworks Introduction</title>
+      <link>https://www.vxworks7.com/bsp/embedded-os-vxworks-introduction/</link>
+      <pubDate>Tue, 22 Oct 2024 13:22:03 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/bsp/embedded-os-vxworks-introduction/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://www.vxworks7.com&#34; target=&#34;_blank&#34;&gt;VxWorks&lt;/a&gt;操作系统是美国WindRiver公司于1983年设计开发的一种嵌入式实时操作系统（[RTOS](&lt;a href=&#34;https://www.vxworks.net&#34; target=&#34;_blank&#34;&gt;https://www.vxworks.net&lt;/a&gt;），是嵌入式开发环境的关键组成部分。&lt;/p&gt;
+
+
+&lt;h1 class=&#34;relative group&#34;&gt;嵌入式操作系统VxWorks简介 
+    &lt;div id=&#34;%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9Fvxworks%E7%AE%80%E4%BB%8B&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9Fvxworks%E7%AE%80%E4%BB%8B&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h1&gt;
+&lt;p&gt;良好的持续能力、高性能的内核以及友好的用户开发环境，在嵌入式实时操作系统领域占据一席之地。它以其良好的可靠性和卓越的实时性被广泛地应用在通信、军事、航空、航天等高精尖技术及实时性要求极高的领域中，如卫星通讯、军事演习、弹道制导、飞机导航等。在美国的F-16、FA-18战斗机、B-2隐形轰炸机和爱国者导弹上，甚至连1997年在火星表面登陆的火星探测器上也使用到了VxWorks。&lt;/p&gt;
+
+
+&lt;h2 class=&#34;relative group&#34;&gt;实时操作系统和分时操作系统的区别 
+    &lt;div id=&#34;%E5%AE%9E%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%92%8C%E5%88%86%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8C%BA%E5%88%AB&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#%E5%AE%9E%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%92%8C%E5%88%86%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8C%BA%E5%88%AB&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;从操作系统能否满足实时性要求来区分，可把操作系统分成分时操作系统和实时操作系统。&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/bsp/embedded-os-vxworks-introduction/featured-vxworks-7.png" />
+    </item>
+    
+  </channel>
+</rss>
