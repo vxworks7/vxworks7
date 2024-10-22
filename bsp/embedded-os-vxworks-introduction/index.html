@@ -8,11 +8,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>Embedded Os Vxworks Introduction &middot; VxWorks 7 the Leading RTOS</title>
-  <meta name="title" content="Embedded Os Vxworks Introduction &middot; VxWorks 7 the Leading RTOS" />
+  <title>嵌入式实时操作系统VxWorks简介 &middot; VxWorks 7 the Leading RTOS</title>
+  <meta name="title" content="嵌入式实时操作系统VxWorks简介 &middot; VxWorks 7 the Leading RTOS" />
   
   <meta name="description" content="Embedded Os Vxworks Introduction" />
-  <meta name="keywords" content="VxWorks, " />
+  <meta name="keywords" content="VxWorks, RTOS, " />
   
   
   <link rel="canonical" href="https://www.vxworks7.com/bsp/embedded-os-vxworks-introduction/" />
@@ -68,7 +68,7 @@
   
   <meta property="og:url" content="https://www.vxworks7.com/bsp/embedded-os-vxworks-introduction/">
   <meta property="og:site_name" content="VxWorks 7 the Leading RTOS">
-  <meta property="og:title" content="Embedded Os Vxworks Introduction">
+  <meta property="og:title" content="嵌入式实时操作系统VxWorks简介">
   <meta property="og:description" content="Embedded Os Vxworks Introduction">
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
@@ -76,12 +76,13 @@
     <meta property="article:published_time" content="2024-10-22T13:22:03+08:00">
     <meta property="article:modified_time" content="2024-10-22T13:22:03+08:00">
     <meta property="article:tag" content="VxWorks">
+    <meta property="article:tag" content="RTOS">
     <meta property="og:image" content="https://www.vxworks7.com/bsp/embedded-os-vxworks-introduction/featured-vxworks-7.png">
 
   
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://www.vxworks7.com/bsp/embedded-os-vxworks-introduction/featured-vxworks-7.png">
-  <meta name="twitter:title" content="Embedded Os Vxworks Introduction">
+  <meta name="twitter:title" content="嵌入式实时操作系统VxWorks简介">
   <meta name="twitter:description" content="Embedded Os Vxworks Introduction">
 
   
@@ -90,10 +91,10 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Bsps",
-    "name": "Embedded Os Vxworks Introduction",
-    "headline": "Embedded Os Vxworks Introduction",
+    "name": "嵌入式实时操作系统VxWorks简介",
+    "headline": "嵌入式实时操作系统VxWorks简介",
     "description": "Embedded Os Vxworks Introduction",
-    "abstract": "\u003cp\u003e\u003ca href=\u0022https:\/\/www.vxworks7.com\u0022 target=\u0022_blank\u0022\u003eVxWorks\u003c\/a\u003e操作系统是美国WindRiver公司于1983年设计开发的一种嵌入式实时操作系统（[RTOS](\u003ca href=\u0022https:\/\/www.vxworks.net\u0022 target=\u0022_blank\u0022\u003ehttps:\/\/www.vxworks.net\u003c\/a\u003e），是嵌入式开发环境的关键组成部分。\u003c\/p\u003e\n\n\n\u003ch1 class=\u0022relative group\u0022\u003e嵌入式操作系统VxWorks简介 \n    \u003cdiv id=\u0022%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9Fvxworks%E7%AE%80%E4%BB%8B\u0022 class=\u0022anchor\u0022\u003e\u003c\/div\u003e\n    \n    \u003cspan\n        class=\u0022absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100\u0022\u003e\n        \u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022\n            style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9Fvxworks%E7%AE%80%E4%BB%8B\u0022 aria-label=\u0022锚点\u0022\u003e#\u003c\/a\u003e\n    \u003c\/span\u003e        \n    \n\u003c\/h1\u003e\n\u003cp\u003e良好的持续能力、高性能的内核以及友好的用户开发环境，在嵌入式实时操作系统领域占据一席之地。它以其良好的可靠性和卓越的实时性被广泛地应用在通信、军事、航空、航天等高精尖技术及实时性要求极高的领域中，如卫星通讯、军事演习、弹道制导、飞机导航等。在美国的F-16、FA-18战斗机、B-2隐形轰炸机和爱国者导弹上，甚至连1997年在火星表面登陆的火星探测器上也使用到了VxWorks。\u003c\/p\u003e\n\n\n\u003ch2 class=\u0022relative group\u0022\u003e实时操作系统和分时操作系统的区别 \n    \u003cdiv id=\u0022%E5%AE%9E%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%92%8C%E5%88%86%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8C%BA%E5%88%AB\u0022 class=\u0022anchor\u0022\u003e\u003c\/div\u003e\n    \n    \u003cspan\n        class=\u0022absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100\u0022\u003e\n        \u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022\n            style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#%E5%AE%9E%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%92%8C%E5%88%86%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8C%BA%E5%88%AB\u0022 aria-label=\u0022锚点\u0022\u003e#\u003c\/a\u003e\n    \u003c\/span\u003e        \n    \n\u003c\/h2\u003e\n\u003cp\u003e从操作系统能否满足实时性要求来区分，可把操作系统分成分时操作系统和实时操作系统。\u003c\/p\u003e",
+    "abstract": "\u003cp\u003e\u003ca href=\u0022https:\/\/www.vxworks7.com\u0022 target=\u0022_blank\u0022\u003eVxWorks\u003c\/a\u003e操作系统是美国WindRiver公司于1983年设计开发的一种嵌入式实时操作系统（\u003ca href=\u0022https:\/\/www.vxworks.net\u0022 target=\u0022_blank\u0022\u003eRTOS\u003c\/a\u003e），是嵌入式开发环境的关键组成部分。\u003c\/p\u003e\n\n\n\u003ch1 class=\u0022relative group\u0022\u003e嵌入式操作系统VxWorks简介 \n    \u003cdiv id=\u0022%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9Fvxworks%E7%AE%80%E4%BB%8B\u0022 class=\u0022anchor\u0022\u003e\u003c\/div\u003e\n    \n    \u003cspan\n        class=\u0022absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100\u0022\u003e\n        \u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022\n            style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9Fvxworks%E7%AE%80%E4%BB%8B\u0022 aria-label=\u0022锚点\u0022\u003e#\u003c\/a\u003e\n    \u003c\/span\u003e        \n    \n\u003c\/h1\u003e\n\u003cp\u003e良好的持续能力、高性能的内核以及友好的用户开发环境，在嵌入式实时操作系统领域占据一席之地。它以其良好的可靠性和卓越的实时性被广泛地应用在通信、军事、航空、航天等高精尖技术及实时性要求极高的领域中，如卫星通讯、军事演习、弹道制导、飞机导航等。在美国的F-16、FA-18战斗机、B-2隐形轰炸机和爱国者导弹上，甚至连1997年在火星表面登陆的火星探测器上也使用到了VxWorks。\u003c\/p\u003e\n\n\n\u003ch2 class=\u0022relative group\u0022\u003e实时操作系统和分时操作系统的区别 \n    \u003cdiv id=\u0022%E5%AE%9E%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%92%8C%E5%88%86%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8C%BA%E5%88%AB\u0022 class=\u0022anchor\u0022\u003e\u003c\/div\u003e\n    \n    \u003cspan\n        class=\u0022absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100\u0022\u003e\n        \u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022\n            style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#%E5%AE%9E%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%92%8C%E5%88%86%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8C%BA%E5%88%AB\u0022 aria-label=\u0022锚点\u0022\u003e#\u003c\/a\u003e\n    \u003c\/span\u003e        \n    \n\u003c\/h2\u003e\n\u003cp\u003e从操作系统能否满足实时性要求来区分，可把操作系统分成分时操作系统和实时操作系统。\u003c\/p\u003e",
     "inLanguage": "zh-cn",
     "url" : "https:\/\/www.vxworks7.com\/bsp\/embedded-os-vxworks-introduction\/",
     "author" : {
@@ -106,7 +107,7 @@
     
     "dateModified": "2024-10-22T13:22:03\u002b08:00",
     
-    "keywords": ["VxWorks"],
+    "keywords": ["VxWorks","RTOS"],
     
     "mainEntityOfPage": "true",
     "wordCount": "326"
@@ -387,7 +388,7 @@
   <header id="single_header" class="mt-5 max-w-prose">
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-      Embedded Os Vxworks Introduction
+      嵌入式实时操作系统VxWorks简介
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -456,6 +457,14 @@
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     VxWorks
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/rtos/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    RTOS
   </span>
 </span>
   </span>
@@ -743,7 +752,7 @@
 
 
         <div class="article-content max-w-prose mb-20">
-          <p><a href="https://www.vxworks7.com" target="_blank">VxWorks</a>操作系统是美国WindRiver公司于1983年设计开发的一种嵌入式实时操作系统（[RTOS](<a href="https://www.vxworks.net" target="_blank">https://www.vxworks.net</a>），是嵌入式开发环境的关键组成部分。</p>
+          <p><a href="https://www.vxworks7.com" target="_blank">VxWorks</a>操作系统是美国WindRiver公司于1983年设计开发的一种嵌入式实时操作系统（<a href="https://www.vxworks.net" target="_blank">RTOS</a>），是嵌入式开发环境的关键组成部分。</p>
 
 
 <h1 class="relative group">嵌入式操作系统VxWorks简介 
@@ -1078,7 +1087,7 @@
 </li>
 </ul>
 <blockquote>
-T1，T2和T3分别是高、中、低优先级的任务。T3通过拥有信号量而获得相关的资源。当T1抢占T3，为竞争使用该资源而请求相同的信号量的时候，它被阻塞。如果我们假设T1仅被阻塞到T3使用完该资源为止，情况并不是很糟。毕竟资源是不可被抢占的。然而，低优先级的任务并不能避免被中优先级的任务抢占，一个抢占的任务如T2将阻止T3完成对资源的操作。这种情况可能会持续阻塞T1等待一段不可确定的时间。这种情况成为优先级逆转，因为尽管系统是基于优先级的调度，但却使一个高优先级的任务等待一个低优先级的任务完成执行。
+<p>T1，T2和T3分别是高、中、低优先级的任务。T3通过拥有信号量而获得相关的资源。当T1抢占T3，为竞争使用该资源而请求相同的信号量的时候，它被阻塞。如果我们假设T1仅被阻塞到T3使用完该资源为止，情况并不是很糟。毕竟资源是不可被抢占的。然而，低优先级的任务并不能避免被中优先级的任务抢占，一个抢占的任务如T2将阻止T3完成对资源的操作。这种情况可能会持续阻塞T1等待一段不可确定的时间。这种情况成为优先级逆转，因为尽管系统是基于优先级的调度，但却使一个高优先级的任务等待一个低优先级的任务完成执行。</p>
 </blockquote>
 <p>互斥信号量有一个选项允许实现优先级继承的算法。优先级继承通过在T1被阻塞期间提升T3的优先级到T1解决了优先级逆转引起的问题。这防止了T3，间接地防止T1，被T2抢占。通俗地说，优先级继承协议使一个拥有资源的任务以等待该资源的任务中优先级最高的任务的优先级执行。当执行完成，任务释放该资源并返回到它正常的或标准的优先级。因此，继承优先级的任务避免了被任何中间优先级的任务抢占。</p>
 
@@ -1538,7 +1547,7 @@ VxWorks提供了一组管理信号量的函数接口供开发者使用，包括�
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.vxworks7.com/bsp/embedded-os-vxworks-introduction/&amp;title=Embedded%20Os%20Vxworks%20Introduction"
+      href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.vxworks7.com/bsp/embedded-os-vxworks-introduction/&amp;title=%e5%b5%8c%e5%85%a5%e5%bc%8f%e5%ae%9e%e6%97%b6%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9fVxWorks%e7%ae%80%e4%bb%8b"
       title="分享到 LinkedIn"
       aria-label="分享到 LinkedIn"
       >
@@ -1557,7 +1566,7 @@ VxWorks提供了一组管理信号量的函数接口供开发者使用，包括�
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://twitter.com/intent/tweet/?url=https://www.vxworks7.com/bsp/embedded-os-vxworks-introduction/&amp;text=Embedded%20Os%20Vxworks%20Introduction"
+      href="https://twitter.com/intent/tweet/?url=https://www.vxworks7.com/bsp/embedded-os-vxworks-introduction/&amp;text=%e5%b5%8c%e5%85%a5%e5%bc%8f%e5%ae%9e%e6%97%b6%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9fVxWorks%e7%ae%80%e4%bb%8b"
       title="分享到 Twitter"
       aria-label="分享到 Twitter"
       >
@@ -1575,7 +1584,7 @@ VxWorks提供了一组管理信号量的函数接口供开发者使用，包括�
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://bsky.app/intent/compose?text=Embedded%20Os%20Vxworks%20Introduction&#43;https://www.vxworks7.com/bsp/embedded-os-vxworks-introduction/"
+      href="https://bsky.app/intent/compose?text=%e5%b5%8c%e5%85%a5%e5%bc%8f%e5%ae%9e%e6%97%b6%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9fVxWorks%e7%ae%80%e4%bb%8b&#43;https://www.vxworks7.com/bsp/embedded-os-vxworks-introduction/"
       title=""
       aria-label=""
       >
@@ -1593,7 +1602,7 @@ VxWorks提供了一组管理信号量的函数接口供开发者使用，包括�
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://s2f.kytta.dev/?text=Embedded%20Os%20Vxworks%20Introduction%20https://www.vxworks7.com/bsp/embedded-os-vxworks-introduction/"
+      href="https://s2f.kytta.dev/?text=%e5%b5%8c%e5%85%a5%e5%bc%8f%e5%ae%9e%e6%97%b6%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9fVxWorks%e7%ae%80%e4%bb%8b%20https://www.vxworks7.com/bsp/embedded-os-vxworks-introduction/"
       title=""
       aria-label=""
       >
@@ -1612,7 +1621,7 @@ VxWorks提供了一组管理信号量的函数接口供开发者使用，包括�
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://reddit.com/submit/?url=https://www.vxworks7.com/bsp/embedded-os-vxworks-introduction/&amp;resubmit=true&amp;title=Embedded%20Os%20Vxworks%20Introduction"
+      href="https://reddit.com/submit/?url=https://www.vxworks7.com/bsp/embedded-os-vxworks-introduction/&amp;resubmit=true&amp;title=%e5%b5%8c%e5%85%a5%e5%bc%8f%e5%ae%9e%e6%97%b6%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9fVxWorks%e7%ae%80%e4%bb%8b"
       title="提交到 Reddit"
       aria-label="提交到 Reddit"
       >
@@ -1631,7 +1640,7 @@ VxWorks提供了一组管理信号量的函数接口供开发者使用，包括�
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.vxworks7.com/bsp/embedded-os-vxworks-introduction/&amp;description=Embedded%20Os%20Vxworks%20Introduction"
+      href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.vxworks7.com/bsp/embedded-os-vxworks-introduction/&amp;description=%e5%b5%8c%e5%85%a5%e5%bc%8f%e5%ae%9e%e6%97%b6%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9fVxWorks%e7%ae%80%e4%bb%8b"
       title="钉到 Pinterest"
       aria-label="钉到 Pinterest"
       >
@@ -1650,7 +1659,7 @@ VxWorks提供了一组管理信号量的函数接口供开发者使用，包括�
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://www.facebook.com/sharer/sharer.php?u=https://www.vxworks7.com/bsp/embedded-os-vxworks-introduction/&amp;quote=Embedded%20Os%20Vxworks%20Introduction"
+      href="https://www.facebook.com/sharer/sharer.php?u=https://www.vxworks7.com/bsp/embedded-os-vxworks-introduction/&amp;quote=%e5%b5%8c%e5%85%a5%e5%bc%8f%e5%ae%9e%e6%97%b6%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9fVxWorks%e7%ae%80%e4%bb%8b"
       title="分享到 Facebook"
       aria-label="分享到 Facebook"
       >
@@ -1669,7 +1678,7 @@ VxWorks提供了一组管理信号量的函数接口供开发者使用，包括�
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="mailto:?body=https://www.vxworks7.com/bsp/embedded-os-vxworks-introduction/&amp;subject=Embedded%20Os%20Vxworks%20Introduction"
+      href="mailto:?body=https://www.vxworks7.com/bsp/embedded-os-vxworks-introduction/&amp;subject=%e5%b5%8c%e5%85%a5%e5%bc%8f%e5%ae%9e%e6%97%b6%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9fVxWorks%e7%ae%80%e4%bb%8b"
       title="通过电子邮件发送"
       aria-label="通过电子邮件发送"
       >
@@ -1688,7 +1697,7 @@ VxWorks提供了一组管理信号量的函数接口供开发者使用，包括�
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://api.whatsapp.com/send?text=https://www.vxworks7.com/bsp/embedded-os-vxworks-introduction/&amp;resubmit=true&amp;title=Embedded%20Os%20Vxworks%20Introduction"
+      href="https://api.whatsapp.com/send?text=https://www.vxworks7.com/bsp/embedded-os-vxworks-introduction/&amp;resubmit=true&amp;title=%e5%b5%8c%e5%85%a5%e5%bc%8f%e5%ae%9e%e6%97%b6%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9fVxWorks%e7%ae%80%e4%bb%8b"
       title=""
       aria-label=""
       >
@@ -1707,7 +1716,7 @@ VxWorks提供了一组管理信号量的函数接口供开发者使用，包括�
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://t.me/share/url?url=https://www.vxworks7.com/bsp/embedded-os-vxworks-introduction/&amp;resubmit=true&amp;title=Embedded%20Os%20Vxworks%20Introduction"
+      href="https://t.me/share/url?url=https://www.vxworks7.com/bsp/embedded-os-vxworks-introduction/&amp;resubmit=true&amp;title=%e5%b5%8c%e5%85%a5%e5%bc%8f%e5%ae%9e%e6%97%b6%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9fVxWorks%e7%ae%80%e4%bb%8b"
       title=""
       aria-label=""
       >

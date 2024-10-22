@@ -9,12 +9,12 @@
     <copyright>© 2024 </copyright>
     <lastBuildDate>Tue, 22 Oct 2024 13:22:03 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/vxworks/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Embedded Os Vxworks Introduction</title>
+      <title>嵌入式实时操作系统VxWorks简介</title>
       <link>https://www.vxworks7.com/bsp/embedded-os-vxworks-introduction/</link>
       <pubDate>Tue, 22 Oct 2024 13:22:03 +0800</pubDate>
       
       <guid>https://www.vxworks7.com/bsp/embedded-os-vxworks-introduction/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://www.vxworks7.com&#34; target=&#34;_blank&#34;&gt;VxWorks&lt;/a&gt;操作系统是美国WindRiver公司于1983年设计开发的一种嵌入式实时操作系统（[RTOS](&lt;a href=&#34;https://www.vxworks.net&#34; target=&#34;_blank&#34;&gt;https://www.vxworks.net&lt;/a&gt;），是嵌入式开发环境的关键组成部分。&lt;/p&gt;
+      <description>&lt;p&gt;&lt;a href=&#34;https://www.vxworks7.com&#34; target=&#34;_blank&#34;&gt;VxWorks&lt;/a&gt;操作系统是美国WindRiver公司于1983年设计开发的一种嵌入式实时操作系统（&lt;a href=&#34;https://www.vxworks.net&#34; target=&#34;_blank&#34;&gt;RTOS&lt;/a&gt;），是嵌入式开发环境的关键组成部分。&lt;/p&gt;
 
 
 &lt;h1 class=&#34;relative group&#34;&gt;嵌入式操作系统VxWorks简介 

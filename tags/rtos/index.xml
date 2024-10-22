@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Bsps on VxWorks 7 the Leading RTOS</title>
-    <link>https://www.vxworks7.com/bsp/</link>
-    <description>Recent content in Bsps on VxWorks 7 the Leading RTOS</description>
+    <title>RTOS on VxWorks 7 the Leading RTOS</title>
+    <link>https://www.vxworks7.com/tags/rtos/</link>
+    <description>Recent content in RTOS on VxWorks 7 the Leading RTOS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2024 </copyright>
-    <lastBuildDate>Tue, 22 Oct 2024 13:22:03 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/bsp/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 22 Oct 2024 13:22:03 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/rtos/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>嵌入式实时操作系统VxWorks简介</title>
       <link>https://www.vxworks7.com/bsp/embedded-os-vxworks-introduction/</link>
