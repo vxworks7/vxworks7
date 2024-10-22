@@ -94,7 +94,7 @@
     "name": "U-Boot和VxWorks 7的集成",
     "headline": "U-Boot和VxWorks 7的集成",
     "description": "How to Integrate U-Boot and Vxworks 7",
-    "abstract": "\u003cp\u003e\u003ca href=\u0022https:\/\/www.vxworks.net\u0022 target=\u0022_blank\u0022\u003eVxWorks\u003c\/a\u003e是美国风河公司制作的一个实时操作系统，\u003ca href=\u0022https:\/\/www.vxworks.net\/bsp\/834-u-boot-and-vxworks-7-integration\u0022 target=\u0022_blank\u0022\u003eU-Boot\u003c\/a\u003e是一个广为人知的通用启动加载器，它是嵌入式系统加电后运行的最早的代码。U-Boot通常被用于嵌入式系统，比如PowerPC或者ARM设备，这些设备上没有X86的BIOS。\u003c\/p\u003e\n\n\n\u003ch2 class=\u0022relative group\u0022\u003e介绍 \n    \u003cdiv id=\u0022%E4%BB%8B%E7%BB%8D\u0022 class=\u0022anchor\u0022\u003e\u003c\/div\u003e\n    \n    \u003cspan\n        class=\u0022absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100\u0022\u003e\n        \u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022\n            style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#%E4%BB%8B%E7%BB%8D\u0022 aria-label=\u0022锚点\u0022\u003e#\u003c\/a\u003e\n    \u003c\/span\u003e        \n    \n\u003c\/h2\u003e\n\u003cp\u003e尽管VxWorks可以有它自己的bootloader(VxWorks Bootrom或者Bootapp)，U-Boot具有更多的功能，如果硬件板子已经提供了U-Boot的支持，那我们更有道理去直接使用它。\u003c\/p\u003e\n\u003cblockquote\u003e\n\u003cp\u003eU-boot : \u003ca href=\u0022http:\/\/www.denx.de\/wiki\/U-Boot\/WebHome\u0022 target=\u0022_blank\u0022\u003ehttp:\/\/www.denx.de\/wiki\/U-Boot\/WebHome\u003c\/a\u003e\u003c\/p\u003e",
+    "abstract": "\u003cp\u003e\u003ca href=\u0022https:\/\/www.vxworks.net\u0022 target=\u0022_blank\u0022\u003eVxWorks\u003c\/a\u003e是美国风河公司制作的一个实时操作系统，\u003ca href=\u0022https:\/\/www.vxworks.net\/bsp\/834-u-boot-and-vxworks-7-integration\u0022 target=\u0022_blank\u0022\u003eU-Boot\u003c\/a\u003e是一个广为人知的通用启动加载器，它是嵌入式系统加电后运行的最早的代码。U-Boot通常被用于嵌入式系统，比如PowerPC或者ARM设备，这些设备上没有X86的BIOS。\u003c\/p\u003e\n\n\n\u003ch2 class=\u0022relative group\u0022\u003e介绍 \n    \u003cdiv id=\u0022%E4%BB%8B%E7%BB%8D\u0022 class=\u0022anchor\u0022\u003e\u003c\/div\u003e\n    \n    \u003cspan\n        class=\u0022absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100\u0022\u003e\n        \u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022\n            style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#%E4%BB%8B%E7%BB%8D\u0022 aria-label=\u0022锚点\u0022\u003e#\u003c\/a\u003e\n    \u003c\/span\u003e        \n    \n\u003c\/h2\u003e\n\u003cp\u003e尽管VxWorks可以有它自己的bootloader(VxWorks Bootrom或者Bootapp)，U-Boot具有更多的功能，如果硬件板子已经提供了U-Boot的支持，那我们更有道理去直接使用它。\u003c\/p\u003e\n\u003cpre tabindex=\u00220\u0022\u003e\u003ccode class=\u0022language-mark\u0022 data-lang=\u0022mark\u0022\u003eU-boot : http:\/\/www.denx.de\/wiki\/U-Boot\/WebHome \n\nVxWorks : https:\/\/www.windriver.com\/products\/vxworks\/ \n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e现在最新的VxWorks版本(\u003ca href=\u0022https:\/\/www.vxworks7.com\u0022 target=\u0022_blank\u0022\u003eVxWorks 7\u003c\/a\u003e)已经比过去的VxWorks版本(我在VxWorks 6.9上遇到了好多问题)更加简单地和U-Boot集成了。\u003c\/p\u003e",
     "inLanguage": "zh-cn",
     "url" : "https:\/\/www.vxworks7.com\/bsp\/how-to-integrate-u-boot-and-vxworks-7\/",
     "author" : {
@@ -664,13 +664,10 @@
     
 </h2>
 <p>尽管VxWorks可以有它自己的bootloader(VxWorks Bootrom或者Bootapp)，U-Boot具有更多的功能，如果硬件板子已经提供了U-Boot的支持，那我们更有道理去直接使用它。</p>
-<blockquote>
-<p>U-boot : <a href="http://www.denx.de/wiki/U-Boot/WebHome" target="_blank">http://www.denx.de/wiki/U-Boot/WebHome</a></p>
-</blockquote>
-<blockquote>
-<p>VxWorks : <a href="https://www.windriver.com/products/vxworks/" target="_blank">https://www.windriver.com/products/vxworks/</a></p>
-</blockquote>
-<p>现在最新的VxWorks版本(<a href="https://www.vxworks7.com" target="_blank">VxWorks 7</a>)已经比过去的VxWorks版本(我在VxWorks 6.9上遇到了好多问题)更加简单地和U-Boot集成了。</p>
+<pre tabindex="0"><code class="language-mark" data-lang="mark">U-boot : http://www.denx.de/wiki/U-Boot/WebHome 
+
+VxWorks : https://www.windriver.com/products/vxworks/ 
+</code></pre><p>现在最新的VxWorks版本(<a href="https://www.vxworks7.com" target="_blank">VxWorks 7</a>)已经比过去的VxWorks版本(我在VxWorks 6.9上遇到了好多问题)更加简单地和U-Boot集成了。</p>
 <p>这篇文章讲述了我们为最近的VxWorks 7 BSP进行设置的细节，我们选择使用一个独立于VxWorks镜像文件的DTB文件，而不是将DTB文件嵌入到VxWorks镜像里面。这将给我们带来更好的灵活性，让启动行能够从U-Boot上进行修改，而不需要重新编译DTB。</p>
 <p>具体地，VxWorks镜像需要将U-Boot头编译进去，然后U-Boot需要配置传递命令行参数以及MAC地址给VxWorks。</p>
 

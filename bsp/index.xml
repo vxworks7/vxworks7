@@ -28,8 +28,10 @@
     
 &lt;/h2&gt;
 &lt;p&gt;尽管VxWorks可以有它自己的bootloader(VxWorks Bootrom或者Bootapp)，U-Boot具有更多的功能，如果硬件板子已经提供了U-Boot的支持，那我们更有道理去直接使用它。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;U-boot : &lt;a href=&#34;http://www.denx.de/wiki/U-Boot/WebHome&#34; target=&#34;_blank&#34;&gt;http://www.denx.de/wiki/U-Boot/WebHome&lt;/a&gt;&lt;/p&gt;</description>
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-mark&#34; data-lang=&#34;mark&#34;&gt;U-boot : http://www.denx.de/wiki/U-Boot/WebHome 
+
+VxWorks : https://www.windriver.com/products/vxworks/ 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;现在最新的VxWorks版本(&lt;a href=&#34;https://www.vxworks7.com&#34; target=&#34;_blank&#34;&gt;VxWorks 7&lt;/a&gt;)已经比过去的VxWorks版本(我在VxWorks 6.9上遇到了好多问题)更加简单地和U-Boot集成了。&lt;/p&gt;</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/bsp/how-to-integrate-u-boot-and-vxworks-7/featured-u-boot-vxworks-7.jpg" />
     </item>
     
