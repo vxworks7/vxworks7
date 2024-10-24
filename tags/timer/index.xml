@@ -40,7 +40,7 @@
     
 &lt;/h3&gt;
 &lt;p&gt;VxWorks既提供了延时功能，也提供了时限约束功能。VxWorks系统有2种延时方式：一种是Wind内核提供的taskDelay()函数；另一种是POSIX函数nanosleep()。taskDelay()函数以tick作为延时单位，默认情况下1个tick为16．67 ms(1／60 s)，可以通过调用sysClkRateSet()函数对tick进行重新设定。taskDelay()函数使调用该函数的任务在指定时间内主动放弃CPU，用于任务调度或等待某一外部事件。nanosleep()函数指定一个以s和ns为单位的睡眠或延时时间。其实，两个延时函数的精度是相同的，都是以tick为时间基准。不同之处在于，taskDelay(0)有自身意义，用于相同优先级任务间的任务调度，而nanosleep(0)是没有意义的。&lt;/p&gt;</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/app/design-of-multiple-timers-in-vxworks/featured-software-stack-vxworks.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/app/design-of-multiple-timers-in-vxworks/featured-vxworks-the-industry-leader.png" />
     </item>
     
   </channel>
