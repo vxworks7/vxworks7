@@ -3,6 +3,18 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
+    <loc>https://www.vxworks7.com/book/</loc>
+    <lastmod>2024-11-02T21:40:33+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.vxworks7.com/book/embedded-vxworks-system-design-and-application/</loc>
+    <lastmod>2024-11-02T21:40:33+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://www.vxworks7.com/app/</loc>
     <lastmod>2024-11-02T11:18:25+08:00</lastmod>
     <changefreq>daily</changefreq>

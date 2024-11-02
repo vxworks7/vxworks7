@@ -8,14 +8,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>基于VxWorks实时操作系统的串口通信程序设计与实现 &middot; VxWorks 7 the Leading RTOS</title>
-  <meta name="title" content="基于VxWorks实时操作系统的串口通信程序设计与实现 &middot; VxWorks 7 the Leading RTOS" />
+  <title>嵌入式 VxWorks 系统开发与应用 &middot; VxWorks 7 the Leading RTOS</title>
+  <meta name="title" content="嵌入式 VxWorks 系统开发与应用 &middot; VxWorks 7 the Leading RTOS" />
   
-  <meta name="description" content="Design and Implementation of UART Communication Application Based on VxWorks" />
-  <meta name="keywords" content="VxWorks, UART, " />
+  <meta name="description" content="Embedded VxWorks System Design and Application" />
+  <meta name="keywords" content="VxWorks, Embedded, " />
   
   
-  <link rel="canonical" href="https://www.vxworks7.com/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/" />
+  <link rel="canonical" href="https://www.vxworks7.com/book/embedded-vxworks-system-design-and-application/" />
   
   
   
@@ -66,51 +66,49 @@
   
   
   
-  <meta property="og:url" content="https://www.vxworks7.com/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/">
+  <meta property="og:url" content="https://www.vxworks7.com/book/embedded-vxworks-system-design-and-application/">
   <meta property="og:site_name" content="VxWorks 7 the Leading RTOS">
-  <meta property="og:title" content="基于VxWorks实时操作系统的串口通信程序设计与实现">
-  <meta property="og:description" content="Design and Implementation of UART Communication Application Based on VxWorks">
+  <meta property="og:title" content="嵌入式 VxWorks 系统开发与应用">
+  <meta property="og:description" content="Embedded VxWorks System Design and Application">
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
-    <meta property="article:section" content="app">
-    <meta property="article:published_time" content="2024-11-02T11:18:25+08:00">
-    <meta property="article:modified_time" content="2024-11-02T11:18:25+08:00">
+    <meta property="article:section" content="book">
+    <meta property="article:published_time" content="2024-11-02T21:40:33+08:00">
+    <meta property="article:modified_time" content="2024-11-02T21:40:33+08:00">
     <meta property="article:tag" content="VxWorks">
-    <meta property="article:tag" content="UART">
-    <meta property="og:image" content="https://www.vxworks7.com/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/featured-vxworks-uart-programming.png">
+    <meta property="article:tag" content="Embedded">
 
   
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://www.vxworks7.com/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/featured-vxworks-uart-programming.png">
-  <meta name="twitter:title" content="基于VxWorks实时操作系统的串口通信程序设计与实现">
-  <meta name="twitter:description" content="Design and Implementation of UART Communication Application Based on VxWorks">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="嵌入式 VxWorks 系统开发与应用">
+  <meta name="twitter:description" content="Embedded VxWorks System Design and Application">
 
   
   <script type="application/ld+json">
   [{
     "@context": "https://schema.org",
     "@type": "Article",
-    "articleSection": "Apps",
-    "name": "基于VxWorks实时操作系统的串口通信程序设计与实现",
-    "headline": "基于VxWorks实时操作系统的串口通信程序设计与实现",
-    "description": "Design and Implementation of UART Communication Application Based on VxWorks",
-    "abstract": "\u003cblockquote\u003e\n摘要：结合嵌入式实时操作系统VxWorks实现风洞测控系统的实际应用,以其中的串口通信为例，讨论了在VxWorks下实现串口通信的关键技术，给出了基本原理、环境配置和程序示例。\n\u003cp\u003e关键词：VxWorks； 实时操作系统； 嵌入式操作系统；串行通信\u003c\/p\u003e\n\u003cp\u003e[Abstract] Combining with the application of wind tunnel measure and control system with embedded real-time operating system VxWorks , with the serial communication in it as an example ,the key techniques about realization of the serial communication in VxWorks are discussed. Communication mechanism， environment configure and corresponding program examples are provided. [Key words] VxWorks；RTOS；embedded operating system； Serial Communication\u003c\/p\u003e",
+    "articleSection": "Books",
+    "name": "嵌入式 VxWorks 系统开发与应用",
+    "headline": "嵌入式 VxWorks 系统开发与应用",
+    "description": "Embedded VxWorks System Design and Application",
+    "abstract": "\u003cp\u003e本书详细介绍了当今流行的嵌入式\u003ca href=\u0022https:\/\/www.vxworks.net\u0022 target=\u0022_blank\u0022\u003e操作系统VxWorks\u003c\/a\u003e，首先概括 VxWorks 操作系统的基本知识，如任务管理、任务间通信机制、内存管理以及定时管理等内容，说明了嵌入式操作系统的实现关键。然后，结合作者多年的嵌入式系统的开发应用经验，详细阐述了 VxWorks 系统中 BSP 和应用的开发技巧，并提供了多个应用实例及分析设计。\u003c\/p\u003e\n\u003cp\u003e本书适用于嵌入式系统开发人员作为参考手册使用\u003c\/p\u003e\n\u003cdiv\u003e\n## 第 1 章 概述\n\u003cp\u003e1.1 嵌入式实时操作系统 VxWorks\n1.1.1 VxWorks 的应用领域\n1.1.2 VxWorks 系统的特点\n1.1.3 VxWorks 的可用主机\/目标机\n1.2 Tornado 开发环境\n1.2.1 Tornado 核心工具\n1.2.2 WindPower 工具\n1.3 Tornado 嵌入式开发系统可选组件\n1.3.1 板级支持包 BSP Developer\u0026rsquo;s Kit\n1.3.2 虚拟内存接口 VxVMI\n1.3.3 支持紧耦合共享内存多处理器结构的 VxMP\n1.3.4 支持紧耦合分布式多处理器结构的 VxDCOM\n1.3.5 支持松耦合分布式多处理器结构的 VxFUSION\n1.3.6 闪存文件系统 TrueFFS for Tornado\u003c\/p\u003e",
     "inLanguage": "zh-cn",
-    "url" : "https:\/\/www.vxworks7.com\/app\/design-and-implementation-of-uart-communication-application-based-on-vxworks\/",
+    "url" : "https:\/\/www.vxworks7.com\/book\/embedded-vxworks-system-design-and-application\/",
     "author" : {
       "@type": "Person",
       "name": ""
     },
     "copyrightYear": "2024",
-    "dateCreated": "2024-11-02T11:18:25\u002b08:00",
-    "datePublished": "2024-11-02T11:18:25\u002b08:00",
+    "dateCreated": "2024-11-02T21:40:33\u002b08:00",
+    "datePublished": "2024-11-02T21:40:33\u002b08:00",
     
-    "dateModified": "2024-11-02T11:18:25\u002b08:00",
+    "dateModified": "2024-11-02T21:40:33\u002b08:00",
     
-    "keywords": ["VxWorks","UART"],
+    "keywords": ["VxWorks","Embedded"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "253"
+    "wordCount": "363"
   }]
   </script>
 
@@ -414,7 +412,7 @@
   <header id="single_header" class="mt-5 max-w-prose">
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-      基于VxWorks实时操作系统的串口通信程序设计与实现
+      嵌入式 VxWorks 系统开发与应用
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -455,7 +453,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-11-02T11:18:25&#43;08:00">2024-11-02</time>
+  <time datetime="2024-11-02T21:40:33&#43;08:00">2024-11-02</time>
   
 
   
@@ -487,10 +485,10 @@
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/uart/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/embedded/&#34;,'_self');">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    UART
+    Embedded
   </span>
 </span>
   </span>
@@ -556,22 +554,12 @@
     class="min-w-[220px] py-2 border-dotted ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#前言">前言</a></li>
-    <li><a href="#vxworks简介">VxWorks简介</a></li>
-    <li><a href="#串口通信基本原理">串口通信基本原理</a></li>
-    <li><a href="#环境配置">环境配置</a></li>
-    <li><a href="#程序示例">程序示例</a>
-      <ul>
-        <li><a href="#在程序中加入下列头文件">在程序中加入下列头文件</a></li>
-        <li><a href="#打开串口">打开串口</a></li>
-        <li><a href="#配置串口">配置串口</a></li>
-        <li><a href="#串口接收数据">串口接收数据</a></li>
-        <li><a href="#串口发送数据">串口发送数据</a></li>
-        <li><a href="#关闭串口">关闭串口</a></li>
-      </ul>
-    </li>
-    <li><a href="#结束语">结束语</a></li>
-    <li><a href="#参考文献">参考文献：</a></li>
+    <li><a href="#第-2-章-vxworks-系统基本理论">第 2 章 VxWorks 系统基本理论</a></li>
+    <li><a href="#第-3-章-vxworks-系统-bsp-基本概念">第 3 章 VxWorks 系统 BSP 基本概念</a></li>
+    <li><a href="#第-4-章-vxworks-系统-bsp-开发实例">第 4 章 VxWorks 系统 BSP 开发实例</a></li>
+    <li><a href="#第-5-章-vxworks-系统开发环境-tornado">第 5 章 VxWorks 系统开发环境 Tornado</a></li>
+    <li><a href="#第-6-章-vxworks-系统编译器">第 6 章 VxWorks 系统编译器</a></li>
+    <li><a href="#第-7-章-vxworks-系统应用实例">第 7 章 VxWorks 系统应用实例</a></li>
   </ul>
 </nav>
   </div>
@@ -585,22 +573,12 @@
     class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#前言">前言</a></li>
-    <li><a href="#vxworks简介">VxWorks简介</a></li>
-    <li><a href="#串口通信基本原理">串口通信基本原理</a></li>
-    <li><a href="#环境配置">环境配置</a></li>
-    <li><a href="#程序示例">程序示例</a>
-      <ul>
-        <li><a href="#在程序中加入下列头文件">在程序中加入下列头文件</a></li>
-        <li><a href="#打开串口">打开串口</a></li>
-        <li><a href="#配置串口">配置串口</a></li>
-        <li><a href="#串口接收数据">串口接收数据</a></li>
-        <li><a href="#串口发送数据">串口发送数据</a></li>
-        <li><a href="#关闭串口">关闭串口</a></li>
-      </ul>
-    </li>
-    <li><a href="#结束语">结束语</a></li>
-    <li><a href="#参考文献">参考文献：</a></li>
+    <li><a href="#第-2-章-vxworks-系统基本理论">第 2 章 VxWorks 系统基本理论</a></li>
+    <li><a href="#第-3-章-vxworks-系统-bsp-基本概念">第 3 章 VxWorks 系统 BSP 基本概念</a></li>
+    <li><a href="#第-4-章-vxworks-系统-bsp-开发实例">第 4 章 VxWorks 系统 BSP 开发实例</a></li>
+    <li><a href="#第-5-章-vxworks-系统开发环境-tornado">第 5 章 VxWorks 系统开发环境 Tornado</a></li>
+    <li><a href="#第-6-章-vxworks-系统编译器">第 6 章 VxWorks 系统编译器</a></li>
+    <li><a href="#第-7-章-vxworks-系统应用实例">第 7 章 VxWorks 系统应用实例</a></li>
   </ul>
 </nav>
   </div>
@@ -681,275 +659,214 @@
       <div class="min-w-0 min-h-0 max-w-fit">
         
         
+<details style="margin-left:0px" class="mt-2 mb-5 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5" >
+    
+    <summary
+        class="py-1 text-lg font-semibold cursor-pointer bg-primary-200 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-primary-800 dark:text-neutral-100">
+        book - 这篇文章属于一个选集。
+    </summary>
+    
+    
+    
+    <div
+        class="py-1 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+        § 1: 本文
+    </div>
+    
+    
+
+
+</details>
+
 
 
         <div class="article-content max-w-prose mb-20">
-          <blockquote>
-摘要：结合嵌入式实时操作系统VxWorks实现风洞测控系统的实际应用,以其中的串口通信为例，讨论了在VxWorks下实现串口通信的关键技术，给出了基本原理、环境配置和程序示例。
-<p>关键词：VxWorks； 实时操作系统； 嵌入式操作系统；串行通信</p>
-<p>[Abstract] Combining with the application of wind tunnel measure and control system with embedded real-time operating system VxWorks , with the serial communication in it as an example ,the key techniques about realization of the serial communication in VxWorks are discussed. Communication mechanism， environment configure and corresponding program examples are provided. [Key words] VxWorks；RTOS；embedded operating system； Serial Communication</p>
-</blockquote>
+          <p>本书详细介绍了当今流行的嵌入式<a href="https://www.vxworks.net" target="_blank">操作系统VxWorks</a>，首先概括 VxWorks 操作系统的基本知识，如任务管理、任务间通信机制、内存管理以及定时管理等内容，说明了嵌入式操作系统的实现关键。然后，结合作者多年的嵌入式系统的开发应用经验，详细阐述了 VxWorks 系统中 BSP 和应用的开发技巧，并提供了多个应用实例及分析设计。</p>
+<p>本书适用于嵌入式系统开发人员作为参考手册使用</p>
+<div>
+## 第 1 章 概述
+<p>1.1 嵌入式实时操作系统 VxWorks
+1.1.1 VxWorks 的应用领域
+1.1.2 VxWorks 系统的特点
+1.1.3 VxWorks 的可用主机/目标机
+1.2 Tornado 开发环境
+1.2.1 Tornado 核心工具
+1.2.2 WindPower 工具
+1.3 Tornado 嵌入式开发系统可选组件
+1.3.1 板级支持包 BSP Developer&rsquo;s Kit
+1.3.2 虚拟内存接口 VxVMI
+1.3.3 支持紧耦合共享内存多处理器结构的 VxMP
+1.3.4 支持紧耦合分布式多处理器结构的 VxDCOM
+1.3.5 支持松耦合分布式多处理器结构的 VxFUSION
+1.3.6 闪存文件系统 TrueFFS for Tornado</p>
 
 
-<h2 class="relative group">前言 
-    <div id="%E5%89%8D%E8%A8%80" class="anchor"></div>
+<h2 class="relative group">第 2 章 VxWorks 系统基本理论 
+    <div id="%E7%AC%AC-2-%E7%AB%A0-vxworks-%E7%B3%BB%E7%BB%9F%E5%9F%BA%E6%9C%AC%E7%90%86%E8%AE%BA" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E5%89%8D%E8%A8%80" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#%E7%AC%AC-2-%E7%AB%A0-vxworks-%E7%B3%BB%E7%BB%9F%E5%9F%BA%E6%9C%AC%E7%90%86%E8%AE%BA" aria-label="锚点">#</a>
     </span>        
     
 </h2>
-<p>目前市场上比较著名的实时操作系统有：<a href="https://www.vxworks.net" target="_blank">VxWorks</a>、PSOS、Nucleus、QNX、VRTX、Windows CE、Palm 0S、Lynx0S等。 其中，VxWorks是一个具有微内核、可裁剪的高性能强实时操作系统，在实时操作系统市场上处于领先地位。它以其良好的可靠性和卓越的实时性被广泛地应用在通信、军事、航空、航天等高精尖技术及实时性要求极高的领域中，如卫星通讯、弹道制导、飞机导航等。在美国的 F-16战斗机、B-2 隐形轰炸机和爱国者导弹上，甚至火星探测器上都使用了VxWorks实时操作系统。在嵌入式实时操作系统中使用串口通信，不仅可扩展嵌入式设备通信能力，而且可扩大其应用范围。</p>
+<p>2.1 VxWorks 系统概述
+2.2 VxWorks 系统内核及组件
+2.2.1 任务管理
+2.2.2 任务间通信和同步机制
+2.2.3 中断机制
+2.2.4 定时管理机制
+2.2.5 内存管理
+2.2.6 I/O 与文件系统
+2.3  VxWorks 系统开发经验
+2.3.1 正确划分任务
+2.3.2 防止任务异常
+2.3.3 正确运用函数的可重入性
+2.3.4 使用名称访问资源
+2.3.5 用户任务优先级确定
+2.4 VxWorks 系统开发模型概述
+2.4.1 系统启动
+2.4.2 应用系统配置</p>
 
 
-<h2 class="relative group">VxWorks简介 
-    <div id="vxworks%E7%AE%80%E4%BB%8B" class="anchor"></div>
+<h2 class="relative group">第 3 章 VxWorks 系统 BSP 基本概念 
+    <div id="%E7%AC%AC-3-%E7%AB%A0-vxworks-%E7%B3%BB%E7%BB%9F-bsp-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#vxworks%E7%AE%80%E4%BB%8B" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#%E7%AC%AC-3-%E7%AB%A0-vxworks-%E7%B3%BB%E7%BB%9F-bsp-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5" aria-label="锚点">#</a>
     </span>        
     
 </h2>
-<p>VxWorks是由wRS(wind River Systems，Inc．)公司开发的一套具有微内核、高性能、可伸缩的实时操作系统，支持广泛的网络通信协议，并能够根据用户的需求进行组合，其开放式的结构和对工业标准的支持使开发者只需做最少的工作即可设计出有效的适合于不同用户要求的系统。除了性能出众的操作系统之外，wRS公司还提供了优秀的实时操作系统开发工具Tornado。Tornado由三个高度集成的部分组成：Tornado工具，一整套强有力的交叉开发工具；VxWorks运行系统，是运行在目标机上的高性能、可裁剪的实时操作系统；连接目标机和宿主机的通信选项，加以太网、串行线路、在线仿真等。Tornado能够支持Windows、Unix等流行的工作平台和PowerPC、X86、ARM等几乎所有的目标处理器，所提供的工具可用于所有目标机，并具有两种调试模式(系统模式和任务模式)。除了基本的功能和开发工具外，Tornado还具有先进的系列网络产品，极大地扩展了Tornado的网络特性，并增强了嵌人式微处理器的网络特性。[1]</p>
+<p>3.1 BSP 基础
+3.2 BSP 文件结构
+3.3 VxWorks 系统的 BSP 开发过程
+3.3.1 建立 BSP 开发环境
+3.3.2 编辑修改 BSP 文件
+3.3.3 生成目标文件 bootrom 和 VxWorks 映像
+3.3.4 基于 ROM 映像的初始化
+3.4 BSP 中设备驱动程序的开发</p>
 
 
-<h2 class="relative group">串口通信基本原理 
-    <div id="%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86" class="anchor"></div>
+<h2 class="relative group">第 4 章 VxWorks 系统 BSP 开发实例 
+    <div id="%E7%AC%AC-4-%E7%AB%A0-vxworks-%E7%B3%BB%E7%BB%9F-bsp-%E5%BC%80%E5%8F%91%E5%AE%9E%E4%BE%8B" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#%E7%AC%AC-4-%E7%AB%A0-vxworks-%E7%B3%BB%E7%BB%9F-bsp-%E5%BC%80%E5%8F%91%E5%AE%9E%E4%BE%8B" aria-label="锚点">#</a>
     </span>        
     
 </h2>
-<p>串口在嵌入式系统当中是一类重要的数据通信接口，其本质功能是作为CPU和串行设备间的编码转换器。当数据从CPU经过串行端口发送出去时，字节数据转换为串行的位；在接收数据时，串行的位被转换为字节数据。应用程序要使用串口进行通信，必须在使用之前向操作系统提出资源申请要求(打开串口)，通信完成后必须释放资源(关闭串口)。</p>
-<p>串口通信的优点是开发简单，在传输数据量不大、要求速度不高而传输距离较大的通信场合得到广泛应用。</p>
-<p>在VxWorks中，将I/O系统设计成为任何类型的设备提供一个简单、统一、独立于设备的接口，任何对于串口的操作都可以视为对一个文件的操作，而不必了解串口设备或程序驱动实现的细节。在串口通信软件的设计中，当串口初始化完成后，在使用之前利用open()打开相应串口，然后进行配置。</p>
-<p>VxWorks提供终端和伪终端设备驱动。Tty驱动针对实终端；pty针对仿真终端的程序。Tty设备有两种操作模式：raw模式和line模式。在raw模式下，每个刚从设备输入的字符对读者都是有效的；在line模式下所有输入字符被存储，直到NEWLINE字符输入。设备选项字使用带FIOSETOPTIONS 功能的ioctl()程序来设置。[2]</p>
-<p>配置完成后，依据串口打开时的读写标志，调用函数write()、read()对串口进行只读操作、只写操作或同时进行读写操作。</p>
-<p>为提高数据接收的实时性，可采用中断方式，利用VxWorks提供的select函数的事件触发机制，将读串口的任务阻塞使其一直等待数据，当有数据来到的时候该任务会立刻自动响应，提高系统的实时性。</p>
+<p>4.1 MPC8260 处理器的组成与结构
+4.1.1 基本功能模块
+4.1.2 内核 603e 的组成
+4.1.3 SIU 的结构
+4.1.4 CPM 的模块结构
+4.2 MPC8260 通信处理模块
+4.2.1 内部存储空间
+4.2.2 缓冲描述符 BD
+4.2.3 参数 RAM
+4.2.4 快速以太网控制器的功能
+4.2.5 快速以太网控制器的接收过程
+4.2.6 快速以太网控制器的发送过程
+4.3 MPC8260 编程特点
+4.3.1 数据格式和指令格式
+4.3.2 指令分类
+4.3.3 特殊功能寄存器
+4.3.4 高速缓存控制
+4.4 BSP 最小系统设计
+4.4.1 BOOT ROM 配置编程
+4.4.2 程序存储区 Flash 配置
+4.4.3 SDRAM 初始化
+4.4.4 CPU 初始化
+4.4.5 系统软复位
+4.5 接口驱动设计
+4.5.1 MPC8260 SCC1-Ethernet 接口的设计
+4.5.2 MPC8260 SMC1-RS232 接口的设计
+4.6 BSP 的调试和测试
+4.6.1 测试内容
+4.6.2 测试项目及结果</p>
 
 
-<h2 class="relative group">环境配置 
-    <div id="%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE" class="anchor"></div>
+<h2 class="relative group">第 5 章 VxWorks 系统开发环境 Tornado 
+    <div id="%E7%AC%AC-5-%E7%AB%A0-vxworks-%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83-tornado" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#%E7%AC%AC-5-%E7%AB%A0-vxworks-%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83-tornado" aria-label="锚点">#</a>
     </span>        
     
 </h2>
-<p>在本实时应用系统中采用486机作为目标机，串口通信时目标机VxWorks系统启动盘的制作步骤：</p>
-<ol>
-<li>
-<p>修改通用配置文件<code>Tornado\target\config\pc486\config.h</code>。在config.h文件中加入以下宏定义：</p>
-</li>
-<li>
-<p>在Tornado集成环境中执行菜单命令<code>Project &gt; Make PC486 &gt; Common Targets &gt; clean</code>删除以前生成的文件，执行菜单命令<code>Project &gt; Make PC486 &gt; Boot Rom Targets &gt; bootrom_uncmp</code>编译链接生成<code>bootrom_uncmp</code> ；再选择<code>VxWorks Target</code>,编译生成<code>vxworks</code>；</p>
-</li>
-<li>
-<p>拷贝<code>Tornado\target\config\pc486\bootrom_uncmp</code>至<code>Tornado\host\bin</code>下</p>
-</li>
-<li>
-<p>重命名文件<code>bootrom_uncmp</code>为<code>bootrom</code>；</p>
-</li>
-<li>
-<p>准备一张已格式化的空盘插入软驱；</p>
-</li>
-<li>
-<p>在目录<code>Tornado\host\bin</code>下执行命令 <code>mkboot a: bootrom</code>；</p>
-</li>
-<li>
-<p>拷贝<code>Tornado\target\config\pc486\VxWorks</code>至软盘；</p>
-</li>
-<li>
-<p>将系统制作盘插入目标机软驱，加电启动目标机即载入<code>VxWork.st</code>系统。[3]</p>
-</li>
-</ol>
+<p>5.1 Tornado  开发环境概述
+5.2 Tornado 开发环境的安装
+5.2.1 安装 Tornado 开发环境
+5.2.2 注册 Tornado 开发环境
+5.3 初步使用 Tornado 环境
+5.3.1 Tornado 工程的类型
+5.3.2 启动 Tornado 环境
+5.3.3 创建工作区和工程
+5.3.4 添加文件到工作区和工程
+5.3.5 编译工程
+5.3.6 下载工程到  VxWorks 目标模拟器
+5.3.7 在 Tornado Shell 下运行应用程序
+5.4 监视与调试
+5.4.1 检查内存消耗
+5.4.2 软件逻辑分析
+5.4.3 应用程序调试</p>
 
 
-<h2 class="relative group">程序示例 
-    <div id="%E7%A8%8B%E5%BA%8F%E7%A4%BA%E4%BE%8B" class="anchor"></div>
+<h2 class="relative group">第 6 章 VxWorks 系统编译器 
+    <div id="%E7%AC%AC-6-%E7%AB%A0-vxworks-%E7%B3%BB%E7%BB%9F%E7%BC%96%E8%AF%91%E5%99%A8" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E7%A8%8B%E5%BA%8F%E7%A4%BA%E4%BE%8B" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#%E7%AC%AC-6-%E7%AB%A0-vxworks-%E7%B3%BB%E7%BB%9F%E7%BC%96%E8%AF%91%E5%99%A8" aria-label="锚点">#</a>
     </span>        
     
 </h2>
+<p>6.1 Make 管理项目概述
+6.2 编写 Makefile 的规则
+6.2.1 虚拟目标
+6.2.2 Makefile 的变量
+6.2.3 make 的变量
+6.2.4 隐式规则
+6.2.5 模式规则
+6.3 Make 命令
+6.4 Makefile 实例分析
+6.5 Gcc 的基本概念
+6.6 Gcc 命令
+6.7 Gcc 扩展</p>
 
 
-<h3 class="relative group">在程序中加入下列头文件 
-    <div id="%E5%9C%A8%E7%A8%8B%E5%BA%8F%E4%B8%AD%E5%8A%A0%E5%85%A5%E4%B8%8B%E5%88%97%E5%A4%B4%E6%96%87%E4%BB%B6" class="anchor"></div>
+<h2 class="relative group">第 7 章 VxWorks 系统应用实例 
+    <div id="%E7%AC%AC-7-%E7%AB%A0-vxworks-%E7%B3%BB%E7%BB%9F%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E5%9C%A8%E7%A8%8B%E5%BA%8F%E4%B8%AD%E5%8A%A0%E5%85%A5%E4%B8%8B%E5%88%97%E5%A4%B4%E6%96%87%E4%BB%B6" aria-label="锚点">#</a>
-    </span>        
-    
-</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;vxWorks.h&#34;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;strLib.h&#34;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;string.h&#34;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;sioLib.h&#34;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;ioLib.h&#34;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;stdio.h&#34;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;ioctl.h&#34;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;selectLib.h&#34;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;types/vxTypesOld.h&#34;</span><span class="cp">
-</span></span></span></code></pre></div>
-
-<h3 class="relative group">打开串口 
-    <div id="%E6%89%93%E5%BC%80%E4%B8%B2%E5%8F%A3" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E6%89%93%E5%BC%80%E4%B8%B2%E5%8F%A3" aria-label="锚点">#</a>
-    </span>        
-    
-</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">open_com1</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="c1">//打开串口1函数
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">sfd</span><span class="err">；</span><span class="c1">//串口设备文件描述符
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="n">sfd</span> <span class="o">=</span><span class="nf">open</span><span class="p">(</span><span class="err">”／</span><span class="n">tyCo</span><span class="err">／</span><span class="mi">0</span><span class="err">”，</span><span class="mi">0</span><span class="n">_RDWR</span><span class="err">，</span><span class="mi">0</span><span class="p">)</span><span class="err">；</span><span class="c1">//打开串口并返回串口设备文件描述符
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="n">sfd</span> <span class="o">==</span><span class="n">ERROR</span><span class="p">)</span> <span class="c1">//如果不能打开串口1则打印出错信息
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="nf">printf</span><span class="p">(</span><span class="s">&#34;You can’t open port com1 !&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div>
-
-<h3 class="relative group">配置串口 
-    <div id="%E9%85%8D%E7%BD%AE%E4%B8%B2%E5%8F%A3" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E9%85%8D%E7%BD%AE%E4%B8%B2%E5%8F%A3" aria-label="锚点">#</a>
-    </span>        
-    
-</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">config_com1</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="c1">//串口1配置函数
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">ioctl</span><span class="p">(</span><span class="n">sfd</span><span class="p">,</span><span class="n">FIOSETOPTIONS</span><span class="p">,</span><span class="n">OPT_LINE</span><span class="p">);</span> <span class="c1">//设置串口工作模式为行模式：LINE_MODE
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl">    <span class="nf">ioctl</span><span class="p">(</span><span class="n">sfd</span><span class="p">,</span><span class="n">FIOBAUDRATE</span><span class="p">,</span><span class="mi">9600</span><span class="p">);</span> <span class="c1">//设置串口波特率为9600bps
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
-</span></span><span class="line"><span class="cl">    <span class="nf">ioctl</span><span class="p">(</span><span class="n">sfd</span><span class="p">,</span><span class="n">FIOFLUSH</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span> <span class="c1">//清空输入输出缓冲
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
-</span></span><span class="line"><span class="cl">    <span class="nf">ioctl</span><span class="p">(</span><span class="n">sfd</span><span class="p">,</span><span class="n">SIO_HW_OPTS_SET</span><span class="p">,</span><span class="n">CS8</span><span class="o">|</span><span class="n">STOPB</span><span class="o">|</span><span class="n">PARENB</span><span class="o">|</span><span class="n">PARODD</span><span class="p">);</span> <span class="c1">//设置 8 位数据位，2位停止位，带校验位，奇校验
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
-</span></span></code></pre></div>
-
-<h3 class="relative group">串口接收数据 
-    <div id="%E4%B8%B2%E5%8F%A3%E6%8E%A5%E6%94%B6%E6%95%B0%E6%8D%AE" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E4%B8%B2%E5%8F%A3%E6%8E%A5%E6%94%B6%E6%95%B0%E6%8D%AE" aria-label="锚点">#</a>
-    </span>        
-    
-</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">accept</span> <span class="nf">_com1</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="c1">//从串口1接收数据函数
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">char</span> <span class="o">*</span> <span class="n">accept</span> <span class="n">_buf</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="nf">FD_ZERO</span><span class="p">(</span><span class="o">&amp;</span><span class="n">fds_data</span><span class="p">);</span><span class="c1">//位码置零
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        
-</span></span><span class="line"><span class="cl">        <span class="nf">FD_SET</span><span class="p">(</span><span class="n">sfd</span><span class="p">,</span><span class="o">&amp;</span><span class="n">fds_data</span><span class="p">);</span><span class="c1">//初始化位码
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        
-</span></span><span class="line"><span class="cl">        <span class="n">width</span><span class="err">＝</span><span class="n">sfd</span> <span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="c1">//任务阻塞等待读串口准备完毕；
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        
-</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="nf">select</span><span class="p">(</span><span class="n">width</span><span class="err">，</span><span class="o">&amp;</span><span class="n">fds_data</span><span class="err">，</span><span class="nb">NULL</span><span class="err">，</span><span class="nb">NULL</span><span class="err">，</span><span class="nb">NULL</span><span class="p">)</span><span class="o">==</span><span class="n">ERROR</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">            <span class="k">return</span><span class="p">(</span><span class="n">ERROR</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        
-</span></span><span class="line"><span class="cl">        <span class="nf">read</span><span class="p">(</span><span class="n">sfd</span><span class="p">,</span> <span class="n">accept</span> <span class="n">_buf</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">accept</span> <span class="n">_buf</span><span class="p">));</span> <span class="c1">//从串口读字符
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        
-</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;accept message is : %s &#34;</span><span class="n">n</span><span class="s">&#34;n&#34;</span><span class="p">,</span> <span class="n">accept</span> <span class="n">_buf</span><span class="p">);</span> <span class="c1">//输出接收到的信息
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div>
-
-<h3 class="relative group">串口发送数据 
-    <div id="%E4%B8%B2%E5%8F%A3%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E4%B8%B2%E5%8F%A3%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE" aria-label="锚点">#</a>
-    </span>        
-    
-</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">send_com1</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="c1">//向串口1发送数据函数
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="o">*</span><span class="n">send_buf</span> <span class="o">=</span><span class="s">&#34; Data had accept!&#34;</span><span class="p">;</span> <span class="c1">//待发送数据
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl">    <span class="c1">//任务阻塞等待写串口准备完毕
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="nf">select</span><span class="p">(</span><span class="n">width</span><span class="err">，</span><span class="nb">NULL</span><span class="err">，＆</span><span class="n">data_fds</span><span class="err">，</span><span class="nb">NULL</span><span class="p">,</span><span class="nb">NULL</span><span class="o">==</span><span class="n">ERROR</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">(</span><span class="n">ERROR</span><span class="p">)</span> <span class="p">;</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nf">FD_ISSET</span><span class="p">(</span><span class="n">sfd</span><span class="err">，</span><span class="o">&amp;</span><span class="n">fds_data</span><span class="p">))</span> <span class="c1">//检查串口准备好就向串口写数据
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">write</span><span class="p">(</span><span class="n">sfd</span><span class="err">，</span><span class="n">send_buf</span><span class="err">，</span><span class="k">sizeof</span><span class="p">(</span><span class="n">send_buf</span><span class="p">))</span> <span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div>
-
-<h3 class="relative group">关闭串口 
-    <div id="%E5%85%B3%E9%97%AD%E4%B8%B2%E5%8F%A3" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E5%85%B3%E9%97%AD%E4%B8%B2%E5%8F%A3" aria-label="锚点">#</a>
-    </span>        
-    
-</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="nf">close</span><span class="p">(</span><span class="n">sfd</span><span class="p">)</span><span class="err">；</span>
-</span></span></code></pre></div>
-
-<h2 class="relative group">结束语 
-    <div id="%E7%BB%93%E6%9D%9F%E8%AF%AD" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E7%BB%93%E6%9D%9F%E8%AF%AD" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#%E7%AC%AC-7-%E7%AB%A0-vxworks-%E7%B3%BB%E7%BB%9F%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B" aria-label="锚点">#</a>
     </span>        
     
 </h2>
-<p>RS-232串口通信虽速率不高，但RS-422标准串行口通信则采用了双线传输，大大增加了抗共模干扰的能力，最大数据传输速度可以达到10Mb/s，这对于远程数据交换具有极大的优势。</p>
-<p>本文描述了在实时操作系统VxWorks中利用串口实现数据通信的方法，并给出了示例程序，目前已经在我们开发的风洞测控系统中获得了应用。该方法可将其串口通信可适用于工业控制等多方面，具有广泛的适应性。在嵌入式实时操作系统中使用串口通信，不仅可扩展嵌入式设备通信能力，而且可扩大其的应用范围。</p>
-
-
-<h2 class="relative group">参考文献： 
-    <div id="%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE" aria-label="锚点">#</a>
-    </span>        
-    
-</h2>
-<ul>
-<li>孔祥营，柏桂枝．嵌入式实时操作系统vxworks及其开发环境Tornodo[M]．北京:中国电力出版社，2002.01</li>
-<li>陈智育，温彦军，陈琪编著VxWorks程序开发实践. 北京:人民邮电出版社，2004.05</li>
-<li>李方敏编著VxWorks高级程序设计. 北京:清华大学出版社，2004.05</li>
-</ul>
-<p>原文地址: <a href="https://www.vxworks.net/app/48-design-and-implementation-of-uart-communication-application-based-on-vxworks#google_vignette" target="_blank">基于VxWorks实时操作系统的串口通信程序设计与实现</a></p>
-<p><a href="https://www.filemail.com/d/uonbbilvctohocl" download>Download the file</a></p>
+<p>7.1 VxWorks 系统中的任务划分
+7.2 任务间通信机制
+7.3 Wind 内核功能
+7.4 中断处理
+7.5 Sockets 通信
+7.6 任务多实例应用
+7.7 C++应用
+7.8 数据报应用
+7.9 虚拟内存设备驱动
+7.10 RamDisk 驱动
+7.11 WDB 应用
+7.12 任务软调度实例一
+7.13 任务软调度实例二</p>
+</div>
 
           
           
@@ -959,6 +876,25 @@
         
 
         
+<details style="margin-left:0px" class="mt-2 mb-5 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5">
+    
+    <summary
+        class="py-1 text-lg font-semibold cursor-pointer bg-primary-200 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-primary-800 dark:text-neutral-100">
+        book - 这篇文章属于一个选集。
+    </summary>
+    
+    
+    
+    <div
+        class="py-1 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+        § 1: 本文
+    </div>
+    
+    
+
+
+</details>
+
         
   
   <section class="flex flex-row flex-wrap justify-center pt-4 text-xl">
@@ -967,7 +903,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.vxworks7.com/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/&amp;title=%e5%9f%ba%e4%ba%8eVxWorks%e5%ae%9e%e6%97%b6%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e7%9a%84%e4%b8%b2%e5%8f%a3%e9%80%9a%e4%bf%a1%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1%e4%b8%8e%e5%ae%9e%e7%8e%b0"
+      href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.vxworks7.com/book/embedded-vxworks-system-design-and-application/&amp;title=%e5%b5%8c%e5%85%a5%e5%bc%8f%20VxWorks%20%e7%b3%bb%e7%bb%9f%e5%bc%80%e5%8f%91%e4%b8%8e%e5%ba%94%e7%94%a8"
       title="分享到 LinkedIn"
       aria-label="分享到 LinkedIn"
       >
@@ -986,7 +922,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://twitter.com/intent/tweet/?url=https://www.vxworks7.com/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/&amp;text=%e5%9f%ba%e4%ba%8eVxWorks%e5%ae%9e%e6%97%b6%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e7%9a%84%e4%b8%b2%e5%8f%a3%e9%80%9a%e4%bf%a1%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1%e4%b8%8e%e5%ae%9e%e7%8e%b0"
+      href="https://twitter.com/intent/tweet/?url=https://www.vxworks7.com/book/embedded-vxworks-system-design-and-application/&amp;text=%e5%b5%8c%e5%85%a5%e5%bc%8f%20VxWorks%20%e7%b3%bb%e7%bb%9f%e5%bc%80%e5%8f%91%e4%b8%8e%e5%ba%94%e7%94%a8"
       title="分享到 Twitter"
       aria-label="分享到 Twitter"
       >
@@ -1004,7 +940,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://bsky.app/intent/compose?text=%e5%9f%ba%e4%ba%8eVxWorks%e5%ae%9e%e6%97%b6%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e7%9a%84%e4%b8%b2%e5%8f%a3%e9%80%9a%e4%bf%a1%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1%e4%b8%8e%e5%ae%9e%e7%8e%b0&#43;https://www.vxworks7.com/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/"
+      href="https://bsky.app/intent/compose?text=%e5%b5%8c%e5%85%a5%e5%bc%8f%20VxWorks%20%e7%b3%bb%e7%bb%9f%e5%bc%80%e5%8f%91%e4%b8%8e%e5%ba%94%e7%94%a8&#43;https://www.vxworks7.com/book/embedded-vxworks-system-design-and-application/"
       title=""
       aria-label=""
       >
@@ -1022,7 +958,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://s2f.kytta.dev/?text=%e5%9f%ba%e4%ba%8eVxWorks%e5%ae%9e%e6%97%b6%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e7%9a%84%e4%b8%b2%e5%8f%a3%e9%80%9a%e4%bf%a1%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1%e4%b8%8e%e5%ae%9e%e7%8e%b0%20https://www.vxworks7.com/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/"
+      href="https://s2f.kytta.dev/?text=%e5%b5%8c%e5%85%a5%e5%bc%8f%20VxWorks%20%e7%b3%bb%e7%bb%9f%e5%bc%80%e5%8f%91%e4%b8%8e%e5%ba%94%e7%94%a8%20https://www.vxworks7.com/book/embedded-vxworks-system-design-and-application/"
       title=""
       aria-label=""
       >
@@ -1041,7 +977,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://reddit.com/submit/?url=https://www.vxworks7.com/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/&amp;resubmit=true&amp;title=%e5%9f%ba%e4%ba%8eVxWorks%e5%ae%9e%e6%97%b6%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e7%9a%84%e4%b8%b2%e5%8f%a3%e9%80%9a%e4%bf%a1%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1%e4%b8%8e%e5%ae%9e%e7%8e%b0"
+      href="https://reddit.com/submit/?url=https://www.vxworks7.com/book/embedded-vxworks-system-design-and-application/&amp;resubmit=true&amp;title=%e5%b5%8c%e5%85%a5%e5%bc%8f%20VxWorks%20%e7%b3%bb%e7%bb%9f%e5%bc%80%e5%8f%91%e4%b8%8e%e5%ba%94%e7%94%a8"
       title="提交到 Reddit"
       aria-label="提交到 Reddit"
       >
@@ -1060,7 +996,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.vxworks7.com/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/&amp;description=%e5%9f%ba%e4%ba%8eVxWorks%e5%ae%9e%e6%97%b6%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e7%9a%84%e4%b8%b2%e5%8f%a3%e9%80%9a%e4%bf%a1%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1%e4%b8%8e%e5%ae%9e%e7%8e%b0"
+      href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.vxworks7.com/book/embedded-vxworks-system-design-and-application/&amp;description=%e5%b5%8c%e5%85%a5%e5%bc%8f%20VxWorks%20%e7%b3%bb%e7%bb%9f%e5%bc%80%e5%8f%91%e4%b8%8e%e5%ba%94%e7%94%a8"
       title="钉到 Pinterest"
       aria-label="钉到 Pinterest"
       >
@@ -1079,7 +1015,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://www.facebook.com/sharer/sharer.php?u=https://www.vxworks7.com/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/&amp;quote=%e5%9f%ba%e4%ba%8eVxWorks%e5%ae%9e%e6%97%b6%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e7%9a%84%e4%b8%b2%e5%8f%a3%e9%80%9a%e4%bf%a1%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1%e4%b8%8e%e5%ae%9e%e7%8e%b0"
+      href="https://www.facebook.com/sharer/sharer.php?u=https://www.vxworks7.com/book/embedded-vxworks-system-design-and-application/&amp;quote=%e5%b5%8c%e5%85%a5%e5%bc%8f%20VxWorks%20%e7%b3%bb%e7%bb%9f%e5%bc%80%e5%8f%91%e4%b8%8e%e5%ba%94%e7%94%a8"
       title="分享到 Facebook"
       aria-label="分享到 Facebook"
       >
@@ -1098,7 +1034,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="mailto:?body=https://www.vxworks7.com/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/&amp;subject=%e5%9f%ba%e4%ba%8eVxWorks%e5%ae%9e%e6%97%b6%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e7%9a%84%e4%b8%b2%e5%8f%a3%e9%80%9a%e4%bf%a1%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1%e4%b8%8e%e5%ae%9e%e7%8e%b0"
+      href="mailto:?body=https://www.vxworks7.com/book/embedded-vxworks-system-design-and-application/&amp;subject=%e5%b5%8c%e5%85%a5%e5%bc%8f%20VxWorks%20%e7%b3%bb%e7%bb%9f%e5%bc%80%e5%8f%91%e4%b8%8e%e5%ba%94%e7%94%a8"
       title="通过电子邮件发送"
       aria-label="通过电子邮件发送"
       >
@@ -1117,7 +1053,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://api.whatsapp.com/send?text=https://www.vxworks7.com/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/&amp;resubmit=true&amp;title=%e5%9f%ba%e4%ba%8eVxWorks%e5%ae%9e%e6%97%b6%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e7%9a%84%e4%b8%b2%e5%8f%a3%e9%80%9a%e4%bf%a1%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1%e4%b8%8e%e5%ae%9e%e7%8e%b0"
+      href="https://api.whatsapp.com/send?text=https://www.vxworks7.com/book/embedded-vxworks-system-design-and-application/&amp;resubmit=true&amp;title=%e5%b5%8c%e5%85%a5%e5%bc%8f%20VxWorks%20%e7%b3%bb%e7%bb%9f%e5%bc%80%e5%8f%91%e4%b8%8e%e5%ba%94%e7%94%a8"
       title=""
       aria-label=""
       >
@@ -1136,7 +1072,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://t.me/share/url?url=https://www.vxworks7.com/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/&amp;resubmit=true&amp;title=%e5%9f%ba%e4%ba%8eVxWorks%e5%ae%9e%e6%97%b6%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e7%9a%84%e4%b8%b2%e5%8f%a3%e9%80%9a%e4%bf%a1%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1%e4%b8%8e%e5%ae%9e%e7%8e%b0"
+      href="https://t.me/share/url?url=https://www.vxworks7.com/book/embedded-vxworks-system-design-and-application/&amp;resubmit=true&amp;title=%e5%b5%8c%e5%85%a5%e5%bc%8f%20VxWorks%20%e7%b3%bb%e7%bb%9f%e5%bc%80%e5%8f%91%e4%b8%8e%e5%ba%94%e7%94%a8"
       title=""
       aria-label=""
       >
@@ -1159,6 +1095,118 @@
 
 <h2 class="mt-8 text-2xl font-extrabold mb-10">相关文章</h2>
 <section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+  
+  
+
+  <a href="/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/featured-vxworks-uart-programming_hu4235903992493125735.png);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/">基于VxWorks实时操作系统的串口通信程序设计与实现</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-11-02T11:18:25&#43;08:00">2024-11-02</time>
+  
+
+  
+  
+</div>
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/vxworks/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    VxWorks
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/uart/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    UART
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+
   
   
 
@@ -1384,126 +1432,6 @@
   </a>
 
   
-  
-
-  <a href="/app/vxworks-7-app-auto-boot-method/" class="min-w-full">
-    
-    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
-        
-        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/app/vxworks-7-app-auto-boot-method/featured-VxWorks-7-Encryption_hu7140100050986056199.jpg);"></div>
-        
-      
-
-      <div class="px-6 py-4">
-
-        
-        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
-          href="/app/vxworks-7-app-auto-boot-method/">VxWorks 7自启动应用程序的四种方法</div>
-        
-
-        <div class="text-sm text-neutral-500 dark:text-neutral-400">
-          
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="flex flex-row flex-wrap items-center">
-  
-  
-  <time datetime="2024-10-20T17:02:57&#43;08:00">2024-10-20</time>
-  
-
-  
-  
-</div>
-
-
-
-
-
-<div class="flex flex-row flex-wrap items-center">
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/vxworks/&#34;,'_self');">
-    <span class="flex" style="cursor: pointer;">
-  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    VxWorks
-  </span>
-</span>
-  </span>
-  
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/vsb/&#34;,'_self');">
-    <span class="flex" style="cursor: pointer;">
-  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    VSB
-  </span>
-</span>
-  </span>
-  
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/vip/&#34;,'_self');">
-    <span class="flex" style="cursor: pointer;">
-  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    VIP
-  </span>
-</span>
-  </span>
-  
-  
-  
-  
-</div>
-
-
-
-
-        </div>
-
-        
-      </div>
-      <div class="px-6 pt-4 pb-2">
-
-      </div>
-    </div>
-  </a>
-
-  
 </section>
 
   
@@ -1517,8 +1445,8 @@
           
         
       <script>
-        var oid = "views_app\/design-and-implementation-of-uart-communication-application-based-on-vxworks\/index.md"
-        var oid_likes = "likes_app\/design-and-implementation-of-uart-communication-application-based-on-vxworks\/index.md"
+        var oid = "views_book\/embedded-vxworks-system-design-and-application\/index.md"
+        var oid_likes = "likes_book\/embedded-vxworks-system-design-and-application\/index.md"
       </script>
       
       
@@ -1529,43 +1457,6 @@
   <footer class="pt-8 max-w-prose print:hidden">
 
     
-  
-    
-    
-    
-    <div class="pt-8">
-      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
-      <div class="flex justify-between pt-3">
-        <span>
-          
-            <a class="flex group mr-3" href="/app/design-of-multiple-timers-in-vxworks/">
-              <span
-                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
-                >&larr;</span
-              >
-              <span
-                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
-                >&rarr;</span
-              >
-              <span class="flex flex-col">
-                <span
-                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >VxWorks下的多重定时器设计</span
-                >
-                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
-                  
-                    <time datetime="2024-10-24T23:11:01&#43;08:00">2024-10-24</time>
-                  
-                </span>
-              </span>
-            </a>
-          
-        </span>
-        <span>
-          
-        </span>
-      </div>
-    </div>
   
 
 

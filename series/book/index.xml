@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Book on VxWorks 7 the Leading RTOS</title>
+    <link>https://www.vxworks7.com/series/book/</link>
+    <description>Recent content in Book on VxWorks 7 the Leading RTOS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2024 </copyright>
+    <lastBuildDate>Sat, 02 Nov 2024 21:40:33 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/series/book/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>嵌入式 VxWorks 系统开发与应用</title>
+      <link>https://www.vxworks7.com/book/embedded-vxworks-system-design-and-application/</link>
+      <pubDate>Sat, 02 Nov 2024 21:40:33 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/book/embedded-vxworks-system-design-and-application/</guid>
+      <description>&lt;p&gt;本书详细介绍了当今流行的嵌入式&lt;a href=&#34;https://www.vxworks.net&#34; target=&#34;_blank&#34;&gt;操作系统VxWorks&lt;/a&gt;，首先概括 VxWorks 操作系统的基本知识，如任务管理、任务间通信机制、内存管理以及定时管理等内容，说明了嵌入式操作系统的实现关键。然后，结合作者多年的嵌入式系统的开发应用经验，详细阐述了 VxWorks 系统中 BSP 和应用的开发技巧，并提供了多个应用实例及分析设计。&lt;/p&gt;
+&lt;p&gt;本书适用于嵌入式系统开发人员作为参考手册使用&lt;/p&gt;
+&lt;div&gt;
+## 第 1 章 概述
+&lt;p&gt;1.1 嵌入式实时操作系统 VxWorks
+1.1.1 VxWorks 的应用领域
+1.1.2 VxWorks 系统的特点
+1.1.3 VxWorks 的可用主机/目标机
+1.2 Tornado 开发环境
+1.2.1 Tornado 核心工具
+1.2.2 WindPower 工具
+1.3 Tornado 嵌入式开发系统可选组件
+1.3.1 板级支持包 BSP Developer&amp;rsquo;s Kit
+1.3.2 虚拟内存接口 VxVMI
+1.3.3 支持紧耦合共享内存多处理器结构的 VxMP
+1.3.4 支持紧耦合分布式多处理器结构的 VxDCOM
+1.3.5 支持松耦合分布式多处理器结构的 VxFUSION
+1.3.6 闪存文件系统 TrueFFS for Tornado&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>
