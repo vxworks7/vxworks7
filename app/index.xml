@@ -7,7 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2024 </copyright>
-    <lastBuildDate>Thu, 24 Oct 2024 23:11:01 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/app/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 02 Nov 2024 11:18:25 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/app/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>基于VxWorks实时操作系统的串口通信程序设计与实现</title>
+      <link>https://www.vxworks7.com/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/</link>
+      <pubDate>Sat, 02 Nov 2024 11:18:25 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/</guid>
+      <description>&lt;blockquote&gt;
+摘要：结合嵌入式实时操作系统 [VxWorks](https://www.vxworks.net)实现风洞测控系统的实际应用,以其中的串口通信为例，讨论了在VxWorks下实现串口通信的关键技术，给出了基本原理、环境配置和程序示例。
+&lt;p&gt;关键词：VxWorks； 实时操作系统； 嵌入式操作系统；串行通信&lt;/p&gt;
+&lt;p&gt;[Abstract] Combining with the application of wind tunnel measure and control system with embedded real-time operating system VxWorks , with the serial communication in it as an example ,the key techniques about realization of the serial communication in VxWorks are discussed. Communication mechanism， environment configure and corresponding program examples are provided. [Key words] VxWorks；RTOS；embedded operating system； Serial Communication&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>VxWorks下的多重定时器设计</title>
       <link>https://www.vxworks7.com/app/design-of-multiple-timers-in-vxworks/</link>

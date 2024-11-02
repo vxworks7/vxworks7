@@ -8,14 +8,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>VxWorks下的多重定时器设计 &middot; VxWorks 7 the Leading RTOS</title>
-  <meta name="title" content="VxWorks下的多重定时器设计 &middot; VxWorks 7 the Leading RTOS" />
+  <title>基于VxWorks实时操作系统的串口通信程序设计与实现 &middot; VxWorks 7 the Leading RTOS</title>
+  <meta name="title" content="基于VxWorks实时操作系统的串口通信程序设计与实现 &middot; VxWorks 7 the Leading RTOS" />
   
-  <meta name="description" content="Design of Multiple Timers in Vxworks" />
-  <meta name="keywords" content="VxWorks, Timer, " />
+  <meta name="description" content="Design and Implementation of UART Communication Application Based on VxWorks" />
+  <meta name="keywords" content="VxWorks, UART, " />
   
   
-  <link rel="canonical" href="https://www.vxworks7.com/app/design-of-multiple-timers-in-vxworks/" />
+  <link rel="canonical" href="https://www.vxworks7.com/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/" />
   
   
   
@@ -66,24 +66,22 @@
   
   
   
-  <meta property="og:url" content="https://www.vxworks7.com/app/design-of-multiple-timers-in-vxworks/">
+  <meta property="og:url" content="https://www.vxworks7.com/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/">
   <meta property="og:site_name" content="VxWorks 7 the Leading RTOS">
-  <meta property="og:title" content="VxWorks下的多重定时器设计">
-  <meta property="og:description" content="Design of Multiple Timers in Vxworks">
+  <meta property="og:title" content="基于VxWorks实时操作系统的串口通信程序设计与实现">
+  <meta property="og:description" content="Design and Implementation of UART Communication Application Based on VxWorks">
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="app">
-    <meta property="article:published_time" content="2024-10-24T23:11:01+08:00">
-    <meta property="article:modified_time" content="2024-10-24T23:11:01+08:00">
+    <meta property="article:published_time" content="2024-11-02T11:18:25+08:00">
+    <meta property="article:modified_time" content="2024-11-02T11:18:25+08:00">
     <meta property="article:tag" content="VxWorks">
-    <meta property="article:tag" content="Timer">
-    <meta property="og:image" content="https://www.vxworks7.com/app/design-of-multiple-timers-in-vxworks/featured-vxworks-the-industry-leader.png">
+    <meta property="article:tag" content="UART">
 
   
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://www.vxworks7.com/app/design-of-multiple-timers-in-vxworks/featured-vxworks-the-industry-leader.png">
-  <meta name="twitter:title" content="VxWorks下的多重定时器设计">
-  <meta name="twitter:description" content="Design of Multiple Timers in Vxworks">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="基于VxWorks实时操作系统的串口通信程序设计与实现">
+  <meta name="twitter:description" content="Design and Implementation of UART Communication Application Based on VxWorks">
 
   
   <script type="application/ld+json">
@@ -91,26 +89,26 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Apps",
-    "name": "VxWorks下的多重定时器设计",
-    "headline": "VxWorks下的多重定时器设计",
-    "description": "Design of Multiple Timers in Vxworks",
-    "abstract": "\u003cp\u003e\u003ca href=\u0022https:\/\/www.vxworks7.com\u0022 target=\u0022_blank\u0022\u003eVxWorks\u003c\/a\u003e是一种嵌入式实时操作系统(\u003ca href=\u0022https:\/\/www.vxworks.net\u0022 target=\u0022_blank\u0022\u003eRTOS\u003c\/a\u003e)，具有内核小、可裁剪、实时性强等特点。VxWorks内核(Wind)提供了共享内存、信号量、消息队列、套接字通信和定时器等多种机制。为了实现基于UDP网络的可靠通信，本文利用VxWorks的多种任务间通信机制和看门狗定时器机制，设计了一种多重定时器模型，该模型可以确保数据包的可靠传递。\u003c\/p\u003e\n\n\n\u003ch2 class=\u0022relative group\u0022\u003eVxWOrks的时钟及定时器机制 \n    \u003cdiv id=\u0022vxworks%E7%9A%84%E6%97%B6%E9%92%9F%E5%8F%8A%E5%AE%9A%E6%97%B6%E5%99%A8%E6%9C%BA%E5%88%B6\u0022 class=\u0022anchor\u0022\u003e\u003c\/div\u003e\n    \n    \u003cspan\n        class=\u0022absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100\u0022\u003e\n        \u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022\n            style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#vxworks%E7%9A%84%E6%97%B6%E9%92%9F%E5%8F%8A%E5%AE%9A%E6%97%B6%E5%99%A8%E6%9C%BA%E5%88%B6\u0022 aria-label=\u0022锚点\u0022\u003e#\u003c\/a\u003e\n    \u003c\/span\u003e        \n    \n\u003c\/h2\u003e\n\n\n\u003ch3 class=\u0022relative group\u0022\u003eVxWorks延时函数 \n    \u003cdiv id=\u0022vxworks%E5%BB%B6%E6%97%B6%E5%87%BD%E6%95%B0\u0022 class=\u0022anchor\u0022\u003e\u003c\/div\u003e\n    \n    \u003cspan\n        class=\u0022absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100\u0022\u003e\n        \u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022\n            style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#vxworks%E5%BB%B6%E6%97%B6%E5%87%BD%E6%95%B0\u0022 aria-label=\u0022锚点\u0022\u003e#\u003c\/a\u003e\n    \u003c\/span\u003e        \n    \n\u003c\/h3\u003e\n\u003cp\u003eVxWorks既提供了延时功能，也提供了时限约束功能。VxWorks系统有2种延时方式：一种是Wind内核提供的taskDelay()函数；另一种是POSIX函数nanosleep()。taskDelay()函数以tick作为延时单位，默认情况下1个tick为16．67 ms(1／60 s)，可以通过调用sysClkRateSet()函数对tick进行重新设定。taskDelay()函数使调用该函数的任务在指定时间内主动放弃CPU，用于任务调度或等待某一外部事件。nanosleep()函数指定一个以s和ns为单位的睡眠或延时时间。其实，两个延时函数的精度是相同的，都是以tick为时间基准。不同之处在于，taskDelay(0)有自身意义，用于相同优先级任务间的任务调度，而nanosleep(0)是没有意义的。\u003c\/p\u003e",
+    "name": "基于VxWorks实时操作系统的串口通信程序设计与实现",
+    "headline": "基于VxWorks实时操作系统的串口通信程序设计与实现",
+    "description": "Design and Implementation of UART Communication Application Based on VxWorks",
+    "abstract": "\u003cblockquote\u003e\n摘要：结合嵌入式实时操作系统 [VxWorks](https:\/\/www.vxworks.net)实现风洞测控系统的实际应用,以其中的串口通信为例，讨论了在VxWorks下实现串口通信的关键技术，给出了基本原理、环境配置和程序示例。\n\u003cp\u003e关键词：VxWorks； 实时操作系统； 嵌入式操作系统；串行通信\u003c\/p\u003e\n\u003cp\u003e[Abstract] Combining with the application of wind tunnel measure and control system with embedded real-time operating system VxWorks , with the serial communication in it as an example ,the key techniques about realization of the serial communication in VxWorks are discussed. Communication mechanism， environment configure and corresponding program examples are provided. [Key words] VxWorks；RTOS；embedded operating system； Serial Communication\u003c\/p\u003e",
     "inLanguage": "zh-cn",
-    "url" : "https:\/\/www.vxworks7.com\/app\/design-of-multiple-timers-in-vxworks\/",
+    "url" : "https:\/\/www.vxworks7.com\/app\/design-and-implementation-of-uart-communication-application-based-on-vxworks\/",
     "author" : {
       "@type": "Person",
       "name": ""
     },
     "copyrightYear": "2024",
-    "dateCreated": "2024-10-24T23:11:01\u002b08:00",
-    "datePublished": "2024-10-24T23:11:01\u002b08:00",
+    "dateCreated": "2024-11-02T11:18:25\u002b08:00",
+    "datePublished": "2024-11-02T11:18:25\u002b08:00",
     
-    "dateModified": "2024-10-24T23:11:01\u002b08:00",
+    "dateModified": "2024-11-02T11:18:25\u002b08:00",
     
-    "keywords": ["VxWorks","Timer"],
+    "keywords": ["VxWorks","UART"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "58"
+    "wordCount": "251"
   }]
   </script>
 
@@ -388,7 +386,7 @@
   <header id="single_header" class="mt-5 max-w-prose">
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-      VxWorks下的多重定时器设计
+      基于VxWorks实时操作系统的串口通信程序设计与实现
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -429,7 +427,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-10-24T23:11:01&#43;08:00">2024-10-24</time>
+  <time datetime="2024-11-02T11:18:25&#43;08:00">2024-11-02</time>
   
 
   
@@ -461,10 +459,10 @@
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/timer/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/uart/&#34;,'_self');">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    Timer
+    UART
   </span>
 </span>
   </span>
@@ -530,20 +528,22 @@
     class="min-w-[220px] py-2 border-dotted ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#vxworks的时钟及定时器机制">VxWOrks的时钟及定时器机制</a>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#vxworks简介">VxWorks简介</a></li>
+    <li><a href="#串口通信基本原理">串口通信基本原理</a></li>
+    <li><a href="#环境配置">环境配置</a></li>
+    <li><a href="#程序示例">程序示例</a>
       <ul>
-        <li><a href="#vxworks延时函数">VxWorks延时函数</a></li>
-        <li><a href="#vxworks定时器机制">VxWorks定时器机制</a></li>
+        <li><a href="#在程序中加入下列头文件">在程序中加入下列头文件</a></li>
+        <li><a href="#打开串口">打开串口</a></li>
+        <li><a href="#配置串口">配置串口</a></li>
+        <li><a href="#串口接收数据">串口接收数据</a></li>
+        <li><a href="#串口发送数据">串口发送数据</a></li>
+        <li><a href="#关闭串口">关闭串口</a></li>
       </ul>
     </li>
-    <li><a href="#多重定时器实现要求">多重定时器实现要求</a></li>
-    <li><a href="#多重定时器设计">多重定时器设计</a>
-      <ul>
-        <li><a href="#设计方案">设计方案</a></li>
-        <li><a href="#主要实现代码">主要实现代码</a></li>
-      </ul>
-    </li>
-    <li><a href="#结-语">结 语</a></li>
+    <li><a href="#结束语">结束语</a></li>
+    <li><a href="#参考文献">参考文献：</a></li>
   </ul>
 </nav>
   </div>
@@ -557,20 +557,22 @@
     class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#vxworks的时钟及定时器机制">VxWOrks的时钟及定时器机制</a>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#vxworks简介">VxWorks简介</a></li>
+    <li><a href="#串口通信基本原理">串口通信基本原理</a></li>
+    <li><a href="#环境配置">环境配置</a></li>
+    <li><a href="#程序示例">程序示例</a>
       <ul>
-        <li><a href="#vxworks延时函数">VxWorks延时函数</a></li>
-        <li><a href="#vxworks定时器机制">VxWorks定时器机制</a></li>
+        <li><a href="#在程序中加入下列头文件">在程序中加入下列头文件</a></li>
+        <li><a href="#打开串口">打开串口</a></li>
+        <li><a href="#配置串口">配置串口</a></li>
+        <li><a href="#串口接收数据">串口接收数据</a></li>
+        <li><a href="#串口发送数据">串口发送数据</a></li>
+        <li><a href="#关闭串口">关闭串口</a></li>
       </ul>
     </li>
-    <li><a href="#多重定时器实现要求">多重定时器实现要求</a></li>
-    <li><a href="#多重定时器设计">多重定时器设计</a>
-      <ul>
-        <li><a href="#设计方案">设计方案</a></li>
-        <li><a href="#主要实现代码">主要实现代码</a></li>
-      </ul>
-    </li>
-    <li><a href="#结-语">结 语</a></li>
+    <li><a href="#结束语">结束语</a></li>
+    <li><a href="#参考文献">参考文献：</a></li>
   </ul>
 </nav>
   </div>
@@ -654,238 +656,271 @@
 
 
         <div class="article-content max-w-prose mb-20">
-          <p><a href="https://www.vxworks7.com" target="_blank">VxWorks</a>是一种嵌入式实时操作系统(<a href="https://www.vxworks.net" target="_blank">RTOS</a>)，具有内核小、可裁剪、实时性强等特点。VxWorks内核(Wind)提供了共享内存、信号量、消息队列、套接字通信和定时器等多种机制。为了实现基于UDP网络的可靠通信，本文利用VxWorks的多种任务间通信机制和看门狗定时器机制，设计了一种多重定时器模型，该模型可以确保数据包的可靠传递。</p>
+          <blockquote>
+摘要：结合嵌入式实时操作系统 [VxWorks](https://www.vxworks.net)实现风洞测控系统的实际应用,以其中的串口通信为例，讨论了在VxWorks下实现串口通信的关键技术，给出了基本原理、环境配置和程序示例。
+<p>关键词：VxWorks； 实时操作系统； 嵌入式操作系统；串行通信</p>
+<p>[Abstract] Combining with the application of wind tunnel measure and control system with embedded real-time operating system VxWorks , with the serial communication in it as an example ,the key techniques about realization of the serial communication in VxWorks are discussed. Communication mechanism， environment configure and corresponding program examples are provided. [Key words] VxWorks；RTOS；embedded operating system； Serial Communication</p>
+</blockquote>
 
 
-<h2 class="relative group">VxWOrks的时钟及定时器机制 
-    <div id="vxworks%E7%9A%84%E6%97%B6%E9%92%9F%E5%8F%8A%E5%AE%9A%E6%97%B6%E5%99%A8%E6%9C%BA%E5%88%B6" class="anchor"></div>
+<h2 class="relative group">前言 
+    <div id="%E5%89%8D%E8%A8%80" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#vxworks%E7%9A%84%E6%97%B6%E9%92%9F%E5%8F%8A%E5%AE%9A%E6%97%B6%E5%99%A8%E6%9C%BA%E5%88%B6" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#%E5%89%8D%E8%A8%80" aria-label="锚点">#</a>
     </span>        
     
 </h2>
+<p>目前市场上比较著名的实时操作系统有：VxWorks、PSOS、Nucleus、QNX、VRTX、Windows CE、Palm 0S、Lynx0S等。 其中，VxWorks是一个具有微内核、可裁剪的高性能强实时操作系统，在实时操作系统市场上处于领先地位。它以其良好的可靠性和卓越的实时性被广泛地应用在通信、军事、航空、航天等高精尖技术及实时性要求极高的领域中，如卫星通讯、弹道制导、飞机导航等。在美国的 F-16战斗机、B-2 隐形轰炸机和爱国者导弹上，甚至火星探测器上都使用了VxWorks实时操作系统。在嵌入式实时操作系统中使用串口通信，不仅可扩展嵌入式设备通信能力，而且可扩大其应用范围。</p>
 
 
-<h3 class="relative group">VxWorks延时函数 
-    <div id="vxworks%E5%BB%B6%E6%97%B6%E5%87%BD%E6%95%B0" class="anchor"></div>
+<h2 class="relative group">VxWorks简介 
+    <div id="vxworks%E7%AE%80%E4%BB%8B" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#vxworks%E5%BB%B6%E6%97%B6%E5%87%BD%E6%95%B0" aria-label="锚点">#</a>
-    </span>        
-    
-</h3>
-<p>VxWorks既提供了延时功能，也提供了时限约束功能。VxWorks系统有2种延时方式：一种是Wind内核提供的taskDelay()函数；另一种是POSIX函数nanosleep()。taskDelay()函数以tick作为延时单位，默认情况下1个tick为16．67 ms(1／60 s)，可以通过调用sysClkRateSet()函数对tick进行重新设定。taskDelay()函数使调用该函数的任务在指定时间内主动放弃CPU，用于任务调度或等待某一外部事件。nanosleep()函数指定一个以s和ns为单位的睡眠或延时时间。其实，两个延时函数的精度是相同的，都是以tick为时间基准。不同之处在于，taskDelay(0)有自身意义，用于相同优先级任务间的任务调度，而nanosleep(0)是没有意义的。</p>
-
-
-<h3 class="relative group">VxWorks定时器机制 
-    <div id="vxworks%E5%AE%9A%E6%97%B6%E5%99%A8%E6%9C%BA%E5%88%B6" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#vxworks%E5%AE%9A%E6%97%B6%E5%99%A8%E6%9C%BA%E5%88%B6" aria-label="锚点">#</a>
-    </span>        
-    
-</h3>
-<p>VxWorks提供一种看门狗定时器机制(watchdogtimer)，可以用来处理任务的时限约束。看门狗定时器作为系统时钟中断服务程序的一部分来维护，因此，看门狗定时器的回调函数以系统时钟中断级作为中断服务程序执行。看门狗定时器回调函数受到中断服务程序的限制，不能调用可能引起阻塞的函数，比如试图获取信号量，调用malloc()和free()等创建和释放内存函数或执行I／O操作。</p>
-<p>POSIX定时器也可以处理任务时限。此外，VxWorks中一些函数具有时限控制的功能，semTake()、msgQSend()、msgQReceive()函数中都有设定时限控制的参数。超时参数NO_WAIT意味着立即返回，而WAIT_FOREVER意味着程序永不超时。</p>
-
-
-<h2 class="relative group">多重定时器实现要求 
-    <div id="%E5%A4%9A%E9%87%8D%E5%AE%9A%E6%97%B6%E5%99%A8%E5%AE%9E%E7%8E%B0%E8%A6%81%E6%B1%82" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E5%A4%9A%E9%87%8D%E5%AE%9A%E6%97%B6%E5%99%A8%E5%AE%9E%E7%8E%B0%E8%A6%81%E6%B1%82" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#vxworks%E7%AE%80%E4%BB%8B" aria-label="锚点">#</a>
     </span>        
     
 </h2>
-<p>在VxWorks系统下，利用网络套接字建立基于UDP协议的客户端／服务器通信模式。由于UDP是无连接的协议，发送方并不清楚发出的数据包是否已经正确到达接收方，于是提出一种支持重传和定时等待确认的协议。</p>
-<p>这个协议要求发送方发送的数据包与接收方回复的确认包具有对应的序列号，发送方和接收方都可以通过序列号来判断是不是想要得到的数据包。序列号是循环的，考虑到如果序列号太小会出现折返情况产生混淆，所以序列号至少大于2。如果用1个字节来表示序列号，则可以设定序列号为256。</p>
-<p>发送方送出一个数据包后启动一个定时器。这时可能会有4种情况发生：</p>
+<p>VxWorks是由wRS(wind River Systems，Inc．)公司开发的一套具有微内核、高性能、可伸缩的实时操作系统，支持广泛的网络通信协议，并能够根据用户的需求进行组合，其开放式的结构和对工业标准的支持使开发者只需做最少的工作即可设计出有效的适合于不同用户要求的系统。除了性能出众的操作系统之外，wRS公司还提供了优秀的实时操作系统开发工具Tornado。Tornado由三个高度集成的部分组成：Tornado工具，一整套强有力的交叉开发工具；VxWorks运行系统，是运行在目标机上的高性能、可裁剪的实时操作系统；连接目标机和宿主机的通信选项，加以太网、串行线路、在线仿真等。Tornado能够支持Windows、Unix等流行的工作平台和PowerPC、X86、ARM等几乎所有的目标处理器，所提供的工具可用于所有目标机，并具有两种调试模式(系统模式和任务模式)。除了基本的功能和开发工具外，Tornado还具有先进的系列网络产品，极大地扩展了Tornado的网络特性，并增强了嵌人式微处理器的网络特性。[1]</p>
+
+
+<h2 class="relative group">串口通信基本原理 
+    <div id="%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>串口在嵌入式系统当中是一类重要的数据通信接口，其本质功能是作为CPU和串行设备间的编码转换器。当数据从CPU经过串行端口发送出去时，字节数据转换为串行的位；在接收数据时，串行的位被转换为字节数据。应用程序要使用串口进行通信，必须在使用之前向操作系统提出资源申请要求(打开串口)，通信完成后必须释放资源(关闭串口)。</p>
+<p>串口通信的优点是开发简单，在传输数据量不大、要求速度不高而传输距离较大的通信场合得到广泛应用。</p>
+<p>在VxWorks中，将I/O系统设计成为任何类型的设备提供一个简单、统一、独立于设备的接口，任何对于串口的操作都可以视为对一个文件的操作，而不必了解串口设备或程序驱动实现的细节。在串口通信软件的设计中，当串口初始化完成后，在使用之前利用open()打开相应串口，然后进行配置。</p>
+<p>VxWorks提供终端和伪终端设备驱动。Tty驱动针对实终端；pty针对仿真终端的程序。Tty设备有两种操作模式：raw模式和line模式。在raw模式下，每个刚从设备输入的字符对读者都是有效的；在line模式下所有输入字符被存储，直到NEWLINE字符输入。设备选项字使用带FIOSETOPTIONS 功能的ioctl()程序来设置。[2]</p>
+<p>配置完成后，依据串口打开时的读写标志，调用函数write()、read()对串口进行只读操作、只写操作或同时进行读写操作。</p>
+<p>为提高数据接收的实时性，可采用中断方式，利用VxWorks提供的select函数的事件触发机制，将读串口的任务阻塞使其一直等待数据，当有数据来到的时候该任务会立刻自动响应，提高系统的实时性。</p>
+
+
+<h2 class="relative group">环境配置 
+    <div id="%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>在本实时应用系统中采用486机作为目标机，串口通信时目标机VxWorks系统启动盘的制作步骤：</p>
 <ol>
-<li>发送方接收到正确序号的确认包，则发送下一序列号的数据包。</li>
-<li>发送方接收到已经接收过的重复确认包，则丢弃该确认包继续等待。如果在超时前收到了正确确认包，则发送下一序列号的数据包。</li>
-<li>定时器超时，没有收到想要的确认包，则重新发送数据包，启动下一定时器。</li>
-<li>设定的多重定时器超时后，没有收到想要确认包，则通知网络管理设备。</li>
+<li>
+<p>修改通用配置文件&quot;&ldquo;Tornado&quot;target&quot;config&quot;pc486&quot;config.h。在config.h文件中加入以下宏定义：</p>
+</li>
+<li>
+<p>在Tornado集成环境中执行菜单命令Project &gt; Make PC486 &gt; Common Targets &gt; clean删除以前生成的文件，执行菜单命令Project &gt; Make PC486 &gt; Boot Rom Targets &gt; bootrom_uncmp编译链接生成bootrom_uncmp ；再选择VxWorks Target,编译生成vxworks；</p>
+</li>
+<li>
+<p>拷贝&quot;&ldquo;Tornado&quot;target&quot;config&quot;pc486&quot;bootrom_uncmp至&quot;&ldquo;Tornado&quot;host&quot;bin下</p>
+</li>
+<li>
+<p>重命名文件bootrom_uncmp为bootrom；</p>
+</li>
+<li>
+<p>准备一张已格式化的空盘插入软驱；</p>
+</li>
+<li>
+<p>在目录&quot;&ldquo;Tornado&quot;host&quot;bin下执行命令 mkboot a: bootrom；</p>
+</li>
+<li>
+<p>拷贝&quot;&ldquo;Tornado&quot;target&quot;config&quot;pc486&quot;VxWorks至软盘；</p>
+</li>
+<li>
+<p>将系统制作盘插入目标机软驱，加电启动目标机即载入VxWorkst系统。[3]</p>
+</li>
 </ol>
-<p>接收方在收到所需序列号的数据包后，回复一个确认包给发送方。如果接收方回复的确认包后没有正确到达发送方，则会引起发送方超时，重新发送原序列号数据包。接收方收到数据包后，需要检查数据包序列号。如果是重复序列号数据包，则丢弃，但是依旧回复确认包给发送方，以免已发送确认包在发送过程中丢失。这里基于支持重传和定时等待确认协议。具体要求是，在客户端通过UDP协议发送数据包后启动一个定时器，等待接收服务器端回复的ACK(acknowl-edgement)确认包。如果成功接收，则继续发送下一序列号的数据包；如果超时后还没有收到需要的确认包，则重新传输原序列号的数据包。图1所示为数据包均按时、正确地接收的情况。</p>
-<p>
-    <figure>
-      <img
-        class="my-0 rounded-md"
-        loading="lazy"
-        srcset="
-        /app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-1_hu12859717912400397884.jpg 330w,
-        /app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-1_hu10370995100846419996.jpg 660w,
-        /app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-1_hu1236158097087675203.jpg 1024w,
-        /app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-1_hu16541064228442202437.jpg 2x"
-        src="/app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-1_hu10370995100846419996.jpg"
-        alt="Multiple Timers in VxWorks"
-      />
-      
-    </figure>
-</p>
-<p>一般情况下，假定启动定时器30 ms内可以完成从发送数据包到接收ACK确认包的全过程，但是由于某些原因使得30 ms内无法收到确认包，则会重传原数据包，并启动一个稍长的40 ms定时器。如果40 ms还无法收到确认，则再次重传原数据包，并启动一个考虑到最差情况的60 ms定时器。如果依旧无法收到确认则不再发送，通知网络管理设备。</p>
-<p>出现定时器超时情况有3种可能：发送方发送数据包过程中丢包；接收方发送确认包过程中丢包；从发送数据包到确认包到达发送方过程中，延时时间超过定时时间。造成超时有两方面原因：一是，双方终端在接收数据包时由于缓冲问题不能及时处理，使得终端出现延时接收数据包或丢包；二是，通信链路发生断链情况，导致双方无法进行通信。从图2中可以看到，如果链路没有断开，则包含3种情况的三重定时器超时情况。</p>
 
 
-<h2 class="relative group">多重定时器设计 
-    <div id="%E5%A4%9A%E9%87%8D%E5%AE%9A%E6%97%B6%E5%99%A8%E8%AE%BE%E8%AE%A1" class="anchor"></div>
+<h2 class="relative group">程序示例 
+    <div id="%E7%A8%8B%E5%BA%8F%E7%A4%BA%E4%BE%8B" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E5%A4%9A%E9%87%8D%E5%AE%9A%E6%97%B6%E5%99%A8%E8%AE%BE%E8%AE%A1" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#%E7%A8%8B%E5%BA%8F%E7%A4%BA%E4%BE%8B" aria-label="锚点">#</a>
     </span>        
     
 </h2>
 
 
-<h3 class="relative group">设计方案 
-    <div id="%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88" class="anchor"></div>
+<h3 class="relative group">在程序中加入下列头文件 
+    <div id="%E5%9C%A8%E7%A8%8B%E5%BA%8F%E4%B8%AD%E5%8A%A0%E5%85%A5%E4%B8%8B%E5%88%97%E5%A4%B4%E6%96%87%E4%BB%B6" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#%E5%9C%A8%E7%A8%8B%E5%BA%8F%E4%B8%AD%E5%8A%A0%E5%85%A5%E4%B8%8B%E5%88%97%E5%A4%B4%E6%96%87%E4%BB%B6" aria-label="锚点">#</a>
     </span>        
     
 </h3>
-<p>选用看门狗定时器机制来设计。看门狗定时器操作较为简单，只有4个函数，即wdCreate()、wdDelete()、wdStart()、wdCancel()。看门狗定时器与调用任务异步执行，并不阻塞调用任务，所以看门狗定时器很适合多任务的非阻塞计时。</p>
-<p>当看门狗定时器启动后，如果在规定的30 ms内收到了正确的确认包，就会将定时器取消掉，继续发送下面的数据包。如果30 ms规定时间内没有收到确认数据包ACK，则需要重新发送数据包，并启动第2个40 ms的定时器。VxWorks中单CPU的任务间常用通信机制是消息队列。当定时器到时后利用消息队列向发送任务发送消息，通知发送任务重新发送数据包，启动下一定时器。看门狗定时器的回调函数可以执行msgQSend()这种向消息队列发送消息的函数，我们通过msgQSend()函数向主任务发送时限已达消息。但是，将msgQSend()的延时参数设为wAIT_FOREVER时，消息队列中一旦没有了可用缓冲，则进入等待状态。由于中断服务程序优先级高，而从消息队列中接收消息的优先级低，当有任务准备从消息队列中取消息时，要等待中断服务程序执行完毕，则消息队列始终处于已满状态，造成系统死锁。如果将msgQSend()函数中的延时参数改为NO_WAIT，则可避免一直等待向消息队列发消息的情况，一旦消息队列已满就将该消息丢弃。但这样一来，向接收端发送数据包任务接收不到定时器超时消息，不会重发原序列号数据包和启动下一定时器，所以使用参数NO_WAIT也不可行。</p>
-<p>
-    <figure>
-      <img
-        class="my-0 rounded-md"
-        loading="lazy"
-        srcset="
-        /app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-2_hu15717747852765826519.jpg 330w,
-        /app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-2_hu7210365204295328239.jpg 660w,
-        /app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-2_hu3938452061242451350.jpg 1024w,
-        /app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-2_hu17474442722205891667.jpg 2x"
-        src="/app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-2_hu7210365204295328239.jpg"
-        alt="Multiple Timers in VxWorks"
-      />
-      
-    </figure>
-</p>
-<p>这里提出一种避免上述情况造成系统死锁的方法，即使用信号量机制来使msgQSend()不在中断服务程序中执行。通过使用信号量的任务间同步机制来实现这个功能。释放信号量函数semGive()不像msgQSend()那样需要在消息队列中等待，一旦执行就可以马上释放信号量，从而避免了冲突。</p>
-<p>由于任务中事件发生有一定间隔，不必选用计数器信号量，所以选用最常用的二进制信号量。首先建立3个先进先出的二进制信号量，设定可调用信号量为空。然后在看门狗定时器的回调函数中使用semGive()函数来释放信号量，重建一个任务在任务起始使用semTake()函数来获取信号量。当获得信号量后，通过msgQSend(，，，WAIT_FOREVER，)函数向消息队列中发送超时消息，而且保证只要消息队列有可用缓冲，就一定可以将消息送出。本文给出一个多重定时器的任务框架，如图3所示。</p>
-<p>
-    <figure>
-      <img
-        class="my-0 rounded-md"
-        loading="lazy"
-        srcset="
-        /app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-3_hu3341661088417355507.jpg 330w,
-        /app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-3_hu2890807275531574361.jpg 660w,
-        /app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-3_hu14418031772633515542.jpg 1024w,
-        /app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-3_hu16788828762206322162.jpg 2x"
-        src="/app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-3_hu2890807275531574361.jpg"
-        alt="Multiple Timers in VxWorks"
-      />
-      
-    </figure>
-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;vxWorks.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;strLib.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;string.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;sioLib.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;ioLib.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;stdio.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;ioctl.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;selectLib.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;types/vxTypesOld.h&#34;</span><span class="cp">
+</span></span></span></code></pre></div>
 
-
-<h3 class="relative group">主要实现代码 
-    <div id="%E4%B8%BB%E8%A6%81%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81" class="anchor"></div>
+<h3 class="relative group">打开串口 
+    <div id="%E6%89%93%E5%BC%80%E4%B8%B2%E5%8F%A3" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E4%B8%BB%E8%A6%81%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#%E6%89%93%E5%BC%80%E4%B8%B2%E5%8F%A3" aria-label="锚点">#</a>
     </span>        
     
 </h3>
-<p>
-    <figure>
-      <img
-        class="my-0 rounded-md"
-        loading="lazy"
-        srcset="
-        /app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-4_hu14218740060438543828.jpg 330w,
-        /app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-4_hu5567990887227511421.jpg 660w,
-        /app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-4_hu8811010100996447232.jpg 1024w,
-        /app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-4_hu13404555252716382814.jpg 2x"
-        src="/app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-4_hu5567990887227511421.jpg"
-        alt="Multiple Timers in VxWorks"
-      />
-      
-    </figure>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">open_com1</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="c1">//打开串口1函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">sfd</span><span class="err">；</span><span class="c1">//串口设备文件描述符
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="n">sfd</span> <span class="o">=</span><span class="nf">open</span><span class="p">(</span><span class="err">”／</span><span class="n">tyCo</span><span class="err">／</span><span class="mi">0</span><span class="err">”，</span><span class="mi">0</span><span class="n">_RDWR</span><span class="err">，</span><span class="mi">0</span><span class="p">)</span><span class="err">；</span><span class="c1">//打开串口并返回串口设备文件描述符
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="n">sfd</span> <span class="o">==</span><span class="n">ERROR</span><span class="p">)</span> <span class="c1">//如果不能打开串口1则打印出错信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nf">printf</span><span class="p">(</span><span class="s">&#34;You can’t open port com1 !&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>
 
-
-    <figure>
-      <img
-        class="my-0 rounded-md"
-        loading="lazy"
-        srcset="
-        /app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-5_hu3004633082882917815.jpg 330w,
-        /app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-5_hu17329297417577466719.jpg 660w,
-        /app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-5_hu3141844098910250643.jpg 1024w,
-        /app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-5_hu2383630438218359793.jpg 2x"
-        src="/app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-5_hu17329297417577466719.jpg"
-        alt="Multiple Timers in VxWorks"
-      />
-      
-    </figure>
-
-
-    <figure>
-      <img
-        class="my-0 rounded-md"
-        loading="lazy"
-        srcset="
-        /app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-6_hu10709147588498955475.jpg 330w,
-        /app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-6_hu4929876205820797831.jpg 660w,
-        /app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-6_hu13093372139011201210.jpg 1024w,
-        /app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-6_hu16697204097963501151.jpg 2x"
-        src="/app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-6_hu4929876205820797831.jpg"
-        alt="Multiple Timers in VxWorks"
-      />
-      
-    </figure>
-</p>
-<p>一个三重定时器的主要实现代码如下：</p>
-<p>以上程序中通过sysClkRateSet(100)将最小延时单位tick修改成10 ms，它是几个定时时间(30 ms、40 ms、60ms)的最大公约数。通过抓包软件Ethereal抓包，查看发送时间。以30 ms为例，抓包100次的平均定时时间在25 ms左右。出现这种情况的原因是，延时N个tick实际是延时(N-1)tick~N·tick。由于是等可能概率，则它的数学期望是(N+1／2)。对于tick为10 ms，30 ms即N=3，数学期望为25 ms。示意图如图4所示。</p>
-<p>
-    <figure>
-      <img
-        class="my-0 rounded-md"
-        loading="lazy"
-        srcset="
-        /app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-7_hu3979161639941604684.jpg 330w,
-        /app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-7_hu1348957956580971134.jpg 660w,
-        /app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-7_hu6568107101923574477.jpg 1024w,
-        /app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-7_hu2288171532538841658.jpg 2x"
-        src="/app/design-of-multiple-timers-in-vxworks/vxworks-multiple-timers-7_hu1348957956580971134.jpg"
-        alt="Multiple Timers in VxWorks"
-      />
-      
-    </figure>
-</p>
-<p>延时精度为1／N秒，N越大越精确。于是调用函数synClkRateSet(500)，可以使定时的最大误差不超过2 ms。但是如果时钟频率太高，会造成系统在时钟中断处理方面开销太大，影响系统的任务调度，最好通过实验选用较为合适的时钟频率。这里选用sysClkRate-Set(200)。</p>
-
-
-<h2 class="relative group">结 语 
-    <div id="%E7%BB%93-%E8%AF%AD" class="anchor"></div>
+<h3 class="relative group">配置串口 
+    <div id="%E9%85%8D%E7%BD%AE%E4%B8%B2%E5%8F%A3" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E7%BB%93-%E8%AF%AD" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#%E9%85%8D%E7%BD%AE%E4%B8%B2%E5%8F%A3" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">config_com1</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="c1">//串口1配置函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">ioctl</span><span class="p">(</span><span class="n">sfd</span><span class="p">,</span><span class="n">FIOSETOPTIONS</span><span class="p">,</span><span class="n">OPT_LINE</span><span class="p">);</span> <span class="c1">//设置串口工作模式为行模式：LINE_MODE
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="nf">ioctl</span><span class="p">(</span><span class="n">sfd</span><span class="p">,</span><span class="n">FIOBAUDRATE</span><span class="p">,</span><span class="mi">9600</span><span class="p">);</span> <span class="c1">//设置串口波特率为9600bps
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
+</span></span><span class="line"><span class="cl">    <span class="nf">ioctl</span><span class="p">(</span><span class="n">sfd</span><span class="p">,</span><span class="n">FIOFLUSH</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span> <span class="c1">//清空输入输出缓冲
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
+</span></span><span class="line"><span class="cl">    <span class="nf">ioctl</span><span class="p">(</span><span class="n">sfd</span><span class="p">,</span><span class="n">SIO_HW_OPTS_SET</span><span class="p">,</span><span class="n">CS8</span><span class="o">|</span><span class="n">STOPB</span><span class="o">|</span><span class="n">PARENB</span><span class="o">|</span><span class="n">PARODD</span><span class="p">);</span> <span class="c1">//设置 8 位数据位，2位停止位，带校验位，奇校验
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div>
+
+<h3 class="relative group">串口接收数据 
+    <div id="%E4%B8%B2%E5%8F%A3%E6%8E%A5%E6%94%B6%E6%95%B0%E6%8D%AE" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E4%B8%B2%E5%8F%A3%E6%8E%A5%E6%94%B6%E6%95%B0%E6%8D%AE" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">accept</span> <span class="nf">_com1</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="c1">//从串口1接收数据函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">char</span> <span class="o">*</span> <span class="n">accept</span> <span class="n">_buf</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nf">FD_ZERO</span><span class="p">(</span><span class="o">&amp;</span><span class="n">fds_data</span><span class="p">);</span><span class="c1">//位码置零
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        
+</span></span><span class="line"><span class="cl">        <span class="nf">FD_SET</span><span class="p">(</span><span class="n">sfd</span><span class="p">,</span><span class="o">&amp;</span><span class="n">fds_data</span><span class="p">);</span><span class="c1">//初始化位码
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        
+</span></span><span class="line"><span class="cl">        <span class="n">width</span><span class="err">＝</span><span class="n">sfd</span> <span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="c1">//任务阻塞等待读串口准备完毕；
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="nf">select</span><span class="p">(</span><span class="n">width</span><span class="err">，</span><span class="o">&amp;</span><span class="n">fds_data</span><span class="err">，</span><span class="nb">NULL</span><span class="err">，</span><span class="nb">NULL</span><span class="err">，</span><span class="nb">NULL</span><span class="p">)</span><span class="o">==</span><span class="n">ERROR</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span><span class="p">(</span><span class="n">ERROR</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="nf">read</span><span class="p">(</span><span class="n">sfd</span><span class="p">,</span> <span class="n">accept</span> <span class="n">_buf</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">accept</span> <span class="n">_buf</span><span class="p">));</span> <span class="c1">//从串口读字符
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        
+</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;accept message is : %s &#34;</span><span class="n">n</span><span class="s">&#34;n&#34;</span><span class="p">,</span> <span class="n">accept</span> <span class="n">_buf</span><span class="p">);</span> <span class="c1">//输出接收到的信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>
+
+<h3 class="relative group">串口发送数据 
+    <div id="%E4%B8%B2%E5%8F%A3%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E4%B8%B2%E5%8F%A3%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">send_com1</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="c1">//向串口1发送数据函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="o">*</span><span class="n">send_buf</span> <span class="o">=</span><span class="s">&#34; Data had accept!&#34;</span><span class="p">;</span> <span class="c1">//待发送数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//任务阻塞等待写串口准备完毕
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="nf">select</span><span class="p">(</span><span class="n">width</span><span class="err">，</span><span class="nb">NULL</span><span class="err">，＆</span><span class="n">data_fds</span><span class="err">，</span><span class="nb">NULL</span><span class="p">,</span><span class="nb">NULL</span><span class="o">==</span><span class="n">ERROR</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">(</span><span class="n">ERROR</span><span class="p">)</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nf">FD_ISSET</span><span class="p">(</span><span class="n">sfd</span><span class="err">，</span><span class="o">&amp;</span><span class="n">fds_data</span><span class="p">))</span> <span class="c1">//检查串口准备好就向串口写数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">write</span><span class="p">(</span><span class="n">sfd</span><span class="err">，</span><span class="n">send_buf</span><span class="err">，</span><span class="k">sizeof</span><span class="p">(</span><span class="n">send_buf</span><span class="p">))</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>
+
+<h3 class="relative group">关闭串口 
+    <div id="%E5%85%B3%E9%97%AD%E4%B8%B2%E5%8F%A3" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%85%B3%E9%97%AD%E4%B8%B2%E5%8F%A3" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="nf">close</span><span class="p">(</span><span class="n">sfd</span><span class="p">)</span><span class="err">；</span>
+</span></span></code></pre></div>
+
+<h2 class="relative group">结束语 
+    <div id="%E7%BB%93%E6%9D%9F%E8%AF%AD" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E7%BB%93%E6%9D%9F%E8%AF%AD" aria-label="锚点">#</a>
     </span>        
     
 </h2>
-<p>本文针对VxWorks下UDP网络通信中的可靠传输问题，提出了一个支持重传和定时等待确认的协议，并利用VxWorks系统提供的信号量同步、消息队列和看门狗定时器等多种机制，综合设计了一种可扩展的三重定时器。针对遇到的具体问题，笔者还进行了一定的优化处理。这种多重定时器模型已在笔者所研究的项目中得到利用，验证了其可行性和相对稳定性。这种多重定时器模型并不完全适合所有环境，需要根据具体情况改进和优化。</p>
+<p>RS-232串口通信虽速率不高，但RS-422标准串行口通信则采用了双线传输，大大增加了抗共模干扰的能力，最大数据传输速度可以达到10Mb/s，这对于远程数据交换具有极大的优势。</p>
+<p>本文描述了在实时操作系统VxWorks中利用串口实现数据通信的方法，并给出了示例程序，目前已经在我们开发的风洞测控系统中获得了应用。该方法可将其串口通信可适用于工业控制等多方面，具有广泛的适应性。在嵌入式实时操作系统中使用串口通信，不仅可扩展嵌入式设备通信能力，而且可扩大其的应用范围。</p>
+
+
+<h2 class="relative group">参考文献： 
+    <div id="%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<ul>
+<li>孔祥营，柏桂枝．嵌入式实时操作系统vxworks及其开发环境Tornodo[M]．北京:中国电力出版社，2002.01</li>
+<li>陈智育，温彦军，陈琪编著VxWorks程序开发实践. 北京:人民邮电出版社，2004.05</li>
+<li>李方敏编著VxWorks高级程序设计. 北京:清华大学出版社，2004.05</li>
+</ul>
+<p>原文地址: <a href="https://www.vxworks.net/app/48-design-and-implementation-of-uart-communication-application-based-on-vxworks#google_vignette" target="_blank">基于VxWorks实时操作系统的串口通信程序设计与实现</a></p>
 
           
           
@@ -903,7 +938,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.vxworks7.com/app/design-of-multiple-timers-in-vxworks/&amp;title=VxWorks%e4%b8%8b%e7%9a%84%e5%a4%9a%e9%87%8d%e5%ae%9a%e6%97%b6%e5%99%a8%e8%ae%be%e8%ae%a1"
+      href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.vxworks7.com/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/&amp;title=%e5%9f%ba%e4%ba%8eVxWorks%e5%ae%9e%e6%97%b6%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e7%9a%84%e4%b8%b2%e5%8f%a3%e9%80%9a%e4%bf%a1%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1%e4%b8%8e%e5%ae%9e%e7%8e%b0"
       title="分享到 LinkedIn"
       aria-label="分享到 LinkedIn"
       >
@@ -922,7 +957,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://twitter.com/intent/tweet/?url=https://www.vxworks7.com/app/design-of-multiple-timers-in-vxworks/&amp;text=VxWorks%e4%b8%8b%e7%9a%84%e5%a4%9a%e9%87%8d%e5%ae%9a%e6%97%b6%e5%99%a8%e8%ae%be%e8%ae%a1"
+      href="https://twitter.com/intent/tweet/?url=https://www.vxworks7.com/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/&amp;text=%e5%9f%ba%e4%ba%8eVxWorks%e5%ae%9e%e6%97%b6%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e7%9a%84%e4%b8%b2%e5%8f%a3%e9%80%9a%e4%bf%a1%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1%e4%b8%8e%e5%ae%9e%e7%8e%b0"
       title="分享到 Twitter"
       aria-label="分享到 Twitter"
       >
@@ -940,7 +975,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://bsky.app/intent/compose?text=VxWorks%e4%b8%8b%e7%9a%84%e5%a4%9a%e9%87%8d%e5%ae%9a%e6%97%b6%e5%99%a8%e8%ae%be%e8%ae%a1&#43;https://www.vxworks7.com/app/design-of-multiple-timers-in-vxworks/"
+      href="https://bsky.app/intent/compose?text=%e5%9f%ba%e4%ba%8eVxWorks%e5%ae%9e%e6%97%b6%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e7%9a%84%e4%b8%b2%e5%8f%a3%e9%80%9a%e4%bf%a1%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1%e4%b8%8e%e5%ae%9e%e7%8e%b0&#43;https://www.vxworks7.com/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/"
       title=""
       aria-label=""
       >
@@ -958,7 +993,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://s2f.kytta.dev/?text=VxWorks%e4%b8%8b%e7%9a%84%e5%a4%9a%e9%87%8d%e5%ae%9a%e6%97%b6%e5%99%a8%e8%ae%be%e8%ae%a1%20https://www.vxworks7.com/app/design-of-multiple-timers-in-vxworks/"
+      href="https://s2f.kytta.dev/?text=%e5%9f%ba%e4%ba%8eVxWorks%e5%ae%9e%e6%97%b6%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e7%9a%84%e4%b8%b2%e5%8f%a3%e9%80%9a%e4%bf%a1%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1%e4%b8%8e%e5%ae%9e%e7%8e%b0%20https://www.vxworks7.com/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/"
       title=""
       aria-label=""
       >
@@ -977,7 +1012,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://reddit.com/submit/?url=https://www.vxworks7.com/app/design-of-multiple-timers-in-vxworks/&amp;resubmit=true&amp;title=VxWorks%e4%b8%8b%e7%9a%84%e5%a4%9a%e9%87%8d%e5%ae%9a%e6%97%b6%e5%99%a8%e8%ae%be%e8%ae%a1"
+      href="https://reddit.com/submit/?url=https://www.vxworks7.com/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/&amp;resubmit=true&amp;title=%e5%9f%ba%e4%ba%8eVxWorks%e5%ae%9e%e6%97%b6%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e7%9a%84%e4%b8%b2%e5%8f%a3%e9%80%9a%e4%bf%a1%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1%e4%b8%8e%e5%ae%9e%e7%8e%b0"
       title="提交到 Reddit"
       aria-label="提交到 Reddit"
       >
@@ -996,7 +1031,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.vxworks7.com/app/design-of-multiple-timers-in-vxworks/&amp;description=VxWorks%e4%b8%8b%e7%9a%84%e5%a4%9a%e9%87%8d%e5%ae%9a%e6%97%b6%e5%99%a8%e8%ae%be%e8%ae%a1"
+      href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.vxworks7.com/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/&amp;description=%e5%9f%ba%e4%ba%8eVxWorks%e5%ae%9e%e6%97%b6%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e7%9a%84%e4%b8%b2%e5%8f%a3%e9%80%9a%e4%bf%a1%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1%e4%b8%8e%e5%ae%9e%e7%8e%b0"
       title="钉到 Pinterest"
       aria-label="钉到 Pinterest"
       >
@@ -1015,7 +1050,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://www.facebook.com/sharer/sharer.php?u=https://www.vxworks7.com/app/design-of-multiple-timers-in-vxworks/&amp;quote=VxWorks%e4%b8%8b%e7%9a%84%e5%a4%9a%e9%87%8d%e5%ae%9a%e6%97%b6%e5%99%a8%e8%ae%be%e8%ae%a1"
+      href="https://www.facebook.com/sharer/sharer.php?u=https://www.vxworks7.com/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/&amp;quote=%e5%9f%ba%e4%ba%8eVxWorks%e5%ae%9e%e6%97%b6%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e7%9a%84%e4%b8%b2%e5%8f%a3%e9%80%9a%e4%bf%a1%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1%e4%b8%8e%e5%ae%9e%e7%8e%b0"
       title="分享到 Facebook"
       aria-label="分享到 Facebook"
       >
@@ -1034,7 +1069,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="mailto:?body=https://www.vxworks7.com/app/design-of-multiple-timers-in-vxworks/&amp;subject=VxWorks%e4%b8%8b%e7%9a%84%e5%a4%9a%e9%87%8d%e5%ae%9a%e6%97%b6%e5%99%a8%e8%ae%be%e8%ae%a1"
+      href="mailto:?body=https://www.vxworks7.com/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/&amp;subject=%e5%9f%ba%e4%ba%8eVxWorks%e5%ae%9e%e6%97%b6%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e7%9a%84%e4%b8%b2%e5%8f%a3%e9%80%9a%e4%bf%a1%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1%e4%b8%8e%e5%ae%9e%e7%8e%b0"
       title="通过电子邮件发送"
       aria-label="通过电子邮件发送"
       >
@@ -1053,7 +1088,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://api.whatsapp.com/send?text=https://www.vxworks7.com/app/design-of-multiple-timers-in-vxworks/&amp;resubmit=true&amp;title=VxWorks%e4%b8%8b%e7%9a%84%e5%a4%9a%e9%87%8d%e5%ae%9a%e6%97%b6%e5%99%a8%e8%ae%be%e8%ae%a1"
+      href="https://api.whatsapp.com/send?text=https://www.vxworks7.com/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/&amp;resubmit=true&amp;title=%e5%9f%ba%e4%ba%8eVxWorks%e5%ae%9e%e6%97%b6%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e7%9a%84%e4%b8%b2%e5%8f%a3%e9%80%9a%e4%bf%a1%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1%e4%b8%8e%e5%ae%9e%e7%8e%b0"
       title=""
       aria-label=""
       >
@@ -1072,7 +1107,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://t.me/share/url?url=https://www.vxworks7.com/app/design-of-multiple-timers-in-vxworks/&amp;resubmit=true&amp;title=VxWorks%e4%b8%8b%e7%9a%84%e5%a4%9a%e9%87%8d%e5%ae%9a%e6%97%b6%e5%99%a8%e8%ae%be%e8%ae%a1"
+      href="https://t.me/share/url?url=https://www.vxworks7.com/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/&amp;resubmit=true&amp;title=%e5%9f%ba%e4%ba%8eVxWorks%e5%ae%9e%e6%97%b6%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e7%9a%84%e4%b8%b2%e5%8f%a3%e9%80%9a%e4%bf%a1%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1%e4%b8%8e%e5%ae%9e%e7%8e%b0"
       title=""
       aria-label=""
       >
@@ -1095,6 +1130,118 @@
 
 <h2 class="mt-8 text-2xl font-extrabold mb-10">相关文章</h2>
 <section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+  
+  
+
+  <a href="/app/design-of-multiple-timers-in-vxworks/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/app/design-of-multiple-timers-in-vxworks/featured-vxworks-the-industry-leader_hu16393185524054319025.png);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/app/design-of-multiple-timers-in-vxworks/">VxWorks下的多重定时器设计</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-10-24T23:11:01&#43;08:00">2024-10-24</time>
+  
+
+  
+  
+</div>
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/vxworks/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    VxWorks
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/timer/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Timer
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+
   
   
 
@@ -1328,126 +1475,6 @@
   </a>
 
   
-  
-
-  <a href="/app/design-and-implementation-of-avionics-exciter-based-on-vxworks-system/" class="min-w-full">
-    
-    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
-        
-        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/app/design-and-implementation-of-avionics-exciter-based-on-vxworks-system/featured-vxworks-653_hu16472401816576883061.png);"></div>
-        
-      
-
-      <div class="px-6 py-4">
-
-        
-        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
-          href="/app/design-and-implementation-of-avionics-exciter-based-on-vxworks-system/">基于VxWorks 系统的航电激励器设计与实现</div>
-        
-
-        <div class="text-sm text-neutral-500 dark:text-neutral-400">
-          
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="flex flex-row flex-wrap items-center">
-  
-  
-  <time datetime="2024-10-20T15:14:36&#43;08:00">2024-10-20</time>
-  
-
-  
-  
-</div>
-
-
-
-
-
-<div class="flex flex-row flex-wrap items-center">
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/vxworks/&#34;,'_self');">
-    <span class="flex" style="cursor: pointer;">
-  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    VxWorks
-  </span>
-</span>
-  </span>
-  
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/avionics/&#34;,'_self');">
-    <span class="flex" style="cursor: pointer;">
-  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    Avionics
-  </span>
-</span>
-  </span>
-  
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/arinc429/&#34;,'_self');">
-    <span class="flex" style="cursor: pointer;">
-  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    ARINC429
-  </span>
-</span>
-  </span>
-  
-  
-  
-  
-</div>
-
-
-
-
-        </div>
-
-        
-      </div>
-      <div class="px-6 pt-4 pb-2">
-
-      </div>
-    </div>
-  </a>
-
-  
 </section>
 
   
@@ -1461,8 +1488,8 @@
           
         
       <script>
-        var oid = "views_app\/design-of-multiple-timers-in-vxworks\/index.md"
-        var oid_likes = "likes_app\/design-of-multiple-timers-in-vxworks\/index.md"
+        var oid = "views_app\/design-and-implementation-of-uart-communication-application-based-on-vxworks\/index.md"
+        var oid_likes = "likes_app\/design-and-implementation-of-uart-communication-application-based-on-vxworks\/index.md"
       </script>
       
       
@@ -1482,7 +1509,7 @@
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="flex group mr-3" href="/app/vxworks-7-app-auto-boot-method/">
+            <a class="flex group mr-3" href="/app/design-of-multiple-timers-in-vxworks/">
               <span
                 class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
                 >&larr;</span
@@ -1494,11 +1521,11 @@
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >VxWorks 7自启动应用程序的四种方法</span
+                  >VxWorks下的多重定时器设计</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="2024-10-20T17:02:57&#43;08:00">2024-10-20</time>
+                    <time datetime="2024-10-24T23:11:01&#43;08:00">2024-10-24</time>
                   
                 </span>
               </span>
@@ -1506,28 +1533,6 @@
           
         </span>
         <span>
-          
-            <a class="flex text-right group ml-3" href="/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/">
-              <span class="flex flex-col">
-                <span
-                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >基于VxWorks实时操作系统的串口通信程序设计与实现</span
-                >
-                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
-                  
-                    <time datetime="2024-11-02T11:18:25&#43;08:00">2024-11-02</time>
-                  
-                </span>
-              </span>
-              <span
-                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
-                >&rarr;</span
-              >
-              <span
-                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
-                >&larr;</span
-              >
-            </a>
           
         </span>
       </div>

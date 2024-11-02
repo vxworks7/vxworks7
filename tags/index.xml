@@ -7,13 +7,13 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2024 </copyright>
-    <lastBuildDate>Thu, 24 Oct 2024 23:11:01 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 02 Nov 2024 11:18:25 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Timer</title>
-      <link>https://www.vxworks7.com/tags/timer/</link>
-      <pubDate>Thu, 24 Oct 2024 23:11:01 +0800</pubDate>
+      <title>UART</title>
+      <link>https://www.vxworks7.com/tags/uart/</link>
+      <pubDate>Sat, 02 Nov 2024 11:18:25 +0800</pubDate>
       
-      <guid>https://www.vxworks7.com/tags/timer/</guid>
+      <guid>https://www.vxworks7.com/tags/uart/</guid>
       <description></description>
       
     </item>
@@ -21,9 +21,19 @@
     <item>
       <title>VxWorks</title>
       <link>https://www.vxworks7.com/tags/vxworks/</link>
-      <pubDate>Thu, 24 Oct 2024 23:11:01 +0800</pubDate>
+      <pubDate>Sat, 02 Nov 2024 11:18:25 +0800</pubDate>
       
       <guid>https://www.vxworks7.com/tags/vxworks/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Timer</title>
+      <link>https://www.vxworks7.com/tags/timer/</link>
+      <pubDate>Thu, 24 Oct 2024 23:11:01 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/timer/</guid>
       <description></description>
       
     </item>
