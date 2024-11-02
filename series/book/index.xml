@@ -45,7 +45,7 @@
     
 &lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.vxworks7.com&#34; target=&#34;_blank&#34;&gt;VxWorks&lt;/a&gt;是由美国Wind River公司设计开发的一种嵌入式实时操作系统，具有高可靠性、实时性、广泛的适应性及灵活性，已经被广泛地应用于嵌入式系统的开发和设计中。本书讲述了基于VxWorks嵌入式操作系统的数据通信的设计和开发，着重于VxWorks的工程实践应用。全书共分9章，主要内容包括数据通信基础、串行通信技术、机载数据总线、嵌入式系统开发基础、嵌入式微处理器、VxWorks实时操作系统与应用、Tornado集成开发环境、&lt;a href=&#34;https://www.vxworks.net/bsp&#34; target=&#34;_blank&#34;&gt;VxWorks BSP&lt;/a&gt;基础及其开发过程、VxWorks操作系统应用实例等。&lt;/p&gt;</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/book/data-communication-based-on-vxworks-embedded-system/featured-vxworks-rtos.webp" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/book/data-communication-based-on-vxworks-embedded-system/featured-vxworks-book.png" />
     </item>
     
     <item>
@@ -268,7 +268,7 @@
 7.12 任务软调度实例一
 7.13 任务软调度实例二
 &lt;/code&gt;&lt;/pre&gt;</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/book/embedded-vxworks-system-design-and-application/featured-vxworks7-logo.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/book/embedded-vxworks-system-design-and-application/featured-vxworks-book.png" />
     </item>
     
   </channel>
