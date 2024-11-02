@@ -9,12 +9,18 @@
     <copyright>© 2024 </copyright>
     <lastBuildDate>Sat, 02 Nov 2024 21:40:33 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/vxworks/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>嵌入式 VxWorks 系统开发与应用</title>
+      <title>嵌入式VxWorks系统开发与应用</title>
       <link>https://www.vxworks7.com/book/embedded-vxworks-system-design-and-application/</link>
       <pubDate>Sat, 02 Nov 2024 21:40:33 +0800</pubDate>
       
       <guid>https://www.vxworks7.com/book/embedded-vxworks-system-design-and-application/</guid>
-      <description>&lt;p&gt;本书详细介绍了当今流行的嵌入式&lt;a href=&#34;https://www.vxworks.net&#34; target=&#34;_blank&#34;&gt;操作系统VxWorks&lt;/a&gt;，首先概括 VxWorks 操作系统的基本知识，如任务管理、任务间通信机制、内存管理以及定时管理等内容，说明了嵌入式操作系统的实现关键。然后，结合作者多年的嵌入式系统的开发应用经验，详细阐述了 VxWorks 系统中 BSP 和应用的开发技巧，并提供了多个应用实例及分析设计。&lt;/p&gt;
+      <description>&lt;p&gt;
+    &lt;figure&gt;
+      &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; src=&#34;./embedded-vxworks-system-design-and-application.webp&#34; alt=&#34;嵌入式VxWorks系统开发与应用&#34; /&gt;
+      
+    &lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;本书详细介绍了当今流行的嵌入式操作系统&lt;a href=&#34;https://www.vxworks.net&#34; target=&#34;_blank&#34;&gt;VxWorks&lt;/a&gt;，首先概括 VxWorks 操作系统的基本知识，如任务管理、任务间通信机制、内存管理以及定时管理等内容，说明了嵌入式操作系统的实现关键。然后，结合作者多年的嵌入式系统的开发应用经验，详细阐述了 VxWorks 系统中 BSP 和应用的开发技巧，并提供了多个应用实例及分析设计。&lt;/p&gt;
 &lt;p&gt;本书适用于嵌入式系统开发人员作为参考手册使用&lt;/p&gt;
 &lt;p&gt;
 
@@ -24,7 +30,7 @@
   &lt;/span&gt;
 
 下载地址：&lt;/p&gt;</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/book/embedded-vxworks-system-design-and-application/featured-embedded-vxworks-system.webp" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/book/embedded-vxworks-system-design-and-application/featured-VxWorks-5-and-Tornado-Essentials.png" />
     </item>
     
     <item>
