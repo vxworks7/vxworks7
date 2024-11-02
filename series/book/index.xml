@@ -23,10 +23,9 @@
 &lt;p&gt;本书详细介绍了当今流行的嵌入式操作系统&lt;a href=&#34;https://www.vxworks.net&#34; target=&#34;_blank&#34;&gt;VxWorks&lt;/a&gt;，首先概括 VxWorks 操作系统的基本知识，如任务管理、任务间通信机制、内存管理以及定时管理等内容，说明了嵌入式操作系统的实现关键。然后，结合作者多年的嵌入式系统的开发应用经验，详细阐述了 VxWorks 系统中 &lt;a href=&#34;https://www.vxworks7.com/bsp/&#34; target=&#34;_blank&#34;&gt;BSP&lt;/a&gt; 和&lt;a href=&#34;https://www.vxworks7.com/app/&#34; target=&#34;_blank&#34;&gt;应用程序&lt;/a&gt;的开发技巧，并提供了多个应用实例及分析设计。&lt;/p&gt;
 &lt;p&gt;本书适用于嵌入式系统开发人员作为参考手册使用&lt;/p&gt;
 &lt;blockquote&gt;
-免费下载说明：
+免费下载说明：&lt;/br&gt;
 网络资源，整理仅供学习参考!
 &lt;/blockquote&gt;
-&lt;/br&gt;
 
 
   &lt;span class=&#34;relative inline-block align-text-bottom icon&#34;&gt;
