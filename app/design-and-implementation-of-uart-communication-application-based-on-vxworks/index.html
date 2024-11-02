@@ -94,7 +94,7 @@
     "name": "基于VxWorks实时操作系统的串口通信程序设计与实现",
     "headline": "基于VxWorks实时操作系统的串口通信程序设计与实现",
     "description": "Design and Implementation of UART Communication Application Based on VxWorks",
-    "abstract": "\u003cblockquote\u003e\n摘要：结合嵌入式实时操作系统 [VxWorks](https:\/\/www.vxworks.net)实现风洞测控系统的实际应用,以其中的串口通信为例，讨论了在VxWorks下实现串口通信的关键技术，给出了基本原理、环境配置和程序示例。\n\u003cp\u003e关键词：VxWorks； 实时操作系统； 嵌入式操作系统；串行通信\u003c\/p\u003e\n\u003cp\u003e[Abstract] Combining with the application of wind tunnel measure and control system with embedded real-time operating system VxWorks , with the serial communication in it as an example ,the key techniques about realization of the serial communication in VxWorks are discussed. Communication mechanism， environment configure and corresponding program examples are provided. [Key words] VxWorks；RTOS；embedded operating system； Serial Communication\u003c\/p\u003e",
+    "abstract": "\u003cblockquote\u003e\n摘要：结合嵌入式实时操作系统VxWorks实现风洞测控系统的实际应用,以其中的串口通信为例，讨论了在VxWorks下实现串口通信的关键技术，给出了基本原理、环境配置和程序示例。\n\u003cp\u003e关键词：VxWorks； 实时操作系统； 嵌入式操作系统；串行通信\u003c\/p\u003e\n\u003cp\u003e[Abstract] Combining with the application of wind tunnel measure and control system with embedded real-time operating system VxWorks , with the serial communication in it as an example ,the key techniques about realization of the serial communication in VxWorks are discussed. Communication mechanism， environment configure and corresponding program examples are provided. [Key words] VxWorks；RTOS；embedded operating system； Serial Communication\u003c\/p\u003e",
     "inLanguage": "zh-cn",
     "url" : "https:\/\/www.vxworks7.com\/app\/design-and-implementation-of-uart-communication-application-based-on-vxworks\/",
     "author" : {
@@ -110,7 +110,7 @@
     "keywords": ["VxWorks","UART"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "251"
+    "wordCount": "250"
   }]
   </script>
 
@@ -659,7 +659,7 @@
 
         <div class="article-content max-w-prose mb-20">
           <blockquote>
-摘要：结合嵌入式实时操作系统 [VxWorks](https://www.vxworks.net)实现风洞测控系统的实际应用,以其中的串口通信为例，讨论了在VxWorks下实现串口通信的关键技术，给出了基本原理、环境配置和程序示例。
+摘要：结合嵌入式实时操作系统VxWorks实现风洞测控系统的实际应用,以其中的串口通信为例，讨论了在VxWorks下实现串口通信的关键技术，给出了基本原理、环境配置和程序示例。
 <p>关键词：VxWorks； 实时操作系统； 嵌入式操作系统；串行通信</p>
 <p>[Abstract] Combining with the application of wind tunnel measure and control system with embedded real-time operating system VxWorks , with the serial communication in it as an example ,the key techniques about realization of the serial communication in VxWorks are discussed. Communication mechanism， environment configure and corresponding program examples are provided. [Key words] VxWorks；RTOS；embedded operating system； Serial Communication</p>
 </blockquote>
@@ -675,7 +675,7 @@
     </span>        
     
 </h2>
-<p>目前市场上比较著名的实时操作系统有：VxWorks、PSOS、Nucleus、QNX、VRTX、Windows CE、Palm 0S、Lynx0S等。 其中，VxWorks是一个具有微内核、可裁剪的高性能强实时操作系统，在实时操作系统市场上处于领先地位。它以其良好的可靠性和卓越的实时性被广泛地应用在通信、军事、航空、航天等高精尖技术及实时性要求极高的领域中，如卫星通讯、弹道制导、飞机导航等。在美国的 F-16战斗机、B-2 隐形轰炸机和爱国者导弹上，甚至火星探测器上都使用了VxWorks实时操作系统。在嵌入式实时操作系统中使用串口通信，不仅可扩展嵌入式设备通信能力，而且可扩大其应用范围。</p>
+<p>目前市场上比较著名的实时操作系统有：<a href="https://www.vxworks.net" target="_blank">VxWorks</a>、PSOS、Nucleus、QNX、VRTX、Windows CE、Palm 0S、Lynx0S等。 其中，VxWorks是一个具有微内核、可裁剪的高性能强实时操作系统，在实时操作系统市场上处于领先地位。它以其良好的可靠性和卓越的实时性被广泛地应用在通信、军事、航空、航天等高精尖技术及实时性要求极高的领域中，如卫星通讯、弹道制导、飞机导航等。在美国的 F-16战斗机、B-2 隐形轰炸机和爱国者导弹上，甚至火星探测器上都使用了VxWorks实时操作系统。在嵌入式实时操作系统中使用串口通信，不仅可扩展嵌入式设备通信能力，而且可扩大其应用范围。</p>
 
 
 <h2 class="relative group">VxWorks简介 
@@ -722,28 +722,28 @@
 <p>在本实时应用系统中采用486机作为目标机，串口通信时目标机VxWorks系统启动盘的制作步骤：</p>
 <ol>
 <li>
-<p>修改通用配置文件&quot;&ldquo;Tornado&quot;target&quot;config&quot;pc486&quot;config.h。在config.h文件中加入以下宏定义：</p>
+<p>修改通用配置文件<code>Tornado\target\config\pc486\config.h</code>。在config.h文件中加入以下宏定义：</p>
 </li>
 <li>
-<p>在Tornado集成环境中执行菜单命令Project &gt; Make PC486 &gt; Common Targets &gt; clean删除以前生成的文件，执行菜单命令Project &gt; Make PC486 &gt; Boot Rom Targets &gt; bootrom_uncmp编译链接生成bootrom_uncmp ；再选择VxWorks Target,编译生成vxworks；</p>
+<p>在Tornado集成环境中执行菜单命令<code>Project &gt; Make PC486 &gt; Common Targets &gt; clean</code>删除以前生成的文件，执行菜单命令<code>Project &gt; Make PC486 &gt; Boot Rom Targets &gt; bootrom_uncmp</code>编译链接生成<code>bootrom_uncmp</code> ；再选择<code>VxWorks Target</code>,编译生成<code>vxworks</code>；</p>
 </li>
 <li>
-<p>拷贝&quot;&ldquo;Tornado&quot;target&quot;config&quot;pc486&quot;bootrom_uncmp至&quot;&ldquo;Tornado&quot;host&quot;bin下</p>
+<p>拷贝<code>Tornado\target\config\pc486\bootrom_uncmp</code>至<code>Tornado\host\bin</code>下</p>
 </li>
 <li>
-<p>重命名文件bootrom_uncmp为bootrom；</p>
+<p>重命名文件<code>bootrom_uncmp</code>为<code>bootrom</code>；</p>
 </li>
 <li>
 <p>准备一张已格式化的空盘插入软驱；</p>
 </li>
 <li>
-<p>在目录&quot;&ldquo;Tornado&quot;host&quot;bin下执行命令 mkboot a: bootrom；</p>
+<p>在目录<code>Tornado\host\bin</code>下执行命令 <code>mkboot a: bootrom</code>；</p>
 </li>
 <li>
-<p>拷贝&quot;&ldquo;Tornado&quot;target&quot;config&quot;pc486&quot;VxWorks至软盘；</p>
+<p>拷贝<code>Tornado\target\config\pc486\VxWorks</code>至软盘；</p>
 </li>
 <li>
-<p>将系统制作盘插入目标机软驱，加电启动目标机即载入VxWorkst系统。[3]</p>
+<p>将系统制作盘插入目标机软驱，加电启动目标机即载入<code>VxWork.st</code>系统。[3]</p>
 </li>
 </ol>
 
