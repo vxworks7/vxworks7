@@ -7,7 +7,47 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2024 </copyright>
-    <lastBuildDate>Sat, 02 Nov 2024 21:40:33 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/embedded/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 03 Nov 2024 10:09:03 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/embedded/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>基于VxWorks的嵌入式实时系统设计</title>
+      <link>https://www.vxworks7.com/book/embedded-real-time-system-design-based-on-vxworks/</link>
+      <pubDate>Sun, 03 Nov 2024 10:09:03 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/book/embedded-real-time-system-design-based-on-vxworks/</guid>
+      <description>&lt;p&gt;
+    &lt;figure&gt;
+      &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; src=&#34;./embedded-real-time-system.png&#34; alt=&#34;基于VxWorks的嵌入式实时系统设计&#34; /&gt;
+      
+    &lt;/figure&gt;
+&lt;/p&gt;
+&lt;blockquote&gt;
+免费下载说明：&lt;/br&gt;
+网络资源，整理仅供学习参考!
+&lt;/blockquote&gt;
+
+
+  &lt;span class=&#34;relative inline-block align-text-bottom icon&#34;&gt;
+    &lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 512 512&#34;&gt;
+&lt;path fill=&#34;currentColor&#34; d=&#34;M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zM432 456c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z&#34;/&gt;&lt;/svg&gt;
+  &lt;/span&gt;
+
+&lt;a href=&#34;https://www.filemail.com/d/qfnmusnflbacnhr&#34; target=&#34;_blank&#34; download&gt;基于VxWorks嵌入式系统的数据通信&lt;/a&gt;
+
+
+&lt;h2 class=&#34;relative group&#34;&gt;图书简介 
+    &lt;div id=&#34;%E5%9B%BE%E4%B9%A6%E7%AE%80%E4%BB%8B&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#%E5%9B%BE%E4%B9%A6%E7%AE%80%E4%BB%8B&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;本书是一本介绍&lt;a href=&#34;https://www.gaitpu.com&#34; target=&#34;_blank&#34;&gt;嵌入式系统&lt;/a&gt;原理和应用的教材，从介绍嵌入式概况入手，以VxWorks&lt;a href=&#34;https://www.vxworks7.com&#34; target=&#34;_blank&#34;&gt;实时操作系统&lt;/a&gt;为例，讲述了VxWorks的原理及其运行机制、Tornado开发工具的使用、嵌入式实时系统&lt;a href=&#34;https://www.vxworks.net/bsp&#34; target=&#34;_blank&#34;&gt;BSP&lt;/a&gt;结构、嵌入式实时系统网络编程以及以SC4510B ARM为硬件的开发系统。&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/book/embedded-real-time-system-design-based-on-vxworks/featured-vxworks-book.png" />
+    </item>
+    
     <item>
       <title>嵌入式VxWorks系统开发与应用</title>
       <link>https://www.vxworks7.com/book/embedded-vxworks-system-design-and-application/</link>
