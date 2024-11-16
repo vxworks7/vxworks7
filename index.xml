@@ -9,6 +9,26 @@
     <copyright>© 2024 </copyright>
     <lastBuildDate>Fri, 04 Oct 2024 21:23:23 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>风河携手AWS推进软件定义汽车创新</title>
+      <link>https://www.vxworks7.com/news/wind-river-and-aws-collaborate-to-advance-software-defined-automotive-innovation/</link>
+      <pubDate>Sat, 16 Nov 2024 11:27:29 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/news/wind-river-and-aws-collaborate-to-advance-software-defined-automotive-innovation/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;关键任务智能系统软件提供商风河公司近日宣布，旗下之Wind River Studio Developer已经可运行在 亚马逊网络服务（AWS）之上，从而把软件定义汽车的创新水平推上新的高度。这个平台目前正在美国硅谷圣克拉拉AWS原型设计与创新实验室（AWS Prototyping and Innovation Lab）展出。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Studio Developer是一个灵活且开放的边缘到云DevOps平台，帮助优化开发流程，支持产品快速上市有助于优化生产力。企业客户可以在AWS上安装Studio，为云规模安全关键嵌入式边缘平台的自动化构建与测试提供助益。在AWS之上，Studio把云的可扩展性和协作性与生命周期管理所需的大规模应用软件及接口融为一体。&lt;/p&gt;
+&lt;p&gt;在美国硅谷圣克拉拉的AWS原型设计与创新实验室内，风河与亚马逊两家公司目前正在现场演示云原生开发和互联汽车软件的更新与部署。在AWS上运行Studio汽车软件应用，可获得端到端嵌入式软件开发体验，有助于优化生产力。此项演示带领用户亲历软件定义汽车从开发、测试到部署的完整流程。特别值得一提的是，Studio软件利用亚马逊弹性计算云 （Amazon EC2）来演示在车辆上构建、测试和部署软件，同时还展示了测试自动化、远程访问测试设备和空中（OTA）更新的功能。&lt;/p&gt;
+&lt;p&gt;
+    &lt;figure&gt;
+      &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; src=&#34;./Wind-River-AWS-Automotive.webp&#34; alt=&#34;Wind River and AWS collaborate to Advance SDA Innovation&#34; /&gt;
+      
+    &lt;/figure&gt;
+&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/news/wind-river-and-aws-collaborate-to-advance-software-defined-automotive-innovation/featured-wind-river-aws-automotive.webp" />
+    </item>
+    
+    <item>
       <title>VxWorks程序开发实践</title>
       <link>https://www.vxworks7.com/book/vxworks-program-development-practice/</link>
       <pubDate>Mon, 04 Nov 2024 00:24:44 +0800</pubDate>
@@ -178,7 +198,7 @@
       <description>&lt;p&gt;&lt;a href=&#34;https://www.vxworks7.com&#34; target=&#34;_blank&#34;&gt;VxWorks&lt;/a&gt;是一种嵌入式实时操作系统(&lt;a href=&#34;https://www.vxworks.net&#34; target=&#34;_blank&#34;&gt;RTOS&lt;/a&gt;)，具有内核小、可裁剪、实时性强等特点。VxWorks内核(Wind)提供了共享内存、信号量、消息队列、套接字通信和定时器等多种机制。为了实现基于UDP网络的可靠通信，本文利用VxWorks的多种任务间通信机制和看门狗定时器机制，设计了一种多重定时器模型，该模型可以确保数据包的可靠传递。&lt;/p&gt;
 
 
-&lt;h2 class=&#34;relative group&#34;&gt;VxWOrks的时钟及定时器机制 
+&lt;h2 class=&#34;relative group&#34;&gt;VxWorks的时钟及定时器机制 
     &lt;div id=&#34;vxworks%E7%9A%84%E6%97%B6%E9%92%9F%E5%8F%8A%E5%AE%9A%E6%97%B6%E5%99%A8%E6%9C%BA%E5%88%B6&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
     
     &lt;span

@@ -178,7 +178,7 @@
       <description>&lt;p&gt;&lt;a href=&#34;https://www.vxworks7.com&#34; target=&#34;_blank&#34;&gt;VxWorks&lt;/a&gt;是一种嵌入式实时操作系统(&lt;a href=&#34;https://www.vxworks.net&#34; target=&#34;_blank&#34;&gt;RTOS&lt;/a&gt;)，具有内核小、可裁剪、实时性强等特点。VxWorks内核(Wind)提供了共享内存、信号量、消息队列、套接字通信和定时器等多种机制。为了实现基于UDP网络的可靠通信，本文利用VxWorks的多种任务间通信机制和看门狗定时器机制，设计了一种多重定时器模型，该模型可以确保数据包的可靠传递。&lt;/p&gt;
 
 
-&lt;h2 class=&#34;relative group&#34;&gt;VxWOrks的时钟及定时器机制 
+&lt;h2 class=&#34;relative group&#34;&gt;VxWorks的时钟及定时器机制 
     &lt;div id=&#34;vxworks%E7%9A%84%E6%97%B6%E9%92%9F%E5%8F%8A%E5%AE%9A%E6%97%B6%E5%99%A8%E6%9C%BA%E5%88%B6&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
     
     &lt;span

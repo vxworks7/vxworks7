@@ -94,7 +94,7 @@
     "name": "VxWorks下的多重定时器设计",
     "headline": "VxWorks下的多重定时器设计",
     "description": "Design of Multiple Timers in Vxworks",
-    "abstract": "\u003cp\u003e\u003ca href=\u0022https:\/\/www.vxworks7.com\u0022 target=\u0022_blank\u0022\u003eVxWorks\u003c\/a\u003e是一种嵌入式实时操作系统(\u003ca href=\u0022https:\/\/www.vxworks.net\u0022 target=\u0022_blank\u0022\u003eRTOS\u003c\/a\u003e)，具有内核小、可裁剪、实时性强等特点。VxWorks内核(Wind)提供了共享内存、信号量、消息队列、套接字通信和定时器等多种机制。为了实现基于UDP网络的可靠通信，本文利用VxWorks的多种任务间通信机制和看门狗定时器机制，设计了一种多重定时器模型，该模型可以确保数据包的可靠传递。\u003c\/p\u003e\n\n\n\u003ch2 class=\u0022relative group\u0022\u003eVxWOrks的时钟及定时器机制 \n    \u003cdiv id=\u0022vxworks%E7%9A%84%E6%97%B6%E9%92%9F%E5%8F%8A%E5%AE%9A%E6%97%B6%E5%99%A8%E6%9C%BA%E5%88%B6\u0022 class=\u0022anchor\u0022\u003e\u003c\/div\u003e\n    \n    \u003cspan\n        class=\u0022absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100\u0022\u003e\n        \u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022\n            style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#vxworks%E7%9A%84%E6%97%B6%E9%92%9F%E5%8F%8A%E5%AE%9A%E6%97%B6%E5%99%A8%E6%9C%BA%E5%88%B6\u0022 aria-label=\u0022锚点\u0022\u003e#\u003c\/a\u003e\n    \u003c\/span\u003e        \n    \n\u003c\/h2\u003e\n\n\n\u003ch3 class=\u0022relative group\u0022\u003eVxWorks延时函数 \n    \u003cdiv id=\u0022vxworks%E5%BB%B6%E6%97%B6%E5%87%BD%E6%95%B0\u0022 class=\u0022anchor\u0022\u003e\u003c\/div\u003e\n    \n    \u003cspan\n        class=\u0022absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100\u0022\u003e\n        \u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022\n            style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#vxworks%E5%BB%B6%E6%97%B6%E5%87%BD%E6%95%B0\u0022 aria-label=\u0022锚点\u0022\u003e#\u003c\/a\u003e\n    \u003c\/span\u003e        \n    \n\u003c\/h3\u003e\n\u003cp\u003eVxWorks既提供了延时功能，也提供了时限约束功能。VxWorks系统有2种延时方式：一种是Wind内核提供的taskDelay()函数；另一种是POSIX函数nanosleep()。taskDelay()函数以tick作为延时单位，默认情况下1个tick为16．67 ms(1／60 s)，可以通过调用sysClkRateSet()函数对tick进行重新设定。taskDelay()函数使调用该函数的任务在指定时间内主动放弃CPU，用于任务调度或等待某一外部事件。nanosleep()函数指定一个以s和ns为单位的睡眠或延时时间。其实，两个延时函数的精度是相同的，都是以tick为时间基准。不同之处在于，taskDelay(0)有自身意义，用于相同优先级任务间的任务调度，而nanosleep(0)是没有意义的。\u003c\/p\u003e",
+    "abstract": "\u003cp\u003e\u003ca href=\u0022https:\/\/www.vxworks7.com\u0022 target=\u0022_blank\u0022\u003eVxWorks\u003c\/a\u003e是一种嵌入式实时操作系统(\u003ca href=\u0022https:\/\/www.vxworks.net\u0022 target=\u0022_blank\u0022\u003eRTOS\u003c\/a\u003e)，具有内核小、可裁剪、实时性强等特点。VxWorks内核(Wind)提供了共享内存、信号量、消息队列、套接字通信和定时器等多种机制。为了实现基于UDP网络的可靠通信，本文利用VxWorks的多种任务间通信机制和看门狗定时器机制，设计了一种多重定时器模型，该模型可以确保数据包的可靠传递。\u003c\/p\u003e\n\n\n\u003ch2 class=\u0022relative group\u0022\u003eVxWorks的时钟及定时器机制 \n    \u003cdiv id=\u0022vxworks%E7%9A%84%E6%97%B6%E9%92%9F%E5%8F%8A%E5%AE%9A%E6%97%B6%E5%99%A8%E6%9C%BA%E5%88%B6\u0022 class=\u0022anchor\u0022\u003e\u003c\/div\u003e\n    \n    \u003cspan\n        class=\u0022absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100\u0022\u003e\n        \u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022\n            style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#vxworks%E7%9A%84%E6%97%B6%E9%92%9F%E5%8F%8A%E5%AE%9A%E6%97%B6%E5%99%A8%E6%9C%BA%E5%88%B6\u0022 aria-label=\u0022锚点\u0022\u003e#\u003c\/a\u003e\n    \u003c\/span\u003e        \n    \n\u003c\/h2\u003e\n\n\n\u003ch3 class=\u0022relative group\u0022\u003eVxWorks延时函数 \n    \u003cdiv id=\u0022vxworks%E5%BB%B6%E6%97%B6%E5%87%BD%E6%95%B0\u0022 class=\u0022anchor\u0022\u003e\u003c\/div\u003e\n    \n    \u003cspan\n        class=\u0022absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100\u0022\u003e\n        \u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022\n            style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#vxworks%E5%BB%B6%E6%97%B6%E5%87%BD%E6%95%B0\u0022 aria-label=\u0022锚点\u0022\u003e#\u003c\/a\u003e\n    \u003c\/span\u003e        \n    \n\u003c\/h3\u003e\n\u003cp\u003eVxWorks既提供了延时功能，也提供了时限约束功能。VxWorks系统有2种延时方式：一种是Wind内核提供的taskDelay()函数；另一种是POSIX函数nanosleep()。taskDelay()函数以tick作为延时单位，默认情况下1个tick为16．67 ms(1／60 s)，可以通过调用sysClkRateSet()函数对tick进行重新设定。taskDelay()函数使调用该函数的任务在指定时间内主动放弃CPU，用于任务调度或等待某一外部事件。nanosleep()函数指定一个以s和ns为单位的睡眠或延时时间。其实，两个延时函数的精度是相同的，都是以tick为时间基准。不同之处在于，taskDelay(0)有自身意义，用于相同优先级任务间的任务调度，而nanosleep(0)是没有意义的。\u003c\/p\u003e",
     "inLanguage": "zh-cn",
     "url" : "https:\/\/www.vxworks7.com\/app\/design-of-multiple-timers-in-vxworks\/",
     "author" : {
@@ -242,6 +242,17 @@
 
             
             
+  <a href="/news/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        业界新闻
+    </p>
+</a>
+
+
+
+            
+            
 
             
 
@@ -360,6 +371,21 @@
         
         <p class="text-bg font-bg" title="">
             书籍下载
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/news/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            业界新闻
         </p>
     </a>
 </li>
@@ -556,7 +582,7 @@
     class="min-w-[220px] py-2 border-dotted ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#vxworks的时钟及定时器机制">VxWOrks的时钟及定时器机制</a>
+    <li><a href="#vxworks的时钟及定时器机制">VxWorks的时钟及定时器机制</a>
       <ul>
         <li><a href="#vxworks延时函数">VxWorks延时函数</a></li>
         <li><a href="#vxworks定时器机制">VxWorks定时器机制</a></li>
@@ -583,7 +609,7 @@
     class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#vxworks的时钟及定时器机制">VxWOrks的时钟及定时器机制</a>
+    <li><a href="#vxworks的时钟及定时器机制">VxWorks的时钟及定时器机制</a>
       <ul>
         <li><a href="#vxworks延时函数">VxWorks延时函数</a></li>
         <li><a href="#vxworks定时器机制">VxWorks定时器机制</a></li>
@@ -683,7 +709,7 @@
           <p><a href="https://www.vxworks7.com" target="_blank">VxWorks</a>是一种嵌入式实时操作系统(<a href="https://www.vxworks.net" target="_blank">RTOS</a>)，具有内核小、可裁剪、实时性强等特点。VxWorks内核(Wind)提供了共享内存、信号量、消息队列、套接字通信和定时器等多种机制。为了实现基于UDP网络的可靠通信，本文利用VxWorks的多种任务间通信机制和看门狗定时器机制，设计了一种多重定时器模型，该模型可以确保数据包的可靠传递。</p>
 
 
-<h2 class="relative group">VxWOrks的时钟及定时器机制 
+<h2 class="relative group">VxWorks的时钟及定时器机制 
     <div id="vxworks%E7%9A%84%E6%97%B6%E9%92%9F%E5%8F%8A%E5%AE%9A%E6%97%B6%E5%99%A8%E6%9C%BA%E5%88%B6" class="anchor"></div>
     
     <span
