@@ -819,13 +819,13 @@
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">open_com1</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="c1">//打开串口1函数
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">sfd</span><span class="err">；</span><span class="c1">//串口设备文件描述符
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">sfd</span><span class="err">；</span><span class="c1">//串口设备文件描述符
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="n">sfd</span> <span class="o">=</span><span class="nf">open</span><span class="p">(</span><span class="err">”／</span><span class="n">tyCo</span><span class="err">／</span><span class="mi">0</span><span class="err">”，</span><span class="mi">0</span><span class="n">_RDWR</span><span class="err">，</span><span class="mi">0</span><span class="p">)</span><span class="err">；</span><span class="c1">//打开串口并返回串口设备文件描述符
+</span></span><span class="line"><span class="cl">    <span class="n">sfd</span> <span class="o">=</span><span class="nf">open</span><span class="p">(</span><span class="err">”／</span><span class="n">tyCo</span><span class="err">／</span><span class="mi">0</span><span class="err">”，</span><span class="mi">0</span><span class="n">_RDWR</span><span class="err">，</span><span class="mi">0</span><span class="p">)</span><span class="err">；</span><span class="c1">//打开串口并返回串口设备文件描述符
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="n">sfd</span> <span class="o">==</span><span class="n">ERROR</span><span class="p">)</span> <span class="c1">//如果不能打开串口1则打印出错信息
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">sfd</span> <span class="o">==</span><span class="n">ERROR</span><span class="p">)</span> <span class="c1">//如果不能打开串口1则打印出错信息
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="nf">printf</span><span class="p">(</span><span class="s">&#34;You can’t open port com1 !&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;You can’t open port com1 !&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div>
 
