@@ -8,14 +8,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>U-Boot和VxWorks 7的集成 &middot; VxWorks 7 the Leading RTOS</title>
-  <meta name="title" content="U-Boot和VxWorks 7的集成 &middot; VxWorks 7 the Leading RTOS" />
+  <title>嵌入式语音通信系统中VxWorks BSP的设计实现 &middot; VxWorks 7 the Leading RTOS</title>
+  <meta name="title" content="嵌入式语音通信系统中VxWorks BSP的设计实现 &middot; VxWorks 7 the Leading RTOS" />
   
-  <meta name="description" content="How to Integrate U-Boot and Vxworks 7" />
-  <meta name="keywords" content="VxWorks 7, U-Boot, " />
+  <meta name="description" content="Design and Implementation of VxWorks BSP in Embedded Speech Communication System" />
+  <meta name="keywords" content="VxWorks, BSP, MPC860, " />
   
   
-  <link rel="canonical" href="https://www.vxworks7.com/bsp/how-to-integrate-u-boot-and-vxworks-7/" />
+  <link rel="canonical" href="https://www.vxworks7.com/bsp/design-and-implementation-of-vxworks-bsp-in-embedded-speech-communication-system/" />
   
   
   
@@ -66,24 +66,25 @@
   
   
   
-  <meta property="og:url" content="https://www.vxworks7.com/bsp/how-to-integrate-u-boot-and-vxworks-7/">
+  <meta property="og:url" content="https://www.vxworks7.com/bsp/design-and-implementation-of-vxworks-bsp-in-embedded-speech-communication-system/">
   <meta property="og:site_name" content="VxWorks 7 the Leading RTOS">
-  <meta property="og:title" content="U-Boot和VxWorks 7的集成">
-  <meta property="og:description" content="How to Integrate U-Boot and Vxworks 7">
+  <meta property="og:title" content="嵌入式语音通信系统中VxWorks BSP的设计实现">
+  <meta property="og:description" content="Design and Implementation of VxWorks BSP in Embedded Speech Communication System">
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="bsp">
-    <meta property="article:published_time" content="2024-10-22T22:32:36+08:00">
-    <meta property="article:modified_time" content="2024-10-22T22:32:36+08:00">
-    <meta property="article:tag" content="VxWorks 7">
-    <meta property="article:tag" content="U-Boot">
-    <meta property="og:image" content="https://www.vxworks7.com/bsp/how-to-integrate-u-boot-and-vxworks-7/featured-u-boot-vxworks-7.jpg">
+    <meta property="article:published_time" content="2024-12-07T15:08:29+08:00">
+    <meta property="article:modified_time" content="2024-12-07T15:08:29+08:00">
+    <meta property="article:tag" content="VxWorks">
+    <meta property="article:tag" content="BSP">
+    <meta property="article:tag" content="MPC860">
+    <meta property="og:image" content="https://www.vxworks7.com/bsp/design-and-implementation-of-vxworks-bsp-in-embedded-speech-communication-system/featured-mpc860-vxworks.png">
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://www.vxworks7.com/bsp/how-to-integrate-u-boot-and-vxworks-7/featured-u-boot-vxworks-7.jpg">
-  <meta name="twitter:title" content="U-Boot和VxWorks 7的集成">
-  <meta name="twitter:description" content="How to Integrate U-Boot and Vxworks 7">
+  <meta name="twitter:image" content="https://www.vxworks7.com/bsp/design-and-implementation-of-vxworks-bsp-in-embedded-speech-communication-system/featured-mpc860-vxworks.png">
+  <meta name="twitter:title" content="嵌入式语音通信系统中VxWorks BSP的设计实现">
+  <meta name="twitter:description" content="Design and Implementation of VxWorks BSP in Embedded Speech Communication System">
 
   
   <script type="application/ld+json">
@@ -91,26 +92,26 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Bsps",
-    "name": "U-Boot和VxWorks 7的集成",
-    "headline": "U-Boot和VxWorks 7的集成",
-    "description": "How to Integrate U-Boot and Vxworks 7",
-    "abstract": "\u003cp\u003e\u003ca href=\u0022https:\/\/www.vxworks.net\u0022 target=\u0022_blank\u0022\u003eVxWorks\u003c\/a\u003e是美国风河公司制作的一个实时操作系统，\u003ca href=\u0022https:\/\/www.vxworks.net\/bsp\/834-u-boot-and-vxworks-7-integration\u0022 target=\u0022_blank\u0022\u003eU-Boot\u003c\/a\u003e是一个广为人知的通用启动加载器，它是嵌入式系统加电后运行的最早的代码。U-Boot通常被用于嵌入式系统，比如PowerPC或者ARM设备，这些设备上没有X86的BIOS。\u003c\/p\u003e\n\n\n\u003ch2 class=\u0022relative group\u0022\u003e介绍 \n    \u003cdiv id=\u0022%E4%BB%8B%E7%BB%8D\u0022 class=\u0022anchor\u0022\u003e\u003c\/div\u003e\n    \n    \u003cspan\n        class=\u0022absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100\u0022\u003e\n        \u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022\n            style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#%E4%BB%8B%E7%BB%8D\u0022 aria-label=\u0022锚点\u0022\u003e#\u003c\/a\u003e\n    \u003c\/span\u003e        \n    \n\u003c\/h2\u003e\n\u003cp\u003e尽管VxWorks可以有它自己的bootloader(VxWorks Bootrom或者Bootapp)，U-Boot具有更多的功能，如果硬件板子已经提供了U-Boot的支持，那我们更有道理去直接使用它。\u003c\/p\u003e\n\u003cpre tabindex=\u00220\u0022\u003e\u003ccode class=\u0022language-mark\u0022 data-lang=\u0022mark\u0022\u003eU-boot : http:\/\/www.denx.de\/wiki\/U-Boot\/WebHome \n\nVxWorks : https:\/\/www.windriver.com\/products\/vxworks\/ \n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e现在最新的VxWorks版本(\u003ca href=\u0022https:\/\/www.vxworks7.com\u0022 target=\u0022_blank\u0022\u003eVxWorks 7\u003c\/a\u003e)已经比过去的VxWorks版本(我在VxWorks 6.9上遇到了好多问题)更加简单地和U-Boot集成了。\u003c\/p\u003e",
+    "name": "嵌入式语音通信系统中VxWorks BSP的设计实现",
+    "headline": "嵌入式语音通信系统中VxWorks BSP的设计实现",
+    "description": "Design and Implementation of VxWorks BSP in Embedded Speech Communication System",
+    "abstract": "\u003ch2 class=\u0022relative group\u0022\u003e引 言 \n    \u003cdiv id=\u0022%E5%BC%95-%E8%A8%80\u0022 class=\u0022anchor\u0022\u003e\u003c\/div\u003e\n    \n    \u003cspan\n        class=\u0022absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100\u0022\u003e\n        \u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022\n            style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#%E5%BC%95-%E8%A8%80\u0022 aria-label=\u0022锚点\u0022\u003e#\u003c\/a\u003e\n    \u003c\/span\u003e        \n    \n\u003c\/h2\u003e\n\u003cp\u003e当前普遍使用的DSP语音处理技术只能对语音进行简单处理，不能适应语音业务的多样化趋势。本文介绍利用MPC860和VxWorks实现综合语音通信平台，支持多板卡、多路语音实时传输，可扩展多路语音共听功能。利用MPC860的通信和信号处理功能，且\u003ca href=\u0022https:\/\/www.vxworks.net\u0022 target=\u0022_blank\u0022\u003eVxWorks\u003c\/a\u003e具有占用空间小、执行效率高、方便进行个性化定制和较好的兼容性等特点，所以该综合语音通信平台在功能、硬件结构、体积、功耗以及灵活性上具有较大优势。\u003c\/p\u003e\n\u003cp\u003e在设计中尽量采用嵌入式开发中的常用器件，以便稍加改动即可应用于其他设计。可以根据实际需要更改系统中语音通道的数目和扩展多路语音共听功能等。\u003c\/p\u003e\n\n\n\u003ch2 class=\u0022relative group\u0022\u003e系统结构及工作原理 \n    \u003cdiv id=\u0022%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84%E5%8F%8A%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86\u0022 class=\u0022anchor\u0022\u003e\u003c\/div\u003e\n    \n    \u003cspan\n        class=\u0022absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100\u0022\u003e\n        \u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022\n            style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84%E5%8F%8A%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86\u0022 aria-label=\u0022锚点\u0022\u003e#\u003c\/a\u003e\n    \u003c\/span\u003e        \n    \n\u003c\/h2\u003e\n\n\n\u003ch3 class=\u0022relative group\u0022\u003e系统组成及特点 \n    \u003cdiv id=\u0022%E7%B3%BB%E7%BB%9F%E7%BB%84%E6%88%90%E5%8F%8A%E7%89%B9%E7%82%B9\u0022 class=\u0022anchor\u0022\u003e\u003c\/div\u003e\n    \n    \u003cspan\n        class=\u0022absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100\u0022\u003e\n        \u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022\n            style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#%E7%B3%BB%E7%BB%9F%E7%BB%84%E6%88%90%E5%8F%8A%E7%89%B9%E7%82%B9\u0022 aria-label=\u0022锚点\u0022\u003e#\u003c\/a\u003e\n    \u003c\/span\u003e        \n    \n\u003c\/h3\u003e\n\u003cp\u003e整个通信平台由语音通信处理主板和语音采集回放子板组成。语音通信处理主板包括CPU MPC860、FLASH存储器、SDRAM存储器、10\/100Mb\/s网络接口、RS232串口、BDM调试接口、console接口、供电和复位电路及120pin连接器。通信处理主板的核心MPC860是Motorola公司的一款由MC68360演变而来的通用单片集成嵌入式微处理器，适用于通信和网络系统。该微处理器内部有两个处理器：PowerPC和32位RISC处理器。PowerPC核同内存管理单元(MMU)、指令和数据Cache一同处理高层次应用，CPM则负责完成低层数据通信。两个处理器主要通过共享内存交互。通信处理模块利用SCC，SMC，SPI和I2C串行通道与外部设备通信，其中SCC和SMC支持时分复用。设计中，SCC工作在QMC协议Trans-parent Mode。通信处理模块(CPM)新增了数字信号处理(DSP)功能。语音采集回放子板由语音采集电路、语音回放电路、基于FPGA实现的通信控制器和与语音通信处理主板连接的120pin连接器组成。\u003c\/p\u003e",
     "inLanguage": "zh-cn",
-    "url" : "https:\/\/www.vxworks7.com\/bsp\/how-to-integrate-u-boot-and-vxworks-7\/",
+    "url" : "https:\/\/www.vxworks7.com\/bsp\/design-and-implementation-of-vxworks-bsp-in-embedded-speech-communication-system\/",
     "author" : {
       "@type": "Person",
       "name": ""
     },
     "copyrightYear": "2024",
-    "dateCreated": "2024-10-22T22:32:36\u002b08:00",
-    "datePublished": "2024-10-22T22:32:36\u002b08:00",
+    "dateCreated": "2024-12-07T15:08:29\u002b08:00",
+    "datePublished": "2024-12-07T15:08:29\u002b08:00",
     
-    "dateModified": "2024-10-22T22:32:36\u002b08:00",
+    "dateModified": "2024-12-07T15:08:29\u002b08:00",
     
-    "keywords": ["VxWorks 7","U-Boot"],
+    "keywords": ["VxWorks","BSP","MPC860"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "372"
+    "wordCount": "130"
   }]
   </script>
 
@@ -440,7 +441,7 @@
   <header id="single_header" class="mt-5 max-w-prose">
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-      U-Boot和VxWorks 7的集成
+      嵌入式语音通信系统中VxWorks BSP的设计实现
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -481,7 +482,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-10-22T22:32:36&#43;08:00">2024-10-22</time>
+  <time datetime="2024-12-07T15:08:29&#43;08:00">2024-12-07</time>
   
 
   
@@ -505,18 +506,26 @@
   
   
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/vxworks-7/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/vxworks/&#34;,'_self');">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    VxWorks 7
+    VxWorks
   </span>
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/u-boot/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/bsp/&#34;,'_self');">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    U-Boot
+    BSP
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/mpc860/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    MPC860
   </span>
 </span>
   </span>
@@ -582,18 +591,37 @@
     class="min-w-[220px] py-2 border-dotted ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#介绍">介绍</a></li>
-    <li><a href="#编译vxworks镜像文件">编译VxWorks镜像文件</a></li>
-    <li><a href="#为vxworks配置u-boot">为VxWorks配置U-Boot</a></li>
-    <li><a href="#加载和执行vxworks镜像文件">加载和执行VxWorks镜像文件</a>
+    <li><a href="#引-言">引 言</a></li>
+    <li><a href="#系统结构及工作原理">系统结构及工作原理</a>
       <ul>
-        <li><a href="#加载vxworks镜像文件">加载VxWorks镜像文件</a></li>
-        <li><a href="#加载dtb-blob">加载dtb blob</a></li>
-        <li><a href="#启动vxworks镜像文件">启动VxWorks镜像文件</a></li>
-        <li><a href="#创建u-boot命令">创建U-boot命令</a></li>
+        <li><a href="#系统组成及特点">系统组成及特点</a></li>
+        <li><a href="#功能结构和工作原理">功能结构和工作原理</a></li>
+        <li><a href="#数据处理流程">数据处理流程</a></li>
+        <li><a href="#qmc通信协议">QMC通信协议</a></li>
       </ul>
     </li>
-    <li><a href="#配置u-boot来传递mac地址">配置U-Boot来传递MAC地址</a></li>
+    <li><a href="#bsp-设计实现">BSP 设计实现</a>
+      <ul>
+        <li><a href="#bsp的定制">BSP的定制</a>
+          <ul>
+            <li><a href="#configh文件">config．h文件</a></li>
+            <li><a href="#makefile文件的修改">makefile文件的修改</a></li>
+            <li><a href="#rominit文件修改">romInit文件修改</a></li>
+            <li><a href="#ppcs860h">ppcs860．h</a></li>
+            <li><a href="#驱动程序">驱动程序</a></li>
+            <li><a href="#通道中断处理过程">通道中断处理过程</a></li>
+            <li><a href="#数据接收和发送">数据接收和发送</a></li>
+          </ul>
+        </li>
+        <li><a href="#bsp调试方法和遇到的问题">BSP调试方法和遇到的问题</a>
+          <ul>
+            <li><a href="#调试方法">调试方法</a></li>
+            <li><a href="#调试中遇到的问题">调试中遇到的问题</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#结-语">结 语</a></li>
   </ul>
 </nav>
   </div>
@@ -607,18 +635,37 @@
     class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#介绍">介绍</a></li>
-    <li><a href="#编译vxworks镜像文件">编译VxWorks镜像文件</a></li>
-    <li><a href="#为vxworks配置u-boot">为VxWorks配置U-Boot</a></li>
-    <li><a href="#加载和执行vxworks镜像文件">加载和执行VxWorks镜像文件</a>
+    <li><a href="#引-言">引 言</a></li>
+    <li><a href="#系统结构及工作原理">系统结构及工作原理</a>
       <ul>
-        <li><a href="#加载vxworks镜像文件">加载VxWorks镜像文件</a></li>
-        <li><a href="#加载dtb-blob">加载dtb blob</a></li>
-        <li><a href="#启动vxworks镜像文件">启动VxWorks镜像文件</a></li>
-        <li><a href="#创建u-boot命令">创建U-boot命令</a></li>
+        <li><a href="#系统组成及特点">系统组成及特点</a></li>
+        <li><a href="#功能结构和工作原理">功能结构和工作原理</a></li>
+        <li><a href="#数据处理流程">数据处理流程</a></li>
+        <li><a href="#qmc通信协议">QMC通信协议</a></li>
       </ul>
     </li>
-    <li><a href="#配置u-boot来传递mac地址">配置U-Boot来传递MAC地址</a></li>
+    <li><a href="#bsp-设计实现">BSP 设计实现</a>
+      <ul>
+        <li><a href="#bsp的定制">BSP的定制</a>
+          <ul>
+            <li><a href="#configh文件">config．h文件</a></li>
+            <li><a href="#makefile文件的修改">makefile文件的修改</a></li>
+            <li><a href="#rominit文件修改">romInit文件修改</a></li>
+            <li><a href="#ppcs860h">ppcs860．h</a></li>
+            <li><a href="#驱动程序">驱动程序</a></li>
+            <li><a href="#通道中断处理过程">通道中断处理过程</a></li>
+            <li><a href="#数据接收和发送">数据接收和发送</a></li>
+          </ul>
+        </li>
+        <li><a href="#bsp调试方法和遇到的问题">BSP调试方法和遇到的问题</a>
+          <ul>
+            <li><a href="#调试方法">调试方法</a></li>
+            <li><a href="#调试中遇到的问题">调试中遇到的问题</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#结-语">结 语</a></li>
   </ul>
 </nav>
   </div>
@@ -702,247 +749,334 @@
 
 
         <div class="article-content max-w-prose mb-20">
-          <p><a href="https://www.vxworks.net" target="_blank">VxWorks</a>是美国风河公司制作的一个实时操作系统，<a href="https://www.vxworks.net/bsp/834-u-boot-and-vxworks-7-integration" target="_blank">U-Boot</a>是一个广为人知的通用启动加载器，它是嵌入式系统加电后运行的最早的代码。U-Boot通常被用于嵌入式系统，比如PowerPC或者ARM设备，这些设备上没有X86的BIOS。</p>
+          
 
-
-<h2 class="relative group">介绍 
-    <div id="%E4%BB%8B%E7%BB%8D" class="anchor"></div>
+<h2 class="relative group">引 言 
+    <div id="%E5%BC%95-%E8%A8%80" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E4%BB%8B%E7%BB%8D" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#%E5%BC%95-%E8%A8%80" aria-label="锚点">#</a>
     </span>        
     
 </h2>
-<p>尽管VxWorks可以有它自己的bootloader(VxWorks Bootrom或者Bootapp)，U-Boot具有更多的功能，如果硬件板子已经提供了U-Boot的支持，那我们更有道理去直接使用它。</p>
-<pre tabindex="0"><code class="language-mark" data-lang="mark">U-boot : http://www.denx.de/wiki/U-Boot/WebHome 
-
-VxWorks : https://www.windriver.com/products/vxworks/ 
-</code></pre><p>现在最新的VxWorks版本(<a href="https://www.vxworks7.com" target="_blank">VxWorks 7</a>)已经比过去的VxWorks版本(我在VxWorks 6.9上遇到了好多问题)更加简单地和U-Boot集成了。</p>
-<p>这篇文章讲述了我们为最近的VxWorks 7 BSP进行设置的细节，我们选择使用一个独立于VxWorks镜像文件的DTB文件，而不是将DTB文件嵌入到VxWorks镜像里面。这将给我们带来更好的灵活性，让启动行能够从U-Boot上进行修改，而不需要重新编译DTB。</p>
-<p>具体地，VxWorks镜像需要将U-Boot头编译进去，然后U-Boot需要配置传递命令行参数以及MAC地址给VxWorks。</p>
+<p>当前普遍使用的DSP语音处理技术只能对语音进行简单处理，不能适应语音业务的多样化趋势。本文介绍利用MPC860和VxWorks实现综合语音通信平台，支持多板卡、多路语音实时传输，可扩展多路语音共听功能。利用MPC860的通信和信号处理功能，且<a href="https://www.vxworks.net" target="_blank">VxWorks</a>具有占用空间小、执行效率高、方便进行个性化定制和较好的兼容性等特点，所以该综合语音通信平台在功能、硬件结构、体积、功耗以及灵活性上具有较大优势。</p>
+<p>在设计中尽量采用嵌入式开发中的常用器件，以便稍加改动即可应用于其他设计。可以根据实际需要更改系统中语音通道的数目和扩展多路语音共听功能等。</p>
 
 
-<h2 class="relative group">编译VxWorks镜像文件 
-    <div id="%E7%BC%96%E8%AF%91vxworks%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6" class="anchor"></div>
+<h2 class="relative group">系统结构及工作原理 
+    <div id="%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84%E5%8F%8A%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E7%BC%96%E8%AF%91vxworks%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84%E5%8F%8A%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86" aria-label="锚点">#</a>
     </span>        
     
 </h2>
-<p>一个支持U-Boot的VxWorks镜像文件需要编译(将把U-Boot的头加入到VxWorks二进制中)</p>
-<p>从Workbench或者命令行来编译uVxWorks的目标文件。</p>
-<p>打开一个DOS命令行，配置编译环境，然后编译工程项目。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> &lt;WIND_HOME&gt;              // your installation directory
-</span></span><span class="line"><span class="cl">wrenv -p vxworks-7
-</span></span><span class="line"><span class="cl"><span class="nb">cd</span> &lt;YOUR_VIP&gt;               // your VxWorks Image Project
-</span></span><span class="line"><span class="cl">vxprj vip build uVxWorks
-</span></span></code></pre></div><p>这将创建两个文件，用tftp被U-Boot加载到内存：</p>
-<table>
-  <thead>
-      <tr>
-          <th>文件名</th>
-          <th>描述</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>uVxWorks</td>
-          <td>VxWorks image with U-Boot header</td>
-      </tr>
-      <tr>
-          <td>[yourboard].dtb</td>
-          <td>the device tree binary</td>
-      </tr>
-  </tbody>
-</table>
 
 
-<h2 class="relative group">为VxWorks配置U-Boot 
-    <div id="%E4%B8%BAvxworks%E9%85%8D%E7%BD%AEu-boot" class="anchor"></div>
+<h3 class="relative group">系统组成及特点 
+    <div id="%E7%B3%BB%E7%BB%9F%E7%BB%84%E6%88%90%E5%8F%8A%E7%89%B9%E7%82%B9" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E4%B8%BAvxworks%E9%85%8D%E7%BD%AEu-boot" aria-label="锚点">#</a>
-    </span>        
-    
-</h2>
-<p>U-Boot需要设置一些环境变量来加载VxWorks，针对VxWorks的启动参数(bootline)：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">=</span>&gt; setenv bootargs memac<span class="o">(</span>2,0<span class="o">)</span>host:vxWorks <span class="nv">h</span><span class="o">=</span>192.168.1.101 <span class="nv">e</span><span class="o">=</span>192.168.1.50:ffffff00 
-</span></span><span class="line"><span class="cl">        <span class="nv">g</span><span class="o">=</span>192.168.1.254 <span class="nv">u</span><span class="o">=</span>vxworks <span class="nv">pw</span><span class="o">=</span>gaitpu <span class="nv">f</span><span class="o">=</span><span class="nv">0x0</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="o">=</span>&gt; <span class="nv">saveenv</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="o">=</span>&gt; printenv bootargs
-</span></span><span class="line"><span class="cl">   <span class="nv">bootargs</span><span class="o">=</span>memac<span class="o">(</span>2,0<span class="o">)</span>host:vxWorks <span class="nv">h</span><span class="o">=</span>192.168.1.101 <span class="nv">e</span><span class="o">=</span>192.168.1.50:ffffff00
-</span></span><span class="line"><span class="cl">        <span class="nv">g</span><span class="o">=</span>192.168.1.254 <span class="nv">u</span><span class="o">=</span>vxworks <span class="nv">pw</span><span class="o">=</span>gaitpu <span class="nv">f</span><span class="o">=</span>0x0
-</span></span></code></pre></div><p>还有你可以随意给网络设备改变MAC地址：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">setenv ethaddr 00:00:13:3a:ad:00
-</span></span><span class="line"><span class="cl">setenv eth1add 00:00:13:3a:ad:01
-</span></span><span class="line"><span class="cl">setenv eth1add 00:00:13:3a:ad:02
-</span></span><span class="line"><span class="cl">setenv eth1add 00:00:13:3a:ad:03
-</span></span><span class="line"><span class="cl">saveenv
-</span></span></code></pre></div>
-
-<h2 class="relative group">加载和执行VxWorks镜像文件 
-    <div id="%E5%8A%A0%E8%BD%BD%E5%92%8C%E6%89%A7%E8%A1%8Cvxworks%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E5%8A%A0%E8%BD%BD%E5%92%8C%E6%89%A7%E8%A1%8Cvxworks%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6" aria-label="锚点">#</a>
-    </span>        
-    
-</h2>
-<p>配置一个tftp服务器来加载VxWorks镜像文件和DTB文件。</p>
-<p>你可以从下面下载一个非常好的Windows TFTP服务器：</p>
-<pre tabindex="0"><code class="language-mark" data-lang="mark">http://tftpd32.jounin.net/ 
-</code></pre>
-
-<h3 class="relative group">加载VxWorks镜像文件 
-    <div id="%E5%8A%A0%E8%BD%BDvxworks%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E5%8A%A0%E8%BD%BDvxworks%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#%E7%B3%BB%E7%BB%9F%E7%BB%84%E6%88%90%E5%8F%8A%E7%89%B9%E7%82%B9" aria-label="锚点">#</a>
     </span>        
     
 </h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">=</span>&gt; tftp 0x100000 uVxWorks
-</span></span><span class="line"><span class="cl">Using FM1@DTSEC3 device
-</span></span><span class="line"><span class="cl">TFTP from server 192.168.1.101<span class="p">;</span> our IP address is 192.168.1.50
-</span></span><span class="line"><span class="cl">Filename <span class="s1">&#39;uVxWorks&#39;</span>.
-</span></span><span class="line"><span class="cl">Load address: 0x100000
-</span></span><span class="line"><span class="cl">Loading: <span class="c1">#################################################################</span>
-</span></span><span class="line"><span class="cl">         <span class="c1">#################################################################</span>
-</span></span><span class="line"><span class="cl">         <span class="c1">#################################################################</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">         1.5 MiB/s
-</span></span><span class="line"><span class="cl"><span class="k">done</span>
-</span></span><span class="line"><span class="cl">Bytes <span class="nv">transferred</span> <span class="o">=</span> <span class="m">2861632</span> <span class="o">(</span>2baa40 hex<span class="o">)</span>
-</span></span></code></pre></div>
+<p>整个通信平台由语音通信处理主板和语音采集回放子板组成。语音通信处理主板包括CPU MPC860、FLASH存储器、SDRAM存储器、10/100Mb/s网络接口、RS232串口、BDM调试接口、console接口、供电和复位电路及120pin连接器。通信处理主板的核心MPC860是Motorola公司的一款由MC68360演变而来的通用单片集成嵌入式微处理器，适用于通信和网络系统。该微处理器内部有两个处理器：PowerPC和32位RISC处理器。PowerPC核同内存管理单元(MMU)、指令和数据Cache一同处理高层次应用，CPM则负责完成低层数据通信。两个处理器主要通过共享内存交互。通信处理模块利用SCC，SMC，SPI和I2C串行通道与外部设备通信，其中SCC和SMC支持时分复用。设计中，SCC工作在QMC协议Trans-parent Mode。通信处理模块(CPM)新增了数字信号处理(DSP)功能。语音采集回放子板由语音采集电路、语音回放电路、基于FPGA实现的通信控制器和与语音通信处理主板连接的120pin连接器组成。</p>
+<p>由于MPC860的数据传输速度相比ADC和DAC要快很多，设计相应的逻辑电路控制语音的采集和回放、协调MPC860和数据采集、回放电路之间的通信是保证系统正常工作的关键。文中设计了基于Altera公司的CycloneⅡEP2C8芯片实现的通信控制器来解决这一问题。</p>
+<p>将通信平台分为语音通信处理主板和语音采集回放子板分别设计实现，是为了降低系统开发难度和便于系统维护、升级和扩展。例如语音通信处理主板无需改动即可利用已有的连接器、FEC网络接口和SDRAM存储器等资源与视频编解码芯片、视频压缩/解压缩芯片组成网络视频服务器。</p>
 
-<h3 class="relative group">加载dtb blob 
-    <div id="%E5%8A%A0%E8%BD%BDdtb-blob" class="anchor"></div>
+
+<h3 class="relative group">功能结构和工作原理 
+    <div id="%E5%8A%9F%E8%83%BD%E7%BB%93%E6%9E%84%E5%92%8C%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E5%8A%A0%E8%BD%BDdtb-blob" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#%E5%8A%9F%E8%83%BD%E7%BB%93%E6%9E%84%E5%92%8C%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86" aria-label="锚点">#</a>
     </span>        
     
 </h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">=</span>&gt; tftp 0xe00000 t4240qds.dtb
-</span></span><span class="line"><span class="cl">Using FM1@DTSEC3 device
-</span></span><span class="line"><span class="cl">TFTP from server 192.168.1.101<span class="p">;</span> our IP address is 192.168.1.50
-</span></span><span class="line"><span class="cl">Filename <span class="s1">&#39;t4240qds.dtb&#39;</span>.
-</span></span><span class="line"><span class="cl">Load address: 0xe00000
-</span></span><span class="line"><span class="cl">Loading: <span class="c1">##</span>
-</span></span><span class="line"><span class="cl">         1.4 MiB/s
-</span></span></code></pre></div>
+<p>语音通信处理主板的功能结构如图1所示。</p>
+<p>
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="./mpc860-vxworks-1.jpg" alt="MPC860 VxWorks" />
+      
+    </figure>
+</p>
+<p>系统上电后，语音通信处理主板复位电路产生复位信号，MPC860接收到复位信号后，跳转到0X100处开始执行启动代码。按照BSP配置逐步执行CPU初始化、板上其他硬件电路的初始化、操作系统运行所需数据结构的初始化、启动VxWorks WIND内核、创建UserRoot任务、初始化系统中用到的可选扩展模块(如I/O系统、文件系统、网络协议等)、创建任务usrAppInit()，此时语音通信平台准备就绪，可以执行语音通信任务。采集板的功能结构如图2所示，语音通信处理主板启动完毕后，语音采集回放子板可在通信控制器控制下采集和回放语音，并对语音数据进行压缩编解码和IP封装、解封装处理。</p>
+<p>
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="./mpc860-vxworks-2.jpg" alt="MPC860 VxWorks" />
+      
+    </figure>
+</p>
 
-<h3 class="relative group">启动VxWorks镜像文件 
-    <div id="%E5%90%AF%E5%8A%A8vxworks%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6" class="anchor"></div>
+
+<h3 class="relative group">数据处理流程 
+    <div id="%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E5%90%AF%E5%8A%A8vxworks%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B" aria-label="锚点">#</a>
     </span>        
     
 </h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">=</span>&gt; bootm 0x100000 - 0xe00000
-</span></span><span class="line"><span class="cl">WARNING: adjusting available memory to <span class="m">30000000</span>
-</span></span><span class="line"><span class="cl"><span class="c1">## Booting kernel from Legacy Image at 00100000 ...</span>
-</span></span><span class="line"><span class="cl">   Image Name:   vxWorks
-</span></span><span class="line"><span class="cl">   Image Type:   PowerPC VxWorks Kernel Image <span class="o">(</span>uncompressed<span class="o">)</span>
-</span></span><span class="line"><span class="cl">   Data Size:    <span class="m">2861568</span> <span class="nv">Bytes</span> <span class="o">=</span> 2.7 MiB
-</span></span></code></pre></div>
+<p>MPC860T和ADC AD7825，DAC AD7305之间的通信由通信控制器控制。通信控制器由数据缓冲区(Rx FIFO，Tx FIFO)，基于FSM(有限状态机)实现的控制逻辑(Rx control，Tx control)和8位串并、并串转换器，时钟电路组成。其数据接收过程为：接收控制逻辑(Rx control)控制ADC AD7825将各个通道的语音数字化，并把转换结果存入接收缓冲区(Rx FIFO)，直至Rx FIFO满时Rx control开始向MPC860T提供周期性帧同步信号，频率为32 kHz。MPC860在帧同步信号和时钟信号的驱动下读取Rx FIFO中的数据到SCC数据接收缓冲区。Rx FIFO读空(即读指针追上了写指针)后，Rx control停止向MPC860发送帧同步信号终止数据传输，同时向MPC860发送中断信号IRQ3，MPC860响应中断把数据从接收缓冲区读到接收ring buffer中等待应用程序处理。其数据发送过程为：MPC860完成IP解封装、解压缩后的语音数据将会在检测到发送缓冲区可用时，输出到SCC发送缓冲区，通信控制器提供发送帧同步信号驱动数据传输到Tx FIFO(发送缓冲区)，待到Tx FIFO满时停止发送帧同步信号。数据发送完后，CPM会清零，TxBD中的R位表示MPC860可向SCC发送缓冲区中装入新的数据，为下次传输做准备。</p>
 
-<h3 class="relative group">创建U-boot命令 
-    <div id="%E5%88%9B%E5%BB%BAu-boot%E5%91%BD%E4%BB%A4" class="anchor"></div>
+
+<h3 class="relative group">QMC通信协议 
+    <div id="qmc%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E5%88%9B%E5%BB%BAu-boot%E5%91%BD%E4%BB%A4" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#qmc%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE" aria-label="锚点">#</a>
     </span>        
     
 </h3>
-<p>用下面的步骤创建一个新的U-Boot命令</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">setenv vxboot <span class="s1">&#39;tftp 0x100000 uVxWorks; tftp 0xe00000 t4240qds.dtb; bootm 0x100000 - 0xe00000&#39;</span>
-</span></span><span class="line"><span class="cl">saveenv
-</span></span></code></pre></div><p>运行这个命令：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">run vxboot
-</span></span></code></pre></div>
+<p>多通道控制器(QUICC Multichannel Controler，QMC)是为了实现时分复用数据传输而设计的，它可以把时分复用帧的数据分发到多达64个逻辑通道。该模式下把每一帧的数据划分成若干个时隙(Timeslots)，每时隙8 b。在时隙分配表中规定每时隙数据从属于某个通道，每个通道都有一组特定的缓冲区描述符和相应的缓冲区。一个时隙的数据在收发时被放置在特定的缓冲区里，MPC860T就可把分散的数据聚集在一起发送，或把聚集在一起的数据分发到各自专用的缓冲区，而不需要额外的处理来区分各种各样的数据流。</p>
 
-<h2 class="relative group">配置U-Boot来传递MAC地址 
-    <div id="%E9%85%8D%E7%BD%AEu-boot%E6%9D%A5%E4%BC%A0%E9%80%92mac%E5%9C%B0%E5%9D%80" class="anchor"></div>
+
+<h2 class="relative group">BSP 设计实现 
+    <div id="bsp-%E8%AE%BE%E8%AE%A1%E5%AE%9E%E7%8E%B0" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E9%85%8D%E7%BD%AEu-boot%E6%9D%A5%E4%BC%A0%E9%80%92mac%E5%9C%B0%E5%9D%80" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#bsp-%E8%AE%BE%E8%AE%A1%E5%AE%9E%E7%8E%B0" aria-label="锚点">#</a>
     </span>        
     
 </h2>
-<p>这对于硬件开发者来说是至关重要的，MAC地址通常是在工厂里面分配的，会被VxWorks镜像文件使用。否则每一块板子出厂前都需要编译和加载一个独立的VxWorks，这绝对是一个梦魇般的情况。</p>
-<p>幸运地我们找到了一个方法，因为我们使用一个独立的dtb文件，而不是将dtb文件编译到VxWorks里面，U-Boot会用网络环境变量中的MAC地址覆盖dts文件中的MAC地址。</p>
-<p>不仅仅U-Boot可以覆盖本地的MAC地址，如果你在U-Boot环境变量中存储额外的网络地址变量并在你的设备树中为网络接口添加别名的话，U-Boot可以通过设备树将这些MAC地址传递给VxWorks。所以理论上所有网络设备的MAC地址都可以被覆盖。</p>
-<p>比如针对一块T4240的PowerPC板子：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cm">/*
-</span></span></span><span class="line"><span class="cl"><span class="cm"> * U-boot only fixes up MAC Adrress (ethernet0 - n) if  
-</span></span></span><span class="line"><span class="cl"><span class="cm"> * environment variable is set.
-</span></span></span><span class="line"><span class="cl"><span class="cm"> * aliases simplyfies the path to the property i.e  by using a 
-</span></span></span><span class="line"><span class="cl"><span class="cm"> * label &lt;&amp;enet0&gt; to assign a path to a particular node
-</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">aliases</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">     <span class="n">ethernet0</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">enet0</span><span class="p">;</span> 
-</span></span><span class="line"><span class="cl">     <span class="n">ethernet1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">enet1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">     <span class="n">ethernet2</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">enet2</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">     <span class="n">ethernet3</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">enet3</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">....</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nl">fman0</span><span class="p">:</span> <span class="n">fman</span><span class="err">@</span><span class="mi">400000</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">          <span class="cp">#address-cells = ;
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>            <span class="cp">#size-cells = ;
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>            <span class="n">cell</span><span class="o">-</span><span class="n">index</span> <span class="o">=</span> <span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="n">compatible</span> <span class="o">=</span> <span class="s">&#34;fsl,fman&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="n">ranges</span> <span class="o">=</span> <span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="n">reg</span> <span class="o">=</span> <span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="n">interrupts</span> <span class="o">=</span> <span class="o">&lt;</span>
-</span></span><span class="line"><span class="cl">                    <span class="mi">96</span> <span class="mi">2</span> <span class="mi">0</span> <span class="mi">0</span>
-</span></span><span class="line"><span class="cl">                    <span class="mi">16</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">1</span><span class="o">&gt;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="n">clocks</span> <span class="o">=</span> <span class="o">&lt;&amp;</span><span class="n">hwac1</span><span class="o">&gt;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">clock</span><span class="o">-</span><span class="n">names</span> <span class="o">=</span> <span class="s">&#34;fman0-clk&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="cm">/* FDT dummyMdio driver : memac0*/</span>
-</span></span><span class="line"><span class="cl">        <span class="nl">enet0</span><span class="p">:</span> <span class="n">ethernet</span><span class="err">@</span><span class="n">e0000</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                 <span class="n">compatible</span> <span class="o">=</span> <span class="s">&#34;fsl,fman-memac&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">                 <span class="n">reg</span> <span class="o">=</span> <span class="p">;</span>
-</span></span><span class="line"><span class="cl">                 <span class="n">phy</span><span class="o">-</span><span class="n">handle</span> <span class="o">=</span> <span class="o">&lt;&amp;</span><span class="n">dummy_phy0</span><span class="o">&gt;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">                 <span class="n">phy</span><span class="o">-</span><span class="n">connection</span><span class="o">-</span><span class="n">type</span> <span class="o">=</span> <span class="s">&#34;sgmii&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">                 <span class="n">cell</span><span class="o">-</span><span class="n">index</span> <span class="o">=</span> <span class="p">;</span>
-</span></span><span class="line"><span class="cl">                 <span class="n">local</span><span class="o">-</span><span class="n">mac</span><span class="o">-</span><span class="n">address</span> <span class="o">=</span> <span class="p">[</span> <span class="mo">00</span> <span class="mo">04</span> <span class="mf">9F</span> <span class="mo">03</span> <span class="mi">0</span><span class="n">A</span> <span class="mi">5</span><span class="n">C</span> <span class="p">];</span>
-</span></span><span class="line"><span class="cl">                <span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="cm">/* FDT dummyMdio driver : memac1*/</span>
-</span></span><span class="line"><span class="cl">        <span class="nl">enet1</span><span class="p">:</span> <span class="n">ethernet</span><span class="err">@</span><span class="n">e2000</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="p">....</span>
-</span></span><span class="line"><span class="cl">                <span class="p">};</span>
-</span></span><span class="line"><span class="cl">        <span class="p">....</span>
-</span></span><span class="line"><span class="cl">        <span class="p">};</span>
-</span></span></code></pre></div>
+<p>设计中软件开发主要包括启动代码的编写、操作系统的移植、硬件驱动程序和语音编、解码和IP封装、解封装应用程序。篇幅有限，本文仅介绍BSP移植。BSP即板级支持包，其功能为硬件、软件初始化、工程影像的下载和设备驱动等。</p>
+
+
+<h3 class="relative group">BSP的定制 
+    <div id="bsp%E7%9A%84%E5%AE%9A%E5%88%B6" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#bsp%E7%9A%84%E5%AE%9A%E5%88%B6" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>无论是Bootrom还是VxWorks都要使用BSP代码，BSP定制需要根据硬板配置、系统设计需求、软件功能等实际情况。实际开发过程中，为了缩短产品开发周期，通常以WINDRIVER公司的BSP模板或者第三方公司提供的可供参考的BSP为基础，根据软硬件具体配置进行修改，添加新的程序驱动新增硬件和功能。本课题中先把APC860开发板的<code>BSPMPC860TEVB</code>拷贝到<code>installdir:\Tornado\target\collfig\ppcs860</code>目录下，主要做下列修改。</p>
+<p>
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="./mpc860-vxworks-3.jpg" alt="MPC860 VxWorks" />
+      
+    </figure>
+</p>
+
+
+<h4 class="relative group">config．h文件 
+    <div id="configh%E6%96%87%E4%BB%B6" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#configh%E6%96%87%E4%BB%B6" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>根据实际情况，需要修改启动行，内存地址、容量等配置，修改部分代码如下:</p>
+<p>
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="./mpc860-vxworks-4.jpg" alt="MPC860 VxWorks" />
+      
+    </figure>
+</p>
+
+
+<h4 class="relative group">makefile文件的修改 
+    <div id="makefile%E6%96%87%E4%BB%B6%E7%9A%84%E4%BF%AE%E6%94%B9" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#makefile%E6%96%87%E4%BB%B6%E7%9A%84%E4%BF%AE%E6%94%B9" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>makefile文件的修改，部分程序如下：</p>
+
+
+<h4 class="relative group">romInit文件修改 
+    <div id="rominit%E6%96%87%E4%BB%B6%E4%BF%AE%E6%94%B9" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#rominit%E6%96%87%E4%BB%B6%E4%BF%AE%E6%94%B9" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>romlnit.s模块包含了VxWorks在ROM中的入口点romlnit()，它是单板上电以后最先执行的汇编程序代码。该函数功能包括处理器的复位、内存的初始化以及其他的最基本和必要的初始化工作。需要修改的内容如下：</p>
+<p>内部存储器映射寄存器IMMR。该寄存器用来标识内部地址空间的基址，将该寄存器设置为“FF000000”。</p>
+<p>SIU模式配置寄存器SIUMCR。包括有外部总线仲裁器配置，外部master的支持，DEBUG调试端口配置，系统接口引脚配置以及奇偶校验支持，将该寄存器设置为“00E10000”。</p>
+<p>BSP中讨论SDRAM的初始化过程，首先对MAMR寄存器的初始化，再得到UPM的RAM阵列表的地址，然后将RAM阵列表地址中的值写入MPC860 RAM WORDS ARRAY中，最后初始化OR以及BR寄存器。</p>
+
+
+<h4 class="relative group">ppcs860．h 
+    <div id="ppcs860h" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#ppcs860h" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>ppcs860．h是参数配置头文件，该文件包含大量宏定义，为使MPC860T正常运行且SCC串口工作在QMC协议透明模式，根据实际需要做了如下配置：</p>
+<ol>
+<li>
+<p>修改系统常量对应的宏定义：SCCx参数在双端口RAM中存储的起始地址、缓冲区描述符(BD)的基地址、缓冲区和BD的数目等；</p>
+</li>
+<li>
+<p>串口和时隙分配表的初始化，主要包括时隙分配、引脚分配等，通过设置SI RAM参数，规定了每个逻辑通道对应的时隙和数据路由，本系统中选择SCC2和TDMB接口实现QMC通信，引脚配置如下：</p>
+</li>
+</ol>
+<p>PC6 RSYNC，PA2 RXC，PA10 RXD，PA0 TXC。PA11 TXD</p>
+<ol start="3">
+<li>
+<p>SCC2初始化：设置SCC2工作在QMC模式；</p>
+</li>
+<li>
+<p>QMC全局参数初始化：MCBASE(多通道基地址指针)，初始化为SCC2对应外部BD表的基地址，MRBLR(最大接收缓冲区长度)，接收、发送时隙分配表起始地址的指针(Rx S PTR，Tx S PTR)，接收、发送时隙分配表当前时隙的指针(Rx PTR，TxPTR)，中断循环表基地址(INTBASE)，中断循环表下一可用入口的指针(INTPTR)等；</p>
+</li>
+<li>
+<p>QMC特定通道参数初始化：TBASE，RBASE(该逻辑通道的缓冲区描述符的起始地址)，TBPTR，RBPTR(当前发送、接收缓冲区描述符指针)，TMR-BLR(最大接收帧长度)等。</p>
+</li>
+</ol>
+
+
+<h4 class="relative group">驱动程序 
+    <div id="%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>驱动程序直接对硬件操作，实现硬件和操作系统、应用程序之间的交互。需要自行编写MPC860 SCC串口驱动程序ppcs860QmcSio．c，通信平台中SCC工作在QMC Transparent模式。ppcs860QmcSio．c文件中包含SIO_DRV_FUNCS结构体中定义的5个函数和中断处理函数ppc860QmcInt()、Qmc逻辑通道复位函数ppc860QmcChannelReset()。ppc860SccIoctl()提供了一些设备控制选项，包括停止数据传送、察看当前通信状态(空闲还是忙)、轮询或中断模式选择等；ppc860sccInt()处理QMC通道的中断请求，通过中断方式实现数据的收发功能；ppc860SccStartuP()函数启动一个发送周期；ppc860SccCallbackInstall()安装回调函数。中断处理函数的功能有：</p>
+<ol>
+<li>
+<p>提供接收、发送中断处理函数，调用回调函数完成设备和较高层协议之间的数据传送。</p>
+</li>
+<li>
+<p>处理数据接收过程中出现的接收数据过长，数据传送被迫终止等异常。由于不需要QMC的轮询模式，因此ppc860SccPollInput()和ppc860SccPollOutput()以NULL函数的形式实现。同时还要编写sysSccSeri-al．c文件，修改sysLib．c文件和usrConfig．c文件。在sysSccQmc．c中提供SCC设备描述符的初始化例程、SCC中断连接例程等；通过修改sysLib．c和usrCon-fig．c文件以实现VxWorks对QMC驱动程序的调用和QMC驱动程序与TTY系统的挂接。</p>
+</li>
+</ol>
+
+
+<h4 class="relative group">通道中断处理过程 
+    <div id="%E9%80%9A%E9%81%93%E4%B8%AD%E6%96%AD%E5%A4%84%E7%90%86%E8%BF%87%E7%A8%8B" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E9%80%9A%E9%81%93%E4%B8%AD%E6%96%AD%E5%A4%84%E7%90%86%E8%BF%87%E7%A8%8B" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>数据收发的核心是中断处理函数。QMC中的所有逻辑通道共享SCC2的中断，SCC2维持有一个全局中断表，表中每一项里面都含有逻辑通道号和中断源，可以被驱动识别以处理不同情况下出现的事件。中断发生时，驱动从SCCE寄存器里面判断全局中断源，如果中断是由逻辑通道引起，中断服务程序便查找全局中断表以找到该逻辑通道，并从中断条目里面检查中断信息以确定是什么类型，再调用相应的收发和错误处理函数。</p>
+
+
+<h4 class="relative group">数据接收和发送 
+    <div id="%E6%95%B0%E6%8D%AE%E6%8E%A5%E6%94%B6%E5%92%8C%E5%8F%91%E9%80%81" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%95%B0%E6%8D%AE%E6%8E%A5%E6%94%B6%E5%92%8C%E5%8F%91%E9%80%81" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>多通道语音通信系统中MPC860T SCC串口时分复用即工作在QMC模式，逻辑通道的通信协议为Trasparent mode，该协议仅传输二进制数据，不对数据流进行位级操作，不区分数据帧中的格式位、起止位和数据位等，不对接收的数据做检错处理，因而具有较高的数据传输速率。</p>
+<p>接收函数由中断服务例程调用。由于是每接收一帧产生一次中断，故接收函数也每次处理一帧的数据。数据的接收由接收描述符RxBD控制。当要接收数据时，接收函数首先需要确定RxBD有效；确定没有问题后，才将数据从接收缓冲区拷贝到接收Ring buffer，并复位RxBD；否则在进行相应错误处理后复位RxBD。接收函数流程如图3所示。</p>
+<p>
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="./mpc860-vxworks-5.jpg" alt="MPC860 VxWorks" />
+      
+    </figure>
+</p>
+<p>数据发送不调用中断处理函数，发送函数检测到发送缓冲区可用(即TxBD中R位为1)后，调用回调函数将数据从发送Ring buffer拷贝到串口发送缓冲区(Txbuffer)。这里为发送功能开辟足够大的环形缓冲区(足以容纳应用程序每一帧的数据)。发送函数流程如图4所示。</p>
+<p>
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="./mpc860-vxworks-6.jpg" alt="MPC860 VxWorks" />
+      
+    </figure>
+</p>
+
+
+<h3 class="relative group">BSP调试方法和遇到的问题 
+    <div id="bsp%E8%B0%83%E8%AF%95%E6%96%B9%E6%B3%95%E5%92%8C%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#bsp%E8%B0%83%E8%AF%95%E6%96%B9%E6%B3%95%E5%92%8C%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+
+
+<h4 class="relative group">调试方法 
+    <div id="%E8%B0%83%E8%AF%95%E6%96%B9%E6%B3%95" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E8%B0%83%E8%AF%95%E6%96%B9%E6%B3%95" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>开发调试有两种方法，一种是使用仿真器通过BDM(后端调试模式)一步步地跟踪调试，另一种是通过点灯的方式进行所谓的“黑”调。“黑”调的方法是通过“灯”闪、用示波器测片选等，根据外部现象和所编的测试代码进行比较分析来调试程序。进行“黑”调的目的是调通信串口部分代码，宿主机可以通过串口与目标机的通信，然后再调试其他部分。调试流程分成两部分。首先是预内核启动代码(Pre-Kernel Initializa-tion)，待最小内核启动正常后再添加I／O系统、文件系统、网络系统等组件和调试应用程序。使用仿真器Vi-sion Probe通过BDM方式调试BSP并将BootRom映像烧入FLASH。</p>
+
+
+<h4 class="relative group">调试中遇到的问题 
+    <div id="%E8%B0%83%E8%AF%95%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E8%B0%83%E8%AF%95%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<ol>
+<li>系统无法正常复位</li>
+</ol>
+<p>在调试过程中，发现MPC860T的CLKOUT引脚无输出信号，系统上电复位过程没有完成，系统无法正常工作。初步判断是硬件问题。用万用表和示波器逐步检查上电复位、硬件复位、软件复位、时钟输入和BDM调试等模块电路，发现正常。判断是BGA焊接出现问题，将芯片取下，重新焊接，系统复位正常，时钟信号输出稳定正常。</p>
+<ol start="2">
+<li>网络无法与外界通信</li>
+</ol>
+<p>100 Mb／s快速以太网驱动加载中，网络层协议无法运行，目标板无法与外界网络建立联系。目标板网络启动时发出的MAC地址信息帧外界无法收到。通过仿真器发现程序单步运行正常。经过反复试验和测试，最终发现因SDRAM初始化程序没有运行导致程序运行(需要SDRAM支持突发模式)出错。更改调试方式，将BootRom开始的所有程序烧入FLASH，上电启动，网络正常，目标板与外界建立良好的网络通信。</p>
+
+
+<h2 class="relative group">结 语 
+    <div id="%E7%BB%93-%E8%AF%AD" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E7%BB%93-%E8%AF%AD" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>该系统在实际测试中话音质量稳定，测试时声音清晰，没有串扰和杂音，没有较大延迟，说明硬件设计正确完备，QMC驱动程序和语音编解码和IP封装与解封装应用程序性能优良。</p>
+<p>如果板卡上语音通道更多，则每帧的时隙增多、长度增大，因为FPGA内部电路所提供的的帧同步信号周期并不改变，所以只是实际数据传输速率提高，可以保证各路语音的同步和实时性。系统中QMC工作在Transparent Mode限制了它的应用范围，如何改进使系统支持多种通信协议是需要进一步研究的问题。</p>
+<p>原文地址: <a href="https://vxworks.net/bsp/313-design-and-implementation-of-vxworks-bsp-in-embedded-speech-communication-system" target="_blank">嵌入式语音通信系统中VxWorks BSP的设计实现</a></p>
+
           
           
           
@@ -959,7 +1093,7 @@ VxWorks : https://www.windriver.com/products/vxworks/
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.vxworks7.com/bsp/how-to-integrate-u-boot-and-vxworks-7/&amp;title=U-Boot%e5%92%8cVxWorks%207%e7%9a%84%e9%9b%86%e6%88%90"
+      href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.vxworks7.com/bsp/design-and-implementation-of-vxworks-bsp-in-embedded-speech-communication-system/&amp;title=%e5%b5%8c%e5%85%a5%e5%bc%8f%e8%af%ad%e9%9f%b3%e9%80%9a%e4%bf%a1%e7%b3%bb%e7%bb%9f%e4%b8%adVxWorks%20BSP%e7%9a%84%e8%ae%be%e8%ae%a1%e5%ae%9e%e7%8e%b0"
       title="分享到 LinkedIn"
       aria-label="分享到 LinkedIn"
       >
@@ -978,7 +1112,7 @@ VxWorks : https://www.windriver.com/products/vxworks/
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://twitter.com/intent/tweet/?url=https://www.vxworks7.com/bsp/how-to-integrate-u-boot-and-vxworks-7/&amp;text=U-Boot%e5%92%8cVxWorks%207%e7%9a%84%e9%9b%86%e6%88%90"
+      href="https://twitter.com/intent/tweet/?url=https://www.vxworks7.com/bsp/design-and-implementation-of-vxworks-bsp-in-embedded-speech-communication-system/&amp;text=%e5%b5%8c%e5%85%a5%e5%bc%8f%e8%af%ad%e9%9f%b3%e9%80%9a%e4%bf%a1%e7%b3%bb%e7%bb%9f%e4%b8%adVxWorks%20BSP%e7%9a%84%e8%ae%be%e8%ae%a1%e5%ae%9e%e7%8e%b0"
       title="分享到 Twitter"
       aria-label="分享到 Twitter"
       >
@@ -996,7 +1130,7 @@ VxWorks : https://www.windriver.com/products/vxworks/
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://bsky.app/intent/compose?text=U-Boot%e5%92%8cVxWorks%207%e7%9a%84%e9%9b%86%e6%88%90&#43;https://www.vxworks7.com/bsp/how-to-integrate-u-boot-and-vxworks-7/"
+      href="https://bsky.app/intent/compose?text=%e5%b5%8c%e5%85%a5%e5%bc%8f%e8%af%ad%e9%9f%b3%e9%80%9a%e4%bf%a1%e7%b3%bb%e7%bb%9f%e4%b8%adVxWorks%20BSP%e7%9a%84%e8%ae%be%e8%ae%a1%e5%ae%9e%e7%8e%b0&#43;https://www.vxworks7.com/bsp/design-and-implementation-of-vxworks-bsp-in-embedded-speech-communication-system/"
       title=""
       aria-label=""
       >
@@ -1014,7 +1148,7 @@ VxWorks : https://www.windriver.com/products/vxworks/
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://s2f.kytta.dev/?text=U-Boot%e5%92%8cVxWorks%207%e7%9a%84%e9%9b%86%e6%88%90%20https://www.vxworks7.com/bsp/how-to-integrate-u-boot-and-vxworks-7/"
+      href="https://s2f.kytta.dev/?text=%e5%b5%8c%e5%85%a5%e5%bc%8f%e8%af%ad%e9%9f%b3%e9%80%9a%e4%bf%a1%e7%b3%bb%e7%bb%9f%e4%b8%adVxWorks%20BSP%e7%9a%84%e8%ae%be%e8%ae%a1%e5%ae%9e%e7%8e%b0%20https://www.vxworks7.com/bsp/design-and-implementation-of-vxworks-bsp-in-embedded-speech-communication-system/"
       title=""
       aria-label=""
       >
@@ -1033,7 +1167,7 @@ VxWorks : https://www.windriver.com/products/vxworks/
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://reddit.com/submit/?url=https://www.vxworks7.com/bsp/how-to-integrate-u-boot-and-vxworks-7/&amp;resubmit=true&amp;title=U-Boot%e5%92%8cVxWorks%207%e7%9a%84%e9%9b%86%e6%88%90"
+      href="https://reddit.com/submit/?url=https://www.vxworks7.com/bsp/design-and-implementation-of-vxworks-bsp-in-embedded-speech-communication-system/&amp;resubmit=true&amp;title=%e5%b5%8c%e5%85%a5%e5%bc%8f%e8%af%ad%e9%9f%b3%e9%80%9a%e4%bf%a1%e7%b3%bb%e7%bb%9f%e4%b8%adVxWorks%20BSP%e7%9a%84%e8%ae%be%e8%ae%a1%e5%ae%9e%e7%8e%b0"
       title="提交到 Reddit"
       aria-label="提交到 Reddit"
       >
@@ -1052,7 +1186,7 @@ VxWorks : https://www.windriver.com/products/vxworks/
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.vxworks7.com/bsp/how-to-integrate-u-boot-and-vxworks-7/&amp;description=U-Boot%e5%92%8cVxWorks%207%e7%9a%84%e9%9b%86%e6%88%90"
+      href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.vxworks7.com/bsp/design-and-implementation-of-vxworks-bsp-in-embedded-speech-communication-system/&amp;description=%e5%b5%8c%e5%85%a5%e5%bc%8f%e8%af%ad%e9%9f%b3%e9%80%9a%e4%bf%a1%e7%b3%bb%e7%bb%9f%e4%b8%adVxWorks%20BSP%e7%9a%84%e8%ae%be%e8%ae%a1%e5%ae%9e%e7%8e%b0"
       title="钉到 Pinterest"
       aria-label="钉到 Pinterest"
       >
@@ -1071,7 +1205,7 @@ VxWorks : https://www.windriver.com/products/vxworks/
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://www.facebook.com/sharer/sharer.php?u=https://www.vxworks7.com/bsp/how-to-integrate-u-boot-and-vxworks-7/&amp;quote=U-Boot%e5%92%8cVxWorks%207%e7%9a%84%e9%9b%86%e6%88%90"
+      href="https://www.facebook.com/sharer/sharer.php?u=https://www.vxworks7.com/bsp/design-and-implementation-of-vxworks-bsp-in-embedded-speech-communication-system/&amp;quote=%e5%b5%8c%e5%85%a5%e5%bc%8f%e8%af%ad%e9%9f%b3%e9%80%9a%e4%bf%a1%e7%b3%bb%e7%bb%9f%e4%b8%adVxWorks%20BSP%e7%9a%84%e8%ae%be%e8%ae%a1%e5%ae%9e%e7%8e%b0"
       title="分享到 Facebook"
       aria-label="分享到 Facebook"
       >
@@ -1090,7 +1224,7 @@ VxWorks : https://www.windriver.com/products/vxworks/
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="mailto:?body=https://www.vxworks7.com/bsp/how-to-integrate-u-boot-and-vxworks-7/&amp;subject=U-Boot%e5%92%8cVxWorks%207%e7%9a%84%e9%9b%86%e6%88%90"
+      href="mailto:?body=https://www.vxworks7.com/bsp/design-and-implementation-of-vxworks-bsp-in-embedded-speech-communication-system/&amp;subject=%e5%b5%8c%e5%85%a5%e5%bc%8f%e8%af%ad%e9%9f%b3%e9%80%9a%e4%bf%a1%e7%b3%bb%e7%bb%9f%e4%b8%adVxWorks%20BSP%e7%9a%84%e8%ae%be%e8%ae%a1%e5%ae%9e%e7%8e%b0"
       title="通过电子邮件发送"
       aria-label="通过电子邮件发送"
       >
@@ -1109,7 +1243,7 @@ VxWorks : https://www.windriver.com/products/vxworks/
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://api.whatsapp.com/send?text=https://www.vxworks7.com/bsp/how-to-integrate-u-boot-and-vxworks-7/&amp;resubmit=true&amp;title=U-Boot%e5%92%8cVxWorks%207%e7%9a%84%e9%9b%86%e6%88%90"
+      href="https://api.whatsapp.com/send?text=https://www.vxworks7.com/bsp/design-and-implementation-of-vxworks-bsp-in-embedded-speech-communication-system/&amp;resubmit=true&amp;title=%e5%b5%8c%e5%85%a5%e5%bc%8f%e8%af%ad%e9%9f%b3%e9%80%9a%e4%bf%a1%e7%b3%bb%e7%bb%9f%e4%b8%adVxWorks%20BSP%e7%9a%84%e8%ae%be%e8%ae%a1%e5%ae%9e%e7%8e%b0"
       title=""
       aria-label=""
       >
@@ -1128,7 +1262,7 @@ VxWorks : https://www.windriver.com/products/vxworks/
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://t.me/share/url?url=https://www.vxworks7.com/bsp/how-to-integrate-u-boot-and-vxworks-7/&amp;resubmit=true&amp;title=U-Boot%e5%92%8cVxWorks%207%e7%9a%84%e9%9b%86%e6%88%90"
+      href="https://t.me/share/url?url=https://www.vxworks7.com/bsp/design-and-implementation-of-vxworks-bsp-in-embedded-speech-communication-system/&amp;resubmit=true&amp;title=%e5%b5%8c%e5%85%a5%e5%bc%8f%e8%af%ad%e9%9f%b3%e9%80%9a%e4%bf%a1%e7%b3%bb%e7%bb%9f%e4%b8%adVxWorks%20BSP%e7%9a%84%e8%ae%be%e8%ae%a1%e5%ae%9e%e7%8e%b0"
       title=""
       aria-label=""
       >
@@ -1154,11 +1288,11 @@ VxWorks : https://www.windriver.com/products/vxworks/
   
   
 
-  <a href="/bsp/embedded-os-vxworks-introduction/" class="min-w-full">
+  <a href="/app/design-of-multiple-timers-in-vxworks/" class="min-w-full">
     
     <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
         
-        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/bsp/embedded-os-vxworks-introduction/featured-VxWorks7_hu15927866899598736017.webp);"></div>
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/app/design-of-multiple-timers-in-vxworks/featured-vxworks-the-industry-leader_hu16393185524054319025.png);"></div>
         
       
 
@@ -1166,7 +1300,7 @@ VxWorks : https://www.windriver.com/products/vxworks/
 
         
         <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
-          href="/bsp/embedded-os-vxworks-introduction/">嵌入式实时操作系统VxWorks简介</div>
+          href="/app/design-of-multiple-timers-in-vxworks/">VxWorks下的多重定时器设计</div>
         
 
         <div class="text-sm text-neutral-500 dark:text-neutral-400">
@@ -1205,7 +1339,7 @@ VxWorks : https://www.windriver.com/products/vxworks/
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-10-22T13:22:03&#43;08:00">2024-10-22</time>
+  <time datetime="2024-10-24T23:11:01&#43;08:00">2024-10-24</time>
   
 
   
@@ -1237,10 +1371,10 @@ VxWorks : https://www.windriver.com/products/vxworks/
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/rtos/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/timer/&#34;,'_self');">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    RTOS
+    Timer
   </span>
 </span>
   </span>
@@ -1266,11 +1400,11 @@ VxWorks : https://www.windriver.com/products/vxworks/
   
   
 
-  <a href="/app/vxworks-7-app-auto-boot-method/" class="min-w-full">
+  <a href="/book/vxworks-program-development-practice/" class="min-w-full">
     
     <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
         
-        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/app/vxworks-7-app-auto-boot-method/featured-VxWorks-7-Encryption_hu7140100050986056199.jpg);"></div>
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/book/vxworks-program-development-practice/featured-vxworks-book_hu15541876806725832466.png);"></div>
         
       
 
@@ -1278,7 +1412,7 @@ VxWorks : https://www.windriver.com/products/vxworks/
 
         
         <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
-          href="/app/vxworks-7-app-auto-boot-method/">VxWorks 7自启动应用程序的四种方法</div>
+          href="/book/vxworks-program-development-practice/">VxWorks程序开发实践</div>
         
 
         <div class="text-sm text-neutral-500 dark:text-neutral-400">
@@ -1317,7 +1451,7 @@ VxWorks : https://www.windriver.com/products/vxworks/
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-10-20T17:02:57&#43;08:00">2024-10-20</time>
+  <time datetime="2024-11-04T00:24:44&#43;08:00">2024-11-04</time>
   
 
   
@@ -1349,18 +1483,10 @@ VxWorks : https://www.windriver.com/products/vxworks/
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/vsb/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/program/&#34;,'_self');">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    VSB
-  </span>
-</span>
-  </span>
-  
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/vip/&#34;,'_self');">
-    <span class="flex" style="cursor: pointer;">
-  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    VIP
+    Program
   </span>
 </span>
   </span>
@@ -1386,11 +1512,11 @@ VxWorks : https://www.windriver.com/products/vxworks/
   
   
 
-  <a href="/app/design-and-implementation-of-avionics-exciter-based-on-vxworks-system/" class="min-w-full">
+  <a href="/book/embedded-real-time-system-design-based-on-vxworks/" class="min-w-full">
     
     <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
         
-        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/app/design-and-implementation-of-avionics-exciter-based-on-vxworks-system/featured-vxworks-653_hu16472401816576883061.png);"></div>
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/book/embedded-real-time-system-design-based-on-vxworks/featured-vxworks-book_hu15541876806725832466.png);"></div>
         
       
 
@@ -1398,7 +1524,7 @@ VxWorks : https://www.windriver.com/products/vxworks/
 
         
         <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
-          href="/app/design-and-implementation-of-avionics-exciter-based-on-vxworks-system/">基于VxWorks 系统的航电激励器设计与实现</div>
+          href="/book/embedded-real-time-system-design-based-on-vxworks/">基于VxWorks的嵌入式实时系统设计</div>
         
 
         <div class="text-sm text-neutral-500 dark:text-neutral-400">
@@ -1437,7 +1563,7 @@ VxWorks : https://www.windriver.com/products/vxworks/
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-10-20T15:14:36&#43;08:00">2024-10-20</time>
+  <time datetime="2024-11-03T10:09:03&#43;08:00">2024-11-03</time>
   
 
   
@@ -1469,18 +1595,10 @@ VxWorks : https://www.windriver.com/products/vxworks/
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/avionics/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/embedded/&#34;,'_self');">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    Avionics
-  </span>
-</span>
-  </span>
-  
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/arinc429/&#34;,'_self');">
-    <span class="flex" style="cursor: pointer;">
-  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    ARINC429
+    Embedded
   </span>
 </span>
   </span>
@@ -1517,8 +1635,8 @@ VxWorks : https://www.windriver.com/products/vxworks/
           
         
       <script>
-        var oid = "views_bsp\/how-to-integrate-u-boot-and-vxworks-7\/index.md"
-        var oid_likes = "likes_bsp\/how-to-integrate-u-boot-and-vxworks-7\/index.md"
+        var oid = "views_bsp\/design-and-implementation-of-vxworks-bsp-in-embedded-speech-communication-system\/index.md"
+        var oid_likes = "likes_bsp\/design-and-implementation-of-vxworks-bsp-in-embedded-speech-communication-system\/index.md"
       </script>
       
       
@@ -1538,7 +1656,7 @@ VxWorks : https://www.windriver.com/products/vxworks/
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="flex group mr-3" href="/bsp/embedded-os-vxworks-introduction/">
+            <a class="flex group mr-3" href="/bsp/how-to-integrate-u-boot-and-vxworks-7/">
               <span
                 class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
                 >&larr;</span
@@ -1550,11 +1668,11 @@ VxWorks : https://www.windriver.com/products/vxworks/
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >嵌入式实时操作系统VxWorks简介</span
+                  >U-Boot和VxWorks 7的集成</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="2024-10-22T13:22:03&#43;08:00">2024-10-22</time>
+                    <time datetime="2024-10-22T22:32:36&#43;08:00">2024-10-22</time>
                   
                 </span>
               </span>
@@ -1562,28 +1680,6 @@ VxWorks : https://www.windriver.com/products/vxworks/
           
         </span>
         <span>
-          
-            <a class="flex text-right group ml-3" href="/bsp/design-and-implementation-of-vxworks-bsp-in-embedded-speech-communication-system/">
-              <span class="flex flex-col">
-                <span
-                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >嵌入式语音通信系统中VxWorks BSP的设计实现</span
-                >
-                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
-                  
-                    <time datetime="2024-12-07T15:08:29&#43;08:00">2024-12-07</time>
-                  
-                </span>
-              </span>
-              <span
-                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
-                >&rarr;</span
-              >
-              <span
-                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
-                >&larr;</span
-              >
-            </a>
           
         </span>
       </div>

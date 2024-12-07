@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>BSP on VxWorks 7 the Leading RTOS</title>
+    <link>https://www.vxworks7.com/tags/bsp/</link>
+    <description>Recent content in BSP on VxWorks 7 the Leading RTOS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2024 </copyright>
+    <lastBuildDate>Sat, 07 Dec 2024 15:08:29 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/bsp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>嵌入式语音通信系统中VxWorks BSP的设计实现</title>
+      <link>https://www.vxworks7.com/bsp/design-and-implementation-of-vxworks-bsp-in-embedded-speech-communication-system/</link>
+      <pubDate>Sat, 07 Dec 2024 15:08:29 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/bsp/design-and-implementation-of-vxworks-bsp-in-embedded-speech-communication-system/</guid>
+      <description>&lt;h2 class=&#34;relative group&#34;&gt;引 言 
+    &lt;div id=&#34;%E5%BC%95-%E8%A8%80&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#%E5%BC%95-%E8%A8%80&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;当前普遍使用的DSP语音处理技术只能对语音进行简单处理，不能适应语音业务的多样化趋势。本文介绍利用MPC860和VxWorks实现综合语音通信平台，支持多板卡、多路语音实时传输，可扩展多路语音共听功能。利用MPC860的通信和信号处理功能，且&lt;a href=&#34;https://www.vxworks.net&#34; target=&#34;_blank&#34;&gt;VxWorks&lt;/a&gt;具有占用空间小、执行效率高、方便进行个性化定制和较好的兼容性等特点，所以该综合语音通信平台在功能、硬件结构、体积、功耗以及灵活性上具有较大优势。&lt;/p&gt;
+&lt;p&gt;在设计中尽量采用嵌入式开发中的常用器件，以便稍加改动即可应用于其他设计。可以根据实际需要更改系统中语音通道的数目和扩展多路语音共听功能等。&lt;/p&gt;
+
+
+&lt;h2 class=&#34;relative group&#34;&gt;系统结构及工作原理 
+    &lt;div id=&#34;%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84%E5%8F%8A%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84%E5%8F%8A%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+
+
+&lt;h3 class=&#34;relative group&#34;&gt;系统组成及特点 
+    &lt;div id=&#34;%E7%B3%BB%E7%BB%9F%E7%BB%84%E6%88%90%E5%8F%8A%E7%89%B9%E7%82%B9&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#%E7%B3%BB%E7%BB%9F%E7%BB%84%E6%88%90%E5%8F%8A%E7%89%B9%E7%82%B9&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h3&gt;
+&lt;p&gt;整个通信平台由语音通信处理主板和语音采集回放子板组成。语音通信处理主板包括CPU MPC860、FLASH存储器、SDRAM存储器、10/100Mb/s网络接口、RS232串口、BDM调试接口、console接口、供电和复位电路及120pin连接器。通信处理主板的核心MPC860是Motorola公司的一款由MC68360演变而来的通用单片集成嵌入式微处理器，适用于通信和网络系统。该微处理器内部有两个处理器：PowerPC和32位RISC处理器。PowerPC核同内存管理单元(MMU)、指令和数据Cache一同处理高层次应用，CPM则负责完成低层数据通信。两个处理器主要通过共享内存交互。通信处理模块利用SCC，SMC，SPI和I2C串行通道与外部设备通信，其中SCC和SMC支持时分复用。设计中，SCC工作在QMC协议Trans-parent Mode。通信处理模块(CPM)新增了数字信号处理(DSP)功能。语音采集回放子板由语音采集电路、语音回放电路、基于FPGA实现的通信控制器和与语音通信处理主板连接的120pin连接器组成。&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/bsp/design-and-implementation-of-vxworks-bsp-in-embedded-speech-communication-system/featured-mpc860-vxworks.png" />
+    </item>
+    
+  </channel>
+</rss>

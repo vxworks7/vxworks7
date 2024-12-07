@@ -7,7 +7,37 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2024 </copyright>
-    <lastBuildDate>Sat, 16 Nov 2024 11:27:29 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 07 Dec 2024 15:08:29 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>BSP</title>
+      <link>https://www.vxworks7.com/tags/bsp/</link>
+      <pubDate>Sat, 07 Dec 2024 15:08:29 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/bsp/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>MPC860</title>
+      <link>https://www.vxworks7.com/tags/mpc860/</link>
+      <pubDate>Sat, 07 Dec 2024 15:08:29 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/mpc860/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>VxWorks</title>
+      <link>https://www.vxworks7.com/tags/vxworks/</link>
+      <pubDate>Sat, 07 Dec 2024 15:08:29 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/vxworks/</guid>
+      <description></description>
+      
+    </item>
+    
     <item>
       <title>AWS</title>
       <link>https://www.vxworks7.com/tags/aws/</link>
@@ -44,16 +74,6 @@
       <pubDate>Mon, 04 Nov 2024 00:24:44 +0800</pubDate>
       
       <guid>https://www.vxworks7.com/tags/program/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>VxWorks</title>
-      <link>https://www.vxworks7.com/tags/vxworks/</link>
-      <pubDate>Mon, 04 Nov 2024 00:24:44 +0800</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/vxworks/</guid>
       <description></description>
       
     </item>

@@ -3,6 +3,18 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
+    <loc>https://www.vxworks7.com/bsp/</loc>
+    <lastmod>2024-12-07T15:08:29+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.vxworks7.com/bsp/design-and-implementation-of-vxworks-bsp-in-embedded-speech-communication-system/</loc>
+    <lastmod>2024-12-07T15:08:29+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://www.vxworks7.com/news/</loc>
     <lastmod>2024-11-16T11:27:29+08:00</lastmod>
     <changefreq>daily</changefreq>
@@ -59,12 +71,6 @@
   <url>
     <loc>https://www.vxworks7.com/app/design-of-multiple-timers-in-vxworks/</loc>
     <lastmod>2024-10-24T23:11:01+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.vxworks7.com/bsp/</loc>
-    <lastmod>2024-10-22T22:32:36+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
