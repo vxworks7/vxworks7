@@ -7,7 +7,27 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2024 </copyright>
-    <lastBuildDate>Mon, 23 Dec 2024 21:58:04 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 30 Dec 2024 17:45:02 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nand</title>
+      <link>https://www.vxworks7.com/tags/nand/</link>
+      <pubDate>Mon, 30 Dec 2024 17:45:02 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/nand/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>VxWorks</title>
+      <link>https://www.vxworks7.com/tags/vxworks/</link>
+      <pubDate>Mon, 30 Dec 2024 17:45:02 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/vxworks/</guid>
+      <description></description>
+      
+    </item>
+    
     <item>
       <title>Aircraft</title>
       <link>https://www.vxworks7.com/tags/aircraft/</link>
@@ -24,16 +44,6 @@
       <pubDate>Mon, 23 Dec 2024 21:58:04 +0800</pubDate>
       
       <guid>https://www.vxworks7.com/tags/simulation/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>VxWorks</title>
-      <link>https://www.vxworks7.com/tags/vxworks/</link>
-      <pubDate>Mon, 23 Dec 2024 21:58:04 +0800</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/vxworks/</guid>
       <description></description>
       
     </item>

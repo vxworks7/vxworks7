@@ -3,6 +3,18 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
+    <loc>https://www.vxworks7.com/bsp/</loc>
+    <lastmod>2024-12-30T17:45:02+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.vxworks7.com/bsp/design-of-nand-flash-driver-based-on-vxworks/</loc>
+    <lastmod>2024-12-30T17:45:02+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://www.vxworks7.com/app/</loc>
     <lastmod>2024-12-23T21:58:04+08:00</lastmod>
     <changefreq>daily</changefreq>
@@ -11,12 +23,6 @@
   <url>
     <loc>https://www.vxworks7.com/app/certain-aircraft-airborne-data-bus-simulation-system-based-on-vxworks/</loc>
     <lastmod>2024-12-23T21:58:04+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.vxworks7.com/bsp/</loc>
-    <lastmod>2024-12-07T15:08:29+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>

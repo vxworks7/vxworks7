@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nand on VxWorks 7 the Leading RTOS</title>
+    <link>https://www.vxworks7.com/tags/nand/</link>
+    <description>Recent content in Nand on VxWorks 7 the Leading RTOS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2024 </copyright>
+    <lastBuildDate>Mon, 30 Dec 2024 17:45:02 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/nand/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>基于VxWorks的NAND FLASH驱动程序设计</title>
+      <link>https://www.vxworks7.com/bsp/design-of-nand-flash-driver-based-on-vxworks/</link>
+      <pubDate>Mon, 30 Dec 2024 17:45:02 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/bsp/design-of-nand-flash-driver-based-on-vxworks/</guid>
+      <description>&lt;h2 class=&#34;relative group&#34;&gt;引 言 
+    &lt;div id=&#34;%E5%BC%95-%E8%A8%80&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#%E5%BC%95-%E8%A8%80&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;目前，随着电子技术的不断发展，计算机技术也得到飞速的发展，产生了很多新技术。但就计算机的基本结构来说，还是基本采用了冯·诺依曼结构。然而冯·诺依曼结构的一个中心点就是存储一控制，所以存储器在计算机系统中的作用是非常重要的。嵌入式计算机作为计算机中的一个类别，对执行速度和系统可靠性都有较强的要求，这也决定了嵌入式系统不仅要有实时性很强的操作系统，同时也需要一种安全、快速的存储设备。同时，嵌入式系统经常会涉及到海量数据的存储，这就要求存储设备必须具有可靠性高，功耗低，容量大，掉电数据不丢失等特点，而NAND FLASH芯片正好具有这些优点。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.vxworks.net&#34; target=&#34;_blank&#34;&gt;VxWorks&lt;/a&gt;是嵌入式领域内公认的最有特色的高性能实时操作系统之一。它以其良好的可靠性和卓越的实时性，被广泛地应用在通信、军事、航空、航天等高精尖技术及实时性要求极高的领域中，如卫星通信、军事演习、弹道制导、飞机导航等。&lt;/p&gt;
+&lt;p&gt;目前，在VxWorks实现上，涉及文件系统的文章不少，但一般都是针对容量较小，操作相对简单的NORFLASH实现的。本文讨论了如何在以AMCC公司的Power PC芯片PPC440epx为核心的嵌入式平台上，利用三星公司的大容量NAND FLASH实现文件系统的具体办法。&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/bsp/design-of-nand-flash-driver-based-on-vxworks/featured-vxworks-nand-flash.png" />
+    </item>
+    
+  </channel>
+</rss>
