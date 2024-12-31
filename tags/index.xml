@@ -7,13 +7,13 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2024 </copyright>
-    <lastBuildDate>Tue, 31 Dec 2024 22:15:39 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 31 Dec 2024 22:23:05 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Guide</title>
-      <link>https://www.vxworks7.com/tags/guide/</link>
-      <pubDate>Tue, 31 Dec 2024 22:15:39 +0800</pubDate>
+      <title>Embedded</title>
+      <link>https://www.vxworks7.com/tags/embedded/</link>
+      <pubDate>Tue, 31 Dec 2024 22:23:05 +0800</pubDate>
       
-      <guid>https://www.vxworks7.com/tags/guide/</guid>
+      <guid>https://www.vxworks7.com/tags/embedded/</guid>
       <description></description>
       
     </item>
@@ -21,9 +21,19 @@
     <item>
       <title>VxWorks</title>
       <link>https://www.vxworks7.com/tags/vxworks/</link>
-      <pubDate>Tue, 31 Dec 2024 22:15:39 +0800</pubDate>
+      <pubDate>Tue, 31 Dec 2024 22:23:05 +0800</pubDate>
       
       <guid>https://www.vxworks7.com/tags/vxworks/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Guide</title>
+      <link>https://www.vxworks7.com/tags/guide/</link>
+      <pubDate>Tue, 31 Dec 2024 22:15:39 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/guide/</guid>
       <description></description>
       
     </item>
@@ -114,16 +124,6 @@
       <pubDate>Mon, 04 Nov 2024 00:24:44 +0800</pubDate>
       
       <guid>https://www.vxworks7.com/tags/program/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Embedded</title>
-      <link>https://www.vxworks7.com/tags/embedded/</link>
-      <pubDate>Sun, 03 Nov 2024 10:09:03 +0800</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/embedded/</guid>
       <description></description>
       
     </item>
