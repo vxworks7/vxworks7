@@ -7,7 +7,32 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2024 </copyright>
-    <lastBuildDate>Mon, 23 Dec 2024 21:58:04 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/series/app/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 31 Dec 2024 23:03:28 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/series/app/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>基于ETX与VxWorks的嵌入式车辆导航系统的设计</title>
+      <link>https://www.vxworks7.com/app/design-of-embedded-vehicle-navigation-system-based-on-etx-and-vxworks/</link>
+      <pubDate>Tue, 31 Dec 2024 23:03:28 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/app/design-of-embedded-vehicle-navigation-system-based-on-etx-and-vxworks/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;作者：屈继楠 付梦印 刘华 邓志红&lt;/p&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class=&#34;relative group&#34;&gt;引言 
+    &lt;div id=&#34;%E5%BC%95%E8%A8%80&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#%E5%BC%95%E8%A8%80&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;车辆导航是一门融合了汽车、计算机、通信、交通、系统科学等领域技术的课题，一直是国内外众多高科技公司和高校研究的重点。对比而言，国内的导航系统发展比较缓慢，在硬件制造、软件功能、电子地图等方面与国外都有较大差距，迄今为止，真正实用的高质量导航产品寥寥无几；而国外的导航系统虽然软硬件水平先进，但受电子地图数据库等因素的制约，也没有大规模进入国内市场。&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/app/design-of-embedded-vehicle-navigation-system-based-on-etx-and-vxworks/featured-computer-on-module-etx-pm3.png" />
+    </item>
+    
     <item>
       <title>基于VxWorks的某型飞机机载总线仿真系统</title>
       <link>https://www.vxworks7.com/app/certain-aircraft-airborne-data-bus-simulation-system-based-on-vxworks/</link>
