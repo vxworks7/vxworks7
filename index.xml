@@ -9,6 +9,45 @@
     <copyright>© 2024 </copyright>
     <lastBuildDate>Fri, 04 Oct 2024 21:23:23 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>VxWorks下Telnet客户端的C语言实现代码</title>
+      <link>https://www.vxworks7.com/app/c-code-to-implement-telnet-client-in-vxworks/</link>
+      <pubDate>Tue, 31 Dec 2024 23:49:11 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/app/c-code-to-implement-telnet-client-in-vxworks/</guid>
+      <description>&lt;h2 class=&#34;relative group&#34;&gt;Telnet client连接过程 
+    &lt;div id=&#34;telnet-client%E8%BF%9E%E6%8E%A5%E8%BF%87%E7%A8%8B&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#telnet-client%E8%BF%9E%E6%8E%A5%E8%BF%87%E7%A8%8B&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;TCP连接telnet  server 23端口&lt;/li&gt;
+&lt;li&gt;NVT扩展自动协商&lt;/li&gt;
+&lt;li&gt;用户名+密码登录&lt;/li&gt;
+&lt;li&gt;通过telnet server端命令行交互&lt;/li&gt;
+&lt;li&gt;退出登录&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2 class=&#34;relative group&#34;&gt;概述 
+    &lt;div id=&#34;%E6%A6%82%E8%BF%B0&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#%E6%A6%82%E8%BF%B0&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;Telnet 协议是 TCP/IP 协议族中 应用最广泛的协议。&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/app/c-code-to-implement-telnet-client-in-vxworks/featured-vxworks-telnet.jpg" />
+    </item>
+    
+    <item>
       <title>基于ETX与VxWorks的嵌入式车辆导航系统的设计</title>
       <link>https://www.vxworks7.com/app/design-of-embedded-vehicle-navigation-system-based-on-etx-and-vxworks/</link>
       <pubDate>Tue, 31 Dec 2024 23:03:28 +0800</pubDate>

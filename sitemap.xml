@@ -4,7 +4,13 @@
 
   <url>
     <loc>https://www.vxworks7.com/app/</loc>
-    <lastmod>2024-12-31T23:03:28+08:00</lastmod>
+    <lastmod>2024-12-31T23:49:11+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.vxworks7.com/app/c-code-to-implement-telnet-client-in-vxworks/</loc>
+    <lastmod>2024-12-31T23:49:11+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
