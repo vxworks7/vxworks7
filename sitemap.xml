@@ -3,6 +3,18 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
+    <loc>https://www.vxworks7.com/book/</loc>
+    <lastmod>2025-01-02T09:28:21+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.vxworks7.com/book/vxworks-system-development-tutorial/</loc>
+    <lastmod>2025-01-02T09:28:21+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://www.vxworks7.com/app/</loc>
     <lastmod>2024-12-31T23:49:11+08:00</lastmod>
     <changefreq>daily</changefreq>
@@ -17,12 +29,6 @@
   <url>
     <loc>https://www.vxworks7.com/app/design-of-embedded-vehicle-navigation-system-based-on-etx-and-vxworks/</loc>
     <lastmod>2024-12-31T23:03:28+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.vxworks7.com/book/</loc>
-    <lastmod>2024-12-31T22:23:05+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>

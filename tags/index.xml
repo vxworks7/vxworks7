@@ -6,14 +6,14 @@
     <description>Recent content in Tags on VxWorks 7 the Leading RTOS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>© 2024 </copyright>
-    <lastBuildDate>Tue, 31 Dec 2024 23:49:11 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>© 2025 </copyright>
+    <lastBuildDate>Thu, 02 Jan 2025 09:28:21 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Telnet Client</title>
-      <link>https://www.vxworks7.com/tags/telnet-client/</link>
-      <pubDate>Tue, 31 Dec 2024 23:49:11 +0800</pubDate>
+      <title>Development Tutorial</title>
+      <link>https://www.vxworks7.com/tags/development-tutorial/</link>
+      <pubDate>Thu, 02 Jan 2025 09:28:21 +0800</pubDate>
       
-      <guid>https://www.vxworks7.com/tags/telnet-client/</guid>
+      <guid>https://www.vxworks7.com/tags/development-tutorial/</guid>
       <description></description>
       
     </item>
@@ -21,9 +21,19 @@
     <item>
       <title>VxWorks</title>
       <link>https://www.vxworks7.com/tags/vxworks/</link>
-      <pubDate>Tue, 31 Dec 2024 23:49:11 +0800</pubDate>
+      <pubDate>Thu, 02 Jan 2025 09:28:21 +0800</pubDate>
       
       <guid>https://www.vxworks7.com/tags/vxworks/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Telnet Client</title>
+      <link>https://www.vxworks7.com/tags/telnet-client/</link>
+      <pubDate>Tue, 31 Dec 2024 23:49:11 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/telnet-client/</guid>
       <description></description>
       
     </item>
