@@ -7,7 +7,47 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 </copyright>
-    <lastBuildDate>Thu, 02 Jan 2025 11:21:38 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 04 Jan 2025 22:21:40 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>BSP</title>
+      <link>https://www.vxworks7.com/tags/bsp/</link>
+      <pubDate>Sat, 04 Jan 2025 22:21:40 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/bsp/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Device Driver</title>
+      <link>https://www.vxworks7.com/tags/device-driver/</link>
+      <pubDate>Sat, 04 Jan 2025 22:21:40 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/device-driver/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Kernel</title>
+      <link>https://www.vxworks7.com/tags/kernel/</link>
+      <pubDate>Sat, 04 Jan 2025 22:21:40 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/kernel/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>VxWorks</title>
+      <link>https://www.vxworks7.com/tags/vxworks/</link>
+      <pubDate>Sat, 04 Jan 2025 22:21:40 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/vxworks/</guid>
+      <description></description>
+      
+    </item>
+    
     <item>
       <title>Development Tutorial</title>
       <link>https://www.vxworks7.com/tags/development-tutorial/</link>
@@ -24,16 +64,6 @@
       <pubDate>Thu, 02 Jan 2025 11:21:38 +0800</pubDate>
       
       <guid>https://www.vxworks7.com/tags/vxworks-7/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>VxWorks</title>
-      <link>https://www.vxworks7.com/tags/vxworks/</link>
-      <pubDate>Thu, 02 Jan 2025 09:28:21 +0800</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/vxworks/</guid>
       <description></description>
       
     </item>
@@ -104,16 +134,6 @@
       <pubDate>Mon, 23 Dec 2024 21:58:04 +0800</pubDate>
       
       <guid>https://www.vxworks7.com/tags/simulation/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>BSP</title>
-      <link>https://www.vxworks7.com/tags/bsp/</link>
-      <pubDate>Sat, 07 Dec 2024 15:08:29 +0800</pubDate>
-      
-      <guid>https://www.vxworks7.com/tags/bsp/</guid>
       <description></description>
       
     </item>

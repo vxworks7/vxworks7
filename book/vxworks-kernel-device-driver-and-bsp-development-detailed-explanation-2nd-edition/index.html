@@ -8,14 +8,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>基于VxWorks嵌入式系统的数据通信 &middot; VxWorks 7 the Leading RTOS</title>
-  <meta name="title" content="基于VxWorks嵌入式系统的数据通信 &middot; VxWorks 7 the Leading RTOS" />
+  <title>VxWorks内核、设备驱动与BSP开发详解(第2版) &middot; VxWorks 7 the Leading RTOS</title>
+  <meta name="title" content="VxWorks内核、设备驱动与BSP开发详解(第2版) &middot; VxWorks 7 the Leading RTOS" />
   
-  <meta name="description" content="Data Communication Based on VxWorks Embedded System" />
-  <meta name="keywords" content="VxWorks, Data Communication, " />
+  <meta name="description" content="VxWorks Kernel Device Driver and BSP Development Detailed Explanation 2nd Edition" />
+  <meta name="keywords" content="VxWorks, Kernel, Device Driver, BSP, " />
   
   
-  <link rel="canonical" href="https://www.vxworks7.com/book/data-communication-based-on-vxworks-embedded-system/" />
+  <link rel="canonical" href="https://www.vxworks7.com/book/vxworks-kernel-device-driver-and-bsp-development-detailed-explanation-2nd-edition/" />
   
   
   
@@ -66,19 +66,20 @@
   
   
   
-  <meta property="og:url" content="https://www.vxworks7.com/book/data-communication-based-on-vxworks-embedded-system/">
+  <meta property="og:url" content="https://www.vxworks7.com/book/vxworks-kernel-device-driver-and-bsp-development-detailed-explanation-2nd-edition/">
   <meta property="og:site_name" content="VxWorks 7 the Leading RTOS">
-  <meta property="og:title" content="基于VxWorks嵌入式系统的数据通信">
-  <meta property="og:description" content="Data Communication Based on VxWorks Embedded System">
+  <meta property="og:title" content="VxWorks内核、设备驱动与BSP开发详解(第2版)">
+  <meta property="og:description" content="VxWorks Kernel Device Driver and BSP Development Detailed Explanation 2nd Edition">
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="book">
-    <meta property="article:published_time" content="2024-11-02T23:45:51+08:00">
-    <meta property="article:modified_time" content="2024-11-02T23:45:51+08:00">
+    <meta property="article:published_time" content="2025-01-04T22:21:40+08:00">
+    <meta property="article:modified_time" content="2025-01-04T22:21:40+08:00">
     <meta property="article:tag" content="VxWorks">
-    <meta property="article:tag" content="Data Communication">
-    <meta property="og:image" content="https://www.vxworks7.com/book/data-communication-based-on-vxworks-embedded-system/featured-vxworks-book.png">
-      <meta property="og:see_also" content="https://www.vxworks7.com/book/vxworks-kernel-device-driver-and-bsp-development-detailed-explanation-2nd-edition/">
+    <meta property="article:tag" content="Kernel">
+    <meta property="article:tag" content="Device Driver">
+    <meta property="article:tag" content="BSP">
+    <meta property="og:image" content="https://www.vxworks7.com/book/vxworks-kernel-device-driver-and-bsp-development-detailed-explanation-2nd-edition/featured-vxworks-book.png">
       <meta property="og:see_also" content="https://www.vxworks7.com/book/vxworks-7-user-guide-in-chinese/">
       <meta property="og:see_also" content="https://www.vxworks7.com/book/vxworks-system-development-tutorial/">
       <meta property="og:see_also" content="https://www.vxworks7.com/book/embedded-software-design-based-on-vxworks/">
@@ -88,9 +89,9 @@
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://www.vxworks7.com/book/data-communication-based-on-vxworks-embedded-system/featured-vxworks-book.png">
-  <meta name="twitter:title" content="基于VxWorks嵌入式系统的数据通信">
-  <meta name="twitter:description" content="Data Communication Based on VxWorks Embedded System">
+  <meta name="twitter:image" content="https://www.vxworks7.com/book/vxworks-kernel-device-driver-and-bsp-development-detailed-explanation-2nd-edition/featured-vxworks-book.png">
+  <meta name="twitter:title" content="VxWorks内核、设备驱动与BSP开发详解(第2版)">
+  <meta name="twitter:description" content="VxWorks Kernel Device Driver and BSP Development Detailed Explanation 2nd Edition">
 
   
   <script type="application/ld+json">
@@ -98,26 +99,26 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Books",
-    "name": "基于VxWorks嵌入式系统的数据通信",
-    "headline": "基于VxWorks嵌入式系统的数据通信",
-    "description": "Data Communication Based on VxWorks Embedded System",
-    "abstract": "\u003cp\u003e\n    \u003cfigure\u003e\n      \u003cimg class=\u0022my-0 rounded-md\u0022 loading=\u0022lazy\u0022 src=\u0022.\/data-communication-based-on-vxworks.jpeg\u0022 alt=\u0022基于VxWorks嵌入式系统的数据通信\u0022 \/\u003e\n      \n    \u003c\/figure\u003e\n\u003c\/p\u003e\n\u003cblockquote\u003e\n免费下载说明：\u003c\/br\u003e\n网络资源，整理仅供学习参考!\n\u003c\/blockquote\u003e\n\n\n  \u003cspan class=\u0022relative inline-block align-text-bottom icon\u0022\u003e\n    \u003csvg xmlns=\u0022http:\/\/www.w3.org\/2000\/svg\u0022 viewBox=\u00220 0 512 512\u0022\u003e\n\u003cpath fill=\u0022currentColor\u0022 d=\u0022M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zM432 456c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z\u0022\/\u003e\u003c\/svg\u003e\n  \u003c\/span\u003e\n\n\u003ca href=\u0022https:\/\/app.filemail.com\/d\/zvtvprxzzwlxmye\u0022 target=\u0022_blank\u0022 download\u003e基于VxWorks嵌入式系统的数据通信\u003c\/a\u003e\n\n\n\u003ch2 class=\u0022relative group\u0022\u003e内容简介 \n    \u003cdiv id=\u0022%E5%86%85%E5%AE%B9%E7%AE%80%E4%BB%8B\u0022 class=\u0022anchor\u0022\u003e\u003c\/div\u003e\n    \n    \u003cspan\n        class=\u0022absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100\u0022\u003e\n        \u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022\n            style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#%E5%86%85%E5%AE%B9%E7%AE%80%E4%BB%8B\u0022 aria-label=\u0022锚点\u0022\u003e#\u003c\/a\u003e\n    \u003c\/span\u003e        \n    \n\u003c\/h2\u003e\n\u003cp\u003e\u003ca href=\u0022https:\/\/www.vxworks7.com\u0022 target=\u0022_blank\u0022\u003eVxWorks\u003c\/a\u003e是由美国Wind River公司设计开发的一种嵌入式实时操作系统，具有高可靠性、实时性、广泛的适应性及灵活性，已经被广泛地应用于嵌入式系统的开发和设计中。本书讲述了基于VxWorks嵌入式操作系统的数据通信的设计和开发，着重于VxWorks的工程实践应用。全书共分9章，主要内容包括数据通信基础、串行通信技术、机载数据总线、嵌入式系统开发基础、嵌入式微处理器、VxWorks实时操作系统与应用、Tornado集成开发环境、\u003ca href=\u0022https:\/\/www.vxworks.net\/bsp\u0022 target=\u0022_blank\u0022\u003eVxWorks BSP\u003c\/a\u003e基础及其开发过程、VxWorks操作系统应用实例等。\u003c\/p\u003e",
+    "name": "VxWorks内核、设备驱动与BSP开发详解(第2版)",
+    "headline": "VxWorks内核、设备驱动与BSP开发详解(第2版)",
+    "description": "VxWorks Kernel Device Driver and BSP Development Detailed Explanation 2nd Edition",
+    "abstract": "\u003cp\u003e\n    \u003cfigure\u003e\n      \u003cimg class=\u0022my-0 rounded-md\u0022 loading=\u0022lazy\u0022 src=\u0022.\/vxworks-kernel-device-driver-bsp.png\u0022 alt=\u0022VxWorks内核、设备驱动与BSP开发详解(第2版)\u0022 \/\u003e\n      \n    \u003c\/figure\u003e\n\u003c\/p\u003e\n\u003cblockquote\u003e\n免费下载说明：\u003c\/br\u003e\n网络资源，整理仅供学习参考!\n\u003c\/blockquote\u003e\n\n\n  \u003cspan class=\u0022relative inline-block align-text-bottom icon\u0022\u003e\n    \u003csvg xmlns=\u0022http:\/\/www.w3.org\/2000\/svg\u0022 viewBox=\u00220 0 512 512\u0022\u003e\n\u003cpath fill=\u0022currentColor\u0022 d=\u0022M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zM432 456c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z\u0022\/\u003e\u003c\/svg\u003e\n  \u003c\/span\u003e\n\n\u003ca href=\u0022https:\/\/app.filemail.com\/d\/hjdaraaaapoiauz\u0022 target=\u0022_blank\u0022 download\u003eVxWorks内核、设备驱动与BSP开发详解(第2版)\u003c\/a\u003e\n\u003cp\u003e内容简介：\u003c\/p\u003e",
     "inLanguage": "zh-cn",
-    "url" : "https:\/\/www.vxworks7.com\/book\/data-communication-based-on-vxworks-embedded-system\/",
+    "url" : "https:\/\/www.vxworks7.com\/book\/vxworks-kernel-device-driver-and-bsp-development-detailed-explanation-2nd-edition\/",
     "author" : {
       "@type": "Person",
       "name": ""
     },
-    "copyrightYear": "2024",
-    "dateCreated": "2024-11-02T23:45:51\u002b08:00",
-    "datePublished": "2024-11-02T23:45:51\u002b08:00",
+    "copyrightYear": "2025",
+    "dateCreated": "2025-01-04T22:21:40\u002b08:00",
+    "datePublished": "2025-01-04T22:21:40\u002b08:00",
     
-    "dateModified": "2024-11-02T23:45:51\u002b08:00",
+    "dateModified": "2025-01-04T22:21:40\u002b08:00",
     
-    "keywords": ["VxWorks","Data Communication"],
+    "keywords": ["VxWorks","Kernel","Device Driver","BSP"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "483"
+    "wordCount": "7"
   }]
   </script>
 
@@ -447,7 +448,7 @@
   <header id="single_header" class="mt-5 max-w-prose">
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-      基于VxWorks嵌入式系统的数据通信
+      VxWorks内核、设备驱动与BSP开发详解(第2版)
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -488,7 +489,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-11-02T23:45:51&#43;08:00">2024-11-02</time>
+  <time datetime="2025-01-04T22:21:40&#43;08:00">2025-01-04</time>
   
 
   
@@ -520,10 +521,26 @@
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/data-communication/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/kernel/&#34;,'_self');">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    Data Communication
+    Kernel
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/device-driver/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Device Driver
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/bsp/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    BSP
   </span>
 </span>
   </span>
@@ -575,139 +592,7 @@
   
   <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
     
-     <div
-      class="order-first lg:ml-auto px-0 lg:order-last ltr:lg:pl-8 rtl:lg:pr-8">
-      <div class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky lg:top-[140px]">
-
-         <details open id="TOCView"
-  class="toc-right mt-0 overflow-y-scroll overscroll-contain scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600 rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
-  <summary
-    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
-    目录
-  </summary>
-  <div
-    class="min-w-[220px] py-2 border-dotted ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#内容简介">内容简介</a></li>
-    <li><a href="#前言">前言</a></li>
-    <li><a href="#目录">目录</a>
-      <ul>
-        <li><a href="#第1章-数据通信基础-1">第1章 数据通信基础 1</a></li>
-        <li><a href="#第2章-串行通信技术-46">第2章 串行通信技术 46</a></li>
-        <li><a href="#第3章-机载数据总线-91">第3章 机载数据总线 91</a></li>
-        <li><a href="#第4章-嵌入式系统开发基础-137">第4章 嵌入式系统开发基础 137</a></li>
-        <li><a href="#第5章-嵌入式微处理器-172">第5章 嵌入式微处理器 172</a></li>
-        <li><a href="#第6章-vxworks实时操作系统与应用-228">第6章 VxWorks实时操作系统与应用 228</a></li>
-        <li><a href="#第7章-tornado集成开发环境-241">第7章 Tornado集成开发环境 241</a></li>
-        <li><a href="#第8章-vxworks-bsp基础及其开发过程-263">第8章 VxWorks BSP基础及其开发过程 263</a></li>
-        <li><a href="#第9章-vxworks操作系统应用实例-303">第9章 VxWorks操作系统应用实例 303</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-  </div>
-</details>
-<details class="toc-inside mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden">
-  <summary
-    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
-    目录
-  </summary>
-  <div
-    class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#内容简介">内容简介</a></li>
-    <li><a href="#前言">前言</a></li>
-    <li><a href="#目录">目录</a>
-      <ul>
-        <li><a href="#第1章-数据通信基础-1">第1章 数据通信基础 1</a></li>
-        <li><a href="#第2章-串行通信技术-46">第2章 串行通信技术 46</a></li>
-        <li><a href="#第3章-机载数据总线-91">第3章 机载数据总线 91</a></li>
-        <li><a href="#第4章-嵌入式系统开发基础-137">第4章 嵌入式系统开发基础 137</a></li>
-        <li><a href="#第5章-嵌入式微处理器-172">第5章 嵌入式微处理器 172</a></li>
-        <li><a href="#第6章-vxworks实时操作系统与应用-228">第6章 VxWorks实时操作系统与应用 228</a></li>
-        <li><a href="#第7章-tornado集成开发环境-241">第7章 Tornado集成开发环境 241</a></li>
-        <li><a href="#第8章-vxworks-bsp基础及其开发过程-263">第8章 VxWorks BSP基础及其开发过程 263</a></li>
-        <li><a href="#第9章-vxworks操作系统应用实例-303">第9章 VxWorks操作系统应用实例 303</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-  </div>
-</details>
-
-<script>
-
-  var margin = 200;
-  var marginError = 50;
-
-  (function () {
-    var $window = $(window);
-    var $toc = $('#TOCView');
-    var tocHeight = $toc.height();
-
-    function onResize() {
-      var windowAndMarginHeight = $window.height() - margin;
-      if(tocHeight >= windowAndMarginHeight) {
-        $toc.css("overflow-y", "scroll")
-        $toc.css("max-height", (windowAndMarginHeight + marginError) + "px")
-      } else {
-        $toc.css("overflow-y", "hidden")
-        $toc.css("max-height", "9999999px")
-      }
-    }
-
-    $window.on('resize', onResize);
-    $(document).ready(onResize);
-  })();
-
-
-
-  (function () {
-    var $toc = $('#TableOfContents');
-    if ($toc.length > 0) {
-      var $window = $(window);
-
-      function onScroll() {
-        var currentScroll = $window.scrollTop();
-        var h = $('.anchor');
-        var id = "";
-        h.each(function (i, e) {
-          e = $(e);
-          if (e.offset().top - $(window).height()/3 <= currentScroll) {
-            id = decodeURIComponent(e.attr('id'));
-          }
-        });
-        var active = $toc.find('a.active');      
-        if (active.length == 1 && active.eq(0).attr('href') == '#' + id) return true;
-
-        active.each(function (i, e) {
-           
-            $(e).removeClass('active').siblings('ul').hide();
-          
-        });
-        $toc.find('a[href="#' + id + '"]').addClass('active')
-        $toc.find('a[href="#' + id + '"]').parentsUntil('#TableOfContents').each(function (i, e) {
-          $(e).children('a').parents('ul').show();          
-        });
-      }
-
-      $window.on('scroll', onScroll);
-      $(document).ready(function () {
-         
-          $toc.find('a').parent('li').find('ul').hide();
-        
-        onScroll();
-      });
-    }
-  })();
-
-
-</script>
-   </div>
-      </div>
-      
+    
 
       <div class="min-w-0 min-h-0 max-w-fit">
         
@@ -732,7 +617,9 @@
     
     <div
         class="py-1 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
-        § 2: 本文
+        <a href="https://www.vxworks7.com/book/data-communication-based-on-vxworks-embedded-system/">
+            § 2: 基于VxWorks嵌入式系统的数据通信
+        </a>
     </div>
     
     
@@ -793,9 +680,7 @@
     
     <div
         class="py-1 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
-        <a href="https://www.vxworks7.com/book/vxworks-kernel-device-driver-and-bsp-development-detailed-explanation-2nd-edition/">
-            § 9: VxWorks内核、设备驱动与BSP开发详解(第2版)
-        </a>
+        § 9: 本文
     </div>
     
     
@@ -808,7 +693,7 @@
         <div class="article-content max-w-prose mb-20">
           <p>
     <figure>
-      <img class="my-0 rounded-md" loading="lazy" src="./data-communication-based-on-vxworks.jpeg" alt="基于VxWorks嵌入式系统的数据通信" />
+      <img class="my-0 rounded-md" loading="lazy" src="./vxworks-kernel-device-driver-bsp.png" alt="VxWorks内核、设备驱动与BSP开发详解(第2版)" />
       
     </figure>
 </p>
@@ -823,312 +708,12 @@
 <path fill="currentColor" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zM432 456c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg>
   </span>
 
-<a href="https://app.filemail.com/d/zvtvprxzzwlxmye" target="_blank" download>基于VxWorks嵌入式系统的数据通信</a>
+<a href="https://app.filemail.com/d/hjdaraaaapoiauz" target="_blank" download>VxWorks内核、设备驱动与BSP开发详解(第2版)</a>
+<p>内容简介：</p>
+<p>在嵌入式行业飞速发展的今天，嵌入式操作系统的应用越来越广泛，<a href="https://www.vxworks.net" target="_blank">VxWorks</a>具有良好的实时性，被大量应用于航空、通信、国防、工业控制、网络设备、医疗设备、消费电子等嵌入式实时应用领域。</p>
+<p>《VxWorks内核、设备驱动与BSP开发详解(第2版)》共24章，按照初学者学习的一般步骤，详细介绍了VxWorks的开发环境、内核分析和应用程序开发、驱动程序开发与原理和板级支持包流程与移植，每章均配以实例进行讲解。</p>
+<p>《VxWorks内核、设备驱动与BSP开发详解(第2版)》语言通俗、实例丰富、代码分析详尽，有较强的实用性和参考价值，适合大专院校嵌入式相关专业学生学习参考，也可供嵌入式开发人员和系统设计人员参考使用。</p>
 
-
-<h2 class="relative group">内容简介 
-    <div id="%E5%86%85%E5%AE%B9%E7%AE%80%E4%BB%8B" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E5%86%85%E5%AE%B9%E7%AE%80%E4%BB%8B" aria-label="锚点">#</a>
-    </span>        
-    
-</h2>
-<p><a href="https://www.vxworks7.com" target="_blank">VxWorks</a>是由美国Wind River公司设计开发的一种嵌入式实时操作系统，具有高可靠性、实时性、广泛的适应性及灵活性，已经被广泛地应用于嵌入式系统的开发和设计中。本书讲述了基于VxWorks嵌入式操作系统的数据通信的设计和开发，着重于VxWorks的工程实践应用。全书共分9章，主要内容包括数据通信基础、串行通信技术、机载数据总线、嵌入式系统开发基础、嵌入式微处理器、VxWorks实时操作系统与应用、Tornado集成开发环境、<a href="https://www.vxworks.net/bsp" target="_blank">VxWorks BSP</a>基础及其开发过程、VxWorks操作系统应用实例等。</p>
-<p>本书内容全面系统，讲解通俗易懂，所给实例有很强的实用性和指导性，可作为电子技术类、通信类、软件工程类专业本科生或研究生学习VxWorks的实用书籍，也可作为从事嵌入式系统开发的软件工程师的参考书。</p>
-
-
-<h2 class="relative group">前言 
-    <div id="%E5%89%8D%E8%A8%80" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E5%89%8D%E8%A8%80" aria-label="锚点">#</a>
-    </span>        
-    
-</h2>
-<p>随着电子信息技术、计算机技术和微电子技术的发展，嵌入式系统已经日益成熟和完善，其应用也越来越广泛，小到手机、电子词典、MP3，大到数控设备、航天航空设备等，嵌入式系统已经在工业和生活领域得到了广泛的开发和应用。嵌入式系统产品的研制和应用也已经成为推动国民经济信息化发展的新动力。</p>
-<p>VxWorks操作系统是美国Wind River公司设计开发的一种嵌入式实时操作系统(RTOS)。由于其具有高可靠性、实时性、广泛的适用性及灵活性，已被广泛地应用到通信、军事、航空航天等高精尖和实时性要求很高的领域中。VxWorks作为一款功能强大、独具特色的嵌入式操作系统，已经成为软件工程师采用最多的用于开发嵌入式实时系统的商用实时操作系统之一，并为程序员提供了高效的实时多任务调度、中断管理、实时的系统资源管理以及实时的任务间通信。</p>
-<p>数据通信作为通信技术与计算机技术相结合的一种新兴技术，在信息化高速发展的今天，随着第三代移动通信的推广和普及，在生活中的应用要求越来越高，而在工业控制领域，基于通信总线的数据通信也获得了广泛的应用。因此，基于VxWorks嵌入式系统的数据通信有着广阔的应用空间，已经成功地应用在军事、航天、工业、消费类电子产品等领域中。</p>
-<p>本书共分为9章，内容安排如下：</p>
-<ul>
-<li>第1章主要介绍了几种典型总线的相关背景知识、串行通信基础和ISO/OSI参考模型及相关技术。</li>
-<li>第2章介绍了RS-232、RS-422/RS-485接口的特点和应用开发方法，并提供了串口应用实例。</li>
-<li>第3章对机载数据总线ARINC-429和MIL-STD-1553B的总线特征、通信控制和接口逻辑等方面做了概述。</li>
-<li>第4章对嵌入式系统的基础理论和体系结构做了简要的叙述，并指出了嵌入式系统一般的开发流程。</li>
-<li>第5章主要介绍了嵌入式微处理器的体系结构和特点，其中包括PowerPC微处理器和ARM微处理器。</li>
-<li>第6章概述了VxWorks操作系统的特点、组成及功能，详细介绍了VxWorks操作系统的应用机制和开发方法。</li>
-<li>第7章介绍了Tornado集成开发环境的安装和使用方法。</li>
-<li>第8章概述了VxWorks中BSP的基本理论和配置及其开发过程。</li>
-<li>第9章通过实例使读者系统地了解基于VxWorks嵌入式系统的开发和设计方法。</li>
-</ul>
-<p>本书的特点在于结合了数据通信的理论知识和工程实例，内容丰富翔实，可作为嵌入式系统开发设计人员有效的学习工具和参考资料。</p>
-<p>在策划和编写本书的过程中，本人得到了多位同学的关心和帮助，包括康郁爽、上官瑞春、李亚鹏、李飞翔、单晓明、刘思迪、唐莎、吴宜杰等，在此深表感谢。</p>
-<p>由于编者水平有限，加之时间仓促，书中难免有疏漏和不妥之处，敬请读者予以批评指正。</p>
-<p>相　征(本书作者)</p>
-<p>2010年12月</p>
-
-
-<h2 class="relative group">目录 
-    <div id="%E7%9B%AE%E5%BD%95" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E7%9B%AE%E5%BD%95" aria-label="锚点">#</a>
-    </span>        
-    
-</h2>
-
-
-<h3 class="relative group">第1章 数据通信基础 1 
-    <div id="%E7%AC%AC1%E7%AB%A0-%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1%E5%9F%BA%E7%A1%80-1" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E7%AC%AC1%E7%AB%A0-%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1%E5%9F%BA%E7%A1%80-1" aria-label="锚点">#</a>
-    </span>        
-    
-</h3>
-<pre tabindex="0"><code class="language-mark" data-lang="mark">1.1 概述 1
-1.1.1 通信总线的概念 1
-1.1.2 通信总线的特点 1
-1.1.3 通信总线的技术指标和标准 4
-1.2 串行通信基础 5
-1.2.1 数据传输理论基础 5
-1.2.2 数据编码 7
-1.2.3 数据传输方式 9
-1.2.4 网络拓扑结构 13
-1.2.5 数据交换技术 16
-1.3 ISO/OSI参考模型及相关技术 18
-1.3.1 OSI协议的体系结构 18
-1.3.2 物理层传输介质 25
-1.3.3 差错控制 29
-1.3.4 信道共享技术 35
-1.3.5 网络设备 43
-1.4 本章小结 45
-</code></pre>
-
-<h3 class="relative group">第2章 串行通信技术 46 
-    <div id="%E7%AC%AC2%E7%AB%A0-%E4%B8%B2%E8%A1%8C%E9%80%9A%E4%BF%A1%E6%8A%80%E6%9C%AF-46" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E7%AC%AC2%E7%AB%A0-%E4%B8%B2%E8%A1%8C%E9%80%9A%E4%BF%A1%E6%8A%80%E6%9C%AF-46" aria-label="锚点">#</a>
-    </span>        
-    
-</h3>
-<pre tabindex="0"><code class="language-mark" data-lang="mark">2.1 RS-232接口 46
-2.1.1 RS-232的基本特性 46
-2.1.2 RS-232的连接器 51
-2.1.3 RS-232的连接 52
-2.1.4 RS-232的电路设计 56
-2.2 RS-422/RS-485接口 69
-2.2.1 RS-422/RS-485标准 69
-2.2.2 RS-232接口到RS-422/RS-485接口的转换 77
-2.2.3 基于RS-485接口的通信 80
-2.2.4 RS-422/RS-485接口应用电路举例 83
-2.3 串口应用实例 84
-2.3.1 基于FPGA的传感器数据采集及传输系统简述 84
-2.3.2 RS-422接口的功能设计与实现 85
-2.4 本章小结 90
-</code></pre>
-
-<h3 class="relative group">第3章 机载数据总线 91 
-    <div id="%E7%AC%AC3%E7%AB%A0-%E6%9C%BA%E8%BD%BD%E6%95%B0%E6%8D%AE%E6%80%BB%E7%BA%BF-91" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E7%AC%AC3%E7%AB%A0-%E6%9C%BA%E8%BD%BD%E6%95%B0%E6%8D%AE%E6%80%BB%E7%BA%BF-91" aria-label="锚点">#</a>
-    </span>        
-    
-</h3>
-<pre tabindex="0"><code class="language-mark" data-lang="mark">3.1 ARINC-429数据总线 91
-3.1.1 ARINC-429总线特征 91
-3.1.2 ARINC-429数据 94
-3.1.3 通信控制 98
-3.1.4 接口逻辑 101
-3.2 MIL-STD-1553B数据总线 118
-3.2.1 MIL-STD-1553B总线特征 118
-3.2.2 MIL-STD-1553B数据 121
-3.2.3 通信控制 126
-3.2.4 接口逻辑 128
-3.2.5 总线控制原则 135
-3.3 本章小结 136
-</code></pre>
-
-<h3 class="relative group">第4章 嵌入式系统开发基础 137 
-    <div id="%E7%AC%AC4%E7%AB%A0-%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80-137" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E7%AC%AC4%E7%AB%A0-%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80-137" aria-label="锚点">#</a>
-    </span>        
-    
-</h3>
-<pre tabindex="0"><code class="language-mark" data-lang="mark">4.1 嵌入式系统的基本理论 137
-4.1.1 嵌入式系统的定义 137
-4.1.2 嵌入式系统的发展 138
-4.1.3 嵌入式系统的特点 139
-4.1.4 嵌入式系统的分类 140
-4.1.5 嵌入式系统的应用范围 141
-4.1.6 嵌入式系统的发展趋势 142
-4.2 嵌入式系统的体系结构 143
-4.3 嵌入式系统的硬件系统 145
-4.3.1 嵌入式处理器 145
-4.3.2 嵌入式处理器的发展趋势 148
-4.3.3 嵌入式外围接口电路和设备接口 149
-4.4 嵌入式系统的软件系统 150
-4.4.1 嵌入式系统的软件分类 151
-4.4.2 嵌入式操作系统 151
-4.4.3 嵌入式操作系统的选择标准 156
-4.4.4 嵌入式操作系统的发展趋势 157
-4.4.5 板级支持包BSP 158
-4.5 嵌入式系统的开发 159
-4.5.1 嵌入式系统的开发流程 159
-4.5.2 嵌入式应用软件开发 163
-4.5.3 嵌入式系统硬件设计 170
-4.6 本章小结 171
-</code></pre>
-
-<h3 class="relative group">第5章 嵌入式微处理器 172 
-    <div id="%E7%AC%AC5%E7%AB%A0-%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BE%AE%E5%A4%84%E7%90%86%E5%99%A8-172" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E7%AC%AC5%E7%AB%A0-%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BE%AE%E5%A4%84%E7%90%86%E5%99%A8-172" aria-label="锚点">#</a>
-    </span>        
-    
-</h3>
-<pre tabindex="0"><code class="language-mark" data-lang="mark">5.1 嵌入式硬件系统基本架构 172
-5.2 嵌入式微处理器概述 173
-5.2.1 嵌入式微处理器的体系结构 173
-5.2.2 嵌入式处理器的种类 175
-5.3 ARM嵌入式微处理器 177
-5.3.1 ARM简介 177
-5.3.2 ARM内核体系结构 177
-5.3.3 基于ARM9的S3C2410X微处理器 184
-5.4 PowerPC架构及寄存器概述 202
-5.4.1 处理器简述 202
-5.4.2 指令的组合和分类 203
-5.4.3 已定义类指令的形式 209
-5.4.4 异常 209
-5.4.5 存储单元的寻址 209
-5.4.6 寄存器集 211
-5.5 本章小结 227
-</code></pre>
-
-<h3 class="relative group">第6章 VxWorks实时操作系统与应用 228 
-    <div id="%E7%AC%AC6%E7%AB%A0-vxworks%E5%AE%9E%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%BA%94%E7%94%A8-228" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E7%AC%AC6%E7%AB%A0-vxworks%E5%AE%9E%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%BA%94%E7%94%A8-228" aria-label="锚点">#</a>
-    </span>        
-    
-</h3>
-<pre tabindex="0"><code class="language-mark" data-lang="mark">6.1 VxWorks概述 228
-6.1.1 VxWorks的特点 228
-6.1.2 VxWorks系统的组成及功能 229
-6.2 VxWorks系统的应用机制 231
-6.2.1 任务管理机制 231
-6.2.2 中断处理 233
-6.2.3 内存管理 234
-6.2.4 I/O与文件系统 236
-6.3 VxWorks系统开发方法 237
-6.3.1 通信机制的选择 237
-6.3.2 正确划分任务 238
-6.3.3 合理分配动态内存 238
-6.3.4 防止任务异常 239
-6.5 本章小结 240
-</code></pre>
-
-<h3 class="relative group">第7章 Tornado集成开发环境 241 
-    <div id="%E7%AC%AC7%E7%AB%A0-tornado%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83-241" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E7%AC%AC7%E7%AB%A0-tornado%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83-241" aria-label="锚点">#</a>
-    </span>        
-    
-</h3>
-<pre tabindex="0"><code class="language-mark" data-lang="mark">7.1 Tornado概述 241
-7.2 Tornado安装 243
-7.2.1 目录与文件 243
-7.2.2 安装步骤 244
-7.2.3 Tornado注册 248
-7.3 Tornado的使用方法 249
-7.3.1 创建工程 250
-7.3.2 添加文件到工程 252
-7.3.3 编译和运行程序 254
-7.3.4 监视和调试 258
-7.4 本章小结 261
-</code></pre>
-
-<h3 class="relative group">第8章 VxWorks BSP基础及其开发过程 263 
-    <div id="%E7%AC%AC8%E7%AB%A0-vxworks-bsp%E5%9F%BA%E7%A1%80%E5%8F%8A%E5%85%B6%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B-263" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E7%AC%AC8%E7%AB%A0-vxworks-bsp%E5%9F%BA%E7%A1%80%E5%8F%8A%E5%85%B6%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B-263" aria-label="锚点">#</a>
-    </span>        
-    
-</h3>
-<pre tabindex="0"><code class="language-mark" data-lang="mark">8.1 BSP基础理论知识 263
-8.1.1 BSP概述 263
-8.1.2 BSP所要实现的功能 266
-8.1.3 BSP的文件结构 268
-8.1.4 BSP开发工具 275
-8.2 BSP的基本配置和VxWorks的初始化 275
-8.2.1 BSP的基本配置 275
-8.2.2 VxWorks的初始化 279
-8.3 BSP的开发要求及开发过程 285
-8.3.1 开发要求 285
-8.3.2 获得参考BSP和相关代码模板 288
-8.3.3 安装和设置BSP开发环境 289
-8.3.4 编辑修改BSP文件 293
-8.3.5 构造和下载VxWorks映像 297
-8.3.6 调试初始化代码 299
-8.3.7 整理、测试BSP和编写文档 299
-8.4 BSP中设备驱动程序的开发 301
-8.5 本章小结 302
-</code></pre>
-
-<h3 class="relative group">第9章 VxWorks操作系统应用实例 303 
-    <div id="%E7%AC%AC9%E7%AB%A0-vxworks%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B-303" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E7%AC%AC9%E7%AB%A0-vxworks%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B-303" aria-label="锚点">#</a>
-    </span>        
-    
-</h3>
-<pre tabindex="0"><code class="language-mark" data-lang="mark">9.1 系统整体构架 303
-9.1.1 系统的工作原理 304
-9.1.2 系统的方案设计 305
-9.2 系统关键技术的实现 306
-9.2.1 通信协议的设计 306
-9.2.2 系统健壮性设计 311
-9.3 数据通信与控制系统的软件设计方案 312
-9.3.1 软件设计需注意的问题 312
-9.3.2 软件总体设计 313
-9.3.3 任务模块设计 317
-9.3.4 任务调度设计 321
-9.4 本章小结 323
-参考文献 324
-</code></pre>
           
           
           
@@ -1157,7 +742,9 @@
     
     <div
         class="py-1 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
-        § 2: 本文
+        <a href="https://www.vxworks7.com/book/data-communication-based-on-vxworks-embedded-system/">
+            § 2: 基于VxWorks嵌入式系统的数据通信
+        </a>
     </div>
     
     
@@ -1218,9 +805,7 @@
     
     <div
         class="py-1 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
-        <a href="https://www.vxworks7.com/book/vxworks-kernel-device-driver-and-bsp-development-detailed-explanation-2nd-edition/">
-            § 9: VxWorks内核、设备驱动与BSP开发详解(第2版)
-        </a>
+        § 9: 本文
     </div>
     
     
@@ -1236,7 +821,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.vxworks7.com/book/data-communication-based-on-vxworks-embedded-system/&amp;title=%e5%9f%ba%e4%ba%8eVxWorks%e5%b5%8c%e5%85%a5%e5%bc%8f%e7%b3%bb%e7%bb%9f%e7%9a%84%e6%95%b0%e6%8d%ae%e9%80%9a%e4%bf%a1"
+      href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.vxworks7.com/book/vxworks-kernel-device-driver-and-bsp-development-detailed-explanation-2nd-edition/&amp;title=VxWorks%e5%86%85%e6%a0%b8%e3%80%81%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e4%b8%8eBSP%e5%bc%80%e5%8f%91%e8%af%a6%e8%a7%a3%28%e7%ac%ac2%e7%89%88%29"
       title="分享到 LinkedIn"
       aria-label="分享到 LinkedIn"
       >
@@ -1255,7 +840,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://twitter.com/intent/tweet/?url=https://www.vxworks7.com/book/data-communication-based-on-vxworks-embedded-system/&amp;text=%e5%9f%ba%e4%ba%8eVxWorks%e5%b5%8c%e5%85%a5%e5%bc%8f%e7%b3%bb%e7%bb%9f%e7%9a%84%e6%95%b0%e6%8d%ae%e9%80%9a%e4%bf%a1"
+      href="https://twitter.com/intent/tweet/?url=https://www.vxworks7.com/book/vxworks-kernel-device-driver-and-bsp-development-detailed-explanation-2nd-edition/&amp;text=VxWorks%e5%86%85%e6%a0%b8%e3%80%81%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e4%b8%8eBSP%e5%bc%80%e5%8f%91%e8%af%a6%e8%a7%a3%28%e7%ac%ac2%e7%89%88%29"
       title="分享到 Twitter"
       aria-label="分享到 Twitter"
       >
@@ -1273,7 +858,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://bsky.app/intent/compose?text=%e5%9f%ba%e4%ba%8eVxWorks%e5%b5%8c%e5%85%a5%e5%bc%8f%e7%b3%bb%e7%bb%9f%e7%9a%84%e6%95%b0%e6%8d%ae%e9%80%9a%e4%bf%a1&#43;https://www.vxworks7.com/book/data-communication-based-on-vxworks-embedded-system/"
+      href="https://bsky.app/intent/compose?text=VxWorks%e5%86%85%e6%a0%b8%e3%80%81%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e4%b8%8eBSP%e5%bc%80%e5%8f%91%e8%af%a6%e8%a7%a3%28%e7%ac%ac2%e7%89%88%29&#43;https://www.vxworks7.com/book/vxworks-kernel-device-driver-and-bsp-development-detailed-explanation-2nd-edition/"
       title=""
       aria-label=""
       >
@@ -1291,7 +876,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://s2f.kytta.dev/?text=%e5%9f%ba%e4%ba%8eVxWorks%e5%b5%8c%e5%85%a5%e5%bc%8f%e7%b3%bb%e7%bb%9f%e7%9a%84%e6%95%b0%e6%8d%ae%e9%80%9a%e4%bf%a1%20https://www.vxworks7.com/book/data-communication-based-on-vxworks-embedded-system/"
+      href="https://s2f.kytta.dev/?text=VxWorks%e5%86%85%e6%a0%b8%e3%80%81%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e4%b8%8eBSP%e5%bc%80%e5%8f%91%e8%af%a6%e8%a7%a3%28%e7%ac%ac2%e7%89%88%29%20https://www.vxworks7.com/book/vxworks-kernel-device-driver-and-bsp-development-detailed-explanation-2nd-edition/"
       title=""
       aria-label=""
       >
@@ -1310,7 +895,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://reddit.com/submit/?url=https://www.vxworks7.com/book/data-communication-based-on-vxworks-embedded-system/&amp;resubmit=true&amp;title=%e5%9f%ba%e4%ba%8eVxWorks%e5%b5%8c%e5%85%a5%e5%bc%8f%e7%b3%bb%e7%bb%9f%e7%9a%84%e6%95%b0%e6%8d%ae%e9%80%9a%e4%bf%a1"
+      href="https://reddit.com/submit/?url=https://www.vxworks7.com/book/vxworks-kernel-device-driver-and-bsp-development-detailed-explanation-2nd-edition/&amp;resubmit=true&amp;title=VxWorks%e5%86%85%e6%a0%b8%e3%80%81%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e4%b8%8eBSP%e5%bc%80%e5%8f%91%e8%af%a6%e8%a7%a3%28%e7%ac%ac2%e7%89%88%29"
       title="提交到 Reddit"
       aria-label="提交到 Reddit"
       >
@@ -1329,7 +914,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.vxworks7.com/book/data-communication-based-on-vxworks-embedded-system/&amp;description=%e5%9f%ba%e4%ba%8eVxWorks%e5%b5%8c%e5%85%a5%e5%bc%8f%e7%b3%bb%e7%bb%9f%e7%9a%84%e6%95%b0%e6%8d%ae%e9%80%9a%e4%bf%a1"
+      href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.vxworks7.com/book/vxworks-kernel-device-driver-and-bsp-development-detailed-explanation-2nd-edition/&amp;description=VxWorks%e5%86%85%e6%a0%b8%e3%80%81%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e4%b8%8eBSP%e5%bc%80%e5%8f%91%e8%af%a6%e8%a7%a3%28%e7%ac%ac2%e7%89%88%29"
       title="钉到 Pinterest"
       aria-label="钉到 Pinterest"
       >
@@ -1348,7 +933,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://www.facebook.com/sharer/sharer.php?u=https://www.vxworks7.com/book/data-communication-based-on-vxworks-embedded-system/&amp;quote=%e5%9f%ba%e4%ba%8eVxWorks%e5%b5%8c%e5%85%a5%e5%bc%8f%e7%b3%bb%e7%bb%9f%e7%9a%84%e6%95%b0%e6%8d%ae%e9%80%9a%e4%bf%a1"
+      href="https://www.facebook.com/sharer/sharer.php?u=https://www.vxworks7.com/book/vxworks-kernel-device-driver-and-bsp-development-detailed-explanation-2nd-edition/&amp;quote=VxWorks%e5%86%85%e6%a0%b8%e3%80%81%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e4%b8%8eBSP%e5%bc%80%e5%8f%91%e8%af%a6%e8%a7%a3%28%e7%ac%ac2%e7%89%88%29"
       title="分享到 Facebook"
       aria-label="分享到 Facebook"
       >
@@ -1367,7 +952,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="mailto:?body=https://www.vxworks7.com/book/data-communication-based-on-vxworks-embedded-system/&amp;subject=%e5%9f%ba%e4%ba%8eVxWorks%e5%b5%8c%e5%85%a5%e5%bc%8f%e7%b3%bb%e7%bb%9f%e7%9a%84%e6%95%b0%e6%8d%ae%e9%80%9a%e4%bf%a1"
+      href="mailto:?body=https://www.vxworks7.com/book/vxworks-kernel-device-driver-and-bsp-development-detailed-explanation-2nd-edition/&amp;subject=VxWorks%e5%86%85%e6%a0%b8%e3%80%81%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e4%b8%8eBSP%e5%bc%80%e5%8f%91%e8%af%a6%e8%a7%a3%28%e7%ac%ac2%e7%89%88%29"
       title="通过电子邮件发送"
       aria-label="通过电子邮件发送"
       >
@@ -1386,7 +971,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://api.whatsapp.com/send?text=https://www.vxworks7.com/book/data-communication-based-on-vxworks-embedded-system/&amp;resubmit=true&amp;title=%e5%9f%ba%e4%ba%8eVxWorks%e5%b5%8c%e5%85%a5%e5%bc%8f%e7%b3%bb%e7%bb%9f%e7%9a%84%e6%95%b0%e6%8d%ae%e9%80%9a%e4%bf%a1"
+      href="https://api.whatsapp.com/send?text=https://www.vxworks7.com/book/vxworks-kernel-device-driver-and-bsp-development-detailed-explanation-2nd-edition/&amp;resubmit=true&amp;title=VxWorks%e5%86%85%e6%a0%b8%e3%80%81%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e4%b8%8eBSP%e5%bc%80%e5%8f%91%e8%af%a6%e8%a7%a3%28%e7%ac%ac2%e7%89%88%29"
       title=""
       aria-label=""
       >
@@ -1405,7 +990,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://t.me/share/url?url=https://www.vxworks7.com/book/data-communication-based-on-vxworks-embedded-system/&amp;resubmit=true&amp;title=%e5%9f%ba%e4%ba%8eVxWorks%e5%b5%8c%e5%85%a5%e5%bc%8f%e7%b3%bb%e7%bb%9f%e7%9a%84%e6%95%b0%e6%8d%ae%e9%80%9a%e4%bf%a1"
+      href="https://t.me/share/url?url=https://www.vxworks7.com/book/vxworks-kernel-device-driver-and-bsp-development-detailed-explanation-2nd-edition/&amp;resubmit=true&amp;title=VxWorks%e5%86%85%e6%a0%b8%e3%80%81%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e4%b8%8eBSP%e5%bc%80%e5%8f%91%e8%af%a6%e8%a7%a3%28%e7%ac%ac2%e7%89%88%29"
       title=""
       aria-label=""
       >
@@ -1431,11 +1016,11 @@
   
   
 
-  <a href="/book/embedded-vxworks-system-design-and-application/" class="min-w-full">
+  <a href="/bsp/design-and-implementation-of-vxworks-bsp-in-embedded-speech-communication-system/" class="min-w-full">
     
     <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
         
-        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/book/embedded-vxworks-system-design-and-application/featured-vxworks-book_hu15541876806725832466.png);"></div>
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/bsp/design-and-implementation-of-vxworks-bsp-in-embedded-speech-communication-system/featured-mpc860-vxworks_hu14351920827012275819.png);"></div>
         
       
 
@@ -1443,7 +1028,7 @@
 
         
         <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
-          href="/book/embedded-vxworks-system-design-and-application/">嵌入式VxWorks系统开发与应用</div>
+          href="/bsp/design-and-implementation-of-vxworks-bsp-in-embedded-speech-communication-system/">嵌入式语音通信系统中VxWorks BSP的设计实现</div>
         
 
         <div class="text-sm text-neutral-500 dark:text-neutral-400">
@@ -1482,7 +1067,239 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-11-02T21:40:33&#43;08:00">2024-11-02</time>
+  <time datetime="2024-12-07T15:08:29&#43;08:00">2024-12-07</time>
+  
+
+  
+  
+</div>
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/vxworks/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    VxWorks
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/bsp/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    BSP
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/mpc860/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    MPC860
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+
+  
+  
+
+  <a href="/book/vxworks-system-development-tutorial/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/book/vxworks-system-development-tutorial/featured-vxworks-book_hu15541876806725832466.png);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/book/vxworks-system-development-tutorial/">VxWorks开发教程(中文版)</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2025-01-02T09:28:21&#43;08:00">2025-01-02</time>
+  
+
+  
+  
+</div>
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/vxworks/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    VxWorks
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/development-tutorial/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Development Tutorial
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+
+  
+  
+
+  <a href="/book/embedded-software-design-based-on-vxworks/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/book/embedded-software-design-based-on-vxworks/featured-vxworks-book_hu15541876806725832466.png);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/book/embedded-software-design-based-on-vxworks/">基于VxWorks的嵌入式软件设计</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-12-31T22:23:05&#43;08:00">2024-12-31</time>
   
 
   
@@ -1541,230 +1358,6 @@
   </a>
 
   
-  
-
-  <a href="/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/" class="min-w-full">
-    
-    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
-        
-        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/featured-vxworks-uart-programming_hu4235903992493125735.png);"></div>
-        
-      
-
-      <div class="px-6 py-4">
-
-        
-        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
-          href="/app/design-and-implementation-of-uart-communication-application-based-on-vxworks/">基于VxWorks实时操作系统的串口通信程序设计与实现</div>
-        
-
-        <div class="text-sm text-neutral-500 dark:text-neutral-400">
-          
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="flex flex-row flex-wrap items-center">
-  
-  
-  <time datetime="2024-11-02T11:18:25&#43;08:00">2024-11-02</time>
-  
-
-  
-  
-</div>
-
-
-
-
-
-<div class="flex flex-row flex-wrap items-center">
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/vxworks/&#34;,'_self');">
-    <span class="flex" style="cursor: pointer;">
-  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    VxWorks
-  </span>
-</span>
-  </span>
-  
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/uart/&#34;,'_self');">
-    <span class="flex" style="cursor: pointer;">
-  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    UART
-  </span>
-</span>
-  </span>
-  
-  
-  
-  
-</div>
-
-
-
-
-        </div>
-
-        
-      </div>
-      <div class="px-6 pt-4 pb-2">
-
-      </div>
-    </div>
-  </a>
-
-  
-  
-
-  <a href="/app/design-of-multiple-timers-in-vxworks/" class="min-w-full">
-    
-    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
-        
-        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/app/design-of-multiple-timers-in-vxworks/featured-vxworks-the-industry-leader_hu16393185524054319025.png);"></div>
-        
-      
-
-      <div class="px-6 py-4">
-
-        
-        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
-          href="/app/design-of-multiple-timers-in-vxworks/">VxWorks下的多重定时器设计</div>
-        
-
-        <div class="text-sm text-neutral-500 dark:text-neutral-400">
-          
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="flex flex-row flex-wrap items-center">
-  
-  
-  <time datetime="2024-10-24T23:11:01&#43;08:00">2024-10-24</time>
-  
-
-  
-  
-</div>
-
-
-
-
-
-<div class="flex flex-row flex-wrap items-center">
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/vxworks/&#34;,'_self');">
-    <span class="flex" style="cursor: pointer;">
-  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    VxWorks
-  </span>
-</span>
-  </span>
-  
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/timer/&#34;,'_self');">
-    <span class="flex" style="cursor: pointer;">
-  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    Timer
-  </span>
-</span>
-  </span>
-  
-  
-  
-  
-</div>
-
-
-
-
-        </div>
-
-        
-      </div>
-      <div class="px-6 pt-4 pb-2">
-
-      </div>
-    </div>
-  </a>
-
-  
 </section>
 
   
@@ -1778,8 +1371,8 @@
           
         
       <script>
-        var oid = "views_book\/data-communication-based-on-vxworks-embedded-system\/index.md"
-        var oid_likes = "likes_book\/data-communication-based-on-vxworks-embedded-system\/index.md"
+        var oid = "views_book\/vxworks-kernel-device-driver-and-BSP-development-detailed-explanation-2nd-edition\/index.md"
+        var oid_likes = "likes_book\/vxworks-kernel-device-driver-and-BSP-development-detailed-explanation-2nd-edition\/index.md"
       </script>
       
       
@@ -1799,7 +1392,7 @@
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="flex group mr-3" href="/book/embedded-vxworks-system-design-and-application/">
+            <a class="flex group mr-3" href="/book/vxworks-7-user-guide-in-chinese/">
               <span
                 class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
                 >&larr;</span
@@ -1811,11 +1404,11 @@
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >嵌入式VxWorks系统开发与应用</span
+                  >VxWorks 7.0 中文教程</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="2024-11-02T21:40:33&#43;08:00">2024-11-02</time>
+                    <time datetime="2025-01-02T11:21:38&#43;08:00">2025-01-02</time>
                   
                 </span>
               </span>
@@ -1823,28 +1416,6 @@
           
         </span>
         <span>
-          
-            <a class="flex text-right group ml-3" href="/book/embedded-real-time-system-design-based-on-vxworks/">
-              <span class="flex flex-col">
-                <span
-                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >基于VxWorks的嵌入式实时系统设计</span
-                >
-                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
-                  
-                    <time datetime="2024-11-03T10:09:03&#43;08:00">2024-11-03</time>
-                  
-                </span>
-              </span>
-              <span
-                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
-                >&rarr;</span
-              >
-              <span
-                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
-                >&larr;</span
-              >
-            </a>
           
         </span>
       </div>

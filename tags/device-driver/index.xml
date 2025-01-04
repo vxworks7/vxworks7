@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Device Driver on VxWorks 7 the Leading RTOS</title>
+    <link>https://www.vxworks7.com/tags/device-driver/</link>
+    <description>Recent content in Device Driver on VxWorks 7 the Leading RTOS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 </copyright>
+    <lastBuildDate>Sat, 04 Jan 2025 22:21:40 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/device-driver/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VxWorks内核、设备驱动与BSP开发详解(第2版)</title>
+      <link>https://www.vxworks7.com/book/vxworks-kernel-device-driver-and-bsp-development-detailed-explanation-2nd-edition/</link>
+      <pubDate>Sat, 04 Jan 2025 22:21:40 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/book/vxworks-kernel-device-driver-and-bsp-development-detailed-explanation-2nd-edition/</guid>
+      <description>&lt;p&gt;
+    &lt;figure&gt;
+      &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; src=&#34;./vxworks-kernel-device-driver-bsp.png&#34; alt=&#34;VxWorks内核、设备驱动与BSP开发详解(第2版)&#34; /&gt;
+      
+    &lt;/figure&gt;
+&lt;/p&gt;
+&lt;blockquote&gt;
+免费下载说明：&lt;/br&gt;
+网络资源，整理仅供学习参考!
+&lt;/blockquote&gt;
+
+
+  &lt;span class=&#34;relative inline-block align-text-bottom icon&#34;&gt;
+    &lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 512 512&#34;&gt;
+&lt;path fill=&#34;currentColor&#34; d=&#34;M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zM432 456c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z&#34;/&gt;&lt;/svg&gt;
+  &lt;/span&gt;
+
+&lt;a href=&#34;https://app.filemail.com/d/hjdaraaaapoiauz&#34; target=&#34;_blank&#34; download&gt;VxWorks内核、设备驱动与BSP开发详解(第2版)&lt;/a&gt;
+&lt;p&gt;内容简介：&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/book/vxworks-kernel-device-driver-and-bsp-development-detailed-explanation-2nd-edition/featured-vxworks-book.png" />
+    </item>
+    
+  </channel>
+</rss>
