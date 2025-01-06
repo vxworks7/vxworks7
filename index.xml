@@ -9,6 +9,40 @@
     <copyright>© 2025 </copyright>
     <lastBuildDate>Fri, 04 Oct 2024 21:23:23 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>VxWorks的多个高危漏洞预警</title>
+      <link>https://www.vxworks7.com/news/multiple-high-risk-vulnerability-alerts-for-vxworks/</link>
+      <pubDate>Mon, 06 Jan 2025 23:06:00 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/news/multiple-high-risk-vulnerability-alerts-for-vxworks/</guid>
+      <description>&lt;h2 class=&#34;relative group&#34;&gt;背景 
+    &lt;div id=&#34;%E8%83%8C%E6%99%AF&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#%E8%83%8C%E6%99%AF&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;Armis研究人员在&lt;a href=&#34;https://www.vxworks6.com&#34; target=&#34;_blank&#34;&gt;VxWorks&lt;/a&gt;中发现了11个零日漏洞，VxWorks是最受欢迎的实时操作系统（RTOS），被超过20亿台设备使用，包括工业，&lt;a href=&#34;https://www.vxworks6.com/industries/vxworks-for-medical/&#34; target=&#34;_blank&#34;&gt;医疗&lt;/a&gt;和企业设备等关键任务设备。这些漏洞被称为&amp;rsquo;URGENT/11&amp;rsquo;，存在于IPnet，VxWorks的TCP/IP堆栈中，影响了过去13年的版本，并且是影响操作系统的漏洞的罕见示例。在其32年的历史中，MITER仅列出了13个影响VxWorks的CVE，其中没有一个像URGENT/11那样严重。&lt;/p&gt;
+&lt;p&gt;近年来，广泛使用的TCP/IP栈实现中的漏洞变得极其罕见，尤其是那些能够在目标设备上实现远程代码执行的漏洞。这种类型的漏洞是攻击者的圣杯，因为它们不依赖于特定应用程序，只要求攻击者能够通过网络访问目标设备。当在TCP实现中发现这样的漏洞时，它们甚至可以被用来绕过防火墙和NAT解决方案，因为它们隐藏在看起来无害的TCP流量中。&lt;/p&gt;
+
+
+&lt;h2 class=&#34;relative group&#34;&gt;漏洞列表 
+    &lt;div id=&#34;%E6%BC%8F%E6%B4%9E%E5%88%97%E8%A1%A8&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#%E6%BC%8F%E6%B4%9E%E5%88%97%E8%A1%A8&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;发现的11个漏洞由6个关键漏洞组成，可能导致远程代码执行：&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/news/multiple-high-risk-vulnerability-alerts-for-vxworks/featured-vxworks-rtos-vulnerability.png" />
+    </item>
+    
+    <item>
       <title>VxWorks内核、设备驱动与BSP开发详解(第2版)</title>
       <link>https://www.vxworks7.com/book/vxworks-kernel-device-driver-and-bsp-development-detailed-explanation-2nd-edition/</link>
       <pubDate>Sat, 04 Jan 2025 22:21:40 +0800</pubDate>
