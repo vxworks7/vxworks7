@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Robot on VxWorks 7 the Leading RTOS</title>
+    <link>https://www.vxworks7.com/tags/robot/</link>
+    <description>Recent content in Robot on VxWorks 7 the Leading RTOS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 </copyright>
+    <lastBuildDate>Wed, 08 Jan 2025 01:21:24 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/robot/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Riverfield采用风河VxWorks开发外科机器人系统</title>
+      <link>https://www.vxworks7.com/news/riverfield-chooses-vxworks-for-surgical-assist-robot-development/</link>
+      <pubDate>Wed, 08 Jan 2025 01:21:24 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/news/riverfield-chooses-vxworks-for-surgical-assist-robot-development/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;全球领先的关键任务智能系统软件提供商风河公司近日宣布，Riverfield 公司采用&lt;a href=&#34;https://www.vxworks6.com&#34; target=&#34;_blank&#34;&gt;VxWorks&lt;/a&gt;®开发Saroa外科机器人系统。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;
+    &lt;figure&gt;
+      &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; src=&#34;./Saroa_Surgical_System.jpg&#34; alt=&#34;Saroa Surgical System&#34; /&gt;
+      
+    &lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Riverfield是令人赞叹的业界先驱，凭借其独特的力量感知技术推出了Saroa外科手术系统。我们非常荣幸能以VxWorks来支持Riverfield开发高性能的机器人系统，由此将大幅提升外科手术的精确度和安全性。&lt;/p&gt;
+&lt;p&gt;Avijit Sinha | 风河公司首席产品官&lt;/p&gt;
+&lt;p&gt;我们致力于应用机器人来满足社会需求。外科手术对于患者常常是性命攸关，风险极高，精确度是必备前提。对我们来说，提供可靠、成熟的解决方案至关重要。VxWorks长期得到用户的优良评价，在需要高精度控制和实时性的医疗设备领域享有广为人知的盛誉。&lt;/p&gt;
+&lt;p&gt;Kotaro Tadano | Riverfield公司CEO&lt;/p&gt;
+&lt;p&gt;Riverfield是一家专注于医疗设备的机器人研发公司。Saroa手术系统是世界上第一个手术辅助机器人，在驱动机器人手术钳时，它能通过气动压力提供力感触觉。其气动系统精密控制技术提供了精确外科手术必不可少的力感，包括夹、抓、拉等感觉。&lt;/p&gt;
+&lt;p&gt;与不具备力感的传统手术机器人不同，Saroa手术系统能让医生在操作机器人时感觉就像他直接用自己的手在做手术一样，从而大幅提高手术中精细操作的精度。&lt;/p&gt;
+&lt;p&gt;
+    &lt;figure&gt;
+      &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; src=&#34;./riverfield-vxworks-robot-1.png&#34; alt=&#34;Riverfield Choose VxWorks for Robot Development&#34; /&gt;
+      
+    &lt;/figure&gt;
+
+气动系统具有成本效益的优势，因为可以在不需要力传感器的情况下提供力感反馈。然而，这种装置十分复杂，有许多组件构成，而且难以控制。Riverfield公司采用VxWorks实时操作系统，因而能把快速响应性能、高可靠性和高安全性融为一体，所有这些都是从事手术的关键性要求。采用了VxWorks之手，Riverfield公司就能以亚微秒级的响应速度进行实时数据处理，从而支持控制气动力感及其他相关应用，确保高性能和高精度。&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/news/riverfield-chooses-vxworks-for-surgical-assist-robot-development/featured-riverfield-vxworks-robot.png" />
+    </item>
+    
+  </channel>
+</rss>
