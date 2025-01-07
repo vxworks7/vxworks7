@@ -3,18 +3,6 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
-    <loc>https://www.vxworks7.com/news/</loc>
-    <lastmod>2025-01-08T01:21:24+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.vxworks7.com/news/riverfield-chooses-vxworks-for-surgical-assist-robot-development/</loc>
-    <lastmod>2025-01-08T01:21:24+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://www.vxworks7.com/book/</loc>
     <lastmod>2025-01-04T22:21:40+08:00</lastmod>
     <changefreq>daily</changefreq>
@@ -93,6 +81,12 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://www.vxworks7.com/news/</loc>
+    <lastmod>2024-11-16T11:27:29+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://www.vxworks7.com/news/wind-river-and-aws-collaborate-to-advance-software-defined-automotive-innovation/</loc>
     <lastmod>2024-11-16T11:27:29+08:00</lastmod>
     <changefreq>daily</changefreq>
@@ -161,6 +155,12 @@
   <url>
     <loc>https://www.vxworks7.com/</loc>
     <lastmod>2024-10-04T21:23:23+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.vxworks7.com/news/riverfield-chooses-vxworks-for-surgical-assist-robot-development/</loc>
+    <lastmod>2023-10-27T01:21:24+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
