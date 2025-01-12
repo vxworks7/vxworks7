@@ -37,7 +37,7 @@
 &lt;li&gt;IO 系统&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;VxWorks 提供了一个快速灵活的与 ANSI C 兼容的 I/O 系统，包括 UNIX 标准的Basic I/O (creat(),remove(),open(),close(),read(),write(),and ioctl())，Buffer I/O (fopen(),fclose(),fread(),fwrite(),getc(),putc()) 以及POSIX 标准的异步 I/O。VxWorks 包括以下驱动程序：网络驱动、管道驱动、RAM盘驱动、SCSI驱动、键盘驱动、显示驱动、磁盘驱动、并口驱动等 。&lt;/p&gt;</description>
-      
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/bsp/how-to-deploy-vxworks-on-vmware/featured-VxWorks-7-Rocket.jpg" />
     </item>
     
   </channel>
