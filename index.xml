@@ -22,7 +22,7 @@
     &lt;/figure&gt;
 &lt;/p&gt;
 &lt;p&gt;多年来，VxWorks®实时操作系统（RTOS）成功搭载数十亿台安全关键型智能设备、机器和系统，获得全球行业领导者一致认可。从如今运行在“红色星球”上的洞察号火星探测器（Insight），到医用输液泵和成像系统、制造机器人以及其他物联网（IoT）嵌入式设备，VxWorks屡次被选为创新解决方案，安全、可靠地应用于航空航天与国防、汽车、工控、医疗和交通运输行业。&lt;/p&gt;
-&lt;p&gt;&lt;b&gt;VxWorks操作系统有以下部件组成：&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;VxWorks操作系统由以下部件组成：&lt;/b&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;内核&lt;/li&gt;
 &lt;/ol&gt;
