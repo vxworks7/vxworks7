@@ -7,7 +7,39 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 </copyright>
-    <lastBuildDate>Mon, 30 Dec 2024 17:45:02 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/bsp/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 12 Jan 2025 20:58:38 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/bsp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>如何在虚拟机VMWare上部署VxWorks</title>
+      <link>https://www.vxworks7.com/bsp/how-to-deploy-vxworks-on-vmware/</link>
+      <pubDate>Sun, 12 Jan 2025 20:58:38 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/bsp/how-to-deploy-vxworks-on-vmware/</guid>
+      <description>&lt;p&gt;VxWorks 操作系统是美国WindRiver公司于1983年设计开发的一种&lt;a href=&#34;https://www.vxworks.net&#34; target=&#34;_blank&#34;&gt;嵌入式实时操作系统（RTOS）&lt;/a&gt;，是嵌入式开发环境的关键组成部分。良好的持续发展能力、高性能的内核以及友好的用户开发环境，在嵌入式实时操作系统领域占据一席之地。它以其良好的可靠性和实时性被广泛地应用在通信、军事、航空、航天等高精尖技术及实时性要求极高的领域中，如卫星通讯、军事演习、弹道制导、飞机导航等。在美国的 F-16、FA-18战斗机、B-2 隐形轰炸机和爱国者导弹上，甚至连1997年4月在火星表面登陆的火星探测器、2008年5月登陆的凤凰号，和2012年8月登陆的好奇号也都使用到了&lt;a href=&#34;https://www.vxworks6.com&#34; target=&#34;_blank&#34;&gt;VxWorks&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;
+    &lt;figure&gt;
+      &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; src=&#34;./deploy-vxworks-on-vmware-1.png&#34; alt=&#34;Deploy VxWorks on VMWare&#34; /&gt;
+      
+    &lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;多年来，VxWorks®实时操作系统（RTOS）成功搭载数十亿台安全关键型智能设备、机器和系统，获得全球行业领导者一致认可。从如今运行在“红色星球”上的洞察号火星探测器（Insight），到医用输液泵和成像系统、制造机器人以及其他物联网（IoT）嵌入式设备，VxWorks屡次被选为创新解决方案，安全、可靠地应用于航空航天与国防、汽车、工控、医疗和交通运输行业。&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;VxWorks操作系统有以下部件组成：&lt;/b&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;内核&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;多任务调度（采用基于优先级抢占方式，同时支持同优先级任务间的分时间片调度）&lt;/li&gt;
+&lt;li&gt;任务间的同步&lt;/li&gt;
+&lt;li&gt;进程间通信机制&lt;/li&gt;
+&lt;li&gt;中断处理&lt;/li&gt;
+&lt;li&gt;定时器和内存管理机制&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;IO 系统&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;VxWorks 提供了一个快速灵活的与 ANSI C 兼容的 I/O 系统，包括 UNIX 标准的Basic I/O (creat(),remove(),open(),close(),read(),write(),and ioctl())，Buffer I/O (fopen(),fclose(),fread(),fwrite(),getc(),putc()) 以及POSIX 标准的异步 I/O。VxWorks 包括以下驱动程序：网络驱动、管道驱动、RAM盘驱动、SCSI驱动、键盘驱动、显示驱动、磁盘驱动、并口驱动等 。&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>基于VxWorks的NAND FLASH驱动程序设计</title>
       <link>https://www.vxworks7.com/bsp/design-of-nand-flash-driver-based-on-vxworks/</link>
