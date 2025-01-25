@@ -7,13 +7,13 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 </copyright>
-    <lastBuildDate>Sun, 12 Jan 2025 20:58:38 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 25 Jan 2025 21:04:28 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>VMWare</title>
-      <link>https://www.vxworks7.com/tags/vmware/</link>
-      <pubDate>Sun, 12 Jan 2025 20:58:38 +0800</pubDate>
+      <title>Overview</title>
+      <link>https://www.vxworks7.com/tags/overview/</link>
+      <pubDate>Sat, 25 Jan 2025 21:04:28 +0800</pubDate>
       
-      <guid>https://www.vxworks7.com/tags/vmware/</guid>
+      <guid>https://www.vxworks7.com/tags/overview/</guid>
       <description></description>
       
     </item>
@@ -21,9 +21,19 @@
     <item>
       <title>VxWorks</title>
       <link>https://www.vxworks7.com/tags/vxworks/</link>
-      <pubDate>Sun, 12 Jan 2025 20:58:38 +0800</pubDate>
+      <pubDate>Sat, 25 Jan 2025 21:04:28 +0800</pubDate>
       
       <guid>https://www.vxworks7.com/tags/vxworks/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>VMWare</title>
+      <link>https://www.vxworks7.com/tags/vmware/</link>
+      <pubDate>Sun, 12 Jan 2025 20:58:38 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/tags/vmware/</guid>
       <description></description>
       
     </item>

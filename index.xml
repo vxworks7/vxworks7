@@ -9,6 +9,56 @@
     <copyright>© 2025 </copyright>
     <lastBuildDate>Fri, 04 Oct 2024 21:23:23 +0800</lastBuildDate><atom:link href="https://www.vxworks7.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>VxWorks产品概述</title>
+      <link>https://www.vxworks7.com/news/vxworks-product-overview/</link>
+      <pubDate>Sat, 25 Jan 2025 21:04:28 +0800</pubDate>
+      
+      <guid>https://www.vxworks7.com/news/vxworks-product-overview/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;VxWorks 适用于关键基础架构和嵌入式系统的安全可靠、经认证的实时操作系统（ RTOS）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;多年来，&lt;a href=&#34;https://www.vxworks7.com&#34; target=&#34;_blank&#34;&gt;VxWorks&lt;/a&gt;®实时操作系统（RTOS）成功搭载数十亿台安全关键型智能设备、机器和系统，获得全球行业领导者一致认可。从如今运行在“红色星球”上的洞察号火星探测器（Insight），到医用输液泵和成像系统、制造机器人以及其他&lt;a href=&#34;https://www.vxworks.net/news/752-synopsis-of-vxworks-7-the-iot-os&#34; target=&#34;_blank&#34;&gt;物联网&lt;/a&gt;（IoT）嵌入式设备，VxWorks屡次被选为创新解决方案，安全、可靠地应用于航空航天与国防、汽车、工控、医疗和交通运输行业。&lt;/p&gt;
+&lt;p&gt;
+    &lt;figure&gt;
+      &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; src=&#34;./vxworks-hierarchical.png&#34; alt=&#34;VxWorks hierarchical&#34; /&gt;
+      
+    &lt;/figure&gt;
+&lt;/p&gt;
+
+
+&lt;h2 class=&#34;relative group&#34;&gt;VxWorks亮点 
+    &lt;div id=&#34;vxworks%E4%BA%AE%E7%82%B9&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#vxworks%E4%BA%AE%E7%82%B9&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;业界领先的商业嵌入式操作系统&lt;/li&gt;
+&lt;li&gt;广泛支持各类嵌入式处理器&lt;/li&gt;
+&lt;li&gt;针对广泛垂直市场的设计&lt;/li&gt;
+&lt;li&gt;认证：DO-178C DALA、ISO26262 ASIL D、IEC 61508 SIL3 及 IEC 62304&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2 class=&#34;relative group&#34;&gt;构建边缘计算系统的未来 
+    &lt;div id=&#34;%E6%9E%84%E5%BB%BA%E8%BE%B9%E7%BC%98%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9C%AA%E6%9D%A5&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#%E6%9E%84%E5%BB%BA%E8%BE%B9%E7%BC%98%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9C%AA%E6%9D%A5&#34; aria-label=&#34;锚点&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;VxWorks是一款具有确定性、高性能实时操作系统，它为必须满足最高标准的任务关键型设备和系统确立了可扩展、永不过时、安全可靠的操作环境标准。&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.vxworks7.com/news/vxworks-product-overview/featured-vxworks-overview.png" />
+    </item>
+    
+    <item>
       <title>如何在虚拟机VMWare上部署VxWorks</title>
       <link>https://www.vxworks7.com/bsp/how-to-deploy-vxworks-on-vmware/</link>
       <pubDate>Sun, 12 Jan 2025 20:58:38 +0800</pubDate>
